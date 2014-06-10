@@ -245,6 +245,15 @@ a img{
 .product_topsec_det .action_bar a{
 	margin-left: 10px;
 }
+.product_topsec_det .action_bar .buybutton{
+  float: left;
+  width: 78px;
+  height: 28px;
+  background: #c00 url('/msp/images/buynow-sprite.png') left top no-repeat;
+}
+.product_topsec_det .action_bar .buybutton:active{
+  background-position: left bottom;
+}
 .product_topsec_det .action_bar_border{
 	width: 100%;
 	float: left;
@@ -1083,10 +1092,15 @@ margin-bottom: 20px;
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_gostore {
 	float: left;
 	height: 30px;
-	margin: 28px 0 27px 19px;
+	margin: 28px 0 27px 17px;
 }
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_gostore a {
-	text-decoration: none;
+  width: 133px;
+  height: 32px;
+  background: #3b88ab url('/msp/images/buyfromstore-sprite.png') left top no-repeat;
+}
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_gostore a:active {
+  background-position: left bottom;
 }
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .extra_info{
 	float: left;
@@ -1877,6 +1891,5 @@ float: right;
     line-height: 21px;
     font-size: 15px;
 }
-
 
 

@@ -281,6 +281,15 @@ function updateShowMoreStore(){
 $(document).ready(function(){
 	// setTimeout('rating_init_f();',350);
 
+  $(document).on('click', '.buybutton', function() {
+    if ($('.product_bottom_sec').length) {
+      $('html, body').animate({
+        scrollTop: ($('.product_bottom_sec').offset().top - 50) + "px"
+      });
+    }
+    return false;
+  });
+
   var hiddenText = $(".product_topsec_det .hidden_text:eq(0)");
   if (hiddenText.length > 0) {
     $("body").on("click", ".product_topsec_det .morebutton:eq(0), .product_topsec_det .lessbutton:eq(0)", toggleText);
@@ -493,4 +502,3 @@ function formValidator() {
 	return false;
 }
 */
-
