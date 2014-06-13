@@ -281,7 +281,7 @@ function updateShowMoreStore(){
 $(document).ready(function(){
 	// setTimeout('rating_init_f();',350);
 
-  $(document).on('click', '.buybutton', function() {
+  $(document).on('click', '.price_em, .buybutton', function() {
     if ($('.product_bottom_sec').length) {
       $('html, body').animate({
         scrollTop: ($('.product_bottom_sec').offset().top - 50) + "px"
