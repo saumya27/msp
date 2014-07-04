@@ -1,0 +1,413 @@
+
+<style type="text/css">
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.popup-container {
+    width:600px;
+}
+.popup-inner-content {
+    width: 600px;
+    background-color: #fff;
+}
+
+.popup-field {
+    margin-bottom:5px;
+    width:450px;
+}
+.popup-field * {
+    float: left;
+}
+.popup-image img {
+    width: 290px;
+    height: 240px;
+}
+
+.popup-title {
+    overflow: hidden;
+    line-height: 30px;
+    margin: 10px 20px;
+    text-align:center;
+    font-size: 26px;
+}
+.popup-subtitle {
+    margin:10px 20px;
+    text-align:center;
+    font-size:14px;
+    color:#666;
+}
+
+.popup-arrow {
+    position: relative;
+}
+.popup-arrow img {
+    position: absolute;
+    left: 16px;
+    bottom: 142px;
+    width: 34px;
+    height: 34px;
+}
+.popup-form {
+    position: relative; 
+    float:left;
+    background-color: #f3f3f3;
+    padding: 20px 20px 8px 20px;
+    margin:10px 0 0;
+    width:600px;
+}
+.popup-field {
+    float:left;
+    margin-bottom: 12px;
+}
+.popup-icon,
+.popup-form input[type="text"] {
+    border-style: solid;
+    border-color: #ccc;
+}
+.popup-icon {
+    padding: 10px 0 10px 8px;
+    border-width: 1px 0 1px 1px;
+    background-color: #fff;
+}
+.popup-icon img {
+    width: 16px;
+    height: 16px;
+}
+.popup-form input[type="text"] {
+    height: 38px;
+    padding: 5px;
+    border-width: 1px 1px 1px 0;
+    outline: none;
+    margin: 0px;
+    font-size: 12px;
+    color: #666;
+    width: 425px;
+}
+.popup-form input[type="radio"] {
+    height: 36px;
+    margin: 0 0 0 6px;
+}
+.popup-cashback-heading {
+    margin:5px 0px 10px 0px;
+    font-size:14px;
+    font-family: arial;
+    color:#777;
+    float:left;
+    width:100%;
+
+} 
+.popup-field-wrapper {   
+    width:450px;
+    margin:auto;
+}
+.popup-form-recharge {
+    display:none;
+}
+.popup-form select {
+    height: 38px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    margin: 0px 10px 3px 0px ;
+    font-size: 14px;
+    color: #666;
+    width: 220px;
+}
+
+.popup-note-email {
+    float:left;
+}
+.popup-skip {
+    float:right;
+}
+.popup-form select[name="circle"] {
+    margin-right:0;
+}
+.popup-option {
+    border-style: solid;
+    border-color: #ccc;
+    border-width: 1px 1px 1px 1px;
+    background-color: #fff;
+    margin:0 0 0px 0;
+    width:219px;
+    padding-left:5px;
+}
+.popup-option label {
+    line-height: 24px;
+    padding: 6px;
+    text-align: left;
+    color: #999;
+    font-family: arial;
+    font-size:12px;
+}
+
+.popup-option.leftoption {
+    margin-right:12px;
+} 
+
+.popup-note {
+    font-size:12px;
+    color:#777;
+    font-style: italic;
+    margin:2px 0 10px 0;
+}
+.popup-thanks {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    line-height: 147px;
+    height: 147px;
+    font-size: 26px;
+    color: #c00;
+}
+.popup-note-bank-credit {
+    display:none;
+    text-align: center;
+    border: 1px solid #999;
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 14px;
+    color: #777;
+    background-color: #E5E5E5;
+}
+.popup-skip a {
+    font-size: 12px;
+    line-height: 15px;
+    text-decoration: underline;
+    color: #166DBF;
+}
+.popup-skip a:hover,
+.popup-skip a:active,
+.popup-skip a:focus {
+    color: #135FA5;
+}
+/*.popup-form-response {
+    display:none;
+    text-align:center;
+    padding:30px 0px 40px 0px;
+    font-size:18px;
+    }*/
+    </style>
+
+    <div class="popup-inner-content">
+        <div class="popup-title">Cashback Offer</div>
+        <div class="popup-subtitle">Please enter the details below to avail the offer</div>
+        <div class="popup-form">
+            <div class="popup-field-wrapper">
+                <div class="popup-field">
+                    <label for="popup-name" class="popup-icon">
+                        <img src="/promotions/male.png" alt="Email ID">
+                    </label>
+                    <input id="popup-name" type="text" name="name"  placeholder="Name" />
+                </div>
+                <div class="popup-field">
+                    <label for="popup-email" class="popup-icon">
+                        <img src="/promotions/email.png" alt="Email ID">
+                    </label>
+                    <input type="text" id="popup-email" name="email" placeholder="Email ID" />
+                </div>
+                <div class="popup-cashback-heading">Please choose from the following Cashback options*</div>
+                <div class="popup-field">
+
+                  <div class="popup-option leftoption">
+                    <input id="popup-flipkart-voucher" type="radio" name="popup-option" value="flipart-voucher" />
+                    <label for="popup-flipkart-voucher">Flipkart Voucher (Rs. 100)</label>
+                </div>
+
+
+                <div class="popup-option">
+                    <input id="popup-myntra-voucher" type="radio" name="popup-option" value="myntra-voucher" />
+                    <label for="popup-myntra-voucher">Myntra Voucher (Rs. 100)</label>
+                </div>
+            </div>
+            <div class="popup-field">
+
+              <div class="popup-option leftoption">
+                <input id="popup-recharge" type="radio" name="popup-option" value="recharge" />
+                <label for="popup-recharge">Recharge (Rs. 100)</label>
+            </div>
+
+
+            <div class="popup-option">
+                <input id="popup-cashback" type="radio" name="popup-option" value="bank-credit" />
+                <label for="popup-cashback">Bank Account Credit (Rs. 100)</label>
+            </div>
+        </div>
+
+        <div class="popup-form-recharge">
+         <div class="popup-field">
+            <label for="popup-mobile" class="popup-icon">
+                <img src="/promotions/mobile.png" alt="Mobile Number">
+            </label>    
+            <input type="text" id="popup-mobile" name="mobile" placeholder="Mobile Number" /> 
+        </div>
+        <div class="popup-field">      
+            <select name="operator" id="popup-operator">
+                <option value="">Select Operator</option>
+                <option value="Aircel">Aircel</option>
+                <option value="Airtel">Airtel</option>
+                <option value="BSNL">BSNL</option>
+                <option value="Tata Docomo GSM">Tata Docomo GSM</option>
+                <option value="Idea">Idea</option>
+                <option value="Indicom Walky">Indicom Walky</option>
+                <option value="Loop Mobile">Loop Mobile</option>
+                <option value="MTNL Delhi">MTNL Delhi</option>
+                <option value="Reliance CDMA">Reliance CDMA</option>
+                <option value="Reliance GSM">Reliance GSM</option>
+                <option value="Tata Indicom">Tata Indicom</option>
+                <option value="Uninor">Uninor</option>
+                <option value="Vodafone">Vodafone</option>
+                <option value="MTS">MTS</option>
+                <option value="Videocon Mobile">Videocon Mobile</option>
+                <option value="Virgin GSM">Virgin GSM</option>
+                <option value="Virgin CDMA">Virgin CDMA</option>
+                <option value="Tata Docomo CDMA">Tata Docomo CDMA</option>
+                <option value="T24">T24</option>
+                <option value="MTNL Mumbai">MTNL Mumbai</option>
+            </select>
+            <select name="circle" id="popup-circle">
+                <option value="">Select Circle</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar Jharkhand">Bihar Jharkhand</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Delhi NCR">Delhi NCR</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jammu Kashmir">Jammu Kashmir</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Madhya Pradesh Chhattisgarh">Madhya Pradesh Chhattisgarh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="North East">North East</option>
+                <option value="Orissa">Orissa</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="UP East">UP East</option>
+                <option value="UP West">UP West</option>
+                <option value="West Bengal">West Bengal</option>    
+            </select>
+        </div>
+    </div>
+        <div class="popup-note-bank-credit">  We will ask your bank account details in an email
+    </div>
+
+    <div class="popup-field">
+        <a href="#" target="_blank" id="popup-submit" class="popup-submit signup-button btn btn-block btn-xl btn-red">Avail Offer</a>
+    </div>
+    <div class="popup-note-email popup-note">  *We will send you an email after confirming your transaction
+    </div>
+    <div class="popup-skip popup-note"><a href="#" target="_blank" onclick="closePopup()">Skip Offer</a></div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">
+function dotdjsAppendPopup(args) {
+        // $(".popup-form").hide();
+        // $(".popup-form-response").show();
+
+        $.ajax({
+          type: "GET",
+          url: "/price_alert/capture_email.php" + args,
+          cache: false
+      }).done(function(html) {
+      });
+  }
+
+  function showHideRechargeDetails() {
+    if($("input:radio[name='popup-option']:checked").val() == "recharge")
+    {
+        $(".popup-form-recharge").show();
+        $(".popup-note-bank-credit").hide();
+    }
+    else if($("input:radio[name='popup-option']:checked").val() == "bank-credit") 
+    {
+        $(".popup-form-recharge").hide();
+        $(".popup-note-bank-credit").show();
+    }
+    else
+    {
+        $(".popup-form-recharge").hide();
+        $(".popup-note-bank-credit").hide();
+    }
+}
+
+
+
+function dotdformValidatorPopup() {
+    var emailValue = $("#popup-email").val();
+    var nameValue = $("#popup-name").val();
+    var mobileValue = $("#popup-mobile").val();
+    var operatorValue = $("#popup-operator").val();
+    var circleValue = $("#popup-circle").val();
+    var optionValue= $("input:radio[name='popup-option']:checked").val();
+
+    var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    var mobileRegex = /^[0-9]{10}$/;
+
+    if (!emailRegex.test(emailValue)) {
+      alert("Please enter a valid Email ID.");
+      return false;
+  }
+  setCookie("msp_login_email", emailValue, 365);
+
+  if (!optionValue) {
+      alert("Please select voucher type.");
+      return false;
+  }
+  if(optionValue == "recharge")
+  {
+
+    if (!mobileRegex.test(mobileValue)) {
+        alert("Please enter a valid Mobile Number.");
+        return false;
+    }
+    if (operatorValue == '') {
+      alert("Please select your operator.");
+      return false;
+  }
+  if (circleValue == '') {
+      alert("Please select your circle.");
+      return false;
+  }
+}
+emailValue = encodeURIComponent(emailValue);
+
+var dealid= '';
+
+var queryString = "?email=" + emailValue + "&name=" + nameValue + "&option=" + optionValue + "&mobile=" + mobileValue +"&operator=" + operatorValue + "&circle=" + circleValue + "&dealid=" + dealid + "&popupname=details_dotd";
+
+dotdjsAppendPopup(queryString);
+
+        closePopup();
+        return true;
+    }
+
+    $("input:radio[name=popup-option]").on( "change", showHideRechargeDetails);
+    $("#popup-submit").on( "click", dotdformValidatorPopup);
+
+    </script>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7587491-10']);
+    _gaq.push(['_setDomainName', 'none']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview', '/pricealert_popup.php?mspid=3673&auto=&pl=']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
