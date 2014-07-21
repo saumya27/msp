@@ -1,0 +1,94 @@
+.camera, .coupon, .hair-dryer, .heels, .iphone, .iron, .lamp, .laptop, .open-book, .perfume, .stroller, .table-tennis, .thumbsup, .tshirt, .tv{
+	background: url(sprites.png) no-repeat;
+}
+
+.camera{
+	background-position: -505px -8px ;
+	width: 36px;
+	height: 36px;
+}
+
+.coupon{
+	background-position: -558px -6px ;
+	width: 36px;
+	height: 36px;
+}
+
+.hair-dryer{
+	background-position: -356px -9px ;
+	width: 36px;
+	height: 36px;
+}
+
+.heels{
+	background-position: -205px -4px ;
+	width: 36px;
+	height: 36px;
+}
+
+.iphone{
+	background-position: -58px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.iron{
+	background-position: -410px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.lamp{
+	background-position: -256px -8px ;
+	width: 36px;
+	height: 36px;
+}
+
+.laptop{
+	background-position: -107px -8px ;
+	width: 36px;
+	height: 36px;
+}
+
+.open-book{
+	background-position: -307px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.perfume{
+	background-position: -660px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.stroller{
+	background-position: -605px -6px ;
+	width: 36px;
+	height: 36px;
+}
+
+.table-tennis{
+	background-position: -708px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.thumbsup{
+	background-position: -9px -7px ;
+	width: 36px;
+	height: 36px;
+}
+
+.tshirt{
+	background-position: -157px -8px ;
+	width: 36px;
+	height: 36px;
+}
+
+.tv{
+	background-position: -458px -8px ;
+	width: 36px;
+	height: 36px;
+}
+
