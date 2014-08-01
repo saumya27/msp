@@ -1,0 +1,91 @@
+
+
+<div class="popupwrapout">
+<div id="login-form-div" class="popupwrap">
+	<div id="login-div">
+		<!--div class="popuphead">Login</div-->
+		<div class="loginFacebook">
+			<!--img src="http://my.highscorehouse.com/images/fb-login-button2.png"/!-->
+			<a href="javascript:void(0)" onclick="fb_login();return false;"><img src="/images/signinfb.png"/></a>
+		</div>
+		<div class="orline">OR</div>
+		<br clear="all"/>
+		<form name="login-form" id="login-form" method="post" action="#">
+			<div class="error">
+			</div>
+			<br clear="all"/>
+			<div class="input-label">
+				<label for="loginemail">Email</label>
+				<label for="loginpassword">Password</label>
+			</div>
+			<div class="input-field">
+				<input id="loginemail" class="loginemail" type="text" name="loginemail" placeholder="email@example.com" />
+				<input id="loginpassword" class="loginpassword" type="password" name="loginpassword" placeholder="Password" />
+				<a class="forgotpass various fancybox.ajax" href="/users/fp.htm">Forgot Password?</a>
+				<input id="loginsubmit" class="loginsubmit popupbutton" type="submit" value="Login" onclick="return loginformValidator();"/>
+			</div>
+			<br clear="all"/>
+		</form>
+		<div class="orline">OR</div>
+		<div class="joinus">Don't have account with us? <a class="various fancybox.ajax" href="/users/signup.htm">Register</a></div>
+	</div>
+	<div id="confirmationMessage" style="display: none;">
+			<!-- code to display after processing form -->
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+$("#login-form").validate({
+	errorPlacement:function(error, element) {
+		$("#login-form div.error").html("Please check and correct the red marked field below.");
+	},
+	rules: { 
+	loginpassword:{
+		required:true
+		},
+	loginemail: {
+		required:true, 
+		email: true,
+		maxlength:80
+	  }
+   }
+});
+
+$('input.submit').click(function(e) {
+  e.preventDefault();
+});
+
+function loginformValidator() {
+	if($("#login-form").valid()){
+		var loginemail_value=$('#loginemail').val();
+		var loginpassword_value=$('#loginpassword').val();
+		$.ajax({
+			type: "POST",
+			url: "/users/usermanage.php",
+			data: { process:'login',email: loginemail_value, password: loginpassword_value }
+		}).done(function( msg ) {
+			if (msg=='error') 
+		    $("#login-form div.error").html("Invalid Credential. Please Try Again.");
+			else {
+				loginme(msg);
+				$.fancybox.close();
+			} 
+		});
+		return false;
+	}
+	return false;
+}
+
+$(function(){
+	var review_login = getCookie ("review_login");
+
+	if (review_login==1) {
+		$('#login-div').children().not('.loginFacebook').remove();
+		$('<h3>Please login through Facebook to write a review.</h3>').insertBefore('.loginFacebook');
+		setCookie ("review_login", "", -1);
+	}
+});
+
+</script>
+
+<script type="text/javascript" src="/msp/js/facebook_login.js"></script>

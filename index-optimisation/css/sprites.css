@@ -1,5 +1,6 @@
-.camera, .coupon, .hair-dryer, .heels, .iphone, .iron, .lamp, .laptop, .open-book, .perfume, .stroller, .table-tennis, .thumbsup, .tshirt, .tv{
-	background: url(sprites.png) no-repeat;
+.home-grid-out .grid-cont .grid-item .grid-icon .bg-cirlce {
+	background-image: url(http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/sprites.png);
+	background-repeat: no-repeat
 }
 
 .camera{
