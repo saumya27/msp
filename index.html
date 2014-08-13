@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="language" content="en-uk, english">
+    <title>
+      MySmartPrice: Mobile Version - Smarter Way To Shop
+    </title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css?release=2014.06.19">
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+<![endif]-->
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7587491-10']);
+    _gaq.push(['_setDomainName', 'mysmartprice.com']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
+  </script>
+  <script type="text/javascript">
+    var imgError = [];
+  </script>
+  <script type="text/javascript">
+    function showToastAndSubscribe(channel,toast) {
+      if(Android) {
+        Android.showToastAndSubscribe(channel, toast);
+      }
+    }
+    
+  </script>
+  <script type="text/javascript">
+    function showAndroidToast(toast) {
+      if(Android) {
+        Android.showToast(toast);
+      }
+    }
+    
+  </script>
+  </head>
+  <body>
+    <header class="clearfix">
+      
+      <section id="appheader" class="appheader">
+        
+        <div class="info">
+          
+          <div class="icon">
+            
+            <img src="/images/msp-icon.png" alt="MySmartPrice"/>
+            
+          </div>
+          
+          <div class="details">
+            
+            <a class="title" href="market://details?id=com.MySmartPrice.MySmartPrice">
+              Download Our Android App
+            </a>
+            
+            <div class="subtitle">
+              Over 400,000 downloads
+            </div>
+            
+            <div class="rating">
+              
+              <span class="label">
+                Rating:
+              </span>
+              
+              <img src="/images/star-rating.png" alt="Over 6,000 ratings"/>
+              
+            </div>
+            
+          </div>
+          
+          <br class="fixfloat"/>
+          
+        </div>
+        
+        <div class="interaction">
+          
+          <a class="download" href="market://details?id=com.MySmartPrice.MySmartPrice">
+            Download Now
+          </a>
+          
+          <div class="skip">
+            Skip 
+            <span class="glyph">
+              &#x203A;
+            </span>
+          </div>
+          
+          <br class="fixfloat"/>
+          
+        </div>
+        
+      </section>
+      
+      <section class="mspLine">
+        
+      </section>
+      
+      <section class="menubar">
+        
+        <!-- 
+<a href="/" class="menu-icon icon icon-home">
+
+</a>
+-->
+  
+  <i class="icon-reorder menuOpen">
+    
+  </i>
+  
+  <a href="/">
+    
+    <img src="/images/logo.png" class="logo" />
+    
+  </a>
+  
+  <i class="icon-search ">
+    
+  </i>
+  
+  </section>
+  
+  <section class="searchBox hide" id="searchBoxSection">
+    
+    <!--form id="searchForm" method="get" class="searchForm" action=""-->
+    
+    <form id="searchForm" method="get" class="searchForm" action="/search/" onsubmit="submitForm();">
+      
+      <i class="icon-search">
+        
+      </i>
+      
+      <input type="search" required name="q" value="" placeholder="Search..." class="searchField" autocomplete="off" x-webkit-speech />
+      
+      <input type="submit" value="GO" class="searchButton"/>
+      
+      <div id="searchTypeDiv">
+        
+        <span class="info-search">
+          In: 
+        </span>
+        
+        <input type="radio" id="searchTypeElectronics" name="searchType" value="electronics" checked>
+        
+        <label class="item" for="searchTypeElectronics">
+          Electronics 
+        </label>
+        
+        <input type="radio" id="searchTypeBooks" name="searchType" value="books" >
+        
+        <label class="item" for="searchTypeBooks">
+          Books 
+        </label>
+        
+        <input type="radio" id="searchTypeFash" name="searchType" value="fash" >
+        
+        <label class="item" for="searchTypeFash">
+          Fashion 
+        </label>
+        
+      </div>
+      
+    </form>
+    
+  </section>
+  </header>
+  <section class="headerSpacing">
+  </section>
+  <section class="container home list">
+    <div class="pageHeader">
+      Browse Categories
+    </div>
+    <a href="/deals/" class="item">
+      <i class="homeicon icon-thumbs-up">
+      </i>
+      <div class="itemtext">
+        Deals & Offers
+        <br/>
+        <span class="itemdet">
+          Top Deals across 50+ Stores...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/mobile" class="item">
+      <i class="homeicon icon-mobile-phone">
+      </i>
+      <div class="itemtext">
+        Mobiles, Tablets & Accessories
+        <br/>
+        <span class="itemdet">
+          Smartphones, Android, Dual SIM...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/computer" class="item">
+      <i class="homeicon icon-laptop">
+      </i>
+      <div class="itemtext">
+        Laptops & Peripherals
+        <br/>
+        <span class="itemdet">
+          Dell, HP, Lenovo...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/camera" class="item">
+      <i class="homeicon icon-camera">
+      </i>
+      <div class="itemtext">
+        Cameras, DSLRs & Accessories
+        <br/>
+        <span class="itemdet">
+          DSLR, Point & Shoot, Camcorders...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/electronics" class="item">
+      <i class="homeicon icon-desktop">
+      </i>
+      <div class="itemtext">
+        TV & Entertainment Devices
+        <br/>
+        <span class="itemdet">
+          TV, Home Theaters...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/appliance" class="item">
+      <i class="homeicon icon-food">
+      </i>
+      <div class="itemtext">
+        Home & Kitchen Appliances
+        <br/>
+        <span class="itemdet">
+          Blenders, Mixers, Microwaves..
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/category/care#personal" class="item">
+      <i class="homeicon icon-user">
+      </i>
+      <div class="itemtext">
+        Personal & Health Devices
+        <br/>
+        <span class="itemdet">
+          Shavers, Trimmers, Hair Dryers...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/fashion/category/men" class="item">
+      <i class="homeicon icon-male">
+      </i>
+      <div class="itemtext">
+        Men's Fashion
+        <br/>
+        <span class="itemdet">
+          Clothing, Shoes, Watches, Accessories...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/fashion/category/women" class="item">
+      <i class="homeicon icon-female">
+      </i>
+      <div class="itemtext">
+        Women's Fashion
+        <br/>
+        <span class="itemdet">
+          Clothing, Ethnic, Bags, Accessories...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/fashion/category/home" class="item">
+      <i class="homeicon icon-home">
+      </i>
+      <div class="itemtext">
+        Home Décor
+        <br/>
+        <span class="itemdet">
+          Decor, Furniture, Kitchen, Furnishing...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/fashion/category/kids" class="item">
+      <i class="homeicon icon-linux">
+      </i>
+      <div class="itemtext">
+        Baby & Kids
+        <br/>
+        <span class="itemdet">
+          Clothing, Shoes, Toys...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+    <a href="/books" class="item">
+      <i class="homeicon icon-book">
+      </i>
+      <div class="itemtext">
+        Books & Media
+        <br/>
+        <span class="itemdet">
+          Bestsellers, Upcoming books...
+        </span>
+      </div>
+      <i class="icon-angle-right">
+      </i>
+    </a>
+  </section>
+  <!-- menu -->
+  <div class="drawerMenuWrapper drawerMenuHide">
+    
+    <div class="drawerMenuBg">
+    </div>
+    
+    <div class="drawerMenuContent">
+      
+      <div class="drawerHeader">
+        
+        <div class="menuClose">
+          <i class="icon-reorder ">
+          </i>
+        </div>
+        
+        <div class="menuUp">
+          <i class="icon-chevron-left">
+          </i>
+        </div>
+        
+        <a href="//m.mysmartprice.com" class="homepageMenu">
+          <i class="icon-home">
+          </i>
+        </a>
+        
+      </div>
+      
+      <div class="populateMenu">
+      </div>
+      
+    </div>
+  </div>
+  <!-- menu -->
+  <footer>
+    <a class="fullSite" href="#">
+      View Full Site
+    </a>
+    <br/>
+    <br/>
+    &copy; MySmartPrice Web Technology Pvt. Ltd.
+  </footer>
+  <script src="/js/jquery-2.0.3.min.js">
+  </script>
+  <script src="//www.mysmartprice.com/msp/js/useranalytics.js">
+  </script>
+  <script src="/js/script.js?release=2014.06.19">
+  </script>
+  </body>
+</html>
+<!-- Cache delivered -->
