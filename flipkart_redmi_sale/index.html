@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="HandheldFriendly" content="true" />
+        <meta name="language" content="en-uk, english">
+        <title>MySmartPrice: Mobile Version - Smarter Way To Shop</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="http://www.mysmartprice.com/assets/css/msp.css">
+        <link rel="stylesheet" type="text/css" href="http://www.mysmartprice.com/assets/css/msp.css">
+        <link rel="stylesheet" type="text/css" href='msp_mi_landing.css' rel='stylesheet' type='text/css'>
+        <!--[if IE 7]>
+            <link rel="stylesheet" type="text/css" href="/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-7587491-10']);
+            _gaq.push(['_setDomainName', 'mysmartprice.com']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <script type="text/javascript">
+            var imgError = [];
+        </script>
+        <script type="text/javascript">
+            function showToastAndSubscribe(channel, toast) {
+                if (Android) {
+                    Android.showToastAndSubscribe(channel, toast);
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            function showAndroidToast(toast) {
+                if (Android) {
+                    Android.showToast(toast);
+                }
+            }
+        </script>
+        <style type="text/css">
+            .header{
+                top:0;
+            }
+
+            .main-content{
+                margin: 50px auto 0 auto;
+                padding: 30px 0;
+            }
+            .main-content .section:after{
+                display: block;
+                content: "";
+                clear:both;
+            }
+            .section-wrap{
+                position: relative;
+            }
+            .section-wrap:not(:last-child):after{ 
+                position: absolute;
+                bottom:0;
+                left:0;
+                width: 100%;
+                height:50px;
+                content: "";
+                opacity: 0.15;
+                z-index: 2;
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_section_shadow.png) repeat-x center/1px 50px;
+            }
+            .section{
+                position: relative;
+                z-index: 1;
+                width: 1200px;
+                margin: 0 auto;
+            }
+            #section-1{
+                height: 550px;
+                padding:25px;
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_section_1.png) no-repeat left bottom/56%;
+            }
+            #section-1 .section-content{
+                float:right;
+                width: 590px;
+                margin-right: 50px;
+            }
+            #section-1 .section-content .btn{
+                display: block;
+                width: 246px;
+                margin: 35px auto;
+                border-radius: 3px;
+            }
+            #section-1 .section-title{
+                margin: 0 0 20px 0;
+                font-size: 35px;
+                font-weight: 400;
+                text-align: center;
+            }
+            #section-1 .section-subtitle{
+                font-weight: 400;
+                text-align: center;
+            }
+            #section-1 .main-button{
+                padding:15px;
+                color:white;
+                text-decoration: none;
+                background: #555;
+                border:2px solid #333;
+                border-top-width: 1px;
+                border-bottom-width: 7px;
+                display: table;
+                margin: 20px auto;
+                border-radius: 5px;
+                font-size: 16px;
+            }
+            #section-1 .share-page{
+                width: 301px;
+                margin: 0 auto;
+            }
+            #section-1 .share-page .fb-share-button{
+                margin-right: 10px;
+            }
+            #section-1 .share-page *{
+                vertical-align: middle;
+            }
+            #section-1 .share-page #twitter-widget-1{
+                margin-left: -24px;
+            }
+            #section-1 .with-quotes{
+                position: relative;
+                left: 65px;
+                width: 430px;
+                margin: 160px auto 0 auto;
+                font-size: 21px;
+                text-align: center;
+                font-style: italic;
+            }
+            #section-1 .with-quotes:before{
+                position: absolute;
+                top: -30px;
+                left: -40px;
+                width: 42.5px;
+                height: 37.5px;
+                content: "";
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_quotes_sprite.png) no-repeat top left/85px auto;
+            }
+            #section-1 .with-quotes:after{
+                position: absolute;
+                top: 25px;
+                right: -21px;
+                width: 42.5px;
+                height: 37.5px;
+                content: "";
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_quotes_sprite.png) no-repeat top right/85px auto;
+            }
+            .main-button:hover{
+                color:white;
+                text-decoration: none;
+            }
+            .main-button:active{
+                padding:17px 15px;
+                border-bottom-width: 2px;
+            }
+
+            #section-2{
+                height: 550px;
+                padding:100px 25px 0 25px;
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_section_2.png) no-repeat 0px 125px;
+            }
+            #section-2 .section-content{
+                margin-left: 375px; 
+            }
+            #section-2 .section-title{
+                margin: 20px;
+                font-size: 35px;
+                font-weight: 400;
+            }
+            #section-2 .section-title{
+                font-weight: 400;
+            }
+            #section-2 .steps-list{
+                padding-left: 70px;
+                margin-bottom: 50px;
+            }
+            #section-2 .steps-list-item{
+                color: #555;
+                font-size: 15px;
+                line-height: 45px;
+            }
+            #section-2 .steps-list-item a{
+                color:#00A;
+            }
+            #section-2 .steps-list-item a:hover{
+                color:#00A;
+            }
+            #section-2 li.steps-list-item a:hover {
+                color: #CC0000;
+                text-decoration: underline;
+            }
+            #section-2 li.steps-list-item a {
+                color: #CC0000;
+                text-decoration: none;
+            }
+            #section-2 .section-subtitle{
+                float:left;
+                font-size: 25px;
+                font-weight: 400;
+                margin-left: 50px;
+            }
+            #section-2 .counter-wrap{
+                float:left;
+                margin:10px 25px;
+            }
+            #section-2 .counter-wrap:after{
+                display: block;
+                content: "";
+                clear: both;
+            }
+            #section-2 .counter{
+                float: left;
+                position: relative;
+                width: 50px;
+                padding: 15px 0 13px 0;
+                margin-right: 10px;
+                border: 3px solid #900;
+                border-width: 0px 1px 4px 1px;
+                border-radius: 5px;
+                background: #c00;
+            }
+            .counter .counter-label{
+                position: absolute;
+                top:60px;
+                width: 50px;
+                margin:0;
+                color:#444;
+                font-size: 14px;
+                text-align: center;
+            }
+            .counter .counter-field{
+                margin:0;
+                color:white;
+                font-size: 18px;
+                text-align: center;
+            }
+            #section-3{
+                height: 650px;
+                padding:25px 25px 100px 25px;
+                background: url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/mi_section_3.png) no-repeat right bottom;
+            }
+            #section-3 .section-content{
+                margin:50px 35px;
+            }
+
+            #section-4{
+                height: 650px;
+                padding:100px 25px 25px 25px;
+            }
+            #section-4 .section-content{
+                width: 800px;
+                margin: 0 auto;
+            }
+            #section-4 .section-content .install-button{
+                width:700px; 
+                margin:50px auto 0 auto;
+                text-align: center;
+            }
+            #section-4 .install-button h2{
+                font-size: 21px;
+                font-weight: 400;
+            }
+
+            .footer_outer_rd {
+                font-size: 11px;
+                width: 1200px;
+                margin: 0 auto;
+                color: #333;
+                clear: both;
+            }
+
+            .footer_outer_rd .leftinfo {
+                float: left;
+            }
+
+            .footer_outer_rd .rightinfo {
+                float: right;
+            }
+
+            .footer_rd {
+                background: #fff;
+                padding: 8px 5px;
+                box-shadow: 0 1px 2px #BBB;
+                border-top: 1px solid #e3e3e3
+            }
+
+            .footer_rd .rightmenu {
+                float: right;
+            }
+
+            .footer_rd .rightmenu a {
+                float: left;
+                border-right: 1px solid #aaa;
+                padding: 0 5px;
+                text-decoration: none;
+                color: #333
+            }
+
+            .footer_rd .rightmenu a:hover {
+                text-decoration: underline;
+                color: #111
+            }
+
+            .footer_rd .rightmenu a.last {
+                border-right: 0;
+                padding-right: 0
+            }
+
+            .footerextrainfo_rd {
+                padding: 7px
+            }
+        </style>
+    </head>
+    
+    <body>
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({appId:'253242341485828',xfbml:true,version:'v2.1'});
+    };
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="header header-size single-header">
+		<div class="msp-line"></div>
+		<div class="main-header">
+			<a href="/" class="logo"> <img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/logo.png">
+			</a>
+			<div class="browse-popup-cont"></div>
+			<div class="browse-menu-btn" onclick="_gaq.push(['_trackEvent', 'Electronics', 'Click', 'Browse_Category']);">
+				<img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/browse.png" class="icon"> Categories
+				<!-- <span class="down-arrow">&#9660;</span> -->
+			</div>
+			<div class="browse-popup">
+				<div class="loading-circle" style="display: none;"></div>
+				<div class="browse-popup-data" data-ver="v0.13">Something went
+					wrong....</div>
+			</div>
+	
+	
+			<div class="search-box">
+				<form>
+					<label class="search-cat-label"> <select name="category" class="search-cat">
+							<option value="electronics" selected="">Electronics</option>
+							<option value="books">Books</option>
+							<option value="fashion">Fashion</option>
+					</select>
+					</label> <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="search" required="" name="q" value="" placeholder="What are you looking for?" class="search-field data-electronics ui-autocomplete-input" id="header-search" autocomplete="off" x-webkit-speech=""> <input type="hidden" name="subcategory" value="" id="header-search-subcat" autocomplete="off"> <input type="submit" class="search-submit" value="">
+				</form>
+			</div>
+			<a href="/users/login.htm" class="login-button btn various fancybox.ajax" id="signin" style="display: inline;">Login</a>
+			<a href="/users/signup.htm" class="signup-button btn btn-l btn-red various fancybox.ajax" id="create_account" style="display: inline;">Sign Up</a>
+		</div>
+	</div>
+	<div class="main-content">
+        <div class="section-wrap">
+            <div id="section-1" class="section">
+        		<div class="section-content">
+        			<h1 class="section-title">Get The New Xiaomi Redmi 1S</h1>
+                    <h2 class="section-subtitle">Install our plugin, and increase the chances of getting a Redmi Phone by 100 times</h2>
+        			<a class="btn btn-red btn-xxl" href="javascript:void(0);" onclick="installAddon();return false;">Get Chrome Extension</a>
+                    <div class="share-page">
+                        <div class="fb-share-button" data-layout="button"></div>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://msp.in/plugin/" data-text="Install @MySmartPrice Chrome Extension and get a Redmi 1S for sure. Visit -">Tweet</a>
+                        <a href="https://twitter.com/mysmartprice" class="twitter-follow-button" data-show-count="false">Follow @mysmartprice</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                    <p class="with-quotes">If our plugin fails to work.. we will book it for 25 lucky winners (with COD option only)</p>
+        		</div>
+            </div>
+        </div>
+        <div class="section-wrap">
+            <div id="section-2" class="section">
+                <div class="section-content">
+                    <h1 class="section-title">Steps to get the Xiaomi Redmi 1S</h1>
+                    <ol class="steps-list">
+                        <li class="steps-list-item">Install our plugin <a class="" href="ja2vascript:void(0);" onclick="installAddon();return false;">from here</a> for automated purchase.</li>
+                        <li class="steps-list-item">Go to <a href="http://www.mysmartprice.com/out/sendtostore.php?mspid=4442&top_category=electronics&category=mobile&url=http://www.flipkart.com/mi/redmi&store=flipkart" target="_blank">Redmi 1S sale page</a> and register for the sale before it closes.</li>
+                        <li class="steps-list-item">Login to your Flipkart account as early as possible before the sale starts (preferrably 2 Hrs before).</li>
+                        <li class="steps-list-item">Keep the <a href="http://www.mysmartprice.com/out/sendtostore.php?mspid=4442&top_category=electronics&category=mobile&url=http://www.flipkart.com/mi/redmi&store=flipkart" target="_blank">sale page</a> open and wait for our extension to make the purchase.</li>
+                        <li class="steps-list-item">Do not close the page. If you have accidentally closed it, open it by <a href="http://www.mysmartprice.com/out/sendtostore.php?mspid=4442&top_category=electronics&category=mobile&url=http://www.flipkart.com/mi/redmi&store=flipkart" target="_blank">clicking here</a>.</li>
+                    </ol>
+                    <h2 class="section-subtitle">Next Sale Starts in</h2>
+                    <div class="counter-wrap">
+                        
+                        <div class="counter days">
+                            <p class="counter-label">DAYS</p>
+                            <p class="counter-field">00</p>
+                        </div>
+                        <div class="counter hours">
+                            <p class="counter-label">HOURS</p>
+                            <p class="counter-field">00</p>
+                        </div>
+                        <div class="counter mins">
+                            <p class="counter-label">MINS</p>
+                            <p class="counter-field">00</p>
+                        </div>
+                        <div class="counter secs">
+                            <p class="counter-label">SECS</p>
+                            <p class="counter-field">00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-wrap">
+            <div id="section-3" class="section">
+                <div class="section-content">
+                    <a class="twitter-timeline"  href="https://twitter.com/mysmartprice/favorites" data-widget-id="514684194744569857">Favorite Tweets by @mysmartprice</a>
+                    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                </div>
+            </div>
+        </div>
+        <div class="section-wrap">
+            <div id="section-4" class="section">
+                <div class="section-content">
+                    <iframe width="800" height="450" src="//www.youtube.com/embed/b3RWGaI_UlY" frameborder="0" allowfullscreen></iframe>
+                    <div class="install-button">
+                        <h2 class="section-subtitle">Install our plugin, and increase the chances of getting a Redmi Phone by 100 times</h2>
+                        <a class="btn btn-red btn-xxl" href="javascript:void(0);" onclick="installAddon();return false;">Get Chrome Extension</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+	<div class="footer_outer_rd">
+        <div class="footer_rd">
+                <div class="leftinfo">© 2014 MySmartPrice Web Technology Private Limited</div>
+                <div class="rightmenu">
+                        <a href="http://www.mysmartprice.com/">Home</a>
+                        <a href="http://www.mysmartprice.com/">Mobiles</a>
+                        <a href="http://www.mysmartprice.com/computer/">Computers</a>
+                        <a href="http://www.mysmartprice.com/camera/">Cameras</a>
+                        <a href="http://www.mysmartprice.com/books/">Books</a>
+                        <a href="http://fashion.mysmartprice.com/">Fashion</a>
+                        <a href="http://www.mysmartprice.com/msp/compare/comparison_list.php">Comparisons</a>
+                        <a href="http://www.mysmartprice.com/stores/coupon/">Coupons</a>
+                        <a href="http://mysmartprice.com/blog/">Blog</a>
+                        <a href="http://www.mysmartprice.com/about/">About Us</a>
+                        <a href="http://www.mysmartprice.com/privacy-opt.html">Privacy &amp; Opt Out</a>
+                        <a href="/contactus.php" class="last">Contact Us</a>
+                </div>
+                <br clear="all">
+        </div>
+        <div class="footerextrainfo_rd">
+                <div class="leftinfo">All logos are trademarks of their respective owners.</div>
+                <div class="rightinfo">Made in India. <img style="vertical-align: middle; height: 16px;" src="http://c223968.r68.cf1.rackcdn.com/indian_flag.gif"></div>
+                <br clear="all">
+        </div>
+</div>
+        <script type="text/javascript">
+        var installedSuccessfully,installationFailed;
+            function installAddon(){
+                if(navigator.userAgent.toLowerCase().indexOf('chrome')>-1){
+                    try{
+                        chrome.webstore.install('https://chrome.google.com/webstore/detail/mysmartprice/bofbpdmkbmlancfihdncikcigpokmdda',installedSuccessfully,installationFailed);
+                    } catch (err){
+                        window.open("https://chrome.google.com/webstore/detail/mysmartprice/bofbpdmkbmlancfihdncikcigpokmdda");
+                    }
+                } else {
+                    alert("Hi, The tool is currently available only on Google Chrome! Please open this page in Google Chrome");
+                }
+            } 
+        </script>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js' type='text/javascript'></script> 
+        <script type="text/javascript">
+            // function to take care of time prediction counter
+            var saleTime, sysTime, realTime;
+
+            (function(){
+                $.ajax({
+                    url: 'http://api.mysmartprice.com/plugin/chrome/flipkartsale/data.json',
+                    dataType: 'json',
+                    async: false, 
+                    cache: false
+                }).done(function(data){
+                    $('.counter-wrap').data('saletime',data.saleTime);
+                });
+            })();
+
+            function getRealTime() {
+              if (!realTime) {
+                $.ajax({
+                  url: 'http://time.jsontest.com',
+                  dataType: 'json',
+                  async: false,
+                  success: function(time) {
+                    realTime = time.milliseconds_since_epoch;
+                    sysTime = (new Date()).getTime();
+                  },
+                  fail: function() {
+                    realTime = (new Date()).getTime();
+                    sysTime = realTime;
+                  }
+                });
+              }
+              return realTime;
+            }
+
+            function keepRealTime() {
+              var nowTime = (new Date()).getTime();
+              realTime += (nowTime - sysTime);
+              sysTime = nowTime;
+            }
+            setInterval(keepRealTime, 500); 
+
+            function getSaleTime() {
+              saleTime = (!saleTime) ? parseInt($('.counter-wrap').data('saletime'), 10) : saleTime;
+              return saleTime;
+            }
+
+            function timeLeft() {
+              return getSaleTime() - getRealTime();
+            }
+
+            function time2Counter() {
+              var msec = timeLeft();
+              var dd = Math.floor(msec / 1000 / 60 / 60 / 24);
+              msec -= dd * 1000 * 60 * 60 * 24;
+              var hh = Math.floor(msec / 1000 / 60 / 60);
+              msec -= hh * 1000 * 60 * 60;
+              var mm = Math.floor(msec / 1000 / 60);
+              msec -= mm * 1000 * 60;
+              var ss = Math.floor(msec / 1000);
+              msec -= ss * 1000;
+              return {
+                dd: ('0' + dd).slice(-2),
+                hh: ('0' + hh).slice(-2),
+                mm: ('0' + mm).slice(-2),
+                ss: ('0' + ss).slice(-2)
+              };
+            }
+
+            function updateCounter() {
+              var counter = time2Counter(),
+                $timeCount = $('.counter-wrap');
+              $timeCount.find('.days .counter-field').html(counter.dd);
+              $timeCount.find('.hours .counter-field').html(counter.hh);
+              $timeCount.find('.mins .counter-field').html(counter.mm);
+              $timeCount.find('.secs .counter-field').html(counter.ss);
+            }
+
+            setInterval(updateCounter, 1000);
+        </script>
+    </body>
+    
+</html>
