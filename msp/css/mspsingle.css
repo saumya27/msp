@@ -215,6 +215,13 @@ a img{
   line-height: 14px;
   text-align: left;
 }
+.product_topsec_det .product_offline {
+  margin-top: 10px;
+  font-size: 13px;
+}
+.product_topsec_det .product_offline .product_offline_stores {
+  text-decoration: underline;
+}
 .product_topsec .msp_recomendations{
 	font-size: 13px;
 	font-weight: bold;
@@ -981,7 +988,8 @@ margin-bottom: 20px;
 .product_bottom_sec .price_table_out .price_table_in a{
 	text-decoration: underline;
 }
-.product_bottom_sec .price_table_out .show_more_price_list{
+.product_bottom_sec .price_table_out .show_more_price_list,
+.offline-pricetable .show-more-stores {
 	padding: 7px;
 	text-align: center;
 	font-weight: bold;
@@ -1439,6 +1447,426 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 	text-align: justify;
 	line-height: normal;
 }
+.cf{
+    display: table;
+    content: "";
+    clear:both;
+}
+
+/* Styles for offline price table */
+.offline-pricetable,
+.offline-pricetable .OP-location-select,
+.offline-pricetable .OP-search-wrap .OP-search-input,
+.offline-pricetable .OP-search-wrap .OP-icon-search,
+.offline-pricetable .OP-gmaps-widget,
+.offline-pricetable .OP-storelist-wrap .OP-store,
+.offline-pricetable .OP-store .OP-store-info-wrap,
+.offline-pricetable .OP-store .OP-store-album,
+.offline-pricetable .OP-store .OP-store-contact,
+.offline-pricetable .OP-store .OP-store-contact .OP-store-call,
+.OPS-popups .OPS-thumbs-popup .OPS-popup-header,
+.OPS-popups .OPS-call-popup .OPS-popup-header,
+.OPS-popups .OPS-call-popup .OPS-popup-left-content,
+.OPS-popups .OPS-call-popup .OPS-popup-right-content {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.offline-pricetable {
+  width: 933px;
+  margin: 0 auto;
+  padding-top: 30px;
+  font-size: 13px;
+  line-height: 16px;
+}
+.offline-pricetable p {
+  margin: 0;
+}
+.offline-pricetable .OP-filters {
+  width: 100%;
+}
+.offline-pricetable .OP-section-title {
+  float: left;
+  margin: 0;
+  color: #c00;
+  font-size: 14px;
+  line-height: 30px;
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+}
+.offline-pricetable .OP-location-select-wrap {
+  float: right;
+  height: 20px;
+  margin-right: 15px;
+  padding: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+}
+.offline-pricetable .OP-location-select-wrap .OP-icon-location {
+  float: left;
+  width: 10px;
+  height: 16px;
+  padding: 2px 9px;
+  border-right: 1px solid #ccc;
+}
+.offline-pricetable .OP-location-select {
+  float: right;
+  margin: 0;
+  border: 0;
+  background: 0 0;
+  outline: 0;
+  height: 21px;
+  width: 100px;
+  padding: 0 4px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+.offline-pricetable .OP-search-wrap {
+  float: right;
+  height: 30px;
+}
+.offline-pricetable .OP-search-wrap .OP-search-input {
+  width: 300px;
+  height: 30px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+.offline-pricetable .OP-search-wrap .OP-search-input:focus {
+  border-color: #aaa;
+}
+.offline-pricetable .OP-search-wrap .OP-icon-search {
+  float: right;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 8px;
+  border-radius: 0 5px 5px 0;
+  background: #3D89AD;
+}
+.offline-pricetable .OP-gmaps-widget {
+  width: 100%;
+  height: 302px;
+  margin: 15px 0 0 0;
+  padding: 0;
+  border: 1px solid #aaa;
+  background: white;
+}
+.offline-pricetable .OP-storelist-wrap .OP-store {
+  padding: 20px 11px 10px;
+  border-bottom: 1px solid #aaa;
+  background: white;
+}
+.offline-pricetable .OP-store .OP-store-info-wrap {
+  float: left;
+  width: 380px;
+  min-height: 80px;
+  padding-right: 20px;
+}
+.offline-pricetable .OP-store .OP-store-info {
+  padding-left: 30px;
+  background: url('http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_location_icon.png') no-repeat 0 0/auto 30px;
+  color: #4A4A4A;
+}
+.offline-pricetable .OP-store-info .OP-store-name {
+  max-height: 32px;
+  margin: 0;
+  font-weight: bold;
+  overflow: hidden;
+}
+.offline-pricetable .OP-store-info .OP-rating {
+  margin-top: 4px;
+  font-size: 12px;
+  overflow: hidden;
+}
+.offline-pricetable .OP-store-info .OP-item-rating {
+  float: left;
+  width: 65px;
+  height: 12px;
+  margin: 3px 10px 3px 0;
+  vertical-align: middle;
+  background: #A8A8A8;
+}
+.offline-pricetable .OP-store-info .OP-rating-wrap {
+  background-color: #e9ce18;
+}
+.offline-pricetable .OP-store-info .OP-item-rating .OP-star-rating {
+  background-image: url('http://www.mysmartprice.com/msp/images/star_small.png');
+  width: 65px;
+  height: 12px;
+}
+.offline-pricetable .OP-store-info .OP-rating-count {
+  float: left;
+  line-height: 20px;
+  margin: 0 5px 0 0;
+  font-weight: bold;
+  color: #666;
+}
+.offline-pricetable .OP-store-info .OP-rating-label {
+  float: left;
+  line-height: 20px;
+  margin: 0;
+  text-transform: uppercase;
+  color: #4A4A4A;
+}
+.offline-pricetable .OP-store-info .OP-store-address {
+  max-height: 48px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+.offline-pricetable .OP-store .OP-store-album {
+  float: left;
+  width: 260px;
+  min-height: 80px;
+}
+.offline-pricetable .OP-store-album .OP-store-thumbs-wrap {
+  float: left;
+  margin-right: 25px;
+  cursor: pointer;
+}
+.offline-pricetable .OP-store-thumbs-wrap .OP-store-thumb {
+  float: left;
+  width: 80px;
+  height: 80px;
+  border-radius: 3px;
+}
+.offline-pricetable .OP-store-album .OP-store-timings {
+  float: left;
+}
+.offline-pricetable .OP-store-album .OP-timings-label,
+.offline-pricetable .OP-store-album .OP-timings-value,
+.offline-pricetable .OP-store-album .OP-timings-remarks {
+  color: #666;
+}
+.offline-pricetable .OP-store-album .OP-timings-label {
+  font-weight: bold;
+}
+.offline-pricetable .OP-store-album .OP-timings-value,
+.offline-pricetable .OP-store-album .OP-timings-remarks {
+  margin-top: 4px;
+}
+.offline-pricetable .OP-store .OP-store-contact {
+  float: left;
+  width: 270px;
+  min-height: 80px;
+}
+.offline-pricetable .OP-store .OP-store-contact .OP-store-call {
+  float: right;
+  display: block;
+  width: 85px;
+  height: 35px;
+  padding: 10px 0px 10px 35px;
+  border-radius: 3px;
+  background: #3D89AD url('http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_call_icon.png') no-repeat 6px 6px/auto 23px;
+  color: white;
+  font-size: 16px;
+  text-decoration: none;
+}
+.offline-pricetable .OP-store .OP-store-contact .OP-store-price {
+  float: right;
+  margin-right: 70px;
+  font-weight: bold;
+  text-align: right;
+}
+.offline-pricetable .OP-store .OP-store-contact .OP-store-price-label {
+  color: #666;
+}
+.offline-pricetable .OP-store .OP-store-contact .OP-store-price-value {
+  margin-top: 4px;
+  font-size: 16px;
+  color: #c00;
+}
+.offline-pricetable .OP-store .OP-store-misc {
+  width: 100%;
+  margin-top: 15px;
+}
+.offline-pricetable .OP-store-offers {
+  float: left;
+  color: #666;
+  font-size: 12px;
+  line-height: 14px;
+  padding-left: 30px;
+  background: url('http://www.mysmartprice.com/msp/images/gift.png') no-repeat 2px -2px/auto 14px;
+}
+.offline-pricetable .OP-store-offers b {
+  color: #4A4A4A;
+}
+.offline-pricetable .OP-store .OP-store-misc .OP-store-tag {
+  float: right;
+  padding-left: 20px;
+  margin-left: 20px;
+  font-size: 12px;
+  background-repeat: no-repeat;
+  color: #666;
+}
+.offline-pricetable .OP-store .OP-store-misc .OP-store-tag.on {
+  background-image: url('http://www.mysmartprice.com/msp/images/on_green.png');
+}
+.offline-pricetable .OP-store .OP-store-misc .OP-store-tag.off {
+  background-image: url('http://www.mysmartprice.com/msp/images/cross_gray.png');
+}
+.offline-pricetable .show-more-stores {
+  display: none;
+  margin-top: 10px;
+}
+
+/* Styles for offline price table popups */
+.OPS-popups {
+  display: none;
+}
+.OPS-popups .OPS-popups-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(256, 256, 256, 0.5);
+  z-index: 1;
+}
+.OPS-popups .OPS-thumbs-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 497px;
+  margin: -250px 0 0 -400px;
+  background: white;
+  box-shadow: 0 0 10px #aaa;
+  z-index: 2;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-header {
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-header .OPS-popup-logo {
+  height: 25px;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-header .OPS-popup-close {
+  float: right;
+  display: block;
+  color: #c00;
+  font-size: 30px;
+  line-height: 25px;
+  text-decoration: none;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-viewer {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-viewer .OPS-popup-images-wrap {
+  position: relative;
+  width: 800px;
+  height: 400px;
+  background: #eee;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-images {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 800px;
+  max-height: 400px;
+  margin: auto;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-controls {
+  width: 100%;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-controls .OPS-popup-left {
+  float: left;
+  display: block;
+  width: 50px;
+  height: 40px;
+  background: url(http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_lightbox_left_arrow.png) no-repeat center/30px 20px;
+}
+.OPS-popups .OPS-thumbs-popup .OPS-popup-controls .OPS-popup-right {
+  float: right;
+  display: block;
+  width: 50px;
+  height: 40px;
+  background: url(http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_lightbox_right_arrow.png) no-repeat center/30px 20px;
+}
+.OPS-popups .OPS-call-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  height: 300px;
+  margin: -150px 0 0 -250px;
+  box-shadow: 0 0 10px #aaa;
+  background: #f6f6f6;
+  z-index: 2;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-header {
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-header .OPS-popup-logo {
+  height: 25px;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-header .OPS-popup-close {
+  float: right;
+  display: block;
+  color: #c00;
+  font-size: 30px;
+  line-height: 25px;
+  text-decoration: none;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-content {
+  width: 100%;
+  height: 250px;
+  background: #eee;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-left-content {
+  float: left;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 120px 15px 10px 10px;
+  background: url(http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_store_icon.png) no-repeat 160px 30px/auto 75px;
+  text-align: right;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-left-content .OPS-popup-store-name {
+  margin: 0;
+  color: #c00;
+  font-size: 24px;
+  line-height: 24px;
+  max-height: 48px;
+  font-weight: bold;
+  overflow: hidden;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-left-content .OPS-popup-store-address {
+  margin: 10px 0 0 0;
+  color: #4A4A4A;
+  font-size: 12px;
+  line-height: 20px;
+  max-height: 60px;
+  overflow: hidden;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-right-content {
+  float: right;
+  width: 50%;
+  height: 100%;
+  margin: 0;
+  padding: 120px 10px 10px 15px;
+  background: url(http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_call_icon.png) no-repeat 5px 30px/auto 75px;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-right-content .OPS-popup-store-number {
+  margin: 0 0 10px 0;
+  color: #c00;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: bold;
+}
+
 .product_bottom_sec .pt_note{
 	width: 100%;
 	margin-bottom: 5px;
@@ -1955,5 +2383,3 @@ float: right;
     line-height: 21px;
     font-size: 15px;
 }
-
-
