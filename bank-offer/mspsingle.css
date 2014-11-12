@@ -1196,6 +1196,10 @@ margin-bottom: 20px;
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .offers .heading{
 	font-weight: bold;
 }
+
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .offers{
+	display:none;
+}
 /*.product_bottom_sec .price_table_out .price_table_in .store_pricetable .offers:hover{
 	background: #f2f2f2;
 }*/

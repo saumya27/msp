@@ -559,12 +559,14 @@ $(document).ready(function() {
                 $('.offers.cashback.openPopup_rd').removeClass("cursor-pointer");
                 $('.offers.cashback.openPopup_rd').show();
                 $('.offers.cashback.openPopup_rd').removeClass("openPopup_rd");
+                $('.offers.openPopup_rd').show();
             }
             else {
                 $offer_count = $('.offers.cashback.openPopup_rd').length;
                 $('.available_offers .offer_count').html($offer_count);
                 $('.available_offers').show();
                 $('.offers.cashback.openPopup_rd').addClass("cursor-pointer");
+                $('.offers.openPopup_rd').hide();
                 $('.offers.cashback.openPopup_rd').show();
             }
         }
