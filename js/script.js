@@ -300,11 +300,9 @@ function createSinglePopup(prodId) {
     });
     $(singleData).html("Loading...");
     ga('send', 'pageview', url);
-    $.get(url + '&ajax=1', function(data) {
+    $.get(url + '&quicklook=1', function(data) {
         $(singleData).removeClass('loading').html(data);
         FB.XFBML.parse();
-	 var item_title = $("div.singlePageTitle").text();
-        $("#similar_products").load("../similar_ajax.php",{title : item_title});    
 });
 }
 
@@ -851,15 +849,20 @@ function pagination(tgridid, ExtraPageLimit) {
 
 
 function openSingleInit() {
-    $('body').on('click', '.grid-item.product .image-wrapper,.grid-item.product .info,.grid-item.product .price-info,.grid-item.product .ql-button', function() {
-        var prodId = $(this).parents('.grid-item').attr('data-gridid');
+    $('body').on('click', '.grid-item.product .ql-button', function() {
+        var prodId = $(this).parents('.grid-item').data('gridid');
         if (!prodId)
-            return false;
-        if ($(this).hasClass('ql-button')) {
-            ga('send', 'event', 'quicklook', openSingleItem);
-        }
+            return true;
+        ga('send', 'event', 'quicklook');
         openSingle(prodId);
         return false;
+    });
+    $("body").on("click", ".singlePageImage", function() {
+        var imgSrc = $(this).data("src");
+        if (imgSrc) {
+            var title = $(".singlePageTitle").text();
+            openPopup("zoomed_image_popup.php?title=" + encodeURIComponent(title) + "&img=" + encodeURIComponent(imgSrc));
+        }
     });
 }
 

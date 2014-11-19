@@ -1,4 +1,4 @@
-/*reseting starts*/
+﻿/*reseting starts*/
 *{
   margin: 0;
   padding: 0;
@@ -26,6 +26,9 @@ body{
   outline: 0;
   /*background: #eeeeee url('../images/body-noise.png');*/
   background: #F5F7F7;
+}
+body.singlePage {
+  background: #fff;
 }
 
 a{
@@ -574,13 +577,16 @@ a:visited{
                                                                                                                                                                                                                                                                                                                                                                                                                                       margin: 0 auto;
                                                                                                                                                                                                                                                                                                                                                                                                                                       left: 0;
                                                                                                                                                                                                                                                                                                                                                                                                                                       position: relative;
-                                                                                                                                                                                                                                                                                                                                                                                                                                      width: 1030px;/* for initial loading*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                      width: 1200px;/* for initial loading*/
                                                                                                                                                                                                                                                                                                                                                                                                                                       -webkit-transition: all 0.6s ease;
                                                                                                                                                                                                                                                                                                                                                                                                                                       -moz-transition: all 0.6s ease;
                                                                                                                                                                                                                                                                                                                                                                                                                                       -ms-transition: all 0.6s ease;
                                                                                                                                                                                                                                                                                                                                                                                                                                       -o-transition: all 0.6s ease;
                                                                                                                                                                                                                                                                                                                                                                                                                                       transition: all 0.6s ease;
                                                                                                                                                                                                                                                                                                                                                                                                                                     }
+																																																																																																									.quickLook .singleItemDataIn {
+																																																																																																									  width: 740px;
+																																																																																																									}
                                                                                                                                                                                                                                                                                                                                                                                                                                     .singleItemDataIn.hide{
                                                                                                                                                                                                                                                                                                                                                                                                                                       left: -100%;
                                                                                                                                                                                                                                                                                                                                                                                                                                     }
@@ -2970,7 +2976,7 @@ a:visited{
     text-transform: capitalize;
   }
   .reportThis {
-    margin-top: 5px;
+    margin-top: 20px;
     font-size: 10px;
     position: relative;
   }
@@ -3282,7 +3288,7 @@ a:visited{
 
   .wowItButton {
     float: left;
-    width: 166px;
+    width: 100px;
   }
   .wowItButtonBig {
     text-transform: uppercase;
@@ -3382,38 +3388,88 @@ a:visited{
 
   /* new single */
   .singleItemDataInLeft {
-    width: 1030px;
+    width: 1200px;
     font-family: 'Open Sans', sans-serif;
+  }
+  .quickLook .singleItemDataInLeft {
+    width: 740px;
   }
   .singlePageLeft {
     float: left;
-    width: 640px;
-    padding: 20px;
-    padding-top: 0;
-    padding-right: 0;
+    width: 350px;
+    padding: 0;
+  }
+  .quickLook .singlePageLeft {
+    padding: 0 0 20px 20px;
   }
   .singlePageRight {
     float: left;
+    width: 825px;
+    padding: 10px 0 0 25px;
+  }
+  .quickLook .singlePageRight {
     width: 330px;
-    padding: 10px 20px;
+    padding: 53px 20px 0;
+  }
+  .singlePageAdUnit {
+    float: right;
+    width: 250px;
+    height: 250px;
+    margin-top: 10px;
+  }
+  .singlePageTitle,
+  .singlePagePriceBox,
+  .singlePageUsersBox,
+  .reportThis {
+    float: left;
+    width: 558px;
   }
   .singlePageTitle {
-    font-size: 20px;
-    padding: 20px;
-    padding-bottom: 0;
+    font-size: 22px;
+    line-height: 28px;
+    max-height: 56px;
+    padding: 10px 0 0 0;
+    overflow: hidden;
+  }
+  .quickLook .singlePageTitle {
+    float: none;
+    width: auto;
+    padding: 20px 20px 0;
   }
   .singlePageImage {
-    margin-top: 10px;
+    position: relative;
+    margin-top: 20px;
     text-align: center;
+    cursor: pointer;
+  }
+  .quickLook .singlePageImage {
+    margin-top: 10px;
+    cursor: auto;
   }
   .singlePageImage img {
-    max-width: 640px;
+    max-width: 350px;
+    max-height: 350px;
+  }
+  .singlePageImage .zoomIcon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-image: url('http://7534c3b8920181f81371-6b595f2438b9b7ae4d62993a996f5695.r5.cf1.rackcdn.com/zoom_sprite.png');
+  }
+  .singlePageImage:hover .zoomIcon {
+    background-position: center bottom;
   }
   .singlePagePriceBox {
-    padding: 20px;
-    padding-bottom: 8px;
-    border: 1px #CCC solid;
-    border-radius: 3px;
+    padding: 20px 0 0 0;
+    border: none;
+    border-radius: 0;
+  }
+  .quickLook .singlePagePriceBox {
+    width: auto;
+    padding: 20px 20px 8px;
+    border: 1px solid #ccc;
   }
   .beforeOfferPrice {
     font-size: 22px;
@@ -3435,12 +3491,12 @@ a:visited{
   }
   .afterOfferPrice {
     font-size: 32px;
-    color: #333;
+    color: #c00;
     font-family: "helvetica neue", arial, verdana, sans-serif;
     font-weight: bold;
     float: left;
     display: inline;
-    padding-right: 10px;
+    padding: 0 10px 10px 0;
   }
   .offerPercentText {
     text-transform: uppercase;
@@ -3469,11 +3525,14 @@ a:visited{
     position: relative;
     background: #eee;
     padding: 15px 20px;
-    margin: 28px -20px -10px -20px;
+    margin: 9px 0 0;
+  }
+  .quickLook .singlePageOffersBox {
+    margin: 9px -20px 0;
   }
   .singlePageOffersBox:after {
     bottom: 100%;
-    left: 20%;
+    left: 44px;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -3485,12 +3544,18 @@ a:visited{
     border-width: 15px;
     margin-left: -15px;
   }
-  .singleSimilarProducts,.singlePageUsersBox {
-    margin-top:10px;
-    border:1px #CCC solid;
-    border-radius:3px;
-    text-align:center;
-    padding:15px 20px 10px;
+  .quickLook .singlePageOffersBox:after {
+    left: 64px;
+  }
+  .singlePageUsersBox {
+    margin-top: 20px;
+  }
+  .singleSimilarProducts {
+    margin-top: 10px;
+    padding: 15px 20px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
   }
 
   .singleSimilarProducts .titleLine {
@@ -3560,10 +3625,10 @@ a:visited{
     margin-top: 0px;
   }
   .wowUsersPics img {
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin: 0 0 0 8px;
     float: left;
-    width: 43px;
+    width: 32px;
+    height: 32px;
   }
   .reportThisBox {
     font-size: 11px;
@@ -3586,8 +3651,7 @@ a:visited{
   .fromStore {
     width: 90px;
     float: left;
-    margin-top: 14px;
-    margin-left: 10px;
+    margin: 18px 0 0 12px;
     padding: 0px;
     color: #777;
     text-transform: uppercase;
@@ -3598,11 +3662,11 @@ a:visited{
     color: #333;
     font-size: 14px;
     font-weight: bold;
-    padding-top: 2px;
+    padding-top: 5px;
   }
   .offPercentage {
     width: 70px;
-    float: right;
+    float: left;
     padding: 9px;
     background-color: #eee;
     font-size: 15px;
@@ -3610,7 +3674,10 @@ a:visited{
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
     text-align: center;
-    margin-right: -21px;
+    margin: -3px -21px 0 20px;
+  }
+  .quickLook .offPercentage {
+    float: right;
   }
   .offPercentage span {
     font-size: 12px;
@@ -3619,10 +3686,10 @@ a:visited{
     position: relative;
     background: #fff;
     float: left;
-    font-size: 22px;
-    padding: 10px;
-    margin-left: 5px;
-    min-width: 55px;
+    font-size: 20px;
+    padding: 5px;
+    margin-left: 10px;
+    min-width: 40px;
     text-align: center;
     font-family: "helvetica neue", arial, verdana, sans-serif;
     font-weight: bold;
@@ -3651,9 +3718,27 @@ a:visited{
     border-width: 7px;
     margin-top: -7px;
   }
+  .singlePageSimilarProducts,
+  .singlePageRelatedProducts {
+    padding: 17px;
+    border: 1px solid #ccc;
+    margin-top: 40px;
+    background-color: #f5f7f7;
+  }
+  .singlePageSimilarProducts .sectionTitle,
+  .singlePageRelatedProducts .sectionTitle {
+    margin-bottom: 17px;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .singlePageSimilarProducts .viewAll,
+  .singlePageRelatedProducts .viewAll {
+    margin-top: 17px;
+  }
   .singlePageComments {
     /*padding: 20px;*/
-    margin-top: 10px;
+    margin-top: 40px;
   }
   .fb-comments, .fb-comments iframe[style], .fb-comments span[style] {width: 100% !important;} 
   .extraWowNos {
@@ -3696,6 +3781,58 @@ a:visited{
     text-align: left;
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+  .headingBar {
+    margin-bottom: 7px;
+    text-align: center;
+  }
+  .headingBar .headingContent {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-align: left;
+    overflow: hidden;
+  }
+  .headingBar .headingLabel {
+    margin-bottom: 10px;
+    font-size: 15px;
+  }
+  .headingBar .headingImage {
+    float: left;
+    max-width: 75px;
+    max-height: 75px;
+  }
+  .headingBar .headingDetails {
+    float: left;
+    margin-left: 10px;
+    width: 450px;
+  }
+  .headingBar .headingTitle {
+    max-height: 25px;
+    line-height: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .headingBar .headingPrice {
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #c00;
+  }
+  .headingBar .headingLink {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    font-size: 15px;
+  }
+  .headingBar .glyph {
+    position: relative;
+    top: 2px;
+    font-size: 25px;
   }
 
 
@@ -3749,11 +3886,14 @@ a:visited{
   .the-grid-wrapper.filter-visible .the-grid{margin-left: 249px;}
   .the-grid{min-width:256px; margin-left: 0;text-align:left;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease;}
   .the-grid .grid-item{background:#ffffff;display:inline-block;float:left;overflow:hidden;margin:7px;width:236px;height:315px}
+  .singlePageSimilarProducts .the-grid .grid-item,.singlePageRelatedProducts .the-grid .grid-item{width: 220px;margin: 0;}
+  .singlePageSimilarProducts .the-grid .grid-item + .grid-item,.singlePageRelatedProducts .the-grid .grid-item + .grid-item{margin-left: 16px;}
   .grid-item.product{box-shadow:0 1px 3px rgba(0,0,0,0.2);text-align:left;cursor:pointer;font-family:'Open Sans',sans-serif;-webkit-transition:box-shadow .3s ease;-moz-transition:box-shadow .3s ease;-ms-transition:box-shadow .3s ease;-o-transition:box-shadow .3s ease;transition:box-shadow .3s ease}
   .grid-item.product:hover{box-shadow:0 1px 5px rgba(0,0,0,0.7);}
   .grid-item.product .image-container{float:left;position:relative;display:inline-block;overflow:hidden;height:236px;display:block;}
   .grid-item.product .image-container .image-wrapper{position:relative;display:inline-block;overflow:hidden;width:236px;height:236px;background:#fff;line-height:236px}
   .grid-item.product .image-container .image-wrapper .picture{position:absolute;top:0;right:0;bottom:0;left:0;z-index:0;margin:auto;width:236px}
+  .singlePageSimilarProducts .grid-item.product .image-container .image-wrapper,.singlePageRelatedProducts .grid-item.product .image-container .image-wrapper,.singlePageSimilarProducts .grid-item.product .image-container .image-wrapper .picture,.singlePageRelatedProducts .grid-item.product .image-container .image-wrapper .picture{width:220px}
   .grid-item.product .image-container .wow-button{display:none}
   .grid-item.product .image-container:hover .wow-button{position:absolute;top:0;right:0;bottom:0;left:0;display:block;margin:auto;padding:0 8px;width:92px;height:34px;border-radius:3px;background:-webkit-linear-gradient(to bottom,#efa277 1%,#e9843f 5%,#ee6631 33%,#f15a29 64%);background:-moz-linear-gradient(to bottom,#efa277 1%,#e9843f 5%,#ee6631 33%,#f15a29 64%);background:-o-linear-gradient(to bottom,#efa277 1%,#e9843f 5%,#ee6631 33%,#f15a29 64%);background:-ms-linear-gradient(to bottom,#efa277 1%,#e9843f 5%,#ee6631 33%,#f15a29 64%);background:linear-gradient(to bottom,#efa277 1%,#e9843f 5%,#ee6631 33%,#f15a29 64%);-webkit-box-shadow:1px 1px 3px #888;-webkit-box-shadow:1px 1px 3px rgba(0,0,0,0.8);box-shadow:1px 1px 3px #888;box-shadow:1px 1px 3px rgba(0,0,0,0.8);color:#fff!important;text-align:center;text-decoration:none;font-weight:normal;font-size:18px;font-family:'Fondamento';line-height:37px;-webkit-transition:background .5s ease;-moz-transition:background .5s ease;-ms-transition:background .5s ease;-o-transition:background .5s ease;transition:background .5s ease}
   .grid-item.product .image-container .wow-button:hover{background:-webkit-linear-gradient(to bottom,#f06d44 0,#ed5628 100%);background:-moz-linear-gradient(to bottom,#f06d44 0,#ed5628 100%);background:-o-linear-gradient(to bottom,#f06d44 0,#ed5628 100%);background:-ms-linear-gradient(to bottom,#f06d44 0,#ed5628 100%);background:linear-gradient(to bottom,#f06d44 0,#ed5628 100%)}
@@ -4138,8 +4278,8 @@ a:visited{
     display: block;
   }
 
-  .singlePageStoreExtras{
-    margin-top: 8px;
+  .singlePageStoreExtras {
+    margin-top: 12px;
     overflow: hidden;
     margin-right: -20px;
   }
@@ -4162,9 +4302,16 @@ a:visited{
   .size-box-single {
     font-family: 'Open Sans', sans-serif;
     font-size: 11px;
-    padding: 3px 20px 0 20px;
+    padding: 3px 17px 7px;
     border-top: 1px solid #ccc;
-    margin: 13px -20px 0 -20px;
+    border-bottom: 1px solid #ccc;
+    margin-top: 12px;
+  }
+
+  .quickLook .size-box-single {
+    padding: 3px 20px 0;
+    border-bottom: none;
+    margin: 12px -20px 0 -20px;
   }
 
   .size-info .size-info-unit-single {
@@ -4255,4 +4402,7 @@ a:visited{
   .breadcrumb a.current:hover{
     text-decoration: none;
     cursor: text;
+  }
+  .callout {
+    font-size: 12px;
   }
