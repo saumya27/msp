@@ -570,6 +570,9 @@ $(document).ready(function() {
                 $('.offers.cashback.openPopup_rd').show();
             }
         }
+        else {
+            $('.offers.openPopup_rd').show();
+        }
     }
 
 
