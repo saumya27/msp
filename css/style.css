@@ -3409,7 +3409,7 @@ a:visited{
   }
   .quickLook .singlePageRight {
     width: 330px;
-    padding: 53px 20px 0;
+    padding: 15px 20px 20px;
   }
   .singlePageAdUnit {
     float: right;
@@ -3438,6 +3438,7 @@ a:visited{
   }
   .singlePageImage {
     position: relative;
+    height: 350px;
     margin-top: 20px;
     text-align: center;
     cursor: pointer;
@@ -3529,6 +3530,9 @@ a:visited{
   }
   .quickLook .singlePageOffersBox {
     margin: 9px -20px 0;
+  }
+  .singlePageOffersBox + .singlePageOffersBox {
+    margin-top: 15px;
   }
   .singlePageOffersBox:after {
     bottom: 100%;
