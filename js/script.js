@@ -326,6 +326,7 @@ $(document).ready(function() {
     nanoScrollbarInit();
     newArrivalsInit();
     paginationInit();
+    collectionsInit();
     checkCookie();
     show_facebook_popup_check();
     setTimeout('checkIfFbLoaded();', 7000);
@@ -1118,7 +1119,9 @@ window.fbAsyncInit = function() {
         cookie: true, // enable cookies to allow the server to access the session
         xfbml: true // parse XFBML
     });
+
     isLoaded = true;
+    collectionsFbInit();
 
     FB.Event.subscribe('comment.create',
         function(response) {
@@ -2408,3 +2411,52 @@ function makeMarkedVisible() {
         $('.filterbar').addClass('hide').closest('.filter-visible').toggleClass('filter-visible filter-invisible');
     }
 })();
+
+function collectionsInit() {
+  if ($(".collectionsPage").length) {
+    var pageIndex = 1;
+    $("body").on("mouseenter", ".collection", function () {
+      $(this).find(".overlay").stop(true, true).fadeIn("fast");
+    });
+    $("body").on("mouseleave", ".collection", function () {
+      $(this).find(".overlay").stop(true, true).fadeOut("fast");
+    });
+    $("body").on("click", ".loadMore:not(.btn-disabled)", function () {
+      var $this = $(this);
+      $this.addClass("btn-disabled");
+      $.ajax({
+        url: "get_collections.php?page=" + pageIndex++
+      }).done(function (html) {
+        $(".collections").append(html);
+      }).always(function () {
+        $this.removeClass("btn-disabled");
+      });
+    });
+  }
+  if ($(".collectionsList").length) {
+    $("body").on("click", ".socialSharing .twitter", function () {
+      var url = encodeURIComponent(window.location.href),
+          text = encodeURIComponent($(this).data("text"));
+      window.open("https://twitter.com/share?url=" + url + "&via=mysmartprice&text=" + text, "_blank", "width=556,height=443");
+      return false;
+    });
+    $("body").on("click", ".socialSharing .email", function () {
+      var subject = encodeURIComponent($(this).data("subject")),
+          body = encodeURIComponent($(this).data("body"));
+      window.open("https://mail.google.com/mail/?view=cm&fs=1&su=" + subject + "&body=" + body, "_blank", "width=650,height=500");
+      return false;
+    });
+  }
+}
+
+function collectionsFbInit() {
+  if ($(".collectionsList").length) {
+    $("body").on("click", ".socialSharing .facebook", function () {
+      FB.ui({
+        method: "share",
+        href: window.location.href
+      });
+      return false;
+    });
+  }
+}
