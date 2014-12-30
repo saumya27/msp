@@ -430,6 +430,9 @@ function updateShowMoreStore() {
 }
 
 $(document).ready(function() {
+    // Show offline same-day delivery banners if cookie is set by server
+    if (getCookie("msp_sameday_delivery") == "1")
+        $(".offline-sidebar-banner, .offline-bottom-banner").show();
 
     //for handeling tab click
     $('body').on('click', '.tab', function() {
@@ -575,30 +578,26 @@ $(document).ready(function() {
         }
     }
 
+    updateCashbackOffers();
 
-    $(document).ready(function() {
-        updateCashbackOffers();
-        $('body').on('submit', '.popup_rd form', function() {
-
-            var emailValue = $(this).find(".txtbox").val();
-
-            var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!emailRegex.test(emailValue)) {
-              alert("Please enter a valid Email ID.");
-              return false;
-            }
-            setCookie("msp_login_email", emailValue, 365);
-            var queryString = "email=" + encodeURIComponent(emailValue);
-            $.ajax({
-                  type: "GET",
-                  url: "/promotions/save_email.php?type=single_offers&" + queryString,
-                  cache: false
-                });
-            $(this).parents('.popup_rd').fadeOut();
-            event.stopPropagation();
-            updateCashbackOffers();
+    $('body').on('submit', '.popup_rd form', function() {
+        var emailValue = $(this).find(".txtbox").val();
+        var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!emailRegex.test(emailValue)) {
+            alert("Please enter a valid Email ID.");
             return false;
+        }
+        setCookie("msp_login_email", emailValue, 365);
+        var queryString = "email=" + encodeURIComponent(emailValue);
+        $.ajax({
+            type: "GET",
+            url: "/promotions/save_email.php?type=single_offers&" + queryString,
+            cache: false
         });
+        $(this).parents('.popup_rd').fadeOut();
+        event.stopPropagation();
+        updateCashbackOffers();
+        return false;
     });
 
     $('body').on('click', '.closebutton', function(event) {

@@ -2427,4 +2427,26 @@ float: right;
 	cursor:pointer;
 }
 
+/* Offline same-day styles begin here */
 
+.offline-sidebar-banner,
+.offline-bottom-banner {
+  display: none;
+}
+.offline-sidebar-banner {
+  padding-bottom: 0 !important;
+}
+.offline-sidebar-banner a,
+.offline-bottom-banner a {
+  display: inline-block;
+}
+.offline-sidebar-banner img {
+  width: 250px;
+  height: 300px;
+}
+.offline-bottom-banner img {
+  width: 930px;
+  height: 150px;
+}
+
+/* Offline same-day styles end here */

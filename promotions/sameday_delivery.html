@@ -429,7 +429,7 @@
   }
 </style>
 <script type="text/javascript">
-  var isbn, skuId, instorePrice, offerPrice, emailValue, mobileValue, pincodeValue, storeId, insertId;
+  var isbn, skuId, instorePrice, offerPrice, emailValue, mobileValue, pincodeValue, storeId, insertId, storeCode;
   setCookieMins("3hrspopup", "1", 15);
   setCookieMins("autoPopup", "1", 15);
 
@@ -477,7 +477,7 @@
 
       $("#popup-submit").addClass("btn-disabled");
       $.ajax({
-        url: "/offline/capture_info.php",
+        url: "/offline/sameday_delivery.php",
         data: {
           mspid: isbn,
           sku: skuId,
@@ -506,11 +506,12 @@
               $(".store-phone").text(store.phone);
             if (store.shipping) {
               if (store.shipping.pickup)
-                $("#popup-pickup").prop("disabled", false);
+                $("#popup-pickup").prop("disabled", false).click();
               if (store.shipping.delivery)
-                $("#popup-delivery").prop("disabled", false);
+                $("#popup-delivery").prop("disabled", false).click();
             }
             insertId = store.insertid;
+            storeCode = store.storecode;
             $form.toggleClass("step1 step2");
             $("#popup-submit").val("Confirm Order");
             $("#popup-pickup").focus();
@@ -552,6 +553,7 @@
         firststep: false,
         storeid: storeId,
         insertid: insertId,
+        storecode: storeCode,
         shipping: shippingValue,
         name: nameValue
       };
@@ -566,24 +568,13 @@
         request.address = addressValue;
       }
 
-      var errorMessage = "An unknown error occurred. Please try again.";
-      $("#popup-submit").addClass("btn-disabled");
-
       $.ajax({
-        url: "/offline/capture_info.php",
+        url: "/offline/sameday_delivery.php",
         data: request
-      }).done(function (response) {
-        if (response === "SUCCESS") {
-          $form.toggleClass("step2 step-done");
-          setTimeout("closePopup();", 8000);
-        }
-        else
-          alert(errorMessage);
-      }).fail(function () {
-        alert(errorMessage);
-      }).always(function () {
-        $("#popup-submit").removeClass("btn-disabled");
       });
+
+      $form.toggleClass("step2 step-done");
+      setTimeout("closePopup();", 8000);
     }
     return false;
   }
@@ -609,13 +600,12 @@
       if ($("#popup-pickup").is(":checked")) {
         $("#popup-address, #popup-pincode2").hide();
         $("#popup-name, #pickup-note").show();
-        $("#popup-name").focus();
       }
       else if ($("#popup-delivery").is(":checked")) {
         $("#pickup-note").hide();
         $("#popup-name, #popup-address, #popup-pincode2").show();
-        $("#popup-name").focus();
       }
+      setTimeout("$('#popup-name').focus();", 200);
     });
   });
 </script>
