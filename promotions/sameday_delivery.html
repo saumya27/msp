@@ -1,7 +1,7 @@
 <form class="popup-inner-content step1" onsubmit="return validateOfflineForm();">
   <div class="popup-top">
     <div class="step1-card">
-      <div class="popup-title">Get Same-Day Delivery!</div>
+      <div class="popup-title">Get this phone delivered in 4 hours!</div>
       <table class="checkout">
         <tr class="heading">
           <td class="item">Item</td>
@@ -22,8 +22,8 @@
             <span>1</span>
           </td>
           <td>
-            <div class="instore-price">In-store Price: &#x20B9; <span></span></div>
-            <div class="offer-price">Offer Price: &#x20B9; <span></span></div>
+            <div class="instore-price">Regular Price: &#x20B9; <span></span></div>
+            <div class="offer-price">Special Price: &#x20B9; <span></span></div>
             <div class="price-info">Inclusive of all taxes<br/>&amp; shipping charges.</div>
           </td>
         </tr>
@@ -35,6 +35,9 @@
         </div>
         <div class="popup-field">
           <input type="text" id="popup-mobile" maxlength="10" placeholder="Mobile number" title="Mobile number"/>
+        </div>
+        <div class="popup-field">
+          <input type="text" id="popup-confirm-mobile" maxlength="10" placeholder="Re-enter mobile number" title="Re-enter mobile number"/>
         </div>
         <div class="popup-field">
           <input type="text" id="popup-pincode" maxlength="6" placeholder="Pin code" title="Pin code"/>
@@ -85,7 +88,7 @@
     </div>
   </div>
   <div class="popup-bottom">
-    <div class="popup-tnc">Payment by cash-on-delivery only. After confirmation, the item will be delivered on the same day.<br/>Orders placed after 6 PM will be delivered the next day.</div>
+    <div class="popup-tnc">Payment by cash-on-delivery, credit card or debit card only. After confirmation,<br/>the item will be delivered within 4 hours. Orders placed after 7 PM will be delivered the next day.</div>
     <input type="submit" id="popup-submit" class="btn btn-red btn-xl" value="Check Availability"/>
   </div>
   <div class="step-fail-card">
@@ -99,7 +102,7 @@
     <div class="done-card">
       <img class="done-image" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/check_icon.png" alt="Great!"/>
       <div class="done-heading">Done</div>
-      <div class="done-message"><img/> will call you in a few minutes.<br/>In the meantime, keep your cash ready to ensure a hassle-free experience.</div>
+      <div class="done-message"><img/> representative will call you shortly.</div>
     </div>
   </div>
 </form>
@@ -195,15 +198,21 @@
     max-height: 60px;
     overflow: hidden;
   }
-  .checkout .prod-seller {
+  .checkout .prod-seller,
+  .done-message {
     line-height: 33px;
+  }
+  .checkout .prod-seller {
     margin-top: 6px;
     font-size: 14px;
   }
-  .checkout .prod-seller img {
-    max-width: 180px;
+  .checkout .prod-seller img,
+  .done-message img {
     height: 33px;
     vertical-align: bottom;
+  }
+  .checkout .prod-seller img {
+    max-width: 180px;
   }
   .checkout .prod-seller span {
     font-style: italic;
@@ -260,9 +269,9 @@
     color: #666;
   }
   .popup-form input[type="text"] {
-    width: 238px;
+    width: 176px;
     height: 24px;
-    margin-right: 18px;
+    margin-right: 10px;
   }
   .popup-form input[type="text"]:focus {
     border-color: #999;
@@ -407,16 +416,16 @@
     margin-top: 20px;
     font-size: 26px;
   }
-  .fail-message,
-  .done-message {
+  .fail-message {
     font-size: 16px;
     line-height: 24px;
   }
   .done-message {
     margin-top: 30px;
+    font-size: 16px;
   }
   .done-message img {
-    vertical-align: middle;
+    max-width: 535px;
   }
 </style>
 <script type="text/javascript">
@@ -441,6 +450,13 @@
       if (!mobileRegex.test(mobileValue)) {
         alert("Please enter a valid mobile number.");
         $("#popup-mobile").focus();
+        return false;
+      }
+
+      var confirmMobileValue = $.trim($("#popup-confirm-mobile").val());
+      if (confirmMobileValue !== mobileValue) {
+        alert("Please re-enter the same mobile number.");
+        $("#popup-confirm-mobile").focus();
         return false;
       }
 
