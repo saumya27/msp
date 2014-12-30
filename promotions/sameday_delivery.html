@@ -14,7 +14,7 @@
               <img/>
             </div>
             <div class="prod-det">
-              <div class="prod-name prod-title"></div>
+              <div class="prod-name"></div>
               <div class="prod-seller">Sold by <img/> <span>(nearest to you)</span></div>
             </div>
           </td>
@@ -22,7 +22,8 @@
             <span>1</span>
           </td>
           <td>
-            <div class="product-price">&#x20B9; <span class="offline-price"></span></div>
+            <div class="instore-price">In-store Price: &#x20B9; <span></span></div>
+            <div class="offer-price">Offer Price: &#x20B9; <span></span></div>
             <div class="price-info">Inclusive of all taxes<br/>&amp; shipping charges.</div>
           </td>
         </tr>
@@ -101,7 +102,6 @@
       <div class="done-message"><img/> will call you in a few minutes.<br/>In the meantime, keep your cash ready to ensure a hassle-free experience.</div>
     </div>
   </div>
-  <input type="hidden" id="store-id"/>
 </form>
 <style type="text/css">
   .step1 .step-fail-card,
@@ -168,9 +168,11 @@
     font-weight: bold;
     text-align: center;
   }
-  .checkout .qty,
+  .checkout .qty {
+    width: 100px;
+  }
   .checkout .price {
-    width: 150px;
+    width: 200px;
   }
   .checkout .prod-image {
     float: left;
@@ -186,17 +188,12 @@
     float: left;
     width: 340px;
   }
-  .checkout .prod-name,
-  .store-name,
-  .store-phone {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
   .checkout .prod-name {
     margin-top: 12px;
     font-size: 16px;
-    line-height: 1.4;
+    line-height: 20px;
+    max-height: 60px;
+    overflow: hidden;
   }
   .checkout .prod-seller {
     line-height: 33px;
@@ -221,16 +218,22 @@
     background-color: #eee;
     text-align: center;
   }
-  .checkout .product-price {
+  .checkout .instore-price {
     margin-top: 12px;
+    font-size: 14px;
+    text-decoration: line-through;
+    text-align: center;
+    color: #666;
+  }
+  .checkout .offer-price {
+    margin-top: 6px;
     font-size: 16px;
-    line-height: 30px;
     font-weight: bold;
     text-align: center;
     color: #c00;
   }
   .checkout .price-info {
-    margin-top: 6px;
+    margin-top: 24px;
     font-size: 12px;
     line-height: 14px;
     font-style: italic;
@@ -300,6 +303,12 @@
   .trusted-seller img {
     width: 110px;
     height: 30px;
+  }
+  .store-name,
+  .store-phone {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
   .store-name {
     font-weight: bold;
@@ -411,31 +420,32 @@
   }
 </style>
 <script type="text/javascript">
-  setCookieMins("3hrspopup", "1", 1);
-  setCookieMins("autoPopup", "1", 1);
+  var isbn, skuId, instorePrice, offerPrice, emailValue, mobileValue, pincodeValue, storeId, insertId;
+  setCookieMins("3hrspopup", "1", 15);
+  setCookieMins("autoPopup", "1", 15);
 
   function validateOfflineForm() {
     var $form = $(".popup-inner-content");
 
     if ($form.hasClass("step1")) {
-      var emailValue = $.trim($("#popup-email").val()),
-          emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      emailValue = $.trim($("#popup-email").val());
       if (!emailRegex.test(emailValue)) {
         alert("Please enter a valid email ID.");
         $("#popup-email").focus();
         return false;
       }
 
-      var mobileValue = $.trim($("#popup-mobile").val()),
-          mobileRegex = /^\d{10}$/;
+      var mobileRegex = /^\d{10}$/;
+      mobileValue = $.trim($("#popup-mobile").val());
       if (!mobileRegex.test(mobileValue)) {
         alert("Please enter a valid mobile number.");
         $("#popup-mobile").focus();
         return false;
       }
 
-      var pincodeValue = $.trim($("#popup-pincode").val()),
-          pincodeRegex = /^\d{6}$/;
+      var pincodeRegex = /^\d{6}$/;
+      pincodeValue = $.trim($("#popup-pincode").val());
       if (!pincodeRegex.test(pincodeValue)) {
         alert("Please enter a valid pin code.");
         $("#popup-pincode").focus();
@@ -443,29 +453,31 @@
       }
       $("#popup-pincode2").val($("#popup-pincode2").val() + pincodeValue);
 
-      var $pageTitle = $("#mspSingleTitle"),
-          isbn = $pageTitle.data("mspid"),
-          skuid = $pageTitle.data("offlinesku"),
-          offlinePrice = $pageTitle.data("offlineprice");
+      var $pageTitle = $("#mspSingleTitle");
+      isbn = $pageTitle.data("mspid");
+      skuId = $pageTitle.data("offlinesku");
+      instorePrice = $pageTitle.data("offlineinstoreprice");
+      offerPrice = $pageTitle.data("offlineofferprice");
 
       $("#popup-submit").addClass("btn-disabled");
       $.ajax({
         url: "/offline/capture_info.php",
         data: {
           mspid: isbn,
-          sku: skuid,
-          price: offlinePrice,
+          sku: skuId,
+          instoreprice: instorePrice,
+          offerprice: offerPrice,
           email: emailValue,
           mobile: mobileValue,
-          pincode: pincodeValue
+          pincode: pincodeValue,
+          firststep: true
         }
       }).done(function (response) {
         if (response) {
           var json = $.parseJSON(response);
           if (json.stores && json.stores.length) {
             var store = json.stores[0];
-            if (store.id)
-              $("#store-id").val(store.id);
+            storeId = store.id;
             if (store.logo)
               $(".store-logo img, .done-message img").attr("src", store.logo);
             if (store.name) {
@@ -482,6 +494,7 @@
               if (store.shipping.delivery)
                 $("#popup-delivery").prop("disabled", false);
             }
+            insertId = store.insertid;
             $form.toggleClass("step1 step2");
             $("#popup-submit").val("Confirm Order");
             $("#popup-pickup").focus();
@@ -513,6 +526,16 @@
       }
 
       var request = {
+        mspid: isbn,
+        sku: skuId,
+        instoreprice: instorePrice,
+        offerprice: offerPrice,
+        email: emailValue,
+        mobile: mobileValue,
+        pincode: pincodeValue,
+        firststep: false,
+        storeid: storeId,
+        insertid: insertId,
         shipping: shippingValue,
         name: nameValue
       };
@@ -560,8 +583,9 @@
     var $pageTitle = $("#mspSingleTitle");
     $(".prod-image img").attr("src", $("#mspSingleImg").attr("src"));
     $(".prod-image img").attr("alt", $pageTitle.text());
-    $(".prod-title").text($pageTitle.text());
-    $(".offline-price").text($pageTitle.data("offlineprice"));
+    $(".prod-name").text($pageTitle.text());
+    $(".instore-price span").text($pageTitle.data("offlineinstoreprice"));
+    $(".offer-price span").text($pageTitle.data("offlineofferprice"));
     $(".prod-seller img").attr("src", $pageTitle.data("offlinestorelogo"));
     $(".prod-seller img").attr("alt", $pageTitle.data("offlinestorename"));
 
