@@ -140,7 +140,7 @@ foreach ($store_data as $row) {
         </div>
       </div>
       <div class="OP-store-contact">
-        <a href="#" class="OP-store-call btn btn-l btn-blue">Call for Availability</a>
+        <a href="#" class="OP-store-call btn btn-l btn-blue">Bargain</a>
         <a href="#" class="OP-store-sms btn btn-l">SMS</a>
         <div class="OP-store-price">
           <p class="OP-store-price-label">PRICE</p>
