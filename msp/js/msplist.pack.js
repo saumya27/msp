@@ -140,6 +140,13 @@ $(document).ready(function() {
         requestData();
     });
 
+    $("body").on("mouseenter", ".sideitemlist", function () {
+        $(this).find(".overlay").stop(true, true).fadeIn("fast");
+    });
+    $("body").on("mouseleave", ".sideitemlist", function () {
+        $(this).find(".overlay").stop(true, true).fadeOut("fast");
+    });
+
     if ($("#mobilefilterwrapper").length) {
         $.ajax({
             url: "/msp/prop_filters/mobile-new.html",
