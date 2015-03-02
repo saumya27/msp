@@ -3889,6 +3889,9 @@ a:visited{
   .the-grid-wrapper{display:block;margin:0 auto; min-width: 1200px; position: relative;padding-top:8px;}
   .the-grid-wrapper.filter-visible .the-grid{margin-left: 249px;}
   .the-grid{min-width:256px; margin-left: 0;text-align:left;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease;}
+  .lookbooksPage .the-grid{float:left;width:710px}
+  .lookbooksPage .the-grid .grid-title{padding-bottom:6px;border-bottom:1px solid #999;margin-top:25px;font-size:24px;line-height:24px}
+  .lookbooksPage .the-grid .grid-title .glyph{position:relative;top:3px;font-size:40px}
   .the-grid .grid-item{background:#ffffff;display:inline-block;float:left;overflow:hidden;margin:7px;width:236px;height:315px}
   .singlePageSimilarProducts .the-grid .grid-item,.singlePageRelatedProducts .the-grid .grid-item,.collectionsPage .the-grid .grid-item{width:220px;margin:0}
   .singlePageSimilarProducts .the-grid .grid-item,.singlePageRelatedProducts .the-grid .grid-item{height:299px}
@@ -4311,6 +4314,9 @@ a:visited{
     margin-left: 12px;
     background: transparent url(http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/collections_social_sprite.png) no-repeat;
   }
+  .lookbooksPage .socialSharing a:first-child {
+    margin-left: 0;
+  }
   .collectionsPage .bottom-social-banner .socialSharing{
     float: right;
     margin: 55px 20px 0;
@@ -4522,6 +4528,9 @@ a:visited{
   .headingCard {
     background-image: url('http://7534c3b8920181f81371-6b595f2438b9b7ae4d62993a996f5695.r5.cf1.rackcdn.com/collections_header_pattern.png');
   }
+  .lookbooksPage .headingCard {
+    overflow: hidden;
+  }
   .headingCard .overlay {
     padding: 12px;
     /* Used rgba(255, 255, 255, 0) to fix Firefox bug */
@@ -4544,9 +4553,10 @@ a:visited{
   .headingCard .info .title,
   .collection .name,
   .collection .details,
-  .collectionsPage .grid-item.product .price-info {
+  .collectionsPage .grid-item.product .price-info,
+  .lookbooksPage .hero .collection .source {
     text-overflow: ellipsis;
-    white-space:nowrap;
+    white-space: nowrap;
     overflow: hidden;
   }
   .headingCard .details {
@@ -4555,6 +4565,10 @@ a:visited{
     font-size: 13px;
     line-height: 16px;
     color: #777;
+  }
+  .lookbooksPage .headingCard .details {
+    margin: 12px 0;
+    overflow: hidden;
   }
   .headingCard .imageLink {
     float: left;
@@ -4576,6 +4590,9 @@ a:visited{
     position: absolute;
     top: 0;
     left: 150px;
+  }
+  .lookbooksPage .headingCard .socialSharing {
+    position: static;
   }
   .headingCard .socialSharing a {
     float: left;
@@ -4692,7 +4709,8 @@ a:visited{
   .collections {
     display: inline-block;
   }
-  .collectionsList .collections {
+  .collectionsList .collections,
+  .lookbooksList .collections {
     margin-top: 50px;
   }
   .collection {
@@ -4716,6 +4734,37 @@ a:visited{
   .collection.firstCol {
     margin-left: 0;
   }
+  .lookbooksPage .collection {
+    width: 291px;
+    height: 462px;
+  }
+  .lookbooksPage .hero {
+    float: left;
+    width: 466px;
+    margin: 25px 24px 0 0;
+  }
+  .lookbooksPage .hero .collection.poster {
+    width: 100%;
+    height: 726px;
+    margin-top: 0;
+  }
+  .lookbooksPage .hero .collection.description,
+  .lookbooksPage .hero .collection.comments {
+    width: 100%;
+    height: auto;
+  }
+  .lookbooksPage .hero .collection.description {
+    text-align: left;
+  }
+  .lookbooksPage .hero .collection.description .title {
+    padding: 8px 8px 0;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .lookbooksPage .hero .collection.description .value {
+    padding: 8px;
+    line-height: 18px;
+  }
   .collection .name {
     position: absolute;
     top: 0;
@@ -4728,6 +4777,10 @@ a:visited{
     font-weight: bold;
     color: #555;
     z-index: 2;
+  }
+  .lookbooksPage .collection .name {
+    width: 275px;
+    height: 454px;
   }
   .collection .details {
     position: relative;
@@ -4753,6 +4806,24 @@ a:visited{
     border-top: 1px dashed #ddd;
     overflow: hidden;
     z-index: 1;
+  }
+  .lookbooksPage .collection .thumbs {
+    height: 420px;
+  }
+  .lookbooksPage .hero .collection .thumbs {
+    position: static;
+    height: 683px;
+    border-top: none;
+    border-bottom: 1px dashed #ddd;
+  }
+  .lookbooksPage .hero .collection .source {
+    padding: 8px;
+    line-height: 18px;
+    text-align: left;
+  }
+  .lookbooksPage .hero .collection .source .label {
+    font-weight: bold;
+    color: #777;
   }
   .collection .banner {
     display: block;
@@ -4792,6 +4863,14 @@ a:visited{
     width: 376px;
     height: 248px;
     margin: 8px 0 0 8px;
+  }
+  .lookbooksPage .collection .thumb {
+    width: 275px;
+    height: 412px;
+  }
+  .lookbooksPage .hero .collection .thumb {
+    width: 450px;
+    height: 675px;
   }
   .collection .thumb img,
   .collection .viewCollection {

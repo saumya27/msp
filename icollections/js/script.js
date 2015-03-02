@@ -367,6 +367,7 @@ $(document).ready(function() {
     newArrivalsInit();
     paginationInit();
     collectionsInit();
+    lookBooksInit();
     checkCookie();
     show_facebook_popup_check();
     setTimeout('checkIfFbLoaded();', 7000);
@@ -2451,7 +2452,7 @@ function makeMarkedVisible() {
 })();
 
 function collectionsInit() {
-  if ($(".collectionsPage").length) {
+  if ($(".collectionsHome, .collectionsList").length) {
     var pageIndex = 1;
     if (!getCookie("msp_login_email")) {
         $('.home-banner-email').show();
@@ -2502,7 +2503,6 @@ function collectionsInit() {
         }
     });
     $("body").on("click", ".socialSharing .facebook, .products .banner .btn-fbshare, .grid-item.product .btn-fbshare", function (e) {
-        
         if ($(this).hasClass("src-top")){
             if (window._gaq) _gaq.push(['_trackEvent', 'collections_fbshare', 'top', 'click' ]);  
         } else if ($(this).hasClass("src-banner")){
@@ -2538,6 +2538,59 @@ function collectionsInit() {
             if (window._gaq) _gaq.push(['_trackEvent', 'collections_emshare', 'bottom', 'click' ]);
         } else {}
 
+      var subject = encodeURIComponent($(this).data("subject")),
+          body = encodeURIComponent($(this).data("body"));
+      window.open("https://mail.google.com/mail/?view=cm&fs=1&su=" + subject + "&body=" + body, "_blank", "width=650,height=500");
+      return false;
+    });
+  }
+}
+
+function lookBooksInit() {
+  if ($(".lookbooksHome, .lookbooksList").length) {
+    $("body").on("mouseenter", ".collections .collection", function () {
+      $(this).find(".overlay").stop(true, true).fadeIn("fast");
+    });
+    $("body").on("mouseleave", ".collections .collection", function () {
+      $(this).find(".overlay").stop(true, true).fadeOut("fast");
+    });
+  }
+  if ($(".lookbooksHome").length) {
+    var pageIndex = 1;
+    $("body").on("click", ".loadMore:not(.btn-disabled)", function () {
+      var $this = $(this);
+      $this.addClass("btn-disabled");
+      $.ajax({
+        url: "/lookbooks/home/load_more/?page=" + pageIndex++
+      }).done(function (response) {
+        var result = $.parseJSON(response);
+        $(".collections").append(result.html);
+        if (!result.more)
+          $this.remove();
+      }).always(function () {
+        $this.removeClass("btn-disabled");
+      });
+    });
+  }
+  if ($(".lookbooksList").length) {
+    $("body").on("click", ".socialSharing .facebook, .grid-item.product .btn-fbshare", function () {
+      if (window._gaq)
+        _gaq.push(["_trackEvent", "LookBooks_Desktop", "Facebook_Share", $(this).data("label").toString()]);
+      var url = encodeURIComponent(window.location.href);
+      window.open("http://www.facebook.com/sharer/sharer.php?u=" + url + "&client_id=253242341485828", "_blank", "width=550,height=300");
+      return false;
+    });
+    $("body").on("click", ".socialSharing .twitter", function () {
+      if (window._gaq)
+        _gaq.push(["_trackEvent", "LookBooks_Desktop", "Facebook_Share", $(this).data("label").toString()]);
+      var url = encodeURIComponent(window.location.href),
+          text = encodeURIComponent($(this).data("text"));
+      window.open("https://twitter.com/share?url=" + url + "&via=mysmartprice&text=" + text, "_blank", "width=556,height=443");
+      return false;
+    });
+    $("body").on("click", ".socialSharing .email", function () {
+      if (window._gaq)
+        _gaq.push(["_trackEvent", "LookBooks_Desktop", "Facebook_Share", $(this).data("label").toString()]);
       var subject = encodeURIComponent($(this).data("subject")),
           body = encodeURIComponent($(this).data("body"));
       window.open("https://mail.google.com/mail/?view=cm&fs=1&su=" + subject + "&body=" + body, "_blank", "width=650,height=500");
