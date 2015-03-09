@@ -3890,8 +3890,8 @@ a:visited{
   .the-grid-wrapper.filter-visible .the-grid{margin-left: 249px;}
   .the-grid{min-width:256px; margin-left: 0;text-align:left;-webkit-transition:all .3s ease;-moz-transition:all .3s ease;-ms-transition:all .3s ease;-o-transition:all .3s ease;transition:all .3s ease;}
   .lookbooksPage .the-grid{float:left;width:710px}
-  .lookbooksPage .the-grid .grid-title{padding-bottom:6px;border-bottom:1px solid #999;margin-top:25px;font-size:24px;line-height:24px}
-  .lookbooksPage .the-grid .grid-title .glyph{position:relative;top:3px;font-size:40px}
+  .lookbooksPage .the-grid .grid-title{padding-bottom:6px;border-bottom:1px solid #999;margin-top:25px;font-size:18px;line-height:100%}
+  .lookbooksPage .the-grid .grid-title .glyph{position:relative;top:2px;font-size:25px}
   .the-grid .grid-item{background:#ffffff;display:inline-block;float:left;overflow:hidden;margin:7px;width:236px;height:315px}
   .singlePageSimilarProducts .the-grid .grid-item,.singlePageRelatedProducts .the-grid .grid-item,.collectionsPage .the-grid .grid-item{width:220px;margin:0}
   .singlePageSimilarProducts .the-grid .grid-item,.singlePageRelatedProducts .the-grid .grid-item{height:299px}
@@ -4528,9 +4528,6 @@ a:visited{
   .headingCard {
     background-image: url('http://7534c3b8920181f81371-6b595f2438b9b7ae4d62993a996f5695.r5.cf1.rackcdn.com/collections_header_pattern.png');
   }
-  .lookbooksPage .headingCard {
-    overflow: hidden;
-  }
   .headingCard .overlay {
     padding: 12px;
     /* Used rgba(255, 255, 255, 0) to fix Firefox bug */
@@ -4539,9 +4536,15 @@ a:visited{
     background-image: -o-linear-gradient(left, #fff, rgba(255, 255, 255, 0));
     background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
   }
+  .lookbooksPage .headingCard .overlay {
+    overflow: hidden;
+  }
   .headingCard .info {
     float: left;
     width: 780px;
+  }
+  .lookbooksPage .headingCard .info {
+    width: 100%;
   }
   .headingCard .title {
     font-size: 24px;
@@ -4567,8 +4570,7 @@ a:visited{
     color: #777;
   }
   .lookbooksPage .headingCard .details {
-    margin: 12px 0;
-    overflow: hidden;
+    display: inline-block;
   }
   .headingCard .imageLink {
     float: left;
@@ -4781,6 +4783,11 @@ a:visited{
   .lookbooksPage .collection .name {
     width: 275px;
     height: 454px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+  .lookbooksPage .collection .name:hover {
+    text-decoration: none;
   }
   .collection .details {
     position: relative;
@@ -4824,6 +4831,13 @@ a:visited{
   .lookbooksPage .hero .collection .source .label {
     font-weight: bold;
     color: #777;
+  }
+  .lookbooksPage .hero .collection .source .value {
+    color: #4f6591;
+  }
+  .lookbooksPage .hero .collection .source .value:hover {
+    color: #1b3260;
+    text-decoration: underline;
   }
   .collection .banner {
     display: block;
