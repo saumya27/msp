@@ -431,17 +431,17 @@ function updateShowMoreStore() {
 
 $(document).ready(function() {
     num_stores_online = $(".store_pricetable:visible").length;
-    var $samedayBanners = $(".offline-sidebar-banner, .offline-bottom-banner");
-    if ($samedayBanners.length) {
-        // Show offline same-day delivery banners if cookie is set by server
+    var $samedayBanner = $(".offline-sidebar-banner");
+    if ($samedayBanner.length) {
+        // Show offline same-day delivery banner if cookie is set by server
         if (getCookie("msp_sameday_delivery") == "1") {
-            $samedayBanners.show();
+            $samedayBanner.show();
             _gaq.push(["_trackEvent", "Offline_Desktop", "TMS_Banner_View", $("#mspSingleTitle").data("mspid").toString()]);
         }
         // Open offline same-day delivery popup if URL hash is set
         var _hash = queryString(window.location.hash);
         if (_hash && _hash.sameday)
-            openPopup($samedayBanners.eq(0).find(".popup-target").data("href"));
+            openPopup($samedayBanner.find(".popup-target").data("href"));
     }
 
     //for handeling tab click

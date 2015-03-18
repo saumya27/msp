@@ -29,6 +29,17 @@ $(document).ready(function () {
 
     initAutocomplete();
 
+    // Track how many people are scrolling down to the offline price table
+    var $opt = $(".offline-pricetable");
+    if ($opt.length) {
+      $(window).on("scroll", function (e) {
+        if ($opt.offset().top - $("body").scrollTop() < $(window).height() / 2) {
+          _gaq.push(["_trackEvent", "Offline_Desktop", "Pricetable_Shown", mspid.toString()]);
+          $(this).off(e);
+        }
+      });
+    }
+
     $("body").on("click", ".OP-store-thumbs-wrap", function () {
       var $popup = $(".OPS-thumbs-popup"),
           imgSet = $(this).closest(".OP-store-details").data("imgset");
@@ -49,16 +60,20 @@ $(document).ready(function () {
     });
 
     $("body").on("click", ".OP-store-call", function () {
+      $(".OP-store-call.popup-opened").removeClass("popup-opened");
+      $(this).addClass("popup-opened");
       var $popup = $(".OPS-call-popup"),
           $store = $(this).closest(".OP-store-details"),
           storeid = $store.data("id"),
           phones = $store.data("phones");
-      $popup.find(".OPS-popup-store-name").text($store.find(".OP-store-name").data("name"));
+      $popup.find(".OPS-contact-form").show().find("input[type='text']").val("");
+      $popup.find(".OPS-popup-store-name, .OPS-contact-form .OPS-popup-title span").text($store.find(".OP-store-name").data("name"));
       $popup.find(".OPS-popup-store-address").text($.trim($store.find(".OP-store-address").text()));
       $popup.find(".OPS-popup-store-number").first().text(phones[0]);
       $popup.find(".OPS-popup-store-number").last().text(phones[1]);
-      $(".OPS-popups").fadeIn();
-      $popup.fadeIn();
+      $(".OPS-popups, .OPS-call-popup").fadeIn(400, function () {
+        $("#OPS-name-input").focus();
+      });
       $("body").css("overflow", "hidden");
       $.ajax({
         url: "/offline/offline_call.php",
@@ -71,60 +86,42 @@ $(document).ready(function () {
       return false;
     });
 
-    $("body").on("click", ".OP-store-sms", function () {
-      $(".OP-store-sms.popup-opened").removeClass("popup-opened");
-      $(this).addClass("popup-opened");
-      $(".OPS-popups, .OPS-sms-popup").fadeIn(400, function () {
-        $(".OPS-sms-popup #OPS-sms-phone").focus();
-      });
-      $("body").css("overflow", "hidden");
-      _gaq.push(["_trackEvent", "Offline_Desktop", "sms_click", $(this).closest(".OP-store-details").data("id").toString()]);
-      return false;
-    });
-
-    $("body").on("click", ".OPS-sms-popup .btn", function () {
-      var $input = $(".OPS-sms-popup #OPS-sms-phone"),
-          regEx = /^\d{10}$/,
-          phone = $input.val();
-      $input.removeClass("error");
-      if (regEx.test(phone)) {
-        var $title = $("#mspSingleTitle"),
-            $smsButton = $(".OP-store-sms.popup-opened"),
-            $store = $smsButton.closest(".OP-store-details");
-        $.ajax({
-          type: "POST",
-          url: "/offline/send_sms.php",
-          data: {
-            "mspid": $title.data("mspid"),
-            "product_name": $title.text(),
-            "store_id": $store.data("id"),
-            "store_name": $store.find(".OP-store-name").data("name"),
-            "store_price": $store.data("price"),
-            "store_address": $.trim($store.find(".OP-store-address-val").text()),
-            "store_area": $.trim($store.find(".OP-store-area").text()),
-            "store_pincode": $.trim($store.find(".OP-store-pin-code").text()),
-            "offer": $.trim($store.find(".OP-store-offer").text()),
-            "phone_number": phone,
-            "store_phone": $store.data("phones")[0]
-          }
-        }).done(function (response) {
-          if (response === "SUCCESS") {
-            $(".OPS-popups-bg").addClass("disabled");
-            $(".OPS-sms-popup .success").fadeIn(400, function () {
-              setTimeout(function () {
-                $(".OPS-popups-bg").removeClass("disabled");
-                $(".OPS-popups, .OPS-sms-popup").fadeOut(400, function () {
-                  $("body").css("overflow", "auto");
-                  $(".OPS-sms-popup .success").hide();
-                });
-              }, 2000);
-            });
-            $smsButton.remove();
-          }
-        });
-      }
-      else
+    $("body").on("submit", ".OPS-call-popup .OPS-contact-form", function () {
+      var $this = $(this);
+      $this.find("input[type='text']").removeClass("error");
+      var $input = $("#OPS-name-input"),
+          nameValue = $.trim($input.val());
+      if (!nameValue) {
         $input.addClass("error").focus();
+        return false;
+      }
+      $input = $("#OPS-phone-input");
+      var mobileValue = $input.val(),
+          mobileRegex = /^\d{10}$/;
+      if (!mobileRegex.test(mobileValue)) {
+        $input.addClass("error").focus();
+        return false;
+      }
+      var $title = $("#mspSingleTitle"),
+          $selectedStore = $(".OP-store-call.popup-opened").closest(".OP-store-details"),
+          selectedStoreIndex = $selectedStore.closest(".OP-store").index(),
+          // If selected store is best price store, recommended store is second-best price store;
+          // if selected store is not best price store, recommended store is best price store
+          recommendedStoreIndex = selectedStoreIndex === 0 ? 1 : 0,
+          $recommendedStore = $(".OP-store").eq(recommendedStoreIndex).find(".OP-store-details");
+      $.ajax({
+        type: "POST",
+        url: "/offline/send_sms.php",
+        data: {
+          "mspid": $title.data("mspid"),
+          "product_name": $title.text(),
+          "user_name": nameValue,
+          "user_mobile": mobileValue,
+          "selected_store": getStoreDetails($selectedStore),
+          "recommended_store": getStoreDetails($recommendedStore)
+        }
+      });
+      $this.fadeOut();
       return false;
     });
 
@@ -170,40 +167,60 @@ function initAutocomplete() {
 }
 
 function getPriceLines(lat, lng) {
-  var data = {
-    "mspid": mspid,
-    "lat": lat,
-    "lng": lng
-  };
+  var $overlay = $offlinePriceTable.find(".OP-storelist-overlay"),
+      $title = $(".OP-static-map .OP-section-title"),
+      data = {
+        "mspid": mspid,
+        "lat": lat,
+        "lng": lng
+      };
+  $showMoreStores.hide();
+  $overlay.show();
   if (qS && qS.source)
     data.source = qS.source;
   $.ajax({
     "url": "/offline/offlinepricetable.php",
     "data": data
   }).done(function (html) {
-  if($.trim(html) == "") {
-    $('.OP-static-map .OP-section-title').text("NO STORES AROUND YOU");
-  }
-  else {
-    $offlinePriceTable.append(html);
-    if($("#tab_price").hasClass("selected")) {
-      $offlinePriceTable.find(".OP-store").slice(0, 3).removeClass("hidden");
-    }
+    $offlinePriceTable.find(".OP-store").remove();
+    if ($.trim(html) == "")
+      $title.text("NO STORES AROUND YOU");
     else {
-      $offlinePriceTable.find(".OP-store").slice(0, pageLength).removeClass("hidden");
+      $offlinePriceTable.prepend(html);
+      $offlinePriceTable.find(".OP-store").slice(0, $("#tab_price").hasClass("selected") ? 3 : pageLength).removeClass("hidden");
+      if ($offlinePriceTable.find(".OP-store.hidden").length)
+        $showMoreStores.show();
+      $title.text("STORES AROUND YOU IN HYDERABAD");
     }
-    if ($offlinePriceTable.find(".OP-store.hidden").length)
-      $showMoreStores.show();
-
-    $('.OP-static-map .OP-section-title').text("STORES AROUND YOU IN HYDERABAD");
-    }
+  }).fail(function () {
+    $showMoreStores.show();
+  }).always(function () {
+    $overlay.hide();
   });
+}
+
+function getStoreDetails(store) {
+  if (store && store.length) {
+    return {
+      "store_id": store.data("id"),
+      "name": store.find(".OP-store-name").data("name"),
+      "price": store.data("price"),
+      "address": $.trim(store.find(".OP-store-address-val").text()),
+      "area": $.trim(store.find(".OP-store-area").text()),
+      "pincode": $.trim(store.find(".OP-store-pin-code").text()),
+      "offer": $.trim(store.find(".OP-store-offer").text()),
+      "phone": store.data("phones")[0]
+    };
+  }
+  else
+    return "";
 }
 
 function locationSuccess(position) {
   _gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'allow']);
+  $("#OP-search-input").val("Your current location");
   $(".OPS-geolocation-popup").click();
-  refreshPriceLines(position.coords.latitude, position.coords.longitude);
+  getPriceLines(position.coords.latitude, position.coords.longitude);
 }
 
 function locationFail() {
@@ -218,13 +235,7 @@ function locationChanged() {
     if (geometry) {
       var location = geometry.location;
       if (location)
-        refreshPriceLines(location.lat(), location.lng());
+        getPriceLines(location.lat(), location.lng());
     }
   }
-}
-
-function refreshPriceLines(lat, lng) {
-  $offlinePriceTable.empty();
-  $showMoreStores.hide();
-  getPriceLines(lat, lng);
 }

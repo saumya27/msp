@@ -1479,9 +1479,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .offline-pricetable .OP-store .OP-store-contact,
 .offline-pricetable .OP-store .OP-store-contact .OP-store-call,
 .OPS-popups .OPS-popup .OPS-popup-header,
+.OPS-popups .OPS-call-popup .OPS-contact-form,
 .OPS-popups .OPS-call-popup .OPS-popup-left-content,
-.OPS-popups .OPS-call-popup .OPS-popup-right-content,
-.OPS-popups .OPS-sms-popup {
+.OPS-popups .OPS-call-popup .OPS-popup-right-content {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -1490,18 +1490,23 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .offline-pricetable {
   width: 933px;
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 30px 0 20px;
   font-size: 13px;
   line-height: 16px;
+}
+.offline-pricetable .priceindia {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: bold;
 }
 .offline-pricetable p {
   margin: 0;
 }
 .offline-pricetable .OP-static-map {
   width: 100%;
-  height: 150px;
+  height: 111px;
   margin-bottom: 30px;
-  background-image: url('http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_static_map.png');
+  background: url('http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_static_map.png') no-repeat;
 }
 .offline-pricetable .OP-filters {
   width: 913px;
@@ -1513,26 +1518,17 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .offline-pricetable .OP-geolocation-button {
   display: none;
   float: right;
-  line-height: 24px;
-  padding: 7px 10px;
-  border: 1px solid #ffd35b;
-  border-radius: 3px;
+  height: 40px;
+  line-height: 40px;
   margin-right: 10px;
-  font-weight: bold;
-  background-color: #fff6d6;
-  cursor: pointer;
-}
-.offline-pricetable .OP-geolocation-button:hover {
-  background-color: #ffebad;
-}
-.offline-pricetable .OP-geolocation-button:active {
-  background-color: #ffe084;
 }
 .offline-pricetable .OP-geolocation-button img {
+  position: relative;
+  top: -2px;
   width: 24px;
   height: 24px;
   margin-right: 6px;
-  vertical-align: bottom;
+  vertical-align: middle;
 }
 .offline-pricetable .OP-search-wrap {
   float: right;
@@ -1548,7 +1544,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .offline-pricetable .OP-section-title {
   width: 100%;
-  line-height: 89px;
+  line-height: 50px;
   margin: 0;
   font-size: 16px;
   font-weight: bold;
@@ -1590,6 +1586,26 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   padding: 13px 8px;
   border-radius: 0 3px 3px 0;
   background-color: #3d89ad;
+}
+.offline-pricetable .OP-storelist-wrap {
+  position: relative;
+}
+.offline-pricetable .OP-storelist-overlay {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+.offline-pricetable .OP-storelist-overlay img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  margin: -16px 0 0 -16px;
 }
 .offline-pricetable .OP-storelist-wrap .OP-store {
   padding: 20px 0 10px;
@@ -1675,7 +1691,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .offline-pricetable .OP-store .OP-store-album {
   float: left;
-  width: 260px;
+  width: 275px;
   min-height: 80px;
 }
 .offline-pricetable .OP-store-album .OP-store-thumbs-wrap {
@@ -1706,7 +1722,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 .offline-pricetable .OP-store .OP-store-contact {
   float: left;
-  width: 290px;
+  width: 275px;
   min-height: 80px;
 }
 .offline-pricetable .OP-store .OP-store-contact .OP-store-call {
@@ -1871,16 +1887,77 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   margin: -165px 0 0 -250px;
 }
 .OPS-popups .OPS-call-popup .OPS-popup-content {
+  position: relative;
   width: 100%;
   height: 280px;
   background-color: #eee;
 }
-.OPS-popups .OPS-call-popup .OPS-popup-content .OPS-popup-title {
+.OPS-popups .OPS-call-popup .OPS-contact-form {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: #eee;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-field {
+  margin-top: 20px;
+}
+.OPS-popups .OPS-call-popup label,
+.OPS-popups .OPS-call-popup input[type="text"] {
+  padding: 3px 6px;
+  font-size: 14px;
+  line-height: 25px;
+}
+.OPS-popups .OPS-call-popup #OPS-country-code,
+.OPS-popups .OPS-call-popup input[type="text"] {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 1px #ddd inset;
+}
+.OPS-popups .OPS-call-popup label {
+  display: inline-block;
+}
+.OPS-popups .OPS-call-popup .text-label {
+  width: 110px;
+}
+.OPS-popups .OPS-call-popup #OPS-country-code {
+  width: 25px;
+  border-right: none;
+}
+.OPS-popups .OPS-call-popup #OPS-name-input {
+  width: 317px;
+}
+.OPS-popups .OPS-call-popup #OPS-phone-input {
+  position: relative;
+  left: -4px;
+  width: 280px;
+}
+.OPS-popups .OPS-call-popup input[type="text"].error {
+  border-color: #c00;
+}
+.OPS-popups .OPS-call-popup .btn {
+  float: right;
+  margin: 20px 4px 0 0;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-note {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 20px;
+}
+.OPS-popups .OPS-call-popup .OPS-popup-title {
   padding-top: 15px;
   font-size: 20px;
   line-height: 100%;
   text-align: center;
   color: #c00;
+}
+.OPS-popups .OPS-call-popup .OPS-contact-form .OPS-popup-title {
+  line-height: 24px;
+  max-height: 48px;
+  padding-top: 0;
+  overflow: hidden;
 }
 .OPS-popups .OPS-call-popup .OPS-popup-left-content {
   float: left;
@@ -1891,7 +1968,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   background: url('/msp/images/icon_store.png') no-repeat 160px 30px/auto 75px;
   text-align: right;
 }
-.OPS-popups .OPS-call-popup .OPS-popup-left-content .OPS-popup-store-name {
+.OPS-popups .OPS-call-popup .OPS-popup-store-name {
   margin: 0;
   color: #c00;
   font-size: 24px;
@@ -1900,7 +1977,8 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   font-weight: bold;
   overflow: hidden;
 }
-.OPS-popups .OPS-call-popup .OPS-popup-left-content .OPS-popup-store-address {
+.OPS-popups .OPS-call-popup .OPS-popup-store-address,
+.OPS-popups .OPS-call-popup .OPS-popup-footnote {
   margin: 10px 0 0 0;
   color: #4A4A4A;
   font-size: 12px;
@@ -1916,59 +1994,15 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   padding: 120px 10px 10px 15px;
   background: url('/msp/images/icon_call.png') no-repeat 5px 30px/auto 75px;
 }
-.OPS-popups .OPS-call-popup .OPS-popup-right-content .OPS-popup-store-number {
+.OPS-popups .OPS-call-popup .OPS-popup-store-number {
   margin: 0 0 10px 0;
   color: #c00;
   font-size: 24px;
   line-height: 24px;
   font-weight: bold;
 }
-.OPS-popups .OPS-sms-popup {
-  width: 300px;
-  height: 150px;
-  margin: -85px 0 0 -200px;
-}
-.OPS-popups .OPS-sms-popup .OPS-sms-form {
-  position: relative;
-  display: block;
-  height: 34px;
-  padding: 33px 15px;
-  background-color: #eee;
-}
-.OPS-popups .OPS-sms-popup .OPS-sms-country,
-.OPS-popups .OPS-sms-popup #OPS-sms-phone {
-  float: left;
-  line-height: 25px;
-  padding: 3px 6px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 1px #ddd inset;
-  font-size: 14px;
-}
-.OPS-popups .OPS-sms-popup .OPS-sms-country {
-  width: 25px;
-  border-right: none;
-}
-.OPS-popups .OPS-sms-popup #OPS-sms-phone {
-  width: 135px;
-}
-.OPS-popups .OPS-sms-popup #OPS-sms-phone.error {
-  border-color: #c00;
-}
-.OPS-popups .OPS-sms-popup .btn {
-  float: right;
-  margin-left: 10px;
-}
-.OPS-popups .OPS-sms-popup .success {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  line-height: 100px;
-  font-size: 14px;
-  background-color: #eee;
-  text-align: center;
+.OPS-popups .OPS-call-popup .OPS-popup-footnote {
+  font-weight: bold;
 }
 
 .product_bottom_sec .pt_note{
@@ -2456,24 +2490,18 @@ float: right;
 }
 
 /* Offline same-day styles */
-.offline-sidebar-banner,
-.offline-bottom-banner {
+.offline-sidebar-banner {
   display: none;
 }
 .offline-sidebar-banner {
   padding-bottom: 0 !important;
 }
-.offline-sidebar-banner a,
-.offline-bottom-banner a {
+.offline-sidebar-banner a {
   display: inline-block;
 }
 .offline-sidebar-banner img {
   width: 250px;
   height: 300px;
-}
-.offline-bottom-banner img {
-  width: 930px;
-  height: 150px;
 }
 /* Offline same-day styles end here */
 

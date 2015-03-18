@@ -285,8 +285,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
                             <div class="product_offline">
                                                             
-                        <a onclick="_gaq.push(['_trackEvent', 'Tabs','Offline_Price_Link', '5042'])" class="product_offline_stores offlinelinks" href="/product/mobile/microsoft-lumia-535-mst5042-other#tab_offlineprice" 
-                            rel="nofollow" style='display: none'><span class="new_link">NEW</span> Available at 108 stores in Hyderabad.</a>                                
+                        <a onclick="_gaq.push(['_trackEvent', 'Tabs','Offline_Price_Link', '5042'])" class="product_offline_stores offlinelinks" href="#offline" 
+                            rel="nofollow" style='display: none'><span class="new_link">NEW</span> Available from Rs. 8,100 at 108 stores in Hyderabad.</a>                                
                                                         </div>
 
                             </div> <!-- added for scema  by rohit-->
@@ -321,7 +321,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <!-- <div class="tab_bar"> repeating removed by rohit -->
         <a href="http://www.mysmartprice.com/mobile/microsoft-lumia-535-msp5042#tab_price" class="tab pricecom selected" id="tab_price"><img src="/msp/images/pricelist.png"/>Online Stores Prices</a>
 
-                        <a onclick="_gaq.push(['_trackEvent', 'Tabs','Offline_Price', '5042'])" href="/product/mobile/microsoft-lumia-535-mst5042-other#tab_offlineprice" rel="nofollow" class="tab offlineprice offlinelinks" id='tab_offlineprice' style='display: none' ><img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/offline_icon.png"/>Nearby Stores Prices <span class="new_tab">NEW</span></a>
+                        <a onclick="_gaq.push(['_trackEvent', 'Tabs','Offline_Price', '5042'])" href="#offline" rel="nofollow" class="tab offlineprice offlinelinks" id='tab_offlineprice' style='display: none' ><img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/offline_icon.png"/>Nearby Stores Prices <span class="new_tab">NEW</span></a>
                 
                                     <a onclick="_gaq.push(['_trackEvent', 'Tabs','Tech_Spec', '5042'])" href="/product/mobile/microsoft-lumia-535-mst5042-other#tab_spec" rel="nofollow" class="tab tecspec" id="tab_spec"><img src="/msp/images/tecspec.png"/>Specifications</a>
                                 <a onclick="_gaq.push(['_trackEvent', 'Tabs','Alternatives', '5042'])" href="/product/mobile/microsoft-lumia-535-mst5042-other#tab_alt" rel="nofollow" class="tab alternatives" id="tab_alt"><img src="/msp/images/scale.png"/>Similar Products</a>
@@ -1561,25 +1561,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         document.getElementsByTagName('head')[0].appendChild(js_script);
                     }
                 </script>
-
-                     
-                        <div class="offline-bottom-banner">
-                            <a class="popup-target" href="#" onclick="_gaq.push(['_trackEvent', 'Offline_Desktop', 'TMS_Bottom_Banner_Click', '5042'])" data-href="/promotions/sameday_delivery.html">
-                            <img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_sameday_banner_wide_v2.gif" alt="Get this phone delivered today at the best price in your city by the nearest The MobileStore. Order now!"/>
-                            </a>
-                            </div>
                             
                             <div class='offlinelinks' style='display:none'>
 <div class="offlineprice_out tabbox">
   <div>
-    <div class="offline-pricetable cf">
+    <div id="offline" class="offline-pricetable cf">
       <div class="OP-static-map">
         <div class="OP-filters cf">
           <div class="OP-search-wrap">
-            <input type="text" id="OP-search-input" placeholder="Search by area or pin code">
+            <input type="text" id="OP-search-input" placeholder="Search by area or pin code" value="Hyderabad">
             <a class="OP-icon-search"><img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/search-w.png"></a>
           </div>
-          <div class="OP-geolocation-button"><img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_geolocation_icon.png"/>Use your location</div>
+          <div class="OP-geolocation-button btn btn-red btn-l"><img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_geolocation_icon_white.png"/>Use your location</div>
         </div>
         <h1 class="OP-section-title">STORES AROUND YOU IN HYDERABAD</h1>
       </div>
@@ -1624,8 +1617,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
       </div>
       <div class="OP-store-contact">
-        <a href="#" class="OP-store-call btn btn-l btn-blue">Bargain</a>
-        <a href="#" class="OP-store-sms btn btn-l">SMS</a>
+        <a href="#" class="OP-store-call btn btn-l btn-blue">Buy Now</a>
         <div class="OP-store-price">
           <p class="OP-store-price-label">PRICE</p>
           <p class="OP-store-price-value">Rs. 8,100</p>
@@ -1641,6 +1633,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         Get free scratch guard      </div>
         </div>
   </div>
+        <div class="OP-storelist-overlay">
+          <img src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/offline_pricetable_loading.gif" alt="Loading&hellip;"/>
+        </div>
   </div>
       <div class="show-more-stores button_new gray">Show More Stores</div>
     </div>    
@@ -1680,7 +1675,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <a href="#" class="OPS-popup-close">&times;</a>
     </div>
     <div class="OPS-popup-content">
-      <div class="OPS-popup-title">Call the number below to get the best price!</div>
+      <form class="OPS-contact-form">
+        <div class="OPS-popup-title">Contact <span></span></div>
+        <div class="OPS-popup-field">
+          <label class="text-label" for="OPS-name-input">Name:</label>
+          <input type="text" id="OPS-name-input" placeholder="Enter your name" maxlength="40"/>
+        </div>
+        <div class="OPS-popup-field">
+          <label class="text-label" for="OPS-phone-input">Mobile Number:</label>
+          <label id="OPS-country-code" for="OPS-phone-input">+91</label>
+          <input type="text" id="OPS-phone-input" placeholder="Enter your mobile number" maxlength="10"/>
+        </div>
+        <input type="submit" class="btn btn-l btn-red" value="Submit"/>
+        <div class="OPS-popup-note">We will only use your mobile number to SMS you the store's contact details. We too hate spam.</div>
+      </form>
+      <div class="OPS-popup-title">Feel free to call the store at the below numbers</div>
       <div class="OPS-popup-left-content">
         <p class="OPS-popup-store-name"></p>
         <p class="OPS-popup-store-address"></p>
@@ -1688,22 +1697,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="OPS-popup-right-content">
         <p class="OPS-popup-store-number"></p>
         <p class="OPS-popup-store-number"></p>
-        <p class="OPS-popup-mspcallback">To get the best deals, mention MySmartPrice on call.</p>
+        <p class="OPS-popup-footnote">To get the best deal, mention MySmartPrice when you call.</p>
       </div>
     </div>
   </div>
-  <div class="OPS-popup OPS-sms-popup">
-        <div class="OPS-popup-header">
-          <span class="OPS-popup-heading">Get Store Details via SMS</span>
-          <a href="#" class="OPS-popup-close">&times;</a>
-        </div>
-        <form class="OPS-sms-form">
-          <label class="OPS-sms-country" for="OPS-sms-phone">+91</label>
-          <input type="text" id="OPS-sms-phone" placeholder="Mobile Number" maxlength="10">
-          <input type="submit" class="btn btn-l btn-red" value="Submit"/>
-          <div class="success">SMS sent successfully!</div>
-        </form>
-    </div>  
 </div>
 </div>
                             <div class="pt_note"> 
