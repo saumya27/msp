@@ -104,6 +104,26 @@ $(document).ready(function() {
                 $(".setAlert .setAlertInput").addClass("valError");
             }
         });
+        $(".review_details").each(function () {
+          var splitPos = 200,
+              fullText = $.trim($(this).text());
+          if (fullText.length > splitPos) {
+            var shortText = fullText.slice(0, splitPos),
+                longText = fullText.slice(splitPos);
+            $(this).data("shorttext", shortText).data("longtext", longText).text(shortText).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
+          }
+        });
+        $("body").on("click", ".review_details .show-more", function () {
+          var $this = $(this),
+              $review = $this.closest(".review_details");
+          if ($review.hasClass("showing-more"))
+            $review.text($review.data("shorttext")).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
+          else {
+            $this.closest(".show-more-outer").replaceWith($review.data("longtext"));
+            $review.append(" <span class='show-more'>Show Less</span>");
+          }
+          $review.toggleClass("showing-more");
+        });
     }
 });
 
@@ -258,16 +278,16 @@ $('.menubar').find('.icon-search').on('click', function () {
 });
 $('.store').filter('.list').on('click', '.item', function (e) {
     if ($(e.target).hasClass('otherinfo') || $(e.target).closest('.otherinfo').length > 0 || $(e.target).hasClass('callStore')) return;
-    $(this).find('.expander').toggleClass('icon-plus-sign icon-minus-sign');
+    $(this).find('.expander').toggleClass('icon-angle-down icon-angle-up');
     $(this).find('.otherinfo').toggleClass('hide');
-// console.log(e);
 });
-$('.store').filter('.list').on('click', '.item .visitStore',function (e) {
+$('.store').filter('.list').on('click', '.item .offers-label', function (e) {
+    $(this).find('.toggle').toggleClass('icon-plus icon-minus');
+    $(this).siblings('.offers-value').toggleClass('hide');
     e.stopPropagation();
 });
-$('.review').filter('.list').find('.item').find('.showmore').on('click', function (e) {
-    $(this).parents('.item').find('.review_details').toggleClass('short');
-    $(this).remove();
+$('.store').filter('.list').on('click', '.item .visitStore, .item .offers-value',function (e) {
+    e.stopPropagation();
 });
 $(document).on('click', '.filters input[type="checkbox"]', function () {
     var $this = $(this);
