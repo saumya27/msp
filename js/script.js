@@ -104,25 +104,36 @@ $(document).ready(function() {
                 $(".setAlert .setAlertInput").addClass("valError");
             }
         });
-        $(".review_details").each(function () {
-          var splitPos = 200,
-              fullText = $.trim($(this).text());
-          if (fullText.length > splitPos) {
-            var shortText = fullText.slice(0, splitPos),
-                longText = fullText.slice(splitPos);
-            $(this).data("shorttext", shortText).data("longtext", longText).text(shortText).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
-          }
-        });
-        $("body").on("click", ".review_details .show-more", function () {
-          var $this = $(this),
-              $review = $this.closest(".review_details");
-          if ($review.hasClass("showing-more"))
-            $review.text($review.data("shorttext")).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
-          else {
-            $this.closest(".show-more-outer").replaceWith($review.data("longtext"));
-            $review.append(" <span class='show-more'>Show Less</span>");
-          }
-          $review.toggleClass("showing-more");
+
+        // Load key specs, ratings, reviews and similar products
+        // when user scrolls past start of online price table
+        var $opt = $(".online.store.list");
+        $(window).on("scroll", function (e) {
+            if ($(window).scrollTop() > $opt.offset().top) {
+                $("#product-content").load("get_product_content.php", function () {
+                    var splitPos = 200;
+                    $(".review_details").each(function () {
+                      var fullText = $.trim($(this).text());
+                      if (fullText.length > splitPos) {
+                        var shortText = fullText.slice(0, splitPos),
+                            longText = fullText.slice(splitPos);
+                        $(this).data("shorttext", shortText).data("longtext", longText).text(shortText).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
+                      }
+                    });
+                    $("body").on("click", ".review_details .show-more", function () {
+                      var $this = $(this),
+                          $review = $this.closest(".review_details");
+                      if ($review.hasClass("showing-more"))
+                        $review.text($review.data("shorttext")).append("<span class='show-more-outer'>&hellip; <span class='show-more'>Show More</span></span>");
+                      else {
+                        $this.closest(".show-more-outer").replaceWith($review.data("longtext"));
+                        $review.append(" <span class='show-more'>Show Less</span>");
+                      }
+                      $review.toggleClass("showing-more");
+                    });
+                });
+                $(this).off(e);
+            }
         });
     }
 });

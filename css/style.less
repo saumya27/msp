@@ -316,8 +316,7 @@ header{
                     }
                 }
                 .group-list{
-                    -webkit-transition: height 0.4s;
-                    transition: height 0.4s;
+                    .transition(height,0.4s,ease);
                     overflow: hidden;
                     .item{
                         box-sizing:border-box;
@@ -533,10 +532,7 @@ header{
                 outline: 0;
                 background-color: #c00;
                 -webkit-appearance: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
+                .user-select();
                 color: #fff;
                 line-height: 20px;
                 font-size: 11px;
@@ -971,11 +967,7 @@ header{
     }
     .category{
         overflow: hidden;
-        -webkit-transition: all 0.5s;
-        -moz-transition: all 0.5s;
-        -ms-transition: all 0.5s;
-        -o-transition: all 0.5s;
-        transition: all 0.5s;
+        .transition(all,0.5s,ease);
         .item{
             padding: 10px 28px 10px 30px;
         }
@@ -1199,11 +1191,16 @@ header{
     display: none;
     .box-sizing();
     padding: 7px;
-    margin-bottom: 5px;
+    border-top: 1px solid @grey;
+    border-bottom: 1px solid @grey;
+    margin: -1px 0 5px;
     background-color: #f3f3f3;
     color: #333;
     font-size: 14px;
-    text-align: center;
+    i {
+        float: right;
+        font-size: 16px;
+    }
 }
 
 .product{
@@ -1917,8 +1914,6 @@ header{
           text-decoration: none;
         }
         .icon-angle-right {
-            float: right;
-            font-size: 16px;
             font-weight: bold;
         }
     }
@@ -2239,7 +2234,7 @@ header{
 
 }
 
-.product.single .sectionHeader, .actionbar.offline, .userReview .actionbar {
+.product.single .sectionHeader, .actionbar.offline {
   margin-top: 20px;
 }
 
@@ -2264,18 +2259,10 @@ header{
         }
     }
     &.animate{
-        -ms-transition:all .5s;
-        -o-transition:all .5s;
-        -moz-transition:all .5s;
-        -webkit-transition:all .5s;
-        transition:all .5s
+        .transition(all,0.5s,ease);
     }
     .setAlertAction {
-        -ms-transition:all .5s;
-        -o-transition:all .5s;
-        -moz-transition:all .5s;
-        -webkit-transition:all .5s;
-        transition:all .5s;
+        .transition(all,0.5s,ease);
         max-height:0;
         overflow:hidden;
     }
@@ -2354,10 +2341,7 @@ header{
             }
             .item > .callStore{
                 float:right;
-                -webkit-user-select:none;
-                -moz-user-select:none;
-                -ms-user-select:none;
-                user-select:none;
+                .user-select();
                 .box-sizing();
                 background-color: #c00;
                 color:#fff;
@@ -2514,18 +2498,20 @@ header{
                 }
             }
         }
-        .delivery-4hr {
-            margin: 0 64px 0 80px;
-            font-size: 11px;
-            text-align: center;
-            color: @pricecolor;
-        }
-        .offers-label {
+        .offers-label, .info-label {
             padding: 5px 10px;
             margin-top: 8px;
             font-size: 12px;
             line-height: 14px;
             text-transform: uppercase;
+            .icon {
+                float: left;
+                position: static;
+                margin: -1px 5px 0 0;
+                font-size: 16px;
+            }
+        }
+        .offers-label {
             background-color: #ffeacc;
             color: #cf811e;
             .toggle {
@@ -2534,12 +2520,10 @@ header{
                 margin-top: 0;
                 font-size: 10px;
             }
-            .icon-gift {
-                float: left;
-                position: static;
-                margin: -1px 5px 0 0;
-                font-size: 16px;
-            }
+        }
+        .info-label {
+            background-color: #edf4fd;
+            color: #4e92df;
         }
         .offers-value {
             .transition(all,0.1s,linear);
@@ -3402,24 +3386,20 @@ header{
     bottom: 0;
     top: 0;
     width: 100%;
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+    .transform(translateX(100%));
     .show {
         display: block;
         margin: auto;
     }
 }
 .mCycleItemWrapper.mCycleItemNext {
-    -webkit-transform: translateX(100%);
-    transform: translateX(100%);
+    .transform(translateX(100%));
 }
 .mCycleItemWrapper.mCycleItemCurrent {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
+    .transform(translateX(0));
 }
 .mCycleItemWrapper.mCycleItemPrev {
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
+    .transform(translateX(-100%));
 }
 .mCycleSlideBullets {
     position: absolute;
