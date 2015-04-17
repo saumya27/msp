@@ -435,8 +435,10 @@ $(document).ready(function() {
     if ($samedayBanner.length) {
         // Show offline same-day delivery banner if cookie is set by server
         if (getCookie("msp_sameday_delivery") == "1") {
+            var $pageTitle = $("#mspSingleTitle");
+            $samedayBanner.find(".price").text($pageTitle.data("offlineofferprice"));
             $samedayBanner.show();
-            _gaq.push(["_trackEvent", "Offline_Desktop", "TMS_Banner_View", $("#mspSingleTitle").data("mspid").toString()]);
+            _gaq.push(["_trackEvent", "Offline_Desktop", "TMS_Banner_View", $pageTitle.data("mspid").toString()]);
         }
         // Open offline same-day delivery popup if URL hash is set
         var _hash = queryString(window.location.hash);

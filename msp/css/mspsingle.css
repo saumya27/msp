@@ -1156,6 +1156,23 @@ margin-bottom: 20px;
   margin-left: 15px;
   margin-right: 0px;
 }
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_expert_delivery {
+  float: left;
+  width: 357px;
+  height: 56px;
+  margin: 15px 0 14px 20px;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_expert_delivery img {
+  width: 49px;
+  height: 21px;
+  margin-bottom: 3px;
+}
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_expert_delivery .title {
+  font-weight: bold;
+}
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .store_gostore {
   float: left;
   height: 30px;
@@ -1246,8 +1263,7 @@ margin-bottom: 20px;
   color: #666;
 }
 /* Cashback Styles End */
-.product_bottom_sec .price_table_out .price_table_in .store_pricetable .deliverytime img,
-.product_bottom_sec .price_table_out .price_table_in .store_pricetable .storepickup img{
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .deliverytime img{
   width: 13px;
   line-height: 20px;
   margin-bottom: -2px;
@@ -1328,8 +1344,7 @@ margin-bottom: 20px;
 .product_bottom_sec .price_table_out .price_table_in .store_pricetable .variants .heading{
   font-weight: bold;
 } 
-.product_bottom_sec .price_table_out .price_table_in .store_pricetable .deliverytime .heading,
-.product_bottom_sec .price_table_out .price_table_in .store_pricetable .storepickup .heading{
+.product_bottom_sec .price_table_out .price_table_in .store_pricetable .deliverytime .heading{
   line-height: 15px;
   font-weight: bold;
 }
@@ -2493,8 +2508,7 @@ float: right;
 /* Offline same-day styles */
 .offline-sidebar-banner {
   display: none;
-}
-.offline-sidebar-banner {
+  position: relative;
   padding-bottom: 0 !important;
 }
 .offline-sidebar-banner a {
@@ -2502,7 +2516,16 @@ float: right;
 }
 .offline-sidebar-banner img {
   width: 250px;
-  height: 300px;
+  height: 280px;
+}
+.offline-sidebar-banner .price {
+  position: absolute;
+  top: 75px;
+  left: 125px;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  line-height: 100%;
+  color: #2e3436;
 }
 /* Offline same-day styles end here */
 
