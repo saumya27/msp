@@ -1,0 +1,635 @@
+<form class="popup-inner-content step1" onsubmit="return validateOfflineForm();">
+  <div class="popup-top">
+    <div class="step1-card">
+      <div class="popup-title">Get this phone delivered in 4 hours!</div>
+      <table class="checkout">
+        <tr class="heading">
+          <td class="item">Item</td>
+          <td class="qty">Qty</td>
+          <td class="price">Price</td>
+        </tr>
+        <tr>
+          <td class="product-item">
+            <div class="prod-image">
+              <img/>
+            </div>
+            <div class="prod-det">
+              <div class="prod-name"></div>
+              <div class="prod-seller">Sold by <img/> <span>(nearest to you)</span></div>
+            </div>
+          </td>
+          <td class="product-qty">
+            <span>1</span>
+          </td>
+          <td>
+            <div class="instore-price">Regular Price: &#x20B9; <span></span></div>
+            <div class="offer-price">Special Price: &#x20B9; <span></span></div>
+            <div class="price-info">Inclusive of all taxes<br/>&amp; shipping charges.</div>
+          </td>
+        </tr>
+      </table>
+      <div class="headline">Check availability for your location</div>
+      <div class="popup-form">
+        <div class="popup-field">
+          <input type="text" id="popup-email" placeholder="Email ID" title="Email ID"/>
+        </div>
+        <div class="popup-field">
+          <input type="text" id="popup-mobile" placeholder="Mobile number" title="Mobile number"/>
+        </div>
+        <div class="popup-field">
+          <input type="text" id="popup-confirm-mobile" placeholder="Re-enter mobile number" title="Re-enter mobile number"/>
+        </div>
+        <div class="popup-field">
+          <input type="text" id="popup-pincode" maxlength="6" placeholder="Pin code" title="Pin code"/>
+        </div>
+      </div>
+    </div>
+    <div class="step2-card">
+      <div class="popup-left">
+        <div class="headline">Store details</div>
+        <div class="store-details">
+          <div class="store-logo">
+            <img/>
+          </div>
+          <div class="trusted-seller">
+            <img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/trusted_seller.png" alt="Trusted Seller"/>
+          </div>
+          <br style="clear: both;"/>
+          <div class="store-name"></div>
+          <div class="store-address"></div>
+          <div class="store-phone"></div>
+        </div>
+      </div>
+      <div class="popup-right">
+        <div class="headline">Choose a shipping option</div>
+        <div class="user-address">
+          <div class="popup-form">
+            <div class="popup-field">
+              <input type="radio" id="popup-pickup" class="shipping-option" name="shipping-option" value="pickup" disabled/>
+              <label for="popup-pickup">Pickup from store</label>
+            </div>
+            <div class="popup-field">
+              <input type="radio" id="popup-delivery" class="shipping-option" name="shipping-option" value="delivery" disabled/>
+              <label for="popup-delivery">Deliver to your address</label>
+            </div>
+            <div class="popup-field">
+              <input type="text" id="popup-name" maxlength="100" placeholder="Your Name" title="Your Name"/>
+            </div>
+            <div id="pickup-note">Pick up the item from the store address on the left.</div>
+            <div class="popup-field">
+              <textarea id="popup-address" maxlength="300" placeholder="Your Address" title="Your Address"></textarea>
+            </div>
+            <div class="popup-field">
+              <input type="text" id="popup-pincode2" value="Pin code: " disabled/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup-bottom">
+    <div class="popup-tnc">Payment by cash-on-delivery, credit card or debit card only. After confirmation,<br/>the item will be delivered within 4 hours. Orders placed after 7 PM will be delivered the next day.</div>
+    <input type="submit" id="popup-submit" class="btn btn-red btn-xl" value="Check Availability"/>
+  </div>
+  <div class="step-fail-card">
+    <div class="headline">: (</div>
+    <div class="fail-card">
+      <div class="fail-message">We are very sorry, but this item is currently not available near your location.<br/>We are trying our best to make it available as soon as possible.</div>
+    </div>
+  </div>
+  <div class="step-done-card">
+    <div class="headline">Order Successful!</div>
+    <div class="done-card">
+      <img class="done-image" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/check_icon.png" alt="Great!"/>
+      <div class="done-heading">Done</div>
+      <div class="done-message"><img/> representative will call you shortly.</div>
+    </div>
+  </div>
+</form>
+<style type="text/css">
+  .step1 .step-fail-card,
+  .step1 .step2-card,
+  .step1 .step-done-card,
+  .step-fail .step1-card,
+  .step-fail .step2-card,
+  .step-fail .step-done-card,
+  .step2 .step1-card,
+  .step2 .step-fail-card,
+  .step2 .step-done-card,
+  .step-done .step1-card,
+  .step-done .step-fail-card,
+  .step-done .step2-card {
+    display: none;
+  }
+  .popup-inner-content {
+    position: relative;
+    display: block;
+    width: 840px;
+    background-color: #fff;
+  }
+  .popup-top {
+    padding: 20px;
+  }
+  .popup-title {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #c00;
+  }
+  .headline {
+    margin-top: 30px;
+    font-size: 18px;
+    text-align: center;
+    color: #333;
+  }
+  .checkout {
+    margin-top: 20px;
+  }
+  .checkout td {
+    padding: 10px;
+  }
+  .checkout .heading {
+    border-bottom: 1px solid #ccc;
+    text-transform: uppercase;
+  }
+  .checkout .heading td {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+  }
+  .checkout .item,
+  .checkout .qty,
+  .checkout .product-item,
+  .checkout .product-qty {
+    border-right: 1px solid #eee;
+  }
+  .checkout .item {
+    width: 500px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .checkout .qty {
+    width: 100px;
+  }
+  .checkout .price {
+    width: 200px;
+  }
+  .checkout .prod-image {
+    float: left;
+    width: 120px;
+    margin-right: 12px;
+    text-align: center;
+  }
+  .checkout .prod-image img {
+    max-width: 120px;
+    max-height: 120px;
+  }
+  .checkout .prod-det {
+    float: left;
+    width: 340px;
+  }
+  .checkout .prod-name {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 60px;
+    overflow: hidden;
+  }
+  .checkout .prod-seller,
+  .done-message {
+    line-height: 33px;
+  }
+  .checkout .prod-seller {
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  .checkout .prod-seller img,
+  .done-message img {
+    height: 33px;
+    vertical-align: bottom;
+  }
+  .checkout .prod-seller img {
+    max-width: 180px;
+  }
+  .checkout .prod-seller span {
+    font-style: italic;
+    color: #666;
+  }
+  .checkout .product-qty span {
+    display: block;
+    width: 30px;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    margin: 12px auto 0;
+    background-color: #eee;
+    text-align: center;
+  }
+  .checkout .instore-price {
+    margin-top: 12px;
+    font-size: 14px;
+    text-decoration: line-through;
+    text-align: center;
+    color: #666;
+  }
+  .checkout .offer-price {
+    margin-top: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #c00;
+  }
+  .checkout .price-info {
+    margin-top: 24px;
+    font-size: 12px;
+    line-height: 14px;
+    font-style: italic;
+    text-align: center;
+    color: #666;
+  }
+  .popup-form {
+    position: relative;
+    margin-top: 15px;
+  }
+  .popup-field,
+  .step2-card {
+    display: inline-block;
+  }
+  .popup-form input[type="text"],
+  .popup-form textarea {
+    padding: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    background-color: #fafafa;
+    color: #666;
+  }
+  .popup-form input[type="text"] {
+    width: 176px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  .popup-form input[type="text"]:focus {
+    border-color: #999;
+  }
+  #popup-pincode {
+    margin-right: 0;
+  }
+  .popup-left,
+  .popup-right {
+    float: left;
+    width: 385px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .popup-left {
+    margin-right: 30px;
+  }
+  .step2-card .headline {
+    margin: 0 0 12px;
+    text-align: left;
+  }
+  .store-details {
+    padding: 10px;
+    border: 2px solid #ddd;
+  }
+  .store-logo {
+    float: left;
+    margin: 0 12px 12px 0;
+  }
+  .store-logo img {
+    max-width: 238px;
+    max-height: 90px;
+  }
+  .trusted-seller,
+  #popup-submit {
+    float: right;
+  }
+  .trusted-seller img {
+    width: 110px;
+    height: 30px;
+  }
+  .store-name,
+  .store-phone {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .store-name {
+    font-weight: bold;
+  }
+  .store-address {
+    max-height: 100px;
+    overflow: hidden;
+  }
+  .shipping-option {
+    position: relative;
+    top: 2px;
+    margin-right: 2px;
+  }
+  .shipping-option[disabled] + label {
+    color: #999;
+  }
+  #popup-delivery {
+    margin-left: 12px;
+  }
+  .popup-right .popup-form {
+    margin-top: 0;
+  }
+  .popup-right .popup-form input[type="text"],
+  .popup-right .popup-form textarea {
+    display: none;
+    margin-top: 12px;
+    background-color: #fff;
+  }
+  .popup-right .popup-form input[type="text"] {
+    width: 371px;
+    margin-right: 0;
+  }
+  .popup-form textarea {
+    width: 371px;
+    height: 120px;
+    resize: none;
+  }
+  #pickup-note {
+    display: none;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  #popup-pincode2 {
+    background-color: #f3f3f3;
+  }
+  .popup-bottom {
+    padding: 10px 20px;
+    border-top: 1px dotted #ccc;
+    background-color: #f3f3f3;
+    overflow: hidden;
+  }
+  .popup-tnc {
+    float: left;
+    max-width: 600px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #555;
+  }
+  .step-fail-card,
+  .step-done-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+  }
+  .step-fail-card .headline {
+    margin: 80px 20px 0;
+    font-size: 64px;
+    font-weight: bold;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+  }
+  .step-done-card .headline {
+    margin: 20px 20px 0;
+  }
+  .fail-card,
+  .done-card {
+    text-align: center;
+    color: #555;
+  }
+  .fail-card {
+    margin: 40px 20px 80px;
+  }
+  .done-card {
+    margin: 20px;
+  }
+  .done-image {
+    width: 78px;
+    height: 78px;
+  }
+  .done-heading {
+    margin-top: 20px;
+    font-size: 26px;
+  }
+  .fail-message {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .done-message {
+    margin-top: 30px;
+    font-size: 16px;
+  }
+  .done-message img {
+    max-width: 535px;
+  }
+</style>
+<script type="text/javascript">
+  var isbn, skuId, instorePrice, offerPrice, emailValue, mobileValue, pincodeValue, storeId, insertId, orderId, storeCode;
+  setCookieMins("3hrspopup", "1", 15);
+  setCookieMins("autoPopup", "1", 15);
+
+  function validateOfflineForm() {
+    debugger;
+    var $form = $(".popup-inner-content");
+
+    if ($form.hasClass("step1")) {
+      var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      emailValue = $.trim($("#popup-email").val());
+      if (!emailRegex.test(emailValue)) {
+        alert("Please enter a valid email ID.");
+        $("#popup-email").focus();
+        return false;
+      }
+
+      var mobileRegex = /^\d{10}$/;
+      mobileValue = $.trim($("#popup-mobile").val());
+      if (!mobileRegex.test(mobileValue)) {
+        alert("Please enter a valid mobile number. Do not start the no with 0 or +91");
+        $("#popup-mobile").focus();
+        return false;
+      }
+
+      var confirmMobileValue = $.trim($("#popup-confirm-mobile").val());
+      if (confirmMobileValue !== mobileValue) {
+        alert("Please re-enter the same mobile number.");
+        $("#popup-confirm-mobile").focus();
+        return false;
+      }
+
+      var pincodeRegex = /^\d{6}$/;
+      pincodeValue = $.trim($("#popup-pincode").val());
+      if (!pincodeRegex.test(pincodeValue)) {
+        alert("Please enter a valid pin code.");
+        $("#popup-pincode").focus();
+        return false;
+      }
+      $("#popup-pincode2").val($("#popup-pincode2").val() + pincodeValue);
+
+      var $pageTitle = $("#mspSingleTitle");
+      isbn = $pageTitle.data("mspid");
+      skuId = $pageTitle.data("offlinesku");
+      instorePrice = $pageTitle.data("offlineinstoreprice");
+      offerPrice = $pageTitle.data("offlineofferprice");
+
+      $("#popup-submit").addClass("btn-disabled");
+      debugger;
+      $.ajax({
+        url: "/offline/sameday_delivery.php",
+        data: {
+          mspid: isbn,
+          sku: skuId,
+          instoreprice: instorePrice,
+          offerprice: offerPrice,
+          email: emailValue,
+          mobile: mobileValue,
+          pincode: pincodeValue,
+          firststep: true,
+          referrer: tmsTrigger
+        }
+      }).done(function (response) {
+        debugger;
+        if (response) {
+          var json = $.parseJSON(response);
+          if (json.stores && json.stores.length) {
+            var store = json.stores[0];
+            if (store.id) {
+              storeId = store.id;
+              if (store.logo)
+                $(".store-logo img, .done-message img").attr("src", store.logo);
+              if (store.name) {
+                $(".store-name").text(store.name);
+                $(".store-logo img, .done-message img").attr("alt", store.name);
+              }
+              if (store.address)
+                $(".store-address").text(store.address);
+              if (store.storephone)
+                $(".store-phone").text(store.storephone);
+              if (store.shipping) {
+                if (store.shipping.pickup)
+                  $("#popup-pickup").prop("disabled", false).click();
+                if (store.shipping.delivery)
+                  $("#popup-delivery").prop("disabled", false).click();
+              }
+              insertId = store.insertid;
+              orderId = store.orderid;
+              storeCode = store.storecode;
+              $form.toggleClass("step1 step2");
+              $("#popup-submit").val("Confirm Order");
+              $("#popup-pickup").focus();
+            }
+            else
+              showErrorAndClosePopup();
+          }
+          else
+            showErrorAndClosePopup();
+        }
+        else
+          showErrorAndClosePopup();
+      }).fail(function () {
+        showErrorAndClosePopup();
+      }).always(function () {
+        $("#popup-submit").removeClass("btn-disabled");
+      });
+    }
+    else if ($form.hasClass("step2")) {
+      if (!$("#popup-pickup").is(":checked") && !$("#popup-delivery").is(":checked")) {
+        alert("Please select a shipping option.");
+        $("#popup-pickup").focus();
+        return false;
+      }
+      var shippingValue = $.trim($(".shipping-option:checked").val());
+
+      var nameValue = $.trim($("#popup-name").val());
+      if (!nameValue.length) {
+        alert("Please enter your name.");
+        $("#popup-name").focus();
+        return false;
+      }
+
+      var request = {
+        mspid: isbn,
+        sku: skuId,
+        instoreprice: instorePrice,
+        offerprice: offerPrice,
+        email: emailValue,
+        mobile: mobileValue,
+        pincode: pincodeValue,
+        firststep: false,
+        storeid: storeId,
+        insertid: insertId,
+        orderid: orderId,
+        storecode: storeCode,
+        shipping: shippingValue,
+        name: nameValue,
+        referrer: tmsTrigger
+      };
+
+      if ($("#popup-delivery").is(":checked")) {
+        var addressValue = $.trim($("#popup-address").val());
+        if (!addressValue.length) {
+          alert("Please enter your address.");
+          $("#popup-address").focus();
+          return false;
+        }
+        request.address = addressValue;
+      }
+
+      $.ajax({
+        url: "/offline/sameday_delivery.php",
+        data: request
+      });
+
+      $form.toggleClass("step2 step-done");
+      setTimeout("closePopup();", 8000);
+    }
+    return false;
+  }
+
+  function showErrorAndClosePopup() {
+    $(".popup-inner-content").toggleClass("step1 step-fail");
+    setTimeout("closePopup();", 8000);
+  }
+
+  $(document).ready(function () {
+    setTimeout("$('#popup-email').focus();", 800);
+
+    var $pageTitle = $("#mspSingleTitle");
+    $(".prod-image img").attr("src", $("#mspSingleImg").attr("src"));
+    $(".prod-image img").attr("alt", $pageTitle.text());
+    $(".prod-name").text($pageTitle.text());
+    $(".instore-price span").text($pageTitle.data("offlineinstoreprice"));
+    $(".offer-price span").text($pageTitle.data("offlineofferprice"));
+    $(".prod-seller img").attr("src", $pageTitle.data("offlinestorelogo"));
+    $(".prod-seller img").attr("alt", $pageTitle.data("offlinestorename"));
+
+    $("body").on("change", ".shipping-option", function () {
+      if ($("#popup-pickup").is(":checked")) {
+        $("#popup-address, #popup-pincode2").hide();
+        $("#popup-name, #pickup-note").show();
+      }
+      else if ($("#popup-delivery").is(":checked")) {
+        $("#pickup-note").hide();
+        $("#popup-name, #popup-address, #popup-pincode2").show();
+      }
+      setTimeout("$('#popup-name').focus();", 200);
+    });
+  });
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-7587491-10']);
+  _gaq.push(['_setDomainName', 'mysmartprice.com']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview', '/promotions/sameday_delivery.html?mspid=' + $("#mspSingleTitle").data("mspid")]);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
