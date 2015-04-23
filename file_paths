@@ -1,0 +1,11 @@
+CSS :
+name : msplist.css
+path : public_html/msp/css
+
+
+JS :
+name : msp.js
+path : public_html/assets/js
+
+name : msplist.pack.js
+path : public_html/msp/js
