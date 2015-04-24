@@ -590,7 +590,7 @@ line-height: 26px;
 }
 
 .msplistitem .item-details .rating .star-rating {
-  background-image: url('http://www.mysmartprice.com/msp/images/star_small.png');
+  background-image: url('/msp/images/star_small.png');
 }
 
 .listitems_rd .upcoming-section .item-details{
@@ -669,7 +669,8 @@ line-height: 26px;
 .msplistitem .item-details .price-mrp{
   text-decoration: line-through;
   float: left;
-  font-size: 12px;
+  font-size: 11px;
+  color: #888
 }
 
 .msplistitem .item-details .item-price {
@@ -679,12 +680,13 @@ line-height: 26px;
 
 .msplistitem .percentage-saved{
   margin-left: 8px;
-  font-size: 12px;
-  color: #900
+  font-size: 11px;
+  color: #888;
+  float: left
 }
 
 .msplistitem .savings{
-  margin-top: 18px;
+  margin-top: 3px;
 }
 
 .msplistitem .store-count,
@@ -1406,11 +1408,6 @@ width: 250px;
 .item:hover .vdl, .msplistitem:hover .vdl{
   display: inline-block;
   z-index: 3;
-}
-
-
-.oos:hover .vdl{
-  display: none;
 }
 
 .price-val .upcoming-label{

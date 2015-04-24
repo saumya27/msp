@@ -454,7 +454,7 @@ function requestData() {
             window.location.hash = query;
             if (xhrdata) xhrdata.abort();
             _xhrPerf = { start : +new Date };
-            xhrdata = $.ajax({
+            xhrdata =  $.ajax({
                 url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                 success: function (response) {
                     _xhrPerf.end = +new Date;
@@ -472,6 +472,7 @@ function requestData() {
                     pageUrl = undefined;
                     initFilterBoxPlugins(priceVal2SliderVal($("#minPrice").val()), priceVal2SliderVal($("#maxPrice").val()));
                     initLoad = false;
+                    $(".filter-loading-icon").hide();
                 }
             }).always( function(){ 
                     $(".filter-loading-icon").hide();
