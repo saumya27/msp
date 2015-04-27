@@ -14,3 +14,6 @@ path : public_html/msp/js
 For filter-value callout :
 class= “callout-target”
 data-callout = “<data>”
+
+
+In percentage-saved write : (x% Off)
