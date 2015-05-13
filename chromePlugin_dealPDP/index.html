@@ -293,7 +293,7 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
 
                                 <li>&nbsp;</li>
                             </ul>
-                            <div id="chrome_button"><button class="btn btn-red chrome_install_offer">Add Chrome Plugin</button></div>
+                            <div id="chrome_button"><button class="btn btn-red chrome_install_offer hidden">Add Chrome Plugin</button></div>
                         </div>
 
                         <div class="dealsnglstrname showIfChromePlugin hidden">
@@ -399,7 +399,7 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                         <div class="dealproimg"><img src=
                         "http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/60775-45c.jpg"></div>
                         <br clear="all">
-                        <button class="btn btn-red btn-xl chrome_install_offer">Add Chrome Plugin</button>
+                        <button class="btn btn-red btn-xl chrome_install_offer hidden">Add Chrome Plugin</button>
 
                         <a class="btn btn-grey btn-xl buynow showIfChromePlugin hidden" data-dealid=
                         "60775" data-href=
@@ -797,7 +797,7 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
     </div>
 
     <div id="promotions"></div>
-
+    <span class="plugin_id" data-mspuid="14291686320099"></span>
     <script type="text/javascript">
 
     $(document).ready(function() {
@@ -824,8 +824,15 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
                         }, undefined);
                         }
                     );
-            }
-        }, 500 );
+                    }
+                    else
+                    {
+                        $(".showIfChromePlugin").show();
+                        $("#chrome_button").hide();
+                         clearInterval(interval);
+                        return;
+                    }
+        }, 1000 );
         }
      else
         {
@@ -841,7 +848,7 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
 '/msp/js/useranalytics.js,qrelease=2015.01.21.pagespeed.jm.fKFxwK5V7t.js'
     type='text/javascript'></script> <script src=
 '/js/jquery.fancybox.pack.js,qrelease=2012.12.15.pagespeed.jm.kJ1ZMRbSuh.js'
-    type='text/javascript'></script> <script src='http://www.mysmartprice.com/deals/js/deals.js' type=
+    type='text/javascript'></script> <script src='ç/deals/js/deals.js' type=
 'text/javascript'></script> <script src=
 'http://www.mysmartprice.com/msp/js/jquery-ui-1.10.3.custom.pack.js'
     type='text/javascript'></script> <script src=
