@@ -797,7 +797,7 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
     </div>
 
     <div id="promotions"></div>
- 
+
     <script type="text/javascript">
 
     $(document).ready(function() {
@@ -819,16 +819,16 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
                         $("#chrome_button").show().on('click', function(){
                         //install the plugin on click
                             tryInstallExtension("Plugin_Popup", "Deals_Mobikwik", function () {
-                                $(".showIfChromePlugin").show();
-                                $("#chrome_button").hide();
+                                $(".showIfChromePlugin").removeClass('hidden');
+                                $("#chrome_button").addClass('hidden');
                         }, undefined);
                         }
                     );
                     }
                     else
                     {
-                        $(".showIfChromePlugin").show();
-                        $("#chrome_button").hide();
+                        $(".showIfChromePlugin").removeClass('hidden');
+                        $("#chrome_button").addClass('hidden');
                          clearInterval(interval);
                         return;
                     }
@@ -836,7 +836,7 @@ var disqus_shortname='mspdeals';(function(){var s=document.createElement('script
         }
      else
         {
-             $(".showIfChromePlugin").show();
+             $(".showIfChromePlugin").removeClass('hidden');
         }            
     });
 
