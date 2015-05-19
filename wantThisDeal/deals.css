@@ -1284,7 +1284,7 @@
     bottom: 0;
   }
 
-  #want_deal,#want_deal_count{
+  [data-id="want_deal"],[data-id="want_deal_count"]{
     float: left;
     margin-top: 5px;
     position: relative;
@@ -1292,9 +1292,16 @@
     z-index: 23; 
   }
 
-  #want_deal{
-    width: 259px;
+  [data-id="want_deal"]{
+    width: 260px;
   }
+
+
+  [data-id="want_deal_count"]{
+    width: 41px;
+    padding: 5px !important;
+  }
+
 
   .top-subbanner-image{
         border-width: 6px;
