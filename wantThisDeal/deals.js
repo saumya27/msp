@@ -267,33 +267,6 @@ $(document).ready(function() {
         });
     });
 
-
-    $("[data-id='want_deal']").add("[data-id='want_deal_count']").on('click', function() {
-        var dealid = $(this).closest("a").attr('class','sectionitem').data('dealid')
-        var vote = 0;
-        if ($(this).attr('data-id') == "want_deal" || "want_deal_count") {
-            vote = 1;
-    
-        $.post('vote.php', {
-            vote: vote,
-            dealid: dealid,
-            list_page: '1'
-        }).done(function() {
-            $("[data-id='want_deal']").add("[data-id='want_deal_count']").attr("disabled", "disabled");
-            $.get("vote.php", {
-                dealid: dealid
-            }).done(function(data) {
-                if ((data) && data != "nodata"){
-                    $("[data-id='want_deal_count']").html(data);
-                    $("[data-id='want_deal']").attr("style",'background-color:#1E5C17');
-                    alert("You can mark this to your calender by 'Add to Calender' on top right corner.");
-                }
-            });
-        });
-    }
-    });
-
-
     // NEW BOTTOM FIXED STUFF
     if ($('.single-nav').length > 0) {
         $('.single-nav .prev').add('.single-nav .next').click(function() {

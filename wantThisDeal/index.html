@@ -735,9 +735,9 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
             <div class="right msp_body_main">
                 <div class="index_section deals">
                     <div class="top-banner-image"><img src=
-                    "Happyhour-bad_db_v1.0.png"></div>
+                    "http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/happyhour_banaoapnideal_banner_wide.png"></div>
                     <div class="top-subbanner-image"><img src=
-                    "Happyhour-bad_db_detail strip_v1.0.png"></div>
+                    "http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/happyhour_banaoapnideal_strip_wide.png"></div>
                     
                 </div>
 
@@ -748,7 +748,7 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                         <h3><a>Deals You Missed</a></h3>
 
                         <div style="text-align: center; float: right;margin-top: -5px;">
-                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" style="text-decoration: none;"> 
+                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" class="a_add_calender"> 
                                 <span class="add_calender">
                                 Add to calendar
                                 </span>
@@ -1696,6 +1696,41 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
     <div style="display:inline;"><img alt="" height="1" src=
     "//googleads.g.doubleclick.net/pagead/viewthroughconversion/1007121371/?value=0&amp;label=_5XfCK3rswIQ2-ed4AM&amp;guid=ON&amp;script=0"
     style="border-style:none;" width="1"></div></noscript> 
+
+<script type="text/javascript">
+     var calenderAlert = 0;
+     $("[data-id='want_deal']").add("[data-id='want_deal_count']").on('click', function() {
+        var dealid = $(this).closest("a").attr('class','sectionitem').data('dealid')
+        var vote = 0;
+        var th= $(this);
+
+        if ($(this).attr('data-id') == "want_deal" || "want_deal_count") {
+            vote = 1;
+
+            $.post('../vote.php', {
+                    vote: vote,
+                    dealid: dealid,
+                    list_page: '1'
+            }).done(function() {
+                    th.attr("disabled", "disabled");
+                    th.parent().find("[data-id='want_deal_count']").attr("disabled", "disabled");
+                    $.get("../vote.php", {
+                            dealid: dealid
+                    }).done(function(data) {
+                            if ((data) && data != "nodata"){
+                                    th.parent().find("[data-id='want_deal_count']").html(data);
+                                    th.attr("style",'background-color:#1E5C17');
+                                    if( calenderAlert == 0) {
+                                        alert("You can mark this deal reminder to your calender by 'Add to Calender' on top right corner.");
+                                        calenderAlert = 1;
+                                    }
+                            }
+                    });
+            });
+        }
+    });
+</script>
+
     <!-- Begin comScore Tag -->
     <script>
 var _comscore=_comscore||[];_comscore.push({c1:"2",c2:"15357669"});(function(){var s=document.createElement("script"),el=document.getElementsByTagName("script")[0];s.async=true;s.src=(document.location.protocol=="https:"?"https://sb":"http://b")+".scorecardresearch.com/beacon.js";el.parentNode.insertBefore(s,el);})();
