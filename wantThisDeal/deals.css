@@ -1296,13 +1296,23 @@
     width: 260px;
   }
 
-
   [data-id="want_deal_count"]{
     width: 41px;
     padding: 5px !important;
   }
 
-
   .top-subbanner-image{
         border-width: 6px;
   }
+
+  .add_calender{
+    font-size: 16px;
+    padding: 10px;
+    color: #e9e9e9;
+    background: #cc0000;
+    }
+
+  .add_calender, .a_add_calender{
+    text-decoration: none;
+  }
+
