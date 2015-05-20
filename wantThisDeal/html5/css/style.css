@@ -4348,4 +4348,7 @@ img[width="1"][height="1"] {
 .header-banner .img_header2 {
   border-style: groove;
 }
+.disqus-div {
+  padding: 20px;
+}
 /*# sourceMappingURL=style.css.map */

@@ -284,6 +284,12 @@
         </a>
                 <!-- product list item end here -->
     </section>
+
+    <div class="disqus-div">
+     <p class="disqus-thread-heading">Have something to say about WANT THIS DEAL ? Leave a comment below!</p>
+     <div id="disqus_thread"></div>
+    </div>
+
 <!-- menu -->
 <div class="drawerMenuWrapper drawerMenuHide">
   <div class="drawerMenuBg"></div>
@@ -332,6 +338,32 @@
 <script src="/js/jquery-ui-autocomplete.min.js"></script>
 <script src="/js/script.js?release=2015.04.29"></script>
 <script type="text/javascript">
+
+    (function(){
+         // for getting uncached like counts
+     var deal_ids = [];
+     var $deals = $('.item');
+     
+      $deals.each(function(){
+                deal_ids.push($(this).data('dealid'));
+            });
+
+        // run ajax request
+        $.ajax({
+          url: "../vote.php",
+          type: 'GET',
+          dataType: 'json',
+          data: {deal_ids :deal_ids}
+        }).done(function(data) {
+            if (data) {
+                $.each(data, function (i, item) {
+                    $deals.filter("[data-dealid='" + item.dealid + "'").find('.want_deal_count').html(item.likes);
+                });
+            }
+        });  
+    })();
+    // END OF - for getting uncached like counts
+
      (function() {
         $(".want_deal").add(".want_deal_count").on('click', function() {
         var dealid = $(this).closest("a").attr('class','item').data('dealid')
@@ -365,6 +397,9 @@
         });
     })();
 </script>
+<script type="text/javascript">var disqus_shortname='mspdeals',disqus_identifier='252';(function(){var dsq=document.createElement('script');dsq.type='text/javascript';dsq.async=true;dsq.src='http://' + disqus_shortname + '.disqus.com/embed.js';(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(dsq);})();</script>
+     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
 <script src="/js/useranalytics.js"></script>
 
 <script>

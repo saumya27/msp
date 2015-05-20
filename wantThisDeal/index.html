@@ -1687,6 +1687,42 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
 
 <script type="text/javascript">
      var calenderAlert = 0;
+
+     // for getting uncached like counts
+     var deal_ids = [];
+     var $deals = $('.sectionitem').not('.expired_deal');
+     
+      $deals.each(function(){
+                deal_ids.push($(this).data('dealid'));
+            });
+
+        // run ajax request
+
+        $.ajax({
+          url: "../vote.php",
+          type: 'GET',
+          dataType: 'json',
+          data: {deal_ids :deal_ids}
+        }).done(function(data) {
+            if (data) {
+                $.each(data, function (i, item) {
+                    $deals.filter("[data-dealid='" + item.dealid + "'").find('[data-id="want_deal_count"]').html(item.likes);
+                });
+            }
+        });
+
+            // $.get("../vote.php", {deal_ids: deal_ids}, function (data) {
+            //     data = jQuery.parseJSON(data);
+            //     if (data.items) {
+
+            //         $.each(data.items, function (i, item) {
+            //             $deals.filter("[data-dealid='" + item.dealid + "'").find('[data-id="want_deal_count"]').html(item.count);
+            //         });
+            //     }
+            // });
+
+      // END OF - for getting uncached like counts
+
      $("[data-id='want_deal']").add("[data-id='want_deal_count']").on('click', function() {
         var dealid = $(this).closest("a").attr('class','sectionitem').data('dealid')
         var vote = 0;
