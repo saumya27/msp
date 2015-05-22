@@ -748,7 +748,7 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                         <h3><a>Deals You Missed</a></h3>
 
                         <div style="text-align: center; float: right;margin-top: -5px;">
-                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" class="a_add_calender"> 
+                            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" class="a_add_calender" target="_blank"> 
                                 <span class="add_calender">
                                 Add to calendar
                                 </span>
@@ -1050,7 +1050,7 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                             </div><br clear="all">
 
                             <button data-id='want_deal' class="button_new big blue"><img src="http://www.mysmartprice.com/msp/images/like.png"> I want this deal  </button>
-                            <button data-id='want_deal_count' class="button_new big gray">59</button>
+                            <button data-id='want_deal_count' class="button_new big gray" disabled="disabled">59</button>
 
                             
                         </div></a><a class="sectionitem" data-dealid="60348">
@@ -1686,6 +1686,8 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
     style="border-style:none;" width="1"></div></noscript> 
 
 <script type="text/javascript">
+    $( document ).ready(function() {
+
      var calenderAlert = 0;
 
      // for getting uncached like counts
@@ -1702,7 +1704,7 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
           url: "../vote.php",
           type: 'GET',
           dataType: 'json',
-          data: {deal_ids :deal_ids}
+          data: {dealids :deal_ids}
         }).done(function(data) {
             if (data) {
                 $.each(data, function (i, item) {
@@ -1711,19 +1713,9 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
             }
         });
 
-            // $.get("../vote.php", {deal_ids: deal_ids}, function (data) {
-            //     data = jQuery.parseJSON(data);
-            //     if (data.items) {
-
-            //         $.each(data.items, function (i, item) {
-            //             $deals.filter("[data-dealid='" + item.dealid + "'").find('[data-id="want_deal_count"]').html(item.count);
-            //         });
-            //     }
-            // });
-
       // END OF - for getting uncached like counts
 
-     $("[data-id='want_deal']").add("[data-id='want_deal_count']").on('click', function() {
+      $(document).on("click","[data-id='want_deal']",function() {
         var dealid = $(this).closest("a").attr('class','sectionitem').data('dealid')
         var vote = 0;
         var th= $(this);
@@ -1731,7 +1723,7 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
         if ($(this).attr('data-id') == "want_deal" || "want_deal_count") {
             vote = 1;
 
-            $.post('../vote.php', {
+            $.get('vote.php', {
                     vote: vote,
                     dealid: dealid,
                     list_page: '1'
@@ -1742,7 +1734,10 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
                             dealid: dealid
                     }).done(function(data) {
                             if ((data) && data != "nodata"){
-                                    th.parent().find("[data-id='want_deal_count']").html(data);
+                                    data = data.lastIndexOf("<span");
+                                    var new_data = d.slice(0, data);
+
+                                    th.parent().find("[data-id='want_deal_count']").html(new_data);
                                     th.attr("style",'background-color:#1E5C17');
                                     if( calenderAlert == 0) {
                                         alert("You can mark this deal reminder to your calender by 'Add to Calender' on top right corner.");
@@ -1753,6 +1748,7 @@ var google_conversion_id=1007121371;var google_conversion_label="_5XfCK3rswIQ2-e
             });
         }
     });
+});
 </script>
 
     <!-- Begin comScore Tag -->

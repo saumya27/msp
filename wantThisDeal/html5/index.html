@@ -87,7 +87,7 @@
 <body>    <section class="product deals list container" data-scroll="true">
         <div class="pageHeader">
             Popular &mdash; Deals <span class="count">(20+ Results)</span>
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" > 
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&dates=20150419T063000Z/20150419T073000Z&text=MySmartPrice%20Happy%20Hour%20Deals&details=Deals%20Starting%20at%20Rs.1&location=http://www.mysmartprice.com/deals/tags/happy-hour-deals-252&pli=1&sf=true&output=xml#eventpage_6" target="_blank"> 
                                <button class="add_calender">  Add to Calender </button>
                             </a>
         </div>
@@ -105,7 +105,7 @@
                 <section class="name">YU Yureka (Moondust Grey) - No Registration Required</section>
                 <section class="price">Rs. 8999 <span class="old">12500</span></section>
                 <button class="want_deal"> <img src="http://www.mysmartprice.com/msp/images/like.png">  I want this Deal </button>
-                <button class="want_deal_count">23</button>
+                <button class="want_deal_count" disabled="disabled">23</button>
             </section>
 
             <section class="image"><img src="http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/59451-ce8-thumb.jpg" alt="Image" /></section>
@@ -115,7 +115,7 @@
                 <section class="name">Asus Zenfone 5 [8MP Camera]</section>
                                 <section class="price">Rs. 7499 <span class="old">9999</span></section>
                                 <button class="want_deal"> <img src="http://www.mysmartprice.com/msp/images/like.png">  I want this Deal </button>
-                <button class="want_deal_count">23</button>
+                <button class="want_deal_count" disabled="disabled">23</button>
                 <section class="store"></section>
             </section>
             <section class="image"><img src="http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/60348-0da-thumb.jpg" alt="Image" /></section>
@@ -350,9 +350,9 @@
 
         // run ajax request
         $.ajax({
-          url: "../vote.php",
+          url: "www.mysmartprice.com/deals/vote.php",
           type: 'GET',
-          dataType: 'json',
+          dataType: 'jsonp',
           data: {deal_ids :deal_ids}
         }).done(function(data) {
             if (data) {
@@ -365,8 +365,8 @@
     // END OF - for getting uncached like counts
 
      (function() {
-        $(".want_deal").add(".want_deal_count").on('click', function() {
-        var dealid = $(this).closest("a").attr('class','item').data('dealid')
+      $(document).on("click",".want_deal",function() {        
+        var dealid = $(this).closest("a").attr('class','item').data('dealid');
         var vote = 0;
         var th= $(this);
 
