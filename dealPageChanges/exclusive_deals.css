@@ -8,3 +8,24 @@
   padding: 5px;
   font-weight: bold;
 }
+.box .head{
+	background-color: lightgray;
+	padding: 0px;
+}
+.dealbodyleft{
+	float: left;
+}
+.dealbodyright{
+	 margin-top: 30px;
+}
+.body-head{
+	padding: 20px;
+    width: 420px;
+    margin: 0 40px 30px 0;
+    float: right;
+    background-color: lightgray;
+    font-weight: bold;
+}
+.email-submit{
+	margin-top: 20px;
+}

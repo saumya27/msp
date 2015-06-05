@@ -354,8 +354,9 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                         "http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/64144-5fa.jpg"></div><br clear="all">
 
                         <div>
-                            <input class="btn btn-xl btn-red chrome_install_offer" type="submit" value="Add to Chrome" onclick=
-                            "_gaq.push(['_trackEvent', 'Deals', 'GETDEAL', 'clicked']);"></div>     
+                            <input class="btn btn-xl btn-red chrome_install" data-href="get_exclusive_coupon_popup.php?deal_img_url=http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/64144-5fa.jpg&deal_id=123" type="submit" value="Add to Chrome" onclick=
+                            "_gaq.push(['_trackEvent', 'Exclusive_Deal', 'GETDEAL', 'clicked']);">
+                        </div>     
                             <div class="show-without-plugin"><span>Add MySmartPrice Chrome Extension to GRAB THE DEAL </span></div>                   
                             <br clear="all">
                         </div><br clear="all">
@@ -379,8 +380,8 @@ function popup(pageURL,title,w,h){var left=(screen.width/2)-(w/2);var top=(scree
                             </div><button class="button_new big blue" id=
                             "deal_like"><img src=
                             "http://www.mysmartprice.com/msp/images/like.png">I
-                            love this deal</button> <!--
-    --><button class="button_new big gray" id=
+                            love this deal</button>
+                            <button class="button_new big gray" id=
                             "deal_dislike"><img src="http://www.mysmartprice.com/msp/images/dislike.png"></button>
                         </div>
                     </nav>
@@ -673,35 +674,28 @@ var disqus_shortname='mspdeals',disqus_identifier='64144';(function(){var dsq=do
             'image' src='/out/log_deals_pageviews.php?dealid=64144'></div>
         </div>
     </div>
-    <div class="coupon-email-wrap" style="display: block;">
+
+    <!-- <div class="coupon-email-wrap">
         <div class="box coupon-box">
-        <span class="close">×</span>
-        <div class="head" style="background-color: lightgray;">
-        <h1>Get your coupon for this deal</h1>
-        
-                </div>
-                <div class="body"><div class="dealbodyleft" style="
-            float: left;">
-            <div class="dealproimg"><img src="http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/62024-932.jpg"></div>
-          </div>
-          
-          <div class="dealbodyright" style="
-            margin-top: 30px;">
-          <div style="
-            padding: 20px;
-            /* background-color: lightblue; */">WE WILL DELIVER COUPON DIRECTLY IN YOUR INBOX.</div>
-            <div>
-                <input data-dealid="62024" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" type="email" name="email" id="email" placeholder="Email Address">
+            <span class="close">×</span>
+            <div class="head">
+                <h1>Get your coupon for this deal</h1>
             </div>
-            <div>
-                <a href="http://www.mysmartprice.com/out/sendtostore.php?dealid=62024&amp;access_point=desktop&amp;l1=deals&amp;top_category=offers&amp;store=google-play&amp;url=http%3A%2F%2Fapp.appsflyer.com%2Fcom.mobikwik_new%3Fpid%3DMysmartprice%26c%3DAlliance" target="_blank" id="coupon-email-submit">Submit</a>
-          </div>
-          </div>
+            <div class="body">
+                <div class="dealbodyleft">
+                    <div><img src="http://d7105a286bcd7ca1e745-4c7efcc0fa50ed2f0ba8ecc23dd2f42d.r9.cf1.rackcdn.com/62024-932.jpg"></div>
+                </div>
+              
+              <div class="dealbodyright">
+                  <div class="body-head">WE WILL DELIVER COUPON DIRECTLY IN YOUR INBOX</div>
+                        <input data-dealid="62024" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" type="email" name="email" id="email" placeholder="Email Address">                 
+                        <div class="email-submit">
+                            <a href="http://www.mysmartprice.com/out/sendtostore.php?dealid=62024&amp;access_point=desktop&amp;l1=deals&amp;top_category=offers&amp;store=google-play&amp;url=http%3A%2F%2Fapp.appsflyer.com%2Fcom.mobikwik_new%3Fpid%3DMysmartprice%26c%3DAlliance" target="_blank" id="coupon-email-submit">Submit</a>
+                        </div>      
+                 </div>
+            </div>     
         </div>
-                
-        
-        </div>
-    </div>
+    </div> -->
 
 <script>
 var viewedDeals=getCookie('viewed_deals');$.ajax({type:'GET',url:"http://www.mysmartprice.com/deals/get_reco.php?viewedDeals="+viewedDeals}).done(function(data){if(data!=""){$('.side_bar_rd').prepend(data);}});
