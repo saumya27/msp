@@ -244,27 +244,46 @@ $(document).ready(function() {
     $("#deal_like").add("#deal_dislike .dislike_submit").on('click', function() {
         var dealid = $("#grab_deal").data('dealid');
         var vote = 0;
+
+        var dislikeCheckData = new Array();
+        var comment;
+        var $deal_dislike;
+
+        if ($(this).attr("id") == "dislike_submit") {
+            $deal_dislike =  $(this).parents('#deal_dislike');
+            comment = $deal_dislike.find('#dislike_comment').val();
+            
+            $("input[name='whyDislike']:checked").each(function(i) {
+                dislikeCheckData.push($(this).val());
+            });
+        }
+
         if ($(this).attr("id") == "deal_like") {
             vote = 1;
         }
+
         $.get('vote.php', {
             vote: vote,
-            dealid: dealid
+            dealid: dealid,
+            comment: comment,
+            dislikeCheckData: dislikeCheckData
         }).done(function() {
             $("#deal_like").add("#deal_dislike").attr("disabled", "disabled");
             $.get("vote.php", {
                 dealid: dealid
             }).done(function(data) {
                 if (data == "nodata") {
-                    $("#like_meter_num").css('visibility', 'hidden');
+                    $("#like_meter_num").hide();
                 } else {
                     $("#like_meter_num").html(data);
                     var like = $("#like_meter_num .l").text() >> 0;
                     var dislike = $("#like_meter_num .r").text() >> 0;
                     $("#like_meter_num").css('visibility', 'visible');
+                     $deal_dislike.find(".dislikeForm_expand").fadeOut();
                 }
             });
         });
+         return false;
     });
 
     // NEW BOTTOM FIXED STUFF
@@ -431,18 +450,3 @@ $('body').on('click', '.closebutton', function(event) {
     $(this).parents('.popup_rd').fadeOut();
     event.stopPropagation();
 });
- $('body').on('click', '#deal_dislike .dislike_submit',function() {
-        var $deal_dislike =  $(this).parents('#deal_dislike');
-        var comment = $deal_dislike.find('#dislike_comment').val();
-        var dislikeCheckData = new Array();
-        $("input[name='whyDislike']:checked").each(function(i) {
-            dislikeCheckData.push($(this).val());
-        });
-        $.post('/deals/save_dislike_feedback.php', {
-            comment: comment,
-            dislikeCheckData: dislikeCheckData
-        }).done(function(data) {
-                $deal_dislike.find(".dislikeForm_expand").fadeOut();
-        });
-        return false;
-    });
