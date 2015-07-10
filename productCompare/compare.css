@@ -33,6 +33,10 @@
 		  text-transform: uppercase;
 		  cursor: pointer;
 		  line-height: 12px;
+		  position: relative;
+		}
+		.gridheader__remove-img{
+			vertical-align: middle;
 		}
 		.compare-head{
 		  /*padding: 10px;*/
@@ -44,8 +48,8 @@
 		}
 
 		.fix-container {
-		  border: inherit;
-		  border-left: 1px solid #ccc;
+		  border-left: 1px  solid #ccc;
+		  border-bottom: 1px  solid #ccc;
 		  background: inherit;
 		  box-shadow:  inherit;
 		  display: none;
@@ -53,6 +57,8 @@
 		  top: 44px;
 		  z-index: 1000;
 		  width: inherit;
+		  margin-left: -1px;
+  		  box-sizing: border-box;
 		}
 		.fix-container__product-img{
 			max-height: 80px;
@@ -141,7 +147,7 @@
 			clear: both;
 			content: " ";
 		}
-		.do-highlight .highlight{
+		.do-highlight [data-isdifferent]{
 			background: #FEFFE0;
 		}
 		.compare-toprow .compare-tbl__spec{
@@ -186,6 +192,7 @@
 			position: absolute;
 			top: 10px;
 			right: 10px;
+			padding: 3px;
 		}
 
 
@@ -193,27 +200,28 @@
 
 		.pie__score-divider{
 			font-size: 0.6em;
-			top: 0.4em;
+			top: -0.53em;
 			right: 0.7em;
-			transform: rotate(43deg);
+			transform: rotate(46deg);
 			position: absolute;
+			line-height: 3em;
 		}
 
 		.pie__score1{
-			right: 1em;
-			top: -0.6em;
-			font-size: 0.34em;
-			position: absolute;
-			line-height: 3em;
-			font-weight: bold;
+		  right: 1.25em;
+		  top: -0.34em;
+		  font-size: 0.33em;
+		  position: absolute;
+		  line-height: 3em;
+		  font-weight: bold;
 		}
 
 		.pie__score2{
-			top: 2em;
-			left: 2.3em;
-			line-height: 3em;
-			font-size: 0.2em;
-			position: absolute;
+		  top: 2.1em;
+		  left: 2.2em;
+		  line-height: 3em;
+		  font-size: 0.2em;
+		  position: absolute;
 		}
 
 		.pie-score *,
@@ -225,7 +233,7 @@
 }
 
 .set-size {
-  font-size: 3.4em;
+  font-size: 3.1em;
 }
 .pie-wrapper {
   height: 1em;
@@ -317,7 +325,6 @@
   color: #717171;
 }
 .srch-wdgt__fld:-ms-input-placeholder {
-  
   color: #717171;
 }
 
@@ -344,11 +351,13 @@
 	margin: -5px 5px 5px 0px;
 	height: 30px
 }
-/*.compare-subtbl.opened { 
-    padding: 10px;
+.compare-product+.compare-product:before{
+	content: 'vs';
+	position: absolute;
+	left: -18px;
 }
-.compare-subtbl.closed { 
-  padding: 0px;
-}*/
+.compare-product+.compare-product{
+	margin-left: 18px;
+}
 
 

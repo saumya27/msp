@@ -1,14 +1,13 @@
 
 $(document).ready( function(){
 
-
 	// autocomplete processing start here
-	bindAutoComplete(); // initializing the autoComplete
+	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
 	$(window).scroll(function() {
 		var theLoc = $('.compare-tbl__subhead').position().top;
 
-		if(theLoc >= $(window).scrollTop() + 100) {
+		if(theLoc >= $(window).scrollTop() + 140) {
 			$('#compareFix').hide();
 			$('.sub-header').show();
 			$('.ui-autocomplete').hide();	
@@ -16,9 +15,24 @@ $(document).ready( function(){
 		} else { 
 			$('#compareFix').show();
 			$('.sub-header').hide();
+
+			var exprtCmprBottom = $('.expert-cmpr').offset().top + $('.expert-cmpr').outerHeight();
+			if(($(window).scrollTop() >= exprtCmprBottom - 160) || !exprtCmprBottom){  // hide the 2 checkboes in case of not expert compare
+				$('.fix-container .compare-tbl__spec .compare-tbl__cb').hide();
+			}
+			else
+				$('.fix-container .compare-tbl__spec .compare-tbl__cb').show();
 		}
 	});
 
+
+	// add highlight class to different rows but not when all cells are different
+	$('.expert-cmpr .compare-subtbl__content .compare-tbl__row').each(function(){
+		var productsCount = $('.gridheader .compare-product').length;
+
+		if($(this).find('[data-isdifferent]').length < productsCount)		
+			$(this).find('.compare-tbl__col').addClass('highlight');	
+	});
 
 
  // For filling the pie : START
@@ -133,29 +147,45 @@ $(".show-diff").on('click', function(){
 	    } 
 });
 
-$(".close").on('click', function(){
-	$('.sidebar').toggleClass('open');
+$(".showOnlyDiff").on('click', function(){
+	$('.expert-cmpr .compare-subtbl__content .compare-tbl__row').each(function(){
+		if($('.showOnlyDiff').attr('checked')){
+			if($(this).find('[data-isdifferent]').length == 0)		
+				$(this).slideUp("slow");
+		}
+		else{
+			$(this).slideDown("slow");
+		}
+	});
 });
 
+function addParameterToURL(param){
+    _url = location.href;
+    _url= (_url.split('?')[0]) + '?' + param;
+    location.replace(_url);
+}
 
-// $(".show-diff").on('click', function(){
-// 	var $rows = $(".compare-tbl__row");
-	
-// 	foreach( row in $rows)
-// 	{
-// 		$rowCells = row.children().not(".compare-tbl__spec");
-// 		foreach( cell in $rowCells){
-// 			$(this).val();
-// 		}
-// 	}
-	
-// 	$highlightCells.toggleClass("highlight");
-// });
+$(".remove").add(".gridheader .compare-product").on('click', function(){
+	setCookieCompareIDS();
+	addParameterToURL("compareIDs="+getCookie('compareIDs'));
+});
+
+$(".srch-wdgt__fld").on('change', function(){
+	setCookieCompareIDS();
+	addParameterToURL("compareIDs="+getCookie('compareIDs'));
+});
+
+function setCookieCompareIDS(){
+	var compare_msp_ids = [];
+	$(".compare-toprow").find('.compare-tbl__col[data-mspid]').each(function(){
+		compare_msp_ids.push($(this).data('mspid'));
+	});
+	setCookie('compareIDs',compare_msp_ids); 
+}
+
 
 // autocomplete functions start here
-
-
-function bindAutoComplete() {
+function compareAutoComplete() {
     if ($(".js-atcmplt")
         .length !== 0) {
 
@@ -180,6 +210,7 @@ function bindAutoComplete() {
                 source: function(request, response) {
                     var term = $.trim(request.term.toLowerCase()),
                         element = this.element,
+                        category = getCookie('compareSubCategory') || "",
                         //element is search bar
                         autocompleteCache = this.element.data('autocompleteCache') || {},
                         //initializing autocompleteCache
@@ -192,6 +223,7 @@ function bindAutoComplete() {
                     if (foundInAutocompleteCache) return;
 
                     request.term = term;
+                    request.category = category;
                     $.ajax({
                         url: $(element).closest(".srch-wdgt").data('url'), //http://www.mysmartprice.com/msp/search/auto_suggest_search.php',
                         dataType: "json",
