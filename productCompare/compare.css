@@ -70,7 +70,7 @@
 			text-overflow: ellipsis;
 		}*/
 		.fix-container__right-div{
-			width: 150px;
+			width: 129px;
 			margin-left: 15px;
 		}
 		.compare-tbl{
@@ -207,13 +207,17 @@
 			line-height: 3em;
 		}
 
-		.pie__score1{
-		  right: 1.25em;
-		  top: -0.34em;
-		  font-size: 0.33em;
+		.pie__score{
+		  right: 0.5em;
+		  top: -0.4em;
+		  font-size: 0.45em;
 		  position: absolute;
 		  line-height: 3em;
 		  font-weight: bold;
+		}
+		
+		.pie_score10{
+		  right: 0.78em;
 		}
 
 		.pie__score2{
@@ -299,10 +303,11 @@
   border-bottom-left-radius: 0;
 }
 .srch-wdgt__fld {
-  width: 200px;
+  width: 100%;
   height: 26px;
-  padding-left: 10px;
+  padding: 0px;
   border: 0;
+  margin: 0 5px;
   background: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -327,17 +332,22 @@
 .srch-wdgt__fld:-ms-input-placeholder {
   color: #717171;
 }
-
+.fix-cntnr__srch-wdgt{
+			margin-top: 20px;
+}
 .ui-widget-content{
-  border: 1px solid #cccccc;
-  border-radius: 3px;
-  background: #F6F6F6;
- top: 27px !important;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	background: #F6F6F6;
+	top: 27px !important;
+	padding: 0px;
+	width: 100% !important;
 }
 
 .compare-tbl__tick-cross{
 	margin-top: -8px;
   	margin-bottom: -8px;
+  	height: 20px;
 }
 .info-icon{
 	height: 14px;
@@ -358,6 +368,28 @@
 }
 .compare-product+.compare-product{
 	margin-left: 18px;
+}
+.rating {
+  margin: auto;
+  margin-top: 1px;
+  background-color: #dbdbdb;
+}
+.rating-wrap {
+  background-color: #e9ce18;
+}
+.star-rating {
+  background-image: url(star_small.png);
+}
+.rating,.rating .star-rating,.rating .rating-input {
+    width: 65px;
+    height: 12px
+}
+.compare-tbl__cmng-sn{
+	color: #c20000;
+	font-weight: bold;
+}
+.font11{
+	font-size: 11px;
 }
 
 

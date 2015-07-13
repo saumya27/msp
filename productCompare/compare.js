@@ -39,7 +39,7 @@ $(document).ready( function(){
 	var score;
 	 $(".compare-toprow .pie-score").each( function(){   // for the overall score pie
 	 	score = $(this).data("score");
-		$(this).find(".pie__score1").html(score);
+		$(this).find(".pie__score").html(score);
 
 		$(this).find(".left-side").css('transform','rotate(' + score*3.6 + 'deg) '); //left rotate
 		$(this).find(".left-side").css('-ms-transform', 'rotate(' + score*3.6 + 'deg) '); // for IE8
@@ -74,7 +74,7 @@ $(document).ready( function(){
 
 	 $(".compare-tbl__subhead .pie-score").each( function(){
 	 	score = $(this).data("score");
-		$(this).find(".pie__score1").html(score);
+		$(this).find(".pie__score").html(score);
 
 		$(this).find(".left-side").css('transform','rotate(' + score*36 + 'deg) '); //left rotate
 		$(this).find(".left-side").css('-ms-transform', 'rotate(' + score*36 + 'deg) '); // for IE8

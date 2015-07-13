@@ -12,6 +12,13 @@ $(document).ready( function(){
 	// autocomplete processing start here
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
+
+	// if($('.cmpr_btn').length){
+	// 	$('body:not(.cmpr_btn):not(.cmpr_wrpr):not(.compare-panel__close)').on('click', function(){ if(isComparePanelOpen()){
+	// 		$(".sdbr-wrppr").removeClass("add-cmp-ml").addClass("add-cmp-mr");
+ //  		} });
+	// }
+	
 });
 
 $('body').on('click', '.remove',  function(){

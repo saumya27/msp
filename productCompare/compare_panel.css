@@ -187,6 +187,7 @@ a {
   background: #F6F6F6;
   float: left;
   z-index: 1 !important;
+  box-sizing: border-box;
 }
 .srch-wdgt--sml {
   height: 30px;
@@ -203,10 +204,11 @@ a {
   border-bottom-left-radius: 0;
 }
 .srch-wdgt__fld {
-  width: 200px;
+  width: 100%;
   height: 26px;
-  padding-left: 10px;
+  padding: 0;
   border: 0;
+  margin: 0 5px;
   background: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -230,6 +232,14 @@ a {
 }
 .srch-wdgt__fld:-ms-input-placeholder {
   color: #717171;
+}
+.ui-widget-content{
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+  background: #F6F6F6;
+  top: 27px !important;
+  padding: 0px;
+  width: 100% !important;
 }
 
 .add-to-cmpr{
