@@ -234,7 +234,7 @@ a {
   color: #717171;
 }
 .srch-wdgt.ui-front{
-  z-index: 0 !important;
+  z-index: auto !important;
 }
 
 .ui-widget-content{

@@ -209,7 +209,7 @@ function flyImage(imgtofly, id, title, $thisCB){
         'top': top,
         'left': left,
         'width': 30,
-    }, 1200);
+    }, 900);
     imgclone.animate({
         'width': 0,
         'height': 0
@@ -260,6 +260,7 @@ function compareAutoComplete() {
         .length !== 0) {
 
 $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
+		var $thisAutoComplete = $(this);
         $(".js-atcmplt")
             .autocomplete({
                 minLength: 1,
@@ -267,16 +268,16 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                 autoFocus: false,
                 max: 10,
                 open: function(event, ui) {
-                    $parent = $(this).closest(".srch-wdgt");
+                    $parent = $thisAutoComplete.closest(".srch-wdgt");
                     $(".ui-menu").css({
                         "width": $parent.width()+2,
                         "left": "-1px",
-                        "top": "1px"
+                        "top": "5px"
                     });
                     $parent.addClass("srch-wdgt--show-rslt");
                 },
                 close: function(event, ui) {
-                    $(this).closest(".srch-wdgt").removeClass("srch-wdgt--show-rslt");
+                    $thisAutoComplete.closest(".srch-wdgt").removeClass("srch-wdgt--show-rslt");
                 },
                 source: function(request, response) {
                     var term = $.trim(request.term.toLowerCase()),
