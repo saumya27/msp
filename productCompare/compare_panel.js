@@ -245,8 +245,13 @@ function flyImage(imgtofly, id, title, $thisCB){
 }
 
 // set cookie for the compare product msp-ids
-function setCookieCompareIDS(){
-    var compare_msp_ids = [];
+function setCookieCompareIDS( newMSPID ){
+    var compare_msp_ids =  []  ;
+    
+    if(newMSPID){
+    	compare_msp_ids.push(newMSPID);
+    }
+    
     $('.sdbr-list__item:not(.cmpr0)').each(function(){ 
     	compare_msp_ids.push( $(this).data("comparemspid") ); 
     })
@@ -268,11 +273,11 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                 autoFocus: false,
                 max: 10,
                 open: function(event, ui) {
-                    $parent = $thisAutoComplete.closest(".srch-wdgt");
+                    $parent = $thisAutoComplete;
                     $(".ui-menu").css({
-                        "width": $parent.width()+2,
-                        "left": "-1px",
-                        "top": "5px"
+                        "width": $parent.width(),
+                        // "left": "-1px",
+                        // "top": "10px"
                     });
                     $parent.addClass("srch-wdgt--show-rslt");
                 },
@@ -316,7 +321,8 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                     var $form = $(this)
                         .closest('form');
                     $form.find('.js-atcmplt').val(ui.item.value);
-                    $form.find('.js-atcmplt-id').val(ui.item.id);
+                    $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
+                    setCookieCompareIDS(ui.item.mspid);
                     $form.find('#header-search-subcat').val(ui.item.subcategory_code);
                     $form.find('.srch-wdgt__srch-sbmt')
                         .click();

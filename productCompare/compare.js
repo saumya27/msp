@@ -171,12 +171,14 @@ $(".remove").add(".gridheader .compare-product").on('click', function(){
 });
 
 $(".srch-wdgt__fld").on('change', function(){
-	setCookieCompareIDS();
 	addParameterToURL("compareIDs="+getCookie('compareIDs'));
 });
 
-function setCookieCompareIDS(){
+function setCookieCompareIDS(newMSPID){
 	var compare_msp_ids = [];
+	if(newMSPID){
+    	compare_msp_ids.push(newMSPID);
+    }
 	$(".compare-toprow").find('.compare-tbl__col[data-mspid]').each(function(){
 		compare_msp_ids.push($(this).data('mspid'));
 	});
@@ -245,6 +247,8 @@ function compareAutoComplete() {
                         .closest('form');
                     $form.find('.js-atcmplt')
                         .val(ui.item.value);
+                    $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
+                    setCookieCompareIDS(ui.item.mspid);
                     $form.find('#header-search-subcat')
                         .val(ui.item.subcategory_code);
                     $form.find('.srch-wdgt__srch-sbmt')
