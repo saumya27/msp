@@ -43,6 +43,7 @@ $('body').on('click', '.remove',  function(){
 				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
 			} 		
 
+			compareAutoComplete();
 			setCookieCompareIDS(); // re-set comparemspid cookie
 	   });
 	// }
@@ -258,6 +259,7 @@ function compareAutoComplete() {
     if ($(".js-atcmplt")
         .length !== 0) {
 
+$(document).on('keydown.autocomplete', ".js-atcmplt", function(){
         $(".js-atcmplt")
             .autocomplete({
                 minLength: 1,
@@ -312,10 +314,9 @@ function compareAutoComplete() {
                 select: function(event, ui) {
                     var $form = $(this)
                         .closest('form');
-                    $form.find('.js-atcmplt')
-                        .val(ui.item.value);
-                    $form.find('#header-search-subcat')
-                        .val(ui.item.subcategory_code);
+                    $form.find('.js-atcmplt').val(ui.item.value);
+                    $form.find('.js-atcmplt-id').val(ui.item.id);
+                    $form.find('#header-search-subcat').val(ui.item.subcategory_code);
                     $form.find('.srch-wdgt__srch-sbmt')
                         .click();
                 }
@@ -332,6 +333,7 @@ function compareAutoComplete() {
                     .append("<a>" + tempval + "</a>")
                     .appendTo(ul);
             };
+        });
     }
 }
 // autocomplete functions end here

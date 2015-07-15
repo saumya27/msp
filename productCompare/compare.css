@@ -111,7 +111,7 @@
 
   		  text-align: center;
 		  vertical-align: middle;
-		  font-size: 13px;
+		  font-size: 14px;
 		  color: #333333;
 		}
 		.compare-tbl__spec{
@@ -153,6 +153,9 @@
 		.compare-toprow .compare-tbl__spec{
 			border-left: 1px;
 		}
+		.cmpr-tbl__rw--exprt-scr{
+			background-color: #FFFCFC;
+		}
 		.compare-tbl__cb{
 			margin-top: 10px;
 			display: block;
@@ -186,6 +189,7 @@
 			word-break: break-word;
 		    display: block;
   			text-align: center;
+  			text-decoration: none;
 		}
 		.remove{
 			cursor: pointer;
