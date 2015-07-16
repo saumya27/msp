@@ -276,8 +276,8 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                     $parent = $thisAutoComplete;
                     $(".ui-menu").css({
                         "width": $parent.width(),
-                        // "left": "-1px",
-                        // "top": "10px"
+                        "left": "-1px",
+                        "top": "100px"
                     });
                     $parent.addClass("srch-wdgt--show-rslt");
                 },

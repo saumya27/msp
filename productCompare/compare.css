@@ -93,7 +93,7 @@
 		  border-right: 1px solid #ccc;
 		}
 		.compare-tbl__subhead{
-			line-height: 30px;
+			line-height: 20px;
 			border-left: 0px;
 
 			background-color: #F6F6F6;
@@ -242,6 +242,9 @@
 
 .set-size {
   font-size: 3.1em;
+}
+.compare-subtbl .set-size {
+  font-size: 2.5em;
 }
 .pie-wrapper {
   height: 1em;
