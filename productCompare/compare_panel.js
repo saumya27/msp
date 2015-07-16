@@ -178,11 +178,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 	if(($replaceThis.length-1) <= flyingImageCount)
 		disableCompareCB("Cannot compare more than 4 products at a time");
 
-	if(!isComparePanelOpen()){
-		$(".sdbr-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
-  	}
-
-  	var top;
+	var top;
 	var left;
 
   	if(flyingImageCount > 1){
@@ -194,6 +190,11 @@ function flyImage(imgtofly, id, title, $thisCB){
 		left = $replaceThis.offset().left + 30;
   	}
 	
+	if(!isComparePanelOpen()){
+		$(".sdbr-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+		left = left - 250;
+  	}
+
 	var width = imgtofly.width;
     var $img = $(imgtofly).clone().removeAttr('class');
 
@@ -275,9 +276,9 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                 open: function(event, ui) {
                     $parent = $thisAutoComplete;
                     $(".ui-menu").css({
-                        "width": $parent.width(),
-                        "left": "-1px",
-                        "top": "100px"
+                        "width": $parent.width() + 10,
+                        // "left": "-1px",
+                        // "top": "2px"
                     });
                     $parent.addClass("srch-wdgt--show-rslt");
                 },
