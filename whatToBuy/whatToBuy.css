@@ -1,0 +1,240 @@
+    
+    .ttl, .ttl-tag{
+      width: 100%;
+      padding-bottom: 5px;
+    }
+    .ttl{
+       font-weight: bold;
+       font-size: 24px;
+    }
+    .ttl-tag{
+       color: #c2c2c2;
+       font-style: italic;
+       font-size: 18px;
+       /*margin-bottom: 5px;*/
+    }
+    .sctn{
+        border-top: 1px solid #ccc;
+        padding-top: 20px;
+        margin-top: 20px;
+    }
+    .sctn-ttl{
+        font-weight: bold;
+        font-size: 19px;
+        margin-bottom: 15px;
+        font-style: italic;
+        /*float: left;*/
+    }
+    .sctn-scr{
+        font-size: 24px;
+        color: #fff;
+        font-weight: bold;
+        padding: 10px;
+        background-color: #c00;
+        float: right;
+        margin-top: -15px;
+        margin-right: 50px;
+        font-style: initial;
+    }
+    .rvwr-dtl{
+        font-size: 14px;
+    }
+    .rvw-sctn{
+        height: auto;
+        width: 100%;
+        background-color: #f6f6f6;
+    }
+    .rvw__lft-pnl{
+        width: 13%;
+        float: left;
+        position: fixed;
+    }   
+    .selected .rvw-indx__arrw{
+        border: 25px solid rgba(0,0,0,0);
+        border-left-color: #c0c0c0;
+        display: block;
+        height: 0;
+        margin-right: -51px;
+        margin-top: -1px;
+        position: absolute;
+        right: 0;
+        width: 0;
+    }
+    .lft-pnl__lst-sctn{
+        text-align: center;
+    }
+    .prdct-price{
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 60px;
+    }
+    .rvw-indx{
+        background-color: #c0c0c0;
+        border: 1px solid #aaa;
+        border-bottom-color: #eee;
+        position: relative;
+    }
+    .rvw-indx__ttl{
+        /*font-weight: bold;*/
+        font-size: 16px;
+        padding: 15px 10px 15px 20px;
+        color: #000;
+    }
+    .rvw__rght-pnl{
+        width: 80%;
+        float: right;
+        background-color: #fff;
+        padding-left: 53px;
+    }
+    
+    .rvw__top-sctn{
+
+    }
+    
+    .rvw__rght-pnl .section-content {
+      font-size: 12px;
+      line-height: 1.2;
+      color: #111;
+      overflow: hidden;
+    }
+    .rvw__rght-pnl .content-left {
+      float: left;
+      width: 20%;
+    }
+    .rvw__cntnt-mid{
+        float: left;
+        width: 60%;
+    }
+    .rvw__rght-pnl .expert-photo {
+      position: relative;
+      float: left;
+      width: 72px;
+      height: 72px;
+      padding: 3px;
+      border: 1px solid #e7e7e7;
+      margin-right: 8px;
+    }
+    .rvw__rght-pnl .expert-photo img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      max-width: 72px;
+      max-height: 72px;
+      margin: auto;
+    }
+    .rvw__rght-pnl .expert-name {
+      font-weight: bold;
+    }
+    .rvw__rght-pnl .review-date {
+      margin-top: 6px;
+      color: #888;
+    }
+    .rvw__rght-pnl .expert-opinion {
+      margin-top: 18px;
+    }
+    .rvw__rght-pnl .content-right {
+      float: right;
+      width: 18%;
+    }
+    .rvw__rght-pnl .content-right ul {
+      margin-top: 6px;
+    }
+    .rvw__rght-pnl .review-pros li {
+      margin-left: 16px;
+      line-height: 22px;
+    }
+    .rvw__rght-pnl .review-heading{
+      padding-bottom: 6px;
+      border-bottom: 1px solid #ccc;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .rvw__features{
+        width: 100%;
+        float: left;
+    }
+    .rvw__features ul li{
+        background: url(http://www.mysmartprice.com/msp/images/on_green.png) center left no-repeat;
+        padding-left: 20px;
+        list-style-type: none;
+        line-height: 22px;
+        float: left;
+        width: 45%;
+    }
+    .rvw__rght-pnl .content-title , .athr-nm{
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .rvw__rght-pnl .content-title img {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .rvw__pros-cons{
+      width: 100%;
+      padding-top: 30px;
+      float: left;
+      box-sizing: border-box;
+    }
+    .rvw__rght-pnl .review-pros,
+    .rvw__rght-pnl .review-cons {
+      width: 45%;   
+      float: left;
+    }
+   
+    .rvw__rght-pnl .review-score {
+      float: left;
+      width: 136px;
+      /*margin-left: 20px;*/
+      text-align: center;
+      text-transform: uppercase;
+      background-color: #c00;
+      color: #fff;
+    }
+    .rvw__rght-pnl .score-value {
+      font-size: 72px;
+      line-height: 100px;
+    }
+    .rvw__rght-pnl .score-label {
+      font-size: 14px;
+      line-height: 36px;
+    }
+    .rvw__rght-pnl .review-verdict {
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .rvw__rght-pnl .review-verdict p {
+      line-height: 18px;
+    }
+    .product_bottom_sec .top_userreview .rating_summary{
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .athr-img{
+        float: left;
+        width: 150px;
+        box-shadow: 1px 1px 1px #aaa!important;
+        height: 173px;
+        background: #fff;
+        padding: 5px;
+        border: 1px solid #aaa;
+    }
+    .athr-dtl{
+        float: right;
+        width: 960px;
+        text-align: justify;
+        line-height: 20px;
+        color: #000;
+        vertical-align: top;
+    }
+    .athr-links a img{
+        width: 30px;
+        height: 30px;
+    }
+    .top10{
+      /*  border-bottom: 1px solid #aaa;*/
+    }
