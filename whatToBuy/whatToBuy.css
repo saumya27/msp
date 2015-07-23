@@ -141,7 +141,7 @@
     .rvw__rght-pnl .content-right ul {
       margin-top: 6px;
     }
-    .rvw__rght-pnl .review-pros li {
+    .rvw__rght-pnl .review-pros li, .rvw__rght-pnl .review-cons li {
       margin-left: 16px;
       line-height: 22px;
     }
