@@ -3,16 +3,21 @@
       color: inherit;
       text-decoration: none;
     }
-    *{
-        font-size: 13px;
+    .wrapperwide{
+        width: 1200px;
+    }
+    body{
+        font-size: 15px;
+        line-height: 1.6;
+        font-family: 'Open Sans',sans-serif,Arial,Helvetica;
+        background-color: #F6F6F6;
     }
     .ttl, .ttl-tag{
       width: 100%;
-      padding-bottom: 5px;
     }
     .ttl{
        font-weight: bold;
-       font-size: 24px;
+       font-size: 26px;
     }
     .ttl-tag{
        color: #c2c2c2;
@@ -21,48 +26,50 @@
        /*margin-bottom: 5px;*/
     }
     .sctn{
-        border-top: 1px solid #ccc;
-        padding-top: 20px;
-        margin-top: 20px;
+        /*border-top: 1px solid #ccc;*/
+        padding-top: 10px;
+        margin: 20px 0;
     }
     .sctn-ttl{
-        font-weight: bold;
-        font-size: 19px;
-        margin-bottom: 15px;
-        float: left;
+        font-size: 22px;
+        padding: 2px 10px;
+        margin-bottom: 20px;
+        background-color: #e0e0e0;
+        vertical-align: middle;
     }
     .sctn-scr{
         font-size: 24px;
         color: #fff;
         font-weight: bold;
-        padding: 8px 14px;
+        padding: 0px 15px;
         background-color: #c00;
         float: right;
-        margin-top: -15px;
-        margin-right: 50px;
+        margin-top: -63px;
         font-style: initial;
     }
     .rvwr-dtl{
-        font-size: 14px;
-        cursor: pointer;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        /*cursor: pointer;*/
     }
     .rvw-sctn{
         height: auto;
         width: 100%;
-        background-color: #f6f6f6;
+        background-color: #E0E0E0;
+        line-height: 1.8;
     }
     .rvw__lft-pnl{
-        width: 13%;
+        width: 240px;
         float: left;
         position: fixed;
         top: 160px;
     }   
     .selected .rvw-indx__arrw{
-        border: 23px solid rgba(0,0,0,0);
+        border: 24px solid rgba(0,0,0,0);
         border-left-color: #a0a0a0;
         display: block;
         height: 0;
-        margin-right: -47px;
+        margin-right: -49px;
         position: absolute;
         right: 0;
         width: 0;
@@ -94,25 +101,19 @@
         position: relative;
     }
     .rvw-indx__ttl{
-        /*font-weight: bold;*/
-        font-size: 16px;
-        padding: 13px 10px 15px 20px;
+        font-weight: bold;
+        padding: 11px 20px;
         cursor: pointer;
     }
     .rvw__rght-pnl{
-        width: 80%;
+        width: 900px;
         float: right;
         background-color: #fff;
-        padding-left: 53px;
+        padding-left: 40px;
+        padding-right: 20px;
     }
-    
-    .rvw__top-sctn{
-
-    }
-    
     .rvw__rght-pnl .section-content {
-      font-size: 12px;
-      line-height: 1.2;
+      line-height: 1.4;
       color: #111;
       overflow: hidden;
     }
@@ -133,48 +134,12 @@
         float: left;
         width: 60%;
     }
-    .rvw__rght-pnl .expert-photo {
-      position: relative;
-      float: left;
-      width: 72px;
-      height: 72px;
-      padding: 3px;
-      border: 1px solid #e7e7e7;
-      margin-right: 8px;
-    }
-    .rvw__rght-pnl .expert-photo img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      max-width: 72px;
-      max-height: 72px;
-      margin: auto;
-    }
-    .rvw__rght-pnl .expert-name {
-      font-weight: bold;
-    }
-    .rvw__rght-pnl .review-date {
-      margin-top: 6px;
-      color: #888;
-    }
-    .rvw__rght-pnl .expert-opinion {
-      margin-top: 18px;
-    }
     .rvw__rght-pnl .content-right {
       float: right;
       width: 15%;
     }
-    .rvw__features ul li, .rvw__rght-pnl .review-pros li, .rvw__rght-pnl .review-cons li, {
-      margin-left: 16px;
-      line-height: 22px;
-    }
-    .rvw__rght-pnl .review-heading{
-      padding-bottom: 6px;
-      border-bottom: 1px solid #ccc;
-      margin-bottom: 12px;
-      font-size: 20px;
+    .rvw__features ul li, .rvw__rght-pnl .review-pros li, .rvw__rght-pnl .review-cons li {
+      margin-bottom: 8px;
     }
     .rvw__features{
         width: 100%;
@@ -185,11 +150,11 @@
         width: 50%;
         /*margin-right: 20px;*/
     }
-    .rvw__rght-pnl .content-title , .athr-nm{
+    .rvw__rght-pnl .ovrvw-sbttl , .athr-nm{
       font-size: 16px;
       font-weight: bold;
     }
-    .rvw__rght-pnl .content-title img {
+    .rvw__rght-pnl .ovrvw-sbttl img {
       width: 20px;
       height: 20px;
       margin-right: 6px;
@@ -206,11 +171,9 @@
       width: 47%;   
       float: left;
     }
-   
     .rvw__rght-pnl .review-score {
       float: right;
-      width: 120px;
-      /*margin-left: 20px;*/
+      width: 120px;  
       text-align: center;
       text-transform: uppercase;
       background-color: #c00;
@@ -234,8 +197,11 @@
     .product_bottom_sec .top_userreview .rating_summary{
         border-bottom: none;
         padding-bottom: 0;
+        font-size: 12px;
     }
-
+    .product_bottom_sec .top_userreview .rating_summary .rating_store+.rating_store{
+        margin-left: 0px;
+    }
     .athr-img{
         float: left;
         width: 150px;
@@ -272,11 +238,11 @@
     .sctn__hdr {
       margin: 0px 20px;
       border-bottom: 1px solid #dfe1e8;
-      font-size: 14px;
-      line-height: 20px;
     }
     .sctn__nvgtn{
       float: right;
+      margin-top: -50px;
+      margin-right: 10px;
     }
     .sctn__view-all-link {
       float: left;
@@ -323,7 +289,7 @@
     }
     .prdct-item {
       position: relative;
-      font-size: 12px;
+      font-size: 13px;
       display: inline-block;
       white-space: normal;
       width: 136px;
@@ -432,10 +398,9 @@
         background-color: #e0e0e0;
     }
 
-.edtr-sctn  *
-{
-    font-size: 14px;
-    line-height: 1.6;
+.edtr-sctn
+{   
+    padding: 0 50px;
 }
 .edtr-sctn *:first-child{
     margin-top: 0;
@@ -447,8 +412,8 @@
 .edtr-sctn blockquote
 {
     font-style: italic;
-    font-size: 15px;
-    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 20px;
+    /*font-family: Georgia, Times, "Times New Roman", serif;*/
     padding: 2px 0px;
     border: 0;
     border-left: 4px solid #c20000;
@@ -456,7 +421,7 @@
 }
 .edtr-sctn blockquote p
 {
-    font-size: 18px;
+    font-size: 20px;
 }
 /*.edtr-sctn  *
 {
@@ -498,7 +463,7 @@
 }
 
 .edtr-sctn img{
-    max-width: 960px !important;
+    max-width: 792px !important;
     border: 1px solid #ccc;
     padding: 3px;
     margin: 10px 0 10px;
