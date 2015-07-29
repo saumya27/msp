@@ -3089,8 +3089,13 @@ float: right;
       line-height: 36px;
     }
     .rvw__smmry{
-      margin-top: 20px;
-      height: 45px;
+      /*margin-top: 20px;*/
+      height: 55px;
       overflow: hidden;
+    }
+    .rvw__read-full{
+      float: right;
+      margin-top: 10px;
+      font-size: 14px;
     }
     /*Expert Review : End */
