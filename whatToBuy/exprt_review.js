@@ -38,7 +38,7 @@ $(window).scroll(function() {
 function set_position_property(){
 	var $lft = $('.rvw__lft-pnl'),
        $window = $(window),
-       pos = $('.rvw__rtng-sctn').position().top - 500;
+       pos = $('.rvw__rtng-sctn').position().top - 600;
 
 	if ($window.scrollTop() > pos) {
 	    $lft.css('position','absolute' );
