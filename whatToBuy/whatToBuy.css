@@ -59,10 +59,10 @@
         line-height: 1.8;
     }
     .rvw__lft-pnl{
-        width: 240px;
+        width: 250px;
         float: left;
         position: fixed;
-        top: 160px;
+        top: 100px;
     }   
     .selected .rvw-indx__arrw{
         border: 24px solid rgba(0,0,0,0);
@@ -106,7 +106,7 @@
         cursor: pointer;
     }
     .rvw__rght-pnl{
-        width: 900px;
+        width: 890px;
         float: right;
         background-color: #fff;
         padding-left: 40px;
@@ -463,7 +463,7 @@
 }
 
 .edtr-sctn img{
-    max-width: 792px !important;
+    max-width: 782px !important;
     border: 1px solid #ccc;
     padding: 3px;
     margin: 10px 0 10px;

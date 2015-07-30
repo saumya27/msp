@@ -600,19 +600,19 @@ $(document).ready(function() {
     $(".rvw__scr .rvw__scr-val").each( function(){
         score = $(this).text();
         switch(score) {
-            case checkRange(score, 0, 20):
+            case checkRange(score, 0, 2):
                 $(this).closest('.rvw__scr').css('background-color', '#cc0000'); 
                 break;
-            case checkRange(score, 20, 40):
+            case checkRange(score, 2, 4):
                 $(this).closest('.rvw__scr').css('background-color', '#f57900'); 
                 break;
-            case checkRange(score, 40, 60):
+            case checkRange(score, 4, 6):
                 $(this).closest('.rvw__scr').css('background-color', '#e8d700'); 
                 break;
-            case checkRange(score, 60, 80):
+            case checkRange(score, 6, 8):
                 $(this).closest('.rvw__scr').css('background-color', '#73d216'); 
                 break;
-            case checkRange(score, 80, 100):
+            case checkRange(score, 8, 10):
                 $(this).closest('.rvw__scr').css('background-color', '#4e9a06'); 
                 break;    
             default:
