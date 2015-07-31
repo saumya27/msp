@@ -21,6 +21,23 @@ $(document).ready( function(){
 	
 });
 
+$('.sctn__compare-btn').on('click', function(){
+	var mspid, mspids, subcategory;
+
+	$('.sdbr-list__item:not(.cmpr0)').each(function(){ 
+		mspid = $(this).data('comparemspid');
+
+		if(mspids)
+			mspids = mspids + "," + mspid;
+		else
+			mspids = mspid;
+	});
+
+	subcategory = $('.sdbr-list__item:not(.cmpr0):first').data('subcategory');
+	$(this).attr('href',"/expert/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
+});
+
+
 $('body').on('click', '.remove',  function(){
 	// if($(".sdbr-list__item.cmpr0").length <= 4){
 		$lastIndex = $(this).parents(".sctn__inr").children().last();
@@ -164,7 +181,7 @@ function isDifferentCategory(){ // check if this product is of same category tha
 	{
 		if(sub_category != compareSubCategory)
 		{
-			var calloutMSG = "Can compare within same categories only";
+			var calloutMSG = "Cannot campare between different categories";
 			disableCompareCB(calloutMSG);
 			return true;
 		}

@@ -10,6 +10,7 @@
 	
 	margin-top: -225px;
 	z-index: 2;
+  transition: right 0.8s ease-in-out;
 }
 .sdbr {
   height: 100%;
@@ -130,17 +131,20 @@ a {
 }
 
 .add-cmp-ml {
-	animation-name: slideLeft;
+	/*animation-name: slideLeft;
     animation-duration: 0.8s;
-    animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-outout;
+    animation-fill-mode: forwards;*/
+    transition: right 0.8s ease-out;
+    right: 0px;
 }
 
 .add-cmp-mr {
-	animation-name: slideRight;
+	/*animation-name: slideRight;
     animation-duration: 0.8s;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-fill-mode: forwards;*/
+    right: -250px;
 }
 
 .sdbr--bx-shdw{
@@ -150,7 +154,7 @@ a {
 /******************
 * Animation Code
 ******************/
-
+/*
 @keyframes slideLeft {
     from {right: -250px;}
     to {right: 0px;}
@@ -160,7 +164,7 @@ a {
     from {right: 0px;}
     to {right: -250px;}
 }
-
+*/
 
 .pull-right{
     float: right;

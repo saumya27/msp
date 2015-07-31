@@ -56,12 +56,13 @@
 		  position: fixed;
 		  top: 44px;
 		  z-index: 1000;
-		  width: inherit;
+		  width: 1200px;
 		  margin-left: -1px;
   		  box-sizing: border-box;
 		}
 		.fix-container__product-img{
 			max-height: 80px;
+			max-width: 67px;
 			padding: 5px;
 		}
 	/*	.fix-container__product-title{
@@ -113,6 +114,9 @@
 		  vertical-align: middle;
 		  font-size: 14px;
 		  color: #333333;
+		}
+		.compare-tbl__subhead .compare-tbl__col{
+			text-align: left;
 		}
 		.compare-tbl__spec{
 		  vertical-align: middle;
@@ -251,6 +255,7 @@
   width: 1em;
   display: inline-block;
   position: relative;
+  text-align: center;
 }
 .pie-wrapper .pie {
   height: 100%;
@@ -361,7 +366,6 @@
 }
 .expand-collapse{
 	vertical-align: middle;
-	margin-left: -110px;
 	margin-right: 15px;
 }
 .compare-head__icon{
