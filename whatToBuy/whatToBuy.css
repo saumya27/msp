@@ -37,6 +37,12 @@
         background-color: #e0e0e0;
         vertical-align: middle;
     }
+    .sctn-ttl img{
+        max-width: 25px;
+        max-height: 25px;
+        vertical-align: middle;
+        padding-bottom: 8px;
+    }
     .sctn-scr{
         font-size: 24px;
         color: #fff;
