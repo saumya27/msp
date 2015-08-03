@@ -258,7 +258,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 	    if($(".sdbr-list__item.cmpr0").length == 1){
 	    	 setCookie("compareSubCategory", sub_category);
 	    }
-	  	setCookieCompareIDS();
+	  	setCookieCompareIDS(id);
      });
 }
 

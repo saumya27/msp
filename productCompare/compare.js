@@ -4,6 +4,14 @@ $(document).ready( function(){
 	// autocomplete processing start here
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
+
+	$("#othr_ftr_sbtl").click(); // to close the subtable at the start
+
+	// hide the highlight CB if number of compare products < 3
+	if($('.fix-container .compare-tbl__col[data-mspid]').length < 3){
+		$('.fix-container .compare-tbl__spec .compare-tbl__cb').hide();
+	}
+
 	$(window).scroll(function() {
 		var theLoc = $('.compare-tbl__subhead').position().top;
 
@@ -159,32 +167,48 @@ $(".showOnlyDiff").on('click', function(){
 	});
 });
 
-function addParameterToURL(param){
+function addParameterToURL(){
+	var mspids = getCookie('compareIDs').toString();
+	var param = "mspids="+mspids+"&subcategory="+getCookie('compareSubCategory');
     _url = location.href;
     _url= (_url.split('?')[0]) + '?' + param;
     location.replace(_url);
 }
 
+function removeFromCookie(id){
+	var arr_mspids = getCookie('compareIDs'),
+    remove_id = id,
+    exist = $.inArray(remove_id, arr_mspids);
+
+	if ( ~exist ) 
+		arr_mspids.splice(position, 1);	
+}
+
 $(".remove").add(".gridheader .compare-product").on('click', function(){
 	setCookieCompareIDS();
-	addParameterToURL("compareIDs="+getCookie('compareIDs'));
+	addParameterToURL();
 });
 
 $(".srch-wdgt__fld").on('change', function(){
-	addParameterToURL("compareIDs="+getCookie('compareIDs'));
+	addParameterToURL();
 });
 
 function setCookieCompareIDS(newMSPID){
-	var compare_msp_ids = [];
+	var compare_msp_ids, remove_id;
 	if(newMSPID){
     	compare_msp_ids.push(newMSPID);
+    	setCookie('compareIDs',compare_msp_ids); 
     }
-	$(".compare-toprow").find('.compare-tbl__col[data-mspid]').each(function(){
-		compare_msp_ids.push($(this).data('mspid'));
-	});
-	setCookie('compareIDs',compare_msp_ids); 
-}
+    else
+    {
+    	if($(this).hasClass('remove'))
+    		remove_id = $(this).parent().data('mspid');
+    	else 	
+    		remove_id = $(this).data('mspid');
 
+    	removeFromCookie(remove_id);
+    }
+}
 
 // autocomplete functions start here
 function compareAutoComplete() {

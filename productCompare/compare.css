@@ -55,14 +55,14 @@
 		  display: none;
 		  position: fixed;
 		  top: 44px;
-		  z-index: 1000;
+		  z-index: 2;
 		  width: 1200px;
 		  margin-left: -1px;
   		  box-sizing: border-box;
 		}
 		.fix-container__product-img{
 			max-height: 80px;
-			max-width: 67px;
+			max-width: 64px;
 			padding: 5px;
 		}
 	/*	.fix-container__product-title{
@@ -114,6 +114,7 @@
 		  vertical-align: middle;
 		  font-size: 14px;
 		  color: #333333;
+		  word-wrap: break-word;
 		}
 		.compare-tbl__subhead .compare-tbl__col:first-child{
 			text-align: left;
@@ -386,7 +387,7 @@
   background-color: #e9ce18;
 }
 .star-rating {
-  background-image: url(star_small.png);
+  background-image: url(http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/star_small.png);
 }
 .rating,.rating .star-rating,.rating .rating-input {
     width: 65px;
