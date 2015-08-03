@@ -12,13 +12,6 @@ $(document).ready( function(){
 	// autocomplete processing start here
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
-
-	// if($('.cmpr_btn').length){
-	// 	$('body:not(.cmpr_btn):not(.cmpr_wrpr):not(.compare-panel__close)').on('click', function(){ if(isComparePanelOpen()){
-	// 		$(".sdbr-wrppr").removeClass("add-cmp-ml").addClass("add-cmp-mr");
- //  		} });
-	// }
-	
 });
 
 $('.sctn__compare-btn').on('click', function(){
@@ -137,11 +130,14 @@ function disableCompareCB(calloutMSG){
 		//});
 	}
 	else{
-		$('.cmpr_btn').addClass("callout-target");
-		$('.cmpr_btn').attr("data-callout",calloutMSG);
-		$(".cmpr_btn").attr('data-disable','true');
+		if(!alreadyAdded()){
+			$('.cmpr_btn').addClass("callout-target");
+			$('.cmpr_btn').attr("data-callout",calloutMSG);
+			$(".cmpr_btn").attr('data-disable','true');
+		}else{
+			$('.cmpr_btn').data("callout","Item already added to compare panel.");
+		}
 	}
-	
 }
 
 function enableCompareCB(){
@@ -158,7 +154,6 @@ function enableCompareCB(){
 		else{
 			$('.cmpr_btn').data("callout","Item already added to compare panel.");
 		}
-		
 	}
 }
 

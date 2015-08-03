@@ -8,8 +8,13 @@ $(document).ready( function(){
 	$("#othr_ftr_sbtl").click(); // to close the subtable at the start
 
 	// hide the highlight CB if number of compare products < 3
-	if($('.fix-container .compare-tbl__col[data-mspid]').length < 3){
+	var product_count = $('.fix-container .compare-tbl__col[data-mspid]').length;
+	if( product_count < 3){
 		$('.fix-container .compare-tbl__spec .compare-tbl__cb').hide();
+	}
+	if(!product_count){
+		removeCookie('compareSubCategory');
+		removeCookie('compareIDs';
 	}
 
 	$(window).scroll(function() {
