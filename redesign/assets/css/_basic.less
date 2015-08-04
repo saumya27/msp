@@ -1,0 +1,57 @@
+a {
+  color: inherit;
+
+  text-decoration: none;
+  &:hover {
+    color: @fg-color-red;
+  }
+}
+
+body {
+  background: @bg-color-gs4;
+
+  color: @fg-color;
+  font-family: @font-family;
+  font-size: @font-size;
+}
+
+* {
+  box-sizing: content-box;
+  outline: 0;
+
+  font-family: @font-family;
+}
+
+
+b {
+  font-weight: bold;
+}
+
+img[width='1'][height='1'] {
+  position: fixed;
+  bottom: 2px;
+  left: 2px;
+
+  opacity: .1;
+}
+
+sup {
+  vertical-align: super;
+}
+
+sub {
+  vertical-align: sub; 
+}
+h1 {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dfe1e8;
+
+  color: #c00;
+  font-size: 24px;
+}
+
+h2 {
+  color: @fg-color-red;
+  font-size: 18px;
+  line-height: 1.4;
+}

@@ -1,0 +1,128 @@
+.prdct-dscrptn {
+  &__img-wrpr {
+    display: inline-block;
+
+    width: 240px;
+
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__img {
+    max-width: 100%;
+  }
+  &__item {
+  	padding:20px 0;
+  }
+  &__item + &__item {
+  	border-top:1px solid @border-color;
+  }
+  &__item-dscrptn {
+    display: inline-block;
+	padding-left:20px;
+    width: 630px - 2*@border-width;
+    margin-left: @inline-block-margin;
+
+    font-size: 14px;
+    line-height: 24px;
+
+    vertical-align: middle;
+  }
+  &__item-ttl {
+  	margin-bottom:5px;
+  	font-weight: bold;
+  	text-transform: uppercase;
+  }
+  &__item-text {
+    color: @fg-color-grey;
+  }
+}
+
+.tag {
+	background-color:@bg-color-orange;
+    color: @fg-color-white;
+    padding: 2px 5px;
+    font-size: 10px;
+    vertical-align: top;
+    border-radius: @border-radius;
+	}
+.exprt-rvw {
+	.sctn__inr {
+		font-size:0;
+	}
+	&__item {
+		display:inline-block;
+		width:890px - 2*@border-width;
+		white-space: normal;
+	}
+  &__img-wrpr {
+    display: inline-block;
+
+    width: 64px;
+    height:64px;
+
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__img {
+    max-width: 100%;
+    max-height:100%;
+  }
+  &__item-dscrptn {
+    display: inline-block;
+	padding-left:20px;
+    width: 806px - 2*@border-width;
+    margin-left: @inline-block-margin;
+
+    font-size: 14px;
+    line-height: 20px;
+
+    vertical-align: middle;
+  }
+  &__item-ttl {
+  	margin-bottom:5px;
+  	font-weight: bold;
+  	text-transform: uppercase;
+  }
+  &__item-text {
+    color: @fg-color-grey;
+  }
+}
+
+.tchncl-spcftn {
+	.sctn__hdr {
+		border-bottom:none;
+	}
+	&__ctgry {
+		background-color:@bg-color-gs1;
+		color:@fg-color-white;
+		padding:10px 20px;
+		text-transform: uppercase;
+		font-size:14px;
+	}
+	&__item {
+		display:table-row;
+		line-height: 24px;
+		font-size:14px;
+	}
+	&__item + &__item &__item-key {
+		border-top:1px solid @border-color;
+	}
+	&__item + &__item &__item-vle {
+		border-top:1px solid @border-color;
+	} 
+	&__item-key {
+		width:220px;
+		display:table-cell;
+		vertical-align: middle;
+		padding:10px 10px 10px 20px;
+		background-color:@bg-color-gs3;
+	}
+	&__item-vle {
+		display:table-cell;
+		color:@fg-color-grey;
+		vertical-align:middle;
+		width:660px - 2*@border-width;
+		padding:10px;
+	}
+}
+
