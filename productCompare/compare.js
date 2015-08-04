@@ -5,7 +5,7 @@ $(document).ready( function(){
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
 
-	$("#othr_ftr_sbtl").click(); // to close the subtable at the start
+	$("#othr_ftr_sbtl .expand-collapse").click(); // to close the other features subtable at the start
 
 	// hide the highlight CB if number of compare products < 3
 	var product_count = $('.fix-container .compare-tbl__col[data-mspid]').length;
@@ -14,7 +14,7 @@ $(document).ready( function(){
 	}
 	if(!product_count){
 		removeCookie('compareSubCategory');
-		removeCookie('compareIDs';
+		removeCookie('compareIDs');
 	}
 
 	$(window).scroll(function() {
@@ -180,17 +180,15 @@ function addParameterToURL(){
     location.replace(_url);
 }
 
-function removeFromCookie(id){
-	var arr_mspids = getCookie('compareIDs'),
-    remove_id = id,
-    exist = $.inArray(remove_id, arr_mspids);
-
-	if ( ~exist ) 
-		arr_mspids.splice(position, 1);	
-}
-
 $(".remove").add(".gridheader .compare-product").on('click', function(){
-	setCookieCompareIDS();
+	var remove_id;
+
+	if($(this).hasClass('remove'))
+		remove_id = $(this).parent().data('mspid');
+	else 	
+		remove_id = $(this).data('mspid');
+
+	removeFromCookie(remove_id);
 	addParameterToURL();
 });
 
@@ -199,20 +197,20 @@ $(".srch-wdgt__fld").on('change', function(){
 });
 
 function setCookieCompareIDS(newMSPID){
-	var compare_msp_ids, remove_id;
+	var compare_msp_ids;
 	if(newMSPID){
     	compare_msp_ids.push(newMSPID);
     	setCookie('compareIDs',compare_msp_ids); 
     }
-    else
-    {
-    	if($(this).hasClass('remove'))
-    		remove_id = $(this).parent().data('mspid');
-    	else 	
-    		remove_id = $(this).data('mspid');
+}
 
-    	removeFromCookie(remove_id);
-    }
+function removeFromCookie(id){
+	var arr_mspids = getCookie('compareIDs'),
+    remove_id = id,
+    exist = $.inArray(remove_id, arr_mspids);
+
+	if ( ~exist ) 
+		arr_mspids.splice(position, 1);	
 }
 
 // autocomplete functions start here
