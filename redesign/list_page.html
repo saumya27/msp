@@ -17,10 +17,10 @@
 			<div class="main-hdr-wrpr">
 				<div class="main-hdr">
 					<a class="hdr-logo" href="/">
-						<img class="hdr-logo__img" src="http://doypaxk1e2349.cloudfront.net/logos/msp.png"/>
+						<img class="hdr-logo__img" src="http://doypaxk1e2349.cloudfront.net/logos/msp.png" alt="MySmartPrice" />
 					</a>
 					<div class="srch-wdgt ui-front" data-url="http://www.mysmartprice.com/msp/search/auto_suggest_search.php">
-						<form action="/msp/search/search.php">
+						<form action="http://www.mysmartprice.com/msp/search/search.php">
 							<input required="" name="q" placeholder="Search for electronics, fashion and books" class="srch-wdgt__fld js-atcmplt js-hdr-srch" autocomplete="off" type="search">
 							<button type="submit" class="srch-wdgt__sbmt" value=""></button>
 						</form>
@@ -29,36 +29,40 @@
 						<div class="drpdwn-wdgt__menu drpdwn-wdgt__menu--user">
 							<a href="/users/mylist.php">
 								<span class="drpdwn-wdgt__menu-img-wrpr">
-									<img class="drpdwn-wdgt__menu-img usr-img" src="http://doypaxk1e2349.cloudfront.net/icons/user-default.png" >
+									<img class="drpdwn-wdgt__menu-img user-img" src="http://doypaxk1e2349.cloudfront.net/icons/user-default.png" alt="User">
 								</span>
-								<span class="drpdwn-wdgt__menu-text js-usr-name">My Account</span>
+								<span class="drpdwn-wdgt__menu-text js-user-name">My Account</span>
 							</a>
 							<span class="drpdwn-wdgt__down-icon"></span>
 						</div>
-						<div class="lgn-rgstr">
-							<div class="drpdwn-wdgt__item lgn-rgstr__lgn">
-								<a href="/users/login.htm" class="lgn-btn btn btn--red various fancybox.ajax js-lgn">Login
+						<div class="acnt">
+							<div class="drpdwn-wdgt__item acnt__lgn">
+								<a href="http://www.mysmartprice.com/users/login.htm" class="lgn-btn btn btn--red various fancybox.ajax js-lgn">Login
 								</a>
 							</div>
-							<div class="drpdwn-wdgt__item lgn-rgstr__rgstr">
-								New User? <a href="/users/signup.htm" class="lgn-rgstr__rgstr-link various fancybox.ajax">Sign Up</a>
+							<div class="drpdwn-wdgt__item acnt__rgstr">
+								New User? <a href="/users/signup.htm" class="acnt__rgstr-link various fancybox.ajax">Sign Up</a>
 							</div>
 						</div>
-						<div class="usr-link">
-							<a href="/users/profile" class="drpdwn-wdgt__item usr-link__rcnt-view">
-								<span class="usr-link__icon-rcnt-view"></span>
+						<div class="user-link">
+							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rcnt-view">
+								<span class="user-link__icon-rcnt-view"></span>
 								My Recent Views
 							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item usr-link__svd-prdcts">
-								<span class="usr-link__icon-svd-prdcts"></span>
+							<a href="/users/profile" class="drpdwn-wdgt__item user-link__svd-prdcts">
+								<span class="user-link__icon-svd-prdcts"></span>
 								My Saved Products
 							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item usr-link__rvws">
-								<span class="usr-link__icon-rvws"></span>
+							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rvws">
+								<span class="user-link__icon-rvws"></span>
 								My Reviews
 							</a>
+							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rwrds">
+								<span class="user-link__icon-rwrds"></span>
+								My Rewards
+							</a>
 						</div>
-						<a href="javascript:logoutme();" class="drpdwn-wdgt__item usr-lgt" >
+						<a href="#" class="drpdwn-wdgt__item user-lgt js-user-lgt" >
 							Logout
 						</a>
 					</div>
@@ -69,40 +73,38 @@
 					<li class="nvgtn-bar__item menu-ctgry js-ctgry-btn">
 						<span class="menu-ctgry__hmbrgr-icon"></span>All Categories
 						<span class="menu-ctgry__down-icon"></span>
-						<div class="drpdwn-menu-wrpr js-drpdwn-menu-wrpr" data-ver="0.40">
+						<div class="drpdwn-menu-wrpr js-drpdwn-menu-wrpr" data-ver="0.41">
 							<div class="drpdwn-menu-wrpr__ldng ldng-crcl"></div>
 						<ul class="drpdwn-menu"></ul>
 					</div>
 				</li>
-				<li class="nvgtn-bar__item nvgtn-bar__item--frst">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/mobile/">Mobiles</a>
+				<li class="nvgtn-bar__item nvgtn-bar__item--frst"><a class="nvgtn-bar__item-link" href="/mobile/">Mobiles</a></li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link"  href="/computer/">Computers</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link"  href="http://www.mysmartprice.com/computer/">Computers</a>
+					<a class="nvgtn-bar__item-link" href="/camera/">Cameras</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/camera/">Cameras</a>
+					<a class="nvgtn-bar__item-link" href="/electronics/">TV / Entertainment</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/electronics/">TV / Entertainment</a>
+					<a class="nvgtn-bar__item-link" href="/appliance/">Appliances</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/appliance/">Appliances</a>
+					<a class="nvgtn-bar__item-link" href="/care/">Personal Care</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/care/">Personal Care</a>
+					<a class="nvgtn-bar__item-link" href="/men/">Men</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/men/">Men</a>
+					<a class="nvgtn-bar__item-link" href="/women/">Women</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/women/">Women</a>
+					<a class="nvgtn-bar__item-link" href="/kids/">Kids</a>
 				</li>
 				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/kids/">Kids</a>
-				</li>
-				<li class="nvgtn-bar__item">
-					<a class="nvgtn-bar__item-link" href="http://www.mysmartprice.com/home/">Home Decor</a>
+					<a class="nvgtn-bar__item-link" href="/home/">Home Decor</a>
 				</li>
 			</ul>
 		</div>
@@ -121,90 +123,133 @@
 				Last Updated on 22<sup>nd</sup> October 2014
 			</div>
 		</div>
-		<div class="list-hdr">
-			<h1>
-			Mobile Phones
-			</h1>
-			<div class="list-hdr__dscrptn">
+		<div class="list-info">
+			<h1> Mobile Phones </h1>
+			<div class="list-info__dscrptn">
 				Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. Sed nec felis pellentesque, lacinia dui sed, ultricies sapien. Pellentesque orci lectus, consectetur vel posuere posuere, rutrum eu ipsum. Aliquam eget odio sed ligula iaculis consequat at eget orci. Mauris molestie sit amet metus mattis varius. Donec sit amet ligula eget nisi sodales egestas. Aliquam interdum dolor aliquet dolor sollicitudin fermentum.
+			</div>
+			<div class="list-info__link-wrpr"> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-core-ii-msp4376">Samsung Galaxy Core 2 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-e5-msp5572">Samsung Galaxy E5 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s6-msp5275">Samsung Galaxy S6 Price</a> 
+				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-a7-(16gb)-msp5959">Samsung Galaxy A7 Price</a>
 			</div>
 		</div>
 		<div class="main-wrpr list-main">
-			<div class="sctn product-s">
+			<div class="sctn cntxt-link cntxt-link--only-img js-sldr clearfix" data-slideitem="cntxt-link-item" data-slideitemwrapper="cntxt-link-item-wrpr">
+				<div class="cntxt-link__prvs-icon js-sldr__prvs"></div>
+				<div class="cntxt-link-item-wrpr">
+					
+					<div class="cntxt-link-item">
+						<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="cntxt-link-item__img" src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/top10_laptops.png" alt="Top 10 In this Category">
+						</a>
+					</div>
+					<div class="cntxt-link-item">
+						<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="cntxt-link-item__img" src="http://doypaxk1e2349.cloudfront.net/contextual/budget_laptops.png" alt="Top 10 In this Category">
+						</a>
+					</div>
+					<div class="cntxt-link-item">
+						<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="cntxt-link-item__img" src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/top10_laptops.png" alt="Top 10 In this Category">
+						</a>
+					</div>
+					<div class="cntxt-link-item">
+						<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="cntxt-link-item__img" src="http://doypaxk1e2349.cloudfront.net/contextual/budget_laptops.png" alt="Top 10 In this Category">
+						</a>
+					</div>
+					<div class="cntxt-link-item">
+						<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="cntxt-link-item__img" src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/top10_laptops.png" alt="Top 10 In this Category">
+						</a>
+					</div>
+				</div>
+				<div class="cntxt-link__next-icon js-sldr__next"></div>
+			</div>
+			<div class="sctn product-grid-with-bdg">
 				<div class="sctn__hdr clearfix">
-					<div class="sctn__ttl">Best Selling Laptops</div>
+					<div class="sctn__ttl">
+						Deals of the Hour - Expires in 
+						<span class="cntdwn"><span class="cntdwn__hour">00</span> : <span class="cntdwn__mins">36<span>
+					</div>
 					<div class="sctn__nvgtn">
 						<a class="sctn__view-all-link" href="#">VIEW ALL</a>
 					</div>
 				</div>
 				<div class="sctn__inr clearfix">
-					<div class="prdct-item-s" data-mspid="202972">
-						<a class="prdct-item-s__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+					<div class="prdct-item-with-bdg" data-mspid="202972">
+						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
 								<span>HP 15-r249TU (L2Z88PA)</span>
 						</a>
-						<a class="prdct-item-s__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-s__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
+						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
 						</a>
-						<div class="prdct-item-s__dtls">
-							<div class="prdct-item-s__prc clearfix">
-								<span class="prdct-item-s__rpe">&#8377;</span>
-								<span class="prdct-item-s__prc-val">22,800</span>
+						<div class="prdct-item-with-bdg__dtls">
+							<div class="prdct-item-with-bdg__prc clearfix">
+								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
+								<span class="prdct-item-with-bdg__prc-val">22,800</span>
 							</div>
-							<div class="prdct-item-s__dscnt">30% OFF</div>
+							<div class="bdg">30% OFF</div>
 							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
 								<div class="rtng-star__inr" style="width: 90%;"></div>
 							</div>
 						</div>
 					</div>
-					<div class="prdct-item-s" data-mspid="202972">
-						<a class="prdct-item-s__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+					<div class="prdct-item-with-bdg" data-mspid="202972">
+						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
 								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
 						</a>
-						<a class="prdct-item-s__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-s__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
+						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
 						</a>
-						<div class="prdct-item-s__dtls">
-							<div class="prdct-item-s__prc clearfix">
-								<span class="prdct-item-s__rpe">&#8377;</span>
-								<span class="prdct-item-s__prc-val">22,800</span>
+						<div class="prdct-item-with-bdg__dtls">
+							<div class="prdct-item-with-bdg__prc clearfix">
+								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
+								<span class="prdct-item-with-bdg__prc-val">22,800</span>
 							</div>
-							<div class="prdct-item-s__dscnt">30% OFF</div>
+							<div class="bdg">30% OFF</div>
 							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
 								<div class="rtng-star__inr" style="width: 90%;"></div>
 							</div>
 						</div>
 					</div>
-					<div class="prdct-item-s" data-mspid="202972">
-						<a class="prdct-item-s__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+					<div class="prdct-item-with-bdg" data-mspid="202972">
+						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
 								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
 						</a>
-						<a class="prdct-item-s__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-s__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
+						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
 						</a>
-						<div class="prdct-item-s__dtls">
-							<div class="prdct-item-s__prc clearfix">
-								<span class="prdct-item-s__rpe">&#8377;</span>
-								<span class="prdct-item-s__prc-val">22,800</span>
+						<div class="prdct-item-with-bdg__dtls">
+							<div class="prdct-item-with-bdg__prc clearfix">
+								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
+								<span class="prdct-item-with-bdg__prc-val">22,800</span>
 							</div>
-							<div class="prdct-item-s__dscnt">30% OFF</div>
+							<div class="bdg">30% OFF</div>
 							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
 								<div class="rtng-star__inr" style="width: 90%;"></div>
 							</div>
 						</div>
 					</div>
-					<div class="prdct-item-s" data-mspid="202972">
-						<a class="prdct-item-s__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+					<div class="prdct-item-with-bdg" data-mspid="202972">
+						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
 								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
 						</a>
-						<a class="prdct-item-s__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-s__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
+						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
+							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
 						</a>
-						<div class="prdct-item-s__dtls">
-							<div class="prdct-item-s__prc clearfix">
-								<span class="prdct-item-s__rpe">&#8377;</span>
-								<span class="prdct-item-s__prc-val">22,800</span>
+						<div class="prdct-item-with-bdg__dtls">
+							<div class="prdct-item-with-bdg__prc clearfix">
+								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
+								<span class="prdct-item-with-bdg__prc-val">22,800</span>
 							</div>
-							<div class="prdct-item-s__dscnt">30% OFF</div>
+							<div class="bdg">30% OFF</div>
 							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
 								<div class="rtng-star__inr" style="width: 90%;"></div>
 							</div>
@@ -214,95 +259,45 @@
 			</div>
 			<h2 class="list-main__ttl">SAMSUNG MOBILE PRICE LIST 2014 (with 80 models and pictures)</h2>
 				
-			<div class="sctn cntxt-link cntxt-link--s js-sldr clearfix" data-slideitem="cntxt-link-item" data-slideitemwrapper="cntxt-link-item-wrpr">
-					<div class="cntxt-link__prvs-icon js-sldr__prvs"></div>
-					<div class="cntxt-link-item-wrpr">
-						<div class="cntxt-link-item js-inpage-link" data-href="recently-viewed">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/android.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Top 10 Laptops
-								</a>
-							</div>
-						</div>
-						<div class="cntxt-link-item">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/wifi.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Gaming Laptops
-								</a>
-							</div>
-						</div>
-						<div class="cntxt-link-item">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/android.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Budget Laptops
-								</a>
-							</div>
-						</div>
-						<div class="cntxt-link-item">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/wifi.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Business Laptops
-								</a>
-							</div>
-						</div>
-						<div class="cntxt-link-item">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/android.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Storage and Memory
-								</a>
-							</div>
-						</div>
-						<div class="cntxt-link-item">
-							<a class="cntxt-link-item__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<img class="cntxt-link-item__img" src="img/wifi.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-							</a>
-							<div class="cntxt-link-item__ttl-wrpr">
-								<a href="#" class="cntxt-link-item__ttl">
-									Android
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="cntxt-link__next-icon js-sldr__next"></div>
+			<div class="list-hdr clearfix">
+				<div class="list-hdr__prdct-cnt">
+					Showing <b class="js-prdct-cnt"> 1-48</b> of <b class="js-prdct-cnt">3468</b> products
 				</div>
-			<div class="fltr-hdr clearfix">
-				<div class="fltr-hdr-srch">
-					<input type="text" class="fltr-hdr-srch__fld" placeholder="Search..">
-					<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="fltr-hdr-srch__btn">
+				<!-- <a href="#" class="tag">Follow this Search</a> -->
+				<div class="sort-wrpr"> SORT BY
+					<select class="sort">
+						<option value="price:desc">Price: High to Low</option>
+						<option value="price:asc">Price: Low to High</option>
+						<option value="popularity:desc" selected="">Popularity</option>
+						<option value="newest:desc">New Arrival</option>
+					</select>
 				</div>
-				<div class="fltr-hdr__view"> View
-					<span class="fltr-hdr__view-l js-fltr-hdr__view"></span>
-					<span class="fltr-hdr__view-s fltr-hdr__view-s--slctd js-fltr-hdr__view"></span>
+				<div class="list-hdr-view"> VIEW
+					<span class="list-hdr-view__prdct-l  js-list-hdr-view"></span>
+					<span class="list-hdr-view__prdct-s list-hdr-view__prdct-s--slctd js-list-hdr-view"></span>
 				</div>
-				<div class="fltr-hdr__sort-wrpr"> SORT BY
-					<div class="fltr-hdr__sort">
-						<select class="fltr-hdr__sort-optns">
-							<option value="price:desc">Price: High to Low</option>
-							<option value="price:asc">Price: Low to High</option>
-							<option value="popularity:desc" selected="">Popularity</option>
-							<option value="newest:desc">New Arrival</option>
-						</select>
-						<span class="fltr-hdr__sort-down-icon"></span>
-					</div>
+				<div class="list-hdr-srch">
+					<input type="text" class="list-hdr-srch__fld" placeholder="Search..">
+					<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="list-hdr-srch__btn">
 				</div>
 			</div>
 			<div class="fltr-wrpr1">
 				<div class="fltr-wrpr">
+					<div class="fltr" groupname="bestsellers">
+						<div class="fltr__hdr">
+							<span class="fltr__ttl">Best Sellers </span>
+							<span class="fltr__cler">Clear </span>
+						</div>
+						<div class="fltr-val-wrpr nano">
+							<div class="content">
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="SHOW ONLY BEST SELLERS" name="1463217[]" value="1200387-1463217">
+									<span class="fltr-val__text" data-callout="Karbonn">Show Only Best Sellers</span>
+									<span class="fltr-val__cnt">(206)</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
 					<div class="fltr" groupname="price">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Price </span>
@@ -503,207 +498,6 @@
 			</div>
 			<div class="list-mdl">
 				<div class="apld-fltrs"></div>
-				<div class="sctn prdct-grid prdct-grid--s prdct-grid--prdct-l js-prdct-list clearfix">
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-				
-				</div>
 				<div class="sctn prdct-grid prdct-grid--s clearfix">
 					<div class="prdct-item" data-mspid="202972">
 						<div class="prdct-item__save-btn js-save-btn"></div>
@@ -718,18 +512,16 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
+								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
+
 							</div>
+							<div class="prdct-item__str-optns">23 Stores at ₹22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">
 								<li class="prdct-item__spcftn">5 inch Screen</li>
 								<li class="prdct-item__spcftn">Dual SIM</li>
@@ -751,18 +543,16 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
+								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
+
 							</div>
+							<div class="prdct-item__str-optns">23 Stores at ₹22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">
 								<li class="prdct-item__spcftn">5 inch Screen</li>
 								<li class="prdct-item__spcftn">Dual SIM</li>
@@ -784,18 +574,16 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
+								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
+
 							</div>
+							<div class="prdct-item__str-optns">23 Stores at ₹22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">
 								<li class="prdct-item__spcftn">5 inch Screen</li>
 								<li class="prdct-item__spcftn">Dual SIM</li>
@@ -817,18 +605,16 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
+								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
+
 							</div>
+							<div class="prdct-item__str-optns">23 Stores at ₹22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">
 								<li class="prdct-item__spcftn">5 inch Screen</li>
 								<li class="prdct-item__spcftn">Dual SIM</li>
@@ -850,51 +636,16 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
+								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
+
 							</div>
-							<ul class="prdct-item__spcftn-wrpr">
-								<li class="prdct-item__spcftn">5 inch Screen</li>
-								<li class="prdct-item__spcftn">Dual SIM</li>
-								<li class="prdct-item__spcftn">5 MP Camera</li>
-								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
-						</div>
-					</div>
-					<div class="prdct-item" data-mspid="202972">
-						<div class="prdct-item__save-btn js-save-btn"></div>
-						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
-									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-										<div class="rtng-star__inr" style="width: 90%;">
-										</div>
-									</div>
-									<div class="rtng__cnt">234 Ratings</div>
-								</div>
-								<div class="prdct-item__slr">
-									<div class="prdct-item__slr-cnt">23</div>
-									<div class="prdct-item__slr-txt">Sellers</div>
-								</div>
-							</div>
-							<div class="prdct-item__prc">
-								<span class="prdct-item__rpe">&#8377;</span>
-								<span class="prdct-item__prc-val">22,800</span>
-								<span class="prdct-item__mrp">2,22,800</span>
-							</div>
+							<div class="prdct-item__str-optns">23 Stores at ₹22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">
 								<li class="prdct-item__spcftn">5 inch Screen</li>
 								<li class="prdct-item__spcftn">Dual SIM</li>
@@ -906,10 +657,10 @@
 				</div>
 				<div class="pgntn">
 					<div class="pgntn__rslt-cnt">
-						Showing page <b>1</b> out of <b>28</b>
+						Showing page <span class="pgntn__rslt-page">1</span> out of <span class="pgntn__rslt-page">28</span></b>
   					</div>
-					<a href="#" class="pgntn__item js-pgntn__item" data-pgno="0">
-						›
+					<a href="#" class="pgntn__item js-pgntn__item pgntn__item--prvs" data-pgno="0">
+						‹
 					</a>
 					<a class="pgntn__item pgntn__item--crnt js-pgntn__item" data-pgno="1">
 						1
@@ -926,7 +677,7 @@
 					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-3.html" class="pgntn__item js-pgntn__item" data-pgno="28">
 						28
 					</a>
-					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-66.html" class="pgntn__item js-pgntn__item" data-pgno="28">›
+					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-66.html" class="pgntn__item pgntn__item--next js-pgntn__item" data-pgno="28">›
 					</a>
 				</div>
 				<div class="sctn info-wdgt">
@@ -1011,7 +762,7 @@
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
 								<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">&#8377;</span>22,800</div>
 							</div>
@@ -1028,7 +779,7 @@
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
 								<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">&#8377;</span>22,800</div>
 							</div>
@@ -1045,7 +796,7 @@
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
-									<div class="rtng__cnt">234 Ratings</div>
+									
 								</div>
 								<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">&#8377;</span>22,800</div>
 							</div>
@@ -1056,345 +807,8 @@
 					</a>
 				</div>
 		</div>
-		<div class="sctn prdct-grid prdct-grid--l">
-			<div class="sctn__hdr clearfix">
-				<div class="sctn__ttl">Top Deals</div>
-				<div class="sctn__nvgtn">
-					<a class="sctn__view-all-link" href="#">VIEW ALL</a>
-					<span class="sctn__prvs-icon"></span>
-					<span class="sctn__next-icon"></span>
-				</div>
-			</div>
-			<div class="sctn__inr clearfix">
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-						
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-						
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-						
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-				<div class="prdct-item" data-mspid="202972">
-					<div class="prdct-item__save-btn js-save-btn"></div>
-					<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-						<img class="prdct-item__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-					</a>
-					<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
-						<a class="prdct-item__name" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
-						<div class="prdct-item__extr-info clearfix">
-							<div class="rtng-wrap">
-								<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
-									<div class="rtng-star__inr" style="width: 90%;">
-									</div>
-								</div>
-								<div class="rtng__cnt">234 Ratings</div>
-							</div>
-							<div class="prdct-item__slr">
-								<div class="prdct-item__slr-cnt">23</div>
-								<div class="prdct-item__slr-txt">Sellers</div>
-							</div>
-						</div>
-						<div class="prdct-item__prc">
-							<span class="prdct-item__rpe">₹</span>
-							<span class="prdct-item__prc-val">22,800</span>
-							<span class="prdct-item__mrp">2,22,800</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div class="js-dls algn-left"></div>
+		<div class="js-rcntly_vwd algn-left" data-id="recently-viewed"></div>
 	</div>
 	<div class="ftr">
 			<div class="ftr__clmn-wrpr1 clearfix">

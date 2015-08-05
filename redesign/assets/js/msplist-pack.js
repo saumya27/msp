@@ -805,6 +805,11 @@ if ($.QueryString["utm_source"]) {
 // 	});
 // } else {
 	ListPage.controller.init();
+	if(localStorage.gridType === "large") {
+		setGridType("large");
+	} else if(localStorage.gridType === "small") {
+		setGridType("small");
+	}
 //}
 
 // binding other links to filters.
@@ -848,3 +853,28 @@ $(".fltr-wrpr1").on("click", ".fltr-srch__cler", function () {
 	$filterGroup.find(".fltr-val").show();
 	$filterGroup.find(".nano").nanoScroller();
 });
+
+$doc.on("click", ".js-list-hdr-view", function() {
+	if($(this).hasClass("list-hdr-view__prdct-l") ) {
+		setGridType("large");
+	} else {
+		setGridType("small");
+	}
+});
+
+function setGridType(type) {
+	$(".list-hdr-view__prdct-l").removeClass("list-hdr-view__prdct-l--slctd");
+	$(".list-hdr-view__prdct-s").removeClass("list-hdr-view__prdct-s--slctd");
+
+	if(type==="large") {
+		$(".prdct-grid").addClass("prdct-grid--prdct-l");
+		$(".list-hdr-view__prdct-l").addClass("list-hdr-view__prdct-l--slctd");
+		localStorage.gridType = "large";
+	}
+	else {
+		$(".prdct-grid").removeClass("prdct-grid--prdct-l");
+		$(".list-hdr-view__prdct-s").addClass("list-hdr-view__prdct-s--slctd");	
+		localStorage.gridType = "small";
+	}
+
+}

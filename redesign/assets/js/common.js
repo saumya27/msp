@@ -105,7 +105,7 @@ function update_ui() {
       msp_user_image = getCookie("msp_user_image"),
       msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email");
     if (msp_login == "1") {
-        $(".lgn-rgstr").hide();
+        $(".acnt").hide();
         $(".js-user-lgt").show();
         $(".js-user-name").text(msp_login_name);
         if (msp_user_image)
@@ -114,7 +114,7 @@ function update_ui() {
         $(".js-user-lgt").hide();
         $(".js-user-name").text(DEFAULT_LOGIN_NAME);
         $(".user-img").attr("src", DEFAULT_IMAGE_PATH);
-        $(".lgn-rgstr").show();
+        $(".acnt").show();
     }
 }
 
