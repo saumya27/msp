@@ -1,20 +1,41 @@
 
 var sub_category = $('#msp_body').attr('category');
-var flyingImageCount = 0;
+var flyingImageCount = 0, check_if_added;
 
 $(document).ready( function(){
 	
+	var request= {};
+	request.mspids = getCookie("compareIDs") || "";
+	// request.subcategory = getCookie("compareSubCategory") || "";
+	$.ajax({
+		type: "GET",
+        url: "/expert/compare_panel_ajax.php",
+        // dataType: "json",
+        data: request,
+        success: function(data) {
+        		$('.sdbr-wrppr').replaceWith(data);
+            }
+    });
+
+
 	isComparePanelFull();// check if already 4 products are there in compare panel
 	isDifferentCategory();	// check if this product is of same category that of those already in compare panel
+	// check_if_added = false;
 
 	if(alreadyAdded() && $('.cmpr_btn').length)
 		disableCompareCB("Item already added");
 	// autocomplete processing start here
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
+
+	// alert(getCookie('compareIDs'));
+	var compare_ids = getCookie('compareIDs').split(',');
+	for( id = 0; id < compare_ids.length ; id++){
+		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
+	}
 });
 
-$('.sctn__compare-btn').on('click', function(){
+$('body').on('click','.sctn__compare-btn', function(){
 	var mspid, mspids, subcategory;
 
 	$('.sdbr-list__item:not(.cmpr0)').each(function(){ 
@@ -49,34 +70,36 @@ $('body').on('click', '.remove',  function(){
 	   		if(!isComparePanelFull() && !isDifferentCategory())
 	   			enableCompareCB();
 
-			if($(".sdbr-list__item.cmpr0").length == 1){
+			if($(".sdbr-list__item.cmpr0").length == 5){
 				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
 			} 		
 
-			compareAutoComplete();
+			// compareAutoComplete();
 			setCookieCompareIDS(); // re-set comparemspid cookie
 	   });
 	// }
 });
 
-$(".compare-entrypoint").on('change', function(){
-	var id =  $(this).parents().closest('.msplistitem').data('mspid');
-	var imgtofly = $(this).parents().find('.imgcont img')[0];
-	var title = $(this).parents().closest('.item-details').find('.item-title').text();
-	var $thisCB = $(this);
+$('body').on('change',".compare-entrypoint", function(){
+	// if(!check_if_added){
+		var id =  $(this).parents().closest('.msplistitem').data('mspid');
+		var imgtofly = $(this).parents().find('.imgcont img')[0];
+		var title = $(this).parents().closest('.item-details').find('.item-title').text();
+		var $thisCB = $(this);
 
-	$thisCB.attr('disabled','disabled');
+		$thisCB.attr('disabled','disabled');
 
-	if($thisCB.prop('checked')){
-		flyImage(imgtofly, id, title, $thisCB);
-	}
-	else{
-		if(!isComparePanelOpen()){
-			$(".sdbr-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+		if($thisCB.prop('checked')){
+			flyImage(imgtofly, id, title, $thisCB);
 		}
-		$(".sdbr-list__item[data-comparemspid='" + id + "']").find('.remove').click();
-	}
-	isComparePanelFull(); 
+		else{
+			if(!isComparePanelOpen()){
+				$(".sdbr-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+			}
+			$(".sdbr-list__item[data-comparemspid='" + id + "']").find('.remove').click();
+		}
+		isComparePanelFull(); 
+	// }
 });
 
 $('body').on('click', '.cmpr_btn:not([data-disable="true"])', function(){
@@ -85,13 +108,12 @@ $('body').on('click', '.cmpr_btn:not([data-disable="true"])', function(){
 	var title = $('.mspSingleTitle').text();
 	var $thisCB = $(this);
 
-	$thisCB.attr('data-disable','true');
 	flyImage(imgtofly, id, title, $thisCB);
+	disableCompareCB("Item already added to compare panel");
 	isComparePanelFull(); 
 });
 
-
-$(".compare-panel__close").on('click', function () {
+$('body').on('click', ".compare-panel__close",  function(){
 	var addCompareSideBar = $(".sdbr-wrppr");
 	if( addCompareSideBar.hasClass("add-cmp-ml") ) {
 		addCompareSideBar.removeClass("add-cmp-ml").addClass("add-cmp-mr");
@@ -171,7 +193,7 @@ function isComparePanelFull(){ // check if already 4 products are there in compa
 }
 
 function isDifferentCategory(){ // check if this product is of same category that of those already in compare panel
-	var compareSubCategory = getCookie(compareSubCategory);
+	var compareSubCategory = getCookie('compareSubCategory');
 	if(compareSubCategory)
 	{
 		if(sub_category != compareSubCategory)
@@ -231,40 +253,36 @@ function flyImage(imgtofly, id, title, $thisCB){
         
         var img = imgtofly.src;
         var img_alt = imgtofly.alt;
-
-        $replaceThis = $(".sdbr-list__item.cmpr0:first");
-	    $replaceThis.attr("data-comparemspid", id);
-	    $replaceThis.attr("data-subcategory", sub_category);
-	    $replaceThis.find(".sdbr-list__img").attr('src',img);
-	    $replaceThis.find(".sdbr-list__img").attr('alt',img_alt);
-	    $replaceThis.find(".sdbr-list__item-ttl").html(title);
-
-	    var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
-	    $replaceThis.append(removeButton);
-
- 		$replaceThis.removeClass("cmpr0");
+        addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
  		flyingImageCount--;
  		$thisCB.removeAttr("disabled");
-
  		if($(".cpmr_btn").length){
  			disableCompareCB("Item already added");
  		}
 	    // if this is the first product in compare panel , set category
-	    if($(".sdbr-list__item.cmpr0").length == 1){
+	    if($(".sdbr-list__item.cmpr0").length == 5){
 	    	 setCookie("compareSubCategory", sub_category);
 	    }
 	  	setCookieCompareIDS(id);
      });
 }
 
+function addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title){
+	var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
+
+	$replaceThis = $(".sdbr-list__item.cmpr0:first");
+	$replaceThis.attr("data-comparemspid", id);
+	$replaceThis.attr("data-subcategory", sub_category);
+	$replaceThis.find(".sdbr-list__img").attr('src',img);
+	$replaceThis.find(".sdbr-list__img").attr('alt',img_alt);
+	$replaceThis.find(".sdbr-list__item-ttl").html(title);
+	$replaceThis.append(removeButton);
+	$replaceThis.removeClass("cmpr0");
+}
+
 // set cookie for the compare product msp-ids
 function setCookieCompareIDS( newMSPID ){
-    var compare_msp_ids =  []  ;
-    
-    if(newMSPID){
-    	compare_msp_ids.push(newMSPID);
-    }
-    
+    var compare_msp_ids = [];
     $('.sdbr-list__item:not(.cmpr0)').each(function(){ 
     	compare_msp_ids.push( $(this).data("comparemspid") ); 
     })
@@ -313,9 +331,10 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                     if (foundInAutocompleteCache) return;
 
                     request.term = term;
-                    request.category = category;
+                    request.subcategory = category;
+                    request.mspids = getCookie('compareIDs') || "";
                     $.ajax({
-                        url: $(element).closest(".srch-wdgt").data('url'), //http://www.mysmartprice.com/msp/search/auto_suggest_search.php',
+                        url: "/expert/autoSuggest.php",
                         dataType: "json",
                         data: request,
                         success: function(data) {
@@ -326,19 +345,31 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                             autocompleteCache[term] = data;
                             element.data('autocompleteCache', autocompleteCache);
                             response(data);
-
                         }
                     });
                 },
                 select: function(event, ui) {
-                    var $form = $(this)
-                        .closest('form');
+                    var $form = $(this).closest('form');
                     $form.find('.js-atcmplt').val(ui.item.value);
                     $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
                     setCookieCompareIDS(ui.item.mspid);
-                    $form.find('#header-search-subcat').val(ui.item.subcategory_code);
-                    $form.find('.srch-wdgt__srch-sbmt')
-                        .click();
+                    // $form.find('#header-search-subcat').val(ui.item.subcategory);
+					// if this is the first product in compare panel , set category
+                    if($(".sdbr-list__item.cmpr0").length == 5){
+                    	setCookie('compareSubCategory',ui.item.subcategory);
+                    }
+                    var $replaceThis = $(this).closest('.sdbr-list__item');
+                    var id = ui.item.mspid, subcategory=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
+                    addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
+
+                    if($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
+			 			disableCompareCB("Item already added");
+			 		}
+
+					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
+					
+                    // $form.find('.srch-wdgt__srch-sbmt')
+                    //     .click();
                 }
             })
             .data('uiAutocomplete')

@@ -197,24 +197,32 @@ $(".srch-wdgt__fld").on('change', function(){
 });
 
 function setCookieCompareIDS(newMSPID){
-	var compare_msp_ids;
+
+	var compare_msp_ids = [],cookie_mspids = getCookie('compareIDs');
+	if(cookie_mspids){
+		compare_msp_ids = cookie_mspids.split(",");
+	}
 	if(newMSPID){
     	compare_msp_ids.push(newMSPID);
-    	setCookie('compareIDs',compare_msp_ids); 
     }
+
+    setCookie('compareIDs',compare_msp_ids); 
 }
 
 function removeFromCookie(id){
-	var arr_mspids = getCookie('compareIDs'),
-    remove_id = id,
-    exist = $.inArray(remove_id, arr_mspids);
+	var arr_mspids = (getCookie('compareIDs') || "").split(","),
+    remove_id = id.toString(),
+    position = $.inArray(remove_id, arr_mspids);
 
-	if ( ~exist ) 
+	if ( ~position ) 
 		arr_mspids.splice(position, 1);	
+
+	setCookie('compareIDs',arr_mspids); 
 }
 
 // autocomplete functions start here
 function compareAutoComplete() {
+	var prod_count = $('.fix-container .compare-tbl__col[data-mspid]').length;
     if ($(".js-atcmplt")
         .length !== 0) {
 
@@ -252,9 +260,10 @@ function compareAutoComplete() {
                     if (foundInAutocompleteCache) return;
 
                     request.term = term;
-                    request.category = category;
+                    request.subcategory = category;
+                    request.mspids = getCookie('compareIDs') || "";
                     $.ajax({
-                        url: $(element).closest(".srch-wdgt").data('url'), //http://www.mysmartprice.com/msp/search/auto_suggest_search.php',
+                        url: "/expert/autoSuggest.php",
                         dataType: "json",
                         data: request,
                         success: function(data) {
@@ -276,10 +285,14 @@ function compareAutoComplete() {
                         .val(ui.item.value);
                     $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
                     setCookieCompareIDS(ui.item.mspid);
-                    $form.find('#header-search-subcat')
-                        .val(ui.item.subcategory_code);
-                    $form.find('.srch-wdgt__srch-sbmt')
-                        .click();
+
+					if(prod_count < 1){
+						// $form.find('#header-search-subcat').val(ui.item.subcategory);
+                    	setCookie('compareSubCategory',ui.item.subcategory);
+                	}
+                    addParameterToURL();
+                    // $form.find('.srch-wdgt__srch-sbmt')
+                    //     .click();
                 }
             })
             .data('uiAutocomplete')
