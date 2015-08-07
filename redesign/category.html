@@ -5,9 +5,7 @@
 		<meta name="language" content="en-uk, english">
 		<title>Get the MySmartPrice Chrome Plugin &amp; Save Money | MySmartPrice</title>
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700'>
-		<link rel='stylesheet' type='text/css' href='http://mysmartprice.com/msp/css/common.min.css?release=2014.03.11'>
-		<link rel='stylesheet' type='text/css' href='http://mysmartprice.com/css/A.jquery.fancybox.css,qrelease=2014.03.19.pagespeed.cf.fDF_Rqk9nG.css'>
-		<link rel='stylesheet' type='text/css' href='http://www.mysmartprice.com/msp/css/A.email_cap.css,qrelease=2014.04.26.pagespeed.cf.PvsAwmNK5k.css'>
+		<link rel='stylesheet' type='text/css' href='assets/css/common.css'>
 		<link rel='stylesheet' type='text/css' href='assets/css/msp1.css'>
 
 		<link rel='stylesheet' type='text/css' href='assets/css/msp.css'>
@@ -37,34 +35,34 @@
 						</div>
 						<div class="acnt">
 							<div class="drpdwn-wdgt__item acnt__lgn">
-								<a href="http://www.mysmartprice.com/users/login.htm" class="lgn-btn btn btn--red various fancybox.ajax js-lgn">Login
-								</a>
+								<div data-href="login.html" class="lgn-btn btn btn--red js-lgn popup-target">Login
+								</div>
 							</div>
-							<div class="drpdwn-wdgt__item acnt__rgstr">
-								New User? <a href="/users/signup.htm" class="acnt__rgstr-link various fancybox.ajax">Sign Up</a>
+							<div class="drpdwn-wdgt__item acnt__rgstr ">
+								New User? <span data-href="signup.html" class="acnt__rgstr-link popup-target text-link">Sign Up</span>
 							</div>
 						</div>
 						<div class="user-link">
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rcnt-view">
+							<div class="drpdwn-wdgt__item user-link__rcnt-view text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rcnt-view"></span>
 								My Recent Views
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__svd-prdcts">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__svd-prdcts text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-svd-prdcts"></span>
 								My Saved Products
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rvws">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rvws text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rvws"></span>
 								My Reviews
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rwrds">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rwrds text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rwrds"></span>
 								My Rewards
-							</a>
+							</div>
 						</div>
-						<a href="#" class="drpdwn-wdgt__item user-lgt js-user-lgt" >
+						<div class="drpdwn-wdgt__item user-lgt text-link js-user-lgt" >
 							Logout
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -75,40 +73,40 @@
 						<span class="menu-ctgry__down-icon"></span>
 						<div class="drpdwn-menu-wrpr js-drpdwn-menu-wrpr" data-ver="0.41">
 							<div class="drpdwn-menu-wrpr__ldng ldng-crcl"></div>
-							<ul class="drpdwn-menu"></ul>
-						</div>
-					</li>
-					<li class="nvgtn-bar__item nvgtn-bar__item--frst"><a class="nvgtn-bar__item-link" href="/mobile/">Mobiles</a></li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link"  href="/computer/">Computers</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/camera/">Cameras</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/electronics/">TV / Entertainment</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/appliance/">Appliances</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/care/">Personal Care</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/men/">Men</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/women/">Women</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/kids/">Kids</a>
-					</li>
-					<li class="nvgtn-bar__item">
-						<a class="nvgtn-bar__item-link" href="/home/">Home Decor</a>
-					</li>
-				</ul>
-			</div>
+						<ul class="drpdwn-menu"></ul>
+					</div>
+				</li>
+				<li class="nvgtn-bar__item nvgtn-bar__item--frst"><a class="nvgtn-bar__item-link" href="/mobile/">Mobiles</a></li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link"  href="/computer/">Computers</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/camera/">Cameras</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/electronics/">TV / Entertainment</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/appliance/">Appliances</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/care/">Personal Care</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/men/">Men</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/women/">Women</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/kids/">Kids</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/home/">Home Decor</a>
+				</li>
+			</ul>
 		</div>
+	</div>
 		<div class="drpdwn-menu-ovrly js-drpdwn-menu-ovrly"></div>
 		<div class="hdr-size">
 			<div class="hdr-size__main"></div>
@@ -661,7 +659,6 @@
 	<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-7587491-10']);_gaq.push(['_setDomainName','mysmartprice.com']);_gaq.push(['_setAllowLinker',true]);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
 	<script type="text/javascript">var wizrocket={event:[],profile:[],account:[]};wizrocket.account.push({"id":"R9Z-Z46-59KZ"});(function(){var wzrk=document.createElement('script');wzrk.type='text/javascript';wzrk.async=true;wzrk.src=('https:'==document.location.protocol?'https://d2r1yp2w7bby2u.cloudfront.net':'http://static.wizrocket.com')+'/js/a.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wzrk,s);})();</script>
 	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
-	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.fancybox.pack.js,qrelease=2014.03.19.pagespeed.jm.kJ1ZMRbSuh.js'></script>
 	<script type='text/javascript' src='http://mysmartprice.com/msp/js/jquery-ui-1.10.3.custom.pack.js,qrelease=2014.03.10.pagespeed.jm.XNXCOEy5_E.js'></script>
 	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.validate.min.js,qrelease=2014.03.18.pagespeed.jm.A3yIyYbmD6.js'></script>
 	<script type="text/javascript" src='http://mysmartprice.com/msp/js/useranalytics.js.pagespeed.jm.fKFxwK5V7t.js'></script>

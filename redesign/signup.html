@@ -1,0 +1,101 @@
+<style>
+	.popup-container {
+		width:385px !important;
+	}
+</style>
+<div class="popupwrapout">
+<div id="signup-form-div" class="popupwrap">
+	<div id="signup-div">
+		<!--div class="popuphead">Register</div!-->
+		<div class="loginFacebook">
+			<a href="#" onclick="fb_login();"><img src="/images/signinfb.png"/></a>
+		</div>
+		<div class="orline">OR</div>
+		<br clear="all"/>
+		<form name="signup-form" id="signup-form" method="post" action="#">
+			<div class="error">
+			</div>
+			<br clear="all"/>
+			<div class="input-label">
+				<label for="signupname">Name</label>
+				<label for="signupemail">Email</label>
+				<label for="signuppassword">Password</label>
+			</div>
+			<div class="input-field">
+				<select id="signupgender" class="signupgender" type="text" name="signupgender">
+					<option value="">Title</option>
+					<option value="male">Mr.</option>
+					<option value="female">Ms</option>
+				</select>
+				<input id="signupname" class="signupname" type="text" name="signupname" placeholder="Name" />
+				<input id="signupemail" class="signupemail" type="text" name="signupemail" placeholder="email@example.com" />
+				<input id="signuppassword" class="signuppassword" type="password" name="signuppassword" placeholder="Password" />
+				<input id="signupsubmit" class="signupsubmit popupbutton" type="submit" value="Register" onclick="return signupformValidator();"/>
+			</div>
+			<br clear="all"/>
+		</form>
+		<div class="orline">OR</div>
+		<div class="joinus">Already have account with us? <span class="popup-target text-link" data-href="login.html">Login</a></div>			
+	</div>
+	<div id="confirmationMessage" style="display: none;">
+			<!-- code to display after processing form -->
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+
+$("#signup-form").validate({
+	errorPlacement:function(error, element) {
+		$("#signup-form div.error").html("Please check and correct the red marked field below.");
+	},
+	rules: { 
+	signuppassword:{
+		required:true
+		},
+	signupgender:{
+		required:true
+		},
+	signupname:{
+	//	required:true
+		},
+	signupgender:{
+	//	required:true
+		},
+	signupemail: {
+		required:true, 
+		email: true,
+		maxlength:80
+	  }
+   }
+});
+
+$('input.submit').click(function(e) {
+  e.preventDefault();
+});
+
+
+function signupformValidator() {
+	if($("#signup-form").valid()){
+		var signupemail_value=$('#signupemail').val();
+		var gender_value=$('#signupgender').val();
+		var name_value=$('#signupname').val();
+		var signuppassword_value=$('#signuppassword').val();
+		$.ajax({
+			type: "POST",
+			url: "http://www.mysmartprice.com/users/usermanage.php",
+			data: { process:'signup',email: signupemail_value, password: signuppassword_value,subscribed_status:'subscribed',name:name_value,gender:gender_value}
+		}).done(function( msg ) {
+      if (msg=="error") 
+		    $("#signup-form div.error").html("Email Address Already registered. Please Login");
+      else {
+			loginme(msg);
+			closePopup();
+      }
+		});
+		return false;
+	}
+	return false;
+}
+</script>
+
+<script type="text/javascript" src="assets/js/facebook_login.js"></script>

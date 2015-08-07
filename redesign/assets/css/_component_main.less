@@ -95,22 +95,22 @@
   &__dtls {
     display: block;
 
-    height: 95px;
+    height: 100px;
     padding: 10px;
     &--spcftn-1 {
-      height: 100px + @spec-margin-top +  @spec-height * 1;
+      height: 105px + @spec-margin-top +  @spec-height * 1;
     }
     &--spcftn-2 {
-      height: 100px + @spec-margin-top +  @spec-height * 2;
+      height: 105px + @spec-margin-top +  @spec-height * 2;
     }
     &--spcftn-3 {
-      height: 100px + @spec-margin-top +  @spec-height * 3;
+      height: 105px + @spec-margin-top +  @spec-height * 3;
     }
     &--spcftn-4 {
-      height: 100px + @spec-margin-top +  @spec-height * 4;
+      height: 105px + @spec-margin-top +  @spec-height * 4;
     }
     &--spcftn-5 {
-      height: 100px + @spec-margin-top +  @spec-height * 5;
+      height: 105px + @spec-margin-top +  @spec-height * 5;
     }
   }
   &__name {
@@ -128,6 +128,13 @@
 
     line-height: 14px;
   }
+  .rtng-wrpr {
+    padding: 2px 0;
+    float: left;
+  }
+  .bdg {
+      float: right;
+  }
   // &__slr {
   //   float: right;
 
@@ -139,12 +146,6 @@
 
   //   text-transform: uppercase;
   // }
-  &:hover {
-    border: 1px solid @border-color;
-  }
-  &:hover &__save-btn {
-    display: block;
-  }
   &__prc {
     margin-top: 5px;
     border-top: 1px solid @border-color;
@@ -184,6 +185,23 @@
   }
   &__spcftn {
     .ellipsis();
+  }
+  &:hover {
+    border: 1px solid @border-color;
+  }
+  &:hover &__save-btn {
+    display: block;
+  }
+  &__cmpr {
+    padding: 0px 6px 10px 6px;
+    display:block;
+  }
+  &__cmpr-chkbx {
+      margin: 0 0 0 1px;
+  }
+  &__cmpr-img {
+      margin-left:3px;
+      vertical-align: middle;
   }
 }
 
@@ -605,7 +623,7 @@
     overflow: hidden;
 
     width: 80px;
-    height: 60px;
+    height: 80px;
   }
   &__img {
     position: absolute;
@@ -621,7 +639,7 @@
   &__dtls {
     float: left;
 
-    margin-left: 10px;
+    margin-left: 20px;
   }
   &__prc {
     color: @fg-color-blue;
@@ -635,6 +653,9 @@
     font-size: 14px;
 
     vertical-align: middle;
+  }
+  .bdg {
+      margin-top:7px;
   }
   .rtng-star {
     margin-top: 5px;

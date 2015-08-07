@@ -7,8 +7,9 @@
 		<meta name="language" content="en-uk, english">
 		<title>Get the MySmartPrice Chrome Plugin &amp; Save Money | MySmartPrice</title>
 		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,700'>
-		<link rel='stylesheet' type='text/css' href='http://mysmartprice.com/msp/css/common.min.css?release=2014.03.11'>
-		<link rel='stylesheet' type='text/css' href='http://mysmartprice.com/css/A.jquery.fancybox.css,qrelease=2014.03.19.pagespeed.cf.fDF_Rqk9nG.css'>
+		<link rel='stylesheet' type='text/css' href='assets/css/common.css'>
+		<link rel='stylesheet' type='text/css' href='assets/css/msp1.css'>
+		
 		<link rel='stylesheet' type='text/css' href='assets/css/msp.css'>
 		
 	</head>
@@ -37,34 +38,34 @@
 						</div>
 						<div class="acnt">
 							<div class="drpdwn-wdgt__item acnt__lgn">
-								<a href="http://www.mysmartprice.com/users/login.htm" class="lgn-btn btn btn--red various fancybox.ajax js-lgn">Login
-								</a>
+								<div data-href="login.html" class="lgn-btn btn btn--red js-lgn popup-target">Login
+								</div>
 							</div>
-							<div class="drpdwn-wdgt__item acnt__rgstr">
-								New User? <a href="/users/signup.htm" class="acnt__rgstr-link various fancybox.ajax">Sign Up</a>
+							<div class="drpdwn-wdgt__item acnt__rgstr ">
+								New User? <span data-href="signup.html" class="acnt__rgstr-link popup-target text-link">Sign Up</span>
 							</div>
 						</div>
 						<div class="user-link">
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rcnt-view">
+							<div class="drpdwn-wdgt__item user-link__rcnt-view text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rcnt-view"></span>
 								My Recent Views
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__svd-prdcts">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__svd-prdcts text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-svd-prdcts"></span>
 								My Saved Products
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rvws">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rvws text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rvws"></span>
 								My Reviews
-							</a>
-							<a href="/users/profile" class="drpdwn-wdgt__item user-link__rwrds">
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rwrds text-link js-open-link" data-open-link="/users/profile">
 								<span class="user-link__icon-rwrds"></span>
 								My Rewards
-							</a>
+							</div>
 						</div>
-						<a href="#" class="drpdwn-wdgt__item user-lgt js-user-lgt" >
+						<div class="drpdwn-wdgt__item user-lgt text-link js-user-lgt" >
 							Logout
-						</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -114,7 +115,7 @@
 		<div class="hdr-size__main"></div>
 		<div class="hdr-size__sub-hdr"></div>
 	</div>
-	<div class="body-wrpr clearfix" category="mobile">
+	<div class="body-wrpr clearfix" data-category="mobile" data-category-title="Category Title">
 		<div class="page-info clearfix">
 			<div class="page-info__brdcrmb">
 				Electronics > Mobile Phones
@@ -124,11 +125,11 @@
 			</div>
 		</div>
 		<div class="list-info">
-			<h1> Mobile Phones </h1>
+			<h1 class="js-list-ttl"> Mobile Phones Price List in India </h1>
 			<div class="list-info__dscrptn">
 				Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. Sed nec felis pellentesque, lacinia dui sed, ultricies sapien. Pellentesque orci lectus, consectetur vel posuere posuere, rutrum eu ipsum. Aliquam eget odio sed ligula iaculis consequat at eget orci. Mauris molestie sit amet metus mattis varius. Donec sit amet ligula eget nisi sodales egestas. Aliquam interdum dolor aliquet dolor sollicitudin fermentum.
 			</div>
-			<div class="list-info__link-wrpr"> 
+			<div class="list-info__link-wrpr clearfix"> 
 				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
 				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
 				<a class="list-info__link" href=" http://www.mysmartprice.com/mobile/samsung-galaxy-s4-msp2439">Samsung Galaxy S4 Price</a> 
@@ -140,7 +141,7 @@
 			</div>
 		</div>
 		<div class="main-wrpr list-main">
-			<div class="sctn cntxt-link cntxt-link--only-img js-sldr clearfix" data-slideitem="cntxt-link-item" data-slideitemwrapper="cntxt-link-item-wrpr">
+			<div class="sctn cntxt-link cntxt-link--only-img js-sldr clearfix" data-slideitem="cntxt-link-item" data-slideitemwrprper="cntxt-link-item-wrpr">
 				<div class="cntxt-link__prvs-icon js-sldr__prvs"></div>
 				<div class="cntxt-link-item-wrpr">
 					
@@ -172,90 +173,8 @@
 				</div>
 				<div class="cntxt-link__next-icon js-sldr__next"></div>
 			</div>
-			<div class="sctn product-grid-with-bdg">
-				<div class="sctn__hdr clearfix">
-					<div class="sctn__ttl">
-						Deals of the Hour - Expires in 
-						<span class="cntdwn"><span class="cntdwn__hour">00</span> : <span class="cntdwn__mins">36<span>
-					</div>
-					<div class="sctn__nvgtn">
-						<a class="sctn__view-all-link" href="#">VIEW ALL</a>
-					</div>
-				</div>
-				<div class="sctn__inr clearfix">
-					<div class="prdct-item-with-bdg" data-mspid="202972">
-						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<span>HP 15-r249TU (L2Z88PA)</span>
-						</a>
-						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item-with-bdg__dtls">
-							<div class="prdct-item-with-bdg__prc clearfix">
-								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
-								<span class="prdct-item-with-bdg__prc-val">22,800</span>
-							</div>
-							<div class="bdg">30% OFF</div>
-							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-								<div class="rtng-star__inr" style="width: 90%;"></div>
-							</div>
-						</div>
-					</div>
-					<div class="prdct-item-with-bdg" data-mspid="202972">
-						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
-						</a>
-						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item-with-bdg__dtls">
-							<div class="prdct-item-with-bdg__prc clearfix">
-								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
-								<span class="prdct-item-with-bdg__prc-val">22,800</span>
-							</div>
-							<div class="bdg">30% OFF</div>
-							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-								<div class="rtng-star__inr" style="width: 90%;"></div>
-							</div>
-						</div>
-					</div>
-					<div class="prdct-item-with-bdg" data-mspid="202972">
-						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
-						</a>
-						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item-with-bdg__dtls">
-							<div class="prdct-item-with-bdg__prc clearfix">
-								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
-								<span class="prdct-item-with-bdg__prc-val">22,800</span>
-							</div>
-							<div class="bdg">30% OFF</div>
-							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-								<div class="rtng-star__inr" style="width: 90%;"></div>
-							</div>
-						</div>
-					</div>
-					<div class="prdct-item-with-bdg" data-mspid="202972">
-						<a class="prdct-item-with-bdg__name" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-								<span>HP 15-r249TU (L2Z88PA) HP 15-r249TU (L2Z88PA) </span>
-						</a>
-						<a class="prdct-item-with-bdg__img-wrpr" href="/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
-							<img class="prdct-item-with-bdg__img" src="img/samsung-s5.png" alt="HP 15-r249TU (L2Z88PA) Laptop">
-						</a>
-						<div class="prdct-item-with-bdg__dtls">
-							<div class="prdct-item-with-bdg__prc clearfix">
-								<span class="prdct-item-with-bdg__rpe">&#8377;</span>
-								<span class="prdct-item-with-bdg__prc-val">22,800</span>
-							</div>
-							<div class="bdg">30% OFF</div>
-							<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-								<div class="rtng-star__inr" style="width: 90%;"></div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="js-product-grid-deals-wrpr">
+
 			</div>
 			<h2 class="list-main__ttl">SAMSUNG MOBILE PRICE LIST 2014 (with 80 models and pictures)</h2>
 				
@@ -263,9 +182,9 @@
 				<div class="list-hdr__prdct-cnt">
 					Showing <b class="js-prdct-cnt"> 1-48</b> of <b class="js-prdct-cnt">3468</b> products
 				</div>
-				<!-- <a href="#" class="tag">Follow this Search</a> -->
+				<div class="tag tag--lght-grey list-hdr__save js-tltp popup-target" data-tooltip-color="white" data-tooltip="Set Alert for any update on your search">Follow this Search</div>
 				<div class="sort-wrpr"> SORT BY
-					<select class="sort">
+					<select class="sort js-list-sort">
 						<option value="price:desc">Price: High to Low</option>
 						<option value="price:asc">Price: Low to High</option>
 						<option value="popularity:desc" selected="">Popularity</option>
@@ -276,10 +195,10 @@
 					<span class="list-hdr-view__prdct-l  js-list-hdr-view"></span>
 					<span class="list-hdr-view__prdct-s list-hdr-view__prdct-s--slctd js-list-hdr-view"></span>
 				</div>
-				<div class="list-hdr-srch">
+				<form class="list-hdr-srch">
 					<input type="text" class="list-hdr-srch__fld" placeholder="Search..">
 					<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="list-hdr-srch__btn">
-				</div>
+				</form>
 			</div>
 			<div class="fltr-wrpr1">
 				<div class="fltr-wrpr">
@@ -291,7 +210,7 @@
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="SHOW ONLY BEST SELLERS" name="1463217[]" value="1200387-1463217">
-									<span class="fltr-val__text" data-callout="Karbonn">Show Only Best Sellers</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Show Only Best Sellers</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 							</div>
@@ -332,7 +251,7 @@
 									<span class="fltr-val__text" data-callout="2000-3000"> &#8377;3000 - &#8377;4999</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
-								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="5000-15000">
+								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="5000;15000">
 									<span class="fltr-val__text" data-callout="2000-3000"> &#8377;5000 - above</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
@@ -344,46 +263,51 @@
 							<span class="fltr__ttl">Brands </span>
 							<span class="fltr__cler">Clear </span>
 						</div>
+						<div class="fltr-srch">
+							<input type="text" class="fltr-srch__fld" placeholder="Search..">
+							<img class="fltr-srch__icon" src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" />
+							<img class="fltr-srch__icon fltr-srch__icon--hide js-fltr-srch__cler" src="http://doypaxk1e2349.cloudfront.net/icons/cross-small-grey.png" />
+						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Micromax" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Micromax</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Micromax</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200485[]" value="200085-200486">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Intex" name="200486[]" value="200087-200488">
-									<span class="fltr-val__text" data-callout="Karbonn">Intex</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Intex</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Apple" name="200487[]" value="200089-200490">
-									<span class="fltr-val__text" data-callout="Karbonn">Apple</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Apple</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Spice" name="200488[]" value="200091-200492">
-									<span class="fltr-val__text" data-callout="Karbonn">Splice</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Splice</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Samsung" name="200489[]" value="200093-200494">
-									<span class="fltr-val__text" data-callout="Karbonn">Samsung</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Samsung</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="LG" name="200490[]" value="200095-200496">
-									<span class="fltr-val__text" data-callout="Karbonn">LG</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">LG</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Nokia" name="200491[]" value="200097-200498">
-									<span class="fltr-val__text" data-callout="Karbonn">Nokia</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Nokia</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Lenovo" name="200492[]" value="200099-200500">
-									<span class="fltr-val__text" data-callout="Karbonn">Lenovo</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Lenovo</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="HTC" name="200493[]" value="200100-200501">
-									<span class="fltr-val__text" data-callout="Karbonn">HTC</span>
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">HTC</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 							</div>
@@ -391,25 +315,22 @@
 					</div>
 					<div class="fltr" groupname="type">
 						<div class="fltr__hdr">
-							<span class="fltr__ttl">Brands </span>
+							<span class="fltr__ttl">Type </span>
 							<span class="fltr__cler">Clear </span>
 						</div>
 						<div class="fltr-srch">
 							<input type="text" class="fltr-srch__fld" placeholder="Search..">
-							<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="fltr-srch__btn" />
+							<img class="fltr-srch__icon" src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" />
+							<img class="fltr-srch__icon fltr-srch__icon--hide" src="http://doypaxk1e2349.cloudfront.net/icons/cross-small-grey.png" />
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="SmartPhone" name="200494[]" value="200101-200502">
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip-color="white" data-tooltip="Karbonn">SmartPhone</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200495[]" value="200102-200503">
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Feature Phones</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 							</div>
@@ -417,88 +338,39 @@
 					</div>
 					<div class="fltr" groupname="screensize">
 						<div class="fltr__hdr">
-							<span class="fltr__ttl">Brands </span>
+							<span class="fltr__ttl">Screen Size </span>
 							<span class="fltr__cler">Clear </span>
 						</div>
 						<div class="fltr-srch">
-							<input type="text" class="fltr-srch__fld" placeholder="Search..">
-							<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="fltr-srch__btn" />
+							<input type="text" class="fltr-srch__fld" placeholder="Search.." />
+							<img class="fltr-srch__icon" src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" />
+							<img class="fltr-srch__icon fltr-srch__icon--hide" src="http://doypaxk1e2349.cloudfront.net/icons/cross-small-grey.png" />
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Below 2 Inch" name="200484[]" value="200103-200504">
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Below 2 Inch</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200104-200505">
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
+								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200105-200506">
+									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="fltr" groupname="networktype">
-						<div class="fltr__hdr">
-							<span class="fltr__ttl">Brands </span>
-							<span class="fltr__cler">Clear </span>
-						</div>
-						<div class="fltr-srch">
-							<input type="text" class="fltr-srch__fld" placeholder="Search..">
-							<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="fltr-srch__btn" />
-						</div>
-						<div class="fltr-val-wrpr nano">
-							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="fltr" groupname="os">
-						<div class="fltr__hdr">
-							<span class="fltr__ttl">Brands </span>
-							<span class="fltr__cler">Clear </span>
-						</div>
-						<div class="fltr-srch">
-							<input type="text" class="fltr-srch__fld" placeholder="Search..">
-							<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="fltr-srch__btn" />
-						</div>
-						<div class="fltr-val-wrpr nano">
-							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200088-200484">
-									<span class="fltr-val__text" data-callout="Karbonn">Karbonn</span>
-									<span class="fltr-val__cnt">(206)</span>
-								</div>
-							</div>
-						</div>
-					</div>
-
 				</div>
 			</div>
 			<div class="list-mdl">
-				<div class="apld-fltrs"></div>
-				<div class="sctn prdct-grid prdct-grid--s clearfix">
+				<div class="js-fltrs-apld-wrpr1">
+					<div class="js-fltrs-apld-wrpr"></div>
+					<div class="js-fltrs-apld-cler">CLEAR ALL</div>
+				</div>
+				<div class="sctn prdct-grid prdct-grid--s js-prdct-grid-main clearfix">
 					<div class="prdct-item" data-mspid="202972">
 						<div class="prdct-item__save-btn js-save-btn"></div>
 						<a class="prdct-item__img-wrpr" href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972">
@@ -507,7 +379,7 @@
 						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
 							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
 							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
@@ -538,7 +410,7 @@
 						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
 							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
 							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
@@ -569,7 +441,7 @@
 						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
 							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
 							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
@@ -600,7 +472,7 @@
 						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
 							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
 							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
@@ -631,13 +503,13 @@
 						<div class="prdct-item__dtls prdct-item__dtls--spcftn-5">
 							<a class='prdct-item__name' href="http://www.mysmartprice.com/computer/hp-15-r249tu--l2z88pa--laptop-msf202972" class="item-title"><span>HP 15-r249TU (L2Z88PA) Laptop HP 15-r249TU (L2Z88PA) Laptop</span></a>
 							<div class="prdct-item__extr-info clearfix">
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star js-tltp" data-tooltip="Rated 4.5 out of 5 stars">
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									
 								</div>
+								<div class="bdg bdg--fld-gldn">Best Seller</div>
 								
 							</div>
 							<div class="prdct-item__prc">
@@ -651,33 +523,35 @@
 								<li class="prdct-item__spcftn">Dual SIM</li>
 								<li class="prdct-item__spcftn">5 MP Camera</li>
 								<li class="prdct-item__spcftn">Windows Phone 8.1 OS</li>
-							<li class="info-item">1 GB RAM</li></ul>	
+								<li class="info-item">1 GB RAM</li>
+							</ul>	
 						</div>
+						<label class="prdct-item__cmpr">
+							<input type="checkbox" name="compare" class="prdct-item__cmpr-chkbx">
+							<img class="prdct-item__cmpr-img" src="http://doypaxk1e2349.cloudfront.net/elements/add-to-compare.png" style="vertical-align: middle;">
+						</label>
 					</div>
+					<div class="js-fltr-ldng-icon">Loading...</div>
 				</div>
 				<div class="pgntn">
 					<div class="pgntn__rslt-cnt">
 						Showing page <span class="pgntn__rslt-page">1</span> out of <span class="pgntn__rslt-page">28</span></b>
   					</div>
-					<a href="#" class="pgntn__item js-pgntn__item pgntn__item--prvs" data-pgno="0">
-						‹
-					</a>
-					<a class="pgntn__item pgntn__item--crnt js-pgntn__item" data-pgno="1">
-						1
-					</a>
-					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-2.html" class="pgntn__item js-pgntn__item" data-pgno="2">
+					<a href="#" class="pgntn__item js-pgntn__item pgntn__item--prvs" data-pgno="0"> ‹ </a>
+					<a class="pgntn__item pgntn__item--crnt js-pgntn__item" data-pgno="1">1</a>
+					<a class="pgntn__item js-pgntn__item" href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-2.html" data-pgno="2">
 						2
 					</a>
-					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-3.html" class="pgntn__item js-pgntn__item"data-pgno="3">
+					<a class="pgntn__item js-pgntn__item" href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-3.html" data-pgno="3">
 						3
 					</a>
 					<div class="pgntn__ellipsis">
 						...
 					</div>
-					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-3.html" class="pgntn__item js-pgntn__item" data-pgno="28">
+					<a class="pgntn__item js-pgntn__item" href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-3.html" data-pgno="28">
 						28
 					</a>
-					<a href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-66.html" class="pgntn__item pgntn__item--next js-pgntn__item" data-pgno="28">›
+					<a class="pgntn__item pgntn__item--next js-pgntn__item" href="http://www.mysmartprice.com/mobile/pricelist/pages/mobile-price-list-in-india-66.html" data-pgno="28">›
 					</a>
 				</div>
 				<div class="sctn info-wdgt">
@@ -758,7 +632,7 @@
 								<a href="#" class="sdbr-list__item-ttl">
 									Google Nexus 5 Cover with Tempered Glass
 								</a>
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
@@ -775,7 +649,7 @@
 								<a href="#" class="sdbr-list__item-ttl">
 									Google Nexus 5 Cover with Tempered Glass
 								</a>
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
@@ -792,7 +666,7 @@
 								<a href="#" class="sdbr-list__item-ttl">
 									Google Nexus 5 Cover with Tempered Glass
 								</a>
-								<div class="rtng-wrap">
+								<div class="rtng-wrpr">
 									<div class="rtng-star">
 										<div class="rtng-star__inr" style="width: 90%;"></div>
 									</div>
@@ -900,7 +774,6 @@
 	<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-7587491-10']);_gaq.push(['_setDomainName','mysmartprice.com']);_gaq.push(['_setAllowLinker',true]);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
 	<script type="text/javascript">var wizrocket={event:[],profile:[],account:[]};wizrocket.account.push({"id":"R9Z-Z46-59KZ"});(function(){var wzrk=document.createElement('script');wzrk.type='text/javascript';wzrk.async=true;wzrk.src=('https:'==document.location.protocol?'https://d2r1yp2w7bby2u.cloudfront.net':'http://static.wizrocket.com')+'/js/a.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wzrk,s);})();</script>
 	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
-	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.fancybox.pack.js,qrelease=2014.03.19.pagespeed.jm.kJ1ZMRbSuh.js'></script>
 	<script type='text/javascript' src='http://mysmartprice.com/msp/js/jquery-ui-1.10.3.custom.pack.js,qrelease=2014.03.10.pagespeed.jm.XNXCOEy5_E.js'></script>
 	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.validate.min.js,qrelease=2014.03.18.pagespeed.jm.A3yIyYbmD6.js'></script>
 	<script type="text/javascript" src='http://mysmartprice.com/msp/js/useranalytics.js.pagespeed.jm.fKFxwK5V7t.js'></script>
