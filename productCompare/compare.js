@@ -9,9 +9,12 @@ $(document).ready( function(){
 
 	// hide the highlight CB if number of compare products < 3
 	var product_count = $('.fix-container .compare-tbl__col[data-mspid]').length;
-	if( product_count < 3){
-		$('.fix-container .compare-tbl__spec .compare-tbl__cb').hide();
+	var expert_product_count = $('.compare-toprow .pie-score').length;
+	
+	if(expert_product_count < 3){  
+		$('.compare-tbl__spec .compare-tbl__cb').hide()
 	}
+
 	if(!product_count){
 		removeCookie('compareSubCategory');
 		removeCookie('compareIDs');
@@ -30,20 +33,18 @@ $(document).ready( function(){
 			$('.sub-header').hide();
 
 			var exprtCmprBottom = $('.expert-cmpr').offset().top + $('.expert-cmpr').outerHeight();
-			if(($(window).scrollTop() >= exprtCmprBottom - 160) || !exprtCmprBottom){  // hide the 2 checkboes in case of not expert compare
-				$('.fix-container .compare-tbl__spec .compare-tbl__cb').hide();
+			if(($(window).scrollTop() >= exprtCmprBottom - 160) || !exprtCmprBottom || expert_product_count < 3){  // hide the 2 checkboes in case of not expert compare
+				$('.compare-tbl__spec .compare-tbl__cb').hide()
 			}
 			else
-				$('.fix-container .compare-tbl__spec .compare-tbl__cb').show();
+				$('.compare-tbl__spec .compare-tbl__cb').show()
 		}
 	});
 
 
 	// add highlight class to different rows but not when all cells are different
 	$('.expert-cmpr .compare-subtbl__content .compare-tbl__row').each(function(){
-		var productsCount = $('.gridheader .compare-product').length;
-
-		if($(this).find('[data-isdifferent]').length < productsCount)		
+		if($(this).find('[data-isdifferent]').length < product_count)		
 			$(this).find('.compare-tbl__col').addClass('highlight');	
 	});
 
@@ -189,6 +190,12 @@ $(".remove").add(".gridheader .compare-product").on('click', function(){
 		remove_id = $(this).data('mspid');
 
 	removeFromCookie(remove_id);
+	
+	var productsCount = $('.gridheader .compare-product').length;
+	if(productsCount < 1 ){
+		removeCookie("compareSubCategory");
+	}
+
 	addParameterToURL();
 });
 

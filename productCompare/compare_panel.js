@@ -4,9 +4,23 @@ var flyingImageCount = 0, check_if_added;
 
 $(document).ready( function(){
 	
+	fillComparePanelAjax();
+	
+	if($('.add-to-cmpr').length){
+		addCompareCheckbox();
+	}
+
+	compareAutoComplete(); // initializing the autoComplete
+
+	var compare_ids = getCookie('compareIDs').split(',');
+	for( id = 0; id < compare_ids.length ; id++){
+		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
+	}
+});
+
+function fillComparePanelAjax(){
 	var request= {};
 	request.mspids = getCookie("compareIDs") || "";
-	// request.subcategory = getCookie("compareSubCategory") || "";
 	$.ajax({
 		type: "GET",
         url: "/expert/compare_panel_ajax.php",
@@ -14,26 +28,24 @@ $(document).ready( function(){
         data: request,
         success: function(data) {
         		$('.sdbr-wrppr').replaceWith(data);
+        		isComparePanelFull();// check if already 4 products are there in compare panel
+				isDifferentCategory();	// check if this product is of same category that of those already in compare panel
+				
+				// if(alreadyAdded() && $('.cmpr_btn').length){// check_if_added = false;
+				// 	disableCompareCB("Item already added");
+				// }
             }
     });
+}
 
-
-	isComparePanelFull();// check if already 4 products are there in compare panel
-	isDifferentCategory();	// check if this product is of same category that of those already in compare panel
-	// check_if_added = false;
-
-	if(alreadyAdded() && $('.cmpr_btn').length)
-		disableCompareCB("Item already added");
-	// autocomplete processing start here
-	compareAutoComplete(); // initializing the autoComplete
-	// autocomplete processing end here
-
-	// alert(getCookie('compareIDs'));
-	var compare_ids = getCookie('compareIDs').split(',');
-	for( id = 0; id < compare_ids.length ; id++){
-		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
-	}
-});
+function addCompareCheckbox(){
+	var add_comp_html, this_mspid;
+	$('.msplistitem').each(function(){
+		this_mspid = $(this).data('mspid');
+		add_comp_html = '<div class="add-to-cmpr"> <input type="checkbox" class="compare-entrypoint" id="compare'+this_mspid+'"> <label for="compare'+this_mspid+'"><img class="add-to-cmpr__img" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/add_to_compare.png" alt="add to compare"></label> </div>';
+		$(this).find('.add-to-cmpr').replaceWith(add_comp_html);
+	});
+}
 
 $('body').on('click','.sctn__compare-btn', function(){
 	var mspid, mspids, subcategory;
@@ -47,7 +59,7 @@ $('body').on('click','.sctn__compare-btn', function(){
 			mspids = mspid;
 	});
 
-	subcategory = $('.sdbr-list__item:not(.cmpr0):first').data('subcategory');
+	subcategory = getCookie("compareSubCategory") || "";
 	$(this).attr('href',"/expert/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
 });
 
@@ -152,13 +164,13 @@ function disableCompareCB(calloutMSG){
 		//});
 	}
 	else{
-		if(!alreadyAdded()){
-			$('.cmpr_btn').addClass("callout-target");
+		$('.cmpr_btn').addClass("callout-target");
+		$(".cmpr_btn").attr('data-disable','true');
+		
+		if(!alreadyAdded())
 			$('.cmpr_btn').attr("data-callout",calloutMSG);
-			$(".cmpr_btn").attr('data-disable','true');
-		}else{
+		else
 			$('.cmpr_btn').data("callout","Item already added to compare panel.");
-		}
 	}
 }
 
@@ -253,6 +265,7 @@ function flyImage(imgtofly, id, title, $thisCB){
         
         var img = imgtofly.src;
         var img_alt = imgtofly.alt;
+        $replaceThis = $(".sdbr-list__item.cmpr0:first");
         addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
  		flyingImageCount--;
  		$thisCB.removeAttr("disabled");
@@ -260,7 +273,7 @@ function flyImage(imgtofly, id, title, $thisCB){
  			disableCompareCB("Item already added");
  		}
 	    // if this is the first product in compare panel , set category
-	    if($(".sdbr-list__item.cmpr0").length == 5){
+	    if($(".sdbr-list__item.cmpr0").length == 4){
 	    	 setCookie("compareSubCategory", sub_category);
 	    }
 	  	setCookieCompareIDS(id);
@@ -270,7 +283,6 @@ function flyImage(imgtofly, id, title, $thisCB){
 function addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title){
 	var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
 
-	$replaceThis = $(".sdbr-list__item.cmpr0:first");
 	$replaceThis.attr("data-comparemspid", id);
 	$replaceThis.attr("data-subcategory", sub_category);
 	$replaceThis.find(".sdbr-list__img").attr('src',img);
@@ -292,12 +304,11 @@ function setCookieCompareIDS( newMSPID ){
 
 // autocomplete functions start here
 function compareAutoComplete() {
-    if ($(".js-atcmplt")
-        .length !== 0) {
+    if ($(".sdbr-wrppr .js-atcmplt").length !== 0) {
 
-$(document).on('keydown.autocomplete', ".js-atcmplt", function(){
+$(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
 		var $thisAutoComplete = $(this);
-        $(".js-atcmplt")
+        $(".sdbr-wrppr .js-atcmplt")
             .autocomplete({
                 minLength: 1,
                 delay: 110,
@@ -352,7 +363,7 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                     var $form = $(this).closest('form');
                     $form.find('.js-atcmplt').val(ui.item.value);
                     $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
-                    setCookieCompareIDS(ui.item.mspid);
+                    
                     // $form.find('#header-search-subcat').val(ui.item.subcategory);
 					// if this is the first product in compare panel , set category
                     if($(".sdbr-list__item.cmpr0").length == 5){
@@ -362,14 +373,12 @@ $(document).on('keydown.autocomplete', ".js-atcmplt", function(){
                     var id = ui.item.mspid, subcategory=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
                     addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
 
+                    setCookieCompareIDS(ui.item.mspid);
                     if($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
 			 			disableCompareCB("Item already added");
 			 		}
 
 					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
-					
-                    // $form.find('.srch-wdgt__srch-sbmt')
-                    //     .click();
                 }
             })
             .data('uiAutocomplete')
