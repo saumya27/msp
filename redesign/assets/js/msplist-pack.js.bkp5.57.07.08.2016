@@ -16,10 +16,10 @@ var ListPage = {
                 lp_clipboard = ListPage.model.clipboard;
 
             lp_filterPlugins.init({
-                "priceSlider" : {
-                    "min" : lp_defaults.startinr,
-                    "max" : lp_defaults.endinr
-                }
+            	"priceSlider" : {
+            		"min" : lp_defaults.startinr,
+            		"max" : lp_defaults.endinr
+            	}
             });
             ListPage.controller.updatePage();
 
@@ -273,24 +273,24 @@ var ListPage = {
                 pageParams = (function() {
                     var $bodyWrapper = $(".body-wrpr"),
                         params = {};
-                    if ($bodyWrapper.data("category")) {
+                    if ($bodyWrapper.attr("category")) {
                         params.subcategory = $bodyWrapper.data("category");
                     }
-                    if ($bodyWrapper.data("start_price") || $bodyWrapper.data("end_price")){
-                        params.startinr = parseInt($bodyWrapper.data("start_price") || $(".js-fltr-prc__inpt-min").attr("val"), 10);
-                        params.endinr = parseInt($bodyWrapper.data("end_price") || $(".js-fltr-prc__inpt-max").attr("val"), 10);
+                    if ($bodyWrapper.attr("start_price") || $bodyWrapper.attr("end_price")){
+                        params.startinr = parseInt($bodyWrapper.attr("start_price") || $(".js-fltr-prc__inpt-min").attr("val"), 10);
+                        params.endinr = parseInt($bodyWrapper.attr("end_price") || $(".js-fltr-prc__inpt-max").attr("val"), 10);
                     }
-                    if ($bodyWrapper.data("brand")) {
+                    if ($bodyWrapper.attr("brand")) {
                         params.property = params.property || "";
-                        params.property += $(".list_filter_val[dispname='" + $bodyWrapper.data("brand") + "']").attr("value") + "|";
+                        params.property += $(".list_filter_val[dispname='" + $bodyWrapper.attr("brand") + "']").attr("value") + "|";
                     }
-                    if ($bodyWrapper.data("property")) {
+                    if ($bodyWrapper.attr("property")) {
                         params.property = params.property || "";
-                        params.property += $bodyWrapper.data("property") + "|";
+                        params.property += $bodyWrapper.attr("property") + "|";
                     }
-                    if ($bodyWrapper.data("properties")) {
+                    if ($bodyWrapper.attr("properties")) {
                         params.property = params.property || "";
-                        params.property += $bodyWrapper.data("properties");
+                        params.property += $bodyWrapper.attr("properties");
                     }
 
                     if (params.property) {
@@ -661,42 +661,42 @@ var ListPage = {
 
                     // get new hourly deals based on updated current params
                     if ($(".js-product-grid-deals-wrpr").length) {
-                        (function _getHourlyDeals() {
-                            ListPage.services.fetch.hourlyDeals().done(function(html) {
-                                var $timer, minutes, seconds;
+                    	(function _getHourlyDeals() {
+	                    	ListPage.services.fetch.hourlyDeals().done(function(html) {
+	                            var $timer, minutes, seconds;
 
-                                function parseTime(value) {
-                                    value = parseInt(value, 10);
-                                    return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
-                                }
+	                            function parseTime(value) {
+	                                value = parseInt(value, 10);
+	                                return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
+	                            }
 
-                                $(".js-product-grid-deals-wrpr").html(html);
-                                $timer = $(".cntdwn");
-                                if ($timer.length) {
-                                    minutes = parseTime($timer.find(".cntdwn__mins").data("minutes")),
-                                    seconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
-                                    if (!(minutes === 0 && seconds === 0)) {
-                                        timerInterval = setInterval((function timer() {
-                                            if (seconds-- === 0) {
-                                                seconds = 59;
-                                                if (minutes-- === 0) {
-                                                    clearInterval(timerInterval);
-                                                    _getHourlyDeals();
-                                                    return;
-                                                }
-                                            }
-                                            $timer.find(".cntdwn__mins").text(minutes < 10 ? "0" + minutes : minutes);
-                                            $timer.find(".cntdwn__scnds").text(seconds < 10 ? "0" + seconds : seconds);
-                                            return timer;
-                                        })(), 1000);
-                                    } else {
-                                        $timer.hide();
-                                    }
-                                }
-                            }).fail(function() {
-                               $timer.hide();
-                            });
-                        }());
+	                            $(".js-product-grid-deals-wrpr").html(html);
+	                            $timer = $(".cntdwn");
+	                            if ($timer.length) {
+	                                minutes = parseTime($timer.find(".cntdwn__mins").data("minutes")),
+	                                seconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
+	                                if (!(minutes === 0 && seconds === 0)) {
+	                                    timerInterval = setInterval((function timer() {
+	                                        if (seconds-- === 0) {
+	                                            seconds = 59;
+	                                            if (minutes-- === 0) {
+	                                                clearInterval(timerInterval);
+	                                                _getHourlyDeals();
+	                                                return;
+	                                            }
+	                                        }
+	                                        $timer.find(".cntdwn__mins").text(minutes < 10 ? "0" + minutes : minutes);
+	                                        $timer.find(".cntdwn__scnds").text(seconds < 10 ? "0" + seconds : seconds);
+	                                        return timer;
+	                                    })(), 1000);
+	                                } else {
+	                                    $timer.hide();
+	                                }
+	                            }
+	                        }).fail(function() {
+	                           $timer.hide();
+	                        });
+	                    }());
                     }
                 }());
 
@@ -741,15 +741,6 @@ var ListPage = {
                         
                         if (filterControls.add.queue.length !== 0) {
                             $(".js-fltrs-apld-wrpr1").show();
-
-
-                            (function showFollowThisSearchButton() {
-                                var subcatName = $('.body-wrpr').data('listname'),
-                                    subcatCode = $('.body-wrpr').data('listcode'),
-                                    filterHash = encodeURIComponent(location.hash),
-                                    hrefVal = "../../promotions/savesearchpopup.php?subcatname="+encodeURIComponent(subcatName)+"&subcatcode="+encodeURIComponent(subcatCode)+"&filterhash="+filterHash;
-                                $(".list-hdr__save").data("href", hrefVal).show();
-                            }());
                         }
                     },
                     "remove" : function() {
@@ -781,7 +772,6 @@ var ListPage = {
                         // if all filter tags removed remove "clear all" filter tag also
                         if ($(".js-fltrs-apld").length == 0) {
                             $(".js-fltrs-apld-wrpr1").hide();
-                            $(".list-hdr__save").hide();
                         }
                     }
                 };
@@ -926,7 +916,7 @@ var ListPage = {
             },
             "productList" : function _productList() {
                 var dfd = $.Deferred(),
-                    lp_clipboard = ListPage.model.clipboard,
+                	lp_clipboard = ListPage.model.clipboard,
                     cache = _productList._cache_ = _productList._cache_ || { "queries" : [], "responses" : [] },
                     query = this.apiQuery(),
                     xhrPerf;
@@ -974,7 +964,7 @@ var ListPage = {
             // hourly deals ajax loading
             "hourlyDeals" : function _hourlyDeals() {
                 var dfd = $.Deferred(),
-                    cache = _hourlyDeals._cache_ = _hourlyDeals._cache_ || { "queries" : [], "responses" : [] },
+                	cache = _hourlyDeals._cache_ = _hourlyDeals._cache_ || { "queries" : [], "responses" : [] },
                     query = this.apiQuery();
 
                 if (cache.queries.indexOf(query) >= 0) {
@@ -1003,9 +993,9 @@ var ListPage = {
 
 var ProductList = {
     "initGrid" : function() {
-        if(localStorage.getItem("gridType") === "large") {
+        if(localStorage.gridType === "large") {
             this.setGridType("large");
-        } else if(localStorage.getItem("gridType") === "small") {
+        } else if(localStorage.gridType === "small") {
             this.setGridType("small");
         }
         $doc.on("click", ".js-list-hdr-view", function() {
@@ -1023,12 +1013,12 @@ var ProductList = {
         if(type==="large") {
             $(".prdct-grid").addClass("prdct-grid--prdct-l");
             $(".list-hdr-view__prdct-l").addClass("list-hdr-view__prdct-l--slctd");
-            localStorage.setItem("gridType", "large");
+            localStorage.gridType = "large";
         }
         else {
             $(".prdct-grid").removeClass("prdct-grid--prdct-l");
             $(".list-hdr-view__prdct-s").addClass("list-hdr-view__prdct-s--slctd"); 
-            localStorage.setItem("gridType", "small");
+            localStorage.gridType = "small";
         }
     }
 };

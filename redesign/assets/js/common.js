@@ -3,11 +3,9 @@ var DEFAULT_LOGIN_NAME = "My Account";
 
 $(document).ready(function() {
   // Feedback button load
-  if (typeof jQuery(document).fancybox === "function") {
-    var feedbackbutton = '<a href="/promotions/feedback/feedback.htm" class="various fancybox.ajax"><img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" /></a>';
+    var feedbackbutton = '<span data-href="feedback.html" class="popup-target text-link"><img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" /></span>';
     $("body").append(feedbackbutton);
-  }
-
+  
   //Event Hadler for Logout
   $(document).on("click", ".js-user-lgt", function() {
     logoutme();
@@ -77,28 +75,28 @@ function loginCallback(fn, context, params) {
     loginCallbackQueue.push(function () {
       fn.apply(context, params);
     });
-    $(".login-button").click();
+    $(".acnt__lgn").click();
   }
 }
 
-try {
-  $(".various").fancybox({
-    fitToView: false,
-    width: "auto",
-    height: "auto",
-    padding: 10,
-    beforeClose: function () {
-      setTimeout(function () {
-        // If user is not logged in and login/register/forgot password popup is not visible,
-        // user has cancelled logging in, so clear the callback queue
-        if (getCookie("msp_login") != "1" && !$(".fancybox-overlay").filter(":visible").length)
-          loginCallbackQueue = [];
-      }, 1000);
-    }
-  });
-} catch (err) {
-  console.log("Error in JS for fancybox");
-}
+// try {
+//   $(".various").fancybox({
+//     fitToView: false,
+//     width: "auto",
+//     height: "auto",
+//     padding: 10,
+//     beforeClose: function () {
+//       setTimeout(function () {
+//         // If user is not logged in and login/register/forgot password popup is not visible,
+//         // user has cancelled logging in, so clear the callback queue
+//         if (getCookie("msp_login") != "1" && !$(".fancybox-overlay").filter(":visible").length)
+//           loginCallbackQueue = [];
+//       }, 1000);
+//     }
+//   });
+// } catch (err) {
+//   console.log("Error in JS for fancybox");
+// }
 
 function update_ui() {
   var msp_login = getCookie("msp_login"),

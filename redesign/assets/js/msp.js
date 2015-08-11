@@ -627,8 +627,8 @@ $doc.on('mouseenter', '.js-tltp', function() {
     var $this = $(this),
         data = $this.data('tooltip');
     if (data === "" || data === undefined) return;
-    $('body')
-        .append('<div class="tltp tltp--top-left">' + data + '</div>');
+    var colorClass = $(this).data("tooltip-color")==="white" ? "tltp--wht": "";
+    $('body').append('<div class="tltp tltp--top-left ' + colorClass +'">' + data + '</div>');
     $tooltip = $('.tltp');
     $tooltip.css('left', $this.offset()
         .left);
@@ -645,16 +645,55 @@ $doc.on('mouseenter', '.js-tltp', function() {
 
 });
 
-$doc.on('mousedown','.js-save-btn', function() {
-    if($(this).hasClass("prdct-item__save-btn--svd")) {
-        $(this).removeClass("prdct-item__save-btn--svd");   
-    } else {
-        $(this).addClass("prdct-item__save-btn--svd");
-    }
-});
 $doc.on('mouseleave', '.js-tltp', function() {
     $('.tltp').remove();
 });
+
+$doc.on("click", ".js-open-link", function() {
+    var url = $(this).data("open-link");
+    if(url) {
+        window.location.href = url;
+    }
+    return false;
+});
+$doc.on('mousedown','.js-save-btn', function() {
+    var $this = $(this),
+        // TODO:: page title class to be given - ".msp-ttl" used currently
+        mspid = $this.closest(".prdct-item").data("mspid") || $(".msp-ttl").data("mspid"); 
+    
+    if (!mspid) {
+        return false;
+    }
+
+    if($this.hasClass("prdct-item__save-btn--svd")) {
+        $this.removeClass("prdct-item__save-btn--svd");
+    } else {
+        loginCallback(saveItem, this, [mspid, $this]);
+    }
+
+    return false;
+});
+
+function saveItem(mspid, $this) {
+    $.ajax({
+        url: "/users/add_to_list.php?mspid=" + mspid,
+        cache: false
+    });
+
+    $this.addClass("prdct-item__save-btn--svd");
+
+    /*
+    TODO:: Discuss with rohit to finalize functionality.
+        // TODO:: page title class to be given - ".msp-ttl" used currently        
+        if ($("#mspSingleTitle").length)
+            $this.addClass("btn-disabled").data("callout", "Saved");
+        else
+            $this.html('Saved').css('display', 'inline-block').attr('disabled', true);
+        if (getCookie('promo'))
+            openPopup("http://www.mysmartprice.com/promotions/cashback_promo.php?isbn=" + mspid);
+    */
+}
+
 // tooltip callouts processing end here
 
 // popups processing start here
