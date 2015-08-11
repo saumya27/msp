@@ -1,0 +1,207 @@
+.prc-tbl {
+    &__ttl {
+        float: left;
+        padding: 5px 0;
+        color: @fg-color;
+        font-weight: 600;
+        text-transform: none;
+    }
+    &__fltrs {
+        padding:15px;
+        &-ttl {
+            float: left;
+            margin: 0 5px;
+            padding: 2px 0;
+        }
+        &-item {
+            float: left;
+            margin: 0 5px;
+            padding: 2px 0 0 20px;
+            background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-checkbox-grey.png') no-repeat left;
+            cursor: pointer;
+            &--slctd {
+                color: @fg-color-red;
+                background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-red.png') no-repeat left;
+            }
+        }
+    }
+    &__srt {
+        padding: 30px 15px 15px;
+        background: @bg-color-gs4;
+        &-lbl {
+            color: @fg-color-grey;
+            font-size: 14px;
+            font-weight: 600;
+            vertical-align: middle;
+            &--lt {
+                font-weight: 400;
+                color: @fg-color-grey;
+            }
+        }
+        &-arw {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            margin-left: 3px;
+            vertical-align: middle;
+            &--desc {
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-desc.png") no-repeat center center/auto 13px;
+            }
+            &--asc {
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-asc.png") no-repeat center center/auto 13px;
+            }
+        }
+        &-strs {
+            float: left;
+            width: 175px;
+        }
+        &-slr-rtng {
+            float: left;
+            width: 175px;
+        }
+        &-prc {
+            float: left;
+            width: 175px;
+            margin-left: 480px;
+        }
+    }
+    &__row {
+        border-bottom: 1px solid @border-color;
+        &-inr {
+            padding: 10px 0;
+        }
+    }
+    &__clm {
+        float:left;
+        &-str {
+            width: 135px;
+            padding: 15px 20px;
+            text-align: center;
+            &-logo {
+                max-width: 135px;
+            }
+        }
+        &-slr {
+            width: 165px;
+            padding: 15px 0 15px 20px;
+            &-name {
+                margin-bottom: 10px;
+            }
+            .rtng-wrpr {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .rtng-bdg {
+                vertical-align: middle;
+            }
+            &-prm {
+                margin-top: 10px; 
+                &-logo {
+                    vertical-align: middle;
+                }
+            }
+        }
+        &-avlblty {
+            padding: 7px 20px;
+            &-itm {
+                padding: 8px 5px 8px 25px;
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat center left;
+            }
+            &-itm + .prc-tbl__clm-srvc-itm {
+                border-top: 1px solid @border-color;
+            }
+            &-na {
+                color: @fg-color-light-grey;
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-notavailable.png") no-repeat center left;                
+            }
+        }
+        &-dtls {
+            padding: 7px 15px 7px 20px;
+            &-itm {
+                padding: 8px 0;
+            }
+            &-itm + .prc-tbl__clm-dtls-itm {
+                border-top: 1px solid @border-color;
+            }
+            &-colr {
+                &-dot {
+                    display: inline-block;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background: black;
+                }
+                &-mr {
+                    color: @fg-color-blue;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        &-cost {
+            padding: 10px 15px 10px 20px;
+            &-vl {
+                color: @fg-color-blue;
+                font-size: 32px;
+                font-weight: 600;
+            }
+            &-smbl {
+                color: @fg-color-grey;
+            }
+            &-cpn {
+                padding: 6px 6px 6px 23px;
+                margin-top: 10px;
+                border: 1px solid @border-color;
+                border-radius: @border-radius;
+                color: @fg-color-grey;
+                background: @bg-color-gs4 url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat 5px center;
+            }
+        }
+        &-gts {
+            padding: 10px 20px;
+            &-lylty {
+                padding: 10px 0 0 27px; 
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png") no-repeat left center;
+                color: @fg-color-yellow;
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+    }
+    &__xtrs {
+        width:100%;
+        color: @fg-color-grey;
+        &-clm {
+            width: 566px;
+            padding: 7px 5px 7px 28px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        &-ofrs {
+            float: left;
+            background: lighten(@bg-color-golden, 57.5%) url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center;
+        }
+        &-cpns {
+            float: right;
+            background: @bg-color-gs4 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-tag.png") no-repeat 6px center;
+        }
+    }
+    &__prc-drop-btn {
+        display: inline-block;
+        padding: 7px 7px 7px 25px;
+        margin-top: 5px;
+        border: 1px solid @border-color;
+        border-radius: @border-radius;
+        background: url("http://avi.mysmartprice.com/rd/img/pricedrop-icon.png") no-repeat 6px center;
+        color: @fg-color-grey;
+    }
+}
+
+
+// preloading icons in on-hover user-action-classes.
+.body:after{
+    display:none;
+    background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-red.png');
+}

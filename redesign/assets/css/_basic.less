@@ -1,9 +1,9 @@
 a {
-  color: inherit;
+  color: @fg-color-light-blue;
 
   text-decoration: none;
   &:hover {
-    color: @fg-color-red;
+    text-decoration: underline;
   }
 }
 
@@ -55,8 +55,29 @@ h2 {
   line-height: 1.4;
 }
 
-input {
+input, textarea {
   background-color:@bg-color-white;
   border:1px solid @border-color;
+  border-radius: @border-radius;
   color:@fg-color-grey;
+  &::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: @fg-color-grey;
+  }
+  &:-moz-placeholder {
+    opacity: 1;
+    /* Mozilla Firefox 4 to 18 */
+
+    color: @fg-color-grey;
+  }
+  &-moz-placeholder {
+    opacity: 1;
+    /* Mozilla Firefox 19+ */
+
+    color: @fg-color-grey;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: @fg-color-grey;
+  }
 }

@@ -24,7 +24,6 @@ module.exports = function(grunt) {
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-less');
-	grunt.loadNpmTasks('grunt-strip-css-comments');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask('default', ['less:msp', 'stripCssComments', 'watch']);
+	grunt.registerTask('default', ['less:msp', 'watch']);
 }
