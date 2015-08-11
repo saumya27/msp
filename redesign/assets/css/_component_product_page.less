@@ -1,3 +1,450 @@
+.avlbl-clrs {
+  &__item {
+    float: left;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    cursor: pointer;
+    &--slctd {
+      width: 18px;
+      height: 18px;
+      border: 1px solid @border-color-blue;
+    }
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}
+.avlbl-sizes {
+  line-height: 20px;
+  &__item {
+    padding: 0 4px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+
+    color: @fg-color-grey;
+
+    cursor: pointer;
+    vertical-align: middle;
+    text-transform: uppercase;
+    &--slctd {
+      border: 2px solid @border-color-blue;
+    }
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}
+.page-nvgtn {
+  &__item {
+    text-transform: uppercase;
+    font-size:14px;
+    line-height:20px;
+    cursor:pointer;
+    font-weight: 600;
+    padding:12px 40px;
+    border-right:1px solid @border-color;
+    float:left;
+    &-img {
+      vertical-align: middle;
+      margin-right:5px;
+    }
+  }
+}
+.prdct-dtl {
+  position: relative;
+  &__left {
+    float: left;
+
+    width: 430px;
+    height: 100%;
+  }
+  &__best-slr {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    padding-left: 30px;
+    background: url('http://doypaxk1e2349.cloudfront.net/icons/best-seller.png') no-repeat left center;
+
+    color: @fg-color-grey;
+
+    text-transform: uppercase;
+  }
+  &__img-wrpr {
+    height: 410px;
+    padding: 50px 15px 150px 15px;
+
+    line-height: 420px;
+
+    text-align: center;
+  }
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+
+    vertical-align: middle;
+  }
+  &__thmbnl {
+    display: inline-block;
+    cursor: pointer;
+    width: 40px;
+    height: 46px;
+    margin-left: @inline-block-margin;
+    padding: 5px;
+    border: 1px solid @border-color;
+    background-color: @bg-color-white;
+
+    line-height: 40px;
+
+    vertical-align: middle;
+    &-wrpr {
+      position: absolute;
+      bottom: 0;
+
+      width: 430px;
+      height: 170px;
+
+      line-height: 170px;
+
+      text-align: center;
+    }
+    &-img {
+      opacity: .5;
+
+      max-width: 100%;
+      max-height: 100%;
+    }
+    &--slctd {
+      .prdct-dtl__thmbnl-img {
+        opacity: 1;
+      }
+    }
+    & + & {
+      border-left: 0;
+    }
+  }
+  &__rght {
+    position: relative;
+
+    float: right;
+
+    width: 720px;
+    min-height: 505px;
+    padding: 20px 20px 85px 20px;
+    border-left: 1px solid @border-color;
+  }
+  &__ttl {
+    border-bottom: 0;
+
+    color: @fg-color;
+    font-size: 26px;
+    line-height: 40px;
+  }
+  &__tlbr {
+    position: relative;
+
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid @border-color;
+
+    color: @fg-color-light-blue;
+    font-size: 14px;
+    line-height: 18px;
+    &-rtng {
+      float: left;
+    }
+    &-actn {
+      float: right;
+    }
+    &-item {
+      float: left;
+
+      padding-right: 10px;
+    }
+    &-item + &-item {
+      border-left: 1px solid @border-color;
+    }
+    &-rvws {
+      padding-left: 10px;
+    }
+    &-prc-alrt {
+      padding-left: 35px;
+      background: url('http://doypaxk1e2349.cloudfront.net/icons/bell-blue.png') no-repeat 12px center;
+    }
+    &-cmpr {
+      padding: 0 0 0 35px;
+      background: url('http://doypaxk1e2349.cloudfront.net/icons/compare-blue.png') no-repeat 12px center;
+    }
+  }
+  &__ggl-shr {
+    float: right;
+  }
+  &__fltr {
+    margin-top: 15px;
+    padding: 10px 0;
+    border-top: 1px solid @border-color;
+    &-ttl {
+      color: @fg-color-lightest-blue;
+      line-height: 1.4;
+
+      text-transform: uppercase;
+    }
+    &-clr {
+      float: left;
+
+      width: 100px;
+      padding-right: 10px;
+      border-right: 1px solid @border-color;
+    }
+    &-size {
+      float: left;
+
+      margin-left: 25px;
+    }
+    .avlbl-sizes, .avlbl-clrs {
+      margin-top: 6px;
+    }
+  }
+  &__slr {
+    margin-top: 15px;
+    &-prc {
+      float: left;
+
+      width: 240px;
+      padding-right: 30px;
+      &-mrp {
+        color: @fg-color-light-grey;
+        &-prc {
+          text-decoration: line-through;
+        }
+        &-dscnt {
+          color: @fg-color-red;
+        }
+      }
+      &-rcmnd {
+        &-inr {
+          line-height: 40px;
+        }
+        // line-height: 34px;
+        &-rpe {
+          color: @fg-color-blue;
+          font-size: 24px;
+
+          vertical-align: top;
+        }
+        &-val {
+          color: @fg-color-blue;
+          font-size: 34px;
+
+          vertical-align: middle;
+        }
+        &-text {
+          color: @fg-color-light-grey;
+          line-height: 1.4;
+        }
+      }
+      &-btn {
+        margin-top: 10px;
+      }
+    }
+    &-ftrs {
+      position: relative;
+
+      float: left;
+
+      min-height: 213px;
+      &-lylty {
+        padding-left: 30px;
+        background: url('http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png') no-repeat left center;
+
+        color: @fg-color-yellow;
+        line-height: 1.4;
+        &-ttl {
+          font-size: 14px;
+          font-weight: 600;
+
+          text-transform: uppercase;
+        }
+        &-text {
+          font-size: 10px;
+        }
+      }
+      &-item-wrpr {
+        & + & {
+          margin-top: 30px;
+        }
+      }
+      &-item {
+        float: left;
+
+        padding-left: 30px;
+        &-ttl {
+          color: @fg-color-light-grey;
+          font-size: 10px;
+
+          text-transform: uppercase;
+        }
+        &-text {
+          color: @fg-color-blue;
+          font-size: 18px;
+          line-height: 1.4;
+        }
+        & + & {
+          margin-left: 30px;
+        }
+      }
+      &-dlvry {
+        padding-left: 40px;
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/delivery-grey.png') no-repeat left center;
+      }
+      &-rtrn {
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/return-grey.png') no-repeat left center;
+      }
+      &-wrnty {
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/warranty-grey.png') no-repeat left center;
+      }
+      &-avlblty {
+        float: left;
+
+        padding-left: 20px;
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/available-blue.png') no-repeat left center;
+
+        color: @fg-color-blue;
+        font-size: 14px;
+
+        text-transform: uppercase;
+        &--na {
+          background: url('http://doypaxk1e2349.cloudfront.net/icons/unavailable-grey.png') no-repeat left center;
+
+          color: @fg-color-light-grey;
+        }
+        & + & {
+          margin-left: 12px;
+          padding-left: 32px;
+          border-left: 1px solid @border-color;
+          background-position: 12px center;
+        }
+      }
+      &:before, &:after {
+        position: absolute;
+        top: 100px;
+        left: 0;
+
+        border: 10px solid transparent;
+        border-right-width: 0;
+        border-left-color: @border-color;
+
+        content: '';
+      }
+      &:after {
+        left: -2px;
+
+        border-left-color: @bg-color-white;
+      }
+    }
+    &-prc + &-ftrs {
+      padding-left: 30px;
+      border-left: 1px solid @border-color;
+    }
+  }
+  &__spfctn {
+    margin: 4px 0 0 16px;
+    padding-top: 5px;
+
+    line-height: 1.4;
+
+    list-style: disc outside none;
+    &-wrpr {
+      margin-top: 15px;
+
+      color: @fg-color-grey;
+    }
+  }
+  &__msg {
+    float: left;
+
+    width: 230px;
+    &-wrpr {
+      position: absolute;
+      bottom: 0;
+
+      margin-top: 15px;
+      padding: 15px 0;
+      border-top: 1px solid @border-color;
+    }
+    &-img {
+      vertical-align: middle;
+    }
+    &-text {
+      padding-left: 10px;
+
+      color: @fg-color-grey;
+      font-size: 16px;
+
+      vertical-align: middle;
+    }
+    & + & {
+      margin-left: 15px;
+    }
+  }
+}
+.prc-grph {
+  .sctn__hdr {
+    padding:0;
+  }
+  .sctn__ttl, &__prc-alrt {
+   padding: 15px 20px 15px 20px;
+  }
+  &__prc-alrt {
+    cursor:pointer;
+    padding-left:50px;
+    background: url('http://doypaxk1e2349.cloudfront.net/icons/clock-red.png') no-repeat 20px center;
+    float:right;
+    border-left:1px solid @border-color;
+  }
+  &__left {
+    float:left;
+    padding:20px;
+    width:200px;
+    background-color:@bg-color-gs4;
+    border-right:1px solid @border-color;
+    height:310px;
+    &-ttl {
+      font-size:14px;
+      text-transform: uppercase;
+    }
+  }
+  &__prc-chng {
+    margin-top:30px;
+    &-val {
+      font-size:20px;
+      line-height:1.4;
+      color:@fg-color-green;
+    }
+    &-drtn {
+      color:@fg-color-grey;
+      font-weight: 600;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+    &-prd {
+      color:@fg-color;
+    }
+    &--ngtv {
+      .prc-grph__prc-chng-val {
+        color:@fg-color-red;
+      }
+    }
+  }
+  &__rght {
+    float:left;
+    width:637px;
+    margin:20px 0 30px 20px;
+  }
+}
 .prdct-dscrptn {
   &__img-wrpr {
     display: inline-block;
@@ -11,16 +458,17 @@
     max-width: 100%;
   }
   &__item {
-  	padding:20px 0;
+    padding: 20px 0;
   }
   &__item + &__item {
-  	border-top:1px solid @border-color;
+    border-top: 1px solid @border-color;
   }
   &__item-dscrptn {
     display: inline-block;
-	padding-left:20px;
+
     width: 630px - 2*@border-width;
     margin-left: @inline-block-margin;
+    padding-left: 20px;
 
     font-size: 14px;
     line-height: 24px;
@@ -28,9 +476,11 @@
     vertical-align: middle;
   }
   &__item-ttl {
-  	margin-bottom:5px;
-  	font-weight: bold;
-  	text-transform: uppercase;
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
   }
   &__item-text {
     color: @fg-color-grey;
@@ -38,32 +488,35 @@
 }
 
 .exprt-rvw {
-	.sctn__inr {
-		font-size:0;
-	}
-	&__item {
-		display:inline-block;
-		width:890px - 2*@border-width;
-		white-space: normal;
-	}
+  .sctn__inr {
+    font-size: 0;
+  }
+  &__item {
+    display: inline-block;
+
+    width: 890px - 2*@border-width;
+
+    white-space: normal;
+  }
   &__img-wrpr {
     display: inline-block;
 
     width: 64px;
-    height:64px;
+    height: 64px;
 
     text-align: center;
     vertical-align: middle;
   }
   &__img {
     max-width: 100%;
-    max-height:100%;
+    max-height: 100%;
   }
   &__item-dscrptn {
     display: inline-block;
-	padding-left:20px;
+
     width: 806px - 2*@border-width;
     margin-left: @inline-block-margin;
+    padding-left: 20px;
 
     font-size: 14px;
     line-height: 20px;
@@ -71,9 +524,11 @@
     vertical-align: middle;
   }
   &__item-ttl {
-  	margin-bottom:5px;
-  	font-weight: bold;
-  	text-transform: uppercase;
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
   }
   &__item-text {
     color: @fg-color-grey;
@@ -81,40 +536,47 @@
 }
 
 .tchncl-spcftn {
-	.sctn__hdr {
-		border-bottom:none;
-	}
-	&__ctgry {
-		background-color:@bg-color-gs1;
-		color:@fg-color-white;
-		padding:10px 20px;
-		text-transform: uppercase;
-		font-size:14px;
-	}
-	&__item {
-		display:table-row;
-		line-height: 24px;
-		font-size:14px;
-	}
-	&__item + &__item &__item-key {
-		border-top:1px solid @border-color;
-	}
-	&__item + &__item &__item-vle {
-		border-top:1px solid @border-color;
-	} 
-	&__item-key {
-		width:220px;
-		display:table-cell;
-		vertical-align: middle;
-		padding:10px 10px 10px 20px;
-		background-color:@bg-color-gs3;
-	}
-	&__item-vle {
-		display:table-cell;
-		color:@fg-color-grey;
-		vertical-align:middle;
-		width:660px - 2*@border-width;
-		padding:10px;
-	}
-}
+  .sctn__hdr {
+    border-bottom: none;
+  }
+  &__ctgry {
+    padding: 10px 20px;
+    background-color: @bg-color-gs1;
 
+    color: @fg-color-white;
+    font-size: 14px;
+
+    text-transform: uppercase;
+  }
+  &__item {
+    display: table-row;
+
+    font-size: 14px;
+    line-height: 24px;
+  }
+  &__item + &__item &__item-key {
+    border-top: 1px solid @border-color;
+  }
+  &__item + &__item &__item-vle {
+    border-top: 1px solid @border-color;
+  }
+  &__item-key {
+    display: table-cell;
+
+    width: 220px;
+    padding: 10px 10px 10px 20px;
+    background-color: @bg-color-gs3;
+
+    vertical-align: middle;
+  }
+  &__item-vle {
+    display: table-cell;
+
+    width: 660px - 2*@border-width;
+    padding: 10px;
+
+    color: @fg-color-grey;
+
+    vertical-align: middle;
+  }
+}

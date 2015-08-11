@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="language" content="en-uk, english">
+		<title>Get the MySmartPrice Chrome Plugin &amp; Save Money | MySmartPrice</title>
+		<link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700'>
+		<link rel='stylesheet' type='text/css' href='assets/css/common.css'>
+		<link rel='stylesheet' type='text/css' href='assets/css/msp1.css'>
+		<link rel='stylesheet' type='text/css' href='assets/css/msp.css'>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">
+	</head>
+	<body>
+		<div class="hdr">
+			<div class="main-hdr-wrpr">
+				<div class="main-hdr">
+					<a class="hdr-logo" href="/">
+						<img class="hdr-logo__img" src="http://doypaxk1e2349.cloudfront.net/logos/msp.png" alt="MySmartPrice" />
+					</a>
+					<div class="srch-wdgt ui-front" data-url="http://www.mysmartprice.com/msp/search/auto_suggest_search.php">
+						<form action="http://www.mysmartprice.com/msp/search/search.php">
+							<input required="" name="q" placeholder="Search for electronics, fashion and books" class="srch-wdgt__fld js-atcmplt js-hdr-srch" autocomplete="off" type="search">
+							<button type="submit" class="srch-wdgt__sbmt" value=""></button>
+						</form>
+					</div>
+					<div class="drpdwn-wdgt drpdwn-wdgt--l">
+						<div class="drpdwn-wdgt__menu drpdwn-wdgt__menu--user">
+							<a href="/users/mylist.php">
+								<span class="drpdwn-wdgt__menu-img-wrpr">
+									<img class="drpdwn-wdgt__menu-img user-img" src="http://doypaxk1e2349.cloudfront.net/icons/user-default.png" alt="User">
+								</span>
+								<span class="drpdwn-wdgt__menu-text js-user-name">My Account</span>
+							</a>
+							<span class="drpdwn-wdgt__down-icon"></span>
+						</div>
+						<div class="acnt">
+							<div class="drpdwn-wdgt__item acnt__lgn">
+								<div data-href="login.html" class="lgn-btn btn btn--red js-lgn popup-target">Login
+								</div>
+							</div>
+							<div class="drpdwn-wdgt__item acnt__rgstr ">
+								New User? <span data-href="signup.html" class="acnt__rgstr-link popup-target text-link">Sign Up</span>
+							</div>
+						</div>
+						<div class="user-link">
+							<div class="drpdwn-wdgt__item user-link__rcnt-view text-link js-open-link" data-open-link="/users/profile">
+								<span class="user-link__icon-rcnt-view"></span>
+								My Recent Views
+							</div>
+							<div class="drpdwn-wdgt__item user-link__svd-prdcts text-link js-open-link" data-open-link="/users/profile">
+								<span class="user-link__icon-svd-prdcts"></span>
+								My Saved Products
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rvws text-link js-open-link" data-open-link="/users/profile">
+								<span class="user-link__icon-rvws"></span>
+								My Reviews
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rwrds text-link js-open-link" data-open-link="/users/profile">
+								<span class="user-link__icon-rwrds"></span>
+								My Rewards
+							</div>
+						</div>
+						<div class="drpdwn-wdgt__item user-lgt text-link js-user-lgt" >
+							Logout
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sub-hdr">
+				<ul class="nvgtn-bar">
+					<li class="nvgtn-bar__item menu-ctgry js-ctgry-btn">
+						<span class="menu-ctgry__hmbrgr-icon"></span>All Categories
+						<span class="menu-ctgry__down-icon"></span>
+						<div class="drpdwn-menu-wrpr js-drpdwn-menu-wrpr" data-ver="0.41">
+							<div class="drpdwn-menu-wrpr__ldng ldng-crcl"></div>
+						<ul class="drpdwn-menu"></ul>
+					</div>
+				</li>
+				<li class="nvgtn-bar__item nvgtn-bar__item--frst"><a class="nvgtn-bar__item-link" href="/mobile/">Mobiles</a></li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link"  href="/computer/">Computers</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/camera/">Cameras</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/electronics/">TV / Entertainment</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/appliance/">Appliances</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/care/">Personal Care</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/men/">Men</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/women/">Women</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/kids/">Kids</a>
+				</li>
+				<li class="nvgtn-bar__item">
+					<a class="nvgtn-bar__item-link" href="/home/">Home Decor</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+	<div class="drpdwn-menu-ovrly js-drpdwn-menu-ovrly"></div>
+	<div class="hdr-size">
+		<div class="hdr-size__main"></div>
+		<div class="hdr-size__sub-hdr"></div>
+	</div>
+	<div class="body-wrpr clearfix">
+		<div class="sctn page-nvgtn clearfix">
+			<div class="page-nvgtn__item">
+				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/rupee-grey.png" alt="Price Table"/> Price Table
+			</div>
+			<div class="page-nvgtn__item">
+				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/info-grey.png" alt="Price Table"/> Specifications
+			</div>
+			<div class="page-nvgtn__item">
+				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/review-grey.png" alt="Price Table"/> Reviews
+			</div>
+			<div class="page-nvgtn__item">
+				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/graph-grey.png" alt="Price Table"/> Price History
+			</div>
+		</div>
+		<div class="sctn prdct-dtl clearfix">
+			<div class="prdct-dtl__left">
+				<div class="prdct-dtl__best-slr">Best Seller</div>
+				<div class="prdct-dtl__img-wrpr">
+					<img class="prdct-dtl__img" src="img/iphone.png" >
+				</div>
+				<div class="prdct-dtl__thmbnl-wrpr">
+					<div class="prdct-dtl__thmbnl prdct-dtl__thmbnl--slctd"><img class="prdct-dtl__thmbnl-img" src="img/iphone.png"></div>
+					<div class="prdct-dtl__thmbnl"><img class="prdct-dtl__thmbnl-img" src="img/iphone.png"></div>
+					<div class="prdct-dtl__thmbnl"><img class="prdct-dtl__thmbnl-img" src="img/iphone.png"></div>
+				</div>
+			</div>
+			<div class="prdct-dtl__rght">
+				<h1 class="prdct-dtl__ttl">iPhone 6s Plus </h1>
+				<div class="prdct-dtl__tlbr clearfix">
+					<div class="prdct-dtl__tlbr-rtng">
+						<div class="rtng-wrpr rtng-wrpr--l prdct-dtl__tlbr-item">
+							<div class="rtng-star">
+								<div class="rtng-star__inr" style="width: 90%;"></div>
+							</div>
+							<div class="rtng__cnt">(4.5/5 from 234 Ratings)</div>
+						</div>
+						<a href="#" class="prdct-dtl__tlbr-rvws prdct-dtl__tlbr-item">
+							16 Reviews
+						</a>
+					</div>
+					<div class="prdct-dtl__tlbr-actn">
+						<a href="#" class="prdct-dtl__tlbr-prc-alrt prdct-dtl__tlbr-item">
+							Set price drop alert
+						</a>
+						<a href="#" class="prdct-dtl__tlbr-cmpr prdct-dtl__tlbr-item">
+							Compare this product
+						</a>
+					</div>
+				</div>
+				<div class="prdct-dtl__fltr clearfix">
+					<div class="prdct-dtl__fltr-clr">
+						<div class="prdct-dtl__fltr-ttl">COLOURS</div>
+						<div class="avlbl-clrs">
+							<span class="avlbl-clrs__item clr-grn-bg"></span>
+							<span class="avlbl-clrs__item clr-red-bg avlbl-clrs__item--slctd "></span>
+							<span class="avlbl-clrs__item clr-blue-bg "></span>
+						</div>
+					</div>
+					<div class="prdct-dtl__fltr-size">
+						<div class="prdct-dtl__fltr-ttl">SIZES</div>
+						<div class="avlbl-sizes">
+							<span class="avlbl-sizes__item">16 GB</span>
+							<span class="avlbl-sizes__item avlbl-sizes__item--slctd ">64 GB</span>
+							<span class="avlbl-sizes__item">128 GB</span>
+						</div>
+					</div>
+					<div class="prdct-dtl__ggl-shr"><g:plusone size="medium"></g:plusone></div>
+				</div>
+				<div class="prdct-dtl__slr clearfix">
+					<div class="prdct-dtl__slr-prc">
+						<div class="prdct-dtl__slr-prc-mrp">
+							MRP: <span class="prdct-dtl__slr-prc-mrp-prc">&#8377;50,000</span>
+								 <span class="prdct-dtl__slr-prc-mrp-dscnt">[15% OFF]</span>
+						</div>
+						<div class="prdct-dtl__slr-prc-rcmnd">
+							<div class="prdct-dtl__slr-prc-rcmnd-inr">
+								<span class="prdct-dtl__slr-prc-rcmnd-rpe">&#8377;</span>
+								<span class="prdct-dtl__slr-prc-rcmnd-val">30,000</span>
+							</div>
+							<div class="prdct-dtl__slr-prc-rcmnd-text">Recommended</div>
+						</div>
+						<div class="btn-GTS prdct-dtl__slr-prc-btn">
+                            ORDER NOW<br>
+                            <span class="btn-GTS__str">at Amazon</span>
+                            <span class="btn-GTS__arw">&rsaquo;</span>
+                        </div>
+                        <div class="btn-GTS btn-GTS--no-bg btn-GTS--arw-down prdct-dtl__slr-prc-btn">
+                            13 MORE SELLERS<br>
+                            <span class="btn-GTS__str">Starting at &#8377;49,879</span>
+                            <span class="btn-GTS__arw">&rsaquo;</span>
+                        </div>
+					</div>
+					<div class="prdct-dtl__slr-ftrs">
+						<div class="prdct-dtl__slr-ftrs-item-wrpr clearfix">
+							<div class="prdct-dtl__slr-ftrs-lylty">
+								<div class="prdct-dtl__slr-ftrs-lylty-ttl">Free 500 MSP Coins</div>
+								<div class="prdct-dtl__slr-ftrs-lylty-text">on this purchase</div>
+							</div>
+						</div>
+						<div class="prdct-dtl__slr-ftrs-item-wrpr clearfix">
+							<div class="prdct-dtl__slr-ftrs-item prdct-dtl__slr-ftrs-dlvry">
+								<div class="prdct-dtl__slr-ftrs-item-ttl">Delivery</div>
+								<div class="prdct-dtl__slr-ftrs-item-text">4-5 Days</div>
+							</div>
+							<div class="prdct-dtl__slr-ftrs-item prdct-dtl__slr-ftrs-rtrn">
+								<div class="prdct-dtl__slr-ftrs-item-ttl">Return Policy</div>
+								<div class="prdct-dtl__slr-ftrs-item-text">30 Days</div>
+							</div>
+							<div class="prdct-dtl__slr-ftrs-item prdct-dtl__slr-ftrs-wrnty">
+								<div class="prdct-dtl__slr-ftrs-item-ttl">Warranty</div>
+								<div class="prdct-dtl__slr-ftrs-item-text">1 Year</div>
+							</div>
+						</div>
+						<div class="prdct-dtl__slr-ftrs-item-wrpr clearfix">
+							<div class="prdct-dtl__slr-ftrs-avlblty">
+								EMI
+							</div>
+							<div class="prdct-dtl__slr-ftrs-avlblty prdct-dtl__slr-ftrs-avlblty--NA">
+								COD
+							</div>
+							<div class="prdct-dtl__slr-ftrs-avlblty prdct-dtl__slr-ftrs-avlblty--NA">
+								COD
+							</div>
+						</div>
+					</div>
+				</div>
+				<ul class="prdct-dtl__spfctn-wrpr">
+					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.</li>
+					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
+					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<a href="#">View more &rsaquo;&rsaquo;</a></li>
+				</ul>
+				<div class="prdct-dtl__msg-wrpr">
+					<div class="prdct-dtl__msg">
+						<img class="prdct-dtl__msg-img" src="http://doypaxk1e2349.cloudfront.net/icons/genuine-products-small.png" alt="Genuine Products">
+						<span class="prdct-dtl__msg-text"> 100% Genuine Products </span>
+					</div>
+					<div class="prdct-dtl__msg">
+						<img class="prdct-dtl__msg-img" src="http://doypaxk1e2349.cloudfront.net/icons/hidden-charges-small.png" alt="No Hidden Charges">
+						<span class="prdct-dtl__msg-text"> Zero Hidden Charges </span>
+					</div>
+					<div class="prdct-dtl__msg">
+						<img class="prdct-dtl__msg-img" src="http://doypaxk1e2349.cloudfront.net/icons/shield-small.png" alt="Safe and Secure">
+						<span class="prdct-dtl__msg-text"> 100% Safe and Secure </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-wrpr algn-left">
+			<div class="sctn prdct-dscrptn clearfix">
+									<div class="sctn__hdr clearfix">
+										<div class="sctn__ttl">Product Description</div>
+									</div>
+									<div class="sctn__inr clearfix">
+										<div class="prdct-dscrptn__item">
+											<div class="prdct-dscrptn__img-wrpr">
+												<img src="img/tech-spec.png" alt="LG Phone">
+											</div>
+											<div class="prdct-dscrptn__item-dscrptn">
+												<div class="prdct-dscrptn__item-ttl">
+													BRILLIANT DISPLAY
+												</div>
+												<div class="prdct-dscrptn__item-text">
+													The Galaxy S5 sports a 5-inch Full HD (1920x1080) Super AMOLED display for vivid images with high contrast and deep blacks. Samsung's Local Contrast Enhancement technology helps the display adapt to various light conditions. It can get extremely bright so you can view everything easily even under direct sunlight, or go extremely low so you can read comfortably at night without straining your eyes. Adapt Display optimizes the viewing experience by adjusting the colour range, saturation and sharpness of the display based on whether you're watching a video, browsing the web, or going through your photos in the gallery.
+												</div>
+											</div>
+										</div>
+										<div class="prdct-dscrptn__item">
+											<div class="prdct-dscrptn__img-wrpr">
+												<img src="img/tech-spec1.png" alt="LG Phone">
+											</div>
+											<div class="prdct-dscrptn__item-dscrptn">
+												<div class="prdct-dscrptn__item-ttl">
+													BRILLIANT DISPLAY
+												</div>
+												<div class="prdct-dscrptn__item-text">
+													The Galaxy S5 sports a 5-inch Full HD (1920x1080) Super AMOLED display for vivid images with high contrast and deep blacks. Samsung's Local Contrast Enhancement technology helps the display adapt to various light conditions. It can get extremely bright so you can view everything easily even under direct sunlight, or go extremely low so you can read comfortably at night without straining your eyes. Adapt Display optimizes the viewing experience by adjusting the colour range, saturation and sharpness of the display based on whether you're watching a video, browsing the web, or going through your photos in the gallery.
+												</div>
+											</div>
+										</div>
+										<div class="prdct-dscrptn__item">
+											<div class="prdct-dscrptn__img-wrpr">
+												<img src="img/tech-spec2.png" alt="LG Phone">
+											</div>
+											<div class="prdct-dscrptn__item-dscrptn">
+												<div class="prdct-dscrptn__item-ttl">
+													BRILLIANT DISPLAY
+												</div>
+												<div class="prdct-dscrptn__item-text">
+													The Galaxy S5 sports a 5-inch Full HD (1920x1080) Super AMOLED display for vivid images with high contrast and deep blacks. Samsung's Local Contrast Enhancement technology helps the display adapt to various light conditions. It can get extremely bright so you can view everything easily even under direct sunlight, or go extremely low so you can read comfortably at night without straining your eyes. Adapt Display optimizes the viewing experience by adjusting the colour range, saturation and sharpness of the display based on whether you're watching a video, browsing the web, or going through your photos in the gallery.
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="sctn sctn--no-pdng tchncl-spcftn clearfix">
+									<div class="sctn__hdr clearfix">
+										<div class="sctn__ttl">Technical Specifications</div>
+									</div>
+									<div class="sctn__inr">
+										<div class="tchncl-spcftn__ctgry">Display</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Size </div>
+											<div class="tchncl-spcftn__item-vle"><b>4.95</b> Inches</div>
+										</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Resolution </div>
+											<div class="tchncl-spcftn__item-vle">Full HD, <b>1920</b> x <b>1080</b> Pixels</div>
+										</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Other Display Features </div>
+											<div class="tchncl-spcftn__item-vle">Corning Gorilla Glass 3, IPS Display, Less Glare, Wider Viewing Angle</div>
+										</div>
+										<div class="tchncl-spcftn__ctgry">Camera</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Primary Camera </div>
+											<div class="tchncl-spcftn__item-vle">Yes ( <b>8MP</b> )</div>
+										</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Primary Camera </div>
+											<div class="tchncl-spcftn__item-vle">Yes ( <b>8MP</b> )</div>
+										</div>
+										<div class="tchncl-spcftn__item">
+											<div class="tchncl-spcftn__item-key">Other Camera Features </div>
+											<div class="tchncl-spcftn__item-vle">
+												Optical Image Stabilization, HDR+ Mode, Less Shake, Less Noise, Rapid Burst, Photo Sphere, 360 Deg View, Brighter Night and Sharper Action Shots.
+											</div>
+										</div>
+									</div>
+									<div class="sctn__view-all">
+										View All
+									</div>
+								</div>
+								<div class="sctn sctn--no-pdng prc-grph clearfix">
+									<div class="sctn__hdr clearfix">
+										<div class="sctn__ttl">Price Graph</div>
+										<div class="prc-grph__prc-alrt">Set Price Alert</div>
+									</div>
+									<div class="sctn__inr">
+										<div class="prc-grph__left">
+											<div class="prc-grph__left-ttl">
+												Percent Drop in Price
+											</div>
+											<div class="prc-grph__prc-chng ">
+												<div class="prc-grph__prc-chng-val">-54.75%</div>
+												<div class="prc-grph__prc-chng-drtn">Since <span class="prc-grph__prc-chng-prd">Launch</span></div>
+											</div>
+											<div class="prc-grph__prc-chng prc-grph__prc-chng--ngtv">
+												<div class="prc-grph__prc-chng-val">54.75%</div>
+												<div class="prc-grph__prc-chng-drtn">Since <span class="prc-grph__prc-chng-prd">Launch</span></div>
+											</div>
+											<div class="prc-grph__prc-chng ">
+												<div class="prc-grph__prc-chng-val">-54.75%</div>
+												<div class="prc-grph__prc-chng-drtn">Since <span class="prc-grph__prc-chng-prd">Launch</span></div>
+											</div>
+											<div class="prc-grph__prc-chng prc-grph__prc-chng--ngtv">
+												<div class="prc-grph__prc-chng-val">54.75%</div>
+												<div class="prc-grph__prc-chng-drtn">Since <span class="prc-grph__prc-chng-prd">Launch</span></div>
+											</div>
+										</div>
+										<div class="prc-grph__rght" id="chart"></div>
+									</div>
+								</div>
+								<div class="sctn exprt-rvw js-sldr clearfix" data-slideitem="exprt-rvw__item" data-slideitemwrapper="sctn__inr">
+									<div class="sctn__hdr clearfix">
+										<div class="sctn__ttl">Expert Reviews</div>
+										<div class="sctn__nvgtn">
+											<a class="sctn__view-all-link" href="#">VIEW ALL</a>
+											<span class="sctn__prvs-icon js-sldr__prvs"></span>
+											<span class="sctn__next-icon js-sldr__next"></span>
+										</div>
+									</div>
+									<div class="sctn__inr clearfix">
+										<div class="exprt-rvw__item">
+											<div class="exprt-rvw__img-wrpr" style="width:64px;height:64px;">
+												<img src="img/expert-img.png" alt="Expert">
+											</div>
+											<div class="exprt-rvw__item-dscrptn">
+												<div class="exprt-rvw__item-ttl">
+													ASHWIN SREE KUMAR NAIR <span class="tag tag--orng">Expert's Opinion</span>
+												</div>
+												<div class="exprt-rvw__item-text">
+													The Galaxy S5 sports a 5-inch Full HD (1920x1080) Super AMOLED display for vivid images with high contrast and deep blacks. Samsung's Local Contrast Enhancement technology helps the display adapt to various light condition.
+												</div>
+											</div>
+										</div>
+										<div class="exprt-rvw__item">
+											<div class="exprt-rvw__img-wrpr" style="width:64px;height:64px;">
+												<img src="img/expert-img.png" alt="Expert">
+											</div>
+											<div class="exprt-rvw__item-dscrptn">
+												<div class="exprt-rvw__item-ttl">
+													ASHWIN SREE KUMAR NAIR <span class="tag">Expert's Opinion</span>
+												</div>
+												<div class="exprt-rvw__item-text">
+													The Galaxy S5 sports a 5-inch Full HD (1920x1080) Super AMOLED display for vivid images with high contrast and deep blacks. Samsung's Local Contrast Enhancement technology helps the display adapt to various light condition.
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="sctn link-grid clearfix">
+									<div class="sctn__hdr clearfix">
+										<div class="sctn__ttl">You may be interested in</div>
+									</div>
+									<div class="sctn__inr clearfix">
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 1,89,877)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR (with Tamaron Double Lens Kit 18-55mm) price in India (Rs. 89,076)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 70D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 18,899)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 1,89,877)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR (with Tamaron Double Lens Kit 18-55mm) price in India (Rs. 89,076)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 70D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 18,899)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 1,89,877)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 1200D SLR (with Tamaron Double Lens Kit 18-55mm) price in India (Rs. 89,076)
+										</a>
+										<a href="#" class="link-grid__item">
+											Canon EOS 70D SLR with Double Lens Kit EFS 18-55mm STM price in India (Rs. 18,899)
+										</a>
+									</div>
+								</div>
+		</div>
+		<div class="sdbr algn-rght">
+			<div class="sctn sctn--sdbr sdbr-list--s">
+				<div class="sctn__hdr clearfix">
+					<div class="sctn__ttl "> Laptops - By Brand</div>
+				</div>
+				<div class="sctn__inr clearfix">
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								HP Laptop Price List
+							</a>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								HP Laptop Price List
+							</a>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								HP Laptop Price List
+							</a>
+						</div>
+					</div>
+				</div>
+				<a class="sctn__view-all" href="#">
+					View All
+				</a>
+			</div>
+			<div class="sctn sctn--sdbr sdbr-list sdbr-list-prdcts">
+				<div class="sctn__hdr clearfix">
+					<div class="sctn__ttl clr-txt-red">Deals</div>
+				</div>
+				<div class="sctn__inr clearfix">
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+							<div class="rtng-wrpr">
+								<div class="rtng-star">
+									<div class="rtng-star__inr" style="width: 90%;"></div>
+								</div>
+								<div class="rtng__cnt">234 Ratings</div>
+							</div>
+							<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">₹</span>22,800</div>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+							<div class="rtng-wrpr">
+								<div class="rtng-star">
+									<div class="rtng-star__inr" style="width: 90%;"></div>
+								</div>
+								<div class="rtng__cnt">234 Ratings</div>
+							</div>
+							<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">₹</span>22,800</div>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+							<div class="rtng-wrpr">
+								<div class="rtng-star">
+									<div class="rtng-star__inr" style="width: 90%;"></div>
+								</div>
+								<div class="rtng__cnt">234 Ratings</div>
+							</div>
+							<div class="sdbr-list-prdcts__prc"><span class="sdbr-list-prdcts__rpe">₹</span>22,800</div>
+						</div>
+					</div>
+				</div>
+				<a class="sctn__view-all" href="#">
+					View All
+				</a>
+			</div>
+			<div class="sctn sctn--sdbr sdbr-list">
+				<div class="sctn__hdr clearfix">
+					<div class="sctn__ttl clr-txt-red">Deals</div>
+				</div>
+				<div class="sctn__inr clearfix">
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+						</div>
+					</div>
+					<div class="sdbr-list__item">
+						<a href="#" class="sdbr-list__img-wrpr">
+							<img class="sdbr-list__img" src="http://homeimg1.mspcdn.net/microsd_100.jpeg" alt="Memory Card">
+						</a>
+						<div class="sdbr-list__item-dtls">
+							<a href="#" class="sdbr-list__item-ttl">
+								Google Nexus 5 Cover with Tempered Glass
+							</a>
+						</div>
+					</div>
+				</div>
+				<a class="sctn__view-all" href="#">
+					View All
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="ftr">
+		<div class="ftr__clmn-wrpr1 clearfix">
+			<div class="ftr__clmn-wrpr clearfix">
+				<div class="ftr__clmn">
+					<div class="ftr-msg clearfix">
+						<div class="ftr-msg__img-wrpr">
+							<img class="ftr-msg__img" src="http://doypaxk1e2349.cloudfront.net/icons/genuine-products.png" alt="Genuine Products" />
+						</div>
+						<div class="ftr-msg__txt-wrpr">
+							<div class="ftr-msg__ttl">
+								100% Genuine Products
+							</div>
+							<div class="ftr-msg__txt">
+								We ony list genuine products. <br>Who likes to die copying?
+							</div>
+						</div>
+					</div>
+					<div class="ftr__clmn-ttl-wrpr">
+						<span class="ftr__clmn-ttl">Mobile Apps</span>
+					</div>
+					<a class="ftr__clmn-link" href="#"><img src="http://doypaxk1e2349.cloudfront.net/elements/googleplay-badge.png" alt="Android App"></a>
+					<a class="ftr__clmn-link" href="#"><img src="http://doypaxk1e2349.cloudfront.net/elements/appstore-badge.png" alt="iOS App"></a>
+				</div>
+				<div class="ftr__clmn">
+					<div class="ftr-msg clearfix">
+						<div class="ftr-msg__img-wrpr">
+							<img class="ftr-msg__img" src="http://doypaxk1e2349.cloudfront.net/icons/hidden-charges.png" alt="No Hidden Charges" />
+						</div>
+						<div class="ftr-msg__txt-wrpr">
+							<div class="ftr-msg__ttl">
+								Zero Hidden Charges
+							</div>
+							<div class="ftr-msg__txt">
+								We offer our services for free. <br>Okay, a little love would suffice.
+							</div>
+						</div>
+					</div>
+					<div class="ftr__clmn-ttl-wrpr">
+						<span class="ftr__clmn-ttl">Plugins</span>
+					</div>
+					<a class="ftr__clmn-link" href="#"><img src="http://doypaxk1e2349.cloudfront.net/elements/chromeplugin-badge.png" alt="Chrome Extension"></a>
+					<a class="ftr__clmn-link" href="#"><img src="http://doypaxk1e2349.cloudfront.net/elements/firefoxplugin-badge.png" alt="Mozilla Addon"></a>
+				</div>
+				<div class="ftr__clmn">
+					<div class="ftr-msg clearfix">
+						<div class="ftr-msg__img-wrpr">
+							<img class="ftr-msg__img" src="http://doypaxk1e2349.cloudfront.net/icons/shield.png" alt="Safe and Secure"/>
+						</div>
+						<div class="ftr-msg__txt-wrpr">
+							<div class="ftr-msg__ttl">
+								100% Safe and secure
+							</div>
+							<div class="ftr-msg__txt">
+								We only sell products, <br>never your information.
+							</div>
+						</div>
+					</div>
+					<div class="ftr__clmn-ttl-wrpr">
+						<span class="ftr__clmn-ttl">Quick Links</span>
+					</div>
+					<div class="ftr__qck-link-clmn">
+						<a class="ftr__qck-link" href="/">Home</a>
+						<a class="ftr__qck-link" href="/gosf/">GOSF</a>
+						<a class="ftr__qck-link" href="/msp/compare/comparison_list.php">Comparisons</a>
+						<a class="ftr__qck-link" href="/contactus.php">Contact US</a>
+					</div>
+					<div class="ftr__qck-link-clmn">
+						<a class="ftr__qck-link" href="/mobile/upcoming/">Upcoming Mobiles</a>
+						<a class="ftr__qck-link" href="/privacy-opt.html">Privacy</a>
+						<a class="ftr__qck-link" href="/blog/">Blog</a>
+						<a class="ftr__qck-link" href="/about/">About Us</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="ftr__extr-info clearfix">
+			<div class="ftr__cpyrght-wrpr">
+				<a href="#" class="ftr-logo">
+					<img class="ftr-logo__img" src="http://doypaxk1e2349.cloudfront.net/logos/msp.png" alt="MySmartPrice" >
+				</a>
+				<div>&copy; 2015 MySmartPrice Web Technology Private Ltd</div>
+			</div>
+			<div class="ftr__made-in-india">
+				Made with <span class="ftr__heart">❤</span> in India <img src="http://doypaxk1e2349.cloudfront.net/icons/indian_flag.gif" class="ftr__flag" alt="India" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-7587491-10']);_gaq.push(['_setDomainName','mysmartprice.com']);_gaq.push(['_setAllowLinker',true]);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+	<script type="text/javascript">var wizrocket={event:[],profile:[],account:[]};wizrocket.account.push({"id":"R9Z-Z46-59KZ"});(function(){var wzrk=document.createElement('script');wzrk.type='text/javascript';wzrk.async=true;wzrk.src=('https:'==document.location.protocol?'https://d2r1yp2w7bby2u.cloudfront.net':'http://static.wizrocket.com')+'/js/a.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wzrk,s);})();</script>
+	<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js'></script>
+	<script type='text/javascript' src='http://mysmartprice.com/msp/js/jquery-ui-1.10.3.custom.pack.js,qrelease=2014.03.10.pagespeed.jm.XNXCOEy5_E.js'></script>
+	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.validate.min.js,qrelease=2014.03.18.pagespeed.jm.A3yIyYbmD6.js'></script>
+	<script type="text/javascript" src='http://mysmartprice.com/msp/js/useranalytics.js.pagespeed.jm.fKFxwK5V7t.js'></script>
+	<script type='text/javascript' src='assets/js/msp.js'></script>
+	<script type='text/javascript' src='assets/js/common.js'></script>
+
+	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
+	
+	<script type='text/javascript'>
+	var grad1 = 
+		'<linearGradient id="grad1" x1="50%" y1="0%" x2="50%" y2="100%">'+
+		'  <stop offset="0%" style="stop-color:red;stop-opacity:1" />'+
+		'  <stop offset="100%" style="stop-color:green;stop-opacity:1" />'+
+		'</linearGradient>';
+
+	chart = c3.generate({
+	bindto: '#chart',
+	data: {
+		x: "Date",
+		json: [{"Date":"2015-04-10","Price":"15799"},{"Date":"2015-04-11","Price":"15499"},{"Date":"2015-04-12","Price":"15569"},{"Date":"2015-04-13","Price":"15399"},{"Date":"2015-04-14","Price":"15240"},{"Date":"2015-04-15","Price":"15240"},{"Date":"2015-04-16","Price":"15434"},{"Date":"2015-04-17","Price":"15362"},{"Date":"2015-04-18","Price":"15347"},{"Date":"2015-04-19","Price":"15321"},{"Date":"2015-04-20","Price":"15194"},{"Date":"2015-04-21","Price":"15089"},{"Date":"2015-04-22","Price":"14983"},{"Date":"2015-04-23","Price":"14870"},{"Date":"2015-04-24","Price":"14600"},{"Date":"2015-04-25","Price":"14344"},{"Date":"2015-04-26","Price":"14087"},{"Date":"2015-04-27","Price":"13956"},{"Date":"2015-04-28","Price":"13826"},{"Date":"2015-04-29","Price":"13827"},{"Date":"2015-04-30","Price":"13724"},{"Date":"2015-05-01","Price":"13777"},{"Date":"2015-05-02","Price":"13803"},{"Date":"2015-05-03","Price":"13830"},{"Date":"2015-05-04","Price":"13875"},{"Date":"2015-05-05","Price":"13920"},{"Date":"2015-05-06","Price":"13834"},{"Date":"2015-05-07","Price":"13802"},{"Date":"2015-05-08","Price":"13820"},{"Date":"2015-05-09","Price":"13838"},{"Date":"2015-05-10","Price":"13857"},{"Date":"2015-05-11","Price":"13857"},{"Date":"2015-05-17","Price":"13837"},{"Date":"2015-05-18","Price":"13793"},{"Date":"2015-05-19","Price":"13799"},{"Date":"2015-05-22","Price":"13684"},{"Date":"2015-05-23","Price":"13567"},{"Date":"2015-05-24","Price":"13449"},{"Date":"2015-05-25","Price":"13460"},{"Date":"2015-05-26","Price":"13491"},{"Date":"2015-05-27","Price":"13539"},{"Date":"2015-05-28","Price":"13588"},{"Date":"2015-05-29","Price":"13707"},{"Date":"2015-05-30","Price":"13828"},{"Date":"2015-05-31","Price":"13950"},{"Date":"2015-06-01","Price":"13942"},{"Date":"2015-06-02","Price":"13935"},{"Date":"2015-06-03","Price":"13935"},{"Date":"2015-06-04","Price":"13930"},{"Date":"2015-06-05","Price":"13868"},{"Date":"2015-06-06","Price":"13805"},{"Date":"2015-06-07","Price":"13743"},{"Date":"2015-06-08","Price":"13681"},{"Date":"2015-06-09","Price":"13618"},{"Date":"2015-06-10","Price":"13020"},{"Date":"2015-06-11","Price":"12963"},{"Date":"2015-06-12","Price":"12963"},{"Date":"2015-06-13","Price":"12749"},{"Date":"2015-06-14","Price":"12749"},{"Date":"2015-06-15","Price":"12749"},{"Date":"2015-06-16","Price":"12749"},{"Date":"2015-06-17","Price":"13285"},{"Date":"2015-06-18","Price":"13285"},{"Date":"2015-06-19","Price":"13285"},{"Date":"2015-06-20","Price":"13005"},{"Date":"2015-06-21","Price":"12510"},{"Date":"2015-06-22","Price":"12496"},{"Date":"2015-06-23","Price":"12262"},{"Date":"2015-06-24","Price":"12027"},{"Date":"2015-06-25","Price":"11792"},{"Date":"2015-06-26","Price":"11568"},{"Date":"2015-06-27","Price":"11838"},{"Date":"2015-06-28","Price":"12108"},{"Date":"2015-06-29","Price":"11899"},{"Date":"2015-06-30","Price":"11965"},{"Date":"2015-07-01","Price":"11989"},{"Date":"2015-07-02","Price":"12023"},{"Date":"2015-07-03","Price":"12176"},{"Date":"2015-07-04","Price":"12340"},{"Date":"2015-07-05","Price":"12492"},{"Date":"2015-07-06","Price":"12645"},{"Date":"2015-07-07","Price":"12741"},{"Date":"2015-07-08","Price":"12882"},{"Date":"2015-07-09","Price":"13048"},{"Date":"2015-07-10","Price":"13085"},{"Date":"2015-07-11","Price":"13073"},{"Date":"2015-07-12","Price":"13073"},{"Date":"2015-07-13","Price":"13073"},{"Date":"2015-07-14","Price":"13073"},{"Date":"2015-07-15","Price":"13111"},{"Date":"2015-07-16","Price":"13115"},{"Date":"2015-07-17","Price":"13116"},{"Date":"2015-07-18","Price":"13116"},{"Date":"2015-07-19","Price":"13116"},{"Date":"2015-07-20","Price":"13116"},{"Date":"2015-07-21","Price":"13116"},{"Date":"2015-07-22","Price":"13078"},{"Date":"2015-07-23","Price":"13037"},{"Date":"2015-07-24","Price":"12999"},{"Date":"2015-07-25","Price":"12999"},{"Date":"2015-07-26","Price":"12999"},{"Date":"2015-07-27","Price":"12999"},{"Date":"2015-07-28","Price":"12999"},{"Date":"2015-07-29","Price":"12999"},{"Date":"2015-07-30","Price":"12999"},{"Date":"2015-07-31","Price":"12999"},{"Date":"2015-08-01","Price":"12999"},{"Date":"2015-08-02","Price":"13038"},{"Date":"2015-08-03","Price":"13077"},{"Date":"2015-08-04","Price":"13077"},{"Date":"2015-08-05","Price":"13116"},{"Date":"2015-08-06","Price":"13156"},{"Date":"2015-08-07","Price":"13156"},{"Date":"2015-08-08","Price":"13156"}],
+	 	keys: {
+			value: ['Date', 'Price'],
+		},
+		color: {
+	 		Price: 'url(#grad1)'
+		},
+		type: "line",
+	},
+	point: {
+		show: false
+	},
+	axis: {
+		x: {
+		    type: 'timeseries', 
+		    tick: {
+		        count: 3,
+		        format: '%Y:%m:%d', 
+		    },
+		    min: new Date('2015-04-10'),
+		    max: new Date('2015-08-08'),
+		},
+	},
+	oninit: function() {
+		this.svg[0][0].getElementsByTagName('defs')[0].innerHTML += grad1;
+	}
+});
+	</script>
+</body>
+</html>
