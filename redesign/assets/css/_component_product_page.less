@@ -535,6 +535,223 @@
   }
 }
 
+.rvws{
+  &-msp {
+    margin-bottom: 10px;
+    padding: 10px 0 20px;
+    border-bottom: 1px solid @border-color;
+    &__vd {
+      display: inline-block;
+      width: 443px;
+      height: 250px;
+    }
+    &__dtls {
+      display: inline-block;
+      width: 420px;
+      padding-left: 25px;
+      vertical-align: top;
+      margin-left: @inline-block-margin;
+      &-ttl {
+        margin-bottom: 15px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+    &__rtng {
+      &-ttl {
+        margin-bottom: 15px;
+        color: @fg-color-grey;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    &__dscrptn {
+      margin-top: 23px;
+      &-ttl {
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      &-text {
+        max-height: 100px;
+        margin-top: 10px;
+        color: @fg-color-grey;
+        font-size: 14px;
+        line-height: 20px;
+        overflow: hidden;
+        .line-clamp(5);
+      }
+      &-read-more {
+        display: block;
+        margin-top: 15px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+  }
+  &-usr {
+    &__ttl {
+      margin-bottom: 10px;
+      color: @fg-color-red;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    &__item {
+      width:890px - 2*@border-width;
+      padding: 10px 0;
+      & + & {
+        border-top: 1px solid @border-color;
+      }
+      &-img-wrpr {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        vertical-align: top;
+      }
+      &-img {
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+      }
+      &-date {
+        color: @fg-color-grey;
+      }
+    }
+    &__dtls{
+      &-inr {
+        display: inline-block;
+        margin: 0 0 0 10px;
+        vertical-align: top;
+        .tag {
+          margin-left: 5px; 
+        }
+      }
+    }
+    &__item {
+      &-usr-name {
+        margin-bottom:10px;
+        font-size: 14px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      &-dscrptn {
+        font-size: 14px;
+        line-height: 20px;
+        vertical-align: middle;
+      }
+      &-ttl {
+        margin-top: 10px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      &-text {
+        margin-top: 5px;
+        color: @fg-color-grey;
+        font-size: 14px;
+      }
+      &-read-more {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.usr-rvw-form {
+  .sctn-inr {
+    padding: 20px;
+  }
+  &__ttl, &__desc {
+    display: block;
+    width: 865px;
+    padding: 10px;
+    font-size: 12px;
+  }
+  &__desc {
+    height: 50px;
+    margin-top: 20px;
+  }
+  &__dtls {
+    margin-top: 20px;
+    padding: 5px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    &-img-wrpr, &-desc {
+      float: left;
+    }
+    &-desc {
+      margin-left: 10px;
+    }
+    &-img-wrpr {
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+    }
+    &-img {
+      max-height: 100%;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    &-ttl {
+      color: black;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    &-txt {
+      margin-top: 5px;
+      color: @fg-color-grey;
+      font-size: 14px;
+    }
+  }
+  &__rtng-wrpr {
+    float:left;
+    width: 444px;
+    margin-top: 20px;
+  }
+  .rtng-wrpr {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+  &__rtng-lbl {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+
+  &__rcmd {
+    &-wrpr {
+      float:right;
+      width: 444px;
+      margin-top: 10px;
+      text-align: right;
+      .votes-wrpr {
+        display: inline-block;
+        margin-left: 20px;
+        vertical-align: middle;
+      }
+    }
+    &-lbl {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+  }
+  
+  &__submit {
+    margin-top:20px;
+  }
+}
+
 .tchncl-spcftn {
   .sctn__hdr {
     border-bottom: none;

@@ -1,7 +1,16 @@
-
-
-
-
+/*===============================
+Box Model
+=================================*/
+/*===============================
+Typography
+=================================*/
+/*===============================
+Theme & Color
+=================================*/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 html,
 body,
 div,
@@ -90,7 +99,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
-
+/* HTML5 display-role reset for older browsers */
 article,
 aside,
 details,
@@ -127,11 +136,11 @@ table {
   border-spacing: 0;
 }
 a {
-  color: inherit;
+  color: #4e92e3;
   text-decoration: none;
 }
 a:hover {
-  color: #cc0000;
+  text-decoration: underline;
 }
 body {
   background: #f2f3f5;
@@ -169,16 +178,40 @@ h2 {
   font-size: 18px;
   line-height: 1.4;
 }
-input {
+input,
+textarea {
   background-color: #ffffff;
   border: 1px solid #dfe1e8;
+  border-radius: 3px;
+  color: #8e8e93;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #8e8e93;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  opacity: 1;
+  /* Mozilla Firefox 4 to 18 */
+  color: #8e8e93;
+}
+input-moz-placeholder,
+textarea-moz-placeholder {
+  opacity: 1;
+  /* Mozilla Firefox 19+ */
+  color: #8e8e93;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
   color: #8e8e93;
 }
 .btn {
   display: inline-block;
   height: 32px;
   padding: 0 15px;
-  border-radius: 2px;
+  border-radius: 3px;
   background-color: #8e93a1;
   color: #ffffff;
   font-size: 12px;
@@ -494,7 +527,7 @@ input {
 }
 .sctn--no-pdng .sctn__hdr {
   margin: 0;
-  padding: 15px 20px 15px 20px;
+  padding: 20px;
 }
 .sctn--no-pdng .sctn__inr {
   margin: 0;
@@ -526,6 +559,24 @@ input {
   height: 18px;
   width: 70px;
 }
+.rtng-wrpr--xl {
+  line-height: 18px;
+}
+.rtng-wrpr--xl .rtng__cnt {
+  font-size: 10px;
+}
+.rtng-wrpr--xl .rtng-star,
+.rtng-wrpr--xl .rtng-star__inr {
+  width: 95px;
+  height: 18px;
+  background-size: auto 18px;
+}
+.rtng-wrpr--xl .rtng-star {
+  background-image: url('http://avi.mysmartprice.com/rd/img/star-grey-xl.png');
+}
+.rtng-wrpr--xl .rtng__inr {
+  background-image: url('http://avi.mysmartprice.com/rd/img/star-gold-xl.png');
+}
 .rtng-star {
   background: url('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png') left center repeat-x;
   margin-right: 10px;
@@ -543,6 +594,41 @@ input {
   float: left;
   width: 60px;
   height: 14px;
+}
+.rtng-bdg {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: #417505;
+  color: white;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+.hlp-prmpt {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #cccccc;
+  color: #ffffff;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+}
+.votes__up,
+.votes__down {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #dfe1e8;
+  border-radius: 3px;
+}
+.votes__up {
+  margin-left: 15px;
+  background: url("http://avi.mysmartprice.com/rd/img/votes-up.png") no-repeat center;
+}
+.votes__down {
+  background: url("http://avi.mysmartprice.com/rd/img/votes-down.png") no-repeat center;
 }
 .load-more {
   width: 100%;
@@ -922,7 +1008,7 @@ input {
   visibility: visible;
   opacity: .6;
 }
-
+/* Search Starts */
 .srch-wdgt {
   position: relative;
   float: left;
@@ -967,21 +1053,21 @@ input {
   appearance: none;
 }
 .srch-wdgt__fld::-webkit-input-placeholder {
-  
+  /* WebKit browsers */
   color: #8e8e93;
 }
 .srch-wdgt__fld:-moz-placeholder {
   opacity: 1;
-  
+  /* Mozilla Firefox 4 to 18 */
   color: #8e8e93;
 }
 .srch-wdgt__fld-moz-placeholder {
   opacity: 1;
-  
+  /* Mozilla Firefox 19+ */
   color: #8e8e93;
 }
 .srch-wdgt__fld:-ms-input-placeholder {
-  
+  /* Internet Explorer 10+ */
   color: #8e8e93;
 }
 .srch-wdgt__sbmt {
@@ -999,7 +1085,7 @@ input {
   background: url('http://doypaxk1e2349.cloudfront.net/icons/search-white.png') no-repeat center;
   background-color: #cc0000;
 }
-
+/* Search Ends */
 .ui-helper-hidden-accessible {
   display: none;
 }
@@ -1783,7 +1869,7 @@ input {
   float: right;
   text-transform: capitalize;
 }
-
+/* Carousel Plugin Styles Begin Here */
 .crsl-wdgt {
   position: relative;
   overflow: hidden;
@@ -2356,7 +2442,7 @@ input {
 .js-fltrs-apld__item-cler {
   margin-left: 5px;
 }
-
+/* UI Slider and Nano ScrollBar CSS */
 .nano {
   position: relative;
   overflow: hidden;
@@ -2922,6 +3008,209 @@ input {
 .exprt-rvw__item-text {
   color: #8e8e93;
 }
+.rvws-msp {
+  margin-bottom: 10px;
+  padding: 10px 0 20px;
+  border-bottom: 1px solid #dfe1e8;
+}
+.rvws-msp__vd {
+  display: inline-block;
+  width: 443px;
+  height: 250px;
+}
+.rvws-msp__dtls {
+  display: inline-block;
+  width: 420px;
+  padding-left: 25px;
+  vertical-align: top;
+  margin-left: -0.28em;
+}
+.rvws-msp__dtls-ttl {
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.rvws-msp__rtng-ttl {
+  margin-bottom: 15px;
+  color: #8e8e93;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rvws-msp__dscrptn {
+  margin-top: 23px;
+}
+.rvws-msp__dscrptn-ttl {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.rvws-msp__dscrptn-text {
+  max-height: 100px;
+  margin-top: 10px;
+  color: #8e8e93;
+  font-size: 14px;
+  line-height: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+.rvws-msp__dscrptn-read-more {
+  display: block;
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.rvws-usr__ttl {
+  margin-bottom: 10px;
+  color: #cc0000;
+  font-size: 14px;
+  font-weight: 600;
+}
+.rvws-usr__item {
+  width: 888px;
+  padding: 10px 0;
+}
+.rvws-usr__item + .rvws-usr__item {
+  border-top: 1px solid #dfe1e8;
+}
+.rvws-usr__item-img-wrpr {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: top;
+}
+.rvws-usr__item-img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+.rvws-usr__item-date {
+  color: #8e8e93;
+}
+.rvws-usr__dtls-inr {
+  display: inline-block;
+  margin: 0 0 0 10px;
+  vertical-align: top;
+}
+.rvws-usr__dtls-inr .tag {
+  margin-left: 5px;
+}
+.rvws-usr__item-usr-name {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.rvws-usr__item-dscrptn {
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: middle;
+}
+.rvws-usr__item-ttl {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.rvws-usr__item-text {
+  margin-top: 5px;
+  color: #8e8e93;
+  font-size: 14px;
+}
+.rvws-usr__item-read-more {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.usr-rvw-form .sctn-inr {
+  padding: 20px;
+}
+.usr-rvw-form__ttl,
+.usr-rvw-form__desc {
+  display: block;
+  width: 865px;
+  padding: 10px;
+  font-size: 12px;
+}
+.usr-rvw-form__desc {
+  height: 50px;
+  margin-top: 20px;
+}
+.usr-rvw-form__dtls {
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px solid #dfe1e8;
+  border-radius: 3px;
+}
+.usr-rvw-form__dtls-img-wrpr,
+.usr-rvw-form__dtls-desc {
+  float: left;
+}
+.usr-rvw-form__dtls-desc {
+  margin-left: 10px;
+}
+.usr-rvw-form__dtls-img-wrpr {
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+}
+.usr-rvw-form__dtls-img {
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+.usr-rvw-form__dtls-ttl {
+  color: black;
+  font-size: 14px;
+  font-weight: 600;
+}
+.usr-rvw-form__dtls-txt {
+  margin-top: 5px;
+  color: #8e8e93;
+  font-size: 14px;
+}
+.usr-rvw-form__rtng-wrpr {
+  float: left;
+  width: 444px;
+  margin-top: 20px;
+}
+.usr-rvw-form .rtng-wrpr {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+.usr-rvw-form__rtng-lbl {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.usr-rvw-form__rcmd-wrpr {
+  float: right;
+  width: 444px;
+  margin-top: 10px;
+  text-align: right;
+}
+.usr-rvw-form__rcmd-wrpr .votes-wrpr {
+  display: inline-block;
+  margin-left: 20px;
+  vertical-align: middle;
+}
+.usr-rvw-form__rcmd-lbl {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.usr-rvw-form__submit {
+  margin-top: 20px;
+}
 .tchncl-spcftn .sctn__hdr {
   border-bottom: none;
 }
@@ -2956,6 +3245,206 @@ input {
   padding: 10px;
   color: #8e8e93;
   vertical-align: middle;
+}
+.prc-tbl__ttl {
+  float: left;
+  padding: 5px 0;
+  color: #3b3b3b;
+  font-weight: 600;
+  text-transform: none;
+}
+.prc-tbl__fltrs {
+  padding: 15px;
+}
+.prc-tbl__fltrs-ttl {
+  float: left;
+  margin: 0 5px;
+  padding: 2px 0;
+}
+.prc-tbl__fltrs-item {
+  float: left;
+  margin: 0 5px;
+  padding: 2px 0 0 20px;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-checkbox-grey.png') no-repeat left;
+  cursor: pointer;
+}
+.prc-tbl__fltrs-item--slctd {
+  color: #cc0000;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-red.png') no-repeat left;
+}
+.prc-tbl__srt {
+  padding: 30px 15px 15px;
+  background: #f2f3f5;
+}
+.prc-tbl__srt-lbl {
+  color: #8e8e93;
+  font-size: 14px;
+  font-weight: 600;
+  vertical-align: middle;
+}
+.prc-tbl__srt-lbl--lt {
+  font-weight: 400;
+  color: #8e8e93;
+}
+.prc-tbl__srt-arw {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-left: 3px;
+  vertical-align: middle;
+}
+.prc-tbl__srt-arw--desc {
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-desc.png") no-repeat center center / auto 13px;
+}
+.prc-tbl__srt-arw--asc {
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-asc.png") no-repeat center center / auto 13px;
+}
+.prc-tbl__srt-strs {
+  float: left;
+  width: 175px;
+}
+.prc-tbl__srt-slr-rtng {
+  float: left;
+  width: 175px;
+}
+.prc-tbl__srt-prc {
+  float: left;
+  width: 175px;
+  margin-left: 480px;
+}
+.prc-tbl__row {
+  border-bottom: 1px solid #dfe1e8;
+}
+.prc-tbl__row-inr {
+  padding: 10px 0;
+}
+.prc-tbl__clm {
+  float: left;
+}
+.prc-tbl__clm-str {
+  width: 135px;
+  padding: 15px 20px;
+  text-align: center;
+}
+.prc-tbl__clm-str-logo {
+  max-width: 135px;
+}
+.prc-tbl__clm-slr {
+  width: 165px;
+  padding: 15px 0 15px 20px;
+}
+.prc-tbl__clm-slr-name {
+  margin-bottom: 10px;
+}
+.prc-tbl__clm-slr .rtng-wrpr {
+  display: inline-block;
+  vertical-align: middle;
+}
+.prc-tbl__clm-slr .rtng-bdg {
+  vertical-align: middle;
+}
+.prc-tbl__clm-slr-prm {
+  margin-top: 10px;
+}
+.prc-tbl__clm-slr-prm-logo {
+  vertical-align: middle;
+}
+.prc-tbl__clm-avlblty {
+  padding: 7px 20px;
+}
+.prc-tbl__clm-avlblty-itm {
+  padding: 8px 5px 8px 25px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat center left;
+}
+.prc-tbl__clm-avlblty-itm + .prc-tbl__clm-srvc-itm {
+  border-top: 1px solid #dfe1e8;
+}
+.prc-tbl__clm-avlblty-na {
+  color: #bbbbbb;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-notavailable.png") no-repeat center left;
+}
+.prc-tbl__clm-dtls {
+  padding: 7px 15px 7px 20px;
+}
+.prc-tbl__clm-dtls-itm {
+  padding: 8px 0;
+}
+.prc-tbl__clm-dtls-itm + .prc-tbl__clm-dtls-itm {
+  border-top: 1px solid #dfe1e8;
+}
+.prc-tbl__clm-dtls-colr-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: black;
+}
+.prc-tbl__clm-dtls-colr-mr {
+  color: #3d6a8c;
+}
+.prc-tbl__clm-dtls-colr-mr:hover {
+  text-decoration: underline;
+}
+.prc-tbl__clm-cost {
+  padding: 10px 15px 10px 20px;
+}
+.prc-tbl__clm-cost-vl {
+  color: #3d6a8c;
+  font-size: 32px;
+  font-weight: 600;
+}
+.prc-tbl__clm-cost-smbl {
+  color: #8e8e93;
+}
+.prc-tbl__clm-cost-cpn {
+  padding: 6px 6px 6px 23px;
+  margin-top: 10px;
+  border: 1px solid #dfe1e8;
+  border-radius: 3px;
+  color: #8e8e93;
+  background: #f2f3f5 url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat 5px center;
+}
+.prc-tbl__clm-gts {
+  padding: 10px 20px;
+}
+.prc-tbl__clm-gts-lylty {
+  padding: 10px 0 0 27px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png") no-repeat left center;
+  color: #f5a623;
+  font-size: 12px;
+  line-height: 16px;
+}
+.prc-tbl__xtrs {
+  width: 100%;
+  color: #8e8e93;
+}
+.prc-tbl__xtrs-clm {
+  width: 566px;
+  padding: 7px 5px 7px 28px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.prc-tbl__xtrs-ofrs {
+  float: left;
+  background: #fef8ec url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center;
+}
+.prc-tbl__xtrs-cpns {
+  float: right;
+  background: #f2f3f5 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-tag.png") no-repeat 6px center;
+}
+.prc-tbl__prc-drop-btn {
+  display: inline-block;
+  padding: 7px 7px 7px 25px;
+  margin-top: 5px;
+  border: 1px solid #dfe1e8;
+  border-radius: 3px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricedrop-icon.png") no-repeat 6px center;
+  color: #8e8e93;
+}
+.body:after {
+  display: none;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-red.png');
 }
 .ftr {
   border-top: 1px solid #dfe1e8;
@@ -3096,6 +3585,7 @@ input {
   left: 0 !important;
 }
 .text-link {
+  color: inherit;
   cursor: pointer;
 }
 .text-link:hover {
