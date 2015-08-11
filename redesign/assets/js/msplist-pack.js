@@ -408,8 +408,8 @@ var ListPage = {
                 var $nanoElements;
 
                 if (filterGroups) {
-                    $nanoElements = $(".fltr").filter(function() {
-                        return filterGroups.indexOf($(this).attr("groupname")) !== -1;
+                    $nanoElements = $(".fltr-val-wrpr.nano").filter(function() {
+                        return filterGroups.indexOf($(this).closest(".fltr").attr("groupname")) !== -1;
                     });
                 } else {
                     $nanoElements = $(".fltr-val-wrpr.nano");
@@ -633,8 +633,8 @@ var ListPage = {
                                     "priceSlider" : {
                                         "min" : lp_clipboard.slider.priceMin,
                                         "max" : lp_clipboard.slider.priceMax
-                                    }, replacedGroups
-                                });
+                                    }
+                                }, replacedGroups);
                             } else {
                                 // load new filters
                                 $(".fltr-wrpr1").html(freshData[0]);
