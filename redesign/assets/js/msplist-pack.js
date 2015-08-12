@@ -438,6 +438,7 @@ var ListPage = {
                 lp_defaults = ListPage.model.params.defaults,
                 lp_page = ListPage.model.params.page,
                 lp_clipboard = ListPage.model.clipboard,
+                lp_services = ListPage.services,
                 initHash, prop_strings;
 
             lp_clipboard.isOnLoad = $.isEmptyObject(lp_current);
@@ -477,30 +478,7 @@ var ListPage = {
                 });
             } else {
                 // if isOnLoad get current params from url hash.
-                $.extend(lp_current, (function() {
-                    initHash = window.location.hash;
-                    prop_strings = initHash.replace("#", "").split("&");
-                    if (prop_strings[0] !== "") {
-                        $.each(prop_strings, function (i, prop_string) {
-                            lp_current[prop_string.split("=")[0]] = prop_string.split("=")[1];
-                        });
-                        if ("property" in lp_current) {
-                            lp_current.property = $.grep(lp_current.property.split("|").sort(), function (e, i) {
-                                return (e !== "");
-                            });
-                        }
-                        if ("startinr" in lp_current || "endinr" in lp_current) {
-                            lp_current.startinr = parseInt(lp_current.startinr, 10);
-                            lp_current.endinr = parseInt(lp_current.endinr, 10);
-                        }
-                    }
-                    if (lp_current.startinr === lp_defaults.priceMin && lp_current.endinr === lp_defaults.priceMax) {
-                        delete lp_current.startinr;
-                        delete lp_current.endinr;
-                    }
-
-                    return lp_current;
-                }()));
+                $.extend(lp_current, lp_services.filterHash.toParams(window.location.hash));
 
                 (function() {
                     var currentLength = 0;
@@ -529,11 +507,11 @@ var ListPage = {
                         }
                     });
                 })();
-                lp_clipboard.isLoadParamsEqualtoPageParams = (ListPage.services.generateHash(lp_current) === ListPage.services.generateHash(lp_page));
+                lp_clipboard.isLoadParamsEqualtoPageParams = (ListPage.services.filterHash.fromParams(lp_current) === ListPage.services.filterHash.fromParams(lp_page));
             }
 
             //generate new hash, and start view rendering.
-            ListPage.model.hash = ListPage.services.generateHash(lp_current);
+            ListPage.model.hash = ListPage.services.filterHash.fromParams(lp_current);
             ListPage.view.render.init();
         }
     },
@@ -581,7 +559,7 @@ var ListPage = {
                 if (lp_clipboard.isOnLoad) {
                     $(".list-main__ttl, .list-info__dscrptn, .list-info__link-wrpr").show();
                 }
-                if (ListPage.services.generateHash(lp_current) !== ListPage.services.generateHash(lp_page)) {
+                if (ListPage.services.filterHash.fromParams(lp_current) !== ListPage.services.filterHash.fromParams(lp_page)) {
                     $(".list-main__ttl, .list-info__dscrptn, .list-info__link-wrpr").hide();
                     $(".js-list-ttl").html($(".body-wrpr").data("category-title"));
                 }
@@ -895,18 +873,44 @@ var ListPage = {
         }
     },
     "services" : {
-        "generateHash" : function (params) {
-            var hash = "#", index = 0;
-            $.each(params, function (key) {
-                var value, prefix;
-                if (params[key]) {
-                    prefix = index ? "&" : "";
-                    value = key === "property" ? params[key].join("|") : params[key];
-                    hash += prefix + key + "=" + value;
+        "filterHash" : {
+            "toParams" : function(filterHash) {
+                var params = {},
+                    prop_strings = filterHash.replace("#", "").split("&");
+                if (prop_strings[0] !== "") {
+                    $.each(prop_strings, function (i, prop_string) {
+                        params[prop_string.split("=")[0]] = prop_string.split("=")[1];
+                    });
+                    if ("property" in params) {
+                        params.property = $.grep(params.property.split("|").sort(), function (e, i) {
+                            return (e !== "");
+                        });
+                    }
+                    if ("startinr" in params || "endinr" in params) {
+                        params.startinr = parseInt(params.startinr, 10);
+                        params.endinr = parseInt(params.endinr, 10);
+                    }
                 }
-                index++;
-            });
-            return hash;
+                if (params.startinr === params.priceMin && params.endinr === params.priceMax) {
+                    delete params.startinr;
+                    delete params.endinr;
+                }
+
+                return params;
+            },
+            "fromParams" : function (params) {
+                var filterHash = "#", index = 0;
+                $.each(params, function (key) {
+                    var value, prefix;
+                    if (params[key]) {
+                        prefix = index ? "&" : "";
+                        value = key === "property" ? params[key].join("|") : params[key];
+                        filterHash += prefix + key + "=" + value;
+                    }
+                    index++;
+                });
+                return filterHash;
+            }
         },
         "fetch" : {
             // generate query from all the new page state params
