@@ -956,11 +956,14 @@ textarea:-ms-input-placeholder {
   height: 30px;
   padding: 5px 10px 5px 10px;
   border-bottom: 1px solid #dfe1e8;
-  color: #5eb8ae;
   line-height: 30px;
   text-transform: uppercase;
 }
-.drpdwn-menu__ofr:hover {
+.drpdwn-menu__ofr-link {
+  color: #5eb8ae;
+}
+.drpdwn-menu__ofr-link:hover {
+  color: #5eb8ae;
   text-decoration: none;
 }
 .drpdwn-menu__img {
@@ -996,10 +999,10 @@ textarea:-ms-input-placeholder {
   background: url('http://doypaxk1e2349.cloudfront.net/icons/menu-arrow-grey.png') no-repeat right center;
   vertical-align: middle;
 }
-.drpdwn-menu__ofr-link:hover {
-  color: #5eb8ae;
-}
 .drpdwn-menu__ctgry:hover {
+  color: #cc0000;
+}
+.drpdwn-menu__ctgry:hover .drpdwn-menu__ctgry-link {
   color: #cc0000;
 }
 .drpdwn-menu__ctgry:hover .drpdwn-sub-menu {

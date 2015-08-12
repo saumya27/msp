@@ -126,12 +126,15 @@
     padding: 5px 10px 5px 10px;
     border-bottom: 1px solid @border-color;
 
-    color: @fg-color-green;
     line-height: 30px;
 
     text-transform: uppercase;
-    &:hover {
+    &-link {
+      color: @fg-color-green;
+      &:hover {
+      color: @fg-color-green;
       text-decoration: none;
+      }
     }
   }
   &__img {
@@ -175,12 +178,12 @@
   }
 }
 
-.drpdwn-menu__ofr-link:hover {
-  color: @fg-color-green;
-}
 
 .drpdwn-menu__ctgry:hover {
   color: @fg-color-red;
+  .drpdwn-menu__ctgry-link {
+    color: @fg-color-red; 
+  }
   .drpdwn-sub-menu {
     display: block;
   }
