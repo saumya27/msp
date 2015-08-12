@@ -1,42 +1,3 @@
-.avlbl-clrs {
-  &__item {
-    float: left;
-
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-
-    cursor: pointer;
-    &--slctd {
-      width: 18px;
-      height: 18px;
-      border: 1px solid @border-color-blue;
-    }
-    & + & {
-      margin-left: 5px;
-    }
-  }
-}
-.avlbl-sizes {
-  line-height: 20px;
-  &__item {
-    padding: 0 4px;
-    border: 1px solid @border-color;
-    border-radius: @border-radius;
-
-    color: @fg-color-grey;
-
-    cursor: pointer;
-    vertical-align: middle;
-    text-transform: uppercase;
-    &--slctd {
-      border: 2px solid @border-color-blue;
-    }
-    & + & {
-      margin-left: 5px;
-    }
-  }
-}
 .page-nvgtn {
   &__item {
     text-transform: uppercase;
@@ -222,6 +183,7 @@
         }
         &-dscnt {
           color: @fg-color-red;
+          font-weight: @font-bold;
         }
       }
       &-rcmnd {
