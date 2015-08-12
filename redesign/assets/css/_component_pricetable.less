@@ -71,25 +71,41 @@
             padding: 10px 0;
         }
         &--offline {
-            background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left;
+            background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left/35px auto;
             .prc-tbl__clm-dtls-dlvr {
                 background-image: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png");
+            }
+            .prc-tbl__clm-cost-shpng {
+                width: 100%;
+                margin-top: 10px;
+                text-align: center;
             }
         }
     }
     &__clm {
         float:left;
         &-str {
-            width: 135px;
-            padding: 15px 20px;
+            width: 165px;
+            padding: 20px 0;
             text-align: center;
             &-logo {
+                &-wrpr {
+                    text-align: center;
+                }
                 max-width: 135px;
+            }
+            &-lctn {
+                display: inline-block;
+                padding: 5px 5px 5px 15px;
+                margin-top: 5px;
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-location-icon.png") no-repeat left center;
+                color: @fg-color-grey;
+                text-align: center;
             }
         }
         &-slr {
             width: 165px;
-            padding: 15px 0 15px 20px;
+            padding: 15px 15px 15px 20px;
             &-name {
                 margin-bottom: 10px;
             }
@@ -111,13 +127,14 @@
             }
         }
         &-avlblty {
+            width: 190px;
             padding: 7px 20px;
             &-itm {
                 padding: 8px 5px 8px 25px;
                 background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat center left;
-            }
-            &-itm + .prc-tbl__clm-srvc-itm {
-                border-top: 1px solid @border-color;
+                & + & {
+                    border-top: 1px solid @border-color;
+                }
             }
             &-na {
                 color: @fg-color-light-grey;
@@ -125,7 +142,8 @@
             }
         }
         &-dtls {
-            padding: 7px 15px 7px 20px;
+            width: 190px;
+            padding: 7px 20px;
             &-itm {
                 padding: 8px 0;
             }
@@ -135,6 +153,10 @@
             &-dlvr {
                 padding-left: 40px;
                 background: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png") no-repeat left center;
+            }
+            &-pckp {
+                padding-left: 30px;
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-pickup-icon.png") no-repeat left center;   
             }
             &-clr {
                 &-dot {
@@ -153,26 +175,32 @@
             }
         }
         &-cost {
-            padding: 10px 15px 10px 20px;
-            &-vl {
+            width: 130px;
+            padding: 10px 20px;
+            &-val {
                 color: @fg-color-blue;
                 font-size: 32px;
                 font-weight: @font-bold;
             }
-            &-smbl {
-                color: @fg-color-grey;
+            &-rpe {
+                display: inline-block;
+                color: @fg-color-blue;
+                font-size: 24px;
+                line-height: 30px;
+                font-weight: 400;
+                vertical-align: top;
             }
             &-cpn {
                 padding: 6px 6px 6px 23px;
                 margin-top: 10px;
-                border: 1px solid @border-color;
+                border: 1px dashed @border-color;
                 border-radius: @border-radius;
                 color: @fg-color-grey;
                 background: @bg-color-gs4 url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat 5px center;
             }
         }
         &-gts {
-            padding: 10px 20px;
+            padding: 10px;
             &-lylty {
                 padding: 10px 0 0 27px; 
                 background: url("http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png") no-repeat left center;

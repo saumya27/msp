@@ -153,8 +153,8 @@ body {
   outline: 0;
   font-family: 'Open Sans', sans-serif, Arial, Helvetica;
 }
-b {
-  font-weight: bold;
+strong {
+  font-weight: 600;
 }
 img[width='1'][height='1'] {
   position: fixed;
@@ -3303,7 +3303,7 @@ textarea:-ms-input-placeholder {
 .tchncl-spcftn__item + .tchncl-spcftn__item .tchncl-spcftn__item-key {
   border-top: 1px solid #dfe1e8;
 }
-.tchncl-spcftn__item + .tchncl-spcftn__item .tchncl-spcftn__item-vle {
+.tchncl-spcftn__item + .tchncl-spcftn__item .tchncl-spcftn__item-val {
   border-top: 1px solid #dfe1e8;
 }
 .tchncl-spcftn__item-key {
@@ -3313,7 +3313,7 @@ textarea:-ms-input-placeholder {
   background-color: #e9ebef;
   vertical-align: middle;
 }
-.tchncl-spcftn__item-vle {
+.tchncl-spcftn__item-val {
   display: table-cell;
   width: 658px;
   padding: 10px;
@@ -3393,25 +3393,41 @@ textarea:-ms-input-placeholder {
   padding: 10px 0;
 }
 .prc-tbl__row--offline {
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left / 35px auto;
 }
 .prc-tbl__row--offline .prc-tbl__clm-dtls-dlvr {
   background-image: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png");
+}
+.prc-tbl__row--offline .prc-tbl__clm-cost-shpng {
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
 }
 .prc-tbl__clm {
   float: left;
 }
 .prc-tbl__clm-str {
-  width: 135px;
-  padding: 15px 20px;
+  width: 165px;
+  padding: 20px 0;
   text-align: center;
 }
 .prc-tbl__clm-str-logo {
   max-width: 135px;
 }
+.prc-tbl__clm-str-logo-wrpr {
+  text-align: center;
+}
+.prc-tbl__clm-str-lctn {
+  display: inline-block;
+  padding: 5px 5px 5px 15px;
+  margin-top: 5px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-location-icon.png") no-repeat left center;
+  color: #8e8e93;
+  text-align: center;
+}
 .prc-tbl__clm-slr {
   width: 165px;
-  padding: 15px 0 15px 20px;
+  padding: 15px 15px 15px 20px;
 }
 .prc-tbl__clm-slr-name {
   margin-bottom: 10px;
@@ -3433,13 +3449,14 @@ textarea:-ms-input-placeholder {
   margin-left: 5px;
 }
 .prc-tbl__clm-avlblty {
+  width: 190px;
   padding: 7px 20px;
 }
 .prc-tbl__clm-avlblty-itm {
   padding: 8px 5px 8px 25px;
   background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat center left;
 }
-.prc-tbl__clm-avlblty-itm + .prc-tbl__clm-srvc-itm {
+.prc-tbl__clm-avlblty-itm + .prc-tbl__clm-avlblty-itm {
   border-top: 1px solid #dfe1e8;
 }
 .prc-tbl__clm-avlblty-na {
@@ -3447,7 +3464,8 @@ textarea:-ms-input-placeholder {
   background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-notavailable.png") no-repeat center left;
 }
 .prc-tbl__clm-dtls {
-  padding: 7px 15px 7px 20px;
+  width: 190px;
+  padding: 7px 20px;
 }
 .prc-tbl__clm-dtls-itm {
   padding: 8px 0;
@@ -3458,6 +3476,10 @@ textarea:-ms-input-placeholder {
 .prc-tbl__clm-dtls-dlvr {
   padding-left: 40px;
   background: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png") no-repeat left center;
+}
+.prc-tbl__clm-dtls-pckp {
+  padding-left: 30px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-pickup-icon.png") no-repeat left center;
 }
 .prc-tbl__clm-dtls-clr-dot {
   display: inline-block;
@@ -3473,26 +3495,32 @@ textarea:-ms-input-placeholder {
   text-decoration: underline;
 }
 .prc-tbl__clm-cost {
-  padding: 10px 15px 10px 20px;
+  width: 130px;
+  padding: 10px 20px;
 }
-.prc-tbl__clm-cost-vl {
+.prc-tbl__clm-cost-val {
   color: #3d6a8c;
   font-size: 32px;
   font-weight: 600;
 }
-.prc-tbl__clm-cost-smbl {
-  color: #8e8e93;
+.prc-tbl__clm-cost-rpe {
+  display: inline-block;
+  color: #3d6a8c;
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 400;
+  vertical-align: top;
 }
 .prc-tbl__clm-cost-cpn {
   padding: 6px 6px 6px 23px;
   margin-top: 10px;
-  border: 1px solid #dfe1e8;
+  border: 1px dashed #dfe1e8;
   border-radius: 3px;
   color: #8e8e93;
   background: #f2f3f5 url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat 5px center;
 }
 .prc-tbl__clm-gts {
-  padding: 10px 20px;
+  padding: 10px;
 }
 .prc-tbl__clm-gts-lylty {
   padding: 10px 0 0 27px;
