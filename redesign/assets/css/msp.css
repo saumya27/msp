@@ -136,11 +136,11 @@ table {
   border-spacing: 0;
 }
 a {
-  color: #4e92e3;
+  color: inherit;
   text-decoration: none;
 }
 a:hover {
-  text-decoration: underline;
+  color: #cc0000;
 }
 body {
   background: #f2f3f5;
@@ -606,12 +606,13 @@ textarea:-ms-input-placeholder {
 }
 .hlp-prmpt {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #cccccc;
   color: #ffffff;
-  line-height: 20px;
+  font-size: 12px;
+  line-height: 18px;
   text-align: center;
   vertical-align: middle;
 }
@@ -3318,6 +3319,12 @@ textarea:-ms-input-placeholder {
 .prc-tbl__row-inr {
   padding: 10px 0;
 }
+.prc-tbl__row--offline {
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left;
+}
+.prc-tbl__row--offline .prc-tbl__clm-dtls-dlvr {
+  background-image: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png");
+}
 .prc-tbl__clm {
   float: left;
 }
@@ -3349,6 +3356,9 @@ textarea:-ms-input-placeholder {
 .prc-tbl__clm-slr-prm-logo {
   vertical-align: middle;
 }
+.prc-tbl__clm-slr .hlp-prmpt {
+  margin-left: 5px;
+}
 .prc-tbl__clm-avlblty {
   padding: 7px 20px;
 }
@@ -3372,17 +3382,21 @@ textarea:-ms-input-placeholder {
 .prc-tbl__clm-dtls-itm + .prc-tbl__clm-dtls-itm {
   border-top: 1px solid #dfe1e8;
 }
-.prc-tbl__clm-dtls-colr-dot {
+.prc-tbl__clm-dtls-dlvr {
+  padding-left: 40px;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png") no-repeat left center;
+}
+.prc-tbl__clm-dtls-clr-dot {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: black;
 }
-.prc-tbl__clm-dtls-colr-mr {
+.prc-tbl__clm-dtls-clr-mr {
   color: #3d6a8c;
 }
-.prc-tbl__clm-dtls-colr-mr:hover {
+.prc-tbl__clm-dtls-clr-mr:hover {
   text-decoration: underline;
 }
 .prc-tbl__clm-cost {
@@ -3427,11 +3441,11 @@ textarea:-ms-input-placeholder {
 }
 .prc-tbl__xtrs-ofrs {
   float: left;
-  background: #fef8ec url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center;
+  background: #fef6e9 url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center / 15px auto;
 }
 .prc-tbl__xtrs-cpns {
   float: right;
-  background: #f2f3f5 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-tag.png") no-repeat 6px center;
+  background: #ecf0f4 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors.png") no-repeat 6px center / 15px auto;
 }
 .prc-tbl__prc-drop-btn {
   display: inline-block;
@@ -3439,7 +3453,7 @@ textarea:-ms-input-placeholder {
   margin-top: 5px;
   border: 1px solid #dfe1e8;
   border-radius: 3px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricedrop-icon.png") no-repeat 6px center;
+  background: url("http://avi.mysmartprice.com/rd/img/pricetable-pricedrop-icon.png") no-repeat 6px center;
   color: #8e8e93;
 }
 .body:after {
@@ -3625,4 +3639,3 @@ textarea:-ms-input-placeholder {
 .to-top:hover {
   background-color: #ffffff;
 }
-/*# sourceMappingURL=msp.css.map */

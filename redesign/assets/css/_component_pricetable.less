@@ -70,6 +70,12 @@
         &-inr {
             padding: 10px 0;
         }
+        &--offline {
+            background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left;
+            .prc-tbl__clm-dtls-dlvr {
+                background-image: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png");
+            }
+        }
     }
     &__clm {
         float:left;
@@ -100,6 +106,9 @@
                     vertical-align: middle;
                 }
             }
+            .hlp-prmpt {
+                margin-left: 5px;
+            }
         }
         &-avlblty {
             padding: 7px 20px;
@@ -123,7 +132,11 @@
             &-itm + .prc-tbl__clm-dtls-itm {
                 border-top: 1px solid @border-color;
             }
-            &-colr {
+            &-dlvr {
+                padding-left: 40px;
+                background: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png") no-repeat left center;
+            }
+            &-clr {
                 &-dot {
                     display: inline-block;
                     width: 10px;
@@ -181,11 +194,11 @@
         }
         &-ofrs {
             float: left;
-            background: lighten(@bg-color-golden, 57.5%) url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center;
+            background: @bg-color-light-yellow url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center/15px auto;
         }
         &-cpns {
             float: right;
-            background: @bg-color-gs4 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-tag.png") no-repeat 6px center;
+            background: @bg-color-lightest-blue url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors.png") no-repeat 6px center/15px auto;
         }
     }
     &__prc-drop-btn {
@@ -194,7 +207,7 @@
         margin-top: 5px;
         border: 1px solid @border-color;
         border-radius: @border-radius;
-        background: url("http://avi.mysmartprice.com/rd/img/pricedrop-icon.png") no-repeat 6px center;
+        background: url("http://avi.mysmartprice.com/rd/img/pricetable-pricedrop-icon.png") no-repeat 6px center;
         color: @fg-color-grey;
     }
 }
