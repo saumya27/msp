@@ -43,7 +43,7 @@
     font-size:14px;
     line-height:20px;
     cursor:pointer;
-    font-weight: 600;
+    font-weight: @font-bold;
     padding:12px 40px;
     border-right:1px solid @border-color;
     float:left;
@@ -264,7 +264,7 @@
         line-height: 1.4;
         &-ttl {
           font-size: 14px;
-          font-weight: 600;
+          font-weight: @font-bold;
 
           text-transform: uppercase;
         }
@@ -426,7 +426,7 @@
     }
     &-drtn {
       color:@fg-color-grey;
-      font-weight: 600;
+      font-weight: @font-bold;
       line-height: 1.4;
       text-transform: uppercase;
     }
@@ -478,55 +478,7 @@
   &__item-ttl {
     margin-bottom: 5px;
 
-    font-weight: bold;
-
-    text-transform: uppercase;
-  }
-  &__item-text {
-    color: @fg-color-grey;
-  }
-}
-
-.exprt-rvw {
-  .sctn__inr {
-    font-size: 0;
-  }
-  &__item {
-    display: inline-block;
-
-    width: 890px - 2*@border-width;
-
-    white-space: normal;
-  }
-  &__img-wrpr {
-    display: inline-block;
-
-    width: 64px;
-    height: 64px;
-
-    text-align: center;
-    vertical-align: middle;
-  }
-  &__img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  &__item-dscrptn {
-    display: inline-block;
-
-    width: 806px - 2*@border-width;
-    margin-left: @inline-block-margin;
-    padding-left: 20px;
-
-    font-size: 14px;
-    line-height: 20px;
-
-    vertical-align: middle;
-  }
-  &__item-ttl {
-    margin-bottom: 5px;
-
-    font-weight: bold;
+    font-weight: @font-bold;
 
     text-transform: uppercase;
   }
@@ -554,7 +506,7 @@
       &-ttl {
         margin-bottom: 15px;
         font-size: 16px;
-        font-weight: 600;
+        font-weight: @font-bold;
       }
     }
     &__rtng {
@@ -562,14 +514,14 @@
         margin-bottom: 15px;
         color: @fg-color-grey;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: @font-bold;
       }
     }
     &__dscrptn {
       margin-top: 23px;
       &-ttl {
         font-size: 12px;
-        font-weight: 600;
+        font-weight: @font-bold;
         text-transform: uppercase;
       }
       &-text {
@@ -585,7 +537,7 @@
         display: block;
         margin-top: 15px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: @font-bold;
         text-transform: uppercase;
       }
     }
@@ -595,7 +547,7 @@
       margin-bottom: 10px;
       color: @fg-color-red;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: @font-bold;
     }
     &__item {
       width:890px - 2*@border-width;
@@ -645,7 +597,7 @@
       &-ttl {
         margin-top: 10px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: @font-bold;
         text-transform: uppercase;
       }
       &-text {
@@ -657,7 +609,7 @@
         display: block;
         margin-top: 5px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: @font-bold;
         text-transform: uppercase;
       }
     }
@@ -702,7 +654,7 @@
     &-ttl {
       color: black;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: @font-bold;
     }
     &-txt {
       margin-top: 5px;
@@ -723,7 +675,7 @@
   &__rtng-lbl {
     display: inline-block;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: @font-bold;
     vertical-align: middle;
   }
 
@@ -742,7 +694,7 @@
     &-lbl {
       display: inline-block;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: @font-bold;
       vertical-align: middle;
     }
   }

@@ -112,7 +112,6 @@
 .drpdwn-menu {
   opacity: 0;
 
-  color: @fg-color-grey;
   font-weight: normal;
 
   transition: opacity .3s ease-in-out;
@@ -131,6 +130,9 @@
     line-height: 30px;
 
     text-transform: uppercase;
+    &:hover {
+      text-decoration: none;
+    }
   }
   &__img {
     float: left;
@@ -155,6 +157,11 @@
     line-height: 16px;
 
     vertical-align: middle;
+    color: @fg-color-grey;
+    &:hover {
+      text-decoration: none;
+      color:@fg-color-red;
+    }
   }
   &__icon-rght {
     display: inline-block;
@@ -207,7 +214,6 @@
   margin-right: 15px;
 
   color: @fg-color-grey;
-  font-weight: normal;
   &__ttl {
     float: left;
 
@@ -224,8 +230,14 @@
   }
   &__item {
     padding: 5px 0;
-
     line-height: 16px;
+  }
+  &__item-link {
+    color: @fg-color-grey;
+    &:hover {
+      text-decoration: none;
+      color:@fg-color-red;
+    }
   }
 }
 

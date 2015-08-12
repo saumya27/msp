@@ -28,6 +28,13 @@
     font-weight: bold;
     line-height: 30px - 2*@border-width;
   }
+  &__menu-link {
+    color:@fg-color-grey;
+    &:hover {
+      text-decoration: none;
+      color:@fg-color-red;
+    }
+  }
   &__menu-img-wrpr {
     position: relative;
 
@@ -101,7 +108,10 @@
   }
   &__rgstr-link {
     color: @fg-color-light-blue;
-    font-weight: bold;
+    font-weight: @font-bold;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 .user-link {
