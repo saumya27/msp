@@ -221,7 +221,14 @@
     float: right;
   }
   &__view-all-link {
-    float: left;
+    color:@fg-color;
+    float:left;
+    &:hover {
+        color: @fg-color-red;
+
+        text-decoration: none;
+    }
+    
   }
   &__prvs-icon, &__next-icon {
     float: left;
@@ -268,7 +275,7 @@
     text-transform: uppercase;
     &:hover {
       background-color: @border-color;
-
+      text-decoration: none;
       color: @fg-color-grey;
     }
   }
@@ -289,6 +296,54 @@
     & .sctn__inr {
       margin: 0 10px;
     }
+  }
+}
+
+.antn-wdgt {
+  .sctn__inr {
+    font-size: 0;
+  }
+  &__item {
+    display: inline-block;
+
+    width: 890px - 2*@border-width;
+
+    white-space: normal;
+  }
+  &__img-wrpr {
+    display: inline-block;
+
+    width: 64px;
+    height: 64px;
+
+    text-align: center;
+    vertical-align: middle;
+  }
+  &__img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  &__item-dscrptn {
+    display: inline-block;
+
+    width: 806px - 2*@border-width;
+    margin-left: @inline-block-margin;
+    padding-left: 20px;
+
+    font-size: 14px;
+    line-height: 20px;
+
+    vertical-align: middle;
+  }
+  &__item-ttl {
+    margin-bottom: 5px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+  }
+  &__item-text {
+    color: @fg-color-grey;
   }
 }
 
@@ -437,9 +492,10 @@
 
     text-align: center;
     vertical-align: middle;
+    color:@fg-color-grey;
     &:hover {
       background-color: @border-color;
-
+      text-decoration: none;
       color: @fg-color-grey;
     }
     &--next, &--prvs {
