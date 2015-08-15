@@ -269,9 +269,9 @@ textarea:-ms-input-placeholder {
   width: 200px;
   height: 40px;
   padding: 12px 10px 8px 10px;
+  border: 1px solid #3d6a8c;
   border-radius: 3px;
   background: #3d6a8c;
-  border: 1px solid #3d6a8c;
   color: #ffffff;
   font-size: 16px;
   font-weight: 600;
@@ -303,9 +303,6 @@ textarea:-ms-input-placeholder {
 .btn-GTS:active {
   background: #3a6585;
 }
-.btn-GTS--s {
-  width: 150px;
-}
 .btn-GTS--no-bg {
   background-color: #ffffff;
   color: #3d6a8c;
@@ -315,6 +312,30 @@ textarea:-ms-input-placeholder {
 }
 .btn-GTS--no-bg:active {
   background: none;
+}
+.btn-GTS--dsbld {
+  border-color: #d0d3dd;
+  background: #8e93a1;
+}
+.btn-GTS--dsbld:hover {
+  background: #8e93a1;
+  cursor: not-allowed;
+}
+.btn-GTS--s {
+  width: 150px;
+}
+.btn-GTS--xs {
+  position: relative;
+  height: auto;
+  width: auto;
+  padding: 5px 20px 5px 5px;
+  font-size: 12px;
+  vertical-align: middle;
+}
+.btn-GTS--xs .btn-GTS__arw {
+  top: 21px;
+  right: 5px;
+  font-size: 18px;
 }
 .tltp {
   position: absolute;
@@ -482,8 +503,8 @@ textarea:-ms-input-placeholder {
   float: right;
 }
 .sctn__view-all-link {
-  color: #3b3b3b;
   float: left;
+  color: #3b3b3b;
 }
 .sctn__view-all-link:hover {
   color: #cc0000;
@@ -528,12 +549,12 @@ textarea:-ms-input-placeholder {
 }
 .sctn__view-all:hover {
   background-color: #dfe1e8;
-  text-decoration: none;
   color: #8e8e93;
+  text-decoration: none;
 }
 .sctn--no-pdng .sctn__hdr {
   margin: 0;
-  padding: 20px;
+  padding: 15px 20px;
 }
 .sctn--no-pdng .sctn__inr {
   margin: 0;
@@ -598,8 +619,8 @@ textarea:-ms-input-placeholder {
 }
 .rtng-wrpr--l .rtng-star,
 .rtng-wrpr--l .rtng-star__inr {
-  height: 18px;
   width: 70px;
+  height: 18px;
 }
 .rtng-wrpr--xl {
   line-height: 18px;
@@ -620,8 +641,8 @@ textarea:-ms-input-placeholder {
   background-image: url('http://avi.mysmartprice.com/rd/img/star-gold-xl.png');
 }
 .rtng-star {
-  background: url('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png') left center repeat-x;
   margin-right: 10px;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png') left center repeat-x;
 }
 .rtng-star__inr {
   background: url('http://doypaxk1e2349.cloudfront.net/icons/star-gold.png') left center repeat-x;
@@ -668,10 +689,10 @@ textarea:-ms-input-placeholder {
 }
 .votes__up {
   margin-left: 15px;
-  background: url("http://avi.mysmartprice.com/rd/img/votes-up.png") no-repeat center;
+  background: url('http://avi.mysmartprice.com/rd/img/votes-up.png') no-repeat center;
 }
 .votes__down {
-  background: url("http://avi.mysmartprice.com/rd/img/votes-down.png") no-repeat center;
+  background: url('http://avi.mysmartprice.com/rd/img/votes-down.png') no-repeat center;
 }
 .load-more {
   width: 100%;
@@ -707,21 +728,21 @@ textarea:-ms-input-placeholder {
 }
 .pgntn__item {
   display: inline-block;
-  cursor: pointer;
   width: 30px;
   height: 30px;
   border: 1px solid #dfe1e8;
   border-radius: 3px;
+  color: #8e8e93;
   font-size: 12px;
   line-height: 30px;
+  cursor: pointer;
   text-align: center;
   vertical-align: middle;
-  color: #8e8e93;
 }
 .pgntn__item:hover {
   background-color: #dfe1e8;
-  text-decoration: none;
   color: #8e8e93;
+  text-decoration: none;
 }
 .pgntn__item--next,
 .pgntn__item--prvs {
@@ -791,16 +812,16 @@ textarea:-ms-input-placeholder {
   position: absolute;
   right: 1px;
   border: 8px solid #ffffff;
-  border-left-width: 0px;
   border-right-color: transparent !important;
+  border-left-width: 0;
   content: '';
 }
 .bdg:before {
   position: absolute;
   right: 0;
   border: 8px solid #5eb8ae;
-  border-left-width: 0px;
   border-right-color: #ffffff !important;
+  border-left-width: 0;
   content: '';
 }
 .bdg--fld {
@@ -829,10 +850,10 @@ textarea:-ms-input-placeholder {
   padding: 2px 5px;
   border-radius: 3px;
   background-color: #8e93a1;
-  text-transform: uppercase;
   color: #ffffff;
   font-size: 10px;
   vertical-align: top;
+  text-transform: uppercase;
 }
 .tag--lght-grey {
   background-color: #dfe1e8;
@@ -849,11 +870,11 @@ textarea:-ms-input-placeholder {
 }
 .cntdwn__mins,
 .cntdwn__scnds {
-  color: #cc0000;
-  border: 1px solid #cc0000;
-  padding: 0 5px;
   display: inline-block;
+  padding: 0 5px;
+  border: 1px solid #cc0000;
   border-radius: 3px;
+  color: #cc0000;
 }
 .hdr {
   position: fixed;
@@ -2701,18 +2722,18 @@ textarea:-ms-input-placeholder {
   margin-left: 5px;
 }
 .page-nvgtn__item {
-  text-transform: uppercase;
-  font-size: 14px;
-  line-height: 20px;
-  cursor: pointer;
-  font-weight: 600;
+  float: left;
   padding: 12px 40px;
   border-right: 1px solid #dfe1e8;
-  float: left;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 .page-nvgtn__item-img {
-  vertical-align: middle;
   margin-right: 5px;
+  vertical-align: middle;
 }
 .prdct-dtl {
   position: relative;
@@ -2744,7 +2765,6 @@ textarea:-ms-input-placeholder {
 }
 .prdct-dtl__thmbnl {
   display: inline-block;
-  cursor: pointer;
   width: 40px;
   height: 46px;
   margin-left: -0.28em;
@@ -2752,6 +2772,7 @@ textarea:-ms-input-placeholder {
   border: 1px solid #dfe1e8;
   background-color: #ffffff;
   line-height: 40px;
+  cursor: pointer;
   vertical-align: middle;
 }
 .prdct-dtl__thmbnl-wrpr {
@@ -2881,7 +2902,8 @@ textarea:-ms-input-placeholder {
   color: #bbbbbb;
   line-height: 1.4;
 }
-.prdct-dtl__slr-prc-btn {
+.prdct-dtl__slr-prc-btn,
+.prdct-dtl__slr-prc-tbl-btn {
   margin-top: 10px;
 }
 .prdct-dtl__slr-ftrs {
@@ -3010,19 +3032,19 @@ textarea:-ms-input-placeholder {
   padding: 15px 20px 15px 20px;
 }
 .prc-grph__prc-alrt {
-  cursor: pointer;
-  padding-left: 50px;
-  background: url('http://doypaxk1e2349.cloudfront.net/icons/clock-red.png') no-repeat 20px center;
   float: right;
+  padding-left: 50px;
   border-left: 1px solid #dfe1e8;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/clock-red.png') no-repeat 20px center;
+  cursor: pointer;
 }
 .prc-grph__left {
   float: left;
-  padding: 20px;
   width: 200px;
-  background-color: #f2f3f5;
-  border-right: 1px solid #dfe1e8;
   height: 310px;
+  padding: 20px;
+  border-right: 1px solid #dfe1e8;
+  background-color: #f2f3f5;
 }
 .prc-grph__left-ttl {
   font-size: 14px;
@@ -3032,9 +3054,9 @@ textarea:-ms-input-placeholder {
   margin-top: 30px;
 }
 .prc-grph__prc-chng-val {
+  color: #5eb8ae;
   font-size: 20px;
   line-height: 1.4;
-  color: #5eb8ae;
 }
 .prc-grph__prc-chng-drtn {
   color: #8e8e93;
@@ -3098,9 +3120,9 @@ textarea:-ms-input-placeholder {
 .rvws-msp__dtls {
   display: inline-block;
   width: 420px;
+  margin-left: -0.28em;
   padding-left: 25px;
   vertical-align: top;
-  margin-left: -0.28em;
 }
 .rvws-msp__dtls-ttl {
   margin-bottom: 15px;
@@ -3122,12 +3144,12 @@ textarea:-ms-input-placeholder {
   text-transform: uppercase;
 }
 .rvws-msp__dscrptn-text {
+  overflow: hidden;
   max-height: 100px;
   margin-top: 10px;
   color: #8e8e93;
   font-size: 14px;
   line-height: 20px;
-  overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
@@ -3238,8 +3260,8 @@ textarea:-ms-input-placeholder {
   text-align: center;
 }
 .usr-rvw-form__dtls-img {
-  max-height: 100%;
   max-width: 100%;
+  max-height: 100%;
   vertical-align: middle;
 }
 .usr-rvw-form__dtls-ttl {
@@ -3330,13 +3352,65 @@ textarea:-ms-input-placeholder {
   font-weight: 600;
   text-transform: none;
 }
+.prc-tbl__ctgry {
+  float: left;
+  padding: 10px;
+}
+.prc-tbl__ctgry-item {
+  float: left;
+  padding: 5px 5px 5px 20px;
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-radio-grey.png') no-repeat left;
+  color: #8e8e93;
+}
+.prc-tbl__ctgry-item + .prc-tbl__ctgry-item {
+  margin-left: 10px;
+}
+.prc-tbl__ctgry-item--slctd {
+  background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
+  color: #3d6a8c;
+}
+.prc-tbl__lctn {
+  float: right;
+  margin-right: 10px;
+  padding: 5px 0;
+}
+.prc-tbl__lctn-frm {
+  float: left;
+  border: 1px solid #dfe1e8;
+  border-radius: 3px;
+}
+.prc-tbl__lctn-inpt {
+  display: inline-block;
+  width: 250px;
+  height: 20px;
+  margin-left: -0.28em;
+  padding: 5px 0;
+  border: 0;
+}
+.prc-tbl__lctn-inpt-btn {
+  margin: 10px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.prc-tbl__lctn-gps {
+  float: left;
+  width: 33px;
+  height: 33px;
+  margin-left: 10px;
+  border-radius: 3px;
+  background: #3d6a8c url('http://avi.mysmartprice.com/rd/img/pricetable-icon-gps.png') no-repeat center / 20px auto;
+}
 .prc-tbl__fltrs {
-  padding: 15px;
+  float: right;
+  padding: 13px 11px;
+  border-left: 1px solid #dfe1e8;
 }
 .prc-tbl__fltrs-ttl {
   float: left;
-  margin: 0 5px;
+  margin-right: 5px;
   padding: 2px 0;
+  color: #8e8e93;
+  font-weight: 600;
 }
 .prc-tbl__fltrs-item {
   float: left;
@@ -3346,191 +3420,411 @@ textarea:-ms-input-placeholder {
   cursor: pointer;
 }
 .prc-tbl__fltrs-item--slctd {
+  background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
   color: #cc0000;
-  background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-red.png') no-repeat left;
 }
-.prc-tbl__srt {
-  padding: 30px 15px 15px;
+.prc-tbl-hdr {
+  padding: 35px 15px 15px;
   background: #f2f3f5;
 }
-.prc-tbl__srt-lbl {
+.prc-tbl-hdr__clm {
+  position: relative;
+  float: left;
+}
+.prc-tbl-hdr__clm .prc-tbl-hdr__cptn {
+  position: absolute;
+  top: -18px;
+  color: #8e8e93;
+  font-size: 12px;
+}
+.prc-tbl-hdr__clm .prc-tbl-hdr__cptn--hvr {
+  display: none;
+}
+.prc-tbl-hdr__clm:hover .prc-tbl-hdr__cptn--hvr {
+  display: block;
+}
+.prc-tbl-hdr__lbl {
   color: #8e8e93;
   font-size: 14px;
   font-weight: 600;
   vertical-align: middle;
 }
-.prc-tbl__srt-lbl--lt {
+.prc-tbl-hdr__lbl--lt {
   font-weight: 400;
-  color: #8e8e93;
 }
-.prc-tbl__srt-arw {
+.prc-tbl-hdr__arw {
   display: inline-block;
   width: 13px;
   height: 13px;
   margin-left: 3px;
   vertical-align: middle;
 }
-.prc-tbl__srt-arw--desc {
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-desc.png") no-repeat center center / auto 13px;
+.prc-tbl-hdr__arw--desc {
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-sort-desc.png') no-repeat center center / auto 13px;
 }
-.prc-tbl__srt-arw--asc {
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-sort-asc.png") no-repeat center center / auto 13px;
+.prc-tbl-hdr__arw--asc {
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-sort-asc.png') no-repeat center center / auto 13px;
 }
-.prc-tbl__srt-strs {
-  float: left;
+.prc-tbl-hdr__strs {
+  width: 170px;
+}
+.prc-tbl-hdr__slr-rtng {
   width: 175px;
 }
-.prc-tbl__srt-slr-rtng {
-  float: left;
+.prc-tbl-hdr__dlvry {
+  width: 233px;
+  margin-left: 253px;
+}
+.prc-tbl-hdr__prc {
   width: 175px;
 }
-.prc-tbl__srt-prc {
-  float: left;
-  width: 175px;
-  margin-left: 480px;
-}
-.prc-tbl__row {
+.prc-tbl-row {
+  position: relative;
   border-bottom: 1px solid #dfe1e8;
 }
-.prc-tbl__row-inr {
-  padding: 10px 0;
+.prc-tbl-row__inr {
+  padding: 15px 0;
 }
-.prc-tbl__row--offline {
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png") no-repeat top left / 35px auto;
+.prc-tbl-row--offline {
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-row-offline.png') no-repeat top left / 35px auto;
 }
-.prc-tbl__row--offline .prc-tbl__clm-dtls-dlvr {
-  background-image: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png");
+.prc-tbl-row--offline .prc-tbl__dtls-dlvr {
+  background-image: url('http://avi.mysmartprice.com/rd/img/pricetable-delivery-colored.png');
 }
-.prc-tbl__row--offline .prc-tbl__clm-cost-shpng {
+.prc-tbl-row--offline .prc-tbl__cost-shpng {
   width: 100%;
   margin-top: 10px;
   text-align: center;
 }
-.prc-tbl__clm {
-  float: left;
+.prc-tbl-clm {
+  display: inline-block;
+  vertical-align: middle;
 }
-.prc-tbl__clm-str {
+.prc-tbl-clm + .prc-tbl-clm {
+  margin-left: -0.28em;
+}
+.prc-tbl-clm--str {
   width: 165px;
   padding: 20px 0;
   text-align: center;
 }
-.prc-tbl__clm-str-logo {
-  max-width: 135px;
-}
-.prc-tbl__clm-str-logo-wrpr {
-  text-align: center;
-}
-.prc-tbl__clm-str-lctn {
-  display: inline-block;
-  padding: 5px 5px 5px 15px;
-  margin-top: 5px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-location-icon.png") no-repeat left center;
-  color: #8e8e93;
-  text-align: center;
-}
-.prc-tbl__clm-slr {
+.prc-tbl-clm--slr {
   width: 165px;
   padding: 15px 15px 15px 20px;
 }
-.prc-tbl__clm-slr-name {
-  margin-bottom: 10px;
+.prc-tbl-clm--avlblty {
+  width: 190px;
+  padding: 7px 20px;
 }
-.prc-tbl__clm-slr .rtng-wrpr {
+.prc-tbl-clm--dtls {
+  width: 190px;
+  padding: 7px 20px;
+}
+.prc-tbl-clm--cost {
+  width: 130px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.prc-tbl-clm--gts {
+  padding: 10px;
+}
+.prc-tbl-clm--no-stck {
+  padding: 20px;
+  width: 618px;
+}
+.prc-tbl__str-logo {
+  max-width: 135px;
+}
+.prc-tbl__str-logo-wrpr {
+  text-align: center;
+}
+.prc-tbl__str-lctn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 5px 5px 5px 15px;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-location-icon.png') no-repeat left center;
+  color: #8e8e93;
+  text-align: center;
+}
+.prc-tbl-clm--slr .rtng-wrpr {
   display: inline-block;
   vertical-align: middle;
 }
-.prc-tbl__clm-slr .rtng-bdg {
+.prc-tbl-clm--slr .rtng-bdg {
   vertical-align: middle;
 }
-.prc-tbl__clm-slr-prm {
+.prc-tbl__slr-name {
+  margin-bottom: 10px;
+}
+.prc-tbl__slr-prm {
   margin-top: 10px;
 }
-.prc-tbl__clm-slr-prm-logo {
+.prc-tbl__slr-prm-logo {
   vertical-align: middle;
 }
-.prc-tbl__clm-slr .hlp-prmpt {
+.prc-tbl__slr .hlp-prmpt {
   margin-left: 5px;
 }
-.prc-tbl__clm-avlblty {
-  width: 190px;
-  padding: 7px 20px;
-}
-.prc-tbl__clm-avlblty-itm {
+.prc-tbl__avlblty {
   padding: 8px 5px 8px 25px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat center left;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-service-available.png') no-repeat center left;
 }
-.prc-tbl__clm-avlblty-itm + .prc-tbl__clm-avlblty-itm {
-  border-top: 1px solid #dfe1e8;
+.prc-tbl__avlblty + .prc-tbl__avlblty {
+  border-top: 1px solid #eeeff3;
 }
-.prc-tbl__clm-avlblty-na {
+.prc-tbl__avlblty-na {
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-service-notavailable.png') no-repeat center left;
   color: #bbbbbb;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-service-notavailable.png") no-repeat center left;
 }
-.prc-tbl__clm-dtls {
-  width: 190px;
-  padding: 7px 20px;
-}
-.prc-tbl__clm-dtls-itm {
+.prc-tbl__dtls {
   padding: 8px 0;
 }
-.prc-tbl__clm-dtls-itm + .prc-tbl__clm-dtls-itm {
-  border-top: 1px solid #dfe1e8;
+.prc-tbl__dtls + .prc-tbl__dtls {
+  border-top: 1px solid #eeeff3;
 }
-.prc-tbl__clm-dtls-dlvr {
+.prc-tbl__dtls-dlvr {
   padding-left: 40px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png") no-repeat left center;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-delivery-icon.png') no-repeat left center;
 }
-.prc-tbl__clm-dtls-pckp {
+.prc-tbl__dtls-pckp {
   padding-left: 30px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-pickup-icon.png") no-repeat left center;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-pickup-icon.png') no-repeat left center;
 }
-.prc-tbl__clm-dtls-clr-dot {
+.prc-tbl__dtls-clr-dot {
   display: inline-block;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background: black;
 }
-.prc-tbl__clm-dtls-clr-mr {
+.prc-tbl__dtls-clr-more {
+  position: relative;
   color: #3d6a8c;
 }
-.prc-tbl__clm-dtls-clr-mr:hover {
+.prc-tbl__dtls-clr-more:hover {
   text-decoration: underline;
 }
-.prc-tbl__clm-cost {
-  width: 130px;
-  padding: 10px 20px;
+.prc-tbl__dtls-clr-pop {
+  position: absolute;
+  bottom: 23px;
+  left: -15px;
+  width: 325px;
+  border-radius: 3px;
+  background: #ffffff;
+  box-shadow: -1px 1px 12px rgba(0, 0, 0, 0.2);
 }
-.prc-tbl__clm-cost-val {
+.prc-tbl__dtls-clr-pop-hdr {
+  padding: 7px;
+  border-radius: 3px 3px 0 0;
+  background: #8e93a1;
+  color: #ffffff;
+  font-weight: 600;
+}
+.prc-tbl__dtls-clr-pop-cls {
+  float: right;
+  font-size: 18px;
+  line-height: 12px;
+  vertical-align: middle;
+}
+.prc-tbl__dtls-clr-pop-inr {
+  padding: 0 5px;
+  border: 1px solid #d0d3dd;
+  border-top: 0;
+  border-radius: 0 0 3px 3px;
+}
+.prc-tbl__dtls-clr-pop-item {
+  padding: 10px 5px;
+  line-height: 17px;
+}
+.prc-tbl__dtls-clr-pop-item + .prc-tbl__dtls-clr-pop-item {
+  border-top: 1px solid #dfe1e8;
+}
+.prc-tbl__dtls-clr-pop .prc-tbl__dtls-clr-dot {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+.prc-tbl__dtls-clr-pop .prc-tbl__dtls-clr-lbl {
+  display: inline-block;
+  width: 92px;
+  margin-left: -0.28em;
+  padding: 0 10px;
+  vertical-align: middle;
+}
+.prc-tbl__dtls-clr-pop .prc-tbl__cost {
+  display: inline-block;
+  width: 85px;
+  margin-left: -0.28em;
+  vertical-align: middle;
+}
+.prc-tbl__dtls-clr-pop .btn-GTS--xs {
+  margin-left: -0.28em;
+}
+.prc-tbl-clm--cost:hover .prc-tbl__cpn-wrpr {
+  top: -175px;
+  visibility: visible;
+  opacity: 1;
+}
+.prc-tbl__cost-val {
   color: #3d6a8c;
   font-size: 32px;
   font-weight: 600;
 }
-.prc-tbl__clm-cost-rpe {
+.prc-tbl__cost-rpe {
   display: inline-block;
   color: #3d6a8c;
   font-size: 24px;
-  line-height: 30px;
   font-weight: 400;
+  line-height: 30px;
   vertical-align: top;
 }
-.prc-tbl__clm-cost-cpn {
-  padding: 6px 6px 6px 23px;
+.prc-tbl__cost--dsbld .prc-tbl__cost-val,
+.prc-tbl__cost--dsbld .prc-tbl__cost-rpe {
+  color: #8e8e93;
+}
+.prc-tbl__cost-cpn {
   margin-top: 10px;
+  padding: 6px 6px 6px 23px;
   border: 1px dashed #dfe1e8;
   border-radius: 3px;
+  background: #f2f3f5 url('http://avi.mysmartprice.com/rd/img/pricetable-service-available.png') no-repeat 5px center;
   color: #8e8e93;
-  background: #f2f3f5 url("http://avi.mysmartprice.com/rd/img/pricetable-service-available.png") no-repeat 5px center;
 }
-.prc-tbl__clm-gts {
-  padding: 10px;
+.prc-tbl__cost--s .prc-tbl__cost-rpe {
+  font-size: 12px;
+  line-height: 16px;
 }
-.prc-tbl__clm-gts-lylty {
+.prc-tbl__cost--s .prc-tbl__cost-val {
+  font-size: 16px;
+  line-height: 16px;
+}
+.prc-tbl__gts-lylty {
   padding: 10px 0 0 27px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png") no-repeat left center;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png') no-repeat left center;
   color: #f5a623;
   font-size: 12px;
   line-height: 16px;
+}
+.prc-tbl__no-stck-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+.prc-tbl__no-stck-ttl {
+  display: inline-block;
+  margin-left: 4.72px;
+  color: #8e8e93;
+  line-height: 15px;
+  vertical-align: middle;
+}
+.prc-tbl__no-stck-desc,
+.prc-tbl__no-stck-form {
+  margin-top: 15px;
+}
+.prc-tbl__no-stck-inpt {
+  padding: 6px;
+  border-radius: 3px 0 0 3px;
+  border-right-width: 0;
+  width: 200px;
+  height: 18px;
+  vertical-align: middle;
+}
+.prc-tbl__no-stck-sbmt {
+  border-radius: 0 3px 3px 0;
+  margin-left: -0.28em;
+  vertical-align: middle;
+  display: inline-block;
+}
+.prc-tbl__cpn-wrpr {
+  position: absolute;
+  top: -135px;
+  right: 22px;
+  visibility: hidden;
+  opacity: 0;
+  width: 375px;
+  padding: 10px;
+  border: 1px solid #d0d3dd;
+  border-radius: 3px;
+  background: white;
+  box-shadow: -1px 1px 12px rgba(0, 0, 0, 0.2);
+  transition: top .4s, opacity .4s, visibility .4s;
+  transition-delay: .75s;
+  text-align: center;
+}
+.prc-tbl__cpn-info {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  margin: 10px auto 0;
+  padding: 10px 30px;
+  border: 2px dashed #dfe1e8;
+  border-radius: 3px;
+  background: #f2f3f5;
+  color: #3d6a8c;
+  font-size: 18px;
+  text-align: center;
+}
+.prc-tbl__cpn-icon {
+  position: absolute;
+  bottom: -8px;
+  left: 18px;
+}
+.prc-tbl__cpn-desc {
+  margin-top: 10px;
+  color: #8e8e93;
+}
+.prc-tbl__prc-brkp {
+  position: relative;
+  margin-top: 25px;
+  padding: 25px 0 10px;
+  border-top: 1px solid #d0d3dd;
+}
+.prc-tbl__prc-brkp-ttl {
+  position: absolute;
+  top: -13px;
+  left: 0;
+  padding: 5px 10px 5px 0;
+  background: #ffffff;
+  color: #8e8e93;
+  font-size: 14px;
+  font-weight: 600;
+}
+.prc-tbl__prc-brkp-item {
+  display: inline-block;
+  margin: 0 8px;
+  vertical-align: top;
+}
+.prc-tbl__prc-brkp-item--green .prc-tbl__prc-brkp-rpe,
+.prc-tbl__prc-brkp-item--green .prc-tbl__prc-brkp-val {
+  color: #67b908;
+}
+.prc-tbl__prc-brkp-item--blue .prc-tbl__prc-brkp-rpe,
+.prc-tbl__prc-brkp-item--blue .prc-tbl__prc-brkp-val {
+  color: #3d6a8c;
+}
+.prc-tbl__prc-brkp-rpe {
+  color: #8e8e93;
+  font-size: 12px;
+  line-height: 14px;
+  vertical-align: top;
+}
+.prc-tbl__prc-brkp-val {
+  color: #8e8e93;
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: top;
+}
+.prc-tbl__prc-brkp-desc {
+  margin-top: 5px;
+  color: #bbb;
+}
+.prc-tbl__prc-brkp-sprtr {
+  display: inline-block;
+  margin-top: 0;
+  color: #8e8e93;
+  font-size: 16px;
+  font-weight: 600;
+  vertical-align: top;
 }
 .prc-tbl__xtrs {
   width: 100%;
@@ -3539,25 +3833,70 @@ textarea:-ms-input-placeholder {
 .prc-tbl__xtrs-clm {
   width: 566px;
   padding: 7px 5px 7px 28px;
+}
+.prc-tbl__xtrs-clm-text {
+  display: inline-block;
   overflow: hidden;
+  max-width: 500px;
+  vertical-align: middle;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.prc-tbl__xtrs-clm-more {
+  position: relative;
+  vertical-align: middle;
+}
+.prc-tbl__xtrs-clm-pop {
+  position: absolute;
+  bottom: 26px;
+  left: -15px;
+  width: 325px;
+  border-radius: 3px;
+  background: #ffffff;
+  box-shadow: -1px 1px 12px rgba(0, 0, 0, 0.2);
+}
+.prc-tbl__xtrs-clm-pop-hdr {
+  padding: 7px;
+  border-radius: 3px 3px 0 0;
+  background: #8e93a1;
+  color: #ffffff;
+  font-weight: 600;
+}
+.prc-tbl__xtrs-clm-pop-cls {
+  float: right;
+  font-size: 18px;
+  line-height: 12px;
+  vertical-align: middle;
+}
+.prc-tbl__xtrs-clm-pop-inr {
+  padding: 5px 10px;
+  border: 1px solid #d0d3dd;
+  border-top: 0;
+  border-radius: 0 0 3px 3px;
+}
+.prc-tbl__xtrs-clm-pop-item {
+  padding: 10px 5px;
+  line-height: 17px;
+}
+.prc-tbl__xtrs-clm-pop-item + .prc-tbl__xtrs-clm-pop-item {
+  border-top: 1px solid #dfe1e8;
+}
 .prc-tbl__xtrs-ofrs {
+  position: relative;
   float: left;
-  background: #fef6e9 url("http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png") no-repeat 7px center / 15px auto;
+  background: #fef6e9 url('http://avi.mysmartprice.com/rd/img/pricetable-offers-percentage.png') no-repeat 7px center / 15px auto;
 }
 .prc-tbl__xtrs-cpns {
   float: right;
-  background: #ecf0f4 url("http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors.png") no-repeat 6px center / 15px auto;
+  background: #ecf0f4 url('http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors.png') no-repeat 6px center / 15px auto;
 }
 .prc-tbl__prc-drop-btn {
   display: inline-block;
-  padding: 7px 7px 7px 25px;
   margin-top: 5px;
+  padding: 7px 7px 7px 25px;
   border: 1px solid #dfe1e8;
   border-radius: 3px;
-  background: url("http://avi.mysmartprice.com/rd/img/pricetable-pricedrop-icon.png") no-repeat 6px center;
+  background: url('http://avi.mysmartprice.com/rd/img/pricetable-pricedrop-icon.png') no-repeat 6px center;
   color: #8e8e93;
 }
 .body:after {

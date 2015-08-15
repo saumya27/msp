@@ -3487,7 +3487,7 @@
 								<div class="sctn__hdr clearfix">
 									<div class="prc-tbl__ttl">iPhone 6S Price In India</div>
 									<div class="sort-wrpr"> SORT BY:
-										<select class="sort js-list-sort">
+										<select class="sort js-prc-tbl__sort">
 											<option value="price:desc">Price: High to Low</option>
 											<option value="price:asc">Price: Low to High</option>
 											<option value="popularity:desc" selected="">Popularity</option>
@@ -3496,472 +3496,785 @@
 									</div>
 								</div>
 								<div class="sctn__inr">
-									<div class="prc-tbl__fltrs clearfix">
-										<div class="prc-tbl__fltrs-ttl">FILTER BY:</div>
-										<div class="prc-tbl__fltrs-item">COD</div>
-										<div class="prc-tbl__fltrs-item">EMI</div>
-										<div class="prc-tbl__fltrs-item">Return Policy</div>
-										<div class="prc-tbl__fltrs-item">Offers</div>
-										<div class="prc-tbl__fltrs-item">Coupons</div>
+									<div class="prc-tbl__ctrls clearfix">
+										<div class="prc-tbl__ctgry clearfix">
+											<div class="prc-tbl__ctgry-item prc-tbl__ctgry-item--slctd" data-value="recommended">Recommended Stores</div>
+											<div class="prc-tbl__ctgry-item" data-value="offline">Nearby Stores</div>
+											<div class="prc-tbl__ctgry-item" data-value="online">Online Stores</div>
+										</div>
+										<div class="prc-tbl__fltrs clearfix">
+											<div class="prc-tbl__fltrs-ttl">FILTER BY:</div>
+											<div class="prc-tbl__fltrs-item prc-tbl__fltrs-cod">COD</div>
+											<div class="prc-tbl__fltrs-item prc-tbl__fltrs-emi">EMI</div>
+											<div class="prc-tbl__fltrs-item prc-tbl__fltrs-rtrn">Return Policy</div>
+											<div class="prc-tbl__fltrs-item prc-tbl__fltrs-ofrs">Offers</div>
+										</div>
+										<div class="prc-tbl__lctn clearfix">
+											<form class="prc-tbl__lctn-frm">
+												<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="prc-tbl__lctn-inpt-btn">
+												<input type="text" class="prc-tbl__lctn-inpt" placeholder="Search with Zip code, city name">
+											</form>
+											<div class="prc-tbl__lctn-gps"></div>
+										</div>
 									</div>
 									<div class="prc-tbl">
-                                        <div class="prc-tbl__srt clearfix">
-                                            <div class="prc-tbl__srt-strs">
-                                                <span class="prc-tbl__srt-lbl prc-tbl__srt-lbl--lt">STORES</span>
+                                        <div class="prc-tbl-hdr clearfix">
+                                            <div class="prc-tbl-hdr__clm prc-tbl-hdr__strs">
+                                            	<span class="prc-tbl-hdr__cptn">Recommended</span>
+                                                <span class="prc-tbl-hdr__lbl prc-tbl-hdr__lbl--lt">STORES</span>
                                             </div>
-                                            <div class="prc-tbl__srt-slr-rtng">
-                                                <span class="prc-tbl__srt-lbl">SELLER RATING</span>
-                                                <span class="prc-tbl__srt-arw prc-tbl__srt-arw--desc"></span>
+                                            <div class="prc-tbl-hdr__clm prc-tbl-hdr__slr-rtng">
+                                                <span class="prc-tbl-hdr__cptn prc-tbl-hdr__cptn--hvr">Sort By</span>
+                                                <span class="prc-tbl-hdr__lbl">SELLER RATING</span>
+                                                <span class="prc-tbl-hdr__lbl-arw prc-tbl-hdr__arw--desc"></span>
                                             </div>
-                                            <div class="prc-tbl__srt-prc">
-                                                <span class="prc-tbl__srt-lbl">PRICE</span>
-                                                <span class="prc-tbl__srt-arw prc-tbl__srt-arw--asc"></span>
+                                            <div class="prc-tbl-hdr__clm prc-tbl-hdr__dlvry">
+                                                <span class="prc-tbl-hdr__lbl prc-tbl-hdr__lbl--lt">DELIVERY</span>
+                                                <span class="prc-tbl-hdr__arw"></span>
                                             </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--offline"> <!-- offline store -->
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                    <div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-store-N4u.png" />
-                                                    </div>
-                                                    <div class="prc-tbl__clm-str-lctn">Banjara Hills</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-my-promise.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-pckp">Pickup from store</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                	<div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-shpng">Free shipping</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
+                                            <div class="prc-tbl-hdr__clm prc-tbl-hdr__prc">
+                                            	<span class="prc-tbl-hdr__cptn prc-tbl-hdr__cptn--hvr">Sort By</span>
+                                                <span class="prc-tbl-hdr__lbl">PRICE</span>
+                                                <span class="prc-tbl-hdr__lbl-arw prc-tbl-hdr__arw--asc"></span>
                                             </div>
                                         </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
+                                        <div class="prc-tbl-inr">
+                                        	<div class="prc-tbl-row prc-tbl-row--offline"> <!-- offline store -->
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                    <div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-store-N4u.png" />
+	                                                    </div>
+	                                                    <div class="prc-tbl__str-lctn">Banjara Hills</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span> 
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span>
 
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-my-promise.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-pckp">Pickup from store</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;
+	                                                        	<div class="prc-tbl__dtls-clr-pop">
+			                                            			<div class="prc-tbl__dtls-clr-pop-hdr clearfix">
+			                                            				More options on Flipkart
+			                                            				<span class="prc-tbl__dtls-clr-pop-cls">×</span>
+			                                            			</div>
+			                                            			<div class="prc-tbl__dtls-clr-pop-inr">
+			                                            				<div class="prc-tbl__dtls-clr-pop-item">
+			                                            					<span class="prc-tbl__dtls-clr-dot" style="background-color:#4A4A4A"></span>
+	                                                        				<span class="prc-tbl__dtls-clr-lbl">Space Grey</span>
+	                                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
+							                                                    <span class="prc-tbl__cost-rpe">₹</span>
+							                                                    <span class="prc-tbl__cost-val">48,005</span>
+						                                                   	</div>
+	                                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
+			                                            				</div>
+			                                            				<div class="prc-tbl__dtls-clr-pop-item">
+			                                            					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
+	                                                        				<span class="prc-tbl__dtls-clr-lbl">Green</span>
+	                                                        				<div class="prc-tbl__cost prc-tbl__cost--s prc-tbl__cost--dsbld">
+							                                                    <span class="prc-tbl__cost-rpe">₹</span>
+							                                                    <span class="prc-tbl__cost-val">48,005</span>
+						                                                   	</div>
+	                                                        				<div class="prc-tbl__no-stck-hdr">
+						                                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png">
+						                                                		<div class="prc-tbl__no-stck-ttl">Out Of Stock</div>
+						                                                	</div>
+			                                            				</div>
+			                                            			</div>
+			                                            		</div>
+	                                                        </span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                	<div class="prc-tbl__cost"> 
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-shpng">Free shipping</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free <span class="prc-tbl__gts-lylty-val">5000</span> MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span> 
+
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty prc-tbl-clm-avlblty-na">Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl-clm-avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl___dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost"> 
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--offline"> <!-- offline store -->
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-store-technovision.png" />
+	                                                    </div>
+	                                                    <div class="prc-tbl__str-lctn">Hitech City</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span> 
+
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-pckp">Pickup from store</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                	<div class="prc-tbl__cost"> 
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-shpng">Free shipping</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">›</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+												</div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-flipkart-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span>
+
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost"> 
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-snapdeal-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span>
+
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl-clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl-clm-avlblty-COD prc-tbl-clm-avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 Days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost"> 
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="prc-tbl__xtrs clearfix">
+	                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-ofrs">
+	                                            		<span class="prc-tbl__xtrs-clm-text">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</span>
+	                                            		<span class="prc-tbl__xtrs-clm-more">
+	                                            			More Offers &raquo;
+	                                            			<div class="prc-tbl__xtrs-clm-pop">
+		                                            			<div class="prc-tbl__xtrs-clm-pop-hdr clearfix">
+		                                            				3 Offers
+		                                            				<span class="prc-tbl__xtrs-clm-pop-cls">&times;</span>
+		                                            			</div>
+		                                            			<div class="prc-tbl__xtrs-clm-pop-inr">
+		                                            				<div class="prc-tbl__xtrs-clm-pop-item">Buy Smartphone above Rs.10000 and get Rs.1000 Off on chromecast.Refer T&C for more details.</div>
+		                                            				<div class="prc-tbl__xtrs-clm-pop-item">Transact for Rs.50 using FCIND3 on FreeCharge & get Extra Rs.1000 off T&C apply.</div>
+		                                            				<div class="prc-tbl__xtrs-clm-pop-item">Exchange Your Old Device.</div>
+		                                            			</div>
+		                                            		</div>
+	                                            		</span>
+	                                            	</div>
+	                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-paytm-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span>
+
+	                                                    <div class="prc-tbl-clm-slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost">
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="prc-tbl__xtrs clearfix">
+	                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-ofrs">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-ebay-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+	                                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+	                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+	                                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+	                                                            <div class="rtng-star__inr" style="width: 90%;">
+	                                                            </div>
+	                                                        </div>
+	                                                    </div>
+	                                                    <span class="rtng-bdg">4.5/5</span>
+
+	                                                    <div class="prc-tbl__slr-prm">
+	                                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+	                                                        <span class="hlp-prmpt">?</span>
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+	                                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty-na">Cash on Delivery</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+	                                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+	                                                        <span class="prc-tbl__dtls-clr-dot"></span>
+	                                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+	                                                        <span class="prc-tbl__dtls-clr-more">More Options &#8811;
+	                                                        	<div class="prc-tbl__dtls-clr-pop">
+			                                            			<div class="prc-tbl__dtls-clr-pop-hdr clearfix">
+			                                            				More options on Flipkart
+			                                            				<span class="prc-tbl__dtls-clr-pop-cls">×</span>
+			                                            			</div>
+			                                            			<div class="prc-tbl__dtls-clr-pop-inr">
+			                                            				<div class="prc-tbl__dtls-clr-pop-item">
+			                                            					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
+	                                                        				<span class="prc-tbl__dtls-clr-lbl">Green</span>
+	                                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
+							                                                    <span class="prc-tbl__cost-rpe">₹</span>
+							                                                    <span class="prc-tbl__cost-val">48,005</span>
+						                                                   	</div>
+	                                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+			                                            				</div>
+			                                            				<div class="prc-tbl__dtls-clr-pop-item">
+			                                            					<span class="prc-tbl__dtls-clr-dot" style="background-color:#F5A623"></span>
+	                                                        				<span class="prc-tbl__dtls-clr-lbl">Gold</span>
+	                                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
+							                                                    <span class="prc-tbl__cost-rpe">₹</span>
+							                                                    <span class="prc-tbl__cost-val">48,005</span>
+						                                                   	</div>
+	                                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+			                                            				</div>
+			                                            			</div>
+			                                            		</div>
+	                                                        </span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost">
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+	                                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+			                                            	<div class="prc-tbl__cpn-info">
+			                                            		<span class="prc-tbl__cpn-code">HSBC15</span>
+			                                            		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+			                                            	</div>
+			                                            	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+			                                            	<div class="prc-tbl__prc-brkp">
+			                                            		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">5,000</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+			                                            		<div class="prc-tbl__prc-brkp-item">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">100</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+			                                            		</div>
+			                                            		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+			                                            		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+			                                            			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+			                                            			<span class="prc-tbl__prc-brkp-val">48,764</span>
+			                                            			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+			                                            		</div>
+			                                            	</div>
+			                                            </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                    <div class="prc-tbl__gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
+	                                                </div>
+	                                            </div>
+	                                            <div class="prc-tbl__xtrs clearfix">
+	                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
+	                                            </div>
+	                                        </div>
+	                                        <div class="prc-tbl-row prc-tbl-row--online">
+	                                            <div class="prc-tbl-row__inr clearfix">
+	                                                <div class="prc-tbl-clm prc-tbl-clm--str">
+	                                                	<div class="prc-tbl__str-logo-wrpr">
+	                                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-logo.png" />
+	                                                    </div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--no-stck">
+	                                                	<div class="prc-tbl__no-stck-hdr">
+	                                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
+	                                                		<div class="prc-tbl__no-stck-ttl">Out Of Stock</div>
+	                                                	</div>
+	                                                	<div class="prc-tbl__no-stck-desc">Notify me when product becomes available.</div>
+	                                                	<form class="prc-tbl__no-stck-form">
+	                                                		<input class="prc-tbl__no-stck-inpt" type="text" placeholder="Enter Your Email Address" />
+	                                                		<div class="btn btn-l prc-tbl__no-stck-sbmt">NOTIFY ME</div>
+	                                                	</form>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+	                                                    <div class="prc-tbl__cost prc-tbl__cost--dsbld">
+		                                                    <span class="prc-tbl__cost-rpe">&#8377;</span>
+		                                                    <span class="prc-tbl__cost-val">48,005</span>
+	                                                   	</div>
+	                                                </div>
+	                                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+	                                                    <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl-clm-gts-btn">
+	                                                        ORDER NOW<br/>
+	                                                        <span class="btn-GTS__str">at Amazon</span>
+	                                                        <span class="btn-GTS__arw">&rsaquo;</span>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                        </div>
                                         </div>
-                                        <div class="prc-tbl__row prc-tbl__row--offline"> <!-- offline store -->
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-store-technovision.png" />
-                                                    </div>
-                                                    <div class="prc-tbl__clm-str-lctn">Hitech City</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span> 
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-pckp">Pickup from store</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                	<div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-shpng">Free shipping</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-flipkart-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-snapdeal-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 Days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                            <div class="prc-tbl__xtrs clearfix">
-                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-ofrs">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
-                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
-                                            </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-paytm-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                            <div class="prc-tbl__xtrs clearfix">
-                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-ofrs">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
-                                            </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-ebay-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                            <div class="prc-tbl__xtrs clearfix">
-                                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</div>
-                                            </div>
-                                        </div>
-                                        <div class="prc-tbl__row prc-tbl__row--online">
-                                            <div class="prc-tbl__row-inr clearfix">
-                                                <div class="prc-tbl__clm prc-tbl__clm-str">
-                                                	<div class="prc-tbl__clm-str-logo-wrpr">
-                                                    	<img class="prc-tbl__clm-str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-logo.png" />
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-slr">
-                                                    <div class="prc-tbl__clm-slr-name">Seller: WS Retail</div>
-
-                                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                                        <div class="rtng-star js-tltp" data-tooltip="Rated 4.5 by 123 users">
-                                                            <div class="rtng-star__inr" style="width: 90%;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <span class="rtng-bdg">4.5/5</span>
-
-                                                    <div class="prc-tbl__clm-slr-prm">
-                                                        <img class="prc-tbl__clm-slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
-                                                        <span class="hlp-prmpt">?</span>
-                                                    </div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-avlblty">
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                                    <div class="prc-tbl__clm-avlblty-itm prc-tbl__clm-avlblty-COD prc-tbl__clm-avlblty-na">Cash on Delivery</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-dtls">
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-dlvr">1 Week <span class="txt-lt">deliver</div>
-                                                    <div class="prc-tbl__clm-dtls-itm prc-tbl__clm-dtls-clr">
-                                                        <span class="prc-tbl__clm-dtls-clr-dot"></span>
-                                                        <span>&nbsp;Black&nbsp;</span>
-                                                        <span class="prc-tbl__clm-dtls-clr-mr">More Options &#8811;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__prc-drop-btn">Set Price Drop Alert</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-cost">
-                                                    <div class="prc-tbl__clm-cost-inr"> 
-	                                                    <span class="prc-tbl__clm-cost-rpe">&#8377;</span>
-	                                                    <span class="prc-tbl__clm-cost-val">48,005</span>
-                                                   	</div>
-                                                    <div class="prc-tbl__clm-cost-cpn">Coupon Applied</div>
-                                                </div>
-                                                <div class="prc-tbl__clm prc-tbl__clm-gts">
-                                                    <div class="btn-GTS btn-GTS--s">
-                                                        ORDER NOW<br/>
-                                                        <span class="btn-GTS__str">at Amazon</span>
-                                                        <span class="btn-GTS__arw">&rsaquo;</span>
-                                                    </div>
-                                                    <div class="prc-tbl__clm-gts-lylty">Free 5000 MSP Coins<br>on this purchase</div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="sctn__view-all js-prc-tbl__shw-more">Show More Stores</div>
                                     </div>
 								</div>
 							</div>
