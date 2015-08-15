@@ -1,9 +1,9 @@
 a {
-  color: inherit;
+  color: @fg-color-light-blue;
 
   text-decoration: none;
   &:hover {
-    color: @fg-color-red;
+    text-decoration: underline;
   }
 }
 
@@ -23,8 +23,8 @@ body {
 }
 
 
-strong {
-  font-weight: 600;
+strong, b {
+  font-weight: @font-bold;
 }
 
 img[width='1'][height='1'] {
@@ -42,18 +42,21 @@ sup {
 sub {
   vertical-align: sub; 
 }
-h1 {
-  border-bottom: 1px solid @border-color;
-
-  color: #c00;
-  font-size: 24px;
+strong {
+  font-weight:@font-bold;
 }
+// h1 {
+//   border-bottom: 1px solid @border-color;
 
-h2 {
-  color: @fg-color-red;
-  font-size: 18px;
-  line-height: 1.4;
-}
+//   color: #c00;
+//   font-size: 24px;
+// }
+
+// h2 {
+//   color: @fg-color-red;
+//   font-size: 18px;
+//   line-height: 1.4;
+// }
 
 input, textarea {
   background-color:@bg-color-white;

@@ -9,7 +9,7 @@
 
   color: @fg-color-white;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: @font-bold;
   line-height: 32px;
 
   cursor: pointer;
@@ -91,15 +91,14 @@
     position: absolute;
     top: 50%;
     right: 10px;
-
     margin-top: -17px;
-
     font-size: 30px;
     font-weight: 600;
+    transition:right 0.2s ease-in-out;
   }
-  &--arw-down {
+  &:hover, &:active {
     .btn-GTS__arw {
-      .rotation(90deg);
+      right:5px;
     }
   }
   &:hover {
@@ -107,6 +106,23 @@
   }
   &:active {
     background: darken(@bg-color-blue,2%);
+  }
+  &--arw-down {
+    .btn-GTS__arw {
+      top:55%;
+      transition:top 0.2s ease-in-out;
+      right:10px;
+      .rotation(90deg);
+    }
+    &:hover, &:active {
+      .btn-GTS__arw {
+        right:10px;
+        top:65%;
+      }
+    }
+  }
+  &--s {
+    width: 150px;
   }
   &--no-bg {
     background-color: @bg-color-white;
@@ -372,7 +388,7 @@
   &__item-ttl {
     margin-bottom: 5px;
 
-    font-weight: bold;
+    font-weight: @font-bold;
 
     text-transform: uppercase;
   }
@@ -519,7 +535,7 @@
   }
   &__rslt-page {
     color: @fg-color;
-    font-weight: bold;
+    font-weight: @font-bold;
   }
   &__item {
     display: inline-block;
@@ -700,5 +716,75 @@
     border-radius: @border-radius;
 
     color: @fg-color-red;
+  }
+}
+  
+.avlbl-clrs {
+  &__item {
+    float: left;
+
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+
+    cursor: pointer;
+    &--slctd {
+      width: 14px;
+      height: 14px;
+      border: 1px solid @border-color-blue;
+    }
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}
+.avlbl-sizes {
+  line-height: 20px;
+  &__item {
+    padding: 0 4px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+
+    color: @fg-color-grey;
+
+    cursor: pointer;
+    vertical-align: middle;
+    text-transform: uppercase;
+    &--slctd {
+      color:@fg-color-blue;
+      border: 2px solid @border-color-blue;
+    }
+    & + & {
+      margin-left: 5px;
+    }
+  }
+}
+
+.rvw-scr {
+  width:185px;
+  height:125px;
+  border-radius: @border-radius;
+  border:1px solid @fg-color-light-green;
+  float:right;
+  position: relative;
+  overflow: hidden;
+  &__val {
+    font-size: 55px;
+    color: @fg-color-light-green;
+    margin: 17px 0 7px 0;
+    text-align: center;
+  }
+  &__max {
+    color:@fg-color-light-grey;
+    text-align: center;
+  }
+  &__ttl {
+    background-color:@fg-color-light-green;
+    color:@fg-color-white;
+    line-height:24px;
+    text-align: center;
+    position: absolute;
+    bottom:0;
+    width:100%;
   }
 }
