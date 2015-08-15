@@ -179,16 +179,18 @@
 }
 
 
-.drpdwn-menu__ctgry:hover {
-  color: @fg-color-red;
-  .drpdwn-menu__ctgry-link {
-    color: @fg-color-red; 
-  }
-  .drpdwn-sub-menu {
-    display: block;
-  }
-  .drpdwn-menu__icon-rght {
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/menu-arrow-black.png') no-repeat right center;
+.drpdwn-menu__ctgry {
+  &:hover, &:active {
+    color: @fg-color-red;
+    .drpdwn-menu__ctgry-link {
+      color: @fg-color-red; 
+    }
+    .drpdwn-sub-menu {
+      display: block;
+    }
+    .drpdwn-menu__icon-rght {
+      background: url('http://doypaxk1e2349.cloudfront.net/icons/menu-arrow-black.png') no-repeat right center;
+    }
   }
 }
 

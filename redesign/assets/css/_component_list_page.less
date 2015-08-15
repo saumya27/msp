@@ -22,16 +22,27 @@
 
     float: left;
 
-    margin-right: 15px;
-    padding-right: 15px;
-    &:after {
-      position: absolute;
-      right: 0;
-
-      color: @fg-color-grey;
-
-      content: '|';
+    margin-right: 10px;
+    padding:5px 10px;
+    background-color:@bg-color-gs3;
+    color:@fg-color;
+    margin-bottom:10px;
+    &:hover {
+      text-decoration: none;
+      background-color:lighten(@bg-color-gs3,1%);
     }
+    &:active {
+      background-color:darken(@bg-color-gs3,2%);
+    }
+    //padding-right: 15px;
+    // &:after {
+    //   position: absolute;
+    //   right: 0;
+
+    //   color: @fg-color-grey;
+
+    //   content: '|';
+    // }
   }
 }
 
@@ -187,11 +198,12 @@
     }
     &__prc-rpe {
       color: @fg-color-blue;
+      vertical-align: middle;
     }
     &__inpt {
       width: 65px;
       height: 18px;
-
+      padding-left:4px;
       color: @fg-color-blue;
       //font-size: 14px;
     }

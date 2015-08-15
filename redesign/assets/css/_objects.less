@@ -699,10 +699,40 @@
     vertical-align: middle;
     text-transform: uppercase;
     &--slctd {
+      color:@fg-color-blue;
       border: 2px solid @border-color-blue;
     }
     & + & {
       margin-left: 5px;
     }
+  }
+}
+
+.rvw-scr {
+  width:185px;
+  height:125px;
+  border-radius: @border-radius;
+  border:1px solid @fg-color-light-green;
+  float:right;
+  position: relative;
+  overflow: hidden;
+  &__val {
+    font-size: 55px;
+    color: @fg-color-light-green;
+    margin: 17px 0 7px 0;
+    text-align: center;
+  }
+  &__max {
+    color:@fg-color-light-grey;
+    text-align: center;
+  }
+  &__ttl {
+    background-color:@fg-color-light-green;
+    color:@fg-color-white;
+    line-height:24px;
+    text-align: center;
+    position: absolute;
+    bottom:0;
+    width:100%;
   }
 }

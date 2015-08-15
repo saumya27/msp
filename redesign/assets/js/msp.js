@@ -650,10 +650,36 @@ $doc.on('mouseleave', '.js-tltp', function() {
 });
 
 $doc.on("click", ".js-open-link", function() {
-    var url = $(this).data("open-link");
-    if(url) {
+    var $this       = $(this),
+         url        = $this.data("open-link"),
+         inNewTab   = $this.data("newTab"),
+         needLogin  = $this.data("need-login");
+
+    if(needLogin == true) {
+        loginCallback(function() {
+            if(url) {
+                if(inNewTab === true) {
+                    window.open(url);
+                } else {
+                    window.location.href = url;
+                }
+            }
+        }, window, [])
+    }
+    else {
         window.location.href = url;
     }
+    return false;
+});
+
+$doc.on("click", ".js-open-after-login", function() {
+    loginCallback(function() {
+        var url = $(this).data("open-link");
+        if(url) {
+            window.location.href = url;
+        }
+    }, context, params)
+   
     return false;
 });
 $doc.on('mousedown','.js-save-btn', function() {
