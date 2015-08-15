@@ -25,19 +25,17 @@ function getPriceTable(type) {
 }
 
 function filterPriceTable() {
-    var $overlay = $("#pricetable_overlay"),
-        offlinePrice = 0;
-    $overlay.show();
+    var offlinePrice = 0;
     var _cache = filterPriceTable._cache_ = filterPriceTable._cache_ || { "keys": [], "values": [] },
         request = {
-            "mspid": $("prdct-dtl__ttl").data("mspid"),
+            "mspid": $(".prdct-dtl__ttl").data("mspid"),
             "mrp": $(".prdct-dtl__slr-prc-mrp-prc").data("value") || 0,
             "sort": $(".js-prc-tbl__sort").val(),
             "colour": ($(".avlbl-clrs__item--slctd").data("value") || "").toLowerCase(),
-            "cod": $(".prc-tbl__fltrs-cod").hasClass("selected"),
-            "emi": $(".prc-tbl__fltrs-emi").hasClass("selected"),
-            "returnpolicy": $(".prc-tbl__fltrs-rtrn").hasClass("selected"),
-            "offers": $(".prc-tbl__fltrs-ofrs").hasClass("selected")
+            "cod": $(".prc-tbl__fltrs-cod").hasClass("prc-tbl__fltrs-item--slctd"),
+            "emi": $(".prc-tbl__fltrs-emi").hasClass("prc-tbl__fltrs-item--slctd"),
+            "returnpolicy": $(".prc-tbl__fltrs-rtrn").hasClass("prc-tbl__fltrs-item--slctd"),
+            "offers": $(".prc-tbl__fltrs-ofrs").hasClass("prc-tbl__fltrs-item--slctd")
         },
         key = JSON.stringify(request),
         keyIndex = _cache.keys.indexOf(key);
@@ -56,8 +54,6 @@ function filterPriceTable() {
                 _cache.keys.shift();
                 _cache.values.shift();
             }
-        }).fail(function () {
-            $overlay.hide();
         });
     }
 }
@@ -89,7 +85,7 @@ function replacePriceTable(json) {
                 ].join(""));
             }
 
-            var $showMoreStores = $(".js-prc-tbl__shw-mr");
+            var $showMoreStores = $(".js-prc-tbl__shw-more");
             if ($(".prc-tbl__row").length > num_stores_online) {
                 $showMoreStores.show();
                 updateShowMoreStore();
@@ -102,12 +98,12 @@ function replacePriceTable(json) {
 }
 
 function sortPriceTable() {
-    var $priceTableContainer = $('.price_table_in');
+    var $priceTableContainer = $('.prc-tbl-inr');
     $priceTableContainer.css({
         height: $priceTableContainer.height(),
         display: 'block'
     });
-    var $store_pricetable = $('.prc-tbl-inr .prc-tbl__row');
+    var $store_pricetable = $('.prc-tbl__row');
     $store_pricetable.show();
     $store_pricetable.each(function(i, el) {
         var iY = $(el).position().top;
