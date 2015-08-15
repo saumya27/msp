@@ -75,7 +75,7 @@ function loginCallback(fn, context, params) {
     loginCallbackQueue.push(function () {
       fn.apply(context, params);
     });
-    $(".acnt__lgn").click();
+    $(".js-lgn").eq(0).click();
   }
 }
 
