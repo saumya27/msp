@@ -726,15 +726,21 @@
     width: 16px;
     height: 16px;
     border-radius: 50%;
-
+    margin-top:1px;
     cursor: pointer;
-    &--slctd {
-      width: 14px;
-      height: 14px;
-      border: 1px solid @border-color-blue;
+    border:2px solid transparent;
+    &-inr {
+      display: block;
+      height:14px;
+      border-radius: 50%;
+      background-color:@fg-color-white;
+      border:1px solid @border-color;
     }
     & + & {
       margin-left: 5px;
+    }
+    &--slctd {
+      border: 2px solid @border-color-blue;
     }
   }
 }
@@ -750,8 +756,10 @@
     cursor: pointer;
     vertical-align: middle;
     text-transform: uppercase;
+
     &--slctd {
       color:@fg-color-blue;
+
       border: 2px solid @border-color-blue;
     }
     & + & {
