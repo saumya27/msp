@@ -44,19 +44,19 @@
 							</div>
 						</div>
 						<div class="user-link">
-							<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile">
+							<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
 								<span class="user-link__icon-rcnt-view"></span>
 								My Recent Views
 							</div>
-							<div class="drpdwn-wdgt__item user-link__svd-prdcts hvr-red js-open-link" data-open-link="/users/profile">
+							<div class="drpdwn-wdgt__item user-link__svd-prdcts hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
 								<span class="user-link__icon-svd-prdcts"></span>
 								My Saved Products
 							</div>
-							<div class="drpdwn-wdgt__item user-link__rvws hvr-red js-open-link" data-open-link="/users/profile">
+							<div class="drpdwn-wdgt__item user-link__rvws hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
 								<span class="user-link__icon-rvws"></span>
 								My Reviews
 							</div>
-							<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile">
+							<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
 								<span class="user-link__icon-rwrds"></span>
 								My Rewards
 							</div>
@@ -163,12 +163,12 @@
 						</a>
 					</div>
 					<div class="prdct-dtl__tlbr-actn">
-						<a href="#" class="prdct-dtl__tlbr-prc-alrt prdct-dtl__tlbr-item">
+						<span class="prdct-dtl__tlbr-prc-alrt prdct-dtl__tlbr-item text-link js-popup-trgt" data-href="http://www.mysmartprice.com/promotions/pricealert.php?isbn=4804&productname=Samsung+Galaxy+Grand+Prime&bestprice=9990&ispopup=true">
 							Set price drop alert
-						</a>
-						<a href="#" class="prdct-dtl__tlbr-cmpr prdct-dtl__tlbr-item js-pdp-cmpr">
+						</span>
+						<span class="prdct-dtl__tlbr-cmpr prdct-dtl__tlbr-item js-pdp-cmpr text-link">
 							Compare this product
-						</a>
+						</span>
 					</div>
 				</div>
 				<div class="prdct-dtl__fltr clearfix">
@@ -262,12 +262,12 @@
 				<ul class="prdct-dtl__spfctn-wrpr">
 					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.</li>
 					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-show-more">View more &rsaquo;&rsaquo;</span></li>
+					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-prdct-dtl__spfctn-show-more">View more &rsaquo;&rsaquo;</span></li>
 				</ul>
-				<ul class="prdct-dtl__spfctn-wrpr prdct-dtl__spfctn-more-wrpr">
+				<ul class="prdct-dtl__spfctn-more-wrpr">
 					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.</li>
 					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-show-more">View less &rsaquo;&rsaquo;</span></li>
+					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-prdct-dtl__spfctn-show-less">View less &rsaquo;&rsaquo;</span></li>
 				</ul>
 
 				<div class="prdct-dtl__msg-wrpr">
@@ -401,10 +401,10 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="prc-tbl__no-stck-hdr">
-	                                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png">
-	                                                		<div class="prc-tbl__no-stck-ttl">Out Of Stock</div>
-	                                                	</div>
+                                        				<div class="prc-tbl__no-stck-bdg">
+					                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
+					                                		<div class="prc-tbl__no-stck-lbl">Out Of Stock</div>
+					                                	</div>
                                     				</div>
                                     			</div>
                                     		</div>
@@ -452,7 +452,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-prc-tbl__gts-btn">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -540,7 +540,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -629,7 +629,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
                                         ORDER NOW<br>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">›</span>
@@ -717,7 +717,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -805,7 +805,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -1051,9 +1051,9 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--no-stck">
-                                	<div class="prc-tbl__no-stck-hdr">
+                                	<div class="prc-tbl__no-stck-bdg">
                                 		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
-                                		<div class="prc-tbl__no-stck-ttl">Out Of Stock</div>
+                                		<div class="prc-tbl__no-stck-lbl">Out Of Stock</div>
                                 	</div>
                                 	<div class="prc-tbl__no-stck-desc">Notify me when product becomes available.</div>
                                 	<form class="prc-tbl__no-stck-form">
@@ -1068,7 +1068,7 @@
                                    	</div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl-clm-gts-btn">
+                                    <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl__gts-btn">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -1707,6 +1707,7 @@
 	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.validate.min.js,qrelease=2014.03.18.pagespeed.jm.A3yIyYbmD6.js'></script>
 	<script type="text/javascript" src='http://mysmartprice.com/msp/js/useranalytics.js.pagespeed.jm.fKFxwK5V7t.js'></script>
 	<script type='text/javascript' src='assets/js/msp.js'></script>
+	<script type='text/javascript' src='assets/js/single.js'></script>
 	<script type='text/javascript' src='assets/js/common.js'></script>
 	<script type='text/javascript' src='assets/js/compare_panel.js'></script>
 	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>

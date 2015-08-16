@@ -1,51 +1,174 @@
 var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice/bofbpdmkbmlancfihdncikcigpokmdda?hl=en",
     CHROME_EXT_INSTALL_URL = "https://chrome.google.com/webstore/detail/bofbpdmkbmlancfihdncikcigpokmdda",
     lastScrollTop = 0,
-    scrolled = false,
+    // scrolled = false, // OLD:: for old processHeader code
     $doc = $(document),
     $win = $(window),
     popupQueue = [],
     autocompleteCache = {},
-    autoPopupTimeout = 7000,
+    autoPopupTimeout = 20000,
     pageLeaveTimeout = 4000,
     formActions = {
         'electronics': 'http://www.mysmartprice.com/msp/search/search.php',
         'fashion': 'http://fashion.mysmartprice.com/search/',
         'books': 'http://www.mysmartprice.com/books/search.php'
-    };
-var qS = queryString(window.location.search);
+    },
+    ua = navigator.userAgent.toLowerCase(),
+    isEdge = function() {
+        return ua.indexOf("edge") !== -1;
+    },
+    isChrome = function() {
+        return ua.indexOf("chrome") !== -1 && ua.indexOf("edge") === -1 && ua.indexOf("opr") === -1; // Edge UA contains "Chrome"
+    },
+    isFirefox = function() {
+        return ua.indexOf("firefox") !== -1;
+    },
+    qS = queryString(window.location.search);
 
-var browserVersion = (function(){
-    var ua= navigator.userAgent, tem, 
-    M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    if(/trident/i.test(M[1])){
-        tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE '+(tem[1] || '');
+var MSP = {
+    "utils" : {
+        "throttle" : function(fn, timeout, ctx) {
+            var timer, args, needInvoke;
+            return function() {
+                args = arguments;
+                needInvoke = true;
+                ctx = ctx || this;
+                if(!timer) {
+                    (function() {
+                        if(needInvoke) {
+                            fn.apply(ctx, args);
+                            needInvoke = false;
+                            timer = setTimeout(arguments.callee, timeout);
+                        } else {
+                            timer = null;
+                        }
+                    })();
+                }
+            };
+        },
+        "debounce" : function(fn, timeout, invokeAsap, ctx) {
+            if(arguments.length == 3 && typeof invokeAsap != 'boolean') {
+                ctx = invokeAsap;
+                invokeAsap = false;
+            }
+            var timer;
+            return function() {
+                var args = arguments;
+                ctx = ctx || this;
+                invokeAsap && !timer && fn.apply(ctx, args);
+                clearTimeout(timer);
+                timer = setTimeout(function() {
+                    !invokeAsap && fn.apply(ctx, args);
+                    timer = null;
+                }, timeout);
+            }
+        },
+        /** 
+         * method calls format.
+         * MSP.utils.url.from.bgImage()
+         */
+        "urlFrom" : {
+            "bgImage" : function(bgProp) {
+                bgProp.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
+            }
+        },
+        "parse" : {
+            "numberFrom" : {
+                "price" : function(price) {
+                    return parseInt(price.replace(/\D/g, ""), 10);
+                }
+            }
+        },
+        "validate" : {
+            "_" : {
+                "regex" : {
+                    "number" : '^\\d+$',
+                    "email" : '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
+                },
+                "messages" : {
+                    "number" : "Please enter a valid number.",
+                },
+                "testPattern" : function(type, value) {
+                    var result = {},
+                        status = this._regex[type].test(value);
+                    result.status = status;
+                    if (status) result.message = this._messages[type];
+                    return result;
+                }
+            },
+            "text" : function (value, options) {
+                var isWithinLimits = (function() {
+                    var result = true;
+                    if (options && options.min && value < options.min) {
+                        result = false;
+                    }
+                    if (options && options.max && value > options.max) {
+                        result = false;
+                    }
+                    return result;
+                }());
+                return this._.testPattern("text", value) && value && isWithinLimits;
+            },
+            "number" : function(value) {
+                return this._.testPattern("number", value);
+            },
+            "email" : function() {
+                return this._.testPattern("email", value);
+            },
+            /** MSP.utils.validate.form
+            * "formData" argument format
+            *   [{
+            *       "type" : "email",     // required Argument
+            *       "value" : "a@a.com",  // required Argument
+            *       "errorNode" : $(".field_error_message") // optional Argument
+            *   }, .....]
+            */
+            "form" : function(formData) {
+                var isValid = true,
+                    check = this;
+
+                $.each(formData, function(i, field) {
+                    var result = check[field.type](field.value);
+                    if (result.status === false) {
+                        if (field.errorNode instanceof jQuery) {
+                            field.errorNode.text(result.message);
+                        } else {
+                            alert(result.message);
+                        }
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+        },
+        "browser" : {
+            "name" : (function() {
+                var result = null,
+                    ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf("chrome") !== -1 && ua.indexOf("opr") === -1) {
+                    result = "chrome";
+                } else if (ua.indexOf("firefox") !== -1) {
+                    result = "firefox";
+                } else if (ua.indexOf("msie") !== -1 && ua.indexOf("trident") !== -1 && ua.indexOf("edge") !== -1) {
+                    result = "MSIE";
+                }
+                return result;
+            }()),
+            "version" : (function() {
+                var userAgent = navigator.userAgent.toLowerCase();
+                return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
+            }())
+        } 
     }
-    if(M[1]=== 'Chrome'){
-        tem= ua.match(/\bOPR\/(\d+)/);
-        if(tem!= null) return 'Opera '+tem[1];
-    }
-    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-    if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
-    return M;
-})();
-
-//Handle Console for IE8
-(function() {
-  var console = (window.console = window.console || {});
-  if (!console["log"])
-      console["log"] = function() {};
-})();
-
-// 4th aniv 
-// $('.main-header .search-box').after('<a href="/deals" class="aniv-head" tagret="_blank" style="margin-top: 7px;float: left;"><img  src="http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/ddd_button_02.png"></a>');
+};
 
 /* Carousel Plugin Script Begins Here */
+
+/* Carousel Plugin Script Begins Here */
+
 /*
  * jQuery mCycle v0.1
  */
-
 ;
 (function($, window, document, undefined) {
  
@@ -249,7 +372,7 @@ var browserVersion = (function(){
             });
 
             //IE Fix
-            if(browserVersion[0]==="MSIE" && browserVersion[1]<9) {
+            if (MSP.utils.browser.name === "MSIE" && MSP.utils.browser.version < 9) {
                 $currentSlide.css({
                     'left': prevSlideLeftOffset
                 });
@@ -265,7 +388,7 @@ var browserVersion = (function(){
                 $nextSlide.toggleClass(nextSlideClass + ' mCycleItemCurrent').removeAttr('style');
                 
                 //IE Fix
-                if(browserVersion[0]==="MSIE" && browserVersion[1]<9) {
+                if (MSP.utils.browser.name === "MSIE" && MSP.utils.browser.version < 9) {
                     $currentSlide.removeClass('mCycleItemCurrentIE').removeAttr('style');
                     $nextSlide.toggleClass(nextSlideClass + ' mCycleItemCurrentIE').removeAttr('style');
                 }
@@ -318,17 +441,51 @@ var browserVersion = (function(){
  
 /* Carousel Plugin Script Ends Here */
 $(document).ready(function(){
-    $(".js-crsl-wdgt").each(function(){
+
+
+    // dream contest code 
+    // TODO:: discuss with rohit, how it will be in RUI
+    // var currentMspId = $('.mspSingleTitle').data('mspid');
+
+    // $.ajax({
+    //     url: '/promotions/dream-mobile-list.json',
+    //     type: 'get',
+    //     dataType: 'json',
+    //     cache: false,
+    //     success: function (data) {
+    //        var mspidList = data.mspidList;
+    //         if(isChrome()){
+    //             if($(".product_topsec").length && $(".dream-mobile-div").length === 0 && mspidList.indexOf(currentMspId) >= 0){
+    //                 isPluginInstalled().fail(function(){
+
+    //                     $(".product_bottom_sec").prepend('<div class="dream-mobile-div" style="margin-bottom: 10px;">'
+    //                         + '<img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/dream_mobile_adspace.png" class="dream-mobile popup-target" href="/promotions/dream_mobile_popup.html" data-href="/promotions/dream_mobile_popup.html" style="width: 100%; height: 53px;cursor: pointer;">'
+    //                         +'</div>');
+    //                     _gaq.push(["_trackEvent", "DreamMobileContest", "AdspaceBanner", "Banner_Shown"]);
+
+    //                 }).done(function(){});
+    //             }
+    //         }
+    //     }
+    // });
+    // dream contest code ends 
+    
+    // RUI:: added new carousel classes inside code
+    $(".js-crsl-wdgt, .widget-carousel").each(function() {
         var slideTimeout,
             $this = $(this);
         $this.mCycle({
             mCycleItem: "a"
         });
-        $this.on("click", ".crsl-wdgt__prvs-btn", function () {
+        $this.on("mousever", ".crsl-wdgt__prvs-btn, .prev-button", function() {
           $this.mCycle("pause").mCycle("slideRight");
           resetSlideTimeout();
         });
-        $this.on("click", ".crsl-wdgt__next-btn", function () {
+        $this.on("click", ".crsl-wdgt__prvs-btn, .prev-button", function() {
+          $this.mCycle("pause").mCycle("slideRight");
+          resetSlideTimeout();
+        });
+        $this.on("click", ".crsl-wdgt__next-btn, .next-button", function() {
           $this.mCycle("pause").mCycle("slideLeft");
           resetSlideTimeout();
         });
@@ -337,12 +494,13 @@ $(document).ready(function(){
         });
         function resetSlideTimeout() {
           clearTimeout(slideTimeout);
-          slideTimeout = setTimeout(function () {
+          slideTimeout = setTimeout(function() {
             $this.mCycle("play");
           }, 10000);
         }
     });
     
+    /* RUI:: new component for horizonal scrollable sections - start */
     $(".js-sldr").each(function(e){
         elementSlider.init(this);
     });
@@ -352,9 +510,10 @@ $(document).ready(function(){
     $doc.on("click", ".js-sldr__next", function() {
         elementSlider.slide(this, "right");
     });
+    /* RUI:: new component for horizonal scrollable sections - end */
 });
 
-
+/* RUI:: new component for horizonal scrollable sections - start */
 elementSlider =  {
     "init" : function(slider) {
         var slideItem = $(slider).data("slideitem"),
@@ -419,7 +578,7 @@ elementSlider =  {
 
         //IE dones not support transitions.
         elementPos = -$startElement.position().left;
-        if(browserVersion[0]==="MSIE" && browserVersion[1]<10) {
+        if (MSP.utils.browser.name === "MSIE" && MSP.utils.browser.version < 9) {
             $elementWrapper.css({
                 "left" : elementPos
             });
@@ -435,6 +594,7 @@ elementSlider =  {
         return false;
     }
 }
+/* RUI:: new component for horizonal scrollable sections - end */
 
 // Takes the argument, or query string or hash of the current URL
 // and returns an object with those key-value pairs as its properties
@@ -443,14 +603,15 @@ function queryString(searchOrHash) {
     if(searchOrHash in _cache) return _cache[searchOrHash];
 
     var query;
-    if (searchOrHash)
+    if (searchOrHash) {
         query = searchOrHash;
-    else if (window.location.search)
+    } else if (window.location.search) {
         query = window.location.search;
-    else if (window.location.hash)
+    } else if (window.location.hash) {
         query = window.location.hash;
-    else
+    } else {
         return;
+    }
 
     var query_string = {};
     var vars = query.substring(1).split("&");
@@ -468,6 +629,7 @@ function queryString(searchOrHash) {
     return query_string;
 }
 
+/* RUI:: function to create hash from url params - start */
 function generateHash(params) {
     var hash = "#", index = 0;
     $.each(params, function (key) {
@@ -481,25 +643,27 @@ function generateHash(params) {
     });
     return hash;
 }
+/* RUI:: function to create hash from url params - end */
+
 
 // Extension promotion for Chrome users landing using msp.to feature        
-if ($(".sidebardiv.msp-to").length) {
-    autoPopupTimeout = 3000;
-    _gaq.push(["_trackEvent", "Plugin_mspto", "Sidebar_Banner", "Banner_Shown"]);
-}
+// TODO:: discuss with rohit, how it will be in RUI
+// if ($(".sidebardiv.msp-to").length) {
+//     autoPopupTimeout = 3000;
+//     _gaq.push(["_trackEvent", "Plugin_mspto", "Sidebar_Banner", "Banner_Shown"]);
+// }
 
 // autopopup processing start here
-setTimeout((function() {
+setTimeout(function() {
     openAutoPopup(); // open auto popup after autoPopupTimeout
-}), autoPopupTimeout);
+}, autoPopupTimeout);
 
-setTimeout((function() {
+setTimeout(function() {
     pageLeavePopupBind(); // bind page leave auto popup after pageLeaveTimeout
-}), pageLeaveTimeout);
+}, pageLeaveTimeout);
 // autopopup processing end here
 
-
-
+/* OLD::inPageLinking - start */
 //handeling hash in window
 function inpageLinking(id) {
     if (id !== "" && id !== "#") {
@@ -531,116 +695,210 @@ $(window).on('load', function() {
 });
 
 //hash change handeling end
-
+/* OLD::inPageLinking - end */
 
 
 // header bar processing start here
-if ($('.simple-header')
-    .length === 0 && $('.single-header')
-    .length === 0) {
-    $win.scroll(function(e) {
-        scrolled = true;
-    });
-    setInterval(processHeader, 100);
-}
+// TODO::REMOVE processheader activate.
+// if ($('.simple-header').length === 0 && $('.single-header').length === 0) {
+//     $win.scroll(function(e) {
+//         scrolled = true;
+//     });
+//     setInterval(processHeader, 100);
+// }
 // header bar processing end here
 
+/* TODO::REMOVE old code for header functionality */
 // browse menu processing start here
-var menuShowTimeout;
-$doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
-    e.stopPropagation();
+// $doc.on('click', '.browse-menu-btn, .browse-popup-cont', function(e) {
+//     var left = $('.browse-menu-btn').offset().left;
+//     $('.browse-popup').css('left', left).toggleClass('show');
+//     $('.browse-popup-cont')
+//         .toggleClass('show');
+//     if ($('.browse-popup.show').length !== 0) {
 
-    if (!$('.drpdwn-menu-wrpr--show').length && $(this).hasClass("js-ctgry-btn")) {
-        $('.js-drpdwn-menu-wrpr').addClass('drpdwn-menu-wrpr--show');
-        $('.js-drpdwn-menu-ovrly').addClass('drpdwn-menu-ovrly--show');
-        if($(window).height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
-            $(".js-drpdwn-menu-wrpr").addClass("drpdwn-menu-wrpr--s");
-        }
-        if ($('.drpdwn-menu')
-            .data('processed') == 'done' && location.hash !== '#forcepopup') {
-            menuShowTimeout = setTimeout((function() {
-                $('.js-drpdwn-menu-wrpr')
-                    .find('.ldng-crcl')
-                    .hide();
-                $('.drpdwn-menu')
-                    .addClass('drpdwn-menu--show');
-            }), 340);
-            return; //if already procesed
-        }
+//         if ($('.browse-popup-data').data('processed') == 'done' && location.hash !== '#forcepopup') {
+//             setTimeout((function() {
+//                 $('.browse-popup').find('.loading-circle').hide();
+//                 $('.browse-popup-data').addClass('show');
+//             }), 340);
+//             return; //if already procesed
+//         }
 
-        var data;
+//         var data;
 
-        if (localStorage && location.hash !== '#forcepopup') {
+//         if (localStorage && location.hash !== '#forcepopup') {
 
-            //check if data is not one week old
-            var time = parseInt(localStorage.browsePopupDataTime, 10),
-                now = new Date()
-                .getTime(),
-                diffTime = (now - time) / (1000 * 60 * 60 * 24);
+//             //check if data is not one week old
+//             var time = parseInt(localStorage.browsePopupDataTime, 10),
+//                 now = new Date().getTime(),
+//                 diffTime = (now - time) / (1000 * 60 * 60 * 24);
 
-            if (diffTime < 30 && localStorage.browsePopupDataVer == $('.js-drpdwn-menu-wrpr')
-                .data('ver')) {
-                //getting data from localStorage
-                data = localStorage.browsePopupData;
+//             if (diffTime < 30 && localStorage.browsePopupDataVer == $('.browse-popup-data').data('ver')) {
+//                 //getting data from localStorage
+//                 data = localStorage.browsePopupData;
+//             }
+
+//         }
+
+//         if (!data || data == 'undefined' || data === undefined) {
+//             $('.browse-popup').find('.loading-circle').show();
+//             data = getBrowsePopupData();
+//             localStorage.browsePopupData = data;
+//             localStorage.browsePopupDataTime = new Date().getTime();
+//             localStorage.browsePopupDataVer = $('.browse-popup-data').data('ver');
+//             // if data is not avaialble in localStorage do ajax and save in localStorage for later use
+//         }
+//         if (data && data != 'undefined' && data !== undefined) {
+//             $('.browse-popup-data').html(data).data('processed', 'done');
+//             setTimeout((function() {
+//                 $('.browse-popup').find('.loading-circle').hide();
+//                 $('.browse-popup-data').addClass('show');
+//             }), 340);
+//             // on data available hide loading and show data
+//         }
+
+//     } else {
+//         $('.browse-popup-data').removeClass('show');
+//     }
+// });
+
+// $doc.on('click', '.browse-popup', function(e) {
+//     e.stopPropagation();
+// });
+// browse menu processing end here
+
+
+
+/* RUI:: header dropdowns functionality - start */
+(function headerDropdownsHandlers() {
+    var menuShowTimeout;
+    $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
+        e.stopPropagation();
+
+        if (!$('.drpdwn-menu-wrpr--show').length && $(this).hasClass("js-ctgry-btn")) {
+            $('.js-drpdwn-menu-wrpr').addClass('drpdwn-menu-wrpr--show');
+            $('.js-drpdwn-menu-ovrly').addClass('drpdwn-menu-ovrly--show');
+            if($(window).height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
+                $(".js-drpdwn-menu-wrpr").addClass("drpdwn-menu-wrpr--s");
+            }
+            if ($('.drpdwn-menu')
+                .data('processed') == 'done' && location.hash !== '#forcepopup') {
+                menuShowTimeout = setTimeout((function() {
+                    $('.js-drpdwn-menu-wrpr')
+                        .find('.ldng-crcl')
+                        .hide();
+                    $('.drpdwn-menu')
+                        .addClass('drpdwn-menu--show');
+                }), 340);
+                return; //if already procesed
             }
 
+            var data;
+
+            if (localStorage && location.hash !== '#forcepopup') {
+
+                //check if data is not one week old
+                var time = parseInt(localStorage.browsePopupDataTime, 10),
+                    now = new Date()
+                    .getTime(),
+                    diffTime = (now - time) / (1000 * 60 * 60 * 24);
+
+                if (diffTime < 30 && localStorage.browsePopupDataVer == $('.js-drpdwn-menu-wrpr')
+                    .data('ver')) {
+                    //getting data from localStorage
+                    data = localStorage.browsePopupData;
+                }
+
+            }
+
+            if (!data || data == 'undefined' || data === undefined) {
+                $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').show();
+                data = getBrowsePopupData();
+                localStorage.browsePopupData = data;
+                localStorage.browsePopupDataTime = new Date().getTime();
+                localStorage.browsePopupDataVer = $('.js-drpdwn-menu-wrpr').data('ver');
+                // if data is not avaialble in localStorage do ajax and save in localStorage for later use
+            }
+            if (data && data != 'undefined' && data !== undefined) {
+                $('.drpdwn-menu').html(data).data('processed', 'done');
+                menuShowTimeout = setTimeout((function() {
+                    $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').hide();
+                    $('.drpdwn-menu').addClass('drpdwn-menu--show');
+                }), 340);
+                // on data available hide loading and show data
+            }
+        } else if(!$(this).hasClass('js-drpdwn-menu-wrpr')) {
+            clearTimeout(menuShowTimeout);
+            $('.js-drpdwn-menu-wrpr').removeClass('drpdwn-menu-wrpr--show');
+            $('.drpdwn-menu').removeClass('drpdwn-menu--show');
+            $('.js-drpdwn-menu-ovrly').removeClass('drpdwn-menu-ovrly--show');
         }
+    });    
+}())
 
-        if (!data || data == 'undefined' || data === undefined) {
-            $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').show();
-            data = getBrowsePopupData();
-            localStorage.browsePopupData = data;
-            localStorage.browsePopupDataTime = new Date().getTime();
-            localStorage.browsePopupDataVer = $('.js-drpdwn-menu-wrpr').data('ver');
-            // if data is not avaialble in localStorage do ajax and save in localStorage for later use
-        }
-        if (data && data != 'undefined' && data !== undefined) {
-            $('.drpdwn-menu').html(data).data('processed', 'done');
-            menuShowTimeout = setTimeout((function() {
-                $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').hide();
-                $('.drpdwn-menu').addClass('drpdwn-menu--show');
-            }), 340);
-            // on data available hide loading and show data
-        }
-    } else if(!$(this).hasClass('js-drpdwn-menu-wrpr')) {
-        clearTimeout(menuShowTimeout);
-        $('.js-drpdwn-menu-wrpr').removeClass('drpdwn-menu-wrpr--show');
-        $('.drpdwn-menu').removeClass('drpdwn-menu--show');
-        $('.js-drpdwn-menu-ovrly').removeClass('drpdwn-menu-ovrly--show');
-    }
-});
+/* RUI:: header dropdowns functionality - end */
+
+// TODO:: Remove old header search code.
+// $doc.on('click', '.search-submit', function() {
+//     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'button']);
+// });
+
+// $doc.on('click', '.page_search .sublist a', function() {
+//     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'category']);
+// });
 
 
-
+/* RUI:: header search functionality - start */
 $doc.on('click', '.srch-wdgt__sbmt', function() {
     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'button']);
 });
+/* RUI:: header search functionality - end */
 
-$doc.on('click', '.page_search .sublist a', function() {
-    if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'category']);
-});
+/*
+ * OLD:: callouts are old site feature
+ * new feature is tooltip
+ * starts here
+ */
 
 // tooltip callouts processing start here
+$doc.on('mouseenter', '.callout-target', function() {
+    $('.callout').remove();
+    var $this = $(this),
+        data = $this.data('callout');
+    if (data === "" || data === undefined) return;
+    $('body').append('<div class="callout top-left">' + data + '</div>');
+    $callout = $('.callout');
+    $callout.css('left', $this.offset().left);
+    $callout.css('top', $this.offset().top - $callout.outerHeight() - 10);
+    if ($callout.offset().top - $(window).scrollTop() < 0) {
+        $callout.removeClass('top-left').addClass('bottom-left');
+        $callout.css('top', $this.outerHeight() + $this.offset().top + 10);
+    }
+});
+
+$doc.on('mouseleave', '.callout-target', function() {
+    $('.callout').remove();
+});
+// tooltip callouts processing end here
+/* OLD:: callouts are old site feature - ends here */
+
+
+/* RUI:: Tooltips - start */
+// tooltip callouts processing start here
 $doc.on('mouseenter', '.js-tltp', function() {
-    $('.tltp')
-        .remove();
+    $('.tltp').remove();
     var $this = $(this),
         data = $this.data('tooltip');
     if (data === "" || data === undefined) return;
     var colorClass = $(this).data("tooltip-color")==="white" ? "tltp--wht": "";
     $('body').append('<div class="tltp tltp--top-left ' + colorClass +'">' + data + '</div>');
     $tooltip = $('.tltp');
-    $tooltip.css('left', $this.offset()
-        .left);
-    $tooltip.css('top', $this.offset()
-        .top - $tooltip.outerHeight() - 10);
-    if ($tooltip.offset()
-        .top - $(window)
-        .scrollTop() < 0) {
-        $tooltip.removeClass('tltp--top-left')
-            .addClass('tltp--btm-left');
-        $tooltip.css('top', $this.outerHeight() + $this.offset()
-            .top + 10);
+    $tooltip.css('left', $this.offset().left);
+    $tooltip.css('top', $this.offset().top - $tooltip.outerHeight() - 10);
+    if ($tooltip.offset().top - $(window).scrollTop() < 0) {
+        $tooltip.removeClass('tltp--top-left').addClass('tltp--btm-left');
+        $tooltip.css('top', $this.outerHeight() + $this.offset().top + 10);
     }
 
 });
@@ -648,7 +906,9 @@ $doc.on('mouseenter', '.js-tltp', function() {
 $doc.on('mouseleave', '.js-tltp', function() {
     $('.tltp').remove();
 });
+/* RUI:: Tooltips - end */
 
+/* RUI:: open non anchor links - start */
 $doc.on("click", ".js-open-link", function() {
     var $this       = $(this),
          url        = $this.data("open-link"),
@@ -682,6 +942,10 @@ $doc.on("click", ".js-open-after-login", function() {
    
     return false;
 });
+/* RUI:: open non anchor links - end */
+
+/* RUI:: save product item button - start */
+// TODO:: check anything missing
 $doc.on('mousedown','.js-save-btn', function() {
     var $this = $(this),
         // TODO:: page title class to be given - ".msp-ttl" used currently
@@ -699,7 +963,9 @@ $doc.on('mousedown','.js-save-btn', function() {
 
     return false;
 });
+/* RUI:: save product item button - start */
 
+/* OLD:: save item functionality - start */
 function saveItem(mspid, $this) {
     $.ajax({
         url: "/users/add_to_list.php?mspid=" + mspid,
@@ -719,24 +985,36 @@ function saveItem(mspid, $this) {
             openPopup("http://www.mysmartprice.com/promotions/cashback_promo.php?isbn=" + mspid);
     */
 }
+/* OLD:: save item functionality - end */
 
-// tooltip callouts processing end here
 
 // popups processing start here
-$doc.on('click', '.popup-target', function() {
+// RUI:: added new classes for popup targets
+// OLD:: old classes of popup elements are there.
+/* TODO:: popup handlers - work on this - start. */
+
+$doc.on('click', '.popup-target, .js-popup-trgt', function() {
     var $this = $(this),
         popupUrl = $this.attr('href'),
         storeUrl;
 
+    if ($this.is(".store_price_alert .popup-target") || $this.is("#pricealertbutton")) {
+        if (handleStorePriceAlert($this))
+            return false;
+    }
+
     if ($this.hasClass("storebutton")) {
         var cookieName = $this.data("cookiename");
-        if (getCookie(cookieName) === "true") {
-            _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Popup already shown']);
+        storeUrl = $this.data('url');
+
+        if (getCookie(cookieName)) {
+            window.open(storeUrl);
             return true;
         }
 
-        if (getCookie('msp_login_email') && $this.hasClass("check-email-cookie")) {
+        if (getCookie('msp_login') && $this.hasClass("check-email-cookie")) {
             _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
+            window.open(storeUrl);
             return true;
         }
 
@@ -749,12 +1027,79 @@ $doc.on('click', '.popup-target', function() {
                 addCookie(cookieName, "true", parseInt(cookieTimeDays, 10));
         }
 
-        storeUrl = $this.attr('href');
         setCookie('autoPopup', '1', 1);
     }
 
     if (!popupUrl || popupUrl == "#" || $this.hasClass("storebutton")) popupUrl = $this.data('href');
     openPopup(popupUrl, storeUrl);
+
+    return false;
+});
+
+function handleStorePriceAlert($target) {
+    if (sessionStorage && sessionStorage.storePriceAlertEmail) {
+        var $pageTitle = $("#mspSingleTitle"),
+            $priceLine = $target.closest(".store_pricetable");
+
+        $.ajax({
+          url: "/price_alert/capture_email.php",
+          data: {
+            "email": sessionStorage.storePriceAlertEmail,
+            "mspid": $pageTitle.data("mspid"),
+            "bestprice": $pageTitle.data("bestprice"),
+            "storeprice": $priceLine.data("pricerank"),
+            "storename": $priceLine.find(".store_img img").attr("alt"),
+            "popupname": "pricealert"
+          },
+          cache: false
+        });
+
+        window._vis_opt_queue = window._vis_opt_queue || [];
+        window._vis_opt_queue.push(function () { _vis_opt_goal_conversion(200); });
+
+        $target.removeClass("popup-target callout-target").addClass("alert_set btn-disabled").text("Alert Set");
+        return true;
+    }
+    else {
+        $target.addClass("popup_opened");
+        popupQueue.push(function () {
+            $target.removeClass("popup_opened");
+        });
+    }
+}
+
+$doc.on('click', ".loyalty-popup-target", function() {
+    var $this = $(this),
+        isLoggedIn = getCookie("msp_login"),
+        cookieName = $this.data("cookiename"),
+        popupUrl = $this.data("href");
+
+    setCookie('autoPopup', '1', 1);
+    
+    if (getCookie(cookieName) === "true") {
+        _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Popup already shown']);
+        window.open($this.data("url"));
+        return true;
+    }
+
+    if (cookieName) {
+        var cookieTimeMins = $this.data("cookietimemins"),
+            cookieTimeDays = $this.data("cookietimedays");
+        if (cookieTimeMins)
+            addCookieMins(cookieName, "true", parseInt(cookieTimeMins, 10));
+        else if (cookieTimeDays)
+            addCookie(cookieName, "true", parseInt(cookieTimeDays, 10));
+    }
+
+    if (isLoggedIn) {
+        openPopup(popupUrl);
+        _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
+        window.open($this.data("url"));
+        return true;
+    } else {
+        storeUrl = $this.data('url');
+        openPopup(popupUrl, storeUrl);
+    }
 
     return false;
 });
@@ -768,7 +1113,13 @@ $doc.on('click', '.popup-overlay', function() {
         closePopup();
 });
 // popups processing end here
+/* TODO:: popup handlers - work on this - start. */
 
+/*
+ * OLD:: used only in single page filters dropdown 
+ * RUI:: new functionality is written in RUI code
+ * starts here
+ */
 // Dropdown UI component (used on single page)
 $doc.on("click", function () {
     $(".dropdown .dropdown-content").addClass("hide");
@@ -776,26 +1127,59 @@ $doc.on("click", function () {
     $(".dropdown .dropdown-content").toggleClass("hide");
     return false;
 });
+/* OLD:: used only in single page filters dropdown - end */
+
 
 // autocomplete processing start here
-
-
 bindAutoComplete(); // initializing the autoComplete
 // autocomplete processing end here
 
+/* OLD:: binding keys to close header browse popup. - start */
+// binding keys start here
+// $doc.keyup(function(e) {
+//     if (e.keyCode == 27) { //esc button
+//         if ($('.browse-popup-cont.show')
+//             .length !== 0) {
+//             $('.browse-menu-btn')
+//                 .click(); //if browse menu is displayed close it  
+//         }
+//         if ($('.popup-overlay')
+//             .length !== 0) {
+//             $('.popup-overlay')
+//                 .click(); //if popup is displayed close it
 
+//         }
+//     }
+// });
+
+// $doc.keydown(function(e) {
+//     if (e.altKey) { // checking for alt key
+//         var key = String.fromCharCode(e.keyCode)
+//             .toLowerCase();
+//         switch (key) {
+//             case 'c':
+//                 $('.browse-menu-btn')
+//                     .click();
+//                 break;
+//             case 's':
+//                 $('.search-field')
+//                     .focus();
+//                 break;
+//         }
+//     }
+// });
+// binding keys end here
+/* OLD:: binding keys to close header browse popup. - end */
+
+/* RUI:: added classes of new UI to the existing handlers - start */
 // binding keys start here
 $doc.keyup(function(e) {
     if (e.keyCode == 27) { //esc button
-        if ($('.drpdwn-menu-ovrly--show')
-            .length !== 0) {
-            $('.js-ctgry-btn')
-                .click(); //if browse menu is displayed close it  
+        if ($('.browse-popup-cont.show, .drpdwn-menu-ovrly--show').length !== 0) {
+            $('.browse-menu-btn .js-ctgry-btn').click(); //if browse menu is displayed close it  
         }
-        if ($('.popup-overlay')
-            .length !== 0) {
-            $('.popup-overlay')
-                .click(); //if popup is displayed close it
+        if ($('.popup-overlay').length !== 0) {
+            $('.popup-overlay').click(); //if popup is displayed close it
 
         }
     }
@@ -803,45 +1187,39 @@ $doc.keyup(function(e) {
 
 $doc.keydown(function(e) {
     if (e.altKey) { // checking for alt key
-        var key = String.fromCharCode(e.keyCode)
-            .toLowerCase();
+        var key = String.fromCharCode(e.keyCode).toLowerCase();
         switch (key) {
             case 'c':
-                $('.js-ctgry-btn')
-                    .click();
+                $('.browse-menu-btn, .js-ctgry-btn').click();
                 break;
             case 's':
-                $('.search-field')
-                    .focus();
+                $('.search-field').focus();
                 break;
         }
     }
 });
 // binding keys end here
+/* RUI:: added classes of new UI to the existing handlers - start */
 
+// TODO:: remove bottomslideup if not there in new site.
 // Initialize slide-up banner logic
 initBottomSlideup(); // stoping bottom banner promotion
 
 
-
 //function are below
-
-
 
 // ajax functions start here
 function getAjaxDataSync(ajaxURL) {
-        var ajaxData;
-        $.ajax({
-                url: ajaxURL,
-                async: false
-            })
-            .done(function(data) {
-                ajaxData = data;
-            });
-        return ajaxData;
-    }
-    // ajax functions end here
-
+    var ajaxData;
+    $.ajax({
+        url: ajaxURL,
+        async: false
+    }).done(function(data) {
+        ajaxData = data;
+    });
+    return ajaxData;
+}
+// ajax functions end here
 
 // cookie functions start here
 function addCookieMins(c_name, value, expMins) {
@@ -860,6 +1238,13 @@ function addCookieMins(c_name, value, expMins) {
     if (expMins < 0) {
         c_value = escape(value) + "; expires=" + expDate + "; path=/";
         document.cookie = c_name + '=' + c_value + ';';
+    }
+
+    if(c_name == 'msp_login_email') {
+        if (window.dataLayer) {
+            dataLayer.push({ 'event': 'email_success' });
+        }
+        log_data("pageView");
     }
 }
 
@@ -884,19 +1269,19 @@ function deleteCookie(c_name) {
 }
 
 function getCookie(c_name) {
-        var i, x, y, ARRcookies = document.cookie.split(";");
-        var ret_val;
-        for (i = 0; i < ARRcookies.length; i++) {
-            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
-            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-            x = x.replace(/^\s+|\s+$/g, "");
-            if (x == c_name) {
-                ret_val = unescape(y);
-            }
+    var i, x, y, ARRcookies = document.cookie.split(";");
+    var ret_val;
+    for (i = 0; i < ARRcookies.length; i++) {
+        x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
+        y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
+        x = x.replace(/^\s+|\s+$/g, "");
+        if (x == c_name) {
+            ret_val = unescape(y);
         }
-        return ret_val;
     }
-    // cookie functions end here
+    return ret_val;
+}
+// cookie functions end here
 
 
 
@@ -907,51 +1292,50 @@ function getPopupData(popupUrl) {
 
 function openPopup(popupUrl, storeUrl) {
     var popupData = getPopupData(popupUrl);
-    $('.popup-overlay')
-        .remove();
-    $('.popup-container')
-        .remove();
-    $('.popup-closebutton')
-        .remove();
+    $('.popup-overlay').remove();
+    $('.popup-container').remove();
+    $('.popup-closebutton').remove();
 
-    if (storeUrl)
-        $('body').append('<div class="popup-overlay hide noclose"></div><div class="popup-container hide"><div class="popup-closebutton hide"><a href="' + storeUrl + '" target="_blank">&#10005;</a></div></div>');
-    else
-        $('body').append('<div class="popup-overlay hide"></div><div class="popup-container hide"><div class="popup-closebutton hide">&#10005;</div></div>');
+    if (storeUrl) {
+        $('body').append([
+            '<div class="popup-overlay hide noclose"></div>',
+            '<div class="popup-container hide">',
+                '<div class="popup-closebutton hide">',
+                    '<a href="' + storeUrl + '" target="_blank">&#10005;</a>',
+                '</div>',
+            '</div>'
+        ].join(""));
+    } else {
+        $('body').append([
+            '<div class="popup-overlay hide"></div>',
+            '<div class="popup-container hide">',
+                '<div class="popup-closebutton hide">&#10005;</div>',
+            '</div>'
+        ].join(""));
+    }
 
     setTimeout((function() {
-        $('.popup-overlay')
-            .removeClass('hide');
-        $('.popup-container')
-            .removeClass('hide');
+        $('.popup-overlay').removeClass('hide');
+        $('.popup-container').removeClass('hide');
     }), 300);
     setTimeout((function() {
-        $('.popup-closebutton')
-            .removeClass('hide');
+        $('.popup-closebutton').removeClass('hide');
     }), 900);
 
-    $('.popup-container')
-        .append(popupData)
-        .css('width', $('.popup-inner-content').outerWidth());
+    $('.popup-container').append(popupData).css('width', $('.popup-inner-content').outerWidth());
 
     if (storeUrl)
         $(".popup-container .popup-skip a, .popup-container a.popup-submit").attr("href", storeUrl);
 }
 
 function closePopup() {
-    $('.popup-overlay')
-        .addClass('hide');
-    $('.popup-container')
-        .addClass('hide');
-    $('.popup-closebutton')
-        .addClass('hide');
+    $('.popup-overlay').addClass('hide');
+    $('.popup-container').addClass('hide');
+    $('.popup-closebutton').addClass('hide');
     setTimeout((function() {
-        $('.popup-overlay')
-            .remove();
-        $('.popup-container')
-            .remove();
-        $('.popup-closebutton')
-            .remove();
+        $('.popup-overlay').remove();
+        $('.popup-container').remove();
+        $('.popup-closebutton').remove();
     }), 400);
     while (popupQueue.length > 0) {
         (popupQueue.shift())();
@@ -964,7 +1348,7 @@ function popupQueueFn(fn, context, params) {
     };
 }
 
-
+// NOTE:: already commented (not RUI)
 // // autopopup functions start here
 // function openAutoPopup(pl) {
 //     if(hasOffline){
@@ -1101,25 +1485,58 @@ if (!getCookie("session-start-time")) {
 setCookie("active_time", ((new Date().getTime()) - getCookie("session-start-time")) / 1000);
 
 function pageLeavePopupBind() {
-        $('body')
-            .on('mouseleave', function(e) {
-                if (e.pageY < 5) openAutoPopup("pl");
-            });
-    }
-    // autopopup functions end here
-    // popup functions end here
+    $('body').on('mouseleave', function(e) {
+        if (e.pageY < 5) openAutoPopup("pl");
+    });
+}
+// autopopup functions end here
+// popup functions end here
 
 
-
+// TODO:: check if old function can be removed or to be merged 
 // header functions start here
-function processHeader() {
-        if (!scrolled) return;
-        var scrollTop = $win.scrollTop(),
-            delta = 5,
-            $subHeader = $('.sub-hdr'),
-            $header = $('.hdr'),
-            subHeaderHeight = $subHeader.outerHeight();
+// function processHeader() {
+//     if (!scrolled) return;
+//     var scrollTop = $win.scrollTop(),
+//         delta = 5,
+//         $subHeader = $('.sub-header'),
+//         $header = $('.header'),
+//         subHeaderHeight = $subHeader.outerHeight();
+//     if (scrollTop <= 0) {
+//         $subHeader.removeClass('hide');
+//         return;
+//     }
+//     if (Math.abs(lastScrollTop - scrollTop) <= delta) return;
+//     if (scrollTop > lastScrollTop && scrollTop > subHeaderHeight) {
+//         // Scroll Down
+//         $header.addClass('slide-header');
+//         $subHeader.addClass('hide');
+//     } else {
+//         // Scroll Up
+//         if (scrollTop + $win.height() < $doc.height()) {
+//             $subHeader.removeClass('hide');
+//             $header.removeClass('slide-header');
+//         }
+//     }
+//     lastScrollTop = scrollTop;
+//     scrolled = false;
+// }
+// header functions end here// header functions end here
 
+/* RUI:: reveal new subheader when user scrolls - start */
+
+//If header is scrollable then dont hide the subheader
+$win.scroll(MSP.utils.throttle(function(e) {
+    var scrollTop = $win.scrollTop(),
+        delta = 5,
+        $subHeader = $('.sub-hdr'),
+        $header = $('.hdr'),
+        subHeaderHeight = $subHeader.outerHeight();
+    // Hide Menu on Scroll
+    if ($('.drpdwn-menu-ovrly--show').length) {
+        $('.js-ctgry-btn').click(); //if browse menu is displayed close it  
+    }
+    if (!$header.hasClass("hdr--scrl")) {
         
         if (scrollTop <= 0) {
             $subHeader.removeClass('hide');
@@ -1127,120 +1544,230 @@ function processHeader() {
         }
         if (Math.abs(lastScrollTop - scrollTop) <= delta) return;
 
-        //Hide Menu on Scroll
-        if ($('.drpdwn-menu-ovrly--show').length) {
-            $('.js-ctgry-btn').click(); //if browse menu is displayed close it  
-        }
-
-        //If header is scrollable then dont hide the subheader  
-        if(!$header.hasClass("hdr--scrl")) {
-
-            if (scrollTop > lastScrollTop && scrollTop > subHeaderHeight) {
-                // Scroll Down
-                $header.addClass('hdr--sld');
-                $subHeader.addClass('hide');
-            } else {
-                // Scroll Up
-                if (scrollTop + $win.height() < $doc.height()) {
-                    $subHeader.removeClass('hide');
-                    $header.removeClass('hdr--sld');
-                }
+        if (scrollTop > lastScrollTop && scrollTop > subHeaderHeight) {
+            // Scroll Down
+            $header.addClass('hdr--sld');
+            $subHeader.addClass('hide');
+        } else {
+            // Scroll Up
+            if (scrollTop + $win.height() < $doc.height()) {
+                $subHeader.removeClass('hide');
+                $header.removeClass('hdr--sld');
             }
         }
-        lastScrollTop = scrollTop;
-        scrolled = false;
-    }
-    // header functions end here
 
+        lastScrollTop = scrollTop;
+    }
+}, 100));
+/* RUI:: reveal new subheader when user scrolls - end */
 
 // browse popup functions start here
 function getBrowsePopupData() {
-        return getAjaxDataSync("browse-menu.htm#forcepopup");
-    }
-    // browse popup functions end here
+    return getAjaxDataSync("/browse-menu.htm");
+}
+// browse popup functions end here
 
 
-// autocomplete functions start here
+/* RUI:: autocomplete functions - start
+ * TODO::REMOVE - check if removing old code is fine
+ */
+// function bindAutoComplete() {
+//     if ($("#header-search").length !== 0) {
+//         $("#header-search").autocomplete({
+//             minLength: 1,
+//             delay: 110,
+//             autoFocus: false,
+//             max: 10,
+//             position: {
+//                 at: 'left-1 bottom+1',
+//                 my: 'left top',
+//                 of: '#header-search'
+//             },
+//             source: function(request, response) {
+//                 var term = $.trim(request.term.toLowerCase()),
+//                     element = this.element,
+//                     //element is search bar
+//                     autocompleteCache = this.element.data('autocompleteCache') || {},
+//                     //initializing autocompleteCache
+//                     foundInAutocompleteCache = false; //flag will be set to true if term found in autocompleteCache
+//                 if (term in autocompleteCache && autocompleteCache[term].length !== 0) {
+//                     response(autocompleteCache[term]);
+//                     foundInAutocompleteCache = true;
+//                 }
 
+//                 if (foundInAutocompleteCache) return;
 
+//                 request.term = term;
+//                 $.ajax({
+//                     url: 'http://www.mysmartprice.com/msp/search/auto_suggest_search.php',
+//                     dataType: "json",
+//                     data: request,
+//                     success: function(data) {
+//                         data = $.map(data, function(n, i) {
+//                             n['index'] = i;
+//                             return n;
+//                         });
+//                         autocompleteCache[term] = data;
+//                         element.data('autocompleteCache', autocompleteCache);
+//                         response(data);
+//                     }
+//                 });
+//             },
+//             select: function(event, ui) {
+//                 var $form = $(this).closest('form');
+//                 $form.find('#header-search').val(ui.item.value);
+//                 $form.find('#header-search-subcat').val(ui.item.subcategory_code);
+//                 $form.find('.search-submit').click();
+//             }
+//         }).data('uiAutocomplete')._renderItem = function(ul, item) {
+//             var term = this.term.split(' ').join('|'),
+//                 re = new RegExp("\\b(" + term + ")", "gi"),
+//                 tempval = item.value.replace(re, "<b>$1</b>");
+//             if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
+//             return $("<li></li>").data("item.autocomplete", item).append("<a>" + tempval + "</a>").appendTo(ul);
+//         };
+//     }
+// }
+// autocomplete functions end here
+
+/* RUI:: autocomplete functions - start */
 function bindAutoComplete() {
-    if ($(".js-atcmplt")
-        .length !== 0) {
-
-        $(".js-atcmplt")
-            .autocomplete({
-                minLength: 1,
-                delay: 110,
-                autoFocus: false,
-                max: 10,
-                open: function(event, ui) {
-                    $parent = $(this).closest(".srch-wdgt");
-                    $(".ui-menu").css({
-                        "width": $parent.width(),
-                        "left": "-1px",
-                        "top": "1px"
-                    });
-                    $parent.addClass("srch-wdgt--show-rslt");
-                },
-                close: function(event, ui) {
-                    $(this).closest(".srch-wdgt").removeClass("srch-wdgt--show-rslt");
-                },
-                source: function(request, response) {
-                    var term = $.trim(request.term.toLowerCase()),
-                        $element = this.element,
-                        //element is search bar
-                        autocompleteCache = this.element.data('autocompleteCache') || {},
-                        //initializing autocompleteCache
-                        foundInAutocompleteCache = false; //flag will be set to true if term found in autocompleteCache
-                    if (term in autocompleteCache && autocompleteCache[term].length !== 0) {
-                        response(autocompleteCache[term]);
-                        foundInAutocompleteCache = true;
-                    }
-
-                    if (foundInAutocompleteCache) return;
-
-                    request.term = term;
-                    $.ajax({
-                        url: $element.closest(".srch-wdgt").data('url'),
-                        dataType: "json",
-                        data: request,
-                        success: function(data) {
-                            data = $.map(data, function(n, i) {
-                                n['index'] = i;
-                                return n;
-                            });
-                            autocompleteCache[term] = data;
-                            $element.data('autocompleteCache', autocompleteCache);
-                            response(data);
-                        }
-                    });
-                },
-                select: function(event, ui) {
-                    var $form = $(this)
-                        .closest('form');
-                    $form.find('.js-atcmplt')
-                        .val(ui.item.value);
-                    $form.find('#header-search-subcat')
-                        .val(ui.item.subcategory_code);
-                    $form.find('.srch-wdgt__sbmt')
-                        .click();
+    if ($(".js-atcmplt").length !== 0) {
+        $(".js-atcmplt").autocomplete({
+            minLength: 1,
+            delay: 110,
+            autoFocus: false,
+            max: 10,
+            open: function(event, ui) {
+                $parent = $(this).closest(".srch-wdgt");
+                $(".ui-menu").css({
+                    "width": $parent.width(),
+                    "left": "-1px",
+                    "top": "1px"
+                });
+                $parent.addClass("srch-wdgt--show-rslt");
+            },
+            close: function(event, ui) {
+                $(this).closest(".srch-wdgt").removeClass("srch-wdgt--show-rslt");
+            },
+            source: function(request, response) {
+                var term = $.trim(request.term.toLowerCase()),
+                    $element = this.element,
+                    //element is search bar
+                    autocompleteCache = this.element.data('autocompleteCache') || {},
+                    //initializing autocompleteCache
+                    foundInAutocompleteCache = false; //flag will be set to true if term found in autocompleteCache
+                if (term in autocompleteCache && autocompleteCache[term].length !== 0) {
+                    response(autocompleteCache[term]);
+                    foundInAutocompleteCache = true;
                 }
-            })
-            .data('uiAutocomplete')
-            ._renderItem = function(ul, item) {
-                var term = this.term.split(' ')
-                    .join('|'),
-                    re = new RegExp("\\b(" + term + ")", "gi"),
-                    tempval = item.value.replace(re, "<strong>$1</strong>");
-                if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
-                return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a>" + tempval + "</a>")
-                    .appendTo(ul);
-            };
+
+                if (foundInAutocompleteCache) return;
+
+                request.term = term;
+                $.ajax({
+                    url: $element.closest(".srch-wdgt").data('url'),
+                    dataType: "json",
+                    data: request,
+                    success: function(data) {
+                        data = $.map(data, function(n, i) {
+                            n['index'] = i;
+                            return n;
+                        });
+                        autocompleteCache[term] = data;
+                        $element.data('autocompleteCache', autocompleteCache);
+                        response(data);
+                    }
+                });
+            },
+            select: function(event, ui) {
+                var $form = $(this)
+                    .closest('form');
+                $form.find('.js-atcmplt')
+                    .val(ui.item.value);
+                $form.find('#header-search-subcat')
+                    .val(ui.item.subcategory_code);
+                $form.find('.srch-wdgt__sbmt')
+                    .click();
+            }
+        }).data('uiAutocomplete')._renderItem = function(ul, item) {
+            var term = this.term.split(' ').join('|'),
+                re = new RegExp("\\b(" + term + ")", "gi"),
+                tempval = item.value.replace(re, "<strong>$1</strong>");
+            if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
+            return $("<li></li>").data("item.autocomplete", item).append("<a>" + tempval + "</a>").appendTo(ul);
+        };
     }
 }
-// autocomplete functions end here
+/* RUI:: autocomplete functions - end */
+
+/* RUI:: scroll to top button functionality - start */
+function initScrollToTop() {
+    var $body = $('body'),
+        $toTop = $("<div class='to-top'></div>"),
+        showScrollToTopDisplay = 'hidden';
+        
+    $body.append($toTop);
+
+    $toTop.on("click", function() {
+        $body.animate({
+            'scrollTop' : '0'
+        }, 'slow', function() {
+            showScrollToTopDisplay = 'hidden';
+        });
+        $toTop.stop(true, true).fadeOut();
+    });
+
+    $(window).on("scroll", function() {
+        if ($(this).scrollTop() > 100) {
+            if (showScrollToTopDisplay == 'hidden') {
+                showScrollToTopDisplay = 'display';
+                $toTop.stop(true, true).fadeIn();
+            }
+        } 
+        else {
+            if (showScrollToTopDisplay == 'display') {
+                showScrollToTopDisplay = 'hidden';
+                $toTop.stop(true, true).fadeOut();
+            }
+        }
+    });
+}
+/* RUI:: scroll to top button functionality - enc */
+
+/* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
+function inPageLinking() {
+    var scrollToLink = function () {
+        var hashObj = queryString(window.location.hash);
+        if (hashObj && hashObj.scrollto && $('[data-id="'+ hashObj.scrollto +'"').length) {
+            scrollPos = $('[data-id="'+ hashObj.scrollto +'"').offset().top - $(".hdr-size").height();
+            $("html, body").animate({
+                scrollTop : scrollPos 
+            }, 500);
+        }
+    }
+
+    $doc.on("click", ".js-inpage-link", function() {
+        if ($(this).data("action") === "disabled") return false;
+        
+        var hashObj = queryString(window.location.hash);
+        
+        if (!hashObj) hashObj = {};
+        hashObj.scrollto = $(this).data("href");
+
+        if(generateHash(hashObj) != window.location.hash) {
+            window.location.hash = generateHash(hashObj);
+        } else {
+            scrollToLink();
+        }
+        return false;
+    });
+
+    $(window).on('hashchange load', function() {
+        scrollToLink();
+    });
+}
+/* RUI:: scroll to the element on page with data-id = current/onload url hash value - end */
 
 
 // recent items functionality starts here
@@ -1328,31 +1855,33 @@ function recentImgError(img) {
     return true;
 }
 
-function sideBarLoadedCallBack() {
-        $('#deals').removeClass('msp_side');
+// TODO::REMOVE - not used anywhere, calls in common.js not common.pack.js
+// function sideBarLoadedCallBack() {
+//     $('#deals').removeClass('msp_side');
 
-        $('#deals .recent-item').each(function() {
-            var itemInfo = $(this).data('itemInfo');
-            // check to see if this item is a book, and if so,
-            // get book information from localStorage
-            if (itemInfo.indexOf("b:") === 0) {
-                if (localStorage && localStorage[itemInfo]) {
-                    var book_info = JSON.parse(localStorage[itemInfo]);
-                    if (book_info.title && book_info.author) {
-                        $(this).find(".sidetitle").html(book_info.title);
-                        $(this).find(".item-price .new").html(book_info.author);
-                    }
-                }
-            }
-        });
+//     $('#deals .recent-item').each(function() {
+//         var itemInfo = $(this).data('itemInfo');
+//         // check to see if this item is a book, and if so,
+//         // get book information from localStorage
+//         if (itemInfo.indexOf("b:") === 0) {
+//             if (localStorage && localStorage[itemInfo]) {
+//                 var book_info = JSON.parse(localStorage[itemInfo]);
+//                 if (book_info.title && book_info.author) {
+//                     $(this).find(".sidetitle").html(book_info.title);
+//                     $(this).find(".item-price .new").html(book_info.author);
+//                 }
+//             }
+//         }
+//     });
 
-        $('#deals .recent-item').first().addClass('first');
-    }
-    // recent items functionality ends here
+//     $('#deals .recent-item').first().addClass('first');
+// }
+
+// recent items functionality ends here
 
 
+/* TODO:: is it there in RUI - start */
 // Slide-up banner functions start here
-
 function initBottomSlideup() {
     $("#promotions").load("/promotions/bottom_banner_promotions.php", function() {
         var cookieName = $('.bottom-slideup').attr("cookie-name");
@@ -1378,8 +1907,8 @@ function hideSlideup(cookieName) {
     $(".bottom-slideup").addClass("hidden");
     addCookie(cookieName, "true", 1);
 }
-
 // Slide-up banner functions end here
+/* TODO:: is it there in RUI - end */
 
 
 
@@ -1391,14 +1920,14 @@ $.expr[':'].icontains = function(a, b, c, d) {
 };
 
 
-
-// easter eggs if search anything with xiaomi
-if ($('.searchterm:icontains("xiaomi")').length) {
-    $('body').addClass('ringme');
-    setTimeout((function() {
-        $('body').removeClass('ringme');
-    }), 4000);
-}
+// TODO::REMOVE easter eggs
+// // easter eggs if search anything with xiaomi
+// if ($('.searchterm:icontains("xiaomi")').length) {
+//     $('body').addClass('ringme');
+//     setTimeout((function() {
+//         $('body').removeClass('ringme');
+//     }), 4000);
+// }
 
 
 // // check if this mspid has offline
@@ -1417,6 +1946,12 @@ if ($('.searchterm:icontains("xiaomi")').length) {
 
 /* Jquery MSP UI components */
 
+
+/*
+ * TODO:: need to be updated in new RUI
+ * used in search page left sidebar widgets collpasing
+ * starts here
+ */
 ;
 (function($, window, document, undefined) {
     "use strict";
@@ -1486,58 +2021,72 @@ if ($('.searchterm:icontains("xiaomi")').length) {
 $(document).ready(function() {
     $(".sidebardiv_collapsable").sidebarList();
 });
+/* TODO:: need to be updated in new RUI - ends here */
 
-function tryInstallExtension(category, action, successCallback, failCallback) {
-    if (chrome && chrome.webstore) {
-        chrome.webstore.install(CHROME_EXT_INSTALL_URL, function() {
-            extensionInstallSuccess(category, action, successCallback);
-        }, function() {
-            extensionInstallFail(category, action, failCallback);
-        });
-    } else
-        extensionInstallFail(category, action, failCallback);
-}
-
-function extensionInstallSuccess(category, action, callback) {
-    _gaq.push(["_trackEvent", category || "Plugin_Default_Category", action || "Plugin_Default_Action", "Install_Successful"]);
-    if (typeof callback === "function")
-        callback();
-}
-
-function extensionInstallFail(category, action, callback) {
-    _gaq.push(["_trackEvent", category || "Plugin_Default_Category", action || "Plugin_Default_Action", "Install_Failed"]);
-    if (typeof callback === "function")
-        callback();
- //   window.open(CHROME_EXT_WEB_URL, "_blank");
-}
-
-function cashbackInit() {
-    var cashback = getCookie("d943641d1ed7d29e955f36d6327ead93"),
-        msploginc = getCookie("msp_login");
-
-    if (cashback === undefined && msploginc == '1') {
-        $.ajax({
-            url: "/promotions/cashback/check.php",
-        }).done(function(response) {
-            setCookie("d943641d1ed7d29e955f36d6327ead93", response, "365");
-            if (response == '1') {
-
-                $(".header .sub-header .sub-head-menu").append([
-                    "<li class='sub-head-menu-item'>",
-                    "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
-                    "</li>"
-                ].join(""));
-            }
-        });
-    } else if (cashback === '1' && msploginc == '1') {
-        $(".header .sub-header .sub-head-menu").append([
-            "<li class='sub-head-menu-item'>",
-            "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
-            "</li>"
-        ].join(""));
+function tryInstallChrome(gaLabel, successCallback, failCallback) {
+    function installSuccess(gaLabel, callback) {
+        _gaq.push(["_trackEvent", "Chrome_Plugin", "Installed", gaLabel || ""]);
+        if (typeof callback === "function")
+            callback();
     }
+    function installFail(callback) {
+        if (typeof callback === "function")
+            callback();
+    }
+    if (chrome && chrome.webstore) {
+        if (!$("link[rel='chrome-webstore-item']").length)
+            $("head").append("<link rel='chrome-webstore-item' href='" + CHROME_EXT_INSTALL_URL + "'/>");
+        chrome.webstore.install(CHROME_EXT_INSTALL_URL, function () {
+            installSuccess(gaLabel, successCallback);
+        }, function() {
+            installFail(failCallback);
+        });
+    }
+    else
+        installFail(failCallback);
 }
 
+function tryInstallFirefox() {
+    var params = {
+        "MySmartPrice": {
+            URL: "https://addons.mozilla.org/firefox/downloads/file/326228/mysmartprice-0.20-fx.xpi",
+            IconURL: "http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/logo-icon.png",
+            Hash: "sha1:9F8FB2019911772CEF8EB3A913588C70C5272004",
+            toString: function () {
+                return this.URL;
+            }
+        }
+    };
+    InstallTrigger.install(params);
+}
+
+/* TODO:: is cashbackInit relavant in new site */
+// function cashbackInit() {
+//     var cashback = getCookie("d943641d1ed7d29e955f36d6327ead93"),
+//         msploginc = getCookie("msp_login");
+
+//     if (cashback === undefined && msploginc == '1') {
+//         $.ajax({
+//             url: "/promotions/cashback/check.php",
+//         }).done(function(response) {
+//             setCookie("d943641d1ed7d29e955f36d6327ead93", response, "365");
+//             if (response == '1') {
+
+//                 $(".header .sub-header .sub-head-menu").append([
+//                     "<li class='sub-head-menu-item'>",
+//                         "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
+//                     "</li>"
+//                 ].join(""));
+//             }
+//         });
+//     } else if (cashback === '1' && msploginc == '1') {
+//         $(".header .sub-header .sub-head-menu").append([
+//             "<li class='sub-head-menu-item'>",
+//                 "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
+//             "</li>"
+//         ].join(""));
+//     }
+// }
 
 $doc.ready(function() {
     // Mobile number capture popup for users who land on single page
@@ -1555,104 +2104,43 @@ $doc.ready(function() {
         }
     }
 
-    cashbackInit();
+    // RUI:: TODO:: uncomment it if its there in the new site
+    // cashbackInit();
+
+    /** RUI::
+    * - scroll to top on any page.
+    * - scroll to element based on data-id.
+    * starts here
+    */
     initScrollToTop();
     inPageLinking();
+    /* ends here */
+
+    
     loginCallbackQueue.push(function() {
         cashbackInit.apply(window);
     });
 });
 
-function initScrollToTop() {
-    var $body = $('body'),
-        $toTop = $("<div class='to-top'></div>"),
-        showScrollToTopDisplay = 'hidden';
-        
-    $body.append($toTop);
-
-    $toTop.on("click", function() {
-        $body.animate({
-            'scrollTop' : '0'
-        }, 'slow', function() {
-            showScrollToTopDisplay = 'hidden';
-        });
-        $toTop.stop(true, true).fadeOut();
-    });
-
-    $(window).on("scroll", function() {
-        if ($(this).scrollTop() > 100) {
-            if (showScrollToTopDisplay == 'hidden') {
-                showScrollToTopDisplay = 'display';
-                $toTop.stop(true, true).fadeIn();
-            }
-        } 
-        else {
-            if (showScrollToTopDisplay == 'display') {
-                showScrollToTopDisplay = 'hidden';
-                $toTop.stop(true, true).fadeOut();
-            }
-        }
-    });
-}
-
-
-
-function inPageLinking() {
-    var scrollToLink = function () {
-        var hashObj = queryString(window.location.hash);
-        if(hashObj && hashObj.scrollto && $('[data-id="'+ hashObj.scrollto +'"').length) {
-            scrollPos = $('[data-id="'+ hashObj.scrollto +'"').offset().top - $(".hdr-size").height();
-            $("html, body").animate({
-                scrollTop:scrollPos }, 500
-            );
-        }
-    }
-
-    $doc.on("click", ".js-inpage-link", function() {
-        if ($(this).data("action") === "disabled") return false;
-        
-        var hashObj = queryString(window.location.hash);
-        
-        if(!hashObj) hashObj = {};
-        hashObj.scrollto = $(this).data("href");
-
-        if(generateHash(hashObj) != window.location.hash) {
-            window.location.hash = generateHash(hashObj);
-        } else {
-            scrollToLink();
-        }
-        return false;
-    });
-
-    $(window).on('hashchange load', function() {
-        scrollToLink();
-    });
-}
-
-var isChrome =  function(){
-    return navigator.userAgent.toLowerCase().indexOf("chrome") > -1;
-}
-
 function isPluginInstalled() {
-  var dfd = $.Deferred();
-  var pluginPresent = false;
-  var pluginTimeout = setInterval(checkPlugin,1000);
-  
-  setTimeout(function() {
-    clearInterval(pluginTimeout);
+    var dfd = $.Deferred(),
+        pluginPresent = false,
+        pluginTimeout = setInterval(checkPlugin, 1000);
+
+    setTimeout(function() {
+        clearInterval(pluginTimeout);
         if(!pluginPresent){
             dfd.reject("failed!"); 
         }
-  }, 3000);
+    }, 3000);
   
     function checkPlugin(){
         pluginPresent = !(!$(".plugin_id").length);
-        if(pluginPresent) {        
+        if (pluginPresent) {        
             clearInterval(pluginTimeout);
             dfd.resolve("success!"); 
             return;
         }
     }
-  return dfd.promise();
+    return dfd.promise();
 }
-

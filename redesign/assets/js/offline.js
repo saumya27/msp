@@ -7,7 +7,7 @@ var autocomplete,
 
 $(document).ready(function () {
     if (navigator.geolocation) {
-      var $userLocationButton = $(".OP-geolocation-button");
+      var $userLocationButton = $(".prc-tbl__lctn-gps");
       $userLocationButton.show();
       $("body").on("click", ".OP-geolocation-button", function () {
         if (isChrome && !(localStorage && localStorage.userLatitude) && !(sessionStorage && sessionStorage.userLatitude)) {

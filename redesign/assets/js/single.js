@@ -285,10 +285,14 @@ function updateCashbackOffers() {
 $(document).ready(function() {
     var $pageTitle = $(".prdct-dtl__ttl");
     if ($pageTitle.data("offlinedelivery") == "1") {
-        getPriceTable("recommended");
+        /** 
+        * TODO:: remove comment before going to prod.
+        * getPriceTable("recommended");
+        */
+        
         $("body").on("click", ".prc-tbl__ctgry-item", function() {
             var $this = $(this);
-            if ($this.data("value") == "online")) {
+            if ($this.data("value") == "online") {
                 filterPriceTable();
             } else {
                 getPriceTable($this.data("value"));
@@ -296,7 +300,7 @@ $(document).ready(function() {
         });
     }
 
-    $("body").on("click", ".js-prc-tbl__clm-gts-btn", function() {
+    $("body").on("click", ".js-prc-tbl__gts-btn", function() {
         var storeUrl = $(this).data("url"),
             hasPopup = $(this).hasClass("popup-target") || $(this).hasClass("loyalty-popup-target");
         if (!hasPopup) {
@@ -342,11 +346,14 @@ $(document).ready(function() {
     num_stores_online = $(".prc-tbl__row:visible").length;
     
     // TODO:: after ankur's pdp html code
-    var hiddenText = $(".product_topsec_det .hidden_text:eq(0)");
+    var hiddenText = $(".prdct-dtl__spfctn-more-wrpr");
     if (hiddenText.length) {
-        $("body").on("click", ".product_topsec_det .morebutton:eq(0), .product_topsec_det .lessbutton:eq(0)", function() {
-            hiddenText.slideToggle();
-            $(".product_topsec_det .morebutton:eq(0)").toggle();
+        $("body").on("click", ".js-prdct-dtl__spfctn-show-more, .js-prdct-dtl__spfctn-show-less", function() {
+            var delay = $(this).hasClass("js-prdct-dtl__spfctn-show-less") ? 400 : 0;
+            setTimeout(function() {
+                $(".js-prdct-dtl__spfctn-show-more").toggle();
+            }, delay);
+            hiddenText.toggleClass("prdct-dtl__spfctn-more-wrpr--show");
         });
     }
 
@@ -414,7 +421,7 @@ $(document).ready(function() {
                 if ($popupCont.hasClass("offers")) {
                     mspid = $(".prdct-dtl__ttl").data("mspid");
                     storename = $(this).closest(".prc-tbl__row").data("storename");
-                    currentColour = ($(".avlbl-clrs__item--slctd").data("value") || "default") : "default";
+                    currentColour = ($(".avlbl-clrs__item--slctd").data("value") || "default") || "default";
                     
                     if (handler.popupData.colour !== currentColour) {
                         $.ajax({
