@@ -36,11 +36,11 @@
 						</div>
 						<div class="acnt">
 							<div class="drpdwn-wdgt__item acnt__lgn">
-								<div data-href="login.html" class="lgn-btn btn btn--red js-lgn popup-target">Login
+								<div data-href="login.html" class="lgn-btn btn btn--red js-lgn js-popup-trgt">Login
 								</div>
 							</div>
 							<div class="drpdwn-wdgt__item acnt__rgstr ">
-								New User? <span data-href="signup.html" class="acnt__rgstr-link popup-target">Sign Up</span>
+								New User? <span data-href="signup.html" class="acnt__rgstr-link js-popup-trgt">Sign Up</span>
 							</div>
 						</div>
 						<div class="user-link">
@@ -1169,7 +1169,7 @@
 			<div class="sctn sctn--no-pdng prc-grph clearfix">
 				<div class="sctn__hdr clearfix">
 					<div class="sctn__ttl">Price Graph</div>
-					<div class="prc-grph__prc-alrt">Set Price Alert</div>
+					<div class="prc-grph__prc-alrt">Set Price Drop Alert</div>
 				</div>
 				<div class="sctn__inr">
 					<div class="prc-grph__left">
@@ -1286,14 +1286,10 @@
 						<iframe width="888" height="480" src="https://www.youtube.com/embed/heSYBrRd1pQ" frameborder="0" allowfullscreen></iframe>
 					</div>
 					<div class="exprt-rvw-inr">
-						<div class="exprt-rvw__info">
-							<div class="exprt-rvw__img-wrpr">
-								<img class="exprt-rvw__img" src="img/expert-img.png" alt="User">
-							</div>
-							<div class="exprt-rvw__info-dtls">
-								<div class="exprt-rvw__ttl">iPhone 6 Review – Bigger is Definitely Better</div>
-								<div class="exprt-rvw__usr">By John Gruber on 16th Nov 2015</div>
-							</div>
+						<div class="exprt-rvw__info clearfix">
+							<img class="exprt-rvw__img" src="img/expert-img.png" alt="User">
+							<div class="exprt-rvw__ttl">iPhone 6 Review – Bigger is Definitely Better</div>
+							<div class="exprt-rvw__usr">By John Gruber on 16th Nov 2015</div>
 						</div>
 						<div class="exprt-rvw__dtls clearfix">
 							<ul class="exprt-rvw__col ">
@@ -1320,6 +1316,7 @@
 			<div class="sctn usr-rvw clearfix">
 				<div class="sctn__hdr clearfix">
 					<div class="sctn__ttl">User Reviews of iPhone 6</div>
+					<div class="usr-rvw__wrt-rvw js-inpage-link" data-href="write-review">Write a review</div>
 				</div>
 				<div class="sctn__inr clearfix">
 					<div class="usr-rvw__str-wrpr clearfix">
@@ -1378,8 +1375,17 @@
 					</div>
 					<div class="usr-rvw-item clearfix">
 						<div class="usr-rvw-item__left">
-							<div class="usr-rvw-item__img-wrpr">
+							<div class="usr-rvw-item__info clearfix">
 								<img class="usr-rvw-item__img" src="img/expert-img.png" alt="User">
+								<div class="usr-rvw-item__name">Harsh Arora</div>
+								<div class="usr-rvw-item__date">on Oct 14, 2014</div>
+							</div>
+							
+							<div class="usr-rvw-item__hlpfl">90% people found Harsh’s review helpful.</div>
+							
+							<div class="usr-rvw-item__str">
+								<div class="usr-rvw-item__str-ttl">Reviewed on</div>
+								<img class="usr-rvw-item__str-logo" src="http://c223968.r68.cf1.rackcdn.com/mysmartprice_store.png" alt="MySmartPrice">
 							</div>
 						</div>
 						<div class="usr-rvw-item__rght">
