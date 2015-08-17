@@ -141,6 +141,9 @@
     &:hover {
       background: @bg-color-gs1;
       cursor: not-allowed;
+      .btn-GTS__arw {
+        right: 10px;
+      }
     }
   }
   &--s {
@@ -808,5 +811,52 @@
     position: absolute;
     bottom:0;
     width:100%;
+  }
+}
+
+.js-msg-box {
+  &--show {
+    visibility: visible;
+    opacity: 1;
+  }
+  position: absolute;
+  
+  border-radius: @border-radius;
+  background: @bg-color-white;
+  box-shadow: @box-shadow;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+  cursor: default;
+  &__hdr {
+    padding: 7px;
+    border-radius: @border-radius @border-radius 0 0;
+    background: @bg-color-gs1;
+
+    color: @fg-color-white;
+    font-weight: @font-bold;
+  }
+  &__cls {
+    float: right;
+
+    font-size: 18px;
+    line-height: 12px;
+
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  &__inr {
+    padding: 0 5px;
+    border: 1px solid @border-color-dark-grey;
+    border-top: 0;
+    border-radius: 0 0 @border-radius @border-radius;
+  }
+  &__row {
+    padding: 10px 5px;
+
+    line-height: 17px;
+    & + & {
+      border-top: 1px solid @border-color;
+    }
   }
 }

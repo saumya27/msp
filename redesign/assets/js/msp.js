@@ -908,6 +908,21 @@ $doc.on('mouseleave', '.js-tltp', function() {
 });
 /* RUI:: Tooltips - end */
 
+/* RUI:: Message Boxes - start */
+
+$doc.on("click", ".js-msg-box-trgt", function() {
+    $(".js-msg-box").removeClass("js-msg-box--show");
+    $(this).find(".js-msg-box").addClass("js-msg-box--show");
+});
+
+$doc.on("click", ".js-msg-box__cls", function(e) {
+    $(this).closest(".js-msg-box").removeClass("js-msg-box--show");
+    return false;
+});
+
+/* RUI:: Message Boxes - start */
+
+
 /* RUI:: open non anchor links - start */
 $doc.on("click", ".js-open-link", function() {
     var $this       = $(this),
@@ -1738,12 +1753,17 @@ function initScrollToTop() {
 /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
 function inPageLinking() {
     var scrollToLink = function () {
-        var hashObj = queryString(window.location.hash);
+        var hashObj = queryString(window.location.hash),
+            finalScrollPos, currentScrollPos,
+            speed = 0.5, animTime;
+                
         if (hashObj && hashObj.scrollto && $('[data-id="'+ hashObj.scrollto +'"').length) {
-            scrollPos = $('[data-id="'+ hashObj.scrollto +'"').offset().top - $(".hdr-size").height();
-            $("html, body").animate({
-                scrollTop : scrollPos 
-            }, 500);
+            finalScrollPos = $('[data-id="'+ hashObj.scrollto + '"').offset().top - $(".hdr-size").height();
+            currentScrollPos = $(window).scrollTop();
+            animTime = Math.abs((finalScrollPos - currentScrollPos) * speed); 
+            $("body").animate({
+                scrollTop : finalScrollPos 
+            }, animTime); 
         }
     }
 
