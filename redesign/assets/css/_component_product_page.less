@@ -19,19 +19,19 @@
 
     text-transform: uppercase;
   }
-  &__img-wrpr {
-    height: 410px;
-    padding: 50px 15px 150px 15px;
-
-    line-height: 420px;
-
-    text-align: center;
-  }
   &__img {
     max-width: 100%;
     max-height: 100%;
 
     vertical-align: middle;
+    &-wrpr {
+      height: 410px;
+    padding: 50px 15px 150px 15px;
+
+    line-height: 420px;
+
+    text-align: center;
+    }
   }
   &__thmbnl {
     display: inline-block;
@@ -236,7 +236,7 @@
 
         padding-left: 30px;
         &-ttl {
-          color: @fg-color-light-grey;
+          color: @fg-color-grey;
           font-size: 10px;
 
           text-transform: uppercase;
@@ -252,13 +252,13 @@
       }
       &-dlvry {
         padding-left: 40px;
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/delivery-grey.png') no-repeat left center;
+        background: url('../../icons/bike-grey.png') no-repeat left center;
       }
       &-rtrn {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/return-grey.png') no-repeat left center;
+        background: url('../../icons/return-grey.png') no-repeat left center;
       }
       &-wrnty {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/warranty-grey.png') no-repeat left center;
+        background: url('../../icons/warranty-grey.png') no-repeat left center;
       }
       &-avlblty {
         float: left;
@@ -270,7 +270,7 @@
         font-size: 14px;
 
         text-transform: uppercase;
-        &--na {
+        &--NA {
           background: url('http://doypaxk1e2349.cloudfront.net/icons/unavailable-grey.png') no-repeat left center;
 
           color: @fg-color-light-grey;
@@ -320,6 +320,7 @@
       margin-top:0;
       max-height:0;
       overflow: hidden;
+      color: @fg-color-grey;
       transition: max-height 0.4s ease-in-out;
       &--show {
         max-height:300px;
@@ -366,7 +367,7 @@
 
     padding-left: 50px;
     border-left: 1px solid @border-color;
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/clock-red.png') no-repeat 20px center;
+    background: url('../../icons/bell-red.png') no-repeat 20px center;
 
     cursor: pointer;
   }
@@ -742,23 +743,22 @@
     padding-bottom:10px;
   }
   &__img{
-    max-width: 100%;
-    max-height: 100%;
-    vertical-align: middle;
-    &-wrpr {
-        display: inline-block;
-        width: 46px;
-        height: 46px;
-        line-height: 46px;
-        text-align: center;
-        vertical-align: top;
-    }
+    width:46px;
+    height:46px;
+    border-radius: @border-radius;
+    float:left;
   }
   &__ttl {
+    margin-left:10px;
+    float:left;
+    width:830px;
     font-size:14px;
     font-weight:@font-bold;
   }
   &__usr {
+    margin-left:10px;
+    float:left;
+    width:830px;
     margin-top:12px;
     color:@fg-color-grey;
   }
@@ -771,10 +771,13 @@
     }
   }
   &__col {
-    margin:25px 80px 0 @inline-block-margin;
+    margin:25px 80px 0 0;
     vertical-align: top;
     display:inline-block;
     width:270px;
+    & + & {
+       margin-left:@inline-block-margin;
+    }
   }
   .rvw-scr {
     float:none;
@@ -848,6 +851,13 @@
 }
 
 .usr-rvw {
+  &__wrt-rvw {
+    float: right;
+    cursor:pointer;
+    padding-left: 25px;
+    background: url('../../icons/write-review-red.png') no-repeat left center;
+    cursor: pointer;
+  }
   &__str {
     float:left;
     width:162px;
@@ -856,9 +866,10 @@
       padding:10px 0;
     }
     &-logo {
-      width:150px;
+      display: block;
+      margin:0 auto 10px auto;
+      max-width:150px;
       height:50px;
-      margin-bottom:10px;
     }
     & + & {
       margin-left:80px;
@@ -884,24 +895,51 @@
   &-item {
     border-top:1px solid @border-color;
     padding:20px 0 10px 0;
+    line-height:1.4;
     margin-top:20px;
     &__left {
       width:200px;
-      height:200px;
       float:left;
       margin-right:50px;
     }
-    &__img{
-      max-width: 100%;
-      max-height: 100%;
-      vertical-align: middle;
-      &-wrpr {
-          display: inline-block;
-          width: 60px;
-          height: 60px;
-          line-height: 60px;
-          text-align: center;
-          vertical-align: top;
+    &__img {
+      width: 60px;
+      border-radius: @border-radius;
+      height:60px;
+      float:left;
+    }
+    &__name {
+        float:right;
+        width:130px;
+        max-height:34px;
+        overflow:hidden;
+    }
+    &__date {
+      float:right;
+      width:130px;
+      margin-top:5px;
+      color:@fg-color-grey;
+    }
+    &__hlpfl {
+      margin-top:30px;
+      color:@fg-color-grey;
+
+    }
+    &__str {
+      margin-top:30px;
+      border-top:1px solid @border-color;
+      &-ttl {
+        color:@fg-color-light-grey;
+        margin-top:-9px;
+        padding-right: 8px;
+        position: absolute;
+        background-color:@bg-color-white;
+      }
+      &-logo {
+        float:left;
+        margin-top:15px;
+        max-width: 150px;
+        height: 50px;
       }
     }
     &__rght {
