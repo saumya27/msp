@@ -740,6 +740,9 @@
     & + & {
       margin-left: 5px;
     }
+    &:hover {
+      border: 2px solid @border-color-blue;
+    }
     &--slctd {
       border: 2px solid @border-color-blue;
     }
@@ -749,22 +752,32 @@
   line-height: 20px;
   &__item {
     padding: 0 4px;
-    border: 1px solid @border-color;
     border-radius: @border-radius;
-
-    color: @fg-color-grey;
-
-    cursor: pointer;
+    border: 1px solid @border-color;
     vertical-align: middle;
+    color: @fg-color-grey;
     text-transform: uppercase;
-
-    &--slctd {
-      color:@fg-color-blue;
-
-      border: 2px solid @border-color-blue;
-    }
-    & + & {
-      margin-left: 5px;
+    &-wrpr {
+      padding:0 1px;
+      cursor: pointer;
+      float:left;
+      & + & {
+        margin-left: 5px;
+      }
+      &:hover {
+        padding:0;
+        .avlbl-sizes__item {
+          color:@fg-color-blue;
+          border: 2px solid @border-color-blue;
+        }
+      }
+      &--slctd {
+        padding:0;
+        .avlbl-sizes__item {
+          color:@fg-color-blue;
+          border: 2px solid @border-color-blue;
+        }
+      }
     }
   }
 }
