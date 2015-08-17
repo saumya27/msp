@@ -1,0 +1,145 @@
+/* Carousel Plugin Styles Begin Here */
+@button-height: 35px;
+@carousel-height:250px - 2*@border-width;
+.crsl-wdgt {
+  position: relative;
+
+  overflow: hidden;
+
+  width: @main-wrapper-width - 2*@border-width;
+  height: @carousel-height;
+  margin: 20px 0;
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
+  &__prvs-btn, &__next-btn {
+    position: absolute;
+    top: 50%;
+
+    width: @button-height;
+    height: @button-height;
+    margin-top: -(@button-height/2);
+    background-color: rgba(0,0,0,.4);
+
+    color: @fg-color-white;
+    font-size: 30px;
+    line-height: 30px;
+
+    cursor: pointer;
+    text-align: center;
+  }
+  &__prvs-btn {
+    left: 0;
+
+    display: none;
+
+    border-radius: 0 3px 3px 0;
+  }
+  &__next-btn {
+    right: 0;
+
+    display: none;
+
+    border-radius: 3px 0 0 3px ;
+  }
+  &:hover &__prvs-btn, &:hover &__next-btn {
+    display: block;
+  }
+  &__prvs-btn:hover, &__next-btn:hover {
+    background-color: rgba(0,0,0,.6);
+  }
+  &__bnr {
+    display: block;
+
+    width: 100%;
+    height: @carousel-height;
+
+    text-align: center;
+  }
+  &__bnr-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    max-width: 100%;
+    height: @carousel-height;
+    margin: auto;
+
+    line-height: @carousel-height;
+  }
+}
+
+.mCycleCont {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 0;
+}
+.mCycleItemWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+
+  .transform(translateX(100%));
+  .show {
+    display: block;
+
+    margin: auto;
+  }
+}
+.mCycleItemWrapperIE {
+  .transform(translateX(100%));
+}
+
+.mCycleItemWrapper {
+  &.mCycleItemNext {
+    .transform(translateX(100%));
+  }
+  &.mCycleItemNext {
+    left:100%;
+  }
+  &.mCycleItemCurrent {
+    .transform(translateX(0));
+  }
+  &.mCycleItemCurrent {
+    left:0;
+  }
+  &.mCycleItemPrev {
+    .transform(translateX(-100%));
+  }
+  &.mCycleItemPrev {
+    left:-100%;
+  }
+}
+.mCycleSlideBullets {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 30px;
+
+  text-align: center;
+}
+.mCycleSlideBullet {
+  display: inline-block;
+
+  width: 10px;
+  height: 10px;
+  margin: 10px 3px;
+  border-radius: 50%;
+  background: @bg-color-gs5;
+
+  cursor: pointer;
+  &.active {
+    background: @bg-color-gs6;
+  }
+}
+
+/* Carousel Plugin Styles End Here */
