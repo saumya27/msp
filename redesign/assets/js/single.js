@@ -89,9 +89,9 @@ function replacePriceTable(json) {
             if ($(".prc-tbl__row").length > num_stores_online) {
                 $showMoreStores.show();
                 updateShowMoreStore();
-            }
-            else
+            } else {
                 $showMoreStores.hide();
+            }
             updateCashbackOffers();
         }
     }
@@ -302,8 +302,9 @@ $(document).ready(function() {
 
     $("body").on("click", ".js-prc-tbl__gts-btn", function() {
         var storeUrl = $(this).data("url"),
-            hasPopup = $(this).hasClass("popup-target") || $(this).hasClass("loyalty-popup-target");
-        if (!hasPopup) {
+            hasPopup = $(this).hasClass("popup-target") || $(this).hasClass("loyalty-popup-target"),
+            isEnabled = !$(this).hasClass("btn-GTS--dsbld");
+        if (!hasPopup && isEnabled) {
             window.open(storeUrl);
         }
     });

@@ -1753,12 +1753,17 @@ function initScrollToTop() {
 /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
 function inPageLinking() {
     var scrollToLink = function () {
-        var hashObj = queryString(window.location.hash);
+        var hashObj = queryString(window.location.hash),
+            finalScrollPos, currentScrollPos,
+            speed = 0.5, animTime;
+                
         if (hashObj && hashObj.scrollto && $('[data-id="'+ hashObj.scrollto +'"').length) {
-            scrollPos = $('[data-id="'+ hashObj.scrollto +'"').offset().top - $(".hdr-size").height();
-            $("html, body").animate({
-                scrollTop : scrollPos 
-            }, 500);
+            finalScrollPos = $('[data-id="'+ hashObj.scrollto + '"').offset().top - $(".hdr-size").height();
+            currentScrollPos = $(window).scrollTop();
+            animTime = Math.abs((finalScrollPos - currentScrollPos) * speed); 
+            $("body").animate({
+                scrollTop : finalScrollPos 
+            }, animTime); 
         }
     }
 

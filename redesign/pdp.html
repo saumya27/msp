@@ -123,16 +123,16 @@
 			</div>
 		</div>
 		<div class="sctn page-nvgtn clearfix">
-			<div class="page-nvgtn__item">
+			<div class="page-nvgtn__item js-inpage-link" data-href="price-table">
 				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/rupee-grey.png" alt="Price Table"/> Price Table
 			</div>
-			<div class="page-nvgtn__item">
+			<div class="page-nvgtn__item js-inpage-link" data-href="technical-specifications">
 				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/info-grey.png" alt="Price Table"/> Specifications
 			</div>
-			<div class="page-nvgtn__item">
+			<div class="page-nvgtn__item js-inpage-link" data-href="expert-reviews">
 				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/review-grey.png" alt="Price Table"/> Reviews
 			</div>
-			<div class="page-nvgtn__item">
+			<div class="page-nvgtn__item js-inpage-link" data-href="price-history">
 				<img class="page-nvgtn__item-img" src="http://doypaxk1e2349.cloudfront.net/icons/graph-grey.png" alt="Price Table"/> Price History
 			</div>
 		</div>
@@ -219,7 +219,7 @@
                             <span class="btn-GTS__str">at Amazon</span>
                             <span class="btn-GTS__arw">&rsaquo;</span>
                         </div>
-                        <div class="btn-GTS btn-GTS--no-bg btn-GTS--arw-down prdct-dtl__slr-prc-tbl-btn js-inpage-link" data-action="disabled">
+                        <div class="btn-GTS btn-GTS--no-bg btn-GTS--arw-down prdct-dtl__slr-prc-tbl-btn js-inpage-link" data-action="disabled" data-href="price-table">
                             13 MORE SELLERS<br>
                             <span class="btn-GTS__str">Starting at &#8377;49,879</span>
                             <span class="btn-GTS__arw">&rsaquo;</span>
@@ -320,7 +320,7 @@
 						<div class="prc-tbl__lctn-gps"></div>
 					</div>
 				</div>
-				<div class="prc-tbl">
+				<div class="prc-tbl" data-id="price-table">
                     <div class="prc-tbl-hdr clearfix">
                         <div class="prc-tbl-hdr__clm prc-tbl-hdr__strs">
                         	<span class="prc-tbl-hdr__cptn">Recommended</span>
@@ -1155,7 +1155,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="sctn sctn--no-pdng tchncl-spcftn clearfix">
+			<div class="sctn sctn--no-pdng tchncl-spcftn clearfix" data-id="technical-specifications">
 				<div class="sctn__hdr clearfix">
 					<div class="sctn__ttl">Technical Specifications</div>
 				</div>
@@ -1193,7 +1193,7 @@
 					View All
 				</div>
 			</div>
-			<div class="sctn sctn--no-pdng prc-grph clearfix">
+			<div class="sctn sctn--no-pdng prc-grph clearfix" data-id="price-history">
 				<div class="sctn__hdr clearfix">
 					<div class="sctn__ttl">Price Graph</div>
 					<div class="prc-grph__prc-alrt">Set Price Drop Alert</div>
@@ -1304,7 +1304,7 @@
 					</a>
 				</div>
 			</div>
-			<div class="sctn exprt-rvw clearfix">
+			<div class="sctn exprt-rvw clearfix" data-id="expert-reviews">
 				<div class="sctn__hdr clearfix">
 					<div class="sctn__ttl">Expert Reviews</div>
 				</div>
@@ -1740,8 +1740,10 @@
 	<script type='text/javascript' src='http://mysmartprice.com/js/jquery.validate.min.js,qrelease=2014.03.18.pagespeed.jm.A3yIyYbmD6.js'></script>
 	<script type="text/javascript" src='http://mysmartprice.com/msp/js/useranalytics.js.pagespeed.jm.fKFxwK5V7t.js'></script>
 	<script type='text/javascript' src='assets/js/msp.js'></script>
-	<script type='text/javascript' src='assets/js/single.js'></script>
 	<script type='text/javascript' src='assets/js/common.js'></script>
+	<script type='text/javascript' src='assets/js/single.js'></script>
+	<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?v=3.17&region=IN&libraries=places'></script>
+	<script type='text/javascript' src='assets/js/offline.js'></script>
 	<script type='text/javascript' src='assets/js/compare_panel.js'></script>
 	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js"></script>
