@@ -908,6 +908,21 @@ $doc.on('mouseleave', '.js-tltp', function() {
 });
 /* RUI:: Tooltips - end */
 
+/* RUI:: Message Boxes - start */
+
+$doc.on("click", ".js-msg-box-trgt", function() {
+    $(".js-msg-box").removeClass("js-msg-box--show");
+    $(this).find(".js-msg-box").addClass("js-msg-box--show");
+});
+
+$doc.on("click", ".js-msg-box__cls", function(e) {
+    $(this).closest(".js-msg-box").removeClass("js-msg-box--show");
+    return false;
+});
+
+/* RUI:: Message Boxes - start */
+
+
 /* RUI:: open non anchor links - start */
 $doc.on("click", ".js-open-link", function() {
     var $this       = $(this),

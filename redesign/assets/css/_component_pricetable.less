@@ -293,10 +293,6 @@
       }
       &-more {
         position: relative;
-        color: @fg-color-blue;
-        &:hover {
-          text-decoration: underline;
-        }
       }
       &-pop {
         position: absolute;
@@ -304,38 +300,11 @@
         left: -15px;
 
         width: 325px;
-        border-radius: @border-radius;
-        background: @bg-color-white;
-        box-shadow: @box-shadow;
-        &-hdr {
-          padding: 7px;
-          border-radius: 3px 3px 0 0;
-          background: @bg-color-gs1;
-
-          color: @fg-color-white;
-          font-weight: @font-bold;
-        }
-        &-cls {
-          float: right;
-
-          font-size: 18px;
-          line-height: 12px;
-
-          vertical-align: middle;
-        }
-        &-inr {
-          padding: 0 5px;
-          border: 1px solid @border-color-dark-grey;
-          border-top: 0;
-          border-radius: 0 0 3px 3px;
-        }
-        &-item {
-          padding: 10px 5px;
-
-          line-height: 17px;
-          & + & {
-            border-top: 1px solid @border-color;
-          }
+        
+        color: @fg-color-grey;
+        &--show {
+          visibility: visible;
+          opacity: 1;
         }
         .prc-tbl__dtls-clr-dot {
           width: 15px;
@@ -597,39 +566,7 @@
         left: -15px;
 
         width: 325px;
-        border-radius: @border-radius;
-        background: @bg-color-white;
-        box-shadow: @box-shadow;
-        &-hdr {
-          padding: 7px;
-          border-radius: 3px 3px 0 0;
-          background: @bg-color-gs1;
-
-          color: @fg-color-white;
-          font-weight: @font-bold;
-        }
-        &-cls {
-          float: right;
-
-          font-size: 18px;
-          line-height: 12px;
-
-          vertical-align: middle;
-        }
-        &-inr {
-          padding: 5px 10px;
-          border: 1px solid @border-color-dark-grey;
-          border-top: 0;
-          border-radius: 0 0 3px 3px;
-        }
-        &-item {
-          padding: 10px 5px;
-
-          line-height: 17px;
-          & + & {
-            border-top: 1px solid @border-color;
-          }
-        }
+        color: @fg-color-grey;
       }
     }
     &-ofrs {
