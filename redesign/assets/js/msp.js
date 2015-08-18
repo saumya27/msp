@@ -911,12 +911,12 @@ $doc.on('mouseleave', '.js-tltp', function() {
 /* RUI:: Message Boxes - start */
 
 $doc.on("click", ".js-msg-box-trgt", function() {
-    $(".js-msg-box").removeClass("js-msg-box--show");
-    $(this).find(".js-msg-box").addClass("js-msg-box--show");
+    $(".msg-box").removeClass("msg-box--show");
+    $(this).find(".msg-box").addClass("msg-box--show");
 });
 
 $doc.on("click", ".js-msg-box__cls", function(e) {
-    $(this).closest(".js-msg-box").removeClass("js-msg-box--show");
+    $(this).closest(".msg-box").removeClass("msg-box--show");
     return false;
 });
 
