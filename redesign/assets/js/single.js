@@ -251,7 +251,7 @@ var PriceTable = {
 
                 // clicking on chrome geolocation overlay should remove it.
                 $doc.on("click", ".js-glctn-ovrly", function () {
-                    $(".glctn-ovrly-text").removeClass("js-ovrly--show");
+                    $(".js-glctn-ovrly").removeClass("js-ovrly--show");
                     $("body").css("overflow", "auto");
                 });
 
