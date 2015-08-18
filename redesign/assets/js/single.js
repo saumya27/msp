@@ -55,9 +55,10 @@ var PriceTable = {
         });
 
         // clear selected color and updatePage.
-        $("body").on("click", ".avlbl-clrs__cler", function() {
+        $("body").on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {
             $(".avlbl-clrs__item--slctd").removeClass("avlbl-clrs__item--slctd");
-            var model = PriceTable.dataPoints.variant.model,
+            var $variant = $(".prdct-dtl__ttl-vrnt"),
+                model = PriceTable.dataPoints.variant.model,
                 size = PriceTable.dataPoints.variant.size;
             $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
             $(this).hide();
