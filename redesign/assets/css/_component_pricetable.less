@@ -1,28 +1,38 @@
 .prc-tbl {
+  &-wrpr {
+    .sctn__hdr {
+      padding: 10px 20px;
+    }
+  }
   &__ttl {
     float: left;
 
     padding: 5px 0;
-
+    font-size:14px;
     color: @fg-color;
     font-weight: @font-bold;
-
+    font-size: 16px;
     text-transform: none;
   }
   &__ctgry {
     float: left;
 
-    padding: 10px;
+    padding: 13px 10px;
     &-item {
       float: left;
 
       padding: 5px 5px 5px 20px;
       background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-radio-grey.png') no-repeat left;
-
+      transition: background 0.2s ease-in-out;
       color: @fg-color-grey;
       cursor: pointer;
       & + & {
         margin-left: 10px;
+      }
+      &:hover {
+        background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
+
+        color: @fg-color-blue;
       }
       &--slctd {
         background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
@@ -35,7 +45,7 @@
     float: right;
 
     margin-right: 10px;
-    padding: 5px 0;
+    padding: 8px 0;
     &-frm {
       float: left;
 
@@ -71,7 +81,7 @@
   &__fltrs {
     float: right;
 
-    padding: 13px 11px;
+    padding: 16px 11px;
     border-left: 1px solid @border-color;
     &-ttl {
       float: left;
@@ -90,6 +100,12 @@
       background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-checkbox-grey.png') no-repeat left;
 
       cursor: pointer;
+      transition: background 0.2s ease-in-out;
+      &:hover {
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
+
+        color: @fg-color-blue;
+      }
       &--slctd {
         background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
 

@@ -83,17 +83,17 @@
 
     margin-top: 5px;
 
-    color: @fg-color-light-grey;
+    color: rgba(255,255,255,0.6);//@fg-color-light-grey;
     font-size: 12px;
     font-weight: 400;
   }
   &__arw {
     position: absolute;
+    font-weight: normal;
     top: 50%;
     right: 10px;
     margin-top: -17px;
     font-size: 30px;
-    font-weight: 600;
     transition:right 0.2s ease-in-out;
   }
   &:hover, &:active {
@@ -108,10 +108,15 @@
     background: darken(@bg-color-blue,2%);
   }
   &--arw-down {
+    .btn-GTS__str {
+       color:@fg-color-light-grey;
+    }
     .btn-GTS__arw {
       top:55%;
+
       transition:top 0.2s ease-in-out;
       right:10px;
+
       .rotation(90deg);
     }
     &:hover, &:active {
@@ -257,16 +262,16 @@
   border-radius: @border-radius;
   background-color: @bg-color-white;
   &__hdr {
-    margin: 20px 20px 0 20px;
-    padding-bottom: 15px;
+    padding: 15px 20px;
     border-bottom: 1px solid @border-color;
 
-    font-size: 14px;
     line-height: 20px;
 
-    text-transform: uppercase;
+    text-transform: capitalize;
   }
   &__ttl {
+    font-size: 16px;
+    font-weight: @font-bold;
     float: left;
   }
   &__nvgtn {
@@ -274,7 +279,7 @@
   }
   &__view-all-link {
     float: left;
-
+    font-size: 14px;
     color: @fg-color;
     &:hover {
       color: @fg-color-red;
@@ -314,7 +319,7 @@
   &__view-all {
     display: block;
 
-    padding: 15px;
+    padding: 17px;
     border-top: 1px solid @border-color;
     background: @bg-color-gs3;
 
@@ -334,18 +339,17 @@
     }
   }
   &--no-pdng {
-    .sctn__hdr {
-      margin: 0;
-      padding: 15px 20px;
-    }
+    // .sctn__hdr {
+    //   margin: 0;
+    //   padding: 15px 20px;
+    // }
     .sctn__inr {
       margin: 0;
     }
   }
   &--sdbr {
     & .sctn__hdr {
-      margin: 15px 10px 0;
-      padding-bottom: 10px;
+      padding: 15px 10px;
     }
     & .sctn__inr {
       margin: 0 10px;
@@ -507,7 +511,7 @@
 .load-more {
   width: 100%;
   margin: 20px 0;
-  padding: 15px 0;
+  padding: 17px 0;
   border: 1px solid @border-color;
   border-radius: @border-radius;
   background-color: @bg-color-gs3;
@@ -610,6 +614,7 @@
 
 .sort {
   width: 148px;
+  margin-left:10px;
   padding: 5px 10px;
   border: 1px solid @border-color;
   border-radius: @border-radius;
@@ -622,7 +627,8 @@
   .appearance();
   &-wrpr {
     float: right;
-
+    font-weight: @font-bold;
+    color:@fg-color-grey;
     margin-left: 20px;
   }
   &:hover {
@@ -733,6 +739,7 @@
     margin-top:1px;
     cursor: pointer;
     border:2px solid transparent;
+    transition: border 0.2s ease-in-out;
     &-inr {
       display: block;
       height:14px;
@@ -756,11 +763,13 @@
   &__item {
     padding: 0 4px;
     border-radius: @border-radius;
+    //transition: border 0.2s ease-in-out, color 0.2s ease-in-out;
     border: 1px solid @border-color;
     vertical-align: middle;
     color: @fg-color-grey;
     text-transform: uppercase;
     &-wrpr {
+      //transition: padding 0.2s ease-in-out;
       padding:0 1px;
       cursor: pointer;
       float:left;
