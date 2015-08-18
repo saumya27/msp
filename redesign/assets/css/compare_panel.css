@@ -74,16 +74,20 @@
   background-color: #dfe1e8;
   text-decoration: none;
 }
-a {
+/*a {
   color: inherit;
   text-decoration: none;
-}
+}*/
 .cmpr-pnl-list__item {
   padding-bottom: 12px;
   display: block;
   line-height: 1.4;
   position: relative;
-  padding-top: 10px;    
+  padding-top: 10px;
+
+}
+.cmpr-pnl-list__item:hover {
+  text-decoration: none;
 }
 .cmpr-pnl-list__img-wrpr {
   width: 60px;

@@ -1623,7 +1623,7 @@ function inPageLinking() {
         }
     }
 
-    $doc.on("click", ".js-inpage-link", function() {
+    $doc.on("click", ".js-inpg-link", function() {
         if ($(this).data("action") === "disabled") return false;
         
         var hashObj = queryString(window.location.hash);

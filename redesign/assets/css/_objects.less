@@ -135,10 +135,15 @@
     color: @fg-color-blue;
     &:hover {
       background: none;
+      background-color: @bg-color-gs3;
     }
     &:active {
       background: none;
     }
+  }
+  &--no-str {
+    height:auto;
+    padding: 20px 10px 20px 10px;
   }
   &--dsbld {
     border-color: @border-color-dark-grey;
@@ -614,6 +619,7 @@
 
 .sort {
   width: 148px;
+  font-weight: normal;
   margin-left:10px;
   padding: 5px 10px;
   border: 1px solid @border-color;
