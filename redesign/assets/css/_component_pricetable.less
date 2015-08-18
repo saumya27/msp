@@ -1,5 +1,6 @@
 .prc-tbl {
   &-wrpr {
+    margin-bottom:0;
     .sctn__hdr {
       padding: 10px 20px;
     }
@@ -57,15 +58,15 @@
     }
     &-inpt {
       display: inline-block;
-
+      margin:0 10px;
       width: 250px;
       height: 20px;
-      margin-left: @inline-block-margin;
+      
       padding: 5px 0;
       border: 0;
       &-btn {
         margin: 10px;
-
+        margin-left: @inline-block-margin;
         cursor: pointer;
         vertical-align: middle;
       }
@@ -117,6 +118,7 @@
     }
   }
   &-hdr {
+    border-top:1px solid @border-color;
     padding: 35px 15px 15px;
     background: @bg-color-gs4;
     &__clm {
@@ -179,7 +181,7 @@
   &-row {
     position: relative;
 
-    border-bottom: 1px solid @border-color;
+    border-top: 1px solid @border-color;
     background: @bg-color-white;
     &__ofln-bdg {
       position: absolute;
@@ -207,6 +209,13 @@
     }
     &__inr {
       padding: 20px 0;
+      &--no-rcrd {
+        padding: 50px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: @font-bold;
+        color:@fg-color-blue;
+      }
     }
     &--ofln {
       .prc-tbl__dtls-dlvr {
@@ -435,12 +444,17 @@
   }
   &__gts {
     &-lylty {
-      padding: 10px 0 0 27px;
+      margin-top:10px;
+      padding-left:27px;
       background: url('../../img/pricetable-loyalty.png') no-repeat left center;
 
       color: @fg-color-yellow;
-      font-size: 12px;
+      font-size: 10px;
       line-height: 16px;
+      &-ttl {
+        font-weight: @font-bold;
+        font-size: 12px;
+      }
     }
   }
   &__no-stck {
@@ -643,7 +657,7 @@
     border: 1px solid @border-color;
     border-radius: @border-radius;
     background: url('../../img/pricetable-pricedrop-icon.png') no-repeat 6px center;
-
+    cursor: pointer;
     color: @fg-color-grey;
   }
 }
