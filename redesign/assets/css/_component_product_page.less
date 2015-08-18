@@ -3,13 +3,36 @@
   margin:15px 0 0 0;
   &__left {
     float: left;
-
+    position: relative;
     width: 430px;
     height: 100%;
+    &:hover {
+      .prdct-dtl__save {
+        display: block;
+      }
+    }
+  }
+  &__save {
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    right: 5px;
+    display: none;
+    width: 30px;
+    height: 30px;
+    background: url(http://doypaxk1e2349.cloudfront.net/icons/save-grey.png) no-repeat center;
+    cursor: pointer;
+    &:hover {
+      background: url(http://doypaxk1e2349.cloudfront.net/icons/save-dark-grey.png) no-repeat center;
+    }
+    &--svd {
+        display: block;
+      background: url(http://doypaxk1e2349.cloudfront.net/icons/save-red.png) no-repeat center;
+    }
   }
   &__best-slr {
     position: absolute;
-    top: 15px;
+    top: 22px;
     left: 15px;
 
     padding-left: 30px;
@@ -134,16 +157,17 @@
     padding: 10px 0;
     border-top: 1px solid @border-color;
     &-ttl {
-      color: @fg-color-lightest-blue;
+      color: @fg-color-grey;
       line-height: 1.4;
 
       text-transform: uppercase;
       float:left;
     }
     &-cler {
+      display:none;
       cursor:pointer;
       text-transform: capitalize;
-      color: @fg-color-lightest-blue;
+      color: @fg-color-light-grey;
       float:right;
     }
     &-clr {
@@ -160,6 +184,12 @@
     }
     .avlbl-sizes, .avlbl-clrs {
       margin-top: 6px;
+    }
+    &:hover {
+      .prdct-dtl__vrnt-cler {
+        margin-top:2px;
+        display:block;
+      }
     }
   }
   &__slr {
@@ -229,7 +259,7 @@
       }
       &-item-wrpr {
         & + & {
-          margin-top: 30px;
+          margin-top: 40px;
         }
       }
       &-item {
@@ -253,7 +283,7 @@
       }
       &-dlvry {
         padding-left: 40px;
-        background: url('../../icons/bike-grey.png') no-repeat left center;
+        background: url('http://doypaxk1e2349.cloudfront.net/icons/delivery-grey.png') no-repeat left center;
       }
       &-rtrn {
         background: url('../../icons/return-grey.png') no-repeat left center;
@@ -263,7 +293,7 @@
       }
       &-avlblty {
         float: left;
-
+        line-height: 1.4;
         padding-left: 20px;
         background: url('http://doypaxk1e2349.cloudfront.net/icons/available-blue.png') no-repeat left center;
 
@@ -272,7 +302,7 @@
 
         text-transform: uppercase;
         &--NA {
-          background: url('http://doypaxk1e2349.cloudfront.net/icons/unavailable-grey.png') no-repeat left center;
+          background: url('../../icons/tick-green.png') no-repeat left center;
 
           color: @fg-color-light-grey;
         }
@@ -361,11 +391,11 @@
     padding: 0;
   }
   .sctn__ttl, &__prc-alrt {
-    padding: 15px 20px 15px 20px;
+    padding: 15px 20px;
   }
   &__prc-alrt {
     float: right;
-
+    font-size:14px;
     padding-left: 50px;
     border-left: 1px solid @border-color;
     background: url('../../icons/bell-red.png') no-repeat 20px center;
@@ -736,12 +766,16 @@
 }
 
 .exprt-rvw {
-  &-inr {
-    padding:30px 0 10px 0;
-    border-top:1px solid @border-color;
-  }
+  // &-inr {
+  //   padding:30px 0 10px 0;
+    
+  // }
   &__vid {
-    padding-bottom:10px;
+    padding:20px;
+  }
+  &__inr {
+    border-top:1px solid @border-color;
+    padding:30px 20px 20px 20px;
   }
   &__img{
     width:46px;
@@ -755,6 +789,7 @@
     width:830px;
     font-size:14px;
     font-weight:@font-bold;
+    .ellipsis();
   }
   &__usr {
     margin-left:10px;
@@ -852,11 +887,19 @@
 }
 
 .usr-rvw {
+  .sctn__hdr {
+    padding: 0;
+  }
+  .sctn__ttl, &__wrt-rvw {
+    padding: 15px 20px;
+  }
   &__wrt-rvw {
     float: right;
-    cursor:pointer;
-    padding-left: 25px;
-    background: url('../../icons/write-review-red.png') no-repeat left center;
+    font-size:14px;
+    padding-left: 50px;
+    border-left: 1px solid @border-color;
+    background: url('../../icons/write-review-red.png') no-repeat 20px center;
+
     cursor: pointer;
   }
   &__str {
@@ -864,7 +907,7 @@
     width:162px;
     text-align: center;
     &-wrpr {
-      padding:10px 0;
+      padding:10px 20px;
     }
     &-logo {
       display: block;
@@ -895,7 +938,7 @@
   }
   &-item {
     border-top:1px solid @border-color;
-    padding:20px 0 10px 0;
+    padding:20px 20px 10px 20px;
     line-height:1.4;
     margin-top:20px;
     &__left {
@@ -970,8 +1013,17 @@
         float:left;
       } 
       &-rght {
+        display: none;
         float:right;
       } 
     }
-  }
+    & + & {
+      margin-top:0;
+    }
+    &:hover {
+      .usr-rvw-item__ftr-rght {
+        display: block;
+      }
+    }
+  }  
 }
