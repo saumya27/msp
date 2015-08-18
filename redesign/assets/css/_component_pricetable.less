@@ -30,11 +30,11 @@
         margin-left: 10px;
       }
       &:hover {
-        background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
+        background-image: url('../../icons/radio-blue-hover.png');
 
         color: @fg-color-blue;
       }
-      &--slctd {
+      &.prc-tbl__ctgry-item--slctd {
         background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
 
         color: @fg-color-blue;
@@ -102,12 +102,12 @@
       cursor: pointer;
       transition: background 0.2s ease-in-out;
       &:hover {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
+        background-image: url('../../icons/checkbox-blue-hover.png');
 
         color: @fg-color-blue;
       }
-      &--slctd {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
+      &.prc-tbl__fltrs--slctd {
+        background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png');
 
         color: @fg-color-blue;
       }
@@ -177,11 +177,34 @@
     position: relative;
 
     border-bottom: 1px solid @border-color;
-    &__inr {
-      padding: 15px 0;
+    &__ofln-bdg {
+      position: absolute;
+      line-height: 30px;
+      right: 0;
+      height:30px;
+      width:110px;
+      overflow: hidden;
+      color:@fg-color-blue;
+      &-img {
+        position: absolute;
+        right:0;
+        width:30px;
+        height:30px;
+        background: @bg-color-white url('../../icons/offline-badge.png') no-repeat top right / 30px auto;
+        z-index:100
+      }
+      &-text {
+          width:80px;
+          left:80px;
+          position: absolute;
+          transition: left 0.4s ease-in-out;
+          z-index:0;
+      }
     }
-    &--offline {
-      background: url('../../img/pricetable-row-offline.png') no-repeat top left/35px auto;
+    &__inr {
+      padding: 20px 0;
+    }
+    &--ofln {
       .prc-tbl__dtls-dlvr {
         background-image: url('../../img/pricetable-delivery-colored.png');
       }
@@ -190,6 +213,11 @@
         margin-top: 10px;
 
         text-align: center;
+      }
+      &:hover {
+        .prc-tbl-row__ofln-bdg-text {
+          left:0;
+        }
       }
     }
   }
@@ -244,10 +272,9 @@
 
       margin-top: 5px;
       padding: 5px 5px 5px 15px;
-      background: url('../../img/pricetable-location-icon.png') no-repeat left center;
+      background: url('../../icons/location-pin-red.png') no-repeat left center;
 
-      color: @fg-color-grey;
-
+      
       text-align: center;
     }
   }
