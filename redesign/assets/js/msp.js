@@ -25,143 +25,6 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     },
     qS = queryString(window.location.search);
 
-var MSP = {
-    "utils" : {
-        "throttle" : function(fn, timeout, ctx) {
-            var timer, args, needInvoke;
-            return function() {
-                args = arguments;
-                needInvoke = true;
-                ctx = ctx || this;
-                if(!timer) {
-                    (function() {
-                        if(needInvoke) {
-                            fn.apply(ctx, args);
-                            needInvoke = false;
-                            timer = setTimeout(arguments.callee, timeout);
-                        } else {
-                            timer = null;
-                        }
-                    })();
-                }
-            };
-        },
-        "debounce" : function(fn, timeout, invokeAsap, ctx) {
-            if(arguments.length == 3 && typeof invokeAsap != 'boolean') {
-                ctx = invokeAsap;
-                invokeAsap = false;
-            }
-            var timer;
-            return function() {
-                var args = arguments;
-                ctx = ctx || this;
-                invokeAsap && !timer && fn.apply(ctx, args);
-                clearTimeout(timer);
-                timer = setTimeout(function() {
-                    !invokeAsap && fn.apply(ctx, args);
-                    timer = null;
-                }, timeout);
-            }
-        },
-        /** 
-         * method calls format.
-         * MSP.utils.url.from.bgImage()
-         */
-        "urlFrom" : {
-            "bgImage" : function(bgProp) {
-                bgProp.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-            }
-        },
-        "parse" : {
-            "numberFrom" : {
-                "price" : function(price) {
-                    return parseInt(price.replace(/\D/g, ""), 10);
-                }
-            }
-        },
-        "validate" : {
-            "_" : {
-                "regex" : {
-                    "number" : '^\\d+$',
-                    "email" : '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
-                },
-                "messages" : {
-                    "number" : "Please enter a valid number.",
-                },
-                "testPattern" : function(type, value) {
-                    var result = {},
-                        status = this._regex[type].test(value);
-                    result.status = status;
-                    if (status) result.message = this._messages[type];
-                    return result;
-                }
-            },
-            "text" : function (value, options) {
-                var isWithinLimits = (function() {
-                    var result = true;
-                    if (options && options.min && value < options.min) {
-                        result = false;
-                    }
-                    if (options && options.max && value > options.max) {
-                        result = false;
-                    }
-                    return result;
-                }());
-                return this._.testPattern("text", value) && value && isWithinLimits;
-            },
-            "number" : function(value) {
-                return this._.testPattern("number", value);
-            },
-            "email" : function() {
-                return this._.testPattern("email", value);
-            },
-            /** MSP.utils.validate.form
-            * "formData" argument format
-            *   [{
-            *       "type" : "email",     // required Argument
-            *       "value" : "a@a.com",  // required Argument
-            *       "errorNode" : $(".field_error_message") // optional Argument
-            *   }, .....]
-            */
-            "form" : function(formData) {
-                var isValid = true,
-                    check = this;
-
-                $.each(formData, function(i, field) {
-                    var result = check[field.type](field.value);
-                    if (result.status === false) {
-                        if (field.errorNode instanceof jQuery) {
-                            field.errorNode.text(result.message);
-                        } else {
-                            alert(result.message);
-                        }
-                        isValid = false;
-                    }
-                });
-                return isValid;
-            }
-        },
-        "browser" : {
-            "name" : (function() {
-                var result = null,
-                    ua = navigator.userAgent.toLowerCase();
-                if (ua.indexOf("chrome") !== -1 && ua.indexOf("opr") === -1) {
-                    result = "chrome";
-                } else if (ua.indexOf("firefox") !== -1) {
-                    result = "firefox";
-                } else if (ua.indexOf("msie") !== -1 && ua.indexOf("trident") !== -1 && ua.indexOf("edge") !== -1) {
-                    result = "MSIE";
-                }
-                return result;
-            }()),
-            "version" : (function() {
-                var userAgent = navigator.userAgent.toLowerCase();
-                return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
-            }())
-        } 
-    }
-};
-
 /* Carousel Plugin Script Begins Here */
 
 /* Carousel Plugin Script Begins Here */
@@ -774,6 +637,8 @@ $(window).on('load', function() {
 (function headerDropdownsHandlers() {
     var menuShowTimeout;
     $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
+        var data, time, now, diffTime;
+
         e.stopPropagation();
 
         if (!$('.drpdwn-menu-wrpr--show').length && $(this).hasClass("js-ctgry-btn")) {
@@ -782,30 +647,21 @@ $(window).on('load', function() {
             if($(window).height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
                 $(".js-drpdwn-menu-wrpr").addClass("drpdwn-menu-wrpr--s");
             }
-            if ($('.drpdwn-menu')
-                .data('processed') == 'done' && location.hash !== '#forcepopup') {
-                menuShowTimeout = setTimeout((function() {
-                    $('.js-drpdwn-menu-wrpr')
-                        .find('.ldng-crcl')
-                        .hide();
-                    $('.drpdwn-menu')
-                        .addClass('drpdwn-menu--show');
-                }), 340);
+            if ($('.drpdwn-menu').data('processed') == 'done' && location.hash !== '#forcepopup') {
+                menuShowTimeout = setTimeout(function() {
+                    $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').hide();
+                    $('.drpdwn-menu').addClass('drpdwn-menu--show');
+                }, 340);
                 return; //if already procesed
             }
 
-            var data;
-
             if (localStorage && location.hash !== '#forcepopup') {
-
                 //check if data is not one week old
-                var time = parseInt(localStorage.browsePopupDataTime, 10),
-                    now = new Date()
-                    .getTime(),
-                    diffTime = (now - time) / (1000 * 60 * 60 * 24);
+                time = parseInt(localStorage.browsePopupDataTime, 10);
+                now = new Date().getTime();
+                diffTime = (now - time) / (1000 * 60 * 60 * 24);
 
-                if (diffTime < 30 && localStorage.browsePopupDataVer == $('.js-drpdwn-menu-wrpr')
-                    .data('ver')) {
+                if (diffTime < 30 && localStorage.browsePopupDataVer == $('.js-drpdwn-menu-wrpr').data('ver')) {
                     //getting data from localStorage
                     data = localStorage.browsePopupData;
                 }

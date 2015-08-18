@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 	    },
 		watch: {
 			files: ['*.less'],
-			tasks: ['default'],
+			tasks: ['less:msp'],
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-less');

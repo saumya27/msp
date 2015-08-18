@@ -31,9 +31,10 @@ MSP = {
                 invokeAsap && !timer && fn.apply(ctx, args);
                 clearTimeout(timer);
                 timer = setTimeout(function() {
-                !invokeAsap && fn.apply(ctx, args);
-                timer = null;
-            }, timeout);
+                    !invokeAsap && fn.apply(ctx, args);
+                    timer = null;
+                }, timeout);
+            }
         },
         /** 
          * method calls format.
@@ -55,16 +56,16 @@ MSP = {
             "_" : {
                 "regex" : {
                     "number" : '^\\d+$',
-                    "email" : '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$';
+                    "email" : '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
                 },
                 "messages" : {
                     "number" : "Please enter a valid number.",
-                }
+                },
                 "testPattern" : function(type, value) {
                     var result = {},
                         status = this._regex[type].test(value);
                     result.status = status;
-                    if (status) result.message = this._messages[type]];
+                    if (status) result.message = this._messages[type]; 
                     return result;
                 }
             },
@@ -196,6 +197,6 @@ MSP = {
                 var userAgent = navigator.userAgent.toLowerCase();
                 return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
             }())
-        } 
+        }
     }
 }
