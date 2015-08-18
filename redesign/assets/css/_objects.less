@@ -869,3 +869,24 @@
     }
   }
 }
+
+.js-ovrly {
+  display: none;
+  position: fixed;
+  top: 0;
+  z-index: 1400;
+  width: 100%;
+  height: 100%;
+  &--show {
+    display: block;
+  }
+  &--dark {
+    background-color: rgba(0,0,0,0.9);
+  }
+  .glctn-ovrly-text {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 215px;
+  }
+}
