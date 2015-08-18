@@ -48,8 +48,8 @@
     vertical-align: middle;
     &-wrpr {
       height: 410px;
-    padding: 50px 15px 150px 15px;
-
+    padding: 0 15px 0 15px;
+    margin:50px 0 150px 0;
     line-height: 420px;
 
     text-align: center;
@@ -74,7 +74,7 @@
       bottom: 0;
 
       width: 430px;
-      height: 170px;
+      height: 150px;
 
       line-height: 170px;
 
@@ -162,12 +162,13 @@
       & + & {
         border-left:1px solid @border-color;
         padding-left: 25px;
-      }
+      
        &--apld:hover {
         .prdct-dtl__vrnt-cler {
           margin-top:2px;
           display:block;
         }
+      }
       }
       .avlbl-sizes, .avlbl-clrs {
         margin-top: 6px;
@@ -457,7 +458,7 @@
     height: 310px;
     padding: 20px;
     border-right: 1px solid @border-color;
-    background-color: @bg-color-gs4;
+    background-color: @bg-color-gs3;
     &-ttl {
       font-size: 14px;
 
@@ -489,6 +490,7 @@
   }
   &__btn {
     padding:5px 10px;
+    cursor:pointer;
     border-radius : @border-radius;
     &--actv {
       background-color:@bg-color-gs1;
@@ -524,7 +526,7 @@
     max-width: 100%;
   }
   &__item {
-    padding: 20px 0;
+    padding: 20px;
   }
   &__item + &__item {
     border-top: 1px solid @border-color;
