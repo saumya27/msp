@@ -766,12 +766,14 @@ $doc.on('mouseleave', '.js-tltp', function() {
 
 /* RUI:: Message Boxes - start */
 
-$doc.on("click", ".js-msg-box-trgt", function() {
+$doc.on("click", ".js-msg-box-trgt", function(e) {
+    if ($(e.target).hasClass("js-msg-box__cls")) return false;
+
     $(".msg-box").removeClass("msg-box--show");
     $(this).find(".msg-box").addClass("msg-box--show");
 });
 
-$doc.on("click", ".js-msg-box__cls", function(e) {
+$doc.on("click", ".js-msg-box__cls", function() {
     $(this).closest(".msg-box").removeClass("msg-box--show");
     return false;
 });
