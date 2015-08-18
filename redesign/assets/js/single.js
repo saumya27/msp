@@ -35,7 +35,7 @@ var PriceTable = {
         }
         
         // select color and updatePage.
-        $("body").on("click", ".avlbl-clrs__item", function() {
+        $doc.on("click", ".avlbl-clrs__item", function() {
             var $this = $(this),
                 $variant = $(".prdct-dtl__ttl-vrnt"),
                 $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
@@ -55,7 +55,7 @@ var PriceTable = {
         });
 
         // clear selected color and updatePage.
-        $("body").on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {
+        $doc.on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {
             $(".avlbl-clrs__item--slctd").removeClass("avlbl-clrs__item--slctd");
             var $variant = $(".prdct-dtl__ttl-vrnt"),
                 model = PriceTable.dataPoints.variant.model,
@@ -66,7 +66,7 @@ var PriceTable = {
         });
 
         // load the variant page selected.
-        $("body").on("click", ".avlbl-sizes__item", function() {
+        $doc.on("click", ".avlbl-sizes__item", function() {
             var $this = $(this);
             if (!$this.hasClass("avlbl-sizes__item--slctd")) {
                 window.location.href = $this.data("href");
@@ -74,7 +74,7 @@ var PriceTable = {
         });
 
         // switch between recommended, online, offline pricetables.
-        $("body").on("click", ".prc-tbl__ctgry-item", function() {
+        $doc.on("click", ".prc-tbl__ctgry-item", function() {
             var $this = $(this),
                 isSelected = $this.hasClass("prc-tbl__ctgry-item--slctd");
                 
@@ -87,19 +87,19 @@ var PriceTable = {
         });
 
         // apply filters to current pricetable.
-        $('body').on('click', '.prc-tbl__fltrs-item', function() {
+        $doc.on('click', '.prc-tbl__fltrs-item', function() {
             $(this).toggleClass("prc-tbl__fltrs-item--slctd");
             PriceTable.update.byFilter();
         });
         
         // sort current pricetable.
-        $('body').on('change', '.js-prc-tbl__sort', function() {
+        $doc.on('change', '.js-prc-tbl__sort', function() {
             var sortby = $(this).val();
             PriceTable.sort(sortby);
         });
 
         // show more stores.
-        $('body').on('click', '.js-prc-tbl__shw-mr', function() {
+        $doc.on('click', '.js-prc-tbl__shw-mr', function() {
             var $this = $(this),
                 $priceLines = $(".prc-tbl__row"),
                 isCollapsed = $this.data("collapsed"),
@@ -121,38 +121,41 @@ var PriceTable = {
         });
 
         /* more offers message box handlers - start */
-        $("body").on("click", ".js-xtrs-msg-box-trgt", function handler(e) {
+        $doc.on("click", ".js-xtrs-msg-box-trgt", function handler(e) {
             var $popupCont = $(this),
+                $popup = $popupCont.find(".prc-tbl__xtrs-clm-pop"),
+                $row = $(this).closest(".prc-tbl-row"),
                 mspid, currentColour, storename, offerDetails, offersMsgBoxHtml;
 
-            handler.popupData = handler.popupData || {};
-            if (!$popup.is(":visible")) {
-                mspid = PriceTable.dataPoints.mspid;
-                storename = $(this).closest(".prc-tbl__row").data("storename");
-                currentColour = PriceTable.dataPoints.getSelectedColor() || "default";
-                
-                if (handler.popupData.colour !== currentColour) {
-                    PriceTable.fetch.offersPopups.done(function(response) {
-                        handler.popupData.content = response;
-                        offerDetails = response[storename];
+            if (!$(e.target).hasClass("js-xtrs-msg-box__cls")) {
+                handler.popupData = handler.popupData || {};
+                if (!$popup.hasClass("msg-box--show")) {
+                    mspid = PriceTable.dataPoints.mspid;
+                    storename = $row.data("storename");
+                    currentColour = PriceTable.dataPoints.getSelectedColor() || "default";
                     
+                    if (handler.popupData.colour !== currentColour) {
+                        PriceTable.fetch.offersPopups().done(function(response) {
+                            handler.popupData.content = response;
+                            offerDetails = response[storename];
+                        
+                            offersMsgBoxHtml = PriceTable.templates.offersMsgBox(offerDetails);
+                            $popupCont.append(offersMsgBoxHtml);
+                            var reflow = $("body").offset().top;
+                            $popupCont.find(".msg-box").addClass("msg-box--show");
+                        });
+                    } else {
+                        offerDetails = handler.popupData.content[storename];
                         offersMsgBoxHtml = PriceTable.templates.offersMsgBox(offerDetails);
+                        
                         $popupCont.append(offersMsgBoxHtml);
                         $popupCont.find(".msg-box").addClass("msg-box--show");
-                    });
-                } else {
-                    offerDetails = handler.popupData.content[storename];
-                    offersMsgBoxHtml = PriceTable.templates.offersMsgBox(offerDetails);
-                    
-                    $popupCont.append(offersMsgBoxHtml);
-                    $popupCont.find(".msg-box").addClass("msg-box--show");
+                    }
                 }
             }
-
-            return false;
         });
 
-        $(".js-xtrs-msg-box__cls").on("click", function() {
+        $doc.on("click", ".js-xtrs-msg-box__cls", function() {
             $(this).closest(".msg-box").remove();
         });
         /* more offers message box handlers - end */
@@ -404,12 +407,12 @@ var PriceTable = {
         "offersMsgBox" : function(offerDetails) {
             var offerCount, offerRows, msgBoxHtml;
 
-            offerCount = $(offerDetails).find("ol").length ? $(storeDetails).find("li").length : 1,
+            offerCount = $(offerDetails).find("li").length || 1,
             offerRows = (function() {
                 var result = "";
-                if ($(offerDetails).find("ol").length) {
-                    $(offerDetails).find("li").each(function(i, rowText) {
-                        result += '<div class="msg-box__row">' + rowText + '</div>';
+                if (offerCount) {
+                    $(offerDetails).find("li").each(function() {
+                        result += '<div class="msg-box__row">' + $(this).html() + '</div>';
                     });
                 } else {
                     result += '<div class="msg-box__row">' + $(offerDetails).html() + '</div>';
@@ -421,7 +424,7 @@ var PriceTable = {
                 '<div class="msg-box prc-tbl__xtrs-clm-pop">',
                     '<div class="msg-box__hdr clearfix">',
                         offerCount + ' Offers',
-                        '<span class="msg-box__cls js-msg-box__cls">×</span>',
+                        '<span class="msg-box__cls js-xtrs-msg-box__cls">×</span>',
                     '</div>',
                     '<div class="msg-box__inr">',
                         offerRows,
@@ -477,9 +480,10 @@ var PriceTable = {
             cacheLimit : 10
         }),
         "offersPopups" : MSP.utils.memoize(function(mspid, color) {
-            var dfd = $.Deferred();
+            var dfd = $.Deferred(),
+                currentColour = PriceTable.dataPoints.getSelectedColor();
             $.ajax({
-                "url" : "/msp/offertext_ajax.php",
+                "url" : "assets/js/offers.json",
                 "type" : "GET",
                 "dataType" : "json",
                 "data" : {
@@ -489,6 +493,7 @@ var PriceTable = {
             }).done(function(response) {
                 dfd.resolve(response);
             });
+            return dfd.promise();
         }, {
             isAsync : true,
             cacheLimit : 10
@@ -522,7 +527,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $("body").on("click", ".logoutbutton", function(e) {
+    $doc.on("click", ".logoutbutton", function(e) {
         $("#addedtolistbutton").hide();
         $("#addtolistbutton").css('display', 'inline-block');
     }); 
@@ -530,7 +535,7 @@ $(document).ready(function() {
 
     // show more techspecs.
     if ($(".prdct-dtl__spfctn-more-wrpr").length) {
-        $("body").on("click", ".js-prdct-dtl__spfctn-show-more, .js-prdct-dtl__spfctn-show-less", function() {
+        $doc.on("click", ".js-prdct-dtl__spfctn-show-more, .js-prdct-dtl__spfctn-show-less", function() {
             var delay = $(this).hasClass("js-prdct-dtl__spfctn-show-less") ? 400 : 0;
             setTimeout(function() {
                 $(".js-prdct-dtl__spfctn-show-more").toggle();
@@ -540,7 +545,7 @@ $(document).ready(function() {
     }
 
     // if GTS is not a popup target then open storeUrl in new tab.
-    $("body").on("click", ".js-prc-tbl__gts-btn", function() {
+    $doc.on("click", ".js-prc-tbl__gts-btn", function() {
         var storeUrl = $(this).data("url"),
             hasPopup = $(this).hasClass("popup-target") || $(this).hasClass("loyalty-popup-target"),
             isEnabled = !$(this).hasClass("btn-GTS--dsbld");
