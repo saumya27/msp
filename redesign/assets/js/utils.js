@@ -113,6 +113,72 @@ MSP = {
                 return isValid;
             }
         },
+        /**
+         * memoize(fn[, options]) -> returns a new function which memoizes return values for given args.
+         * Arguments:
+         * 1. fn: -> function to be memoized. (pass function's promise if it is async).
+         * 2. options: {
+         *   isAsync -> (boolean), if function to be memoized is async.
+         *   cacheLimit -> (integer), max no. of results that can be stored in cache.
+         * }
+         */
+        "memoize" : function _memoize(fn, options) {
+            var memoizeCache = _memoize._cache_ || {},
+                isAsync = options && options.isAsync === true,
+                cacheLimit = options && options.cacheLimit,
+                resultFn;
+
+            memoizeCache[fn.toString()] = { "queries" : [], "results" : [] };
+            if (isAsync) {
+                resultFn = function _memoizedFn() {
+                    var cache = memoizeCache[fn.toString()],
+                        dfd = $.Deferred(),
+                        query = JSON.stringify(arguments),
+                        result;
+                  
+                    if (cache.queries.indexOf(query) !== -1) {
+                        result = cache.results[cache.queries.indexOf(query)];
+                        dfd.resolve(result);
+                    } else {
+                        fn.apply(this, arguments).done(function (result){
+                            cache.queries.push(query);
+                            cache.results.push(result);
+                            if (cacheLimit) {
+                                if (cache.queries.length > cacheLimit) {
+                                    cache.queries.shift();
+                                    cache.responses.shift();
+                                }
+                            }
+                            dfd.resolve(result);
+                        });
+                    }
+                    return dfd.promise();
+                };  
+            } else {
+                resultFn = function _memoizedFn() {
+                    var cache = memoizeCache[fn.toString()],
+                        query = JSON.stringify(arguments),
+                        result;
+                  
+                    if (cache.queries.indexOf(query) !== -1) {
+                        result = cache.results[cache.queries.indexOf(query)];
+                        return result;
+                    } else {
+                        result = fn.apply(this, arguments);
+                        cache.queries.push(query);
+                        cache.results.push(result);
+                        if (cacheLimit) {
+                            if (cache.queries.length > cacheLimit) {
+                                cache.queries.shift();
+                                cache.responses.shift();
+                            }
+                        }
+                        return result;
+                    }
+                };
+            }
+            return resultFn;
+        },
         "browser" : {
             "name" : (function() {
                 var result = null,
