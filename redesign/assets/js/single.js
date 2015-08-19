@@ -505,6 +505,34 @@ var PriceTable = {
 $(document).ready(function() {
     PriceTable.init();
 
+    
+    // Multiple Image Show on Top Section - Start
+    $(".prdct-dtl__thmbnl").on("mouseenter", function(e) {
+        var newSrc = $(this).find(".prdct-dtl__thmbnl-img").attr("src");
+
+        //Destination Image
+        $(".prdct-dtl__img").attr("src", newSrc)
+        $(".prdct-dtl__img-wrpr").data("href", $(this).data("href"));
+
+        $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
+        $(this).addClass("prdct-dtl__thmbnl--slctd");
+    });
+    // Multiple Image Show on Top Section - End
+
+    //Show video on click of thumbnail - Start
+    $(".exprt-rvw__vid-play").on("click", function(e) {
+        var $imageNode = $(this).siblings(".exprt-rvw__vid-img");
+        var height = $imageNode.height();
+        var width = $imageNode.width();
+        var videoId = $imageNode.data("video-id");
+
+        $(this).parent().html('<iframe id="video" width="'+width+'" height="'+height+
+            '" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+       
+    });
+    //Show video on click of thumbnail - End
+
+
     /**
      * save to list button handlers
      * TODO:: update DOM bindings according to ankur's html
