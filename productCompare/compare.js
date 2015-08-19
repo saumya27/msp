@@ -1,6 +1,9 @@
 
 $(document).ready( function(){
 
+	setCookie('compareIDs',getUrlParameter('mspids'));
+	setCookie('compareSubCategory',getUrlParameter('subcategory'));
+		
 	// autocomplete processing start here
 	compareAutoComplete(); // initializing the autoComplete
 	// autocomplete processing end here
@@ -128,8 +131,29 @@ $(document).ready( function(){
 	 }
 
  // For filling the pie : END
+
+	$('.callout-target').on('hover', function(){
+		if($('.callout-target').data('callout').length > '400'){
+	 	$('.callout').css('font-size','23px !important');
+	 }
+	});
 	
 });
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
 
 $(".expand-collapse").on('click', toggleSlider);
 
@@ -189,6 +213,8 @@ $(".remove").add(".gridheader .compare-product").on('click', function(){
 	else 	
 		remove_id = $(this).data('mspid');
 
+	setCookie('compareIDs',getUrlParameter('mspids'));
+	setCookie('compareSubCategory',getUrlParameter('subcategory'));
 	removeFromCookie(remove_id);
 	
 	var productsCount = $('.gridheader .compare-product').length;

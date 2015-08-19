@@ -1,5 +1,5 @@
 
-var sub_category = $('#msp_body').attr('category');
+var sub_category = $('.msp_body').attr('category');
 var flyingImageCount = 0, check_if_added;
 
 $(document).ready( function(){
@@ -12,7 +12,7 @@ $(document).ready( function(){
 
 	compareAutoComplete(); // initializing the autoComplete
 
-	var compare_ids = getCookie('compareIDs').split(',');
+	var compare_ids = (getCookie('compareIDs') || "").split(',');
 	for( id = 0; id < compare_ids.length ; id++){
 		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
 	}
@@ -30,10 +30,6 @@ function fillComparePanelAjax(){
         		$('.sdbr-wrppr').replaceWith(data);
         		isComparePanelFull();// check if already 4 products are there in compare panel
 				isDifferentCategory();	// check if this product is of same category that of those already in compare panel
-				
-				// if(alreadyAdded() && $('.cmpr_btn').length){// check_if_added = false;
-				// 	disableCompareCB("Item already added");
-				// }
             }
     });
 }
@@ -59,7 +55,7 @@ $('body').on('click','.sctn__compare-btn', function(){
 			mspids = mspid;
 	});
 
-	subcategory = getCookie("compareSubCategory") || "";
+	subcategory = getCategoryFromPanel();
 	$(this).attr('href',"/expert/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
 });
 
@@ -84,6 +80,7 @@ $('body').on('click', '.remove',  function(){
 
 			if($(".sdbr-list__item.cmpr0").length == 5){
 				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
+				enableCompareCB();
 			} 		
 
 			// compareAutoComplete();
@@ -218,11 +215,30 @@ function isDifferentCategory(){ // check if this product is of same category tha
 	return false;
 }
 
+function getCategoryFromPanel(){
+	return $(".sdbr-list__item:first").attr('data-subcategory') || "" ;
+}
+
+function getMSPidsFromPanel(){
+	var compare_msp_ids = [];
+    $('.sdbr-list__item:not(.cmpr0)').each(function(){ 
+    	compare_msp_ids.push( $(this).data("comparemspid") ); 
+    })
+    return ( compare_msp_ids || "" );
+}
+
 function flyImage(imgtofly, id, title, $thisCB){
 	$replaceThis = $(".sdbr-list__item.cmpr0");
+	var sub_category = getCategoryFromPanel();
 	flyingImageCount++ ;
-	if(($replaceThis.length-1) <= flyingImageCount)
+	
+	if(flyingImageCount == 1){
+		sub_category = $(".list_header").data('listcode') || $('.msp_body').attr('categroy');
+	}
+
+	if(($replaceThis.length-1) <= flyingImageCount){
 		disableCompareCB("Cannot compare more than 4 products at a time");
+	}
 
 	var top;
 	var left;
@@ -265,17 +281,18 @@ function flyImage(imgtofly, id, title, $thisCB){
         
         var img = imgtofly.src;
         var img_alt = imgtofly.alt;
+        
+
         $replaceThis = $(".sdbr-list__item.cmpr0:first");
         addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
+
  		flyingImageCount--;
  		$thisCB.removeAttr("disabled");
  		if($(".cpmr_btn").length){
  			disableCompareCB("Item already added");
  		}
-	    // if this is the first product in compare panel , set category
-	    if($(".sdbr-list__item.cmpr0").length == 4){
-	    	 setCookie("compareSubCategory", sub_category);
-	    }
+	    
+	   	setCookie("compareSubCategory", sub_category);
 	  	setCookieCompareIDS(id);
      });
 }
@@ -295,9 +312,7 @@ function addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title){
 // set cookie for the compare product msp-ids
 function setCookieCompareIDS( newMSPID ){
     var compare_msp_ids = [];
-    $('.sdbr-list__item:not(.cmpr0)').each(function(){ 
-    	compare_msp_ids.push( $(this).data("comparemspid") ); 
-    })
+    compare_msp_ids = getMSPidsFromPanel();
     setCookie('compareIDs',compare_msp_ids);  
 }
 
@@ -329,7 +344,6 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
                 source: function(request, response) {
                     var term = $.trim(request.term.toLowerCase()),
                         element = this.element,
-                        category = getCookie('compareSubCategory') || "",
                         //element is search bar
                         autocompleteCache = this.element.data('autocompleteCache') || {},
                         //initializing autocompleteCache
@@ -342,8 +356,8 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
                     if (foundInAutocompleteCache) return;
 
                     request.term = term;
-                    request.subcategory = category;
-                    request.mspids = getCookie('compareIDs') || "";
+                    request.subcategory = getCategoryFromPanel();
+                    request.mspids = getMSPidsFromPanel();
                     $.ajax({
                         url: "/expert/autoSuggest.php",
                         dataType: "json",
