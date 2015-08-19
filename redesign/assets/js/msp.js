@@ -526,39 +526,97 @@ setTimeout(function() {
 }, pageLeaveTimeout);
 // autopopup processing end here
 
-/* OLD::inPageLinking - start */
-//handeling hash in window
-function inpageLinking(id) {
-    if (id !== "" && id !== "#") {
-        try {
-            if ($(id).length) {
-                $('html, body').animate({
-                    scrollTop: ($(id).offset().top - 90) + "px"
-                });
-            }
-        } catch (err) {
-            // 
+
+
+if ($(".body-wrpr").length !== 0) {
+    /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
+
+    // onload if hash has a scrollTo param then scroll to section without animation.
+    (function runOnScriptLoad() {
+        var hashObj = queryString(window.location.hash),
+            finalScrollPos;
+        if (hashObj && hashObj.scrollTo) {
+            finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
+            $("body").scrollTop(finalScrollPos);
+        }
+    }());
+
+    function scrollToLink() {
+        var hashObj = queryString(window.location.hash),
+            finalScrollPos, currentScrollPos,
+            speed = 0.5, animTime;
+                
+        if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"').length) {
+            finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
+            currentScrollPos = $(window).scrollTop();
+            animTime = Math.abs((finalScrollPos - currentScrollPos) * speed),
+            $body = $("body");
+            
+            $body.on("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink", function(){
+                $body.stop();
+            });
+
+            $body.animate({ "scrollTop" : finalScrollPos }, animTime, function() {
+                $body.off("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink");
+            });
         }
     }
+
+    $doc.on("click", ".js-inpg-link", function() {
+        if ($(this).data("action") === "disabled") return false;
+        
+        var hashObj = queryString(window.location.hash);
+        
+        if (!hashObj) hashObj = {};
+        hashObj.scrollTo = $(this).data("href");
+
+        if (generateHash(hashObj) != window.location.hash) {
+            window.location.hash = generateHash(hashObj);
+        } else {
+            scrollToLink();
+        }
+        return false;
+    });
+
+    $(window).on('hashchange', function() {
+        scrollToLink();
+    });
+    /* RUI:: scroll to the element on page with data-id = current/onload url hash value - end */
+} else {
+    /* OLD::inpageLinking - start */
+    //handeling hash in window
+    (function() {
+        var inpageLinking = function(id) {
+            if (id !== "" && id !== "#") {
+                try {
+                    if ($(id).length) {
+                        $('html, body').animate({
+                            "scrollTop" : ($(id).offset().top - 90) + "px"
+                        });
+                    }
+                } catch (err) {
+                    // 
+                }
+            }
+        }
+
+        $(window).on('hashchange', function() {
+            inpageLinking(window.location.hash);
+            return false;
+        });
+
+        $('body').on('click', 'a[href^="#"]', function (event) {
+            event.preventDefault();
+            inpageLinking($(this).attr('href'));
+        });
+
+        $(window).on('load', function() {
+            inpageLinking(window.location.hash);
+        });
+    }());
+    //hash change handeling end
+    /* OLD::inpageLinking - end */
 }
-
-
-$(window).on('hashchange', function() {
-    inpageLinking(window.location.hash);
-    return false;
-});
-
-$('body').on('click', 'a[href^="#"]', function (event) {
-    event.preventDefault();
-    inpageLinking($(this).attr('href'));
-});
-
-$(window).on('load', function() {
-    inpageLinking(window.location.hash);
-});
-
-//hash change handeling end
-/* OLD::inPageLinking - end */
 
 
 // header bar processing start here
@@ -1606,46 +1664,7 @@ function initScrollToTop() {
         }
     });
 }
-/* RUI:: scroll to top button functionality - enc */
-
-/* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
-function inPageLinking() {
-    var scrollToLink = function () {
-        var hashObj = queryString(window.location.hash),
-            finalScrollPos, currentScrollPos,
-            speed = 0.5, animTime;
-                
-        if (hashObj && hashObj.scrollto && $('[data-id="'+ hashObj.scrollto +'"').length) {
-            finalScrollPos = $('[data-id="'+ hashObj.scrollto + '"').offset().top - $(".hdr-size").height();
-            currentScrollPos = $(window).scrollTop();
-            animTime = Math.abs((finalScrollPos - currentScrollPos) * speed); 
-            $("body").animate({
-                scrollTop : finalScrollPos 
-            }, animTime); 
-        }
-    }
-
-    $doc.on("click", ".js-inpg-link", function() {
-        if ($(this).data("action") === "disabled") return false;
-        
-        var hashObj = queryString(window.location.hash);
-        
-        if (!hashObj) hashObj = {};
-        hashObj.scrollto = $(this).data("href");
-
-        if(generateHash(hashObj) != window.location.hash) {
-            window.location.hash = generateHash(hashObj);
-        } else {
-            scrollToLink();
-        }
-        return false;
-    });
-
-    $(window).on('hashchange load', function() {
-        scrollToLink();
-    });
-}
-/* RUI:: scroll to the element on page with data-id = current/onload url hash value - end */
+/* RUI:: scroll to top button functionality - end */
 
 
 // recent items functionality starts here
@@ -1966,6 +1985,18 @@ function tryInstallFirefox() {
 //     }
 // }
 
+/* init onload (no need of doc.ready) - start */
+
+/** RUI::
+ * - scroll to top on any page.
+ * - scroll to element based on data-id.
+ * starts here
+ */
+initScrollToTop();
+/* ends here */
+
+/* init onload (no need of doc.ready) - start */
+
 $doc.ready(function() {
     // Mobile number capture popup for users who land on single page
     // from price alert emailer and missed the drop in price
@@ -1985,19 +2016,9 @@ $doc.ready(function() {
     // RUI:: TODO:: uncomment it if its there in the new site
     // cashbackInit();
 
-    /** RUI::
-    * - scroll to top on any page.
-    * - scroll to element based on data-id.
-    * starts here
-    */
-    initScrollToTop();
-    inPageLinking();
-    /* ends here */
-
-    
-    loginCallbackQueue.push(function() {
-        cashbackInit.apply(window);
-    });
+    // loginCallbackQueue.push(function() {
+    //     cashbackInit.apply(window);
+    // });
 });
 
 function isPluginInstalled() {

@@ -87,15 +87,19 @@ var PriceTable = {
         });
 
         // apply filters to current pricetable.
-        $doc.on('click', '.prc-tbl__fltrs-item', function() {
+        $doc.on("click", ".prc-tbl__fltrs-item", function() {
             $(this).toggleClass("prc-tbl__fltrs-item--slctd");
             PriceTable.update.byFilter();
         });
         
         // sort current pricetable.
-        $doc.on('change', '.js-prc-tbl__sort', function() {
+        $doc.on("change", ".js-prc-tbl__sort", function() {
             var sortby = $(this).val();
             PriceTable.sort(sortby);
+        });
+
+        $doc.on("click", ".prc-tbl-hdr__slr-rtng", function() {
+            var is
         });
 
         // show more stores.
@@ -223,7 +227,9 @@ var PriceTable = {
                         $(".prc-tbl__lctn-inpt").val("Your current location");
                       
                         // remove geolocation overlay if present
-                        $(".js-glctn-ovrly").click();
+                        //$(".js-glctn-ovrly").click();
+                        $(".js-glctn-ovrly").removeClass("js-ovrly--show");
+                        $("body").css("overflow", "auto");
                       
                         PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
                             "latitude" : latitude,
@@ -287,6 +293,9 @@ var PriceTable = {
             if (json.discount) {
                 $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]");
             }
+            if (json.mspCoins) {
+                $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins);
+            }
             if (json.buybutton) {
                 $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton);
             }
@@ -333,16 +342,19 @@ var PriceTable = {
     "sort" : function(sortby) {
         var $priceTableContainer = $('.prc-tbl-inr'),
             $store_pricetable = $('.prc-tbl-row'),
+            sortColumn = sortby.split(":")[0],
+            sortOrder = sortby.split(":")[1],
             sortDataAttrs;
 
         // close all messageBoxes before sorting priceTable
         $('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
 
         sortTypes = {
-            "popularity:desc" : { "attr" : "data-relrank", "order" : "asc" },
-            "price:asc" : { "attr" : "data-pricerank", "order" : "asc" },
-            "price:desc" : { "attr" : "data-pricerank", "order" : "desc" },
-            "rating:desc" : { "attr" : "data-rating", "order" : "desc" }
+            "popularity" : { "attr" : "data-relrank" },
+            "price" : { "attr" : "data-pricerank" },
+            "price" : { "attr" : "data-pricerank" },
+            "rating" : { "attr" : "data-rating" },
+            "rating" : { "attr" : "data-rating" }
         };
 
         $priceTableContainer.css({
@@ -507,30 +519,23 @@ $(document).ready(function() {
 
     /**
      * save to list button handlers
-     * TODO:: update DOM bindings according to ankur's html
+     * TODO:: check if it works
      * - start 
      */
     var msp_login = getCookie("msp_login");
-    $('body').on('click', "#addtolistbutton", function(e) {
-        msp_login = getCookie("msp_login");
-        if (msp_login == 1) {
-            $("#addedtolistbutton").css('display', 'inline-block');
-            $("#addtolistbutton").hide();
-            var pagemspid = $("#mspSingleTitle").attr("data-mspid");
+    $doc.on('click', ".prdct-dtl__save", function(e) {
+        loginCallback(function() {
+            $(".prdct-dtl__save").addClass("prdct-dtl__save--svd");
             $.get("/users/add_to_list.php", {
-                mspid: pagemspid
+                mspid: PriceTable.dataPoints.mspid
             }, function(data) {});
-        } else {
-            checklogin = window.setInterval('addtolisttrigger();', 500);
-            $(".loginbutton").click();
-        }
+        });
         return false;
     });
 
-    $doc.on("click", ".logoutbutton", function(e) {
-        $("#addedtolistbutton").hide();
-        $("#addtolistbutton").css('display', 'inline-block');
-    }); 
+    $doc.on("click", ".js-user-lgt", function(e) {
+        $(".prdct-dtl__save").removeClass("prdct-dtl__save--svd");
+    });
     /* save to list button handlers - end */
 
     // show more techspecs.
