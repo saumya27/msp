@@ -283,24 +283,20 @@
   }
 }
 
-.js-fltr-ldng-icon {
-  position: absolute;
+.js-fltr-ldng-mask {
   z-index: 10;
-  top: 0;
-  left: 0;
-
   display: none;
-
-  box-sizing: border-box;
+  position:absolute;
+  top:0;
   width: 100%;
   height: 100%;
-  padding-top: 155px;
-  background: rgba(255,255,255,.9) url(http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/fashion_loading.gif) no-repeat center 80px;
+  background: rgba(255,255,255,.9);
 
   color: @fg-color-grey;
-  font-size: 18px;
-
-  text-align: center;
+  .ldr {
+    bottom:auto;
+    top:150px;
+  }
 }
 
 .js-fltrs-apld {

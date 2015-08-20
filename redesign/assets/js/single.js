@@ -103,7 +103,7 @@ var PriceTable = {
         });
         
         // sort current pricetable.
-        ;(function pricetableSortingHandlers() {
+        (function pricetableSortingHandlers() {
             $doc.on("change", ".js-prc-tbl__sort", function() {
                 var newSortby = $(this).val(),
                     category = newSortby.split(":")[0],
@@ -218,7 +218,7 @@ var PriceTable = {
         });
         /* more offers message box handlers - end */
 
-        ;(function locationFilterHandlers() {
+        (function locationFilterHandlers() {
             var isChrome = MSP.utils.browser.name === "chrome",
                 isLocationStored;
 
@@ -312,7 +312,7 @@ var PriceTable = {
                 });
 
                 // bind Google maps autocomplete to location searchbox.
-                ;(function initAutocomplete() {
+                (function initAutocomplete() {
                     var autocomplete = new google.maps.places.Autocomplete($(".prc-tbl__lctn-inpt").get(0), {
                         componentRestrictions: { country: "in" },
                         types: ["geocode"]
@@ -695,14 +695,16 @@ $(document).ready(function() {
 
     //Show video on click of thumbnail - Start
     $(".exprt-rvw__vid-play").on("click", function(e) {
-        var $imageNode = $(this).siblings(".exprt-rvw__vid-img"),
-            height = $imageNode.height(),
-            width = $imageNode.width(),
+        var $playNode = $(this);
+            $imageNode = $playNode.siblings(".exprt-rvw__vid-img"),
+            $container = $playNode.parent(),
+            height = $container.height(),
+            width = $container.width(),
             videoId = $imageNode.data("video-id");
 
-        $(this).parent().html('<iframe id="video" width="'+width+'" height="'+height+
-            '" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
-       
+        $imageNode.remove();
+        $playNode.remove();
+        $container.append('<iframe class="exprt-rvw__vid-iframe" width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
     });
     //Show video on click of thumbnail - End
 
@@ -848,5 +850,34 @@ $(document).ready(function() {
                 return message; // Gecko + Webkit, Safari, Chrome etc.
             }
         } 
-    }());  
+    }()); 
+
+     MSP.utils.lazyLoad.assign({
+        "node" : $(".prc-grph"),
+        "isStatic" : true,
+        "callback" : {
+            "definition" : function() {
+                if ($(".prc-grph__not-sprtd").length) {
+                    $(".prc-grph__not-sprtd").show();
+                    $(".prc-grph__ldr").hide();
+                    return;
+                }
+
+                $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
+                
+                $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
+                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
+                        $.getScript("assets/js/priceGraph.js", function() {
+                            $(".prc-grph__rght-chrt").show();
+                            $(".prc-grph__btn-wrpr").show();
+                            $(".prc-grph__ldr").hide();
+
+                        });
+                    });
+                });
+            },
+            "context": window,
+            "arguments" : [] 
+        }
+    }).run(); 
 });

@@ -2,6 +2,10 @@
   &-wrpr {
     margin-bottom:0;
     .sctn__hdr {
+      padding: 0;
+    }
+    .sort-wrpr {
+      border-left:1px solid @border-color;
       padding: 10px 20px;
     }
   }
@@ -11,7 +15,7 @@
   &__ttl {
     float: left;
 
-    padding: 5px 0;
+    padding: 15px 0 15px 20px;
     font-size:14px;
     color: @fg-color;
     font-weight: @font-bold;
@@ -74,12 +78,16 @@
     &-gps {
       float: left;
 
-      width: 33px;
-      height: 33px;
+      // width: 33px;
+      // height: 33px;
       margin-left: 10px;
-      border-radius: @border-radius;
-      background: @bg-color-blue url('../../img/pricetable-icon-gps.png') no-repeat center/20px auto;
-      cursor: pointer;
+      padding:0 5px;
+      // border-radius: @border-radius;
+      // background: @bg-color-blue url('../../img/pricetable-icon-gps.png') no-repeat center/20px auto;
+      // cursor: pointer;
+    }
+    &-img {
+      width:20px;
     }
   }
   &__fltrs {
@@ -208,7 +216,6 @@
         width:30px;
         height:30px;
         background: @bg-color-white url('../../icons/offline-badge.png') no-repeat top right / 30px auto;
-        z-index:100
       }
       &-text {
           width:80px;
@@ -228,6 +235,12 @@
         font-size: 24px;
         font-weight: @font-bold;
         color:@fg-color-blue;
+      }
+    }
+    &:hover {
+      .prc-tbl__prc-drop-btn {
+          visibility: visible;
+          opacity: 1
       }
     }
     &--ofln {
@@ -317,6 +330,9 @@
   &__slr {
     &-name {
       margin-bottom: 10px;
+      &-ttl {
+        color:@fg-color-light-grey;
+      }
     }
     &-prm {
       margin-top: 10px;
@@ -417,6 +433,7 @@
     opacity: 1;
   }
   &__cost {
+    text-align: center;
     &-val {
       color: @fg-color-blue;
       font-size: 32px;
@@ -635,8 +652,8 @@
 
     color: @fg-color-grey;
     &-clm {
-      width: 566px;
-      padding: 7px 5px 7px 28px;
+      width: 554px;
+      padding: 7px 5px 7px 40px;
       &-text {
         display: inline-block;
         overflow: hidden;
@@ -666,41 +683,29 @@
 
       float: left;
 
-      background: @bg-color-light-yellow url('../../img/pricetable-offers-percentage.png') no-repeat 7px center/15px auto;
+      background: @bg-color-light-yellow url('../../icons/offer-percentage.png') no-repeat 10px center;
     }
     &-cpns {
       float: right;
 
-      background: @bg-color-lightest-blue url('../../img/pricetable-coupon-scissors.png') no-repeat 6px center/15px auto;
+      background: @bg-color-lightest-blue url('../../icons/scissor-large.png') no-repeat 10px center;
     }
   }
-  &__prc-drop {
-    text-align: center;
-    &-btn {
-      display: inline-block;
+  &__prc-drop-btn {
+    display: inline-block;
 
-      margin-top: 5px;
-      padding: 7px 7px 7px 25px;
-      border: 1px solid @border-color;
-      border-radius: @border-radius;
-      background: url('../../img/pricetable-pricedrop-icon.png') no-repeat 6px center;
-      cursor: pointer;
-      color: @fg-color-grey;
-      transition: background 0.2s ease-in-out;
-      &:hover {
-        background-color:@bg-color-gs4;
-      }
-      &--hide {
-        visibility: hidden;
-      }
-    }
-    &-scs {
-      position: absolute;
-      top: 6px;
-      left: 45px;
-      display: none;
-      color: @fg-color-blue;
-      font-size: 16px;
+    margin-top: 5px;
+    padding: 7px 7px 7px 25px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    background: url('../../img/pricetable-pricedrop-icon.png') no-repeat 6px center;
+    cursor: pointer;
+    color: @fg-color-grey;
+    visibility: hidden;
+    opacity: 0;
+    transition: background 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    &:hover {
+      background-color:@bg-color-gs4;
     }
   }
 }

@@ -1487,12 +1487,15 @@ $win.scroll(MSP.utils.throttle(function(e) {
 
         lastScrollTop = scrollTop;
     }
+
+    //Run tasks assigned to Lazy Load which run when scroll position hits the corresponding nodes.
+    MSP.utils.lazyLoad.run();
 }, 100));
 /* RUI:: reveal new subheader when user scrolls - end */
 
 // browse popup functions start here
 function getBrowsePopupData() {
-    return getAjaxDataSync("/browse-menu.htm");
+    return getAjaxDataSync("browse-menu.htm");
 }
 // browse popup functions end here
 

@@ -638,9 +638,9 @@ var ListPage = {
                     }
 
                     // get new hourly deals based on updated current params
-                    if ($(".js-product-grid-deals-wrpr").length) {
+                    if ($(".js-product-grid-deals").length) {
                         ;(function _getHourlyDeals() {
-                            ListPage.services.fetch.hourlyDeals().done(function(html) {
+                            ListPage.services.fetch.hourlyDeals().done(function(json) {
                                 var $timer, minutes, seconds;
 
                                 function parseTime(value) {
@@ -648,7 +648,13 @@ var ListPage = {
                                     return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
                                 }
 
-                                $(".js-product-grid-deals-wrpr").html(html);
+                                $(".js-product-grid-deals .sctn__inr").html(json.products);
+                                if ($(".js-product-grid-deals .cntdwn").length === 0) {
+                                    $(".js-product-grid-deals .sctn__ttl").append(json.countdown);
+                                } else {
+                                    $(".js-product-grid-deals .cntdwn").replaceWith(json.countdown);
+                                }
+
                                 $timer = $(".cntdwn");
                                 if ($timer.length) {
                                     minutes = parseTime($timer.find(".cntdwn__mins").data("minutes")),
@@ -937,14 +943,14 @@ var ListPage = {
                 
                 // check if query in cache to load response from cache.
                 if (cache.queries.indexOf(query) >= 0) {
-                    setTimeout(($(".js-fltr-ldng-icon").show(), function() {
-                        $(".js-fltr-ldng-icon").hide();
+                    setTimeout(($(".js-fltr-ldng-mask").show(), function() {
+                        $(".js-fltr-ldng-mask").hide();
                     }), 350);
                     dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
                     if (_gaq) _gaq.push(['_trackEvent', 'desktop_listpage_filter', 'xhrLoad', 'time', 0]);
                 } else {
                     if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
-                        $(".js-fltr-ldng-icon").show();
+                        $(".js-fltr-ldng-mask").show();
                     }
                     xhrPerf = { start : +new Date() };
                     // abort pending XHR's for latest XHR to deal with rapid filter changes.
@@ -968,7 +974,7 @@ var ListPage = {
                             cache.responses.shift();
                         }
                     }).always(function() {
-                        $(".js-fltr-ldng-icon").hide();
+                        $(".js-fltr-ldng-mask").hide();
                     });
                 }
                 if (_gaq) _gaq.push(['_trackEvent', 'finder', 'query', query]);
@@ -988,7 +994,8 @@ var ListPage = {
                         _hourlyDeals.XHR.abort();
                     }
                     _hourlyDeals.XHR = $.ajax({
-                        "url": "deals-list.html?" + query
+                        "url": "deals-list.html?" + query,
+                        "dataType" : "json"
                     }).done(function(response) {
                         if (response) {
                             dfd.resolve(response);
