@@ -1,4 +1,7 @@
 MSP = {
+    "dataPoints" : {
+        headerHeight : $(".hdr-size").height()
+    },
     "utils" : {
         "throttle" : function(fn, timeout, ctx) {
             var timer, args, needInvoke;
@@ -179,6 +182,43 @@ MSP = {
                 };
             }
             return resultFn;
+        },
+        "lazyLoad" : {
+            "run" : function() {
+                for (i = 0; i < this.queue.length; i++) {
+                    (function(lazyLoad) {
+                        var callback = lazyLoad.queue[i].callback,
+                            position = lazyLoad.queue[i].position;
+                            triggerPoint = (position || lazyLoad.queue[i].node.offset().top) - $(window).height();
+
+                        if ($win.scrollTop() > triggerPoint) {
+                            callback.definition.apply(callback.context, callback.arguments);
+                            lazyLoad.queue.splice(i, 1);
+                            i--;
+                        }
+                    }(this));
+                }
+            },
+            "queue" : [],
+            /**
+             * MSP.utils.lazyLoad.assign => accepts a task to be executed on reaching scroll position of given node.
+             * {
+             *      "node" : $node, // jquery node
+             *      "isStaic" : true // boolean
+             *      "callback" : {
+             *          "definition" : callbackFunction, // defintion of the task to be run
+             *          "context" : this,
+             *          "arguments" : [args,...] // arguments of the task if any.
+             *      }
+             * }
+             */
+            "assign" : function(task) {
+                if (task.isStatic) {
+                    task.position = task.node.offset().top;
+                }
+                this.queue.push(task);
+                return this;
+            }
         },
         "browser" : {
             "name" : (function() {

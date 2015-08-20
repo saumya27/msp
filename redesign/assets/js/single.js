@@ -533,12 +533,16 @@ $(document).ready(function() {
 
     //Show video on click of thumbnail - Start
     $(".exprt-rvw__vid-play").on("click", function(e) {
-        var $imageNode = $(this).siblings(".exprt-rvw__vid-img");
-        var height = $imageNode.height();
-        var width = $imageNode.width();
-        var videoId = $imageNode.data("video-id");
+        var $playNode = $(this);
+            $imageNode = $playNode.siblings(".exprt-rvw__vid-img"),
+            $container = $playNode.parent(),
+            height = $container.height(),
+            width = $container.width(),
+            videoId = $imageNode.data("video-id");
 
-        $(this).parent().html('<iframe id="video" width="'+width+'" height="'+height+
+        $imageNode.remove();
+        $playNode.remove();
+        $container.append('<iframe class="exprt-rvw__vid-iframe" width="'+width+'" height="'+height+
             '" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
        
     });
@@ -592,7 +596,7 @@ $(document).ready(function() {
         var score = $(this).text();
 
         switch(score) {
-            case score >= 0 && score < 3:
+            case score >= 0 && score < 3: 
                 $(this).closest('.rvw__scr').css('background-color', '#CC0000');
                 break;
             case score >= 3 && score < 6:
@@ -606,4 +610,36 @@ $(document).ready(function() {
                 break;
         }
     });
+
+    MSP.utils.lazyLoad.assign({
+        "node" : $(".prc-grph"),
+        "isStatic" : true,
+        "callback" : {
+            "definition" : function() {
+                if ($(".prc-grph__not-sprtd").length) {
+                    $(".prc-grph__not-sprtd").show();
+                    $(".prc-grph__ldr").hide();
+                    return;
+                }
+
+                $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
+                
+                $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
+                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
+                        $.getScript("assets/js/priceGraph.js", function() {
+                            $(".prc-grph__rght-chrt").show();
+                            $(".prc-grph__btn-wrpr").show();
+                            $(".prc-grph__ldr").hide();
+
+                        });
+                    });
+                });
+            },
+            "context": window,
+            "arguments" : [] 
+        }
+    }).run();
+
+
+
 });

@@ -5,12 +5,18 @@
 .body-wrpr {
   width: @container-width;
   margin: 0 auto;
+  .sctn--no-pdng .sctn__inr {
+    width:1198px;
+  }
 }
 
 .main-wrpr {
   float: right;
 
   width: @main-wrapper-width;
+  .sctn--no-pdng  .sctn__inr {
+    width:928px;
+  }
 }
 
 .promo {
@@ -451,7 +457,7 @@
   
   &--s {
     .cntxt-link__prvs-icon, .cntxt-link__next-icon {
-      height: 92px;
+      height: 90px;
     }
     .cntxt-link-item-wrpr {
       padding: 4px;
@@ -489,7 +495,7 @@
   }
   &--only-text {
     .cntxt-link__prvs-icon, .cntxt-link__next-icon {
-      height: 82px;
+      height: 80px;
     }
     .cntxt-link-item-wrpr {
       padding: 4px;
@@ -522,7 +528,7 @@
   }
   &--only-img {
     .cntxt-link__prvs-icon, .cntxt-link__next-icon {
-      height: 92px;
+      height: 90px;
     }
     .cntxt-link-item-wrpr {
       padding: 4px;
@@ -542,6 +548,16 @@
 }
 
 .js-sldr {
+  .sctn__inr {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .cntxt-link-item-wrpr {
+    overflow: hidden;
+    white-space: nowrap;
+      margin-left:0;
+  }
+
   &__prvs, &__next {
     display: none;
   }
@@ -567,15 +583,15 @@
 .cntxt-link {
   .js-sldr-item-wrpr1 {
     width: 848px;
-    margin-left: 5px;
-    padding: 4px 0;
+   // margin-left: 5px;
+    //padding: 4px 0;
     .cntxt-link-item {
       margin-left: 8px;
     }
   }
   &.cntxt-link--s {
     .js-sldr-item-wrpr1 {
-      padding: 5px 0;
+     // padding: 5px 0;
       .cntxt-link-item__ttl-wrpr {
         width: 88px;
       }
@@ -583,7 +599,7 @@
   }
   &.cntxt-link--only-text {
     .js-sldr-item-wrpr1 {
-      padding: 5px 0;
+    //  padding: 5px 0;
       .cntxt-link-item__ttl-wrpr {
         display: inline-block;
 
@@ -593,7 +609,7 @@
   }
   &.cntxt-link--only-img {
     .js-sldr-item-wrpr1 {
-      padding: 5px 0;
+    //  padding: 5px 0;
       .cntxt-link-item__img-wrpr {
         width: 100%;
       }
@@ -604,6 +620,7 @@
 .product-grid-with-bdg {
   .sctn__inr {
     margin: 0 0 10px 0;
+    position: relative;
   }
 }
 .prdct-item-with-bdg {
@@ -677,6 +694,13 @@
     margin-top: 5px;
   }
 }
+
+//For Hourly Deals in List Page  having timer. 
+//This is just to placeholder height and remove flicker.
+.js-product-grid-deals .sctn__inr {
+  height:154px;
+}
+
 .page-info {
   width: 100%;
   margin-top: 10px;
