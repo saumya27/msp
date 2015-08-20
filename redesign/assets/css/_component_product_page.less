@@ -48,7 +48,7 @@
   &__img {
     max-width: 100%;
     max-height: 100%;
-
+    cursor: url('../../icons/zoom-in.png'), pointer;
     vertical-align: middle;
     &-wrpr {
       height: 410px;
@@ -287,10 +287,14 @@
       min-height: 213px;
       &-lylty {
         padding-left: 30px;
+        height:35px;
         background: url('http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png') no-repeat left center;
 
         color: @fg-color-yellow;
         line-height: 1.4;
+        &--hide {
+          visibility: hidden;
+        }
         &-ttl {
           font-size: 14px;
           font-weight: @font-bold;
@@ -413,31 +417,31 @@
     }
   }
   &__msg {
-    float: left;
+    // float: left;
 
-    width: 230px;
-    &-wrpr {
+    // width: 230px;
+    // &-wrpr {
       position: absolute;
       bottom: 0;
 
       margin-top: 15px;
       padding: 15px 0;
       border-top: 1px solid @border-color;
-    }
-    &-img {
-      vertical-align: middle;
-    }
-    &-text {
-      padding-left: 10px;
+    //}
+    // &-img {
+    //   vertical-align: middle;
+    // }
+    // &-text {
+    //   padding-left: 10px;
 
-      color: @fg-color-grey;
-      font-size: 16px;
+    //   color: @fg-color-grey;
+    //   font-size: 16px;
 
-      vertical-align: middle;
-    }
-    & + & {
-      margin-left: 15px;
-    }
+    //   vertical-align: middle;
+    // }
+    // & + & {
+    //   margin-left: 15px;
+    // }
   }
 }
 .prc-grph {
@@ -460,10 +464,10 @@
     float: left;
 
     width: 200px;
-    height: 310px;
+    height: 330px;
     padding: 20px;
     border-right: 1px solid @border-color;
-    background-color: @bg-color-gs3;
+    background-color: @bg-color-gs4;
     &-ttl {
       font-size: 14px;
 
@@ -494,27 +498,44 @@
     }
   }
   &__btn {
-    padding:5px 10px;
-    cursor:pointer;
-    border-radius : @border-radius;
-    &--actv {
-      background-color:@bg-color-gs1;
-      color:@fg-color-white;
+    &-ttl {
+      font-size:14px;
+      margin-right:15px;
+      text-transform: uppercase;
     }
     &-wrpr {
+      border-top:1px solid @border-color;
       margin-top:10px;
+      padding:14px 20px 14px 0;
       text-align: right;
+      display:none;
     }
     & + & {
       margin-left:10px;
     }
   }
+  &__not-sprtd {
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    margin:auto;
+    display: none;
+    position: absolute;
+    height: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
   &__rght {
+    position:relative;
     float:left;
-    width:647px;
-    margin: 25px 0 0 10px;
+    width:686px;
+    height:370px;
     &-chrt {
+      display: none;
+      margin-top:25px;
       height:270px;
+      width:660px;
     }
   }
 }
@@ -821,16 +842,27 @@
 }
 
 .exprt-rvw {
-  // &-inr {
-  //   padding:30px 0 10px 0;
-    
-  // }
   &__vid {
-      padding:20px;
+      margin:20px;
       position: relative;
-    &-img {
+      overflow:hidden;
       width:888px;
-      height:480px;
+      height:499px;
+      overflow: hidden;
+      background-color:@bg-color-gs0;
+    &-iframe {
+      z-index:100;
+      position:relative;
+    }
+    &-img {
+      position: absolute;
+      top: -100%;
+      right: -100%;
+      bottom: -100%;
+      left: -100%;
+      width: 100%;
+      margin: auto;
+      opacity:0.6;
     }
     &-play {
       cursor:pointer;
@@ -939,7 +971,7 @@
 
     width: 220px;
     padding: 10px 10px 10px 20px;
-    background-color: @bg-color-gs3;
+    background-color: @bg-color-gs4;
 
     vertical-align: middle;
   }
