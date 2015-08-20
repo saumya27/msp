@@ -307,6 +307,8 @@
 						<option value="price:desc">Price: High to Low</option>
 						<option value="price:asc">Price: Low to High</option>
 						<option value="popularity:desc" selected="">Popularity</option>
+						<option value="rating:desc">Store Rating</option>
+						<option value="rating:asc" hidden>Store Rating</option>
 						<option value="newest:desc">New Arrival</option>
 					</select>
 				</div>
@@ -336,26 +338,26 @@
 				<div class="prc-tbl" data-id="price-table">
                     <div class="prc-tbl-hdr clearfix">
                         <div class="prc-tbl-hdr__clm prc-tbl-hdr__strs">
-                        	<span class="prc-tbl-hdr__cptn">Recommended Price</span>
+                        	<span class="prc-tbl-hdr__cptn">Recommended</span>
                             <span class="prc-tbl-hdr__lbl prc-tbl-hdr__lbl--lt">STORES</span>
                         </div>
-                        <div class="prc-tbl-hdr__clm prc-tbl-hdr__slr-rtng">
-                            <span class="prc-tbl-hdr__cptn prc-tbl-hdr__cptn--hvr">Sort By</span>
+                        <div class="prc-tbl-hdr__clm prc-tbl-hdr__slr-rtng" data-sort-category="rating" data-sort-value="rating:desc">
+                            <span class="prc-tbl-hdr__cptn">Sort By</span>
                             <span class="prc-tbl-hdr__lbl">SELLER RATING</span>
-                            <span class="prc-tbl-hdr__arw prc-tbl-hdr__arw--desc"></span>
+                            <span class="prc-tbl-hdr__arw prc-tbl-hdr__arw--asc"></span>
                         </div>
                         <div class="prc-tbl-hdr__clm prc-tbl-hdr__dlvry">
                             <span class="prc-tbl-hdr__lbl prc-tbl-hdr__lbl--lt">DELIVERY</span>
                             <span class="prc-tbl-hdr__arw"></span>
                         </div>
-                        <div class="prc-tbl-hdr__clm prc-tbl-hdr__prc">
-                        	<span class="prc-tbl-hdr__cptn prc-tbl-hdr__cptn--hvr">Sort By</span>
+                        <div class="prc-tbl-hdr__clm prc-tbl-hdr__prc" data-sort-category="price" data-sort-value="price:asc">
+                        	<span class="prc-tbl-hdr__cptn">Sort By</span>
                             <span class="prc-tbl-hdr__lbl">PRICE</span>
-                            <span class="prc-tbl-hdr__arw prc-tbl-hdr__arw--asc"></span>
+                            <span class="prc-tbl-hdr__arw prc-tbl-hdr__arw--desc"></span>
                         </div>
                     </div>
                     <div class="prc-tbl-inr">
-                    	<div class="prc-tbl-row prc-tbl-row--ofln" data-storename="n4u" data-relrank="1" data-pricerank="48,305"> <!-- offline store -->
+                    	<div class="prc-tbl-row prc-tbl-row--ofln .js-ofln__TL-HYD-MO-GEN-0488" data-storename="n4u" data-relrank="1" data-rating="50" data-pricerank="48,305"> <!-- offline store -->
                     		<div class="prc-tbl-row__ofln-bdg">
                     			<span class="prc-tbl-row__ofln-bdg-img"></span>
                     			<span class="prc-tbl-row__ofln-bdg-text">Nearby Store</span>
@@ -371,12 +373,12 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 5 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 100%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span>
+                                    <span class="rtng-bdg">5/5</span>
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-my-promise.png" />
@@ -408,7 +410,7 @@
                                         				<span class="prc-tbl__dtls-clr-lbl">Space Grey</span>
                                         				<div class="prc-tbl__cost prc-tbl__cost--s">
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
-		                                                    <span class="prc-tbl__cost-val">48,005</span>
+		                                                    <span class="prc-tbl__cost-val">48,305</span>
 	                                                   	</div>
                                         				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
                                     				</div>
@@ -432,7 +434,7 @@
                                 <div class="prc-tbl-clm prc-tbl-clm--cost">
                                 	<div class="prc-tbl__cost"> 
                                         <span class="prc-tbl__cost-rpe">&#8377;</span>
-                                        <span class="prc-tbl__cost-val">48,005</span>
+                                        <span class="prc-tbl__cost-val">48,305</span>
                                    	</div>
                                     <div class="prc-tbl__cost-shpng">Free shipping</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
@@ -470,7 +472,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-prc-tbl__gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-prc-tbl__gts-btn js-popup-trgt js-check-email-cookie" data-cookiename="hideSupportPopup" data-cookietimedays="1" data-href="/promotions/offline_delivery.php?offline_id=TL-HYD-MO-GEN-0488">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -483,7 +485,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="amazon" data-relrank="2" data-pricerank="48,105">
+                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="amazon" data-relrank="2" data-rating="45" data-pricerank="48,105">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -494,7 +496,7 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
                                             <div class="rtng-star__inr" style="width: 90%;">
                                             </div>
                                         </div>
@@ -593,7 +595,7 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
-                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-lylty-popup-trgt js-check-email-cookie" data-href="/loyalty/popup/index.php?coins=1500" data-cookiename="hideSupportPopup_loyalty" data-cookietimemins="5" data-url="http://www.mysmartprice.com/out/sendtostore.php?mspid=4760&access_point=desktop&l1=c&merged=1&top_category=electronics&category=mobile&id=275644135&rk=49468&store=amazon">
                                         ORDER NOW<br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
@@ -606,7 +608,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--ofln" data-storename="technovision" data-relrank="3" data-pricerank="48,005"> <!-- offline store -->
+                        <div class="prc-tbl-row prc-tbl-row--ofln" data-storename="technovision" data-relrank="3" data-rating="40" data-pricerank="48,005"> <!-- offline store -->
                         	<div class="prc-tbl-row__ofln-bdg">
                     			<span class="prc-tbl-row__ofln-bdg-img"></span>
                     			<span class="prc-tbl-row__ofln-bdg-text">Nearby Store</span>
@@ -622,12 +624,12 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 80%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span> 
+                                    <span class="rtng-bdg">4/5</span> 
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
@@ -734,7 +736,7 @@
                                 </div>
 							</div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="flipkart" data-relrank="4" data-pricerank="48,505">
+                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="flipkart" data-relrank="4" data-rating="35" data-pricerank="48,505">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -745,12 +747,12 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 3.5 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 70%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span>
+                                    <span class="rtng-bdg">3.5/5</span>
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
@@ -857,7 +859,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="snapdeal" data-relrank="5" data-pricerank="48,205">
+                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="snapdeal" data-relrank="5" data-rating="30" data-pricerank="48,205">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -868,12 +870,12 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="30" data-tooltip="Rated 3 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 60%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span>
+                                    <span class="rtng-bdg">3/5</span>
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
@@ -991,7 +993,7 @@
                             	</div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="paytm" data-relrank="6" data-pricerank="48,405">
+                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="paytm" data-relrank="6" data-rating="25" data-pricerank="48,405">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -1002,12 +1004,12 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="25" data-tooltip="Rated 2.5 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 50%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span>
+                                    <span class="rtng-bdg">2.5/5</span>
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
@@ -1116,7 +1118,7 @@
                             	</div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="ebay" data-relrank="7" data-pricerank="48,705">
+                        <div class="prc-tbl-row prc-tbl-row--online" data-storename="ebay" data-relrank="7" data-rating="20" data-pricerank="48,605">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -1127,12 +1129,172 @@
                                     <div class="prc-tbl__slr-name">Seller: WS Retail</div>
 
                                     <div class="rtng-wrpr rtng-wrpr--l clearfix">
-                                        <div class="rtng-star js-tltp" data-storename="snapdeal" data-rating="85" data-tooltip="Rated 4.5 by 123 users">
-                                            <div class="rtng-star__inr" style="width: 90%;">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="20" data-tooltip="Rated 2 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 40%;">
                                             </div>
                                         </div>
                                     </div>
-                                    <span class="rtng-bdg">4.5/5</span>
+                                    <span class="rtng-bdg">2/5</span>
+
+                                    <div class="prc-tbl__slr-prm">
+                                        <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
+                                        <span class="hlp-prmpt">?</span>
+                                    </div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--avlblty">
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--dtls">
+                                    <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
+                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
+                                        <span class="prc-tbl__dtls-clr-dot"></span>
+                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
+                                        <div class="prc-tbl__dtls-clr-more text-link js-msg-box-trgt">
+                                        	More Options &rsaquo;&rsaquo;
+                                        	<div class="msg-box prc-tbl__dtls-clr-pop">
+                                    			<div class="msg-box__hdr clearfix">
+                                    				More options on Flipkart
+                                    				<span class="msg-box__cls js-msg-box__cls">×</span>
+                                    			</div>
+                                    			<div class="msg-box__inr">
+                                    				<div class="msg-box__row">
+                                    					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
+                                        				<span class="prc-tbl__dtls-clr-lbl">Green</span>
+                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
+		                                                    <span class="prc-tbl__cost-rpe">₹</span>
+		                                                    <span class="prc-tbl__cost-val">48,705</span>
+	                                                   	</div>
+                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                    				</div>
+                                    				<div class="msg-box__row">
+                                    					<span class="prc-tbl__dtls-clr-dot" style="background-color:#F5A623"></span>
+                                        				<span class="prc-tbl__dtls-clr-lbl">Gold</span>
+                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
+		                                                    <span class="prc-tbl__cost-rpe">₹</span>
+		                                                    <span class="prc-tbl__cost-val">48,705</span>
+	                                                   	</div>
+                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                    				</div>
+                                    			</div>
+                                    		</div>
+                                        </div>
+                                    </div>
+                                    <div class="prc-tbl__prc-drop-btn js-popup-trgt" data-href="http://www.mysmartprice.com/promotions/pricealert.php?isbn=4804&productname=Samsung+Galaxy+Grand+Prime&bestprice=9990&ispopup=true">Set Price Drop Alert</div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+                                    <div class="prc-tbl__cost">
+                                        <span class="prc-tbl__cost-rpe">&#8377;</span>
+                                        <span class="prc-tbl__cost-val">48,605</span>
+                                   	</div>
+                                    <div class="prc-tbl__cost-cpn">Coupon Applied</div>
+                                    <div class="prc-tbl__cpn-wrpr js-card-slide-up">
+                                    	<div class="prc-tbl__cpn-info">
+                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
+                                    	</div>
+                                    	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
+                                    	<div class="prc-tbl__prc-brkp">
+                                    		<div class="prc-tbl__prc-brkp-ttl">Price Breakup</div>
+                                    		<div class="prc-tbl__prc-brkp-item">
+                                    			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+                                    			<span class="prc-tbl__prc-brkp-val">48,764</span>
+                                    			<div class="prc-tbl__prc-brkp-desc">Seller Price</div>
+                                    		</div>
+                                    		<span class="prc-tbl__prc-brkp-sprtr">-</span>
+                                    		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--green">
+                                    			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+                                    			<span class="prc-tbl__prc-brkp-val">5,000</span>
+                                    			<div class="prc-tbl__prc-brkp-desc">15% Discount</div>
+                                    		</div>
+                                    		<span class="prc-tbl__prc-brkp-sprtr">+</span>
+                                    		<div class="prc-tbl__prc-brkp-item">
+                                    			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+                                    			<span class="prc-tbl__prc-brkp-val">100</span>
+                                    			<div class="prc-tbl__prc-brkp-desc">Shipping</div>
+                                    		</div>
+                                    		<span class="prc-tbl__prc-brkp-sprtr">=</span>
+                                    		<div class="prc-tbl__prc-brkp-item prc-tbl__prc-brkp-item--blue">
+                                    			<span class="prc-tbl__prc-brkp-rpe">&#8377;</span>
+                                    			<span class="prc-tbl__prc-brkp-val">48,764</span>
+                                    			<div class="prc-tbl__prc-brkp-desc">Final Price</div>
+                                    		</div>
+                                    	</div>
+                                    </div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+                                    <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-lylty-popup-trgt check-email-cookie" data-href="/loyalty/popup/index.php?coins=1500" data-cookiename="hideSupportPopup_loyalty" data-cookietimemins="5" data-url="http://www.mysmartprice.com/out/sendtostore.php?mspid=4760&access_point=desktop&l1=c&merged=1&top_category=electronics&category=mobile&id=275644135&rk=49468&store=amazon">
+                                        ORDER NOW<br/>
+                                        <span class="btn-GTS__str">at Amazon</span>
+                                        <span class="btn-GTS__arw">&rsaquo;</span>
+                                    </div>
+                                    <div class="prc-tbl__gts-lylty">
+                                    	<div class="prc-tbl__gts-lylty-ttl">
+                                    		Free <span class="prc-tbl__gts-lylty-val">5000</span> MSP Coins
+                                    	</div> on this purchase
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prc-tbl__xtrs clearfix">
+                            	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">
+                            		<span class="prc-tbl__xtrs-clm-text">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</span>
+                            	</div>
+                            </div>
+                        </div>
+                        <div class="prc-tbl-row prc-tbl-row--online prc-tbl-row--NA" data-storename="amazon" data-rating="15" data-relrank="8" data-pricerank="48,605">
+                            <div class="prc-tbl-row__inr clearfix">
+                                <div class="prc-tbl-clm prc-tbl-clm--str">
+                                	<div class="prc-tbl__str-logo-wrpr">
+                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-logo.png" />
+                                    </div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--no-stck">
+                                	<div class="prc-tbl__no-stck-bdg">
+                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
+                                		<div class="prc-tbl__no-stck-lbl">Out Of Stock</div>
+                                	</div>
+                                	<form class="prc-tbl__no-stck-form">
+                            			<div class="prc-tbl__no-stck-desc">Notify me when product becomes available.</div>
+                                		<div class="prc-tbl__no-stck-err js-vldtn-err">Please enter a valid email address</div>
+                                		<input class="prc-tbl__no-stck-inpt" type="text" placeholder="Enter Your Email Address" />
+                                		<input class="btn prc-tbl__no-stck-sbmt" type="submit" value="NOTIFY ME" />
+                                	</form>
+                                	<div class="prc-tbl__no-stck-scs">We will notify you when product is available</div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--cost">
+                                    <div class="prc-tbl__cost prc-tbl__cost--dsbld">
+                                        <span class="prc-tbl__cost-rpe">&#8377;</span>
+                                        <span class="prc-tbl__cost-val">48,805</span>
+                                   	</div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--gts">
+                                    <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl__gts-btn">
+                                        ORDER NOW<br/>
+                                        <span class="btn-GTS__str">at Amazon</span>
+                                        <span class="btn-GTS__arw">&rsaquo;</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="prc-tbl-row prc-tbl-row--online" style="display:none" data-storename="ebay" data-rating="10" data-relrank="7" data-pricerank="48,705">
+                            <div class="prc-tbl-row__inr clearfix">
+                                <div class="prc-tbl-clm prc-tbl-clm--str">
+                                	<div class="prc-tbl__str-logo-wrpr">
+                                    	<img class="prc-tbl__str-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-ebay-logo.png" />
+                                    </div>
+                                </div>
+                                <div class="prc-tbl-clm prc-tbl-clm--slr">
+                                    <div class="prc-tbl__slr-name">Seller: WS Retail</div>
+
+                                    <div class="rtng-wrpr rtng-wrpr--l clearfix">
+                                        <div class="rtng-star js-prc-tbl__str-rtng js-tltp" data-storename="snapdeal" data-rating="10" data-tooltip="Rated 1 by 123 users">
+                                            <div class="rtng-star__inr" style="width: 20%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rtng-bdg">1/5</span>
 
                                     <div class="prc-tbl__slr-prm">
                                         <img class="prc-tbl__slr-prm-logo" src="http://avi.mysmartprice.com/rd/img/pricetable-amazon-fulfilled.png" />
@@ -1185,7 +1347,7 @@
                                 <div class="prc-tbl-clm prc-tbl-clm--cost">
                                     <div class="prc-tbl__cost">
                                         <span class="prc-tbl__cost-rpe">&#8377;</span>
-                                        <span class="prc-tbl__cost-val">48,005</span>
+                                        <span class="prc-tbl__cost-val">48,705</span>
                                    	</div>
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
@@ -1241,7 +1403,7 @@
                             	</div>
                             </div>
                         </div>
-                        <div class="prc-tbl-row prc-tbl-row--online prc-tbl-row--NA" data-storename="amazon" data-relrank="8" data-pricerank="48,605">
+                        <div class="prc-tbl-row prc-tbl-row--online prc-tbl-row--NA" style="display:none" data-storename="amazon" data-relrank="8" data-pricerank="48,605">
                             <div class="prc-tbl-row__inr clearfix">
                                 <div class="prc-tbl-clm prc-tbl-clm--str">
                                 	<div class="prc-tbl__str-logo-wrpr">
@@ -1253,16 +1415,18 @@
                                 		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
                                 		<div class="prc-tbl__no-stck-lbl">Out Of Stock</div>
                                 	</div>
-                                	<div class="prc-tbl__no-stck-desc">Notify me when product becomes available.</div>
                                 	<form class="prc-tbl__no-stck-form">
+                            			<div class="prc-tbl__no-stck-desc">Notify me when product becomes available.</div>
+                                		<div class="prc-tbl__no-stck-err js-vldtn-err">Please enter a valid email address</div>
                                 		<input class="prc-tbl__no-stck-inpt" type="text" placeholder="Enter Your Email Address" />
-                                		<div class="btn btn-l prc-tbl__no-stck-sbmt">NOTIFY ME</div>
+                                		<input class="btn prc-tbl__no-stck-sbmt" type="submit" value="NOTIFY ME" />
                                 	</form>
+                                	<div class="prc-tbl__no-stck-scs">We will notify you when product is available</div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--cost">
                                     <div class="prc-tbl__cost prc-tbl__cost--dsbld">
                                         <span class="prc-tbl__cost-rpe">&#8377;</span>
-                                        <span class="prc-tbl__cost-val">48,605</span>
+                                        <span class="prc-tbl__cost-val">48,905</span>
                                    	</div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
@@ -1275,7 +1439,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="sctn__view-all js-prc-tbl__shw-more">Show More Stores</div>
+                    <div class="sctn__view-all js-prc-tbl__show-more" data-collapsed="true">Show More Stores</div>
                 </div>
 			</div>
 		</div>
@@ -1574,7 +1738,7 @@
                             </div>
 						</div>
 					</div>
-					<div class="usr-rvw-item clearfix">
+					<div class="usr-rvw-item clearfix" data-review-id="2">
 						<div class="usr-rvw-item__left">
 							<div class="usr-rvw-item__info clearfix">
 								<img class="usr-rvw-item__img" src="img/expert-img.png" alt="User">
@@ -1607,15 +1771,15 @@
 							</div>
 							<div class="usr-rvw-item__ftr clearfix">
 								<div class="usr-rvw-item__ftr-left">
-									Did you find this review helpful <span class="text-link">Yes</span> | <span class="text-link">No</span>
+									Did you find this review helpful <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
 								</div>
 								<div class="usr-rvw-item__ftr-rght">
-									<span class="text-link">Report Spam</span>
+									<span class="js-usr-rvw__rprt-spam text-link">Report Spam</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="usr-rvw-item clearfix">
+					<div class="usr-rvw-item clearfix" data-review-id="1">
 						<div class="usr-rvw-item__left">
 							<div class="usr-rvw-item__info clearfix">
 								<img class="usr-rvw-item__img" src="img/expert-img.png" alt="User">
@@ -1648,13 +1812,61 @@
 							</div>
 							<div class="usr-rvw-item__ftr clearfix">
 								<div class="usr-rvw-item__ftr-left">
-									Did you find this review helpful <span class="text-link">Yes</span> | <span class="text-link">No</span>
+									Did you find this review helpful <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
 								</div>
 								<div class="usr-rvw-item__ftr-rght">
-									<span class="text-link">Report Spam</span>
+									<span class="js-usr-rvw__rprt-spam text-link">Report Spam</span>
 								</div>
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+			<div class="sctn usr-wrt-rvw">
+				<div class="sctn__hdr clearfix">
+					<div class="sctn__ttl">Write a review</div>
+				</div>
+				<div class="sctn-inr">
+					<form class="usr-rvw-form">
+						<div class="clearfix">
+							<div class="usr-rvw-form__rtng-wrpr">
+								<div class="usr-rvw-form__rtng-err js-vldtn-err">Please rate this product</div>
+								<span class="usr-rvw-form__rtng-lbl">RATE THIS PRODUCT -</span>
+								<div class="rtng-wrpr rtng-wrpr--xl">
+									<div class="rtng-star js-tltp">
+										<div class="rtng-star__inr">
+										</div>
+									</div>
+								</div>
+								<div class="usr-rvw-form__rtng-rmrk" data-remarks="Terrible,Bad,Average,Good,Excellent"></div>
+								<input class="usr-rvw-form__rtng-inpt" type="hidden" value="0" autocomplete="off"/>
+							</div>
+						</div>
+						
+						<div class="usr-rvw-form__ttl-wrpr">
+							<div class="usr-rvw-form__ttl-err js-vldtn-err">Please enter title of your review (atleast 20 charecters)</div>
+							<input class="usr-rvw-form__ttl" type="text" placeholder="Title (20 charecters)">
+						</div>
+
+						<div class="usr-rvw-form__desc-wrpr">
+							<div class="usr-rvw-form__desc-err js-vldtn-err">Please enter descrption of your review (atleast 100 charecters)</div>
+							<textarea class="usr-rvw-form__desc" placeholder="Write Comment (minimun 100 charecters)"></textarea>
+						</div>
+
+						<div class="usr-rvw-form__dtls clearfix">
+							<div class="usr-rvw-form__dtls-img-wrpr">
+								<img class="usr-rvw-form__dtls-img" src="#">
+							</div>
+							<div class="usr-rvw-form__dtls-desc">
+								<div class="usr-rvw-form__dtls-name"></div>
+								<div class="usr-rvw-form__dtls-email"></div>
+							</div>
+						</div>
+						<input class="btn btn--red usr-rvw-form__submit" type="submit" value="SUMBIT REVIEW" />
+					</form>
+					<div class="usr-wrt-rvw__scs">
+						<div class="usr-wrt-rvw__scs-ttl">Review Complete!</div>
+						<div class="usr-wrt-rvw__scs-desc">Thank you for reviewing the Micromax Canvas Spark.<br/>Please allow our moderators some time to process your review.</div>
 					</div>
 				</div>
 			</div>
@@ -1959,7 +2171,7 @@
 	<script type='text/javascript' src='assets/js/utils.js'></script>
 	<script type='text/javascript' src='assets/js/msp.js'></script>
 	<script type='text/javascript' src='assets/js/common.js'></script>
-	<script type='text/javascript' src='/msp/jquery/jquery.tinysort.min.js?release=2014.08.15'></script>
+	<!-- <script type='text/javascript' src='/msp/jquery/jquery.tinysort.min.js?release=2014.08.15'></script> -->
 	<script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?v=3.17&region=IN&libraries=places'></script>
 	<script type='text/javascript' src='assets/js/single.js'></script>
 	<script type='text/javascript' src='assets/js/compare_panel.js'></script>

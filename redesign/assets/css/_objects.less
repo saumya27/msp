@@ -415,17 +415,16 @@
   &--l {
     line-height: 18px;
     .rtng-star {
+      width: 70px;
+      height: 18px;
       background: url('http://doypaxk1e2349.cloudfront.net/icons/star-large-grey.png') left center repeat-x;
       &__inr {
+        height: 18px;
         background: url('http://doypaxk1e2349.cloudfront.net/icons/star-large-gold.png') left center repeat-x;
       }
     }
     .rtng__cnt {
       font-size: 14px;
-    }
-    .rtng-star, .rtng-star__inr {
-      width: 70px;
-      height: 18px;
     }
   }
   &--xl {
@@ -433,22 +432,24 @@
     .rtng__cnt {
       font-size: 10px;
     }
-    .rtng-star, .rtng-star__inr {
-      width: 95px;
-      height: 18px;
-      background-size: auto 18px;
-    }
     .rtng-star {
+      width: 95px;
       background-image: url('http://avi.mysmartprice.com/rd/img/star-grey-xl.png');
     }
     .rtng__inr {
       background-image: url('http://avi.mysmartprice.com/rd/img/star-gold-xl.png');
     }
+    .rtng-star, .rtng-star__inr {
+      height: 18px;
+      background-size: auto 18px;
+    }
   }
 }
 .rtng-star {
+  width: 60px;
   margin-right: 10px;
   background: url('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png') left center repeat-x;
+  cursor: pointer;
   &__inr {
     background: url('http://doypaxk1e2349.cloudfront.net/icons/star-gold.png') left center repeat-x;
   }
@@ -461,8 +462,6 @@
 }
 .rtng-star, .rtng-star__inr {
   float: left;
-
-  width: 60px;
   height: 14px;
 }
 
@@ -936,4 +935,9 @@
     text-align: center;
     margin-top: 215px;
   }
+}
+
+.js-vldtn-err {
+  display: none;
+  color: @fg-color-red;
 }

@@ -209,12 +209,12 @@
       font-size:18px;
       vertical-align: middle;
     }
-    &-desc {
-      font-size:16px;
+    &-form {
       margin-top: 35px;
     }
-    &-form {
-      margin-top:20px;
+    &-desc {
+      font-size:16px;
+      margin-bottom: 20px;
     }
     &-inpt {
       font-size:14px;
@@ -224,6 +224,15 @@
       width: 250px;
       height: 14px;
       vertical-align: middle;
+    }
+    &-err {
+      margin-bottom: 10px;
+    }
+    &-scs {
+      display: none;
+      margin-top: 20px;
+      font-size: 16px;
+      color: @fg-color-blue;
     }
     &-sbmt {
       border-radius: 0 3px 3px 0;
@@ -531,7 +540,7 @@
     max-width: 100%;
   }
   &__item {
-    padding: 20px;
+    padding: 20px 0;
   }
   &__item + &__item {
     border-top: 1px solid @border-color;
@@ -717,106 +726,114 @@
   }
 }
 
-.usr-rvw-form {
+.usr-wrt-rvw {
   .sctn-inr {
     padding: 20px;
   }
-  &__ttl, &__desc {
-    display: block;
-
-    width: 865px;
-    padding: 10px;
-
-    font-size: 12px;
+  .js-vldtn-err {
+    margin-bottom: 10px;
   }
-  &__desc {
-    height: 50px;
-    margin-top: 20px;
-  }
-  &__dtls {
-    margin-top: 20px;
-    padding: 5px;
-    border: 1px solid @border-color;
-    border-radius: @border-radius;
-    &-img-wrpr, &-desc {
-      float: left;
-    }
-    &-desc {
-      margin-left: 10px;
-    }
-    &-img-wrpr {
-      height: 35px;
+  .usr-rvw-form {
+    &__rtng {
+      &-wrpr {
+        float: left;
 
-      line-height: 35px;
-
-      text-align: center;
-    }
-    &-img {
-      max-width: 100%;
-      max-height: 100%;
-
-      vertical-align: middle;
-    }
-    &-ttl {
-      color: black;
-      font-size: 14px;
-      font-weight: @font-bold;
-    }
-    &-txt {
-      margin-top: 5px;
-
-      color: @fg-color-grey;
-      font-size: 14px;
-    }
-  }
-  &__rtng-wrpr {
-    float: left;
-
-    width: 444px;
-    margin-top: 20px;
-  }
-  .rtng-wrpr {
-    display: inline-block;
-
-    margin-left: 10px;
-
-    vertical-align: middle;
-  }
-  &__rtng-lbl {
-    display: inline-block;
-
-    font-size: 14px;
-    font-weight: @font-bold;
-
-    vertical-align: middle;
-  }
-  &__rcmd {
-    &-wrpr {
-      float: right;
-
-      width: 444px;
-      margin-top: 10px;
-
-      text-align: right;
-      .votes-wrpr {
+        width: 444px;
+      }
+      &-lbl {
         display: inline-block;
 
-        margin-left: 20px;
+        font-size: 14px;
+        font-weight: @font-bold;
+
+        vertical-align: bottom;
+      }
+      &-rmrk {
+        display: inline-block;
+        color: @fg-color-blue;
+        font-size: 16px;
+        line-height: 18px;
+        font-weight: @font-bold;
+        vertical-align: bottom;
+      }
+    }
+    .rtng-wrpr {
+      display: inline-block;
+
+      margin-left: 10px;
+      line-height: 18px;
+      vertical-align: bottom;
+    }
+    &__ttl-wrpr, &__desc-wrpr {
+      margin-top:20px;
+    }
+    &__ttl, &__desc {
+      display: block;
+
+      width: 865px;
+      padding: 10px;
+      
+      font-size: 12px;
+    }
+    &__desc {
+      height: 50px;
+    }
+    &__dtls {
+      display: none;
+      margin-top: 20px;
+      padding: 7px;
+      border: 1px solid @border-color;
+      border-radius: @border-radius;
+      &-img-wrpr, &-desc {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      &-desc {
+        margin-left: 4px;
+      }
+      &-img-wrpr {
+        height: 35px;
+
+        line-height: 35px;
+
+        text-align: center;
+      }
+      &-img {
+        max-width: 100%;
+        max-height: 100%;
 
         vertical-align: middle;
       }
+      &-name {
+        color: black;
+        font-size: 14px;
+        font-weight: @font-bold;
+      }
+      &-email {
+        margin-top: 5px;
+
+        color: @fg-color-grey;
+        font-size: 14px;
+      }
     }
-    &-lbl {
-      display: inline-block;
-
-      font-size: 14px;
-      font-weight: @font-bold;
-
-      vertical-align: middle;
+    &__submit {
+      margin-top: 20px;
     }
   }
-  &__submit {
-    margin-top: 20px;
+  &__scs {
+    display: none;
+    height: 230px;
+    padding: 60px 0 0;
+    text-align: center;
+    &-ttl {
+      font-size: 24px;
+      color: #3d6a8c;
+    }
+    &-desc {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 25px;
+    }
   }
 }
 
