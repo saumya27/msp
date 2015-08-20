@@ -133,7 +133,11 @@
       position: relative;
 
       float: left;
+      &[data-sort-value] {
+        cursor: pointer; 
+      }
     }
+    
     &__clm &__cptn {
       position: absolute;
       top: -18px;
@@ -141,12 +145,17 @@
       color: @fg-color-grey;
       font-size: 12px;
     }
-    &__clm &__cptn--hvr {
+    &__clm[data-sort-value] &__cptn {
       display: none;
     }
-    &__clm:hover &__cptn--hvr {
+    
+    &__clm[data-sort-value]:hover &__cptn {
       display: block;
     }
+    &__clm--slctd[data-sort-value] &__cptn{
+      display: block;
+    }
+    
     &__lbl {
       color: @fg-color-grey;
       font-size: 14px;
@@ -159,7 +168,7 @@
     }
     &__arw {
       display: inline-block;
-
+      opacity: 0.75;
       width: 13px;
       height: 13px;
       margin-left: 3px;
@@ -171,6 +180,9 @@
       &--asc {
         background: url('../../img/pricetable-sort-asc.png') no-repeat center center/auto 13px;
       }
+    }
+    &__clm--slctd &__arw {
+      opacity: 1;
     }
     &__strs {
       width: 170px;
@@ -188,7 +200,7 @@
   }
   &-row {
     position: relative;
-
+    width: 100%;
     border-top: 1px solid @border-color;
     background: @bg-color-white;
     &__ofln-bdg {
@@ -488,8 +500,20 @@
       line-height: 15px;
       vertical-align: middle;
     }
-    &-desc, &-form {
+    &-form {
       margin-top: 15px;
+    }
+    &-desc {
+      margin-bottom: 15px; 
+    }
+    &-err {
+      margin-bottom: 10px;
+    }
+    &-scs {
+      display: none;
+      margin-top:20px;
+      color: @fg-color-blue;
+      font-size: 14px;
     }
     &-inpt {
       padding: 6px;

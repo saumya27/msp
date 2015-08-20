@@ -1,7 +1,17 @@
+/*! TinySort 1.5.6
+ * * Copyright (c) 2008-2013 Ron Valstar http://tinysort.sjeiti.com/
+ * * License:
+ * *     MIT: http://www.opensource.org/licenses/mit-license.php
+ * *     GPL: http://www.gnu.org/licenses/gpl.html
+ * */
+!function(a,b){"use strict";function c(a){return a&&a.toLowerCase?a.toLowerCase():a}function d(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]==b)return!e;return e}var e=!1,f=null,g=parseFloat,h=Math.min,i=/(-?\d+\.?\d*)$/g,j=/(\d+\.?\d*)$/g,k=[],l=[],m=function(a){return"string"==typeof a},n=function(a,b){for(var c,d=a.length,e=d;e--;)c=d-e-1,b(a[c],c)},o=Array.prototype.indexOf||function(a){var b=this.length,c=Number(arguments[1])||0;for(c=0>c?Math.ceil(c):Math.floor(c),0>c&&(c+=b);b>c;c++)if(c in this&&this[c]===a)return c;return-1};a.tinysort={id:"TinySort",version:"1.5.6",copyright:"Copyright (c) 2008-2013 Ron Valstar",uri:"http://tinysort.sjeiti.com/",licensed:{MIT:"http://www.opensource.org/licenses/mit-license.php",GPL:"http://www.gnu.org/licenses/gpl.html"},plugin:function(){var a=function(a,b){k.push(a),l.push(b)};return a.indexOf=o,a}(),defaults:{order:"asc",attr:f,data:f,useVal:e,place:"start",returns:e,cases:e,forceStrings:e,ignoreDashes:e,sortFunction:f}},a.fn.extend({tinysort:function(){var p,q,r,s,t=this,u=[],v=[],w=[],x=[],y=0,z=[],A=[],B=function(a){n(k,function(b){b.call(b,a)})},C=function(a,b){return"string"==typeof b&&(a.cases||(b=c(b)),b=b.replace(/^\s*(.*?)\s*$/i,"$1")),b},D=function(a,b){var c=0;for(0!==y&&(y=0);0===c&&s>y;){var d=x[y],f=d.oSettings,h=f.ignoreDashes?j:i;if(B(f),f.sortFunction)c=f.sortFunction(a,b);else if("rand"==f.order)c=Math.random()<.5?1:-1;else{var k=e,o=C(f,a.s[y]),p=C(f,b.s[y]);if(!f.forceStrings){var q=m(o)?o&&o.match(h):e,r=m(p)?p&&p.match(h):e;if(q&&r){var t=o.substr(0,o.length-q[0].length),u=p.substr(0,p.length-r[0].length);t==u&&(k=!e,o=g(q[0]),p=g(r[0]))}}c=d.iAsc*(p>o?-1:o>p?1:0)}n(l,function(a){c=a.call(a,k,o,p,c)}),0===c&&y++}return c};for(p=0,r=arguments.length;r>p;p++){var E=arguments[p];m(E)?z.push(E)-1>A.length&&(A.length=z.length-1):A.push(E)>z.length&&(z.length=A.length)}for(z.length>A.length&&(A.length=z.length),s=z.length,0===s&&(s=z.length=1,A.push({})),p=0,r=s;r>p;p++){var F=z[p],G=a.extend({},a.tinysort.defaults,A[p]),H=!(!F||""===F),I=H&&":"===F[0];x.push({sFind:F,oSettings:G,bFind:H,bAttr:!(G.attr===f||""===G.attr),bData:G.data!==f,bFilter:I,$Filter:I?t.filter(F):t,fnSort:G.sortFunction,iAsc:"asc"==G.order?1:-1})}return t.each(function(c,d){var e,f=a(d),g=f.parent().get(0),h=[];for(q=0;s>q;q++){var i=x[q],j=i.bFind?i.bFilter?i.$Filter.filter(d):f.find(i.sFind):f;h.push(i.bData?j.data(i.oSettings.data):i.bAttr?j.attr(i.oSettings.attr):i.oSettings.useVal?j.val():j.text()),e===b&&(e=j)}var k=o.call(w,g);0>k&&(k=w.push(g)-1,v[k]={s:[],n:[]}),e.length>0?v[k].s.push({s:h,e:f,n:c}):v[k].n.push({e:f,n:c})}),n(v,function(a){a.s.sort(D)}),n(v,function(a){var b=a.s,c=a.n,f=b.length,g=c.length,i=f+g,j=[],k=i,l=[0,0];switch(G.place){case"first":n(b,function(a){k=h(k,a.n)});break;case"org":n(b,function(a){j.push(a.n)});break;case"end":k=g;break;default:k=0}for(p=0;i>p;p++){var m=d(j,p)?!e:p>=k&&k+f>p,o=m?0:1,q=(m?b:c)[l[o]].e;q.parent().append(q),(m||!G.returns)&&u.push(q.get(0)),l[o]++}}),t.length=0,Array.prototype.push.apply(t,u),t}}),a.fn.TinySort=a.fn.Tinysort=a.fn.tsort=a.fn.tinysort}(jQuery);
+/*! TinySort 1.5.6 -- end */
+
+
 var PriceTable = {
     "dataPoints" : {
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
-        "defaultRows" : $(".prc-tbl__row:visible").length,
+        "defaultRows" : $(".prc-tbl-row:visible").length,
         "variant" : {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
@@ -29,9 +39,9 @@ var PriceTable = {
     
         if ($pageTitle.data("offlinedelivery") == "1") {
             /** 
-            * TODO:: remove comment before going to prod.
-            * PriceTable.update.byCategory("recommended");
-            */
+             * TODO:: remove comment before going to prod.
+             * PriceTable.update.byCategory("recommended");
+             */
         }
         
         // select color and updatePage.
@@ -93,19 +103,56 @@ var PriceTable = {
         });
         
         // sort current pricetable.
-        $doc.on("change", ".js-prc-tbl__sort", function() {
-            var sortby = $(this).val();
-            PriceTable.sort(sortby);
-        });
+        (function pricetableSortingHandlers() {
+            $doc.on("change", ".js-prc-tbl__sort", function() {
+                var newSortby = $(this).val(),
+                    category = newSortby.split(":")[0],
+                    $updatedColumn = $(".prc-tbl-hdr__clm[data-sort-category='" + category + "']");
 
-        $doc.on("click", ".prc-tbl-hdr__slr-rtng", function() {
-            var is
-        });
+                updatePriceTableColumns($updatedColumn, newSortby);
+            
+                PriceTable.sort(newSortby);
+            });
+
+            $doc.on("click", ".prc-tbl-hdr__clm[data-sort-value]", function() {
+                var newSortby = $(this).data("sort-value");
+
+                // change sort dropdown value to trigger pricetable update accordingly.
+                $(".js-prc-tbl__sort").val(newSortby).change();
+            });
+
+            function updatePriceTableColumns($updatedColumn, newSortby) {
+                var newSortby, nextSortby, category, newOrder, oldOrder, nextOrder;
+
+                if ($updatedColumn.length) {
+                    // get category and new order to be applied.
+                    category = newSortby.split(":")[0];
+                    newOrder = newSortby.split(":")[1];
+
+                    /**
+                     * MSP.utils.rotateValue => rotate values in a set,
+                     * used here to toggle between two values.
+                     */
+                    oldOrder = nextOrder = MSP.utils.rotateValue(["asc", "desc"], newOrder);
+                    nextSortby = category + ":" + nextOrder;
+
+                    // assign new sort value and class to the column
+                    $updatedColumn.data("sort-value", nextSortby);
+                    $updatedColumn.find(".prc-tbl-hdr__arw").removeClass("prc-tbl-hdr__arw--" + oldOrder).addClass("prc-tbl-hdr__arw--" + newOrder);
+                    // reset all columns label to unsorted and apply sorting to current column.
+                    $(".prc-tbl-hdr__clm[data-sort-category]").removeClass("prc-tbl-hdr__clm--slctd").find(".prc-tbl-hdr__cptn").text("Sort By");
+                    $updatedColumn.addClass("prc-tbl-hdr__clm--slctd").find(".prc-tbl-hdr__cptn").text("Sorted By");
+                } else {
+                    // reset all columns to unsorted
+                    $(".prc-tbl-hdr__clm[data-sort-category]").removeClass("prc-tbl-hdr__clm--slctd").text("Sort By");
+                }
+            }
+        }());
 
         // show more stores.
-        $doc.on('click', '.js-prc-tbl__shw-mr', function() {
+        $doc.on('click', '.js-prc-tbl__show-more', function() {
             var $this = $(this),
-                $priceLines = $(".prc-tbl__row"),
+                $priceLines = $(".prc-tbl-row"),
                 isCollapsed = $this.data("collapsed"),
                 defaultRows = PriceTable.dataPoints.defaultRows;
             $priceLines.slice(defaultRows).slideToggle();
@@ -162,17 +209,14 @@ var PriceTable = {
         $doc.on("click", ".js-xtrs-msg-box__cls", function() {
             $(this).closest(".msg-box").remove();
         });
-        /* more offers message box handlers - end */
 
-        // close all message boxed and pricealert on pressing escape key
+        // close all message boxes on pressing escape key
         $('body').keydown(function(e) {
-            if (e.which == 27 && $('.closepricelart').is(':visible')) {
-                $('.closepricelart').click();
-            }
             if (e.which == 27 && $('.msg-box').is(':visible')) {
                 $('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
             }
         });
+        /* more offers message box handlers - end */
 
         (function locationFilterHandlers() {
             var isChrome = MSP.utils.browser.name === "chrome",
@@ -231,12 +275,18 @@ var PriceTable = {
                         $(".js-glctn-ovrly").removeClass("js-ovrly--show");
                         $("body").css("overflow", "auto");
                       
+                        // if online stores is selected switch tab to offline.
+                        if (PriceTable.dataPoints.getSelectedCategory() === "online") {
+                            $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
+                            $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                        }
+
                         PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
                             "latitude" : latitude,
                             "longitude" : longitude
                         });
 
-                        if (window._gaq) _gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'allow']);
+                        if (_gaq) _gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'allow']);
                     }
 
                     function locationFail() {
@@ -251,7 +301,7 @@ var PriceTable = {
                             });
                         }
 
-                        if (window._gaq)_gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'deny']);
+                        if (_gaq)_gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'deny']);
                     }
                 });
 
@@ -268,8 +318,15 @@ var PriceTable = {
                         types: ["geocode"]
                     });
                     google.maps.event.addListener(autocomplete, "place_changed", function() {
-                        var place = autocomplete.getPlace();
-                        if (place && place.geometry && place.geometry.location) {
+                        var place = autocomplete.getPlace(),
+                            location = place && place.geometry && place.geometry.location;
+                        if (location) {
+                            // if online stores is selected switch tab to offline.
+                            if (PriceTable.dataPoints.getSelectedCategory() === "online") {
+                                $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
+                                $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                            }
+                            
                             PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
                                 "latitude" : location.lat(),
                                 "longitude" : location.lng()
@@ -285,7 +342,8 @@ var PriceTable = {
 
     },
     "updatePageData" : function(json) {
-        var $showMoreStores = $(".js-prc-tbl__shw-more");
+        var $showMoreStores = $(".js-prc-tbl__show-more");
+
         if (json) {
             if (json.bestprice) {
                 $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
@@ -341,10 +399,10 @@ var PriceTable = {
     },
     "sort" : function(sortby) {
         var $priceTableContainer = $('.prc-tbl-inr'),
-            $store_pricetable = $('.prc-tbl-row'),
+            $priceTableRows = $('.prc-tbl-row'),
             sortColumn = sortby.split(":")[0],
             sortOrder = sortby.split(":")[1],
-            sortDataAttrs;
+            sortTypes;
 
         // close all messageBoxes before sorting priceTable
         $('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
@@ -362,13 +420,13 @@ var PriceTable = {
             display: 'block'
         });
 
-        $store_pricetable.show();
-        $store_pricetable.each(function(i, el) {
+        $priceTableRows.show();
+        $priceTableRows.each(function(i, el) {
             var iY = $(el).position().top;
             $.data(el, 'h', iY);
         });
 
-        if (window._gaq) _gaq.push(['_trackEvent', 'sort_by', sortby, '']);
+        if (_gaq) _gaq.push(['_trackEvent', 'sort_by', sortby, '']);
 
         if (sortby === 'popularity:desc') {
             $('.prc-tbl-row--NA').attr("data-relrank", "9999");
@@ -376,15 +434,17 @@ var PriceTable = {
             $('.prc-tbl-row--NA').attr("data-pricerank", "9999999");
         } else if (sortby === 'price:desc') {
             $('.prc-tbl-row--NA').attr("data-pricerank", "0");
+        } else if (sortby === 'rating:asc') {
+            $('.prc-tbl-row--NA').attr("data-rating", "6");
+            $('.prc-tbl-row--NA').find('.js-prc-tbl__str-rtng').attr("data-rating", "6");
         } else if (sortby === 'rating:desc') {
-            $('.prc-tbl-row--NA').find('.js-prc-tbl__str-rtng').attr("data-rating", "-1");    
+            $('.prc-tbl-row--NA').attr("data-rating", "-1");
+            $('.prc-tbl-row--NA').find('.js-prc-tbl__str-rtng').attr("data-rating", "-1");
         }
 
         $('.prc-tbl-row').tsort({
-            "attr" : sortTypes[sortby].attr,
-            "order" : sortTypes[sortby].order
-        }, '.js-prc-tbl__str-rtng', {
-            attr: "data-storename"
+            "attr" : sortTypes[sortColumn].attr,
+            "order" : sortOrder
         }).each(function(i, el) {
             var $El = $(el);
             var iFr = $.data(el, 'h');
@@ -398,8 +458,8 @@ var PriceTable = {
             }).stop().animate({
                 top: iTo
             }, 500, function() {
-                $store_pricetable.css({
-                    position: 'static',
+                $priceTableRows.css({
+                    position: 'relative',
                     top: 'auto'
                 });
                 $priceTableContainer.css({
@@ -407,10 +467,10 @@ var PriceTable = {
                     display: 'block'
                 });
                 
-                if ($(".js-prc-tbl__shw-mr").data("collapsed")) {
-                    $(".prc-tbl__row").slice(PriceTable.dataPoints.defaultRows).show();
+                if ($(".js-prc-tbl__show-more").data("collapsed")) {
+                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).hide();
                 } else {
-                    $(".prc-tbl__row").slice(PriceTable.dataPoints.defaultRows).hide();
+                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).show();
                 }
             });
         });
@@ -457,8 +517,8 @@ var PriceTable = {
                     "mspid": PriceTable.dataPoints.mspid,
                     "mrp": PriceTable.dataPoints.price.getMrp(),
                     "type": type,
-                    "latitude" : location.latitude,
-                    "longitude" : location.longitude
+                    "latitude" : location && location.latitude,
+                    "longitude" : location && location.longitude
                 }
             }).done(function (response) {
                 if (response) {
@@ -517,44 +577,11 @@ var PriceTable = {
 $(document).ready(function() {
     PriceTable.init();
 
-    
-    // Multiple Image Show on Top Section - Start
-    $(".prdct-dtl__thmbnl").on("mouseenter", function(e) {
-        var newSrc = $(this).find(".prdct-dtl__thmbnl-img").attr("src");
-
-        //Destination Image
-        $(".prdct-dtl__img").attr("src", newSrc)
-        $(".prdct-dtl__img-wrpr").data("href", $(this).data("href"));
-
-        $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
-        $(this).addClass("prdct-dtl__thmbnl--slctd");
-    });
-    // Multiple Image Show on Top Section - End
-
-    //Show video on click of thumbnail - Start
-    $(".exprt-rvw__vid-play").on("click", function(e) {
-        var $playNode = $(this);
-            $imageNode = $playNode.siblings(".exprt-rvw__vid-img"),
-            $container = $playNode.parent(),
-            height = $container.height(),
-            width = $container.width(),
-            videoId = $imageNode.data("video-id");
-
-        $imageNode.remove();
-        $playNode.remove();
-        $container.append('<iframe class="exprt-rvw__vid-iframe" width="'+width+'" height="'+height+
-            '" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
-       
-    });
-    //Show video on click of thumbnail - End
-
-
     /**
      * save to list button handlers
      * TODO:: check if it works
      * - start 
      */
-    var msp_login = getCookie("msp_login");
     $doc.on('click', ".prdct-dtl__save", function(e) {
         loginCallback(function() {
             $(".prdct-dtl__save").addClass("prdct-dtl__save--svd");
@@ -569,7 +596,92 @@ $(document).ready(function() {
         $(".prdct-dtl__save").removeClass("prdct-dtl__save--svd");
     });
     /* save to list button handlers - end */
+    
+    // Multiple Image Show on Top Section - Start
+    $(".prdct-dtl__thmbnl").on("mouseenter", function(e) {
+        var newSrc = $(this).find(".prdct-dtl__thmbnl-img").attr("src");
 
+        //Destination Image
+        $(".prdct-dtl__img").attr("src", newSrc)
+        $(".prdct-dtl__img-wrpr").data("href", $(this).data("href"));
+
+        $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
+        $(this).addClass("prdct-dtl__thmbnl--slctd");
+    });
+    // Multiple Image Show on Top Section - End
+
+    $(".prdct-dtl__no-stck-form").on("submit", function() {
+        var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
+            $erroNode = $(this).find(".js-vldtn-err");
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $inputField,
+            "errorNode" : $erroNode
+        }]).done(function() {
+            // $.ajax({
+            //     "url" : "out_of_stock_api_url",
+            //     "data" : {
+            //         "email" : emailValue
+            //     }
+            // });
+            // hide form & show success message.
+            $(".prdct-dtl__no-stck-form").hide();
+            $(".prdct-dtl__no-stck-scs").fadeIn();
+        });
+        return false;
+    });
+
+    // if GTS is not a popup target then open storeUrl in new tab.
+    $doc.on("click", ".js-prc-tbl__gts-btn", function() {
+        var storeUrl = $(this).data("url"),
+            hasPopup = $(this).hasClass("js-popup-trgt") || $(this).hasClass("js-lylty-popup-trgt"),
+            isEnabled = !$(this).hasClass("btn-GTS--dsbld");
+        if (!hasPopup && isEnabled) {
+            window.open(storeUrl);
+        }
+    });
+
+    $(".prc-tbl__no-stck-form").on("submit", function() {
+        var $inputField = $(this).find(".prc-tbl__no-stck-inpt"),
+            $erroNode = $(this).find(".js-vldtn-err");
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $inputField,
+            "errorNode" : $erroNode
+        }]).done(function() {
+            // $.ajax({
+            //     "url" : "out_of_stock_api_url",
+            //     "data" : {
+            //         "email" : emailValue
+            //     }
+            // });
+            $(".prc-tbl__no-stck-form").hide();
+            $(".prc-tbl__no-stck-scs").fadeIn();
+        });
+        return false;
+    });
+
+    $(".prdct-dtl__no-stck-form").on("submit", function() {
+        var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
+            $erroNode = $(this).find(".js-vldtn-err");
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $inputField,
+            "errorNode" : $erroNode
+        }]).done(function() {
+            // $.ajax({
+            //     "url" : "out_of_stock_api_url",
+            //     "data" : {
+            //         "email" : emailValue
+            //     }
+            // });
+            // hide form & show success message.
+            $(".prdct-dtl__no-stck-form").hide();
+            $(".prdct-dtl__no-stck-scs").fadeIn();
+        });
+        return false;
+    });
+    
     // show more techspecs.
     if ($(".prdct-dtl__spfctn-more-wrpr").length) {
         $doc.on("click", ".js-prdct-dtl__spfctn-show-more, .js-prdct-dtl__spfctn-show-less", function() {
@@ -581,37 +693,166 @@ $(document).ready(function() {
         });
     }
 
-    // if GTS is not a popup target then open storeUrl in new tab.
-    $doc.on("click", ".js-prc-tbl__gts-btn", function() {
-        var storeUrl = $(this).data("url"),
-            hasPopup = $(this).hasClass("popup-target") || $(this).hasClass("loyalty-popup-target"),
-            isEnabled = !$(this).hasClass("btn-GTS--dsbld");
-        if (!hasPopup && isEnabled) {
-            window.open(storeUrl);
+    //Show video on click of thumbnail - Start
+    $(".exprt-rvw__vid-play").on("click", function(e) {
+        var $playNode = $(this);
+            $imageNode = $playNode.siblings(".exprt-rvw__vid-img"),
+            $container = $playNode.parent(),
+            height = $container.height(),
+            width = $container.width(),
+            videoId = $imageNode.data("video-id");
+
+        $imageNode.remove();
+        $playNode.remove();
+        $container.append('<iframe class="exprt-rvw__vid-iframe" width="'+width+'" height="'+height+'" src="//www.youtube.com/embed/'+videoId+'?rel=0&autoplay=1" frameborder="0" allowfullscreen></iframe>');
+    });
+    //Show video on click of thumbnail - End
+
+    $doc.on("click", ".js-usr-rvw__hlpfl, .js-usr-rvw__no-hlpfl", (function() {
+        // private voteReview function that is declared on load.
+        function voteReview(voteButton) {
+            var reviewId = voteButton.closest(".usr-rvw-item").data("review-id"),
+                mspid = PriceTable.dataPoints.mspid,
+                vote = voteButton.hasClass("js-usr-rvw__hlpfl") ? 1 : -1;
+            $.post("/msp/review/post_vote.php", {
+                reviewid: reviewId,
+                mspid: mspid,
+                vote: vote
+            });
+
+            voteButton.closest(".usr-rvw-item__ftr-left").html("Thanks for reporting!").fadeOut(5000, function () {
+                voteButton.remove();
+            });
         }
+
+        // click handler function that runs evertime user clicks.
+        return function() {
+            loginCallback(voteReview, this, [$(this)]);
+            return false;
+        }
+    })());
+
+    $doc.on("click", ".js-usr-rvw__rprt-spam", function () {
+        var reviewId = $(this).closest(".usr-rvw-item").data("review-id"),
+            mspId = PriceTable.dataPoints.mspid;
+
+        $.post("/msp/review/post_vote.php", {
+            reviewid: reviewId,
+            mspid: mspId,
+            flag: "report_spam"
+        });
+
+        $(this).removeClass("text-link").html("Thanks for reporting!").css("cursor", "default").fadeOut(1000, function () {
+            $(this).remove();
+        });
+
+        return false;
     });
 
-    // theme expert review score according to its value.
-    $(".rvw__scr .rvw__scr-val").each( function() {
-        var score = $(this).text();
+    (function() {
+        var ratingWidth = $(".rtng-star").width(),
+            $ratingInr = $(".rtng-star__inr"),
+            $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
+            remarksList = $ratingRemark.data("remarks").split(","),
+            $ratingInput = $(".usr-rvw-form__rtng-inpt");
+            isUserDetailsDisplayed = false;
 
-        switch(score) {
-            case score >= 0 && score < 3: 
-                $(this).closest('.rvw__scr').css('background-color', '#CC0000');
-                break;
-            case score >= 3 && score < 6:
-                $(this).closest('.rvw__scr').css('background-color', '#F5A623'); 
-                break;
-            case score >= 6 && score < 8:
-                $(this).closest('.rvw__scr').css('background-color', '#70CB09'); 
-                break;
-            case score >= 8 && score < 10:
-                $(this).closest('.rvw__scr').css('background-color', '#417505'); 
-                break;
+        if (getCookie("msp_login") === "1") {
+            $(".usr-rvw-form__dtls-img").attr("src", getCookie("msp_user_image"));
+            $(".usr-rvw-form__dtls-name").html(getCookie("msp_login_name") || "MySmartPrice User");
+            $(".usr-rvw-form__dtls-email").html(getCookie("msp_login_email"));
+            $(".usr-rvw-form__dtls").show();   
+            isUserDetailsDisplayed = true;
         }
-    });
 
-    MSP.utils.lazyLoad.assign({
+        $doc.on("mousemove", ".usr-rvw-form__rtng-wrpr .rtng-star", function(e) {
+            var offsetX = parseInt(e.pageX - $(this).offset().left, 10),
+                rating = Math.ceil((offsetX / ratingWidth) * 4.75) || 1;
+
+            $ratingRemark.text(remarksList[rating - 1]);
+            if (offsetX <= ratingWidth) {
+                $ratingInr.width((rating * 20) + "%");
+            }
+        });
+
+        $doc.on("click", ".usr-rvw-form__rtng-wrpr .rtng-star", function() {
+            var inrWidth = $ratingInr.width(),
+                rating = (inrWidth / ratingWidth) * 5;
+            
+            $ratingRemark.data("remark", $ratingRemark.text());
+            $ratingInput.val(rating);
+            $ratingInr.data("width", inrWidth).addClass("rtng-star__inr--rated");
+        });
+
+        $doc.on("mouseleave", ".usr-rvw-form__rtng-wrpr .rtng-star", function() {
+            if ($ratingInr.hasClass("rtng-star__inr--rated")) {
+                $ratingRemark.text($ratingRemark.data("remark"));
+                $ratingInr.width($ratingInr.data("width"));
+            } else {
+                $ratingRemark.empty();
+            }
+        });
+
+        $doc.on("submit", ".usr-rvw-form", function() {
+            loginCallback(function() {
+                MSP.utils.validate.form([{
+                    "type" : "rating",
+                    "inputField" : $(".usr-rvw-form__rtng-inpt"),
+                    "errorNode" : $(".usr-rvw-form__rtng-err")
+                },{
+                    "type" : "text",
+                    "inputField" : $(".usr-rvw-form__ttl"),
+                    "errorNode" : $(".usr-rvw-form__ttl-err"),
+                    "options" : { "min" : 20 }
+                },{
+                    "type" : "text",
+                    "inputField" : $(".usr-rvw-form__desc"),
+                    "errorNode" : $(".usr-rvw-form__desc-err"),
+                    "options" : { "min" : 100 }
+                }]).done(function() {
+                    var rating = $(".usr-rvw-form__rtng-inpt").val(),
+                        title = $(".usr-rvw-form__ttl").val(),
+                        details = $(".usr-rvw-form__desc").val(),
+                        errorMessage = "There was a problem submitting your review. Please try again.";
+                    
+                    $.ajax({
+                        type: "POST",
+                        url: "/msp/review/save_a_review.php" ,
+                        data: {
+                            "mspid": PriceTable.dataPoints.mspid,
+                            "title": title,
+                            "details": details,
+                            "rating_review": rating,
+                            "email_id": getCookie("msp_login_email")
+                        }
+                    }).done(function (response) {
+                        if (response === "SUCCESS") {
+                            $(".usr-rvw-form").hide();
+                            $(".usr-wrt-rvw__scs").fadeIn();
+                            $(".usr-rvw-form").data("submitted", true);
+                        } else {
+                            alert(errorMessage);
+                        }
+                    }).fail(function () {
+                        alert(errorMessage);
+                    });
+                });
+            });
+            return false;
+        });
+        
+
+        // Refer https://developer.mozilla.org/en-US/docs/Web/Events/beforeunload#Example
+        window.onbeforeunload = function (e) {
+            var message = "You have not finished submitting your review.";
+            if (!$(".usr-rvw-form").data("submitted") && $.trim($(".usr-rvw-form__desc").val()).length) {
+                (e || window.event).returnValue = message; // Gecko + IE
+                return message; // Gecko + Webkit, Safari, Chrome etc.
+            }
+        } 
+    }()); 
+
+     MSP.utils.lazyLoad.assign({
         "node" : $(".prc-grph"),
         "isStatic" : true,
         "callback" : {
@@ -638,8 +879,5 @@ $(document).ready(function() {
             "context": window,
             "arguments" : [] 
         }
-    }).run();
-
-
-
+    }).run(); 
 });

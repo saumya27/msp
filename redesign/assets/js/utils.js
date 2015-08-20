@@ -58,63 +58,83 @@ MSP = {
         "validate" : {
             "_" : {
                 "regex" : {
+                    "text" : (new RegExp('^[a-zA-Z\\d\\-_,.\\s]+$', "i")),
                     "number" : '^\\d+$',
                     "email" : '^(([^<>()[\\]\\\\.,;:\\s@\\"]+(\\.[^<>()[\\]\\\\.,;:\\s@\\"]+)*)|(\\".+\\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$'
                 },
-                "messages" : {
-                    "number" : "Please enter a valid number.",
-                },
                 "testPattern" : function(type, value) {
-                    var result = {},
-                        status = this._regex[type].test(value);
-                    result.status = status;
-                    if (status) result.message = this._messages[type]; 
+                    var result = (new RegExp(this.regex[type])).test(value);
+                    
                     return result;
                 }
             },
+            "rating" :  function(value, options) {
+                return !!parseInt(value, 10);
+            },
             "text" : function (value, options) {
                 var isWithinLimits = (function() {
-                    var result = true;
-                    if (options && options.min && value < options.min) {
+                    var result = true,
+                        minLength = options && options.min && parseInt(options.min, 10),
+                        maxLength = options && options.max && parseInt(options.max, 10);
+
+                    if (minLength && value.length < options.min) {
                         result = false;
                     }
-                    if (options && options.max && value > options.max) {
+                    if (maxLength && value.length > minLength) {
                         result = false;
                     }
                     return result;
                 }());
-                return this._.testPattern("text", value) && value && isWithinLimits;
+                return this._.testPattern("text", $.trim(value)) && value && isWithinLimits;
             },
-            "number" : function(value) {
+            "number" : function(value, options) {
                 return this._.testPattern("number", value);
             },
-            "email" : function() {
+            "email" : function(value, options) {
                 return this._.testPattern("email", value);
             },
             /** MSP.utils.validate.form
             * "formData" argument format
             *   [{
-            *       "type" : "email",     // required Argument
-            *       "value" : "a@a.com",  // required Argument
-            *       "errorNode" : $(".field_error_message") // optional Argument
+            *       "type" : "email",                 // required Argument
+            *       "inputField" : $('.form-inpt'),   // required Argument
+            *       "errorNode" : $(".js-vldtn-err"), // optional Argument
+            *       "options" : {                     // optional Argument
+            *           "min" : "5",
+            *           "max" : "10"
+            *       }
             *   }, .....]
             */
             "form" : function(formData) {
-                var isValid = true,
-                    check = this;
+                var dfd = $.Deferred(),
+                    isValid = true,
+                    check = this,
+                    $firstErrorField;
 
                 $.each(formData, function(i, field) {
-                    var result = check[field.type](field.value);
-                    if (result.status === false) {
+                    var result = check[field.type](field.inputField.val(), field.options);
+
+                    if (result === false) {
                         if (field.errorNode instanceof jQuery) {
-                            field.errorNode.text(result.message);
-                        } else {
-                            alert(result.message);
+                            field.errorNode.slideDown({ "easing" : "swing" });
+                            if (!$firstErrorField && field.inputField) {
+                                $firstErrorField = field.inputField;
+                                $firstErrorField.focus();
+                            }
                         }
                         isValid = false;
+                    } else {
+                        field.errorNode.slideUp({ "easing" : "swing" });
                     }
                 });
-                return isValid;
+
+                if (isValid) {
+                    dfd.resolve();
+                } else {
+                    dfd.reject();
+                }
+
+                return dfd.promise();
             }
         },
         /**
@@ -237,6 +257,15 @@ MSP = {
                 var userAgent = navigator.userAgent.toLowerCase();
                 return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
             }())
+        },
+        "rotateValue" : function(valueSet, currentValue) {
+            var currentIndex
+            if ($.isArray(valueSet)) {
+                currentIndex = valueSet.indexOf(currentValue);
+                if (currentIndex !== -1) {
+                    return valueSet[(currentIndex + 1) % valueSet.length];
+                }
+            }
         }
     }
 }

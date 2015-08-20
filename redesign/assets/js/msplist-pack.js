@@ -24,7 +24,7 @@ var ListPage = {
             ListPage.controller.updatePage();
 
             // Add listeners to all inputs for applying or removing filters
-            (function addActionListeners() {
+            ;(function addActionListeners() {
                 var clearGroupQueue = [],
                     listenerTypes = [
                         ".fltr:not([groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbl)",
@@ -178,7 +178,7 @@ var ListPage = {
                     $maxPriceInpt.val(lp_clipboard.prevMaxPrice);
                 });
                 
-                (function AppliedFilterHandler() {
+                ;(function AppliedFilterHandler() {
                     var remfilterQueue = [];
                     function removeAppliedFilters() {
                         var filterVal, $filterItem, minPrice, maxPrice;
@@ -564,7 +564,7 @@ var ListPage = {
                     $(".js-list-ttl").html($(".body-wrpr").data("category-title"));
                 }
 
-                (function updateProductListAndOtherWidgets() {
+                ;(function updateProductListAndOtherWidgets() {
                     // get new product list and filters based on updated current params
                     if ($(".body-wrpr").length !== 0) {
                         ListPage.services.fetch.productList().done(function (response) {
@@ -639,7 +639,7 @@ var ListPage = {
 
                     // get new hourly deals based on updated current params
                     if ($(".js-product-grid-deals").length) {
-                        (function _getHourlyDeals() {
+                        ;(function _getHourlyDeals() {
                             ListPage.services.fetch.hourlyDeals().done(function(json) {
                                 var $timer, minutes, seconds;
 
@@ -727,7 +727,7 @@ var ListPage = {
                             $(".js-fltrs-apld-wrpr1").show();
 
 
-                            (function showFollowThisSearchButton() {
+                            ;(function showFollowThisSearchButton() {
                                 var subcatName = $('.body-wrpr').data('listname'),
                                     subcatCode = $('.body-wrpr').data('listcode'),
                                     filterHash = encodeURIComponent(location.hash),
@@ -798,7 +798,7 @@ var ListPage = {
                         });
                     }
                     if (("startinr" in lp_changes[action]) && ("endinr" in lp_changes[action])) {
-                        (function() {
+                        ;(function() {
                             var unitValue, unitLabel, groupName, groupLabel, minSlider, maxSlider;
                             unitValue = lp_changes[action].startinr + ';' + lp_changes[action].endinr;
                             unitLabel = lp_changes[action].startinr.toLocaleString() + "-" + lp_changes[action].endinr.toLocaleString(),

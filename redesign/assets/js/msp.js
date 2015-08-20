@@ -532,7 +532,7 @@ if ($(".body-wrpr").length !== 0) {
     /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
 
     // onload if hash has a scrollTo param then scroll to section without animation.
-    (function runOnScriptLoad() {
+    ;(function runOnScriptLoad() {
         var hashObj = queryString(window.location.hash),
             finalScrollPos;
         if (hashObj && hashObj.scrollTo) {
@@ -585,7 +585,7 @@ if ($(".body-wrpr").length !== 0) {
 } else {
     /* OLD::inpageLinking - start */
     //handeling hash in window
-    (function() {
+    ;(function() {
         var inpageLinking = function(id) {
             if (id !== "" && id !== "#") {
                 try {
@@ -692,7 +692,7 @@ if ($(".body-wrpr").length !== 0) {
 
 
 /* RUI:: header dropdowns functionality - start */
-(function headerDropdownsHandlers() {
+;(function headerDropdownsHandlers() {
     var menuShowTimeout;
     $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
         var data, time, now, diffTime;
@@ -749,7 +749,7 @@ if ($(".body-wrpr").length !== 0) {
             $('.js-drpdwn-menu-ovrly').removeClass('drpdwn-menu-ovrly--show');
         }
     });    
-}())
+}());
 
 /* RUI:: header dropdowns functionality - end */
 
@@ -929,12 +929,14 @@ $doc.on('click', '.popup-target, .js-popup-trgt', function() {
         popupUrl = $this.attr('href'),
         storeUrl;
 
-    if ($this.is(".store_price_alert .popup-target") || $this.is("#pricealertbutton")) {
-        if (handleStorePriceAlert($this))
+    // TODO
+    if ($this.is(".prdct-dtl__tlbr-prc-alrt")) {
+        if (handleStorePriceAlert($this)) {
             return false;
+        }
     }
 
-    if ($this.hasClass("storebutton")) {
+    if ($this.hasClass("js-prc-tbl__gts-btn")) {
         var cookieName = $this.data("cookiename");
         storeUrl = $this.data('url');
 
@@ -943,8 +945,8 @@ $doc.on('click', '.popup-target, .js-popup-trgt', function() {
             return true;
         }
 
-        if (getCookie('msp_login') && $this.hasClass("check-email-cookie")) {
-            _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
+        if (getCookie('msp_login') && $this.hasClass("js-check-email-cookie")) {
+            if (_gaq) _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
             window.open(storeUrl);
             return true;
         }
@@ -952,10 +954,11 @@ $doc.on('click', '.popup-target, .js-popup-trgt', function() {
         if (cookieName) {
             var cookieTimeMins = $this.data("cookietimemins"),
                 cookieTimeDays = $this.data("cookietimedays");
-            if (cookieTimeMins)
+            if (cookieTimeMins) {
                 addCookieMins(cookieName, "true", parseInt(cookieTimeMins, 10));
-            else if (cookieTimeDays)
+            } else if (cookieTimeDays) {
                 addCookie(cookieName, "true", parseInt(cookieTimeDays, 10));
+            }
         }
 
         setCookie('autoPopup', '1', 1);
@@ -969,8 +972,8 @@ $doc.on('click', '.popup-target, .js-popup-trgt', function() {
 
 function handleStorePriceAlert($target) {
     if (sessionStorage && sessionStorage.storePriceAlertEmail) {
-        var $pageTitle = $("#mspSingleTitle"),
-            $priceLine = $target.closest(".store_pricetable");
+        var $pageTitle = $(".prdct-dtl__ttl"),
+            $priceLine = $target.closest(".prc-tbl-row");
 
         $.ajax({
           url: "/price_alert/capture_email.php",
@@ -979,27 +982,20 @@ function handleStorePriceAlert($target) {
             "mspid": $pageTitle.data("mspid"),
             "bestprice": $pageTitle.data("bestprice"),
             "storeprice": $priceLine.data("pricerank"),
-            "storename": $priceLine.find(".store_img img").attr("alt"),
+            "storename": $priceLine.find(".prc-tbl__str-logo").attr("alt"),
             "popupname": "pricealert"
           },
           cache: false
         });
 
         window._vis_opt_queue = window._vis_opt_queue || [];
-        window._vis_opt_queue.push(function () { _vis_opt_goal_conversion(200); });
+        window._vis_opt_queue.push(function() { _vis_opt_goal_conversion(200); });
 
-        $target.removeClass("popup-target callout-target").addClass("alert_set btn-disabled").text("Alert Set");
         return true;
-    }
-    else {
-        $target.addClass("popup_opened");
-        popupQueue.push(function () {
-            $target.removeClass("popup_opened");
-        });
     }
 }
 
-$doc.on('click', ".loyalty-popup-target", function() {
+$doc.on('click', ".loyalty-popup-target, .js-lylty-popup-trgt", function() {
     var $this = $(this),
         isLoggedIn = getCookie("msp_login"),
         cookieName = $this.data("cookiename"),
@@ -1008,7 +1004,7 @@ $doc.on('click', ".loyalty-popup-target", function() {
     setCookie('autoPopup', '1', 1);
     
     if (getCookie(cookieName) === "true") {
-        _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Popup already shown']);
+        if (_gaq) _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Popup already shown']);
         window.open($this.data("url"));
         return true;
     }
@@ -1016,15 +1012,17 @@ $doc.on('click', ".loyalty-popup-target", function() {
     if (cookieName) {
         var cookieTimeMins = $this.data("cookietimemins"),
             cookieTimeDays = $this.data("cookietimedays");
-        if (cookieTimeMins)
+
+        if (cookieTimeMins) {
             addCookieMins(cookieName, "true", parseInt(cookieTimeMins, 10));
-        else if (cookieTimeDays)
+        } else if (cookieTimeDays) {
             addCookie(cookieName, "true", parseInt(cookieTimeDays, 10));
+        }
     }
 
     if (isLoggedIn) {
         openPopup(popupUrl);
-        _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
+        if (_gaq) _gaq.push(['_trackEvent', 'Goto Store Popup', 'Open', 'Email already given']);
         window.open($this.data("url"));
         return true;
     } else {
@@ -1052,9 +1050,9 @@ $doc.on('click', '.popup-overlay', function() {
  * starts here
  */
 // Dropdown UI component (used on single page)
-$doc.on("click", function () {
+$doc.on("click", function() {
     $(".dropdown .dropdown-content").addClass("hide");
-}).on("click", ".dropdown .btn-dropdown", function () {
+}).on("click", ".dropdown .btn-dropdown", function() {
     $(".dropdown .dropdown-content").toggleClass("hide");
     return false;
 });
@@ -1925,7 +1923,7 @@ $(document).ready(function() {
 
 function tryInstallChrome(gaLabel, successCallback, failCallback) {
     function installSuccess(gaLabel, callback) {
-        _gaq.push(["_trackEvent", "Chrome_Plugin", "Installed", gaLabel || ""]);
+        if (_gaq) _gaq.push(["_trackEvent", "Chrome_Plugin", "Installed", gaLabel || ""]);
         if (typeof callback === "function")
             callback();
     }
