@@ -244,12 +244,12 @@ MSP = {
             "name" : (function() {
                 var result = null,
                     ua = navigator.userAgent.toLowerCase();
-                if (ua.indexOf("chrome") !== -1 && ua.indexOf("opr") === -1) {
-                    result = "chrome";
+                if (ua.indexOf("msie") !== -1 && ua.indexOf("trident") !== -1 && ua.indexOf("edge") !== -1) {
+                    result = "MSIE";
                 } else if (ua.indexOf("firefox") !== -1) {
                     result = "firefox";
-                } else if (ua.indexOf("msie") !== -1 && ua.indexOf("trident") !== -1 && ua.indexOf("edge") !== -1) {
-                    result = "MSIE";
+                } else if (ua.indexOf("chrome") !== -1 && ua.indexOf("opr") === -1) {
+                    result = "chrome";
                 }
                 return result;
             }()),
@@ -258,7 +258,7 @@ MSP = {
                 return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
             }())
         },
-        "rotateValue" : function(valueSet, currentValue) {
+        "cycleShift" : function(valueSet, currentValue) {
             var currentIndex
             if ($.isArray(valueSet)) {
                 currentIndex = valueSet.indexOf(currentValue);

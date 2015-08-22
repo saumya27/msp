@@ -1499,69 +1499,6 @@ function getBrowsePopupData() {
 }
 // browse popup functions end here
 
-
-/* RUI:: autocomplete functions - start
- * TODO::REMOVE - check if removing old code is fine
- */
-// function bindAutoComplete() {
-//     if ($("#header-search").length !== 0) {
-//         $("#header-search").autocomplete({
-//             minLength: 1,
-//             delay: 110,
-//             autoFocus: false,
-//             max: 10,
-//             position: {
-//                 at: 'left-1 bottom+1',
-//                 my: 'left top',
-//                 of: '#header-search'
-//             },
-//             source: function(request, response) {
-//                 var term = $.trim(request.term.toLowerCase()),
-//                     element = this.element,
-//                     //element is search bar
-//                     autocompleteCache = this.element.data('autocompleteCache') || {},
-//                     //initializing autocompleteCache
-//                     foundInAutocompleteCache = false; //flag will be set to true if term found in autocompleteCache
-//                 if (term in autocompleteCache && autocompleteCache[term].length !== 0) {
-//                     response(autocompleteCache[term]);
-//                     foundInAutocompleteCache = true;
-//                 }
-
-//                 if (foundInAutocompleteCache) return;
-
-//                 request.term = term;
-//                 $.ajax({
-//                     url: 'http://www.mysmartprice.com/msp/search/auto_suggest_search.php',
-//                     dataType: "json",
-//                     data: request,
-//                     success: function(data) {
-//                         data = $.map(data, function(n, i) {
-//                             n['index'] = i;
-//                             return n;
-//                         });
-//                         autocompleteCache[term] = data;
-//                         element.data('autocompleteCache', autocompleteCache);
-//                         response(data);
-//                     }
-//                 });
-//             },
-//             select: function(event, ui) {
-//                 var $form = $(this).closest('form');
-//                 $form.find('#header-search').val(ui.item.value);
-//                 $form.find('#header-search-subcat').val(ui.item.subcategory_code);
-//                 $form.find('.search-submit').click();
-//             }
-//         }).data('uiAutocomplete')._renderItem = function(ul, item) {
-//             var term = this.term.split(' ').join('|'),
-//                 re = new RegExp("\\b(" + term + ")", "gi"),
-//                 tempval = item.value.replace(re, "<b>$1</b>");
-//             if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
-//             return $("<li></li>").data("item.autocomplete", item).append("<a>" + tempval + "</a>").appendTo(ul);
-//         };
-//     }
-// }
-// autocomplete functions end here
-
 /* RUI:: autocomplete functions - start */
 function bindAutoComplete() {
     if ($(".js-atcmplt").length !== 0) {
@@ -1752,33 +1689,9 @@ function recentImgError(img) {
     img.src = 'http://c293850.r50.cf1.rackcdn.com/noimagebooks.png';
     return true;
 }
-
-// TODO::REMOVE - not used anywhere, calls in common.js not common.pack.js
-// function sideBarLoadedCallBack() {
-//     $('#deals').removeClass('msp_side');
-
-//     $('#deals .recent-item').each(function() {
-//         var itemInfo = $(this).data('itemInfo');
-//         // check to see if this item is a book, and if so,
-//         // get book information from localStorage
-//         if (itemInfo.indexOf("b:") === 0) {
-//             if (localStorage && localStorage[itemInfo]) {
-//                 var book_info = JSON.parse(localStorage[itemInfo]);
-//                 if (book_info.title && book_info.author) {
-//                     $(this).find(".sidetitle").html(book_info.title);
-//                     $(this).find(".item-price .new").html(book_info.author);
-//                 }
-//             }
-//         }
-//     });
-
-//     $('#deals .recent-item').first().addClass('first');
-// }
-
 // recent items functionality ends here
 
 
-/* TODO:: is it there in RUI - start */
 // Slide-up banner functions start here
 function initBottomSlideup() {
     $("#promotions").load("/promotions/bottom_banner_promotions.php", function() {
@@ -1816,31 +1729,6 @@ $.expr[':'].icontains = function(a, b, c, d) {
     if (f > 0) return true;
     else return false;
 };
-
-
-// TODO::REMOVE easter eggs
-// // easter eggs if search anything with xiaomi
-// if ($('.searchterm:icontains("xiaomi")').length) {
-//     $('body').addClass('ringme');
-//     setTimeout((function() {
-//         $('body').removeClass('ringme');
-//     }), 4000);
-// }
-
-
-// // check if this mspid has offline
-// var hasOffline=false;
-// $(function() {
-//     $.getJSON("/promotions/offline.json", function(json) {
-//         my_json = json;
-//         for(var i=0; i<my_json.length; i++){
-//             if(my_json[i]['mspid'] == $("#mspSingleTitle").data('mspid')) {
-//                 hasOffline = true;
-//                 break;
-//             }
-//         }
-//     });
-// });
 
 /* Jquery MSP UI components */
 
@@ -1958,33 +1846,6 @@ function tryInstallFirefox() {
     InstallTrigger.install(params);
 }
 
-/* TODO:: is cashbackInit relavant in new site */
-// function cashbackInit() {
-//     var cashback = getCookie("d943641d1ed7d29e955f36d6327ead93"),
-//         msploginc = getCookie("msp_login");
-
-//     if (cashback === undefined && msploginc == '1') {
-//         $.ajax({
-//             url: "/promotions/cashback/check.php",
-//         }).done(function(response) {
-//             setCookie("d943641d1ed7d29e955f36d6327ead93", response, "365");
-//             if (response == '1') {
-
-//                 $(".header .sub-header .sub-head-menu").append([
-//                     "<li class='sub-head-menu-item'>",
-//                         "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
-//                     "</li>"
-//                 ].join(""));
-//             }
-//         });
-//     } else if (cashback === '1' && msploginc == '1') {
-//         $(".header .sub-header .sub-head-menu").append([
-//             "<li class='sub-head-menu-item'>",
-//                 "<a style='background-color: #c00;color: white;' href='/promotions/cashback'>Cashback</a>",
-//             "</li>"
-//         ].join(""));
-//     }
-// }
 
 /* init onload (no need of doc.ready) - start */
 
@@ -2013,13 +1874,6 @@ $doc.ready(function() {
             }
         }
     }
-
-    // RUI:: TODO:: uncomment it if its there in the new site
-    // cashbackInit();
-
-    // loginCallbackQueue.push(function() {
-    //     cashbackInit.apply(window);
-    // });
 });
 
 function isPluginInstalled() {
