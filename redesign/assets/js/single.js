@@ -133,7 +133,7 @@ var PriceTable = {
                      * MSP.utils.rotateValue => rotate values in a set,
                      * used here to toggle between two values.
                      */
-                    oldOrder = nextOrder = MSP.utils.rotateValue(["asc", "desc"], newOrder);
+                    oldOrder = nextOrder = MSP.utils.cycleShift(["asc", "desc"], newOrder);
                     nextSortby = category + ":" + nextOrder;
 
                     // assign new sort value and class to the column
@@ -509,9 +509,7 @@ var PriceTable = {
     },
     "fetch" : {
         "tableByCategory" : MSP.utils.memoize(function _productList(type, location) {
-            var dfd = $.Deferred();
-
-            $.ajax({
+            return $.ajax({
                 "url": "/mobile/offline/delivery_pricetable.php",
                 "data": {
                     "mspid": PriceTable.dataPoints.mspid,
@@ -520,15 +518,7 @@ var PriceTable = {
                     "latitude" : location && location.latitude,
                     "longitude" : location && location.longitude
                 }
-            }).done(function (response) {
-                if (response) {
-                    dfd.resolve(response);
-                }
-            }).fail(function(error) {
-                dfd.reject(error);
             });
-
-            return dfd.promise();
         }, {
             isAsync : true,
             cacheLimit : 10
@@ -852,7 +842,7 @@ $(document).ready(function() {
         } 
     }()); 
 
-     MSP.utils.lazyLoad.assign({
+     MSP.utils.lazyLoad.assign({ 
         "node" : $(".prc-grph"),
         "isStatic" : true,
         "callback" : {
@@ -871,7 +861,6 @@ $(document).ready(function() {
                             $(".prc-grph__rght-chrt").show();
                             $(".prc-grph__btn-wrpr").show();
                             $(".prc-grph__ldr").hide();
-
                         });
                     });
                 });
