@@ -1,3 +1,180 @@
-.faq-q{
+
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+
+.expnd-hd{
+  padding-top: 10px;
   font-weight: bold;
+  cursor: pointer;
+}
+.faq__subhd{
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+.expand_all{
+  float: right;
+  cursor: pointer;
+  text-decoration: underline; 
+}
+.faq__sub-sctn{
+  padding: 20px 0;
+}
+.faq__sub-sctn__hav-a-q{
+  border-top: 1px solid #ccc;
+}
+.faq__hav-a-q{
+  padding-right: 30px;
+  font-weight: bold;
+}
+.expnd-cntnt{
+  display: none;
+}
+
+.cntxt-link {
+    font-size: 0;
+}
+.ask-an-exprt__icon{
+  padding-bottom: 5px;
+  vertical-align: middle;
+}
+/*.sctn {
+    margin: 20px 0;
+    border: 1px solid #dfe1e8;
+    border-radius: 3px;
+    background-color: #ffffff;
+}*/
+.sctn-hd{
+  margin-bottom: -10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+.cntxt-link--s .cntxt-link__prvs-icon, .cntxt-link--s .cntxt-link__next-icon {
+    height: 150px;
+}
+.js-sldr__dsbl-btn {
+    opacity: .2 !important;
+    cursor: auto;
+}
+.js-sldr__prvs, .js-sldr__next {
+    display: none;
+}
+.cntxt-link__prvs-icon {
+    float: left;
+    opacity: .5;
+    background: url('http://doypaxk1e2349.cloudfront.net/icons/prev-arrow-black.png') no-repeat center;
+}
+.cntxt-link__prvs-icon, .cntxt-link__next-icon {
+    width: 35px;
+    height: 128px;
+    cursor: pointer;
+}
+.cntxt-link.cntxt-link--s .js-sldr-item-wrpr1 {
+    padding: 5px 0;
+}
+.cntxt-link .js-sldr-item-wrpr1 {
+    width: 810px;
+    margin-left: 5px;
+    padding: 4px 0;
+}
+.cntxt-link--s .cntxt-link-item-wrpr {
+    padding: 4px;
+}
+.js-sldr-item-wrpr1 {
+    overflow: hidden;
+}
+.cntxt-link-item-wrpr {
+    float: left;
+    width: 920px;
+    padding: 4px;
+}
+.js-sldr-item-wrpr {
+    position: relative;
+    left: 0;
+    overflow-x: visible;
+    transition: transform 0.6s ease-out;
+    white-space: nowrap;
+}
+.cntxt-link .js-sldr-item-wrpr1 .cntxt-link-item {
+    margin-left: 8px;
+}
+.cntxt-link--s .cntxt-link-item {
+    margin-left: 20px;
+    width: 177px;
+}
+.cntxt-link-item {
+    display: inline-block;
+    width: 96px;
+    margin: 8px 0 8px 17px;
+    padding: 7px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    white-space: normal;
+}
+.cntxt-link-item:hover{
+  border: 1px solid #ccc;
+}
+.cntxt-link--s .cntxt-link-item__img-wrpr {
+    display: block;
+    vertical-align: middle;
+}
+.cntxt-link-item__img {
+    max-width: 100px;
+    max-height: 100px;
+    vertical-align: middle;
+    float: left;
+}
+.cntxt-link.cntxt-link--s .js-sldr-item-wrpr1 .cntxt-link-item__ttl-wrpr {
+    /*width: 88px;*/
+}
+.cntxt-link--s .cntxt-link-item__ttl-wrpr {
+    display: inline-block;
+}
+.cntxt-link-item__ttl-wrpr {
+    width: 100%;
+    font-size: 12px;
+    line-height: 1.4;
+    padding: 0 10px;
+}
+.cntxt-link--s .cntxt-link-item__ttl {
+    vertical-align: middle;
+}
+.cntxt-link-item__ttl {
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+    max-height: 32px;
+    max-width: 124px;
+}
+.cntxt-link-item__scr {
+    width: 20px;
+    font-size: 15px;
+    color: #fff;
+    padding: 0px 8px;
+    margin-right: 10px;
+    float: right;
+    text-align: center;
+    background-color: rgb(78, 154, 6);
+}
+.cntxt-link-item__prc{
+    float: right;
+}
+.cntxt-link--s .cntxt-link__prvs-icon, .cntxt-link--s .cntxt-link__next-icon {
+    height: 150px;
+}
+.js-sldr__prvs, .js-sldr__next {
+    display: none;
+}
+.cntxt-link__next-icon {
+    float: right;
+    opacity: .5;
+    background: url('http://doypaxk1e2349.cloudfront.net/icons/next-arrow-black.png') no-repeat center;
+}
+.cntxt-link__prvs-icon, .cntxt-link__next-icon {
+    width: 35px;
+    height: 128px;
+    cursor: pointer;
 }

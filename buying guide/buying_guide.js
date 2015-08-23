@@ -1,16 +1,30 @@
+$(document).ready(function(){
+    $(".faq__sub-sctn").find(".expnd-hd:first").find('.expand-collapse').click();
+});
+
 $(".expand-collapse").on('click', toggleSlider);
 
-function toggleSlider(){
-	var $subTable = $(this).closest(".faq");
-	var $slider = $subTable.find(".faq-ans");
-	// slider.toggle();
+function toggleSlider(openall){
+	// var $subTable = openall ?  $(this).closest(".faq__sub-sctn").find(".faq"): $(this).closest(".faq");
+    var $subTable = $(this).closest(".expnd");
+	var $slider = $subTable.find(".expnd-cntnt");
     if ($subTable.hasClass('opened')) {
-    	$(this).attr("src", "http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/plus_icon.png");
+        $(this).html('&#x25b6;');
         $subTable.removeClass('opened').addClass('closed');
         $slider.slideUp("slow");
     } else {
-    	$(this).attr("src", "http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/minus_icon.png");
+    	$(this).html('&#x25bc;');
         $subTable.removeClass('closed').addClass('opened');
         $slider.slideDown("slow");
     }
 }
+
+$(".expand_all").on('click', function(){
+    var $subTable = $(this).closest(".faq__sub-sctn").find(".expnd");
+    var $slider = $subTable.find(".expnd-cntnt");
+    if ($subTable.hasClass('closed')) {
+        $subTable.find('.expand-collapse').html('&#x25bc;');
+        $subTable.removeClass('closed').addClass('opened');
+        $slider.slideDown("slow");
+    }
+});
