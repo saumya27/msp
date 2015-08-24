@@ -510,56 +510,58 @@ setTimeout(function() {
 if ($(".body-wrpr").length !== 0) {
     /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
 
-    // onload if hash has a scrollTo param then scroll to section without animation.
-    ;(function runOnScriptLoad() {
+    (function() {
+        // onload if hash has a scrollTo param then scroll to section without animation.
         var hashObj = queryString(window.location.hash),
             finalScrollPos;
         if (hashObj && hashObj.scrollTo) {
             finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
             $("body").scrollTop(finalScrollPos);
         }
-    }());
 
-    function scrollToLink() {
-        var hashObj = queryString(window.location.hash),
-            finalScrollPos, currentScrollPos,
-            speed = 0.5, animTime;
+
+        // scroll handlers and their corresping functions.
+        var scrollToLink = function() {
+            var hashObj = queryString(window.location.hash),
+                finalScrollPos, currentScrollPos,
+                speed = 0.5, animTime;
+                    
+            if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"').length) {
+                finalScrollPos = Math.ceil($('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height());
+                currentScrollPos = Math.ceil($win.scrollTop());
+                animTime = Math.ceil(Math.abs((finalScrollPos - currentScrollPos) * speed)),
+                $roots = $("html, body");
                 
-        if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"').length) {
-            finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
-            currentScrollPos = $win.scrollTop();
-            animTime = Math.abs((finalScrollPos - currentScrollPos) * speed),
-            $body = $("body");
+                $roots.on("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink", function(){
+                    $roots.stop();
+                });
+
+                $roots.animate({ "scrollTop" : finalScrollPos }, animTime, function() {
+                    $roots.off("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink");
+                });
+            }
+        };
+
+        $doc.on("click", ".js-inpg-link", function() {
+            if ($(this).data("action") === "disabled") return false;
             
-            $body.on("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink", function(){
-                $body.stop();
-            });
+            var hashObj = queryString(window.location.hash);
+            
+            if (!hashObj) hashObj = {};
+            hashObj.scrollTo = $(this).data("href");
 
-            $body.animate({ "scrollTop" : finalScrollPos }, animTime, function() {
-                $body.off("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink");
-            });
-        }
-    }
+            if (generateHash(hashObj) != window.location.hash) {
+                window.location.hash = generateHash(hashObj);
+            } else {
+                scrollToLink();
+            }
+            return false;
+        });
 
-    $doc.on("click", ".js-inpg-link", function() {
-        if ($(this).data("action") === "disabled") return false;
-        
-        var hashObj = queryString(window.location.hash);
-        
-        if (!hashObj) hashObj = {};
-        hashObj.scrollTo = $(this).data("href");
-
-        if (generateHash(hashObj) != window.location.hash) {
-            window.location.hash = generateHash(hashObj);
-        } else {
+        $win.on('hashchange', function() {
             scrollToLink();
-        }
-        return false;
-    });
-
-    $win.on('hashchange', function() {
-        scrollToLink();
-    });
+        });
+    }());
     /* RUI:: scroll to the element on page with data-id = current/onload url hash value - end */
 } else {
     /* OLD::inpageLinking - start */
