@@ -643,7 +643,7 @@ var ListPage = {
                     if ($(".js-product-grid-deals").length) {
                         ;(function _getHourlyDeals() {
                             ListPage.services.fetch.hourlyDeals().done(function(json) {
-                                var $timer, minutes, seconds;
+                                var $timer, dataMinutes, dataSeconds, timerStart, clockStart;
 
                                 function parseTime(value) {
                                     value = parseInt(value, 10);
@@ -659,13 +659,20 @@ var ListPage = {
 
                                 $timer = $(".cntdwn");
                                 if ($timer.length) {
-                                    minutes = parseTime($timer.find(".cntdwn__mins").data("minutes")),
-                                    seconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
-                                    if (!(minutes === 0 && seconds === 0)) {
+                                    dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
+                                    dataSeconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
+                                    timerStart = dataMinutes * 60 + dataSeconds;
+                                    clockStart = parseInt(+new Date() / 1000, 10);
+
+                                    if (!(dataMinutes === 0 && dataSeconds === 0)) {
                                         timerInterval = setInterval((function timer() {
-                                            if (seconds-- === 0) {
+                                            var elapsedTime = (Math.floor(+new Date() / 1000) - clockStart),
+                                                minutes = Math.floor((timerStart - elapsedTime) / 60),
+                                                seconds = (timerStart - elapsedTime) % 60;
+                                            
+                                            if (seconds <= 0) {
                                                 seconds = 59;
-                                                if (minutes-- === 0) {
+                                                if (minutes <= 0) {
                                                     clearInterval(timerInterval);
                                                     _getHourlyDeals();
                                                     return;
@@ -674,13 +681,13 @@ var ListPage = {
                                             $timer.find(".cntdwn__mins").text(minutes < 10 ? "0" + minutes : minutes);
                                             $timer.find(".cntdwn__scnds").text(seconds < 10 ? "0" + seconds : seconds);
                                             return timer;
-                                        })(), 1000);
+                                        }()), 1000);
                                     } else {
                                         $timer.hide();
                                     }
                                 }
                             }).fail(function() {
-                               $timer.hide();
+                               $(".cntdwn").hide();
                             });
                         }());
                     }
@@ -993,30 +1000,18 @@ var ListPage = {
             },
             // hourly deals ajax loading
             "hourlyDeals" : function _hourlyDeals() {
-                var dfd = $.Deferred(),
-                    cache = _hourlyDeals._cache_ = _hourlyDeals._cache_ || { "queries" : [], "responses" : [] },
-                    query = this.apiQuery();
+                var query = this.apiQuery();
 
-                if (cache.queries.indexOf(query) >= 0) {
-                    dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
-                } else {
-                    if (_hourlyDeals.XHR) {
-                        _hourlyDeals.XHR.abort();
-                    }
-                    _hourlyDeals.XHR = $.ajax({
-                        "url": "deals-list.html?" + query,
-                        "dataType" : "json"
-                    }).done(function(response) {
-                        if (response) {
-                            dfd.resolve(response);
-                        } else {
-                            dfd.reject("error");
-                        }
-                    }).fail(function() {
-                        dfd.reject("error");
-                    });
+                if (_hourlyDeals.XHR) {
+                    _hourlyDeals.XHR.abort();
                 }
-                return dfd.promise();
+
+                _hourlyDeals.XHR = $.ajax({
+                    "url": "deals-list.html?" + query,
+                    "dataType" : "json"
+                });
+
+                return _hourlyDeals.XHR;
             }
         }
     }

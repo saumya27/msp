@@ -674,7 +674,7 @@ if ($(".body-wrpr").length !== 0) {
 ;(function headerDropdownsHandlers() {
     var menuShowTimeout;
     $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
-        var data, time, now, diffTime;
+        var data, time, now, diffTime, loadingTimeout;
 
         e.stopPropagation();
 
@@ -686,7 +686,6 @@ if ($(".body-wrpr").length !== 0) {
             }
             if ($('.drpdwn-menu').data('processed') == 'done' && location.hash !== '#forcepopup') {
                 menuShowTimeout = setTimeout(function() {
-                    $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').hide();
                     $('.drpdwn-menu').addClass('drpdwn-menu--show');
                 }, 340);
                 return; //if already procesed
@@ -702,11 +701,12 @@ if ($(".body-wrpr").length !== 0) {
                     //getting data from localStorage
                     data = localStorage.browsePopupData;
                 }
-
             }
 
             if (!data || data == 'undefined' || data === undefined) {
-                $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').show();
+                loadingTimeout = setTimeout(function() {
+                    $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').show();
+                }, 2000);
                 data = getBrowsePopupData();
                 localStorage.browsePopupData = data;
                 localStorage.browsePopupDataTime = new Date().getTime();
@@ -716,7 +716,8 @@ if ($(".body-wrpr").length !== 0) {
             if (data && data != 'undefined' && data !== undefined) {
                 $('.drpdwn-menu').html(data).data('processed', 'done');
                 menuShowTimeout = setTimeout((function() {
-                    $('.js-drpdwn-menu-wrpr').find('.ldng-crcl').hide();
+                    $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').hide();
+                    clearTimeout(loadingTimeout);
                     $('.drpdwn-menu').addClass('drpdwn-menu--show');
                 }), 340);
                 // on data available hide loading and show data
@@ -1519,7 +1520,13 @@ function bindAutoComplete() {
 /* RUI:: scroll to top button functionality - start */
 function initScrollToTop() {
     var $body = $('body'),
-        $toTop = $("<div class='to-top'></div>"),
+        toTopHtml = [
+            "<div class='to-top'>",
+                "<div class='to-top__btn'></div>",
+                "<div class='to-top__lbl'>Back to top</div>",
+            "</div>"
+        ].join(""),
+        $toTop = $(toTopHtml),
         showScrollToTopDisplay = 'hidden';
         
     $body.append($toTop);
