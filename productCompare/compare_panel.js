@@ -6,9 +6,9 @@ $(document).ready( function(){
 	
 	fillComparePanelAjax();
 	
-	if($('.add-to-cmpr').length){
-		addCompareCheckbox();
-	}
+	// if($('.add-to-cmpr').length){
+	// 	addCompareCheckbox();
+	// }
 
 	compareAutoComplete(); // initializing the autoComplete
 
@@ -23,13 +23,17 @@ function fillComparePanelAjax(){
 	request.mspids = getCookie("compareIDs") || "";
 	$.ajax({
 		type: "GET",
-        url: "/expert/compare_panel_ajax.php",
+        url: "/compare/compare_panel_ajax.php",
         // dataType: "json",
         data: request,
         success: function(data) {
         		$('.sdbr-wrppr').replaceWith(data);
         		isComparePanelFull();// check if already 4 products are there in compare panel
 				isDifferentCategory();	// check if this product is of same category that of those already in compare panel
+				
+				// if(alreadyAdded() && $('.cmpr_btn').length){// check_if_added = false;
+				// 	disableCompareCB("Item already added");
+				// }
             }
     });
 }
@@ -55,8 +59,9 @@ $('body').on('click','.sctn__compare-btn', function(){
 			mspids = mspid;
 	});
 
+	mspids = mspids || "";
 	subcategory = getCategoryFromPanel();
-	$(this).attr('href',"/expert/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
+	$(this).attr('href',"/compare/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
 });
 
 
@@ -230,9 +235,10 @@ function getMSPidsFromPanel(){
 function flyImage(imgtofly, id, title, $thisCB){
 	$replaceThis = $(".sdbr-list__item.cmpr0");
 	var sub_category = getCategoryFromPanel();
+	var compare_href = $('.sctn__compare-btn').attr('href');
 	flyingImageCount++ ;
 	
-	if(flyingImageCount == 1){
+	if(flyingImageCount == 1 && $(".sdbr-list__item.cmpr0").length == 5){
 		sub_category = $(".list_header").data('listcode') || $('.msp_body').attr('categroy');
 	}
 
@@ -291,6 +297,8 @@ function flyImage(imgtofly, id, title, $thisCB){
  		if($(".cpmr_btn").length){
  			disableCompareCB("Item already added");
  		}
+
+ 		$('.sctn__compare-btn').attr('href',compare_href);
 	    
 	   	setCookie("compareSubCategory", sub_category);
 	  	setCookieCompareIDS(id);
@@ -357,9 +365,9 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
 
                     request.term = term;
                     request.subcategory = getCategoryFromPanel();
-                    request.mspids = getMSPidsFromPanel();
+                    request.mspids = getMSPidsFromPanel().toString();
                     $.ajax({
-                        url: "/expert/autoSuggest.php",
+                        url: "/compare/autoSuggest.php",
                         dataType: "json",
                         data: request,
                         success: function(data) {

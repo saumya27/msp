@@ -195,6 +195,14 @@ $(".showOnlyDiff").on('click', function(){
 			$(this).slideDown("slow");
 		}
 	});
+
+	// for handling both the checkboxes
+		if($(this).attr('checked')){
+        	$(".showOnlyDiff").attr('checked', true);
+	    }
+	    else{
+	        $(".showOnlyDiff").attr('checked', false);
+	    } 
 });
 
 function addParameterToURL(){
@@ -280,7 +288,7 @@ function compareAutoComplete() {
                 source: function(request, response) {
                     var term = $.trim(request.term.toLowerCase()),
                         element = this.element,
-                        category = getCookie('compareSubCategory') || "",
+                        category = getUrlParameter('subcategory'),
                         //element is search bar
                         autocompleteCache = this.element.data('autocompleteCache') || {},
                         //initializing autocompleteCache
@@ -294,9 +302,9 @@ function compareAutoComplete() {
 
                     request.term = term;
                     request.subcategory = category;
-                    request.mspids = getCookie('compareIDs') || "";
+                    request.mspids = getUrlParameter('mspids');
                     $.ajax({
-                        url: "/expert/autoSuggest.php",
+                        url: "/compare/autoSuggest.php",
                         dataType: "json",
                         data: request,
                         success: function(data) {

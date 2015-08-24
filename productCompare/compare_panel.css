@@ -2,14 +2,14 @@
 
 
 .sdbr-wrppr{
-	width: 250px;
+  width: 250px;
 
-	position: fixed;
-	top: 50%;
-	right: -250px;
-	
-	margin-top: -225px;
-	z-index: 2;
+  position: fixed;
+  top: 50%;
+  right: -250px;
+  
+  margin-top: -225px;
+  z-index: 2;
   transition: right 0.8s ease-in-out;
 }
 .sdbr {
@@ -18,20 +18,20 @@
   position: relative;  
   top: 0;
 
-  background-color: #fff;	
+  background-color: #fff; 
 }
 .compare-panel__close {
-	color: #fff;	
+  color: #fff;  
 
-	position: absolute;
-	top: 60%;
-	left: -13%;
+  position: absolute;
+  top: 60%;
+  left: -13.4%;
 
-	width: 11%;
-	padding: 3px 0;
+  width: 11%;
+  padding: 3px 0;
 
-	text-align: center;
-	cursor: pointer;
+  text-align: center;
+  cursor: pointer;
 }
 /*.sidebaroverlay {
   position: fixed;
@@ -93,6 +93,8 @@
   line-height: 1.4;
   position: relative;
   padding-top: 10px;    
+  text-decoration: none;
+  cursor: default;
 }
 .sdbr-list__item:hover{
   text-decoration: none !important;
@@ -132,7 +134,7 @@
 }
 
 .add-cmp-ml {
-	/*animation-name: slideLeft;
+  /*animation-name: slideLeft;
     animation-duration: 0.8s;
     animation-timing-function: ease-in-outout;
     animation-fill-mode: forwards;*/
@@ -141,7 +143,7 @@
 }
 
 .add-cmp-mr {
-	/*animation-name: slideRight;
+  /*animation-name: slideRight;
     animation-duration: 0.8s;
     animation-timing-function: ease-out;
     animation-fill-mode: forwards;*/
@@ -276,5 +278,5 @@
   padding-left: 5px;
   margin-left: 4px;
   border-left: 1px solid #999;
+  color: #4f6591;
 }
-
