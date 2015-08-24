@@ -207,7 +207,7 @@ $(".showOnlyDiff").on('click', function(){
 
 function addParameterToURL(){
 	var mspids = getCookie('compareIDs').toString();
-	var param = "mspids="+mspids+"&subcategory="+getCookie('compareSubCategory');
+	var param = "mspids="+mspids+"&subcategory="+(getCookie('compareSubCategory') || "");
     _url = location.href;
     _url= (_url.split('?')[0]) + '?' + param;
     location.replace(_url);
@@ -226,7 +226,7 @@ $(".remove").add(".gridheader .compare-product").on('click', function(){
 	removeFromCookie(remove_id);
 	
 	var productsCount = $('.gridheader .compare-product').length;
-	if(productsCount < 1 ){
+	if(productsCount <= 1 ){
 		removeCookie("compareSubCategory");
 	}
 
