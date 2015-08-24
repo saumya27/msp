@@ -88,7 +88,12 @@
     border: 1px solid @border-color;
   }
   &__ldng {
+    display: none;
     height: @offer-height + @category-item-count * @category-item-height + 10px;
+    .ldr {
+      top: 75px;
+      bottom: auto;
+    }
   }
   &--s {
     &.drpdwn-menu-wrpr--show {

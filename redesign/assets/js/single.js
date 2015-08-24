@@ -742,7 +742,7 @@ $(document).ready(function() {
     });
 
     (function() {
-        var ratingWidth = $(".rtng-star").width(),
+        var ratingWidth = $(".usr-rvw-form__rtng-wrpr .rtng-star").width(),
             $ratingInr = $(".rtng-star__inr"),
             $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
             remarksList = $ratingRemark.data("remarks").split(","),
@@ -753,13 +753,13 @@ $(document).ready(function() {
             $(".usr-rvw-form__dtls-img").attr("src", getCookie("msp_user_image"));
             $(".usr-rvw-form__dtls-name").html(getCookie("msp_login_name") || "MySmartPrice User");
             $(".usr-rvw-form__dtls-email").html(getCookie("msp_login_email"));
-            $(".usr-rvw-form__dtls").show();   
+            $(".usr-rvw-form__dtls").show();
             isUserDetailsDisplayed = true;
         }
 
         $doc.on("mousemove", ".usr-rvw-form__rtng-wrpr .rtng-star", function(e) {
             var offsetX = parseInt(e.pageX - $(this).offset().left, 10),
-                rating = Math.ceil((offsetX / ratingWidth) * 4.75) || 1;
+                rating = Math.ceil((offsetX / ratingWidth) * 5) || 1;
 
             $ratingRemark.text(remarksList[rating - 1]);
             if (offsetX <= ratingWidth) {

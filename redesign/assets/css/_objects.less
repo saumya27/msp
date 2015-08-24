@@ -338,8 +338,6 @@
     }
   }
 }
-//Loader Circle for Menu
-.ldng-crcl();
 
 //Content Loader
 .content-loader();
@@ -660,7 +658,7 @@
 
     width: 30px;
     height: 30px;
-    border: 1px solid @border-color;
+    border: 1px solid @bg-color-gs1;
     border-radius: @border-radius;
 
     color: @fg-color-grey;
@@ -671,9 +669,9 @@
     text-align: center;
     vertical-align: middle;
     &:hover {
-      background-color: @border-color;
+      background-color: @fg-color-grey;
 
-      color: @fg-color-grey;
+      color: @fg-color-white;
 
       text-decoration: none;
     }
@@ -683,12 +681,12 @@
     }
     &--crnt {
       background-color: @border-color;
-
-      color: @fg-color-white;
+      border-color: @fg-color-light-grey;
+      color: @fg-color-grey;
       &:hover {
         background-color: @border-color;
 
-        color: @fg-color-white;
+        color: @fg-color-grey;
 
         cursor: not-allowed;
       }
@@ -1033,24 +1031,48 @@
 
 .to-top {
   position: fixed;
-  right: 30px;
-  bottom: 75px;
+  right: 0;
+  top: 90%;
+  z-index: 11;
 
   display: none;
   opacity: .9;
 
-  width: 35px;
-  height: 35px;
-  padding: 10px;
-  border-radius: 50%;
-  background: url('http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r11.cf1.rackcdn.com/go_to_top.png') 50% 50% no-repeat rgb(246, 246, 246);
-  background-color: #f6f6f6;
-  box-shadow: 1px 1px 5px #777;
-
   cursor: pointer;
   transition: background .1s ease;
+  &__btn {
+    position: relative;
+    z-index: 2;
+    width: 30px;
+    height: 30px;
+    border-radius: 3px 0 0 3px;
+    background-color: @bg-color-gs2;
+    .image-2x('../../icons/new/caret-up-grey.png', 14px, 10px);
+    background-position: center;
+  }
+  &__lbl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 85px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 3px 0 0 3px;
+    background-color: @bg-color-gs1;
+    color: @fg-color-white;
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: 600;
+    text-align: center;
+    transform: translateX(0);
+    transition: transform .2s ease;
+  }
   &:hover {
-    background-color: @bg-color-white;
+    border-radius: 0;
+    .to-top__lbl {
+      display: block;
+      transform: translateX(-95px);
+    }
   }
 }
 

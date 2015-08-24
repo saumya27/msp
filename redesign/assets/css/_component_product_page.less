@@ -56,7 +56,17 @@
       line-height: 420px;
 
       text-align: center;
-      cursor: url('../../icons/zoom-in.png'), pointer;
+      cursor: url('../../icons/new/zoom-in-grey.png'), pointer;
+    }
+    @media
+      only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (   min--moz-device-pixel-ratio: 2),
+      only screen and (        min-device-pixel-ratio: 2),
+      only screen and (                min-resolution: 192dpi),
+      only screen and (                min-resolution: 2dppx) {
+        &-wrpr {
+          cursor: url('../../icons/new/zoom-in-grey@2x.png'), pointer;
+        }
     }
   }
   &__thmbnl {
