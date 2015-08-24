@@ -3,11 +3,6 @@ MSP = {
         headerHeight : $(".hdr-size").height()
     },
     "utils" : {
-        /**
-         * $.selectText()
-         * => selects the text of the jquery node on which the method is invoked.
-         * => used to to make coupon codes easily selectable by user onclick.
-         */
         "parse" : {
             /**
              * MSP.utils.numberFrom.price(price)
@@ -239,11 +234,11 @@ MSP = {
                 if (_is(_selection.setBaseAndExtent, 'function')) {
                     
                     // Chrome, Safari
-                    return function _selectText($node) {
+                    return function _selectText($triggerNode) {
                         var selection = _selection;
-                        var node = $node.get(0);
+                        var targetNode = $triggerNode.find(".js-slct-trgt").length ? $triggerNode.find(".js-slct-trgt").get(0) : $triggerNode.get(0);
                         
-                        selection.setBaseAndExtent(node, 0, node, $(node).contents().size());
+                        selection.setBaseAndExtent(targetNode, 0, targetNode, $(targetNode).contents().size());
 
                         // Chainable
                         return this;
@@ -256,12 +251,12 @@ MSP = {
                         && _is(_selection.addRange, 'function')) {
                         
                         // Mozilla
-                        return function _selectText() {
+                        return function _selectText($triggerNode) {
                             var range = _range;
                             var selection = _selection;
-                            var node = this[0];
+                            var targetNode = $triggerNode.find(".js-slct-trgt").length ? $triggerNode.find(".js-slct-trgt").get(0) : $triggerNode.get(0);
 
-                            range.selectNodeContents(node);
+                            range.selectNodeContents(targetNode);
                             selection.removeAllRanges();
                             selection.addRange(range);
                             
@@ -277,11 +272,11 @@ MSP = {
                 if (_is(range.moveToElementText, 'object') && _is(range.select, 'object')) {
                     
                     // IE11- most likely
-                    return function _selectText() {
+                    return function _selectText($triggerNode) {
                         var range = document.body.createTextRange();
-                        var node = this[0];
+                        var targetNode = $triggerNode.find(".js-slct-trgt").length ? $triggerNode.find(".js-slct-trgt").get(0) : $triggerNode.get(0);
 
-                        range.moveToElementText(node);
+                        range.moveToElementText(targetNode);
                         range.select();
                         
                         // Chainable

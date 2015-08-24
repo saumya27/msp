@@ -341,7 +341,7 @@ $doc.ready(function() {
     });
 
     // Select text inside node on clicking it.
-    $doc.on("click", ".js-slct-txt", function() {
+    $doc.on("click", ".js-slct-trgr", function() {
         MSP.utils.selectText($(this));
     });
 
