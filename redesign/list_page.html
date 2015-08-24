@@ -25,12 +25,12 @@
 					</div>
 					<div class="drpdwn-wdgt drpdwn-wdgt--l">
 						<div class="drpdwn-wdgt__menu drpdwn-wdgt__menu--user">
-							<a class="drpdwn-wdgt__menu-link" href="/users/mylist.php">
+							<span class="drpdwn-wdgt__menu-link js-open-link" data-open-link="/users/mylist.php">
 								<span class="drpdwn-wdgt__menu-img-wrpr">
 									<img class="drpdwn-wdgt__menu-img user-img" src="http://doypaxk1e2349.cloudfront.net/icons/user-default.png" alt="User">
 								</span>
 								<span class="drpdwn-wdgt__menu-text js-user-name">My Account</span>
-							</a>
+							</span>
 							<span class="drpdwn-wdgt__down-icon"></span>
 						</div>
 						<div class="acnt">
@@ -213,22 +213,23 @@
 			</div>
 			<div class="fltr-wrpr1">
 				<div class="fltr-wrpr">
-					<div class="fltr" groupname="bestsellers">
+					<div class="fltr" data-groupname="bestsellers">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Best Sellers </span>
 							<span class="fltr__cler">Clear </span>
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="SHOW ONLY BEST SELLERS" name="1463217[]" value="1200387-1463217">
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" name="1463217[]" value="1200387-1463217" dispname="SHOW ONLY BEST SELLERS" hidden/>
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Show Only Best Sellers</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
+								</label>
 							</div>
 						</div>
 					</div>
 					
-					<div class="fltr" groupname="price">
+					<div class="fltr" data-groupname="price">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Price </span>
 							<span class="fltr__cler">Clear </span>
@@ -250,26 +251,30 @@
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="598;1999">
+								<label class="fltr-val fltr-val--sngl js-fltr-val--sngl">
+									<input class="fltr-val__inpt" type="radio" name="price" value="598;1999" hidden />
 									<span class="fltr-val__text" data-callout="2000-3000"> Below - &#8377;2000</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="2000;2999">
+								</label>
+								<label class="fltr-val fltr-val--sngl js-fltr-val--sngl">
+									<input class="fltr-val__inpt" type="radio" name="price" value="2000;2999" hidden>
 									<span class="fltr-val__text" data-callout="2000-3000"> &#8377;2000 - &#8377;2999</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="3000;4999">
+								</label>
+								<label class="fltr-val fltr-val--sngl js-fltr-val--sngl">
+									<input class="fltr-val__inpt" type="radio" name="price" value="3000;4999" hidden>
 									<span class="fltr-val__text" data-callout="2000-3000"> &#8377;3000 - &#8377;4999</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--sngl js-fltr-val--sngl"  value="5000;15000">
+								</label>
+								<label class="fltr-val fltr-val--sngl js-fltr-val--sngl">
+									<input class="fltr-val__inpt" type="radio" name="price" value="5000;15000" hidden>
 									<span class="fltr-val__text" data-callout="2000-3000"> &#8377;5000 - above</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
+								</label>
 							</div>
 						</div>
 					</div>
-					<div class="fltr" groupname="brand">
+					<div class="fltr" data-groupname="brand">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Brands </span>
 							<span class="fltr__cler">Clear </span>
@@ -281,50 +286,60 @@
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Micromax" name="200484[]" value="200088-200484">
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox"  dispname="Micromax" name="200484[]" value="200088-200484" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Micromax</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200485[]" value="200085-200486">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Karbonn" name="200485[]" value="200085-200486" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Intex" name="200486[]" value="200087-200488">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox"  dispname="Intex" name="200486[]" value="200087-200488" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Intex</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Apple" name="200487[]" value="200089-200490">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Apple" name="200487[]" value="200089-200490" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Apple</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Spice" name="200488[]" value="200091-200492">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Spice" name="200488[]" value="200091-200492" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Splice</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Samsung" name="200489[]" value="200093-200494">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Samsung" name="200489[]" value="200093-200494" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Samsung</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="LG" name="200490[]" value="200095-200496">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="LG" name="200490[]" value="200095-200496" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">LG</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Nokia" name="200491[]" value="200097-200498">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Nokia" name="200491[]" value="200097-200498" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Nokia</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Lenovo" name="200492[]" value="200099-200500">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Lenovo" name="200492[]" value="200099-200500" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Lenovo</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="HTC" name="200493[]" value="200100-200501">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="HTC" name="200493[]" value="200100-200501" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">HTC</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
+								</label>
 							</div>
 						</div>
 					</div>
-					<div class="fltr" groupname="type">
+					<div class="fltr" data-groupname="type">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Type </span>
 							<span class="fltr__cler">Clear </span>
@@ -336,18 +351,20 @@
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="SmartPhone" name="200494[]" value="200101-200502">
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="SmartPhone" name="200494[]" value="200101-200502" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip-color="white" data-tooltip="Karbonn">SmartPhone</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200495[]" value="200102-200503">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Karbonn" name="200495[]" value="200102-200503" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Feature Phones</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
+								</label>
 							</div>
 						</div>
 					</div>
-					<div class="fltr" groupname="screensize">
+					<div class="fltr" data-groupname="screensize">
 						<div class="fltr__hdr">
 							<span class="fltr__ttl">Screen Size </span>
 							<span class="fltr__cler">Clear </span>
@@ -359,18 +376,21 @@
 						</div>
 						<div class="fltr-val-wrpr nano">
 							<div class="content">
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Below 2 Inch" name="200484[]" value="200103-200504">
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Below 2 Inch" name="200484[]" value="200103-200504" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Below 2 Inch</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200104-200505">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Karbonn" name="200484[]" value="200104-200505" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
-								<div class="fltr-val fltr-val--mltpl js-fltr-val--mltpl"  dispname="Karbonn" name="200484[]" value="200105-200506">
+								</label>
+								<label class="fltr-val fltr-val--mltpl js-fltr-val--mltpl">
+									<input class="fltr-val__inpt" type="checkbox" dispname="Karbonn" name="200484[]" value="200105-200506" hidden />
 									<span class="fltr-val__text js-tltp" data-tooltip-color="white" data-tooltip="Karbonn">Karbonn</span>
 									<span class="fltr-val__cnt">(206)</span>
-								</div>
+								</label>
 							</div>
 						</div>
 					</div>
@@ -395,14 +415,11 @@
 										<div class="rtng-star__inr" style="width: 90%;">
 										</div>
 									</div>
-									
 								</div>
-								
 							</div>
 							<div class="prdct-item__prc">
 								<span class="prdct-item__rpe">&#8377;</span>
 								<span class="prdct-item__prc-val">22,800</span>
-
 							</div>
 							<div class="prdct-item__str-optns"><strong>23 Stores</strong> at &#8377;22,000</div>
 							<ul class="prdct-item__spcftn-wrpr">

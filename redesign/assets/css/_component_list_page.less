@@ -25,7 +25,7 @@
     margin-right: 10px;
     padding:5px 10px;
     background-color:@bg-color-gs3;
-    color:@fg-color;
+    color:@fg-color-grey;
     margin-bottom:10px;
     &:hover {
       text-decoration: none;
@@ -135,16 +135,18 @@
       cursor: pointer;
     }
     &__prdct-l {
-      background: url('../../icons/large-grid-grey.png') no-repeat center / 16px 18px;;
+      opacity: 0.3;
+      background: url('../../icons/grid-blue-3x3.png') no-repeat center/16px 18px;
       &--slctd {
-        background: url('../../icons/large-grid-blue.png') no-repeat center /16px 18px;;
+        opacity: 1;
       }
     }
     &__prdct-s {
       margin-left:10px;
-      background: url('../../icons/small-grid-grey.png') no-repeat center / 16px 18px;;
+      opacity: 0.3;
+      background: url('../../icons/grid-blue-4x4.png') no-repeat center/16px 18px;
       &--slctd {
-        background: url('../../icons/small-grid-blue.png') no-repeat center / 16px 18px;
+        opacity: 1;
       }
     }
   }
@@ -244,8 +246,8 @@
     }
   }
   &-val {
+    display: block;
     margin-bottom: 10px;
-    padding-left: 20px;
 
     line-height: 18px;
 
@@ -254,27 +256,45 @@
       color:@fg-color-grey;
     }
     &--sngl {
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-radio-grey.png') no-repeat left;
-      //background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-radio-grey.png') no-repeat left; 
+      .fltr-val__text {
+        .image-2x('../../icons/new/radio-grey-unchecked.png', 14px, 14px);
+        background-position: left;
+      }
       &:hover {
-        background-image: url('../../icons/radio-blue-hover.png');
+        .fltr-val__text {
+          .image-2x('../../icons/new/radio-blue-hover.png', 14px, 14px);
+        }
+      }
+      .fltr-val__inpt:checked {
+        &+.fltr-val__text {
+          .image-2x('../../icons/new/radio-blue-checked.png', 14px, 14px);
+        }
       }
     }
     &--mltpl {
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-checkbox-grey.png') no-repeat left;
+      .fltr-val__text {
+        padding-left: 20px;
+        .image-2x('../../icons/new/checkbox-grey-unchecked.png', 14px, 14px);
+        background-position: left center;
+      }
       &:hover {
-        background-image: url('../../icons/checkbox-blue-hover.png'); 
+        .fltr-val__text {
+          .image-2x('../../icons/new/checkbox-blue-hover.png', 14px, 14px);
+        }
+      }
+      .fltr-val__inpt:checked {
+        &+.fltr-val__text {
+          .image-2x('../../icons/new/checkbox-blue-checked.png', 14px, 14px);
+        }
       }
     }
-    &--slctd {
-      color: @fg-color-blue;
-      //font-weight: bold;
-      &.js-fltr-val--mltpl {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png') no-repeat left;
+    &__inpt:checked {
+      &+.fltr-val__text {
+        color: @fg-color-blue; 
       }
-      &.js-fltr-val--sngl {
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png') no-repeat left;
-      }
+    }
+    &__text {
+      padding-left: 20px;
     }
     &__cnt {
       color: @fg-color-light-grey;
