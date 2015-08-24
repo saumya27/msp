@@ -303,35 +303,7 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
 })(jQuery, window, document);
  
 /* Carousel Plugin Script Ends Here */
-$(document).ready(function(){
-
-
-    // dream contest code 
-    // TODO:: discuss with rohit, how it will be in RUI
-    // var currentMspId = $('.mspSingleTitle').data('mspid');
-
-    // $.ajax({
-    //     url: '/promotions/dream-mobile-list.json',
-    //     type: 'get',
-    //     dataType: 'json',
-    //     cache: false,
-    //     success: function (data) {
-    //        var mspidList = data.mspidList;
-    //         if(isChrome()){
-    //             if($(".product_topsec").length && $(".dream-mobile-div").length === 0 && mspidList.indexOf(currentMspId) >= 0){
-    //                 isPluginInstalled().fail(function(){
-
-    //                     $(".product_bottom_sec").prepend('<div class="dream-mobile-div" style="margin-bottom: 10px;">'
-    //                         + '<img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/dream_mobile_adspace.png" class="dream-mobile popup-target" href="/promotions/dream_mobile_popup.html" data-href="/promotions/dream_mobile_popup.html" style="width: 100%; height: 53px;cursor: pointer;">'
-    //                         +'</div>');
-    //                     _gaq.push(["_trackEvent", "DreamMobileContest", "AdspaceBanner", "Banner_Shown"]);
-
-    //                 }).done(function(){});
-    //             }
-    //         }
-    //     }
-    // });
-    // dream contest code ends 
+$doc.ready(function() {
     
     // RUI:: added new carousel classes inside code
     $(".js-crsl-wdgt, .widget-carousel").each(function() {
@@ -367,9 +339,16 @@ $(document).ready(function(){
     $(".js-sldr").each(function(e){
         elementSlider.init(this);
     });
+
+    // Select text inside node on clicking it.
+    $doc.on("click", ".js-slct-txt", function() {
+        MSP.utils.selectText($(this));
+    });
+
     $doc.on("click", ".js-sldr__prvs", function() {
         elementSlider.slide(this,"left");
     });
+    
     $doc.on("click", ".js-sldr__next", function() {
         elementSlider.slide(this, "right");
     });
@@ -548,7 +527,7 @@ if ($(".body-wrpr").length !== 0) {
                 
         if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"').length) {
             finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
-            currentScrollPos = $(window).scrollTop();
+            currentScrollPos = $win.scrollTop();
             animTime = Math.abs((finalScrollPos - currentScrollPos) * speed),
             $body = $("body");
             
@@ -578,7 +557,7 @@ if ($(".body-wrpr").length !== 0) {
         return false;
     });
 
-    $(window).on('hashchange', function() {
+    $win.on('hashchange', function() {
         scrollToLink();
     });
     /* RUI:: scroll to the element on page with data-id = current/onload url hash value - end */
@@ -600,17 +579,17 @@ if ($(".body-wrpr").length !== 0) {
             }
         }
 
-        $(window).on('hashchange', function() {
+        $win.on('hashchange', function() {
             inpageLinking(window.location.hash);
             return false;
         });
 
-        $('body').on('click', 'a[href^="#"]', function (event) {
+        $doc.on('click', 'a[href^="#"]', function (event) {
             event.preventDefault();
             inpageLinking($(this).attr('href'));
         });
 
-        $(window).on('load', function() {
+        $win.on('load', function() {
             inpageLinking(window.location.hash);
         });
     }());
@@ -702,7 +681,7 @@ if ($(".body-wrpr").length !== 0) {
         if (!$('.drpdwn-menu-wrpr--show').length && $(this).hasClass("js-ctgry-btn")) {
             $('.js-drpdwn-menu-wrpr').addClass('drpdwn-menu-wrpr--show');
             $('.js-drpdwn-menu-ovrly').addClass('drpdwn-menu-ovrly--show');
-            if($(window).height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
+            if($win.height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
                 $(".js-drpdwn-menu-wrpr").addClass("drpdwn-menu-wrpr--s");
             }
             if ($('.drpdwn-menu').data('processed') == 'done' && location.hash !== '#forcepopup') {
@@ -785,7 +764,7 @@ $doc.on('mouseenter', '.callout-target', function() {
     $callout = $('.callout');
     $callout.css('left', $this.offset().left);
     $callout.css('top', $this.offset().top - $callout.outerHeight() - 10);
-    if ($callout.offset().top - $(window).scrollTop() < 0) {
+    if ($callout.offset().top - $win.scrollTop() < 0) {
         $callout.removeClass('top-left').addClass('bottom-left');
         $callout.css('top', $this.outerHeight() + $this.offset().top + 10);
     }
@@ -810,7 +789,7 @@ $doc.on('mouseenter', '.js-tltp', function() {
     $tooltip = $('.tltp');
     $tooltip.css('left', $this.offset().left);
     $tooltip.css('top', $this.offset().top - $tooltip.outerHeight() - 10);
-    if ($tooltip.offset().top - $(window).scrollTop() < 0) {
+    if ($tooltip.offset().top - $win.scrollTop() < 0) {
         $tooltip.removeClass('tltp--top-left').addClass('tltp--btm-left');
         $tooltip.css('top', $this.outerHeight() + $this.offset().top + 10);
     }
@@ -1377,8 +1356,8 @@ function getAutopopupURL($dataElement) {
     }
     if ($popupData["scroll"] === true) {
         if (window.location.href.indexOf("msp") > -1 || window.location.href.indexOf("msf") > -1) {
-            $(document).on('scroll', function(e) {
-                if ($(document).scrollTop() >= $(window).height()) {
+            $doc.on('scroll', function(e) {
+                if ($doc.scrollTop() >= $win.height()) {
                     $dataElement.data("popup_id", $popupData["scroll-id"]);
                     openAutoPopupURL($popupData["scroll-url"]);
                 }
@@ -1420,39 +1399,6 @@ function pageLeavePopupBind() {
 }
 // autopopup functions end here
 // popup functions end here
-
-
-// TODO:: check if old function can be removed or to be merged 
-// header functions start here
-// function processHeader() {
-//     if (!scrolled) return;
-//     var scrollTop = $win.scrollTop(),
-//         delta = 5,
-//         $subHeader = $('.sub-header'),
-//         $header = $('.header'),
-//         subHeaderHeight = $subHeader.outerHeight();
-//     if (scrollTop <= 0) {
-//         $subHeader.removeClass('hide');
-//         return;
-//     }
-//     if (Math.abs(lastScrollTop - scrollTop) <= delta) return;
-//     if (scrollTop > lastScrollTop && scrollTop > subHeaderHeight) {
-//         // Scroll Down
-//         $header.addClass('slide-header');
-//         $subHeader.addClass('hide');
-//     } else {
-//         // Scroll Up
-//         if (scrollTop + $win.height() < $doc.height()) {
-//             $subHeader.removeClass('hide');
-//             $header.removeClass('slide-header');
-//         }
-//     }
-//     lastScrollTop = scrollTop;
-//     scrolled = false;
-// }
-// header functions end here// header functions end here
-
-/* RUI:: reveal new subheader when user scrolls - start */
 
 //If header is scrollable then dont hide the subheader
 $win.scroll(MSP.utils.throttle(function(e) {
@@ -1587,7 +1533,7 @@ function initScrollToTop() {
         $toTop.stop(true, true).fadeOut();
     });
 
-    $(window).on("scroll", function() {
+    $win.on("scroll", function() {
         if ($(this).scrollTop() > 100) {
             if (showScrollToTopDisplay == 'hidden') {
                 showScrollToTopDisplay = 'display';
@@ -1804,7 +1750,7 @@ $.expr[':'].icontains = function(a, b, c, d) {
     };
 })(jQuery, window, document);
 
-$(document).ready(function() {
+$doc.ready(function() {
     $(".sidebardiv_collapsable").sidebarList();
 });
 /* TODO:: need to be updated in new RUI - ends here */

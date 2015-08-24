@@ -161,6 +161,9 @@
     font-size: 12px;
     font-weight: 400;
   }
+  &__lbl {
+    width: 98px;
+  }
   &__arw {
     position: absolute;
     font-weight: normal;
@@ -240,8 +243,8 @@
     position: relative;
     height: auto;
     width: auto;
-    padding: 5px 22px 5px 7px;
-    font-size: 12px;
+    padding: 5px 18px 5px 5px;
+    font-size: 11px;
     vertical-align: middle;
   }
   &--xs &__arw {
@@ -540,11 +543,11 @@
       font-size: 10px;
     }
     .rtng-star {
-      width: 95px;
-      background-image: url('http://avi.mysmartprice.com/rd/img/star-grey-xl.png');
+      width: 100px;
+      .image-2x('../../icons/new/star-grey-xl.png', auto, 18px, repeat-x);
     }
-    .rtng__inr {
-      background-image: url('http://avi.mysmartprice.com/rd/img/star-gold-xl.png');
+    .rtng-star__inr {
+      .image-2x('../../icons/new/star-gold-xl.png', auto, 18px, repeat-x);
     }
     .rtng-star, .rtng-star__inr {
       height: 18px;
@@ -552,6 +555,8 @@
     }
   }
 }
+
+
 .rtng-star {
   width: 60px;
   margin-right: 10px;
@@ -575,7 +580,7 @@
 .rtng-bdg {
   display: inline-block;
 
-  padding: 4px 8px;
+  padding: 4px 6px;
   border-radius: 3px;
   background: @bg-color-dark-green;
 
@@ -611,24 +616,6 @@
 
   text-align: center;
   vertical-align: middle;
-}
-
-.votes {
-  &__up, &__down {
-    display: inline-block;
-
-    width: 30px;
-    height: 30px;
-    border: 1px solid @border-color;
-    border-radius: @border-radius;
-  }
-  &__up {
-    margin-left: 15px;
-    background: url('http://avi.mysmartprice.com/rd/img/votes-up.png') no-repeat center;
-  }
-  &__down {
-    background: url('http://avi.mysmartprice.com/rd/img/votes-down.png') no-repeat center;
-  }
 }
 
 .load-more {

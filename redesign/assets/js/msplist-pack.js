@@ -6,8 +6,6 @@ var ListPage = {
     },
     "controller" : {
         "init" : function() {
-            // get page params and default values to get default filters to be applied.
-            ListPage.controller.getDefaults();
             var lp_changes = ListPage.model.params.changes,
                 lp_defaults = ListPage.model.params.defaults,
                 lp_current = ListPage.model.params.current,
@@ -15,10 +13,13 @@ var ListPage = {
                 lp_filterPlugins = ListPage.controller.filterPlugins,
                 lp_clipboard = ListPage.model.clipboard;
 
+            // get page params and default values to get default filters to be applied.
+            ListPage.controller.getDefaults();
+            
             lp_filterPlugins.init({
                 "priceSlider" : {
-                    "min" : lp_defaults.startinr,
-                    "max" : lp_defaults.endinr
+                    "min" : lp_page.price ? lp_page.price.split(";")[0] : lp_defaults.priceMin,
+                    "max" : lp_page.price ? lp_page.price.split(";")[1] : lp_defaults.priceMax
                 }
             });
             ListPage.controller.updatePage();
@@ -27,9 +28,9 @@ var ListPage = {
             ;(function addActionListeners() {
                 var clearGroupQueue = [],
                     listenerTypes = [
-                        ".fltr:not([groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbl)",
-                        ".fltr:not([groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbl)",
-                        ".fltr[groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbl)"
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbl) input",
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbl) input",
+                        ".fltr[data-groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbl) input"
                     ];
 
 
@@ -56,16 +57,17 @@ var ListPage = {
                 });
 
                 // onclick a non-price multi value filter.
-                $doc.on("click", ".fltr:not([groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbl)", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbl) input", function() {
+                    var groupName = $(this).closest(".fltr").data("groupname");
+
                     if (clearGroupQueue.length === 0) {
                         $.merge(clearGroupQueue, $(this));
                     }
                     $(clearGroupQueue).each(function (i, item) {
-                        var context = $(item).hasClass("fltr-val--slctd") ? "remove" : "add",
+                        var context = (!lp_current.property || lp_current.property.indexOf($(item).attr("value")) === -1) ? "add" : "remove",
                             changes = lp_changes[context];
-                        if (typeof changes.property === "undefined") {
-                            changes.property = [];
-                        }
+                        
+                        changes.property = changes.property || [];
                         changes.property.push($(item).attr("value"));
                     });
                     clearGroupQueue = [];
@@ -75,16 +77,16 @@ var ListPage = {
                 });
                 
                 // onclick a non-price single value filter.
-                $doc.on("click", ".fltr:not([groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbl)", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbl) input", function() {
+                    var groupName = $(this).closest(".fltr").data("groupname");
                     if (clearGroupQueue.length === 0) {
-                        $.merge(clearGroupQueue, $(this).closest(".fltr").find(".fltr-val--slctd"));
+                        $.merge(clearGroupQueue, $(this).closest(".fltr").find(".fltr-val__inpt:checked"));
                     }
                     $(clearGroupQueue).each(function (i, item) {
-                        var context = $(item).hasClass("fltr-val--slctd") ? "remove" : "add",
+                        var context = lp_current[groupName] !== $(item).attr("value") ? "add" : "remove",
                             changes = lp_changes[context];
-                        if (typeof changes.property === "undefined") {
-                            changes.property = [];
-                        }
+                        
+                        changes.property = changes.property || [];
                         changes.property.push($(item).attr("value"));
                     });
                     clearGroupQueue = [];
@@ -94,16 +96,16 @@ var ListPage = {
                 });
                 
                 // onclick a price single value filter.
-                $doc.on("click", ".fltr[groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbl)", function() {
+                $doc.on("click", ".fltr[data-groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbl) input", function() {
                     var filterVal = $(this).attr("value"),
                         values = filterVal.split(";"),
                         minPrice = parseInt(values[0], 10),
                         maxPrice = parseInt(values[1], 10),
-                        context = $(this).hasClass("fltr-val--slctd") ? "remove" : "add",
+                        context = (lp_current.price !== $(this).attr("value")) ? "add" : "remove",
                         displayPrices = {};
+                    
                     $.extend(lp_changes[context], {
-                        "startinr" : minPrice,
-                        "endinr" : maxPrice
+                        "price" : minPrice + ";" + maxPrice
                     });
 
                     lp_changes.inFilterBox = true;
@@ -113,24 +115,18 @@ var ListPage = {
                 // clear all apllied filters in a filtergroup
                 $doc.on("click", ".fltr__cler", function() {
                     var $currentGroup = $(this).closest(".fltr"),
-                        groupname = $currentGroup.attr("groupname"),
-                        $activeFilters = $currentGroup.find(".fltr-val--slctd");
-                    if (groupname == "price") {
+                        groupname = $currentGroup.data("groupname"),
+                        $activeFilters = $currentGroup.find(".fltr-val__inpt:checked");
+                    if (groupname === "price") {
                         $.extend(lp_changes.remove, {
-                            "startinr" : lp_clipboard.prevMinPrice,
-                            "endinr" : lp_clipboard.prevMaxPrice
+                            "price" : lp_clipboard.prevMinPrice + ";" + lp_clipboard.prevMaxPrice
                         });
 
                         lp_changes.inFilterBox = true;
                         ListPage.controller.updatePage();
                     } else {
-                        $.merge(clearGroupQueue, $currentGroup.find(".fltr-val--slctd"));
-                        $.each(listenerTypes, function (i, selector) {
-                            if ($currentGroup.find(".fltr-val").eq(0).is(selector)) {
-                                $activeFilters.eq(0).click();
-                                return;
-                            }
-                        });
+                        $.merge(clearGroupQueue, $currentGroup.find("input:checked"));
+                        $activeFilters.eq(0).click();
                     }
                 });
                 
@@ -158,14 +154,12 @@ var ListPage = {
                             if (minPrice !== lp_defaults.priceMin || maxPrice !== lp_defaults.priceMax) {
                                 // if new price range is subset of total range then apply filter
                                 $.extend(lp_changes.add, {
-                                    "startinr" : minPrice,
-                                    "endinr" : maxPrice
+                                    "price" : minPrice + ";" + endinr
                                 });
                             } else {
                                 // if new price range is total range then remove existing price filter.
                                 $.extend(lp_changes.remove, {
-                                    "startinr" : lp_clipboard.prevMinPrice,
-                                    "endinr" : lp_clipboard.prevMaxPrice
+                                    "price" : lp_clipboard.prevMinPrice + ";" + lp_clipboard.prevMaxPrice
                                 });
                             }
 
@@ -185,29 +179,26 @@ var ListPage = {
                         
                         // batch changes(DOM write operatations ie. to uncheck filters/remove tags) to trigger only one render operation.
                         $.each(remfilterQueue, function (i, filter) {
-                            if ($(filter).closest(".js-fltrs-apld").attr("groupname") == "searchTerm") {
-                                lp_changes.remove.s = $(filter).attr("value");
-                            } else if ($(filter).closest(".js-fltrs-apld").attr("groupname") == "localSearch") {
-                                lp_changes.remove.ss = $(filter).attr("value");
-                            } else if ($(filter).closest(".js-fltrs-apld").attr("groupname") == "price") {
+                            if ($(filter).closest(".js-fltrs-apld").data("groupname") === "searchTerm") {
+                                lp_changes.remove.s = $(filter).data("value");
+                            } else if ($(filter).closest(".js-fltrs-apld").data("groupname") === "localSearch") {
+                                lp_changes.remove.ss = $(filter).data("value");
+                            } else if ($(filter).closest(".js-fltrs-apld").data("groupname") === "price") {
                                 $.extend(lp_changes.remove, {
-                                    "startinr" : parseInt($(filter).attr("value").split(";")[0], 10),
-                                    "endinr" : parseInt($(filter).attr("value").split(";")[1], 10)
+                                    "price" : $(filter).data("value")
                                 });
                             } else {
-                                filterVal = $(filter).attr("value");
-                                $filterItem = $('.fltr-val--slctd[value="' + filterVal + '"]');
-                                if ($filterItem.is(":not(.price_val, .unavailable)")) {
+                                filterVal = $(filter).data("value");
+                                $filterItem = $('.fltr-val__inpt[value="' + filterVal + '"]').closest(".fltr-val");
+                                if ($filterItem.is(":not(.fltr-val--dsbld)")) {
                                     if ($filterItem.is(".js-fltr-val--mltpl") && clearGroupQueue.length === 0) {
-                                        $.merge(clearGroupQueue, $filterItem);
+                                        $.merge(clearGroupQueue, $filterItem.find("input"));
                                     } else if ($filterItem.is(".js-fltr-val--sngl") && clearGroupQueue.length === 0) {
-                                        $.merge(clearGroupQueue, $filterItem.closest(".fltr").find(".fltr-val--slctd"));
+                                        $.merge(clearGroupQueue, $filterItem.closest(".fltr").find("input:checked"));
                                     }
                                     $.each(clearGroupQueue, function (i, item) {
-                                        var context = $(item).hasClass("fltr-val--slctd") ? "remove" : "add",
-                                            changes = lp_changes[context];
-                                        changes.property = changes.property || [];
-                                        changes.property.push($(item).attr("value"));
+                                        lp_changes.remove.property = lp_changes.remove.property || [];
+                                        lp_changes.remove.property.push($(item).attr("value"));
                                     });
                                     clearGroupQueue = [];
                                 } else {}
@@ -272,17 +263,20 @@ var ListPage = {
                 lp_clipboard = ListPage.model.clipboard,
                 pageParams = (function() {
                     var $bodyWrapper = $(".body-wrpr"),
-                        params = {};
+                        params = {},
+                        startInr, endInr;
+
                     if ($bodyWrapper.data("category")) {
                         params.subcategory = $bodyWrapper.data("category");
                     }
                     if ($bodyWrapper.data("start_price") || $bodyWrapper.data("end_price")){
-                        params.startinr = parseInt($bodyWrapper.data("start_price") || $(".js-fltr-prc__inpt-min").attr("val"), 10);
-                        params.endinr = parseInt($bodyWrapper.data("end_price") || $(".js-fltr-prc__inpt-max").attr("val"), 10);
+                        startInr = parseInt($bodyWrapper.data("start_price") || $(".js-fltr-prc__inpt-min").attr("val"), 10);
+                        endInr = parseInt($bodyWrapper.data("end_price") || $(".js-fltr-prc__inpt-max").attr("val"), 10);
+                        params.price = startInr + ";" + endInr;
                     }
                     if ($bodyWrapper.data("brand")) {
                         params.property = params.property || "";
-                        params.property += $(".list_filter_val[dispname='" + $bodyWrapper.data("brand") + "']").attr("value") + "|";
+                        params.property += $(".fltr-val__inpt[dispname='" + $bodyWrapper.data("brand") + "']").attr("value") + "|";
                     }
                     if ($bodyWrapper.data("property")) {
                         params.property = params.property || "";
@@ -299,6 +293,7 @@ var ListPage = {
                     
                     return params;
                 }());
+
             $.extend(ListPage.model.params.page, pageParams);
 
             // get supported values of min and max price values by the slider.
@@ -309,8 +304,8 @@ var ListPage = {
 
             // store inital values as previous values when values change.
             $.extend(lp_clipboard, {
-                "prevMinPrice" : parseInt($(".fltr-prc__sldr").attr("value").split(";")[0], 10),
-                "prevMaxPrice" : parseInt($(".fltr-prc__sldr").attr("value").split(";")[1], 10)
+                "prevMinPrice" : lp_defaults.priceMin,
+                "prevMaxPrice" : lp_defaults.priceMax
             });
         },
         "filterPlugins" : {
@@ -322,10 +317,10 @@ var ListPage = {
                 "init" : function(settings, replacedGroups) {
                     var minPrice = settings.min,
                         maxPrice = settings.max,
-                        minSlider = minPrice ? this.priceSlider.priceToRange(minPrice) : 0,
-                        maxSlider = maxPrice ? this.priceSlider.priceToRange(maxPrice) : 200,
+                        minSlider = minPrice ? this.priceToRange(minPrice) : 0,
+                        maxSlider = maxPrice ? this.priceToRange(maxPrice) : 200,
                         lp_changes = ListPage.model.params.changes,
-                        lp_priceSlider = ListPage.controller.filterPlugins.priceSlider;
+                        lp_filterPlugins = ListPage.controller.filterPlugins;
 
                     if ($.isArray(replacedGroups) && replacedGroups.indexOf("price") === -1) {
                         return;
@@ -338,16 +333,22 @@ var ListPage = {
                         values: [minSlider || 0, maxSlider || 200],
                         step: 1,
                         animate: true,
-                        slide: ListPage.controller.filterPlugins.priceSlider.callback,
+                        slide: lp_filterPlugins.priceSlider.callback,
                         stop: function (a, b) {
-                            if (b.values[0] == 0 && b.values[1] == 200) {
+                            var startInr, endInr;
+
+                            if (b.values[0] === 0 && b.values[1] === 200) {
+                                startInr = ListPage.model.clipboard.prevMinPrice;
+                                endInr = ListPage.model.clipboard.prevMaxPrice;
+                                
                                 // if range is equal to total range then remove price filter
-                                ListPage.model.params.changes.remove.startinr = ListPage.model.clipboard.prevMinPrice;
-                                ListPage.model.params.changes.remove.endinr = ListPage.model.clipboard.prevMaxPrice;
+                                lp_changes.remove.price = startInr + ";" + endInr;
                             } else {
+                                startInr = lp_filterPlugins.priceSlider.rangeToPrice(b.values[0]);
+                                endInr = lp_filterPlugins.priceSlider.rangeToPrice(b.values[1]);
+                                
                                 // if range is not equal to total range then add new price filter
-                                ListPage.model.params.changes.add.startinr = ListPage.controller.filterPlugins.priceSlider.rangeToPrice(b.values[0]);
-                                ListPage.model.params.changes.add.endinr = ListPage.controller.filterPlugins.priceSlider.rangeToPrice(b.values[1]);
+                                lp_changes.add.price = startInr + ";" + endInr;
                             }
 
                             lp_changes.inFilterBox = true;
@@ -355,9 +356,10 @@ var ListPage = {
                             $(".fltr-prc__sldr").slider("values", [b.values[0], b.values[1]]);
                         }
                     });
+
                     if (minPrice || maxPrice) {
-                        $(".js-fltr-prc__inpt-min").val(minPrice || ListPage.model.params.defaults.startinr);
-                        $(".js-fltr-prc__inpt-max").val(maxPrice || ListPage.model.params.defaults.endinr);
+                        $(".js-fltr-prc__inpt-min").val(minPrice || ListPage.model.params.defaults.price.split(";")[0]);
+                        $(".js-fltr-prc__inpt-max").val(maxPrice || ListPage.model.params.defaults.price.split(";")[1]);
                     }
                 },
                 // get price value from slider range value
@@ -367,6 +369,7 @@ var ListPage = {
                         b = Math.exp(Math.log(priceMax / priceMin) / 200),
                         priceValue = priceMin * Math.pow(b, a),
                         roundOff = Math.pow(10, Math.floor(Math.log(priceValue - (priceValue / b)) / Math.log(10)));
+                    
                     priceValue = Math.ceil(priceValue / roundOff) * roundOff;
                     if (a === 0 || priceValue < priceMin) return priceMin;
                     else if (a == 200 || priceValue > priceMax) return priceMax;
@@ -409,7 +412,7 @@ var ListPage = {
 
                 if (filterGroups) {
                     $nanoElements = $(".fltr-val-wrpr.nano").filter(function() {
-                        return filterGroups.indexOf($(this).closest(".fltr").attr("groupname")) !== -1;
+                        return filterGroups.indexOf($(this).closest(".fltr").data("groupname")) !== -1;
                     });
                 } else {
                     $nanoElements = $(".fltr-val-wrpr.nano");
@@ -460,12 +463,12 @@ var ListPage = {
                     }
                 });
                 //apply deletions in current state params
-                $.each(lp_changes.remove, function (key1) {
+                $.each(lp_changes.remove, function(key) {
                     var index;
-                    if (key1 === "property") {
+                    if (key === "property") {
                         if ("property" in lp_changes.remove) {
-                            $.each(lp_changes.remove.property, function (key2) {
-                                index = lp_current.property.indexOf(lp_changes.remove.property[key2]);
+                            $.each(lp_changes.remove.property, function(i, removedProperty) {
+                                index = lp_current.property.indexOf(removedProperty);
                                 lp_current.property.splice(index, 1);
                             });
                             if (lp_current.property.length === 0) {
@@ -473,7 +476,7 @@ var ListPage = {
                             }
                         }
                     } else {
-                        delete lp_current[key1];
+                        delete lp_current[key];
                     }
                 });
             } else {
@@ -523,8 +526,7 @@ var ListPage = {
                 "s" : "", //globalSearch
                 "ss" : "", //localSearch
                 "subcategory" : "", 
-                "startinr" : "", //price min
-                "endinr" : "", //price max
+                "price" : startInr + ";" + endInr,
                 "property" : [],
                 "sort" : "", 
                 "page" : "" //pagination no
@@ -583,12 +585,12 @@ var ListPage = {
                                     var affectedGroups = (function() {
                                         var result = [];
                                         $.each(["add", "remove"], function(i, context) {
-                                            if ("startinr" in lp_changes[context]) {
+                                            if ("price" in lp_changes[context]) {
                                                 result.push("price");
                                             }
                                             if ("property" in lp_changes[context]) {
                                                 $.each(lp_changes[context].property, function(i, propValue) {
-                                                    var groupname = $(".fltr-val[value='" + propValue + "']").closest(".fltr").attr("groupname");
+                                                    var groupname = $(".fltr-val[value='" + propValue + "']").closest(".fltr").data("groupname");
                                                     result.push(groupname);
                                                 });
                                             }
@@ -596,13 +598,13 @@ var ListPage = {
                                         return result;
                                     })();
                                     return function filterFunction() {
-                                        return affectedGroups.indexOf($(this).attr("groupname")) === -1;
+                                        return affectedGroups.indexOf($(this).data("groupname")) === -1;
                                     }
                                 })());
                                 $groupsToReplaceDOM.each(function() {
                                     var $newFilterDOM = $(this),
-                                        groupname = $newFilterDOM.attr("groupname"),
-                                        $exisingFilterDOM = $(".fltr[groupname='" + groupname + "']");
+                                        groupname = $newFilterDOM.data("groupname"),
+                                        $exisingFilterDOM = $(".fltr[data-groupname='" + groupname + "']");
                                     replacedGroups.push(groupname);
                                     $exisingFilterDOM.replaceWith($newFilterDOM);
                                 });
@@ -698,12 +700,11 @@ var ListPage = {
                         $.each(filterControls.add.queue, function (i, filterItem) {
                             // batch html of all the filters to append all filter tags in one go.
                             if ("unitValue" in filterItem) {
-                                $filterGroupOptions = $(".fltr[groupname='" + filterItem.groupName + "'] .fltr-val");
-                                if ($filterGroupOptions.hasClass("js-fltr-val--sngl") || filterItem.groupName == "localSearch") {
-                                    $(".js-fltrs-apld[groupname='" + filterItem.groupName +"']").remove();
-                                    $filterGroupOptions.removeClass("fltr-val--slctd");
+                                $filterGroupOptions = $(".fltr[data-groupname='" + filterItem.groupName + "'] .fltr-val__inpt");
+                                if ($filterGroupOptions.closest(".fltr-val").hasClass("js-fltr-val--sngl") || filterItem.groupName == "localSearch") {
+                                    $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']").remove();
                                 }
-                                $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").addClass("fltr-val--slctd");
+                                $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").prop("checked", true);
                                 $filterGroupOptions.closest(".fltr").find(".fltr__cler").show();
                             }
                             if (filterItem.groupName == "price") {
@@ -716,8 +717,8 @@ var ListPage = {
                                 $(".js-fltr-prc__inpt-max").val(filterItem.unitValue.split(";")[1]);
                             }
                             // batch html of all the filters to append all filter tags in one go.
-                            if ($(".js-fltrs-apld[groupname='" + filterItem.groupName + "']").length !== 0) {
-                                $(".js-fltrs-apld[groupname='" + filterItem.groupName + "']").append(appliedFilterComponents.unit(filterItem));
+                            if ($(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']").length !== 0) {
+                                $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']").append(appliedFilterComponents.unit(filterItem));
                             } else {
                                 $(".js-fltrs-apld-wrpr").append(appliedFilterComponents.group(filterItem));
                             }
@@ -725,7 +726,6 @@ var ListPage = {
                         
                         if (filterControls.add.queue.length !== 0) {
                             $(".js-fltrs-apld-wrpr1").show();
-
 
                             ;(function showFollowThisSearchButton() {
                                 var subcatName = $('.body-wrpr').data('listname'),
@@ -739,9 +739,9 @@ var ListPage = {
                     "remove" : function() {
                         // remove all filters registered on filterControls.remove.queue
                         $.each(filterControls.remove.queue, function (i, filterItem) {
-                            var $remfilterGrp = $(".js-fltrs-apld[groupname='" + filterItem.groupName + "']"),
-                                $remfilterUnit = $remfilterGrp.find(".js-fltrs-apld__item[value='" + filterItem.unitValue + "']"),
-                                $filterOption = $(".fltr-val[value='" + filterItem.unitValue + "']");
+                            var $remfilterGrp = $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']"),
+                                $remfilterUnit = $remfilterGrp.find(".js-fltrs-apld__item[data-value='" + filterItem.unitValue + "']"),
+                                $filterOption = $(".fltr-val__inpt[value='" + filterItem.unitValue + "']");
 
                             if ($remfilterGrp.find(".js-fltrs-apld__item").length === 1) {
                                 $remfilterGrp.remove();
@@ -749,12 +749,17 @@ var ListPage = {
                                 $remfilterUnit.remove();
                             }
 
-                            $filterOption.removeClass("fltr-val--slctd");
-                            if ($filterOption.closest(".fltr").find(".fltr-val--slctd").length === 0) {
+                            // FIXME:: on clearing --multi filter block first item remains selected
+                            // -> setTimeout is a temporary fix to do unchecking after handler is executed.
+                            setTimeout(function() {
+                                $filterOption.prop("checked", false);
+                            }, 0);
+                            
+                            if ($filterOption.closest(".fltr").find(".fltr-val__inpt:checked").length === 0) {
                                 $filterOption.closest(".fltr").find(".fltr__cler").hide();
                             }
                             
-                            if (filterItem.groupName == "price") {
+                            if (filterItem.groupName === "price") {
                                 // update priceSlider range points
                                 $(".fltr-prc__sldr").slider("values", [ 0, 200 ]);
                                 $(".js-fltr-prc__inpt-min").val(lp_defaults.priceMin);
@@ -763,7 +768,7 @@ var ListPage = {
                         });
 
                         // if all filter tags removed remove "clear all" filter tag also
-                        if ($(".js-fltrs-apld").length == 0) {
+                        if ($(".js-fltrs-apld").length === 0) {
                             $(".js-fltrs-apld-wrpr1").hide();
                             $(".list-hdr__save").hide();
                         }
@@ -797,23 +802,25 @@ var ListPage = {
                             "groupLabel" : "List Search"
                         });
                     }
-                    if (("startinr" in lp_changes[action]) && ("endinr" in lp_changes[action])) {
+                    if ("price" in lp_changes[action]) {
                         ;(function() {
-                            var unitValue, unitLabel, groupName, groupLabel, minSlider, maxSlider;
-                            unitValue = lp_changes[action].startinr + ';' + lp_changes[action].endinr;
-                            unitLabel = lp_changes[action].startinr.toLocaleString() + "-" + lp_changes[action].endinr.toLocaleString(),
-                            groupName = 'price',
-                            groupLabel = 'price';
+                            var startInr = lp_changes[action].price.split(";")[0],
+                                endInr = lp_changes[action].price.split(";")[1],
+                                unitValue = lp_changes[action].price,
+                                unitLabel = startInr.toLocaleString() + "-" + endInr.toLocaleString(),
+                                minSlider, maxSlider;
+                            
                             filterControls[action].queue.push({
                                 "unitValue" : unitValue,
                                 "unitLabel" : unitLabel,
-                                "groupName" : groupName,
-                                "groupLabel" : groupLabel
+                                "groupName" : 'price',
+                                "groupLabel" : 'price'
                             });
+
                             // if price filter is to be added update slider values to new values
                             if (action === "add") {
-                                lp_clipboard.slider.priceMin = lp_changes.add.startinr;
-                                lp_clipboard.slider.priceMax = lp_changes.add.endinr;
+                                lp_clipboard.slider.priceMin = startInr;
+                                lp_clipboard.slider.priceMax = endInr;
                             // if price filter is to be removed update slider values to min and max values.
                             } else {
                                 lp_clipboard.slider.priceMin = lp_defaults.priceMin;
@@ -823,11 +830,12 @@ var ListPage = {
                     }
                     if ("property" in lp_changes[action]) {
                         $.each(lp_changes[action].property, function (i, value) {
-                            var $filterItem = $('.fltr-val[value="'+ value +'"]'),
+                            var $filterItem = $('.fltr-val__inpt[value="'+ value +'"]'),
                                 unitValue = value,
                                 unitLabel = $filterItem.attr("dispname"),
+                                groupName = $filterItem.closest(".fltr").data("groupname"),
                                 groupLabel = $.trim($filterItem.closest(".fltr").find(".fltr__ttl").text());
-                                groupName = $filterItem.closest(".fltr").attr("groupname");
+
                             filterControls[action].queue.push({
                                 "unitValue" : unitValue,
                                 "unitLabel" : unitLabel,
@@ -845,8 +853,8 @@ var ListPage = {
                 });
                 
                 $.extend(lp_clipboard, {
-                    "prevMinPrice" : lp_current.startinr || lp_defaults.minPrice,
-                    "prevMaxPrice" : lp_current.endinr || lp_defaults.maxPrice,
+                    "prevMinPrice" : lp_current.price ? lp_current.price.split(";")[0] : lp_defaults.minPrice,
+                    "prevMaxPrice" : lp_current.price ? lp_current.price.split(";")[1] : lp_defaults.maxPrice,
                     "prevLocalSearch" : lp_current.ss || ""
                 });
 
@@ -861,7 +869,7 @@ var ListPage = {
             "appliedFilter" : {
                 "group" : function(filterItem) {
                     return [
-                        '<div class="js-fltrs-apld" groupname="' + filterItem.groupName + '">',
+                        '<div class="js-fltrs-apld" data-groupname="' + filterItem.groupName + '">',
                             '<div class="js-fltrs-apld__lbl">' + filterItem.groupLabel + ':</div>',
                             this.unit(filterItem),
                         '</div>'
@@ -869,7 +877,7 @@ var ListPage = {
                 },
                 "unit" : function(filterItem) {
                     return [
-                        '<div class="js-fltrs-apld__item" value="' + filterItem.unitValue + '">',
+                        '<div class="js-fltrs-apld__item" data-value="' + filterItem.unitValue + '">',
                             '<span class="js-fltrs-apld__item-label">' + filterItem.unitLabel + '</span>',
                             '<img class="js-fltrs-apld__item-cler" src="http://doypaxk1e2349.cloudfront.net/icons/cross-grey.png"/>',
                         '</div>'
@@ -883,21 +891,22 @@ var ListPage = {
             "toParams" : function(filterHash) {
                 var params = {},
                     prop_strings = filterHash.replace("#", "").split("&");
+
                 if (prop_strings[0] !== "") {
                     $.each(prop_strings, function (i, prop_string) {
                         params[prop_string.split("=")[0]] = prop_string.split("=")[1];
                     });
+                    
                     if ("property" in params) {
                         params.property = $.grep(params.property.split("|").sort(), function (e, i) {
                             return (e !== "");
                         });
                     }
-                    if ("startinr" in params || "endinr" in params) {
-                        params.startinr = parseInt(params.startinr, 10);
-                        params.endinr = parseInt(params.endinr, 10);
+                    
+                    if (params.startinr !== params.priceMin || params.endinr !== params.priceMax) {
+                        params.price = parseInt(params.startinr, 10) + ";" + parseInt(params.endinr, 10);
                     }
-                }
-                if (params.startinr === params.priceMin && params.endinr === params.priceMax) {
+
                     delete params.startinr;
                     delete params.endinr;
                 }
@@ -924,11 +933,12 @@ var ListPage = {
                 var lp_current = $.extend({}, ListPage.model.params.current),
                     lp_defaults = $.extend({}, ListPage.model.params.defaults),
                     lp_clipboard = ListPage.model.clipboard;
+
                 return [
                     "subcategory=" + lp_current.subcategory,
                     lp_current.s ? ("&s=" + lp_current.s) : "",
                     lp_current.property ? ("&property=" + lp_current.property.join("|")) : "",
-                    (lp_current.startinr || lp_current.endinr) ? ("&startinr=" + lp_current.startinr + "&endinr=" + lp_current.endinr) : "",
+                    (lp_current.price) ? ("&startinr=" + lp_current.price.split(";")[0] + "&endinr=" + lp_current.price.split(";")[1]) : "",
                     lp_current.sort ? ("&sort=" + lp_current.sort) : "",
                     lp_current.ss ? ("&ss=" + lp_current.ss) : "",
                     lp_current.page ? ("&page=" + lp_current.page) : ""

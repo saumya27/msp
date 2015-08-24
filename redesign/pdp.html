@@ -24,12 +24,12 @@
 					</div>
 					<div class="drpdwn-wdgt drpdwn-wdgt--l">
 						<div class="drpdwn-wdgt__menu drpdwn-wdgt__menu--user">
-							<a class="drpdwn-wdgt__menu-link" href="/users/mylist.php">
+							<span class="drpdwn-wdgt__menu-link js-open-link" data-open-link="/users/mylist.php">
 								<span class="drpdwn-wdgt__menu-img-wrpr">
 									<img class="drpdwn-wdgt__menu-img user-img" src="http://doypaxk1e2349.cloudfront.net/icons/user-default.png" alt="User">
 								</span>
 								<span class="drpdwn-wdgt__menu-text js-user-name">My Account</span>
-							</a>
+							</span>
 							<span class="drpdwn-wdgt__down-icon"></span>
 						</div>
 						<div class="acnt">
@@ -145,7 +145,7 @@
 					<div class="prdct-dtl__thmbnl prdct-dtl__thmbnl--slctd js-popup-trgt" data-href="http://www.mysmartprice.com/fashion/single/zoomed_multi_image_popup?gridid=56145805&thumbid=2">
 						<img class="prdct-dtl__thmbnl-img" src="img/iphone.png" alt="iPhone" data-thumb-id="1">
 					</div>
-					<div class="prdct-dtl__thmbnl js-popup-trgt" data-href="http://www.mysmartprice.com/fashion/single/zoomed_multi_image_popup?gridid=56145805&thumbid=3">		<img class="prdct-dtl__thmbnl-img" src="img/iphone1.png" alt="iPhone" data-thumb-id="2">
+					<div class="prdct-dtl__thmbnl js-popup-trgt" data-href="http://www.mysmartprice.com/fashion/single/zoomed_multi_image_popup?gridid=56145805&thumbid=3">		<img class="prdct-dtl__thmbnl-img" src="img/iphone.png" alt="iPhone" data-thumb-id="2">
 					</div>
 					<div class="prdct-dtl__thmbnl js-popup-trgt" data-href="http://www.mysmartprice.com/fashion/single/zoomed_multi_image_popup?gridid=56145805&thumbid=4">
 						<img class="prdct-dtl__thmbnl-img" src="img/iphone.png" alt="iPhone" data-thumb-id="3">
@@ -225,7 +225,7 @@
 							<div class="prdct-dtl__slr-prc-rcmnd-text">Recommended Price</div>
 						</div>
 						<div class="btn-GTS prdct-dtl__slr-prc-btn">
-                            ORDER NOW<br>
+                            <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png" /><br>
                             <span class="btn-GTS__str">at Amazon</span>
                             <span class="btn-GTS__arw">&rsaquo;</span>
                         </div>
@@ -237,10 +237,12 @@
 					</div>
 					<div class="prdct-dtl__slr-ftrs">
 						<div class="prdct-dtl__slr-ftrs-item-wrpr clearfix">
-							<div class="prdct-dtl__slr-ftrs-lylty">
-								<div class="prdct-dtl__slr-ftrs-lylty-ttl">Free 
-									<span class="prdct-dtl__slr-ftrs-lylty-val">500</span> MSP Coins</div>
-								<div class="prdct-dtl__slr-ftrs-lylty-text">on this purchase</div>
+							<div class="prdct-dtl__slr-ftrs-lylty-wrpr">
+								<div class="prdct-dtl__slr-ftrs-lylty">
+									<div class="prdct-dtl__slr-ftrs-lylty-ttl">Free 
+										<span class="prdct-dtl__slr-ftrs-lylty-val">500</span> MSP Coins</div>
+									<div class="prdct-dtl__slr-ftrs-lylty-text">on this purchase</div>
+								</div>
 							</div>
 						</div>
 						<div class="prdct-dtl__slr-ftrs-item-wrpr clearfix">
@@ -317,9 +319,9 @@
 			<div class="sctn__inr">
 				<div class="prc-tbl__ctrls clearfix">
 					<div class="prc-tbl__ctgry clearfix">
-						<div class="prc-tbl__ctgry-item prc-tbl__ctgry-item--slctd" data-value="recommended">Recommended Stores</div>
-						<div class="prc-tbl__ctgry-item" data-value="offline">Nearby Stores</div>
-						<div class="prc-tbl__ctgry-item" data-value="online">Online Stores</div>
+						<div class="prc-tbl__ctgry-item prc-tbl__ctgry-item--slctd" data-value="recommended" data-label="Recommended">Recommended Stores</div>
+						<div class="prc-tbl__ctgry-item" data-value="offline" data-label="Nearby">Nearby Stores</div>
+						<div class="prc-tbl__ctgry-item" data-value="online" data-label="Online">Online Stores</div>
 					</div>
 					<div class="prc-tbl__fltrs clearfix">
 						<div class="prc-tbl__fltrs-ttl">FILTER BY:</div>
@@ -330,12 +332,10 @@
 					</div>
 					<div class="prc-tbl__lctn clearfix">
 						<form class="prc-tbl__lctn-frm">
-							<input type="text" class="prc-tbl__lctn-inpt" placeholder="Search with Zip code, city name">
+							<input type="text" class="prc-tbl__lctn-inpt" placeholder="Search nearby stores with Zip code, city name">
 							<img src="http://doypaxk1e2349.cloudfront.net/icons/search-grey.png" class="prc-tbl__lctn-inpt-btn">
 						</form>
-						<div class="btn btn--blue prc-tbl__lctn-gps">
-							<img class="btn__img prc-tbl__lctn-gps-img" src="img/pricetable-icon-gps.png" />
-						</div>
+						<div class="btn btn--blue prc-tbl__lctn-gps"></div>
 					</div>
 				</div>
 				<div class="prc-tbl" data-id="price-table">
@@ -389,50 +389,15 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                	<div class="prc-tbl__avlblty prc-tbl__avlblty-COD">Pay on Delivery: <strong>Cash/Card</strong></div>
+                                	<div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>Immediately</strong><span class="hlp-prmpt">?</span></div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
                                     <div class="prc-tbl__dtls prc-tbl__dtls-pckp">Pickup from store</div>
-                                    <div class="prc-tbl__dtls prc-tbl__dtls-clr">
-                                        <span class="prc-tbl__dtls-clr-dot"></span>
-                                        <span class="prc-tbl__dtls-clr-lbl">&nbsp;Black&nbsp;</span>
-                                        <div class="prc-tbl__dtls-clr-more text-link js-msg-box-trgt">
-                                        	More Options &rsaquo;&rsaquo;
-                                        	<div class="msg-box prc-tbl__dtls-clr-pop">
-                                    			<div class="msg-box__hdr prc-tbl__dtls-clr-pop-hdr clearfix">
-                                    				More options on Flipkart
-                                    				<span class="msg-box__cls js-msg-box__cls">×</span>
-                                    			</div>
-                                    			<div class="msg-box__inr">
-                                    				<div class="msg-box__row">
-                                    					<span class="prc-tbl__dtls-clr-dot" style="background-color:#4A4A4A"></span>
-                                        				<span class="prc-tbl__dtls-clr-lbl">Space Grey</span>
-                                        				<div class="prc-tbl__cost prc-tbl__cost--s">
-		                                                    <span class="prc-tbl__cost-rpe">₹</span>
-		                                                    <span class="prc-tbl__cost-val">48,305</span>
-	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
-                                    				</div>
-                                    				<div class="msg-box__row">
-                                    					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
-                                        				<span class="prc-tbl__dtls-clr-lbl">Green</span>
-                                        				<div class="prc-tbl__cost prc-tbl__cost--s prc-tbl__cost--dsbld">
-		                                                    <span class="prc-tbl__cost-rpe">₹</span>
-		                                                    <span class="prc-tbl__cost-val">48,305</span>
-	                                                   	</div>
-                                        				<div class="prc-tbl__no-stck-bdg">
-					                                		<img class="prc-tbl__no-stck-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-out-of-stock.png" />
-					                                		<div class="prc-tbl__no-stck-lbl">Out Of Stock</div>
-					                                	</div>
-                                    				</div>
-                                    			</div>
-                                    		</div>
-                                        </div>
-                                    </div>
+                                    <div class="prc-tbl__dtls prc-tbl__dtls-all-clrs">All colors available</div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--cost">
                                 	<div class="prc-tbl__cost"> 
@@ -442,7 +407,7 @@
                                     <div class="prc-tbl__cost-shpng">Free shipping</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -476,7 +441,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-prc-tbl__gts-btn js-popup-trgt js-check-email-cookie" data-cookiename="hideSupportPopup" data-cookietimedays="1" data-href="/promotions/offline_delivery.php?offline_id=TL-HYD-MO-GEN-0488">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -512,10 +477,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty prc-tbl-clm-avlblty--dsbld">Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl-clm-avlblty--dsbld">Cash on Delivery</div>
+                                	<div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty prc-tbl__avlblty--dsbld">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -537,7 +506,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">›</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
@@ -565,7 +534,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -599,7 +568,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-lylty-popup-trgt js-check-email-cookie" data-href="/loyalty/popup/index.php?coins=1500" data-cookiename="hideSupportPopup_loyalty" data-cookietimemins="5" data-url="http://www.mysmartprice.com/out/sendtostore.php?mspid=4760&access_point=desktop&l1=c&merged=1&top_category=electronics&category=mobile&id=275644135&rk=49468&store=amazon">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -640,10 +609,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD">Cash on Delivery</div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>Immediately</strong></div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>Immediately</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -666,7 +639,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">›</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
@@ -693,7 +666,7 @@
                                     <div class="prc-tbl__cost-shpng">Free shipping</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -727,7 +700,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
-                                        ORDER NOW<br>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsquo;</span>
                                     </div>
@@ -763,10 +736,15 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">
+                                    from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -788,7 +766,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">›</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
@@ -816,7 +794,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -850,7 +828,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -886,10 +864,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-COD">Cash on Delivery</div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl-clm-avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
-                                    <div class="prc-tbl__avlblty prc-tbl-clm-avlblty-COD prc-tbl-clm-avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 Days</strong> delivery (Free)</div>
@@ -911,7 +893,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">›</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">›</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#417505"></span>
@@ -939,7 +921,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -973,7 +955,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -992,7 +974,7 @@
                             		<div class="prc-tbl__xtrs-clm-more text-link js-xtrs-msg-box-trgt">More Offers &rsaquo;&rsaquo;</div>
                             	</div>
                             	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">
-                            		<span class="prc-tbl__xtrs-clm-text">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</span>
+                            		<span class="prc-tbl__xtrs-clm-text">Use coupon code <strong>GET15</strong> to get 15% off. (Max: 1 order per user)</span>
                             	</div>
                             </div>
                         </div>
@@ -1020,10 +1002,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -1045,7 +1031,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#F5A623"></span>
@@ -1054,7 +1040,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     			</div>
                                     		</div>
@@ -1070,7 +1056,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -1104,7 +1090,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -1145,10 +1131,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -1170,7 +1160,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,705</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#F5A623"></span>
@@ -1179,7 +1169,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,705</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     			</div>
                                     		</div>
@@ -1195,7 +1185,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -1229,7 +1219,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn js-lylty-popup-trgt check-email-cookie" data-href="/loyalty/popup/index.php?coins=1500" data-cookiename="hideSupportPopup_loyalty" data-cookietimemins="5" data-url="http://www.mysmartprice.com/out/sendtostore.php?mspid=4760&access_point=desktop&l1=c&merged=1&top_category=electronics&category=mobile&id=275644135&rk=49468&store=amazon">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -1242,7 +1232,7 @@
                             </div>
                             <div class="prc-tbl__xtrs clearfix">
                             	<div class="prc-tbl__xtrs-clm prc-tbl__xtrs-cpns">
-                            		<span class="prc-tbl__xtrs-clm-text">Get 50% OFF on Rs. 5000 or more on use of SBI debit and credit cards.</span>
+                            		<span class="prc-tbl__xtrs-clm-text">Use coupon code <strong>GET15</strong> to get 15% off. (Max: 1 order per user)</span>
                             	</div>
                             </div>
                         </div>
@@ -1264,7 +1254,7 @@
                                 		<input class="prc-tbl__no-stck-inpt" type="text" placeholder="Enter Your Email Address" />
                                 		<input class="btn prc-tbl__no-stck-sbmt" type="submit" value="NOTIFY ME" />
                                 	</form>
-                                	<div class="prc-tbl__no-stck-scs">We will notify you when product is available</div>
+                                	<div class="prc-tbl__no-stck-scs">We will notify you when product becomes available.</div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--cost">
                                     <div class="prc-tbl__cost prc-tbl__cost--dsbld">
@@ -1274,7 +1264,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -1305,10 +1295,14 @@
                                     </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--avlblty">
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> &#8377;10,999</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
-                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">Return Policy: <strong>15 Days</strong></div>
                                     <div class="prc-tbl__avlblty prc-tbl__avlblty-COD prc-tbl__avlblty--dsbld">Cash on Delivery</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-wrnty">1 Year Warranty</div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-emi">EMI <span class="txt-lt">from</span> <strong>&#8377;10,999</strong></div>
+                                    <div class="prc-tbl__avlblty prc-tbl__avlblty-rtrn">
+                                    	<span>Return Policy: </span>
+                                    	<strong>15 Days</strong>
+                                    	<span class="hlp-prmpt">?</span>
+                                    </div>
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--dtls">
                                     <div class="prc-tbl__dtls prc-tbl__dtls-dlvr"><strong>2-4 days</strong> delivery (Free)</div>
@@ -1330,7 +1324,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,005</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     				<div class="msg-box__row">
                                     					<span class="prc-tbl__dtls-clr-dot" style="background-color:#F5A623"></span>
@@ -1339,7 +1333,7 @@
 		                                                    <span class="prc-tbl__cost-rpe">₹</span>
 		                                                    <span class="prc-tbl__cost-val">48,705</span>
 	                                                   	</div>
-                                        				<div class="btn-GTS btn-GTS--xs">Order Now<span class="btn-GTS__arw">&rsaquo;</span></div>
+                                        				<div class="btn-GTS btn-GTS--xs">ORDER NOW<span class="btn-GTS__arw">&rsaquo;</span></div>
                                     				</div>
                                     			</div>
                                     		</div>
@@ -1355,7 +1349,7 @@
                                     <div class="prc-tbl__cost-cpn">Coupon Applied</div>
                                     <div class="prc-tbl__cpn-wrpr js-card-slide-up">
                                     	<div class="prc-tbl__cpn-info">
-                                    		<span class="prc-tbl__cpn-code">HSBC15</span>
+                                    		<span class="prc-tbl__cpn-code js-slct-txt">HSBC15</span>
                                     		<img class="prc-tbl__cpn-icon" src="http://avi.mysmartprice.com/rd/img/pricetable-coupon-scissors-small.png">
                                     	</div>
                                     	<div class="prc-tbl__cpn-desc">Apply this coupon code to get 15% off on this product.</div>
@@ -1389,7 +1383,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -1434,7 +1428,7 @@
                                 </div>
                                 <div class="prc-tbl-clm prc-tbl-clm--gts">
                                     <div class="btn-GTS btn-GTS--s btn-GTS--dsbld js-prc-tbl__gts-btn">
-                                        ORDER NOW<br/>
+                                        <img class="btn-GTS__lbl" src="icons/new/ordernow-white.png"><br/>
                                         <span class="btn-GTS__str">at Amazon</span>
                                         <span class="btn-GTS__arw">&rsaquo;</span>
                                     </div>
@@ -1540,7 +1534,7 @@
 				<div class="sctn__inr">
 					<div class="prc-grph__left">
 						<div class="prc-grph__left-ttl">
-							Percent Drop in Price
+							Percent Change in Price
 						</div>
 						<div class="prc-grph__prc-chng ">
 							<div class="prc-grph__prc-chng-val">-54.75%</div>
@@ -1786,10 +1780,12 @@
 								Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls. The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.
 
 								Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls. The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.
+								<span class="js-usr-rvw-item-more text-link">View More</span>
+								<span class="usr-rvw-item__text-hide">The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls.</span>
 							</div>
 							<div class="usr-rvw-item__ftr clearfix">
 								<div class="usr-rvw-item__ftr-left">
-									Did you find this review helpful <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
+									Did you find this review helpful? <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
 								</div>
 								<div class="usr-rvw-item__ftr-rght">
 									<span class="js-usr-rvw__rprt-spam text-link">Report Spam</span>
@@ -1827,10 +1823,12 @@
 								Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls. The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.
 
 								Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls. The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.
+								<span class="js-usr-rvw-item-more text-link">View More</span>
+								<span class="usr-rvw-item__text-hide">The rounded edges and the metal body has made the handset slipper and might get frequently slip decreasing it handiness. The phone has become bigger and because of which heavier as well but at the same time has got thinner. The handiness of the phone is still very high and the best in the phone with such dimensions.Durability and Handiness: The durability of the apple products have always been high. The metallic shell makes the phone really hard and protects the phone, but it can gets dent so one need to have a cover. The screen glass has now upgraded making it harder and stronger than ever before to survive more and higher falls.</span>
 							</div>
 							<div class="usr-rvw-item__ftr clearfix">
 								<div class="usr-rvw-item__ftr-left">
-									Did you find this review helpful <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
+									Did you find this review helpful? <span class="js-usr-rvw__hlpfl text-link">Yes</span> | <span class="js-usr-rvw__no-hlpfl text-link">No</span>
 								</div>
 								<div class="usr-rvw-item__ftr-rght">
 									<span class="js-usr-rvw__rprt-spam text-link">Report Spam</span>
@@ -1841,9 +1839,9 @@
 				</div>
 				<div class="sctn__view-all">Read all 4578 reviews</div>
 			</div>
-			<div class="sctn usr-wrt-rvw">
+			<div class="sctn usr-wrt-rvw" data-id="write-review">
 				<div class="sctn__hdr clearfix">
-					<div class="sctn__ttl">Write a review</div>
+					<div class="sctn__ttl">WRITE A REVIEW</div>
 				</div>
 				<div class="sctn-inr">
 					<form class="usr-rvw-form">

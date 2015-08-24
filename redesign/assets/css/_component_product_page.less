@@ -48,15 +48,15 @@
   &__img {
     max-width: 100%;
     max-height: 100%;
-    cursor: url('../../icons/zoom-in.png'), pointer;
     vertical-align: middle;
     &-wrpr {
       height: 410px;
-    padding: 0 15px 0 15px;
-    margin:50px 0 150px 0;
-    line-height: 420px;
+      padding: 0 15px 0 15px;
+      margin:50px 0 150px 0;
+      line-height: 420px;
 
-    text-align: center;
+      text-align: center;
+      cursor: url('../../icons/zoom-in.png'), pointer;
     }
   }
   &__thmbnl {
@@ -148,12 +148,14 @@
       padding-left: 10px;
     }
     &-prc-alrt {
-      padding-left: 35px;
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/bell-blue.png') no-repeat 12px center;
+      padding-left: 32px;
+      .image-2x('../../icons/new/bell-blue.png', 14px, 16px);
+      background-position: 12px center;
     }
     &-cmpr {
       padding: 0 0 0 35px;
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/compare-blue.png') no-repeat 12px center;
+      .image-2x('../../icons/new/compare-blue.png', 16px, 17px);
+      background-position: 12px center;
     }
   }
   &__ggl-shr {
@@ -232,7 +234,7 @@
       display: none;
       margin-top: 20px;
       font-size: 16px;
-      color: @fg-color-blue;
+      color: @fg-color;
     }
     &-sbmt {
       border-radius: 0 3px 3px 0;
@@ -295,9 +297,13 @@
 
       min-height: 213px;
       &-lylty {
+        &-wrpr {
+          height: 35px;
+        }
         padding-left: 30px;
         height:35px;
-        background: url('http://avi.mysmartprice.com/rd/img/pricetable-loyalty.png') no-repeat left center;
+        .image-2x('../../icons/new/loyalty-coins-gold.png', 23px, 19px);
+        background-position: left center;
 
         color: @fg-color-yellow;
         line-height: 1.4;
@@ -340,26 +346,31 @@
       }
       &-dlvry {
         padding-left: 40px;
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/delivery-grey.png') no-repeat left center;
+        .image-2x('../../icons/new/truck-grey.png', 30px, 15px);
+        background-position: left center;
       }
       &-rtrn {
-        background: url('../../icons/return-grey.png') no-repeat left center;
+        .image-2x('../../icons/new/return-grey.png', 18px, 20px);
+        background-position: left center;
       }
       &-wrnty {
-        background: url('../../icons/warranty-grey.png') no-repeat left center;
+        .image-2x('../../icons/new/warranty-grey.png', 21px, 20px);
+        background-position: left center;
       }
       &-avlblty {
         float: left;
         line-height: 1.4;
         padding-left: 20px;
-        background: url('../../icons/tick-green.png') no-repeat left center;
+        .image-2x('../../icons/new/tick-circle-green.png', 15px, 15px);
+        background-position: left center;
 
         color: @fg-color-blue;
         font-size: 14px;
 
         text-transform: uppercase;
         &--NA {
-          background: url('http://doypaxk1e2349.cloudfront.net/icons/unavailable-grey.png') no-repeat left center;
+          .image-2x('../../icons/new/cross-circle-grey.png', 14px, 14px);
+          background-position: left center;
 
           color: @fg-color-light-grey;
         }
@@ -426,31 +437,12 @@
     }
   }
   &__msg {
-    // float: left;
+    position: absolute;
+    bottom: 0;
 
-    // width: 230px;
-    // &-wrpr {
-      position: absolute;
-      bottom: 0;
-
-      margin-top: 15px;
-      padding: 15px 0;
-      border-top: 1px solid @border-color;
-    //}
-    // &-img {
-    //   vertical-align: middle;
-    // }
-    // &-text {
-    //   padding-left: 10px;
-
-    //   color: @fg-color-grey;
-    //   font-size: 16px;
-
-    //   vertical-align: middle;
-    // }
-    // & + & {
-    //   margin-left: 15px;
-    // }
+    margin-top: 15px;
+    padding: 15px 0;
+    border-top: 1px solid @border-color;
   }
 }
 .prc-grph {
@@ -465,7 +457,8 @@
     font-size:14px;
     padding-left: 45px;
     border-left: 1px solid @border-color;
-    background: url('../../icons/bell-red.png') no-repeat 20px center;
+    .image-2x('../../icons/new/bell-red.png', 18px, 21px);
+    background-position: 15px center;
 
     cursor: pointer;
   }
@@ -893,7 +886,7 @@
   }
   &__inr {
     border-top:1px solid @border-color;
-    padding:30px 20px 20px 20px;
+    padding:30px 20px;
   }
   &__img{
     width:46px;
@@ -949,11 +942,13 @@
       font-weight:@font-bold;
       &-pros {
         color:@fg-color-light-green;
-        background: url('../../icons/thumb-up-green-small.png') no-repeat left center;
+        .image-2x('../../icons/new/thumb-up-green-small.png', 20px, 18px);
+        background-position: left center;
       }
       &-cons {
         color:@fg-color-red;
-        background: url('../../icons/thumb-down-red-small.png') no-repeat left center;
+        .image-2x('../../icons/new/thumb-down-red-small.png', 20px, 18px);
+        background-position: left center;
       }
     }
   }
@@ -998,7 +993,7 @@
     width: 660px - 2*@border-width;
     padding: 10px;
 
-    color: @fg-color-grey;
+    color: @fg-color;
 
     vertical-align: middle;
   }
@@ -1016,7 +1011,8 @@
     font-size:14px;
     padding-left: 50px;
     border-left: 1px solid @border-color;
-    background: url('../../icons/write-review-red.png') no-repeat 20px center e("/18px");
+    .image-2x('../../icons/new/write-review-red.png', 20px, 18px);
+    background-position: 20px center;
 
     cursor: pointer;
   }
@@ -1123,6 +1119,9 @@
     &__text {
       margin-top:15px;
       line-height:20px;
+      &-hide {
+        display: none;
+      }
     }
     &__ftr {
       color:@fg-color-grey;

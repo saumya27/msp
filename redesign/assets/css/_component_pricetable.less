@@ -30,20 +30,20 @@
       float: left;
 
       padding: 5px 5px 5px 20px;
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-radio-grey.png') no-repeat left;
+      .image-2x('../../icons/new/radio-grey-unchecked.png', 14px, 14px);
+      background-position: left center;
       transition: background 0.2s ease-in-out;
-      color: @fg-color-grey;
       cursor: pointer;
       & + & {
         margin-left: 10px;
       }
       &:hover {
-        background-image: url('../../icons/radio-blue-hover.png');
+        .image-2x('../../icons/new/radio-blue-hover.png', 14px, 14px);
 
         color: @fg-color-blue;
       }
       &.prc-tbl__ctgry-item--slctd {
-        background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-radio-blue.png');
+        .image-2x('../../icons/new/radio-blue-checked.png', 14px, 14px);
 
         color: @fg-color-blue;
       }
@@ -63,9 +63,9 @@
     &-inpt {
       display: inline-block;
       margin:0 10px;
-      width: 250px;
+      width: 265px;
       height: 20px;
-      
+      font-size: 12px;
       padding: 5px 0;
       border: 0;
       &-btn {
@@ -78,13 +78,15 @@
     &-gps {
       float: left;
 
-      // width: 33px;
-      // height: 33px;
+      width: 32px;
+      height: 32px;
       margin-left: 10px;
-      padding:0 5px;
-      // border-radius: @border-radius;
-      // background: @bg-color-blue url('../../img/pricetable-icon-gps.png') no-repeat center/20px auto;
-      // cursor: pointer;
+      padding:0;
+      border-radius: @border-radius;
+      background-color: @bg-color-blue;
+      .image-2x('../../icons/new/gps-white.png', 20px, 20px);
+      background-position: center;
+      cursor: pointer;
     }
     &-img {
       width:20px;
@@ -109,17 +111,18 @@
 
       margin: 0 7px;
       padding: 2px 0 0 20px;
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/unchecked-checkbox-grey.png') no-repeat left;
+      .image-2x('../../icons/new/checkbox-grey-unchecked.png', 14px, 14px);
+      background-position: left center;
 
       cursor: pointer;
       transition: background 0.2s ease-in-out;
       &:hover {
-        background-image: url('../../icons/checkbox-blue-hover.png');
+        .image-2x('../../icons/new/checkbox-blue-hover.png', 14px, 14px);
 
         color: @fg-color-blue;
       }
       &.prc-tbl__fltrs-item--slctd {
-        background-image: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png');
+        .image-2x('../../icons/new/checkbox-blue-checked.png', 14px, 14px);
 
         color: @fg-color-blue;
       }
@@ -174,11 +177,12 @@
       margin-left: 3px;
 
       vertical-align: middle;
+      background-position: center center;
       &--desc {
-        background: url('../../img/pricetable-sort-desc.png') no-repeat center center/auto 13px;
+        .image-2x('../../icons/new/arrow-down-grey.png', 9px, 13px);
       }
       &--asc {
-        background: url('../../img/pricetable-sort-asc.png') no-repeat center center/auto 13px;
+        .image-2x('../../icons/new/arrow-up-grey.png', 9px, 13px);
       }
     }
     &__clm--slctd &__arw {
@@ -215,7 +219,9 @@
         right:0;
         width:30px;
         height:30px;
-        background: @bg-color-white url('../../icons/offline-badge.png') no-repeat top right / 30px auto;
+        background: @bg-color-white;
+        .image-2x('../../icons/new/offline-store-badge.png', 30px, 30px);
+        background-position: top right;
       }
       &-text {
           width:80px;
@@ -245,7 +251,7 @@
     }
     &--ofln {
       .prc-tbl__dtls-dlvr {
-        background-image: url('../../img/pricetable-delivery-colored.png');
+        .image-2x('../../icons/new/truck-colored.png', 30px, 15px);
       }
       .prc-tbl__cost-shpng {
         width: 100%;
@@ -274,11 +280,11 @@
       text-align: center;
     }
     &--slr {
-      width: 165px;
-      padding: 15px 15px 15px 20px;
+      width: 150px;
+      padding: 15px;
     }
     &--avlblty {
-      width: 190px;
+      width: 215px;
       padding: 7px 20px;
     }
     &--dtls {
@@ -296,7 +302,7 @@
     }
     &--no-stck {
       padding: 20px;
-      width: 618px;
+      width: 625px;
     }
   }
   &__str {
@@ -311,7 +317,8 @@
 
       margin-top: 5px;
       padding: 5px 5px 5px 18px;
-      background: url('../../icons/location-pin-red.png') no-repeat left center;
+      .image-2x('../../icons/new/location-pin-red.png', 13px, 18px);
+      background-position: left center;
 
       
       text-align: center;
@@ -339,21 +346,34 @@
       &-logo {
         vertical-align: middle;
       }
+      .hlp-prmpt {
+        margin-left: 5px;
+      }
     }
     .hlp-prmpt {
       margin-left: 5px;
     }
   }
   &__avlblty {
-    padding: 8px 5px 8px 25px;
-    background: url('../../img/pricetable-service-available.png') no-repeat center left;
+    padding: 8px 5px 8px 20px;
+    .image-2x('../../icons/new/tick-circle-green.png', 13px, 14px);
+    background-position: center left;
     & + & {
       border-top: 1px solid @border-color-light-grey;
     }
     &--dsbld {
-      background: url('../../img/pricetable-service-notavailable.png') no-repeat center left;
+      .image-2x('../../icons/new/cross-circle-grey.png', 14px, 14px);
+      background-position: center left;
 
       color: @fg-color-light-grey;
+    }
+    &-rtrn {
+      * {
+        vertical-align: middle;
+      }
+      .hlp-prmpt {
+        margin-left: 5px;
+      }
     }
   }
   &__dtls {
@@ -363,11 +383,13 @@
     }
     &-dlvr {
       padding-left: 40px;
-      background: url('../../img/pricetable-delivery-icon.png') no-repeat left center;
+      .image-2x('../../icons/new/truck-grey.png', 30px, 15px);
+      background-position: left center;
     }
     &-pckp {
       padding-left: 30px;
-      background: url('../../img/pricetable-pickup-icon.png') no-repeat left center;
+      .image-2x('../../icons/new/pickup-bag-grey.png', 20px, 18px);
+      background-position: left center;
     }
     &-clr {
       &-dot {
@@ -401,15 +423,17 @@
         }
         .prc-tbl__dtls-clr-lbl {
           display: inline-block;
-          width:92px;
-          margin-left: @inline-block-margin;
+          width: 80px;
+          margin-left: -0.28em;
           padding: 0 10px;
           vertical-align: middle;
+          overflow: hidden;
+          text-overflow:ellipsis;
         }
         .prc-tbl__cost {
           display: inline-block;
-          width: 80px;
-          margin-left: @inline-block-margin;
+          width: 93px;
+          margin-left: -0.28em;
           vertical-align: middle;
         }
         .btn-GTS--xs {
@@ -424,6 +448,11 @@
           margin-left: 2px;
         }
       }
+    }
+    &-all-clrs {
+      padding: 8px 5px 8px 20px;
+      .image-2x('../../icons/new/tick-circle-green.png', 13px, 14px);
+      background-position: center left;
     }
   }
   &-clm--cost:hover .prc-tbl__cpn-wrpr {
@@ -457,7 +486,9 @@
       padding: 6px 6px 6px 23px;
       border: 1px dashed @border-color;
       border-radius: @border-radius;
-      background: @bg-color-gs4 url('../../img/pricetable-service-available.png') no-repeat 5px center;
+      background-color: @bg-color-gs4;
+      .image-2x('../../icons/new/tick-circle-green.png', 13px, 14px);
+      background-position: 5px center;
 
       color: @fg-color-grey;
     }
@@ -476,7 +507,8 @@
     &-lylty {
       margin-top:10px;
       padding-left:27px;
-      background: url('../../img/pricetable-loyalty.png') no-repeat left center;
+      .image-2x('../../icons/new/loyalty-coins-gold.png', 23px, 19px);
+      background-position: left center;
 
       color: @fg-color-yellow;
       font-size: 10px;
@@ -512,7 +544,7 @@
     &-scs {
       display: none;
       margin-top:20px;
-      color: @fg-color-blue;
+      color: @fg-color;
       font-size: 14px;
     }
     &-inpt {
@@ -549,6 +581,7 @@
       transition: top .4s, opacity .4s, visibility .4s;
       transition-delay: .25s;
       text-align: center;
+      cursor: default;
     }
     &-info {
       position: relative;
@@ -566,9 +599,7 @@
       font-size: 18px;
 
       text-align: center;
-    }
-    &-code {
-      cursor: text;
+      cursor: pointer;
     }
     &-icon {
       position: absolute;
@@ -683,12 +714,16 @@
 
       float: left;
 
-      background: @bg-color-light-yellow url('../../icons/offer-percentage.png') no-repeat 10px center;
+      background-color: @bg-color-light-yellow;
+      .image-2x('../../icons/new/percentage-orange.png', 18px, 18px);
+      background-position: 10px center;
     }
     &-cpns {
       float: right;
 
-      background: @bg-color-lightest-blue url('../../icons/scissor-large.png') no-repeat 10px center;
+      background-color: @bg-color-lightest-blue;
+      .image-2x('../../icons/new/scissors-blue.png', 22px, 16px);
+      background-position: 10px center;
     }
   }
   &__prc-drop-btn {
@@ -698,7 +733,8 @@
     padding: 7px 7px 7px 25px;
     border: 1px solid @border-color;
     border-radius: @border-radius;
-    background: url('../../img/pricetable-pricedrop-icon.png') no-repeat 6px center;
+    .image-2x('../../icons/new/bell-grey.png', 15px, 18px);
+    background-position: 6px center;
     cursor: pointer;
     color: @fg-color-grey;
     visibility: hidden;
@@ -708,12 +744,4 @@
       background-color:@bg-color-gs4;
     }
   }
-}
-
-
-// preloading icons in on-hover user-action-classes.
-.body:after {
-  display: none;
-
-  background: url('http://doypaxk1e2349.cloudfront.net/icons/checked-checkbox-blue.png');
 }
