@@ -412,7 +412,7 @@
   &__prvs-icon {
     opacity: .5;
 
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/prev-arrow-black.png') no-repeat center;
+    .image-2x('../../icons/arrow-left-black.png', 11px, 18px);
     &:hover {
       opacity: 1;
     }
@@ -420,7 +420,7 @@
   &__next-icon {
     opacity: .5;
 
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/next-arrow-black.png') no-repeat center;
+    .image-2x('../../icons/arrow-right-black.png', 11px, 18px);
     &:hover {
       opacity: 1;
     }
@@ -520,15 +520,16 @@
 
 .rtng-wrpr {
   line-height: 14px;
+  background-position: left center;
   &--l {
     line-height: 18px;
     .rtng-star {
       width: 70px;
       height: 18px;
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/star-large-grey.png') left center repeat-x;
+      .image-2x('../../icons/star-grey.png', auto, 15px, repeat-x);
       &__inr {
         height: 18px;
-        background: url('http://doypaxk1e2349.cloudfront.net/icons/star-large-gold.png') left center repeat-x;
+        .image-2x('../../icons/star-gold.png', auto, 15px, repeat-x);
       }
     }
     .rtng__cnt {
@@ -542,10 +543,10 @@
     }
     .rtng-star {
       width: 100px;
-      .image-2x('../../icons/new/star-grey-xl.png', auto, 18px, repeat-x);
+      .image-2x('../../icons/new/star-grey.png', auto, 18px, repeat-x);
     }
     .rtng-star__inr {
-      .image-2x('../../icons/new/star-gold-xl.png', auto, 18px, repeat-x);
+      .image-2x('../../icons/new/star-gold.png', auto, 18px, repeat-x);
     }
     .rtng-star, .rtng-star__inr {
       height: 18px;
@@ -558,10 +559,10 @@
 .rtng-star {
   width: 60px;
   margin-right: 10px;
-  background: url('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png') left center repeat-x;
+  .image-2x('../../icons/star-grey.png', auto, 12px, repeat-x);
   cursor: pointer;
   &__inr {
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/star-gold.png') left center repeat-x;
+    background: url('../../icons/star-gold.png') left center repeat-x;
   }
 }
 .rtng__cnt {
@@ -727,7 +728,9 @@
   padding: 5px 10px;
   border: 1px solid @border-color;
   border-radius: @border-radius;
-  background: @bg-color-white url('http://doypaxk1e2349.cloudfront.net/icons/down-arrow-grey.png') no-repeat center right 10px;
+  background-color: @bg-color-white;
+  .image-2x('../../icons/arrow-down-grey-small.png', 8px, 6px);
+  background-position: center right 10px;
 
   color: @fg-color-grey;
   font-size: 14px;
@@ -741,7 +744,7 @@
     margin-left: 20px;
   }
   &:hover {
-    background-image: url('http://doypaxk1e2349.cloudfront.net/icons/down-arrow-black.png');
+    .image-2x('../../icons/arrow-down-black-small.png', 8px, 6px);
   }
 }
 
@@ -1047,7 +1050,7 @@
     height: 30px;
     border-radius: 3px 0 0 3px;
     background-color: @bg-color-gs2;
-    .image-2x('../../icons/new/caret-up-grey.png', 14px, 10px);
+    .image-2x('../../icons/arrow-up-grey.png', 14px, 10px);
     background-position: center;
   }
   &__lbl {

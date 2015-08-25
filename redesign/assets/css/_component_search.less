@@ -74,12 +74,13 @@
     padding: 0;
     border: 0;
     border-radius: 0 @border-radius @border-radius 0;
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/search-red.png') no-repeat center;
+    .image-2x('../../icons/search-red.png', 24px, 23px);
+    background-position: center;
 
     cursor: pointer;
     transition: background .3s ease-in;
     &:hover {
-      background: url('http://doypaxk1e2349.cloudfront.net/icons/search-white.png') no-repeat center;
+      .image-2x('../../icons/search-white.png', 24px, 23px);
       background-color: @bg-color-red;
     }
   }
