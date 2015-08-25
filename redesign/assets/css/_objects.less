@@ -247,11 +247,16 @@
     font-size: 11px;
     vertical-align: middle;
   }
+  &--xs &__lbl {
+    width: 70px;
+    vertical-align: middle;
+  }
   &--xs &__arw {
     top: 21px;
     right: 7px;
     font-size: 18px;
-    font-weight: normal
+    font-weight: normal;
+    vertical-align: middle;
   }
 }
 
@@ -412,7 +417,7 @@
   &__prvs-icon {
     opacity: .5;
 
-    .image-2x('../../icons/arrow-left-black.png', 11px, 18px);
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-left-black.png', 11px, 18px);
     &:hover {
       opacity: 1;
     }
@@ -420,7 +425,7 @@
   &__next-icon {
     opacity: .5;
 
-    .image-2x('../../icons/arrow-right-black.png', 11px, 18px);
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black.png', 11px, 18px);
     &:hover {
       opacity: 1;
     }
@@ -520,16 +525,15 @@
 
 .rtng-wrpr {
   line-height: 14px;
-  background-position: left center;
   &--l {
     line-height: 18px;
     .rtng-star {
-      width: 70px;
+      width: 79px;
       height: 18px;
-      .image-2x('../../icons/star-grey.png', auto, 15px, repeat-x);
+      background-size: auto 15px;
       &__inr {
         height: 18px;
-        .image-2x('../../icons/star-gold.png', auto, 15px, repeat-x);
+        background-size: auto 15px;
       }
     }
     .rtng__cnt {
@@ -543,10 +547,10 @@
     }
     .rtng-star {
       width: 100px;
-      .image-2x('../../icons/new/star-grey.png', auto, 18px, repeat-x);
+      background-size: auto 18px;
     }
     .rtng-star__inr {
-      .image-2x('../../icons/new/star-gold.png', auto, 18px, repeat-x);
+      background-size: auto 18px;
     }
     .rtng-star, .rtng-star__inr {
       height: 18px;
@@ -557,12 +561,16 @@
 
 
 .rtng-star {
-  width: 60px;
-  margin-right: 10px;
-  .image-2x('../../icons/star-grey.png', auto, 12px, repeat-x);
+  width: 65px;
+  .image-2x('http://doypaxk1e2349.cloudfront.net/icons/star-grey.png', auto, 12px, repeat-x);
+  background-position: left center;
   cursor: pointer;
   &__inr {
-    background: url('../../icons/star-gold.png') left center repeat-x;
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/star-gold.png', auto, 12px, repeat-x);
+    background-position: left center;
+  }
+  & + .rtng__cnt {
+    margin-left: 10px;
   }
 }
 .rtng__cnt {
@@ -601,7 +609,7 @@
   }
 }
 
-.hlp-prmpt {
+.help-prmpt {
   display: inline-block;
 
   width: 18px;
@@ -615,6 +623,7 @@
 
   text-align: center;
   vertical-align: middle;
+  cursor: default;
 }
 
 .load-more {
@@ -729,7 +738,7 @@
   border: 1px solid @border-color;
   border-radius: @border-radius;
   background-color: @bg-color-white;
-  .image-2x('../../icons/arrow-down-grey-small.png', 8px, 6px);
+  .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, 6px);
   background-position: center right 10px;
 
   color: @fg-color-grey;
@@ -744,7 +753,7 @@
     margin-left: 20px;
   }
   &:hover {
-    .image-2x('../../icons/arrow-down-black-small.png', 8px, 6px);
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, 6px);
   }
 }
 
@@ -1050,7 +1059,7 @@
     height: 30px;
     border-radius: 3px 0 0 3px;
     background-color: @bg-color-gs2;
-    .image-2x('../../icons/arrow-up-grey.png', 14px, 10px);
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-up-grey.png', 14px, 10px);
     background-position: center;
   }
   &__lbl {
@@ -1067,14 +1076,13 @@
     line-height: 20px;
     font-weight: 600;
     text-align: center;
-    transform: translateX(0);
-    transition: transform .2s ease;
+    transition: left .2s ease;
   }
   &:hover {
     border-radius: 0;
     .to-top__lbl {
       display: block;
-      transform: translateX(-95px);
+      left: -95px;
     }
   }
 }
