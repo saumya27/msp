@@ -236,6 +236,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 	$replaceThis = $(".sdbr-list__item.cmpr0");
 	var sub_category = getCategoryFromPanel();
 	var compare_href = $('.sctn__compare-btn').attr('href');
+	$('.sctn__compare-btn').attr('href','');
 	flyingImageCount++ ;
 	
 	if(flyingImageCount == 1 && $(".sdbr-list__item.cmpr0").length == 5){
@@ -392,7 +393,7 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
                     	setCookie('compareSubCategory',ui.item.subcategory);
                     }
                     var $replaceThis = $(this).closest('.sdbr-list__item');
-                    var id = ui.item.mspid, subcategory=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
+                    var id = ui.item.mspid, sub_category=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
                     addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
 
                     setCookieCompareIDS(ui.item.mspid);
@@ -409,7 +410,7 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
                     .join('|'),
                     re = new RegExp("\\b(" + term + ")", "gi"),
                     tempval = item.value.replace(re, "<b>$1</b>");
-                if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
+                // if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
                 return $("<li></li>")
                     .data("item.autocomplete", item)
                     .append("<a>" + tempval + "</a>")

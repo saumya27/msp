@@ -342,7 +342,7 @@ function compareAutoComplete() {
                     .join('|'),
                     re = new RegExp("\\b(" + term + ")", "gi"),
                     tempval = item.value.replace(re, "<b>$1</b>");
-                if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
+                // if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
                 return $("<li></li>")
                     .data("item.autocomplete", item)
                     .append("<a>" + tempval + "</a>")

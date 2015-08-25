@@ -111,12 +111,13 @@
 }
 .sdbr-list__item-dtls {
   width: 150px;
-  max-height: 60px;
+  max-height: 50px;
+  padding-top: 10px;
   color: #3b3b3b;
   font-size: 12px;
   display: inline-block;
   vertical-align: middle;
-  /*overflow: hidden;*/
+  overflow: hidden;
   word-break: break-word;
 }
 .sdbr-list__img {

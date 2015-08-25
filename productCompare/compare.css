@@ -108,7 +108,6 @@
 		  border-left: 1px solid #ccc;
   		  display: table-cell;
   		  box-sizing: borber-box;
-  		  position: relative;
 
   		  text-align: center;
 		  vertical-align: middle;
@@ -149,11 +148,14 @@
 			clear: both;
 			content: " ";
 		}
-		.do-highlight [data-isdifferent]{
-			background: #FEFFE0;
+		.do-highlight .highlight{
+			background: #FFFCBE;
 		}
 		.compare-toprow .compare-tbl__spec{
 			border-left: 1px;
+		}
+		.compare-toprow .ccompare-tbl__col{
+			position: relative;
 		}
 		.cmpr-tbl__rw--exprt-scr{
 			background-color: #FFFCFC;
@@ -223,7 +225,7 @@
 		}
 		
 		.pie_score10{
-		  right: 0.78em;
+		    width: 19px;
 		}
 
 		.pie__score2{
