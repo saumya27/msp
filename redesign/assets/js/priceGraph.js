@@ -68,7 +68,7 @@
 			        	count : 6,
 			        	fit: true,
 			        	format: function (y) { 
-			        		y = "Rs." + parseInt(y, 10).toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
+			        		y = "Rs. " + parseInt(y, 10).toString().replace(/(\d)(?=(\d\d)+\d$)/g, "$1,");
 							return y;
 						}
 			    	}
