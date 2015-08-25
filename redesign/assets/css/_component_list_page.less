@@ -114,8 +114,13 @@
       vertical-align: middle;
     }
     &__btn {
+      float:right;
       cursor: pointer;
-      vertical-align: middle;
+      background-position: center center;
+      .image-2x('../../icons/search-grey-small.png', 11px, 11px);
+      width: 24px;
+      float: right;
+      height: 28px;
     }
   }
   &-view {
@@ -236,10 +241,22 @@
     &__icon {
       float: right;
 
-      padding: 7px;
       border: 0;
 
       cursor: pointer;
+
+      background-position: center center;
+      
+      height: 24px;
+      width: 24px;
+      
+      &--srch {
+        .image-2x('../../icons/search-grey-small.png', 11px, 11px);
+      }
+      &--cler {
+        .image-2x('../../icons/cross-grey-small.png', 11px, 11px);
+      }
+      
       &--hide {
         display: none;
       }
