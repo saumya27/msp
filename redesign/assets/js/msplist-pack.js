@@ -886,7 +886,7 @@ var ListPage = {
                     return [
                         '<div class="js-fltrs-apld__item" data-value="' + filterItem.unitValue + '">',
                             '<span class="js-fltrs-apld__item-label">' + filterItem.unitLabel + '</span>',
-                            '<img class="js-fltrs-apld__item-cler" src="http://doypaxk1e2349.cloudfront.net/icons/cross-grey.png"/>',
+                            '<img class="js-fltrs-apld__item-cler" src="http://doypaxk1e2349.cloudfront.net/icons/cross-grey-small.png"/>',
                         '</div>'
                     ].join("");
                 }

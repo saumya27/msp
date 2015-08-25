@@ -743,7 +743,7 @@ $(document).ready(function() {
 
     (function() {
         var ratingWidth = $(".usr-rvw-form__rtng-wrpr .rtng-star").width(),
-            $ratingInr = $(".rtng-star__inr"),
+            $ratingInr = $(".usr-rvw-form__rtng-wrpr .rtng-star__inr"),
             $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
             remarksList = $ratingRemark.data("remarks").split(","),
             $ratingInput = $(".usr-rvw-form__rtng-inpt");
@@ -769,7 +769,7 @@ $(document).ready(function() {
 
         $doc.on("click", ".usr-rvw-form__rtng-wrpr .rtng-star", function() {
             var inrWidth = $ratingInr.width(),
-                rating = (inrWidth / ratingWidth) * 5;
+                rating = Math.ceil((inrWidth / ratingWidth) * 5) || 1;
             
             $ratingRemark.data("remark", $ratingRemark.text());
             $ratingInput.val(rating);
