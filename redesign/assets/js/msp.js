@@ -1083,7 +1083,7 @@ if ($(".body-wrpr").length !== 0) {
             if (!data || data == 'undefined' || data === undefined) {
                 loadingTimeout = setTimeout(function() {
                     $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').show();
-                }, 2000);
+                }, 600);
                 data = getBrowsePopupData();
                 localStorage.browsePopupData = data;
                 localStorage.browsePopupDataTime = new Date().getTime();
@@ -1104,6 +1104,7 @@ if ($(".body-wrpr").length !== 0) {
             $('.js-drpdwn-menu-wrpr').removeClass('drpdwn-menu-wrpr--show');
             $('.drpdwn-menu').removeClass('drpdwn-menu--show');
             $('.js-drpdwn-menu-ovrly').removeClass('drpdwn-menu-ovrly--show');
+            $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').hide();
         }
     });    
 }());
