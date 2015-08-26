@@ -122,3 +122,99 @@
 }.popup-closebutton a:focus {
   outline: 0;
 }
+
+
+//Bottom Promotion Slider
+.bottom-slideup {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #c2c2c2;
+  border-bottom: 2px solid #c00;
+  background-color: #333;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: bottom 0.8s ease-out;
+  -moz-transition: bottom 0.8s ease-out;
+  -o-transition: bottom 0.8s ease-out;
+  transition: bottom 0.8s ease-out;
+  z-index: 9999;
+}
+.bottom-slideup.hidden {
+  bottom: -100%;
+}
+.bottom-slideup .slideup-wrapper {
+  position: relative;
+  display: table;
+  margin: 0 auto;
+  padding: 10px;
+}
+.bottom-slideup .offer-image {
+  position: absolute;
+  top: -25px;
+}
+.bottom-slideup .offer-image img {
+  width: 125px;
+}
+.bottom-slideup .message,
+.bottom-slideup .textbox-wrapper,
+.bottom-slideup .button-wrapper,
+.bottom-slideup .close-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.bottom-slideup .message {
+  padding-left: 150px;
+  font-size: 18px;
+  line-height: 28px;
+  color: #fff;
+}
+.bottom-slideup .message .highlight {
+  color: #ffef69;
+}
+.bottom-slideup .message.thanks {
+  padding-left: 0;
+  font-size: 16px;
+}
+.bottom-slideup .textbox-wrapper,
+.bottom-slideup .close-wrapper {
+  padding-left: 25px;
+}
+.bottom-slideup .button-wrapper {
+  padding-left: 10px;
+}
+.bottom-slideup .textbox,
+.bottom-slideup .close-button {
+  -ms-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.bottom-slideup .textbox {
+  width: 250px;
+  height: 16px;
+  padding: 5px;
+  border: 0;
+  margin: 0;
+}
+.bottom-slideup .close-button {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  font-size: 14px;
+  border: 2px solid #999;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  font-weight: 700;
+  color: #888;
+  cursor: pointer;
+}
+.bottom-slideup .close-button:hover {
+  border-color: #777;
+  color: #666;
+}
+.bottom-slideup .btn{
+  margin: 10px 0;
+}
