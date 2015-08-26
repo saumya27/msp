@@ -781,6 +781,7 @@ $(document).ready(function() {
                 $ratingRemark.text($ratingRemark.data("remark"));
                 $ratingInr.width($ratingInr.data("width"));
             } else {
+                $ratingInr.width(0);
                 $ratingRemark.empty();
             }
         });

@@ -265,12 +265,16 @@
     }
   }
   &-val {
+    position: relative;
     display: block;
     margin-bottom: 10px;
 
     line-height: 18px;
 
     cursor: pointer;
+    .fltr-val__text {
+      transition: background .2s ease-in-out;
+    }
     &--dsbld {
       color:@fg-color-grey;
     }
@@ -306,6 +310,16 @@
           .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 14px, 14px);
         }
       }
+    }
+    &__inpt {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
     }
     &__inpt:checked {
       &+.fltr-val__text {
