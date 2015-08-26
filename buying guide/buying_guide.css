@@ -117,15 +117,16 @@
 .cntxt-link-item:hover{
   border: 1px solid #ccc;
 }
-.cntxt-link--s .cntxt-link-item__img-wrpr {
-    display: block;
-    vertical-align: middle;
+.cntxt-link-item__img-wrpr {
+  padding: 5px;
+  display: inline-block;
+  width: 65px;
+  height: 65px;
 }
 .cntxt-link-item__img {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 65px;
+    max-height: 65px;
     vertical-align: middle;
-    float: left;
 }
 .cntxt-link.cntxt-link--s .js-sldr-item-wrpr1 .cntxt-link-item__ttl-wrpr {
     /*width: 88px;*/
@@ -133,11 +134,15 @@
 .cntxt-link--s .cntxt-link-item__ttl-wrpr {
     display: inline-block;
 }
-.cntxt-link-item__ttl-wrpr {
+.cntxt-link-item__ttl-wrpr, .cntxt-link-item__cntnt-wrpr {
     width: 100%;
     font-size: 12px;
     line-height: 1.4;
     padding: 0 10px;
+}
+.cntxt-link-item__cntnt-wrpr {
+    padding: 10px;
+/*    float: left;*/
 }
 .cntxt-link--s .cntxt-link-item__ttl {
     vertical-align: middle;
@@ -160,7 +165,11 @@
     background-color: rgb(78, 154, 6);
 }
 .cntxt-link-item__prc{
-    float: right;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.cntxt-link-item .cntxt-link-item__prc{
+    text-decoration: none;
 }
 .cntxt-link--s .cntxt-link__prvs-icon, .cntxt-link--s .cntxt-link__next-icon {
     height: 150px;
