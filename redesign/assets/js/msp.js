@@ -2027,7 +2027,7 @@ function recentImgError(img) {
 
 // Slide-up banner functions start here
 function initBottomSlideup() {
-    $(".js-prmtn").load("http://www.mysmartprice.com/promotions/bottom_banner_promotions.php", function() {
+    $(".js-prmtn").load("bottom-promotion.html", function() {
         var cookieName = $('.bottom-slideup').attr("cookie-name");
         var hideBottomSlideup = getCookie(cookieName);
         if (hideBottomSlideup !== "true") {
@@ -2043,11 +2043,13 @@ function initBottomSlideup() {
 
 // Show the slide-up banner
 function showSlideup() {
+    $(".ftr").addClass("ftr--prmtn");
     $(".bottom-slideup.hidden").removeClass("hidden");
 }
 
 // Hide the slide-up banner and set a cookie to not show it for a day
 function hideSlideup(cookieName) {
+    $(".ftr").removeClass("ftr--prmtn");
     $(".bottom-slideup").addClass("hidden");
     addCookie(cookieName, "true", 1);
 }
@@ -2142,43 +2144,6 @@ $doc.ready(function() {
 });
 /* TODO:: need to be updated in new RUI - ends here */
 
-function tryInstallChrome(gaLabel, successCallback, failCallback) {
-    function installSuccess(gaLabel, callback) {
-        if (_gaq) _gaq.push(["_trackEvent", "Chrome_Plugin", "Installed", gaLabel || ""]);
-        if (typeof callback === "function")
-            callback();
-    }
-    function installFail(callback) {
-        if (typeof callback === "function")
-            callback();
-    }
-    if (chrome && chrome.webstore) {
-        if (!$("link[rel='chrome-webstore-item']").length)
-            $("head").append("<link rel='chrome-webstore-item' href='" + CHROME_EXT_INSTALL_URL + "'/>");
-        chrome.webstore.install(CHROME_EXT_INSTALL_URL, function () {
-            installSuccess(gaLabel, successCallback);
-        }, function() {
-            installFail(failCallback);
-        });
-    }
-    else
-        installFail(failCallback);
-}
-
-function tryInstallFirefox() {
-    var params = {
-        "MySmartPrice": {
-            URL: "https://addons.mozilla.org/firefox/downloads/file/326228/mysmartprice-0.20-fx.xpi",
-            IconURL: "http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/logo-icon.png",
-            Hash: "sha1:9F8FB2019911772CEF8EB3A913588C70C5272004",
-            toString: function () {
-                return this.URL;
-            }
-        }
-    };
-    InstallTrigger.install(params);
-}
-
 
 /* init onload (no need of doc.ready) - start */
 
@@ -2208,6 +2173,63 @@ $doc.ready(function() {
         }
     }
 });
+
+ $(document).on("click", ".chrome_install_offer", function () {
+    var $this = $(this);
+    _gaq.push(["_trackEvent", "Chrome_Plugin", "Clicked", $this.data("label")]);
+    
+    tryInstallChrome($this.data("label"), function () {
+        openPopup("/promotions/plugin/email_popup_noreward.php");
+    }, function () {
+        if ($this.data("showoffer") === true && isChrome()) {
+            openPopup("/promotions/plugin/offer_popup.php?label=Home+Page+Banner+Offer+Popup");
+            _gaq.push(["_trackEvent", "Chrome_Plugin", "Shown", "Offer Popup"]);    
+        } else {
+            window.open(CHROME_EXT_WEB_URL, "_blank"); 
+        }
+    });
+
+    return false;
+});
+
+function tryInstallChrome(gaLabel, successCallback, failCallback) {
+    function installSuccess(gaLabel, callback) {
+        if (_gaq) _gaq.push(["_trackEvent", "Chrome_Plugin", "Installed", gaLabel || ""]);
+        if (typeof callback === "function")
+            callback();
+    }
+    function installFail(callback) {
+        if (typeof callback === "function")
+            callback();
+    }
+    if (chrome && chrome.webstore) {
+        if (!$("link[rel='chrome-webstore-item']").length) {
+            $("head").append("<link rel='chrome-webstore-item' href='" + CHROME_EXT_INSTALL_URL + "'/>");
+        }
+
+        chrome.webstore.install(CHROME_EXT_INSTALL_URL, function () {
+            installSuccess(gaLabel, successCallback);
+        }, function() {
+            installFail(failCallback);
+        });
+    } else {
+        installFail(failCallback);
+    }
+}
+
+function tryInstallFirefox() {
+    var params = {
+        "MySmartPrice": {
+            URL: "https://addons.mozilla.org/firefox/downloads/file/326228/mysmartprice-0.20-fx.xpi",
+            IconURL: "http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/logo-icon.png",
+            Hash: "sha1:9F8FB2019911772CEF8EB3A913588C70C5272004",
+            toString: function () {
+                return this.URL;
+            }
+        }
+    };
+    InstallTrigger.install(params);
+}
 
 function isPluginInstalled() {
     var dfd = $.Deferred(),

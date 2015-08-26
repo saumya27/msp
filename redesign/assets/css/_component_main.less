@@ -19,14 +19,23 @@
   }
 }
 
+.algn-wrpr {
+  margin:20px 0;
+  .sctn {
+    margin:0;
+  }
+  .crsl-wdgt + .promo, .ctgry-list + .sctn, .crsl-wdgt + .sctn, .promo + .sctn, .sctn + .sctn{
+    margin-top:20px;
+  }
+}
 .promo {
-  margin: 20px 0;
   &__link {
     float: left;
 
     width: 300px;
     border: 1px solid @border-color;
     border-radius: @border-radius;
+    cursor:pointer;
   }
   &__link + &__link {
     margin-left: 15px;
@@ -233,10 +242,6 @@
     margin: 12px;
   }
   &--l {
-    float: left;
-
-    width: 1198px;
-    margin-top: 0;
     .prdct-item {
       width: 171px;
       margin: 12px;
@@ -733,7 +738,7 @@
 
 .page-info {
   width: 100%;
-  margin-top: 10px;
+  margin: 10px 0 -10px 0;
 
   color: @fg-color-grey;
   font-size: 10px;
@@ -748,7 +753,7 @@
 }
 
 .page-nvgtn {
-  margin: 10px 0;
+  margin-bottom:-5px;
   &__item {
     float: left;
 
