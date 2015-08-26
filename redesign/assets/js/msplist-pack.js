@@ -650,17 +650,13 @@ var ListPage = {
                                     return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
                                 }
 
-                                if ($(json.products).length) {
-                                    $(".js-hrly-deals-grid .sctn__inr").html(json.products);
-                                    if ($(".js-hrly-deals-grid .cntdwn").length === 0) {
-                                        $(".js-hrly-deals-grid .sctn__ttl").append(json.countdown);
-                                    } else {
-                                        $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
-                                    }
+                                $(".js-hrly-deals-grid .sctn__inr").html(json.products);
+                                if ($(".js-hrly-deals-grid .cntdwn").length === 0) {
+                                    $(".js-hrly-deals-grid .sctn__ttl").append(json.countdown);
                                 } else {
-                                    $(".js-hrly-deals-grid .sctn__inr").html('<div class="js-hrly-deals-grid__no-rcrd">No deals found for this criteria</div>');
+                                    $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
                                 }
-
+                                    
                                 $timer = $(".js-hrly-deals-grid .cntdwn");
                                 if ($timer.length) {
                                     dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
