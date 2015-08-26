@@ -9,6 +9,7 @@ $(document).ready( function(){
 
 	compareAutoComplete(); // initializing the autoComplete
 
+	$('.compare-entrypoint').prop('checked', false);
 	var compare_ids = (getCookie('compareIDs') || "").split(',');
 	for( id = 0; id < compare_ids.length ; id++){
 		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
@@ -239,7 +240,8 @@ function flyImage(imgtofly, id, title, $thisCB){
 	flyingImageCount++ ;
 	
 	if(flyingImageCount >= 1 && $(".sdbr-list__item.cmpr0").length == 5){
-		sub_category = $('.msp_body').attr('categroy');
+		sub_category = $('.msp_body').attr('category');
+		$('.sdbr-list__item-ttl .js-atcmplt').prop('disabled', true);
 	}
 
 	if(($replaceThis.length-1) <= flyingImageCount){
@@ -278,7 +280,7 @@ function flyImage(imgtofly, id, title, $thisCB){
         'top': top,
         'left': left,
         'width': 30,
-    }, 900);
+    }, 700);
     imgclone.animate({
         'width': 0,
         'height': 0
@@ -300,6 +302,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 
  		if(flyingImageCount < 1){
  			generateComparePageUrl();
+ 			$('.sdbr-list__item-ttl .js-atcmplt').prop('disabled', false);
  		}
 	    
 	   	setCookie("compareSubCategory", sub_category);
@@ -401,11 +404,14 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
 
                     if($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
 			 				disableCompareCB("Item already added");
-			 		}
+			 		}else
+			 			enableCompareCB();
 
 			 		if(isDifferentCategory()){
 			 			disableCompareCB("Cannot campare between different categories");	
 			 		}
+			 		else
+			 			enableCompareCB();
 
 					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
 					generateComparePageUrl();
