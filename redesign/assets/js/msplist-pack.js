@@ -656,7 +656,7 @@ var ListPage = {
                                 } else {
                                     $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
                                 }
-                                    
+
                                 $timer = $(".js-hrly-deals-grid .cntdwn");
                                 if ($timer.length) {
                                     dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
@@ -684,10 +684,12 @@ var ListPage = {
                                         }()), 1000);
                                     } else {
                                         $timer.hide();
+                                        $(".hrly-deals-expry-lbl").hide();
                                     }
                                 }
                             }).fail(function() {
                                $(".js-hrly-deals-grid .cntdwn").hide();
+                               $(".hrly-deals-expry-lbl").hide();
                             });
                         }());
                     }

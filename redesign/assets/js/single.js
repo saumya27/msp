@@ -595,7 +595,7 @@ $(document).ready(function() {
 
         //Destination Image
         $(".prdct-dtl__img").attr("src", newSrc)
-        $(".prdct-dtl__img-wrpr").data("href", $(this).data("href"));
+        $(".prdct-dtl__img-wrpr").attr("data-href", $(this).data("href"));
 
         $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
         $(this).addClass("prdct-dtl__thmbnl--slctd");
