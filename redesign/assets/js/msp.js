@@ -864,7 +864,7 @@ function generateHash(params) {
 
 
 // Extension promotion for Chrome users landing using msp.to feature        
-// TODO:: discuss with rohit, how it will be in RUI
+// 
 // if ($(".sidebardiv.msp-to").length) {
 //     autoPopupTimeout = 3000;
 //     _gaq.push(["_trackEvent", "Plugin_mspto", "Sidebar_Banner", "Banner_Shown"]);
@@ -974,79 +974,6 @@ if ($(".body-wrpr").length !== 0) {
     /* OLD::inpageLinking - end */
 }
 
-
-// header bar processing start here
-// TODO::REMOVE processheader activate.
-// if ($('.simple-header').length === 0 && $('.single-header').length === 0) {
-//     $win.scroll(function(e) {
-//         scrolled = true;
-//     });
-//     setInterval(processHeader, 100);
-// }
-// header bar processing end here
-
-/* TODO::REMOVE old code for header functionality */
-// browse menu processing start here
-// $doc.on('click', '.browse-menu-btn, .browse-popup-cont', function(e) {
-//     var left = $('.browse-menu-btn').offset().left;
-//     $('.browse-popup').css('left', left).toggleClass('show');
-//     $('.browse-popup-cont')
-//         .toggleClass('show');
-//     if ($('.browse-popup.show').length !== 0) {
-
-//         if ($('.browse-popup-data').data('processed') == 'done' && location.hash !== '#forcepopup') {
-//             setTimeout((function() {
-//                 $('.browse-popup').find('.loading-circle').hide();
-//                 $('.browse-popup-data').addClass('show');
-//             }), 340);
-//             return; //if already procesed
-//         }
-
-//         var data;
-
-//         if (localStorage && location.hash !== '#forcepopup') {
-
-//             //check if data is not one week old
-//             var time = parseInt(localStorage.browsePopupDataTime, 10),
-//                 now = new Date().getTime(),
-//                 diffTime = (now - time) / (1000 * 60 * 60 * 24);
-
-//             if (diffTime < 30 && localStorage.browsePopupDataVer == $('.browse-popup-data').data('ver')) {
-//                 //getting data from localStorage
-//                 data = localStorage.browsePopupData;
-//             }
-
-//         }
-
-//         if (!data || data == 'undefined' || data === undefined) {
-//             $('.browse-popup').find('.loading-circle').show();
-//             data = getBrowsePopupData();
-//             localStorage.browsePopupData = data;
-//             localStorage.browsePopupDataTime = new Date().getTime();
-//             localStorage.browsePopupDataVer = $('.browse-popup-data').data('ver');
-//             // if data is not avaialble in localStorage do ajax and save in localStorage for later use
-//         }
-//         if (data && data != 'undefined' && data !== undefined) {
-//             $('.browse-popup-data').html(data).data('processed', 'done');
-//             setTimeout((function() {
-//                 $('.browse-popup').find('.loading-circle').hide();
-//                 $('.browse-popup-data').addClass('show');
-//             }), 340);
-//             // on data available hide loading and show data
-//         }
-
-//     } else {
-//         $('.browse-popup-data').removeClass('show');
-//     }
-// });
-
-// $doc.on('click', '.browse-popup', function(e) {
-//     e.stopPropagation();
-// });
-// browse menu processing end here
-
-
-
 /* RUI:: header dropdowns functionality - start */
 ;(function headerDropdownsHandlers() {
     var menuShowTimeout;
@@ -1110,16 +1037,6 @@ if ($(".body-wrpr").length !== 0) {
 }());
 
 /* RUI:: header dropdowns functionality - end */
-
-// TODO:: Remove old header search code.
-// $doc.on('click', '.search-submit', function() {
-//     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'button']);
-// });
-
-// $doc.on('click', '.page_search .sublist a', function() {
-//     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'category']);
-// });
-
 
 /* RUI:: header search functionality - start */
 $doc.on('click', '.srch-wdgt__sbmt', function() {
@@ -1239,11 +1156,9 @@ $doc.on("click", ".js-open-after-login", function() {
 /* RUI:: open non anchor links - end */
 
 /* RUI:: save product item button - start */
-// TODO:: check anything missing
 $doc.on('mousedown','.js-save-btn', function() {
     var $this = $(this),
-        // TODO:: page title class to be given - ".msp-ttl" used currently
-        mspid = $this.closest(".prdct-item").data("mspid") || $(".msp-ttl").data("mspid"); 
+        mspid = $this.closest(".prdct-item").data("mspid") || $(".prdct-dtl__ttl").data("mspid"); 
     
     if (!mspid) {
         return false;
@@ -1265,17 +1180,6 @@ function saveItem(mspid, $this) {
     });
 
     $this.addClass("prdct-item__save-btn--svd");
-
-    /*
-    TODO:: Discuss with rohit to finalize functionality.
-        // TODO:: page title class to be given - ".msp-ttl" used currently        
-        if ($("#mspSingleTitle").length)
-            $this.addClass("btn-disabled").data("callout", "Saved");
-        else
-            $this.html('Saved').css('display', 'inline-block').attr('disabled', true);
-        if (getCookie('promo'))
-            openPopup("http://www.mysmartprice.com/promotions/cashback_promo.php?isbn=" + mspid);
-    */
 }
 /* OLD:: save item functionality - end */
 
@@ -1283,14 +1187,12 @@ function saveItem(mspid, $this) {
 // popups processing start here
 // RUI:: added new classes for popup targets
 // OLD:: old classes of popup elements are there.
-/* TODO:: popup handlers - work on this - start. */
 
 $doc.on('click', '.popup-target, .js-popup-trgt', function() {
     var $this = $(this),
         popupUrl = $this.attr('href'),
         storeUrl;
 
-    // TODO
     if ($this.is(".prdct-dtl__tlbr-prc-alrt")) {
         if (handleStorePriceAlert($this)) {
             return false;
@@ -1403,7 +1305,6 @@ $doc.on('click', '.popup-overlay', function() {
         closePopup();
 });
 // popups processing end here
-/* TODO:: popup handlers - work on this - start. */
 
 /*
  * OLD:: used only in single page filters dropdown 
@@ -1491,7 +1392,6 @@ $doc.keydown(function(e) {
 // binding keys end here
 /* RUI:: added classes of new UI to the existing handlers - start */
 
-// TODO:: remove bottomslideup if not there in new site.
 // Initialize slide-up banner logic
 initBottomSlideup(); // stoping bottom banner promotion
 
@@ -2055,7 +1955,6 @@ function hideSlideup(cookieName) {
     addCookie(cookieName, "true", 1);
 }
 // Slide-up banner functions end here
-/* TODO:: is it there in RUI - end */
 
 
 
@@ -2070,7 +1969,7 @@ $.expr[':'].icontains = function(a, b, c, d) {
 
 
 /*
- * TODO:: need to be updated in new RUI
+ * FUTURE:: need to be update classes for search page in new RUI
  * used in search page left sidebar widgets collpasing
  * starts here
  */
@@ -2143,7 +2042,6 @@ $.expr[':'].icontains = function(a, b, c, d) {
 $doc.ready(function() {
     $(".sidebardiv_collapsable").sidebarList();
 });
-/* TODO:: need to be updated in new RUI - ends here */
 
 
 /* init onload (no need of doc.ready) - start */
