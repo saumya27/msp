@@ -640,7 +640,7 @@ var ListPage = {
                     }
 
                     // get new hourly deals based on updated current params
-                    if ($(".js-product-grid-deals").length) {
+                    if ($(".js-hrly-deals-prdct-grid").length) {
                         ;(function _getHourlyDeals() {
                             ListPage.services.fetch.hourlyDeals().done(function(json) {
                                 var $timer, dataMinutes, dataSeconds, timerStart, clockStart;
@@ -650,14 +650,18 @@ var ListPage = {
                                     return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
                                 }
 
-                                $(".js-product-grid-deals .sctn__inr").html(json.products);
-                                if ($(".js-product-grid-deals .cntdwn").length === 0) {
-                                    $(".js-product-grid-deals .sctn__ttl").append(json.countdown);
+                                if ($(json.products).find(".prdct-item-with-bdg").length) {
+                                    $(".js-product-grid-deals .sctn__inr").html(json.products);
+                                    if ($(".js-hrly-deals-grid .cntdwn").length === 0) {
+                                        $(".js-hrly-deals-grid .sctn__ttl").append(json.countdown);
+                                    } else {
+                                        $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
+                                    }
                                 } else {
-                                    $(".js-product-grid-deals .cntdwn").replaceWith(json.countdown);
+                                    $(".js-hrly-deals-grid .sctn__inr").html('<div class="js-hrly-deals-grid__empty">No deals found for this criteria</div>');
                                 }
 
-                                $timer = $(".cntdwn");
+                                $timer = $(".js-hrly-deals-prdct-grid .cntdwn");
                                 if ($timer.length) {
                                     dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
                                     dataSeconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
@@ -687,7 +691,7 @@ var ListPage = {
                                     }
                                 }
                             }).fail(function() {
-                               $(".cntdwn").hide();
+                               $(".js-hrly-deals-prdct-grid .cntdwn").hide();
                             });
                         }());
                     }
@@ -1096,11 +1100,13 @@ $(".fltr-wrpr1").on("keyup", ".fltr-srch__fld", function() {
         $filterGroup = $(this).closest(".fltr");
     if (filterSearchQuery === "") {
         $filterGroup.find(".fltr-val").show();
-        $filterGroup.find(".fltr-srch__icon").toggleClass("fltr-srch__icon--hide");
+        $filterGroup.find(".fltr-srch__icon--srch").removeClass("fltr-srch__icon--hide");
+        $filterGroup.find(".fltr-srch__icon--cler").addClass("fltr-srch__icon--hide");
         $filterGroup.find(".nano").nanoScroller();
     } else {
         $filterGroup.find(".fltr-val").hide();
-        $filterGroup.find(".fltr-srch__icon").toggleClass("fltr-srch__icon--hide");
+        $filterGroup.find(".fltr-srch__icon--srch").addClass("fltr-srch__icon--hide");
+        $filterGroup.find(".fltr-srch__icon--cler").removeClass("fltr-srch__icon--hide");
         $filterGroup.find(".fltr-val").filter(function() {
             var itemText = $.trim($(this).text()).toLowerCase(),
                 index = itemText.indexOf(filterSearchQuery),
