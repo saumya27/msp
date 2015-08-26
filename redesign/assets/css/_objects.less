@@ -456,6 +456,19 @@
       text-decoration: none;
     }
   }
+  &__no-rcrd {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    height: 18px;
+    margin: auto;
+    color: @fg-color;
+    font-size: 16px;
+    font-weight: @font-bold;
+    text-align: center;
+  }
   &--no-pdng {
     // .sctn__hdr {
     //   margin: 0;
@@ -588,6 +601,7 @@
   display: inline-block;
 
   padding: 4px 6px;
+  margin-left: 10px;
   border-radius: 3px;
   background: @bg-color-dark-green;
 
@@ -607,6 +621,10 @@
   &--dark-grn {
     background:@bg-color-dark-green;
   }
+}
+
+.rtng-star + .rtng-bdg {
+  margin-left: 10px;
 }
 
 .help-prmpt {
