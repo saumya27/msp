@@ -629,6 +629,7 @@ var ListPage = {
                             if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
                                 // load new products
                                 $(".js-prdct-grid-main").html(freshData[1]);
+                                $(".js-prdct-pgntn").replaceWith(freshData[2]);
                                 // update product count data  above product list
                                 
                                 // $(".list-prod-count").text($(".product-list .product-count-from-ajax").data('count'));
