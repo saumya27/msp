@@ -39,13 +39,6 @@ var PriceTable = {
     "init" : function() {
         var $pageTitle = $(".prdct-dtl__ttl");
     
-        if ($pageTitle.data("offlinedelivery") == "1") {
-            /** 
-             * TODO:: remove comment before going to prod.
-             * PriceTable.update.byCategory("recommended");
-             */
-        }
-        
         // select color and updatePage.
         $doc.on("click", ".avlbl-clrs__item", function() {
             var $this = $(this),
@@ -569,11 +562,7 @@ var PriceTable = {
 $(document).ready(function() {
     PriceTable.init();
 
-    /**
-     * save to list button handlers
-     * TODO:: check if it works
-     * - start 
-     */
+    // save to list button handlers - start 
     $doc.on('click', ".prdct-dtl__save", function(e) {
         loginCallback(function() {
             $(".prdct-dtl__save").addClass("prdct-dtl__save--svd");
@@ -587,7 +576,7 @@ $(document).ready(function() {
     $doc.on("click", ".js-user-lgt", function(e) {
         $(".prdct-dtl__save").removeClass("prdct-dtl__save--svd");
     });
-    /* save to list button handlers - end */
+    // save to list button handlers - end
     
     // Multiple Image Show on Top Section - Start
     $(".prdct-dtl__thmbnl").on("mouseenter", function(e) {
