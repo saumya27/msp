@@ -640,7 +640,7 @@ var ListPage = {
                     }
 
                     // get new hourly deals based on updated current params
-                    if ($(".js-hrly-deals-prdct-grid").length) {
+                    if ($(".js-hrly-deals-grid").length) {
                         ;(function _getHourlyDeals() {
                             ListPage.services.fetch.hourlyDeals().done(function(json) {
                                 var $timer, dataMinutes, dataSeconds, timerStart, clockStart;
@@ -650,18 +650,18 @@ var ListPage = {
                                     return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
                                 }
 
-                                if ($(json.products).find(".prdct-item-with-bdg").length) {
-                                    $(".js-product-grid-deals .sctn__inr").html(json.products);
+                                if ($(json.products).length) {
+                                    $(".js-hrly-deals-grid .sctn__inr").html(json.products);
                                     if ($(".js-hrly-deals-grid .cntdwn").length === 0) {
                                         $(".js-hrly-deals-grid .sctn__ttl").append(json.countdown);
                                     } else {
                                         $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
                                     }
                                 } else {
-                                    $(".js-hrly-deals-grid .sctn__inr").html('<div class="js-hrly-deals-grid__empty">No deals found for this criteria</div>');
+                                    $(".js-hrly-deals-grid .sctn__inr").html('<div class="js-hrly-deals-grid__no-rcrd">No deals found for this criteria</div>');
                                 }
 
-                                $timer = $(".js-hrly-deals-prdct-grid .cntdwn");
+                                $timer = $(".js-hrly-deals-grid .cntdwn");
                                 if ($timer.length) {
                                     dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
                                     dataSeconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
@@ -691,7 +691,7 @@ var ListPage = {
                                     }
                                 }
                             }).fail(function() {
-                               $(".js-hrly-deals-prdct-grid .cntdwn").hide();
+                               $(".js-hrly-deals-grid .cntdwn").hide();
                             });
                         }());
                     }
