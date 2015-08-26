@@ -1165,6 +1165,11 @@ $doc.on('mouseenter', '.js-tltp', function() {
     var colorClass = $(this).data("tooltip-color")==="white" ? "tltp--wht": "";
     $('body').append('<div class="tltp tltp--top-left ' + colorClass +'">' + data + '</div>');
     $tooltip = $('.tltp');
+
+    if($(this).data('tooltip').length > 50){
+      $tooltip.css({'font-size':'11px', 'line-height':'1.5'});
+   }
+
     $tooltip.css('left', $this.offset().left);
     $tooltip.css('top', $this.offset().top - $tooltip.outerHeight() - 10);
     if ($tooltip.offset().top - $win.scrollTop() < 0) {
@@ -2022,7 +2027,7 @@ function recentImgError(img) {
 
 // Slide-up banner functions start here
 function initBottomSlideup() {
-    $("#promotions").load("/promotions/bottom_banner_promotions.php", function() {
+    $(".js-prmtn").load("http://www.mysmartprice.com/promotions/bottom_banner_promotions.php", function() {
         var cookieName = $('.bottom-slideup').attr("cookie-name");
         var hideBottomSlideup = getCookie(cookieName);
         if (hideBottomSlideup !== "true") {
