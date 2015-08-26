@@ -6,9 +6,6 @@ $(document).ready( function(){
 	
 	fillComparePanelAjax();
 	
-	if($('.add-to-cmpr').length){
-		addCompareCheckbox();
-	}
 
 	compareAutoComplete(); // initializing the autoComplete
 
@@ -23,11 +20,11 @@ function fillComparePanelAjax(){
 	request.mspids = getCookie("compareIDs") || "";
 	$.ajax({
 		type: "GET",
-        url: "http://test.mysmartprice.com/expert/compare_panel_ajax.php",
+        url: "compare_panel.html",
         // dataType: "json",
         data: request,
         success: function(data) {
-        		$('.cmpr-pnl-wrppr').replaceWith(data);
+        		$('.cmpr-pnl-wrpr').replaceWith(data);
         		isComparePanelFull();// check if already 4 products are there in compare panel
 				isDifferentCategory();	// check if this product is of same category that of those already in compare panel
 				
@@ -38,14 +35,6 @@ function fillComparePanelAjax(){
     });
 }
 
-function addCompareCheckbox(){
-	var add_comp_html, this_mspid;
-	$('.prdct-item').each(function(){
-		this_mspid = $(this).data('mspid');
-		add_comp_html = '<div class="add-to-cmpr"> <input type="checkbox" class="compare-entrypoint" id="compare'+this_mspid+'"> <label for="compare'+this_mspid+'"><img class="add-to-cmpr__img" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/add_to_compare.png" alt="add to compare"></label> </div>';
-		$(this).find('.add-to-cmpr').replaceWith(add_comp_html);
-	});
-}
 
 $('body').on('click','.sctn__compare-btn', function(){
 	var mspid, mspids, subcategory;
@@ -92,7 +81,7 @@ $('body').on('click', '.remove',  function(){
 	// }
 });
 
-$('body').on('change',".compare-entrypoint", function(){
+$('body').on('change',".js-add-to-cmpr", function(){
 	// if(!check_if_added){
 		var id =  $(this).parents().closest('.prdct-item').data('mspid');
 		var imgtofly = $(this).parents().find('.prdct-item__img')[0];
@@ -106,7 +95,7 @@ $('body').on('change',".compare-entrypoint", function(){
 		}
 		else{
 			if(!isComparePanelOpen()){
-				$(".cmpr-pnl-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+				$(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
 			}
 			$(".cmpr-pnl-list__item[data-comparemspid='" + id + "']").find('.remove').click();
 		}
@@ -127,7 +116,7 @@ $('body').on('change',".compare-entrypoint", function(){
 });
 
 $('body').on('click', ".compare-panel__close",  function(){
-	var addCompareSideBar = $(".cmpr-pnl-wrppr");
+	var addCompareSideBar = $(".cmpr-pnl-wrpr");
 	if( addCompareSideBar.hasClass("add-cmp-ml") ) {
 		addCompareSideBar.removeClass("add-cmp-ml").addClass("add-cmp-mr");
 		addCompareSideBar.find('.cmpr-pnl').removeClass('cmpr-pnl--bx-shdw');
@@ -148,7 +137,7 @@ function alreadyAdded(){
 }
 // check if panel is open
 function isComparePanelOpen(){
-	var addCompareSideBar = $(".cmpr-pnl-wrppr");
+	var addCompareSideBar = $(".cmpr-pnl-wrpr");
 	if( addCompareSideBar.hasClass("add-cmp-ml") ) {
 		return true;
 	} else {
@@ -238,7 +227,7 @@ function flyImage(imgtofly, id, title, $thisCB){
   	}
 	
 	if(!isComparePanelOpen()){
-		$(".cmpr-pnl-wrppr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+		$(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
 		left = left - 250;
   	}
 
@@ -305,7 +294,7 @@ function setCookieCompareIDS( newMSPID ){
 
 // autocomplete functions start here
 function compareAutoComplete() {
-    if ($(".cmpr-pnl-wrppr .js-atcmplt").length !== 0) {
+    if ($(".cmpr-pnl-wrpr .js-atcmplt").length !== 0) {
 
 $(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
 		var $thisAutoComplete = $(this);

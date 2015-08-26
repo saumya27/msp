@@ -1,0 +1,143 @@
+<style>
+  .bottom-slideup .slideup-wrapper-plugin,
+  .bottom-slideup .slideup-wrapper-refer {
+    display: none;
+    height: 50px;
+    margin:auto;
+  }
+  .bottom-slideup .btn.btn-red{
+    margin: 10px 0;
+  }
+  .bottom-slideup a img{
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    }
+</style>
+<script type="text/javascript">
+ $(document).ready(function(){
+    var cookieName1 =getCookie("msp_uid");
+   console.log(cookieName1);
+
+   $(".fb_Share").attr("href","https://www.facebook.com/sharer/sharer.php?u=http://www.mysmartprice.com/promotions/plugin%3Futm_source%3Dfb_refer%26amp%3Bsender_id%3D"+cookieName1);
+   
+
+   $(".twitter_Share").attr("href","https://twitter.com/intent/tweet?text=This%20nifty%20tool%20helped%20me%20save%20thousands%20of%20bucks%20when%20I%20was%20shopping%20online%20@mysmartprice&url=http://www.mysmartprice.com/promotions/plugin/?utm_source=twitter_refer%26sender_id="+cookieName1+"&hashtags=ShareMoreSaveMore");
+
+    $(".email_Share").attr("href","https://mail.google.com/mail/u/0/?view=cm&ui=2&tf=0&cs=wh&fs=1&&su=Shop%20Smarter%20with%20this%20browser%20hack&body=Hi,%0D%0AThis cool extension can help you save money on all your online purchases.%20Use my unique link to get a free PayTM voucher after installation.%0D%0Ahttp://www.mysmartprice.com/promotions/plugin?utm_source=gmail_refer%26sender_id="+cookieName1+"%20%0D%0ASimply add to chrome and let the savings roll in.");
+ });
+</script>
+<div class="bottom-slideup hidden" cookie-name="hideBottomSlideup">
+<div class="slideup-wrapper-plugin chrome">
+<div class="offer-image">
+<img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/chrome-logo-transparent.png" style="width: 73px;"/>
+</div>
+<div class="message" style="padding-left: 100px;">Want to save money on every online purchase?</div>
+<form class="form" onsubmit="return installChromePlugin();" data-label="Bottom Banner Button" data-showoffer="true">
+<div class="button-wrapper">
+<input type="submit" class="btn btn--red btn-red" value="Add to Chrome"/>
+</div>
+</form>
+<div class="close-wrapper">
+<div class="close-button">x</div>
+</div>
+</div>
+<div class="slideup-wrapper-plugin firefox">
+<div class="offer-image">
+<img src="http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/firefox-logo-icon.png" style="width: 90px;"/>
+</div>
+<div class="message" style="padding-left: 100px;">Want to save money on every online purchase?</div>
+<form class="form" onsubmit="return installFirefoxPlugin();" data-label="Bottom Banner Button">
+<div class="button-wrapper">
+<input type="submit" class="btn btn--red btn-red" value="Add to Firefox"/>
+</div>
+</form>
+<div class="close-wrapper">
+<div class="close-button">x</div>
+</div>
+</div>
+<div class="slideup-wrapper-refer chrome">
+<div class="offer-image">
+<img src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/chrome-logo-transparent.png" style="width: 73px;"/>
+</div>
+<div class="message" style="padding-left: 100px;">
+<a href="http://www.mysmartprice.com/promotions/plugin/referral/?utm_source=homepage_bottombanner" style="color: #FFFFFF" target="_blank">Invite Friends. Earn &#x20B9 100</a>
+</div>
+<!-- fb share -->
+<a class='if-not-installed fb_Share' id="fbShare" target="_blank" onclick="sendtoGA('bottom_banner_fbShare')">
+<img class="referral_icons" src="http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/fb_logo.png">
+</a>
+<!-- twitter tweet option -->
+<a class='if-not-installed twitter_Share' id="twitterShare" target="_blank" onclick="sendtoGA('bottom_banner_twitterShare')">
+<img class="referral_icons" src="http://9f5a4ac1427830485fea-b66945f48d5da8582d1654f2d3f9804f.r55.cf1.rackcdn.com/twitter_logo.png">
+</a>
+<!-- referral via email -->
+<a class='if-not-installed email_Share' id="emailShare" style="outline:none;text-decoration:none;" target="_blank" onclick="sendtoGA('bottom_banner_emailShare')">
+<img class="referral_icons" src="http://eca7be04b147deacfa4c-82cf6157a8169c9e50dc1c35c1fca86b.r79.cf1.rackcdn.com/askafriend_email.png" style="width:35px; height:30px;">
+</a>
+<div class="close-wrapper">
+<div class="close-button" onclick="_gaq.push([" _trackEvent", "bottom_banner_close", "Clicked", "Bottom Banner"]);">×</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+debugger;
+  var cookieName = $(".bottom-slideup").attr("cookie-name");
+  if (getCookie(cookieName) !== "true") {
+    if (isChrome()) {
+      isPluginInstalled().fail(function () {
+        $(".slideup-wrapper-plugin.chrome").css("display", "table");
+        _gaq.push(["_trackEvent", "Chrome_Plugin", "Shown", "Bottom Banner"]);
+      }).done(function (){
+        $(".slideup-wrapper-refer.chrome").css("display", "table");
+        _gaq.push(["_trackEvent", "Chrome_Refer", "Shown", "Bottom Banner"]);   
+      });
+    }
+    else if (isFirefox()) {
+        $(".slideup-wrapper-plugin.firefox").css("display", "table");
+        _gaq.push(["_trackEvent", "Firefox_Plugin", "Shown", "Bottom Banner"]);
+    }
+  }
+
+  function installChromePlugin() {
+    var $form = $(".slideup-wrapper-plugin.chrome .form");                            
+    _gaq.push(["_trackEvent", "Chrome_Plugin", "Clicked", $form.data("label")]);
+    //setCookie(cookieName, "true", 1);              
+    tryInstallChrome($form.data("label"), function () {
+      $form.hide();
+      $(".bottom-slideup .message").addClass("thanks").html("Thanks for downloading our Chrome extension.").fadeIn("slow");
+      openPopup("/promotions/plugin/email_popup_noreward.php");
+    },  function () {
+      if ($form.data("showoffer") == true) {
+        //openPopup("/promotions/plugin/offer_popup.php?label=Bottom+Banner+Offer+Popup");            
+        //_gaq.push(["_trackEvent", "Chrome_Plugin", "Shown", "Bottom Banner Offer Popup"]);
+      }
+      else
+        window.open(CHROME_EXT_WEB_URL, "_blank");
+    });
+    return false;
+  }
+
+  function installFirefoxPlugin() {
+     _gaq.push(["_trackEvent", "Firefox_Plugin", "Clicked", $(".slideup-wrapper-plugin.firefox .form").data("label")]);
+    setCookie(cookieName, "true", 1);        
+    tryInstallFirefox();
+    return false;
+  }
+
+
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-7587491-10', 'auto');
+        ga('set', 'checkProtocolTask', function() {});
+        ga('set', '&uid', getCookie('msp_uid')); // Set the user ID using signed-in user_id. 
+        ga('require', 'displayfeatures');
+
+        function sendtoGA(trackEvent){
+            ga('send', 'event','Chrome_Refer', 'Clicked',trackEvent);
+        }
+
+
+</script>
