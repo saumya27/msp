@@ -11,6 +11,7 @@ $(document).ready( function(){
 	// }
 
 	compareAutoComplete(); // initializing the autoComplete
+	generateComparePageUrl();
 
 	var compare_ids = (getCookie('compareIDs') || "").split(',');
 	for( id = 0; id < compare_ids.length ; id++){
@@ -47,7 +48,7 @@ function addCompareCheckbox(){
 	});
 }
 
-$('body').on('click','.sctn__compare-btn', function(){
+function generateComparePageUrl(){
 	var mspid, mspids, subcategory;
 
 	$('.sdbr-list__item:not(.cmpr0)').each(function(){ 
@@ -61,8 +62,9 @@ $('body').on('click','.sctn__compare-btn', function(){
 
 	mspids = mspids || "";
 	subcategory = getCategoryFromPanel();
-	$(this).attr('href',"/compare/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
-});
+	var url = "/compare/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory;
+	$('.sctn__compare-btn').attr('href',url);
+}
 
 
 $('body').on('click', '.remove',  function(){
@@ -88,7 +90,7 @@ $('body').on('click', '.remove',  function(){
 				enableCompareCB();
 			} 		
 
-			// compareAutoComplete();
+			generateComparePageUrl();
 			setCookieCompareIDS(); // re-set comparemspid cookie
 	   });
 	// }
@@ -236,7 +238,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 	$replaceThis = $(".sdbr-list__item.cmpr0");
 	var sub_category = getCategoryFromPanel();
 	var compare_href = $('.sctn__compare-btn').attr('href');
-	$('.sctn__compare-btn').attr('href','');
+	$('.sctn__compare-btn').attr('href','#');
 	flyingImageCount++ ;
 	
 	if(flyingImageCount == 1 && $(".sdbr-list__item.cmpr0").length == 5){
@@ -299,7 +301,7 @@ function flyImage(imgtofly, id, title, $thisCB){
  			disableCompareCB("Item already added");
  		}
 
- 		$('.sctn__compare-btn').attr('href',compare_href);
+ 		generateComparePageUrl();
 	    
 	   	setCookie("compareSubCategory", sub_category);
 	  	setCookieCompareIDS(id);
@@ -402,6 +404,7 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
 			 		}
 
 					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
+					generateComparePageUrl();
                 }
             })
             .data('uiAutocomplete')

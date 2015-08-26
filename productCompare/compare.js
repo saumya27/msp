@@ -48,7 +48,7 @@ $(document).ready( function(){
 	// add highlight class to different rows but not when all cells are different
 	$('.expert-cmpr .compare-subtbl__content .compare-tbl__row').each(function(){
 		if($(this).find('[data-isdifferent]').length < product_count)		
-			$(this).find('.compare-tbl__col').addClass('highlight');	
+			$(this).find('[data-isdifferent]').addClass('highlight');	
 	});
 
 
@@ -186,6 +186,15 @@ $(".show-diff").on('click', function(){
 });
 
 $(".showOnlyDiff").on('click', function(){
+
+	// for handling both the checkboxes
+		if($(this).attr('checked')){
+        	$(".showOnlyDiff").attr('checked', true);
+	    }
+	    else{
+	        $(".showOnlyDiff").attr('checked', false);
+	    } 
+	    
 	$('.expert-cmpr .compare-subtbl__content .compare-tbl__row').each(function(){
 		if($('.showOnlyDiff').attr('checked')){
 			if($(this).find('[data-isdifferent]').length == 0)		
@@ -195,14 +204,6 @@ $(".showOnlyDiff").on('click', function(){
 			$(this).slideDown("slow");
 		}
 	});
-
-	// for handling both the checkboxes
-		if($(this).attr('checked')){
-        	$(".showOnlyDiff").attr('checked', true);
-	    }
-	    else{
-	        $(".showOnlyDiff").attr('checked', false);
-	    } 
 });
 
 function addParameterToURL(){
