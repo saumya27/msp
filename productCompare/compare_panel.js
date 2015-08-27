@@ -71,7 +71,7 @@ $('body').on('click', '.remove',  function(){
 
 		$thisProduct = $(this).parent(".sdbr-list__item");
 		var $blankProduct =  $(".cmpr0:last").clone();
-		var removingOther = true;
+		removingOther = true;
 		$('.sctn__compare-btn').attr('href','#');
 	   $thisProduct.slideUp('slow', function() {
 	   		$blankProduct.insertAfter( $lastIndex );
@@ -81,8 +81,11 @@ $('body').on('click', '.remove',  function(){
 	   		
 	   		$thisProduct.remove();
 	   		 
-	   		if(!isComparePanelFull() && !isDifferentCategory())
+	   		if(!isComparePanelFull())
 	   			enableCompareCB();
+	   		else if ($(".sdbr-list__item.cmpr0").length != 5 && !isDifferentCategory())
+	   			enableCompareCB();
+
 
 			if($(".sdbr-list__item.cmpr0").length == 5){
 				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
@@ -201,12 +204,12 @@ function enableCompareCB(){
 	if($('.compare-entrypoint').length){
 		$('.compare-entrypoint').removeAttr("disabled");
 		$('.compare-entrypoint').parent().removeClass("callout-target");
-		$('.compare-entrypoint').parent().removeAttr("data-callout");
+		$('.compare-entrypoint').parent().removeData("callout");
 	}else{
 		if(!alreadyAdded()){
 			$(".cmpr_btn").removeAttr("data-disable");
 			$('.cmpr_btn').removeClass("callout-target");
-			$('.cmpr_btn').removeAttr("data-callout");
+			$('.cmpr_btn').removeData("callout");
 		}
 		else{
 			$('.cmpr_btn').data("callout","Item already added to compare panel.");
