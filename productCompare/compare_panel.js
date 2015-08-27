@@ -81,16 +81,14 @@ $('body').on('click', '.remove',  function(){
 	   		
 	   		$thisProduct.remove();
 	   		 
-	   		if(!isComparePanelFull())
+			if(!isComparePanelFull())
 	   			enableCompareCB();
 	   		else if ($(".sdbr-list__item.cmpr0").length != 5 && !isDifferentCategory())
 	   			enableCompareCB();
 
-
 			if($(".sdbr-list__item.cmpr0").length == 5){
 				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
 			} 		
-
 			removingOther = false;
 			generateComparePageUrl();
 			setCookieCompareIDS(); // re-set comparemspid cookie
@@ -111,24 +109,23 @@ $('body').on('change',".compare-entrypoint", function(){
 
 			if(isDifferentCategory()){
 				$thisCB.prop('checked',false);
-				disableCompareCB("Cannot campare between different categories");	
-				$thisCB.trigger("mouseover");
+				disableCompareCB("Cannot campare between different categories");
+$thisCB.trigger("mouseover");	
 			}
 			else if($(".sdbr-list__item.cmpr0").length < 2){
 				$thisCB.prop('checked',false);
 				disableCompareCB("Cannot add more than 4 products at a time");
-				$thisCB.trigger("mouseover");
-			}
+$thisCB.trigger("mouseover");		
+	}
 			else if ($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
 				$thisCB.prop('checked',false);
 				disableCompareCB("Item already added");
-				$thisCB.trigger("mouseover");
-			}
+$thisCB.trigger("mouseover");		
+	}
 			else{
 				enableCompareCB();
-				flyImage(imgtofly, id, title, $thisCB);
-			}
-			
+
+			flyImage(imgtofly, id, title, $thisCB);}
 		}
 		else{
 			if(!isComparePanelOpen()){
@@ -320,8 +317,9 @@ function flyImage(imgtofly, id, title, $thisCB){
 
  		flyingImageCount--;
  		$thisCB.removeAttr("disabled");
+
  		if($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
- 			disableCompareCB("Item already added");
+			disableCompareCB("Item already added");
  		}
 
  		if(flyingImageCount < 1){
@@ -425,7 +423,15 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
                     addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
 
                     setCookieCompareIDS(ui.item.mspid);
-                    enableDisableCB();	
+
+			if(isDifferentCategory())
+			 			disableCompareCB("Cannot campare between different categories");	
+			 		else if($(".sdbr-list__item.cmpr0").length < 2)
+						disableCompareCB("Cannot add more than 4 products at a time");
+					else if ($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid)
+			 			disableCompareCB("Item already added");
+			 		else
+			 			enableCompareCB();		
 
 					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
 					generateComparePageUrl();
@@ -447,15 +453,4 @@ $(document).on('keydown.autocomplete', ".sdbr-wrppr .js-atcmplt", function(){
     }
 }
 // autocomplete functions end here
-
-function enableDisableCB(){
-	if(isDifferentCategory())
-		disableCompareCB("Cannot campare between different categories");	
-	else if($(".sdbr-list__item.cmpr0").length < 2)
-		disableCompareCB("Cannot add more than 4 products at a time");
-	else if ($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid)
-		disableCompareCB("Item already added");
-	else
-		enableCompareCB();
-}
 
