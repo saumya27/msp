@@ -1,5 +1,6 @@
 .nvgtn-bar {
   top: 0;
+
   width: 1200px;
   height: 40px - @border-width;
   margin: auto;
@@ -17,24 +18,22 @@
   &__item {
     position: relative;
 
-    height: 40px - @border-width;
-
     float: left;
+
+    height: 40px - @border-width;
 
     line-height: 40px - @border-width;
 
     vertical-align: middle;
-    
-
-
     &:before {
       position: absolute;
       left: 0;
 
-      color: @border-color;
+      float: left;
+
       border: 0;
 
-      float: left;
+      color: @border-color;
 
       content: '|';
     }
@@ -42,28 +41,30 @@
       padding-right: 15px;
 
       color: @fg-color;
-
       font-weight: @font-bold;
       &:before {
         content: '';
       }
     }
     &--actv {
-          color: #cc0000;
-          border-bottom: 1px solid #cc0000;
+      border-bottom: 1px solid #c00;
+
+      color: #c00;
     }
     &--frst:before {
       content: '';
     }
   }
   &__item-link {
+    display: block;
+
     padding: 0 15px 0 20px;
 
-    display: block;
-    color:@fg-color;
+    color: @fg-color;
     &:hover {
+      color: @fg-color-red;
+
       text-decoration: none;
-      color:@fg-color-red;
     }
   }
 }
@@ -73,7 +74,6 @@
   padding-right: 15px;
 
   color: @fg-color-red;
-  
   font-weight: @font-bold;
 
   cursor: pointer;
@@ -81,30 +81,32 @@
     content: '';
   }
   &:hover {
+    background-color: @bg-color-gs3;
+
     color: @fg-color-red;
-    background-color:@bg-color-gs3;
     .menu-ctgry__down-icon {
-      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, 6px);
       background-position: center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, 6px);
     }
   }
   &__hmbrgr-icon {
+    float: left;
+
     width: 16px;
     height: 40px - @border-width;
-    margin: 0px 7px;
+    margin: 0 7px;
+    background-position: center;
 
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/category-icon-red.png', 12px, 10px);
-    background-position: center;
-
-    float: left;
   }
   &__down-icon {
+    float: right;
+
     width: 10px;
     height: 40px - @border-width;
-
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, 6px);
     background-position: center;
 
-    float: right;
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, 6px);
   }
 }

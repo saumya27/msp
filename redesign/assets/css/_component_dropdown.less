@@ -29,10 +29,11 @@
     line-height: 30px - 2*@border-width;
   }
   &__menu-link {
-    color:@fg-color-grey;
+    color: @fg-color-grey;
     &:hover {
+      color: @fg-color-red;
+
       text-decoration: none;
-      color:@fg-color-red;
     }
   }
   &__menu-img-wrpr {
@@ -68,6 +69,7 @@
     width: 10px;
     height: 100%;
     background-position: center;
+
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, 6px);
   }
   &__menu-text {
@@ -105,7 +107,7 @@
 
   text-align: center;
   &__lgn {
-    height:32px;
+    height: 32px;
   }
   &__rgstr-link {
     color: @fg-color-light-blue;
@@ -123,7 +125,6 @@
 
     width: 30px;
     height: 100%;
-
     background-position: left center;
   }
   &__icon-rcnt-view {
@@ -139,20 +140,24 @@
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-red.png', 16px, 16px);
   }
   &__icon-rvws {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-grey-small.png', 18px, 15px);
     background-position: left center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-grey-small.png', 18px, 15px);
   }
   &__rvws:hover .user-link__icon-rvws {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png', 18px, 15px);
     background-position: left center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png', 18px, 15px);
   }
   &__icon-rwrds {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-grey-small.png', 17px, 14px);
     background-position: left center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-grey-small.png', 17px, 14px);
   }
   &__rwrds:hover .user-link__icon-rwrds {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png', 17px, 14px);
     background-position: left center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png', 17px, 14px);
   }
 }
 .user-lgt {

@@ -10,8 +10,9 @@
   }
   &-inr {
     position: relative;
-    border-top: 1px solid @border-color;
+
     min-height: 150px;
+    border-top: 1px solid @border-color;
   }
   &__ttl {
     float: left;
@@ -76,15 +77,18 @@
 
       font-size: 12px;
       &-btn {
-        width:11px;
-        margin-left: @inline-block-margin;
-        background-position:center center;
-        height: 30px;
+        float: right;
+
+        width: 11px;
         width: 30px;
-        float:right;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/search-grey-small.png', 11px, 11px);
+        height: 30px;
+        margin-left: @inline-block-margin;
+        background-position: center center;
+
         cursor: pointer;
         vertical-align: middle;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/search-grey-small.png', 11px, 11px);
       }
     }
     &-gps {
