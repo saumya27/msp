@@ -1,15 +1,15 @@
 .ftr {
-  border-top: 1px solid @border-color;
   min-width: @container-width;
+  border-top: 1px solid @border-color;
   &--prmtn {
-    padding-bottom:60px;
+    padding-bottom: 60px;
   }
-  &__clmn-wrpr1 { 
-    background-color:@bg-color-white;
+  &__clmn-wrpr1 {
+    background-color: @bg-color-white;
   }
   &__clmn-wrpr {
-    width:@container-width;
-    margin:20px auto;
+    width: @container-width;
+    margin: 20px auto;
   }
   //Column Title 
   &__clmn {
@@ -24,95 +24,111 @@
   }
   &__clmn-ttl-wrpr {
     position: relative;
+
     margin-bottom: 10px;
-    font-size:14px;
+
+    font-size: 14px;
     &:before {
-      border-bottom: 1px solid #dfe1e8;
-      content: "";
-      width: 100%;
+      position: absolute;
       top: 50%;
-      position:absolute;
+
+      width: 100%;
+      border-bottom: 1px solid #dfe1e8;
+
+      content: '';
     }
   }
   &__clmn-ttl {
-    font-size:14px;
-    background-color: #fff;
     position: relative;
-    padding-right: 10px;
     z-index: 100;
+
+    padding-right: 10px;
+    background-color: #fff;
+
+    font-size: 14px;
   }
   &__clmn-link {
-    margin-right:5px;
+    margin-right: 5px;
   }
   &__qck-link-clmn {
-    float:left;
-    width:175px;
+    float: left;
+
+    width: 175px;
   }
-  &__qck-link-clmn + &__qck-link-clmn{
-    margin-left:30px;
+  &__qck-link-clmn + &__qck-link-clmn {
+    margin-left: 30px;
   }
   &__qck-link {
-    display:block;
-    line-height:18px;
-    margin-bottom:10px;
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: @fg-color-grey;
+    line-height: 18px;
+
     text-transform: uppercase;
-    color:@fg-color-grey;
     &:hover {
-      color:@fg-color-red;
+      color: @fg-color-red;
+
       text-decoration: none;
     }
   }
   &__extr-info {
     width: @container-width;
     margin: 20px auto;
-    color:@fg-color-grey;
+
+    color: @fg-color-grey;
   }
   &__cpyrght-wrpr {
     float: left;
   }
-  
   &__made-in-india {
-    float:right;
-    margin:13px 0;
+    float: right;
+
+    margin: 13px 0;
   }
   &__heart {
-    color:@fg-color-red;
+    color: @fg-color-red;
   }
   &__flag {
+    margin-left: 2px;
+
     vertical-align: middle;
-    margin-left:2px;
   }
 }
 
 .ftr-msg {
-  border:1px solid @border-color;
-  border-radius:@border-radius;
-  width:378;
-  margin-bottom:20px;
+  width: 378;
+  margin-bottom: 20px;
+  border: 1px solid @border-color;
+  border-radius: @border-radius;
   &__img-wrpr {
-    float:left;
-    margin:15px;
-    height:75px;
-    width:60px;
+    float: left;
+
+    width: 60px;
+    height: 75px;
+    margin: 15px;
   }
   &__img {
     max-width: 100%;
     max-height: 100%;
   }
   &__txt-wrpr {
-    margin:20px 0px 20px 15px;
-    width:258px;
-    height:75px;
-    float:left;
+    float: left;
+
+    width: 258px;
+    height: 75px;
+    margin: 20px 0 20px 15px;
   }
   &__ttl {
-    font-size:20px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
+
+    font-size: 20px;
   }
   &__txt {
-    color:@fg-color-grey;
-    font-size:14px;
-    line-height:20px;
+    color: @fg-color-grey;
+    font-size: 14px;
+    line-height: 20px;
   }
 }
 .ftr-logo {

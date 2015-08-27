@@ -2,6 +2,7 @@
   position: relative;
   &__left {
     float: left;
+
     width: 430px;
     height: 100%;
     &:hover {
@@ -15,19 +16,25 @@
     z-index: 100;
     top: 15px;
     left: 395px;
+
     display: none;
+
     width: 30px;
     height: 30px;
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-grey.png', 28px, 28px);
     background-position: center;
+
     cursor: pointer;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-grey.png', 28px, 28px);
     &:hover {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png', 28px, 28px);
     }
     &--svd {
       display: block;
-      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png', 28px, 28px);
+
       cursor: default;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png', 28px, 28px);
       &:hover {
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png', 28px, 28px);
       }
@@ -39,35 +46,38 @@
     left: 15px;
 
     padding-left: 30px;
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/crown-orange.png', 24px, 14px);
     background-position: left center;
 
     color: @fg-color-grey;
 
     text-transform: uppercase;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/crown-orange.png', 24px, 14px);
   }
   &__img {
     max-width: 100%;
     max-height: 100%;
+
     vertical-align: middle;
     &-wrpr {
       height: 410px;
+      margin: 50px 0 150px 0;
       padding: 0 15px 0 15px;
-      margin:50px 0 150px 0;
+
       line-height: 420px;
 
-      text-align: center;
       cursor: url('http://doypaxk1e2349.cloudfront.net/icons/zoom-in-grey.png'), pointer;
+      text-align: center;
     }
     @media
-      only screen and (-webkit-min-device-pixel-ratio: 2),
-      only screen and (   min--moz-device-pixel-ratio: 2),
-      only screen and (        min-device-pixel-ratio: 2),
-      only screen and (                min-resolution: 192dpi),
-      only screen and (                min-resolution: 2dppx) {
-        &-wrpr {
-          cursor: url('http://doypaxk1e2349.cloudfront.net/icons/zoom-in-grey@2x.png'), pointer;
-        }
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+      &-wrpr {
+        cursor: url('http://doypaxk1e2349.cloudfront.net/icons/zoom-in-grey@2x.png'), pointer;
+      }
     }
   }
   &__thmbnl {
@@ -78,7 +88,7 @@
     margin-left: @inline-block-margin;
     padding: 5px;
     border: 1px solid @border-color;
-    
+
     line-height: 40px;
 
     cursor: pointer;
@@ -99,6 +109,7 @@
 
       max-width: 100%;
       max-height: 100%;
+
       vertical-align: middle;
     }
     &--slctd {
@@ -121,14 +132,14 @@
     border-left: 1px solid @border-color;
   }
   &__ttl {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
     border-bottom: 0;
+    border-bottom: 1px solid @border-color;
 
     color: @fg-color;
     font-size: 26px;
     line-height: 40px;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid @border-color;
   }
   &__tlbr {
     position: relative;
@@ -152,13 +163,15 @@
       padding-right: 10px;
       &--prc-alrt {
         padding-left: 32px;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/bell-blue.png', 14px, 16px);
         background-position: 12px center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/bell-blue.png', 14px, 16px);
       }
       &--cmpr {
         padding: 0 0 0 35px;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/compare-blue.png', 16px, 17px);
         background-position: 12px center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/compare-blue.png', 16px, 17px);
       }
     }
     &-item + &-item {
@@ -174,65 +187,74 @@
   &__vrnt {
     margin-bottom: 15px;
     &-item {
-      padding-right: 10px;
       float: left;
+
+      padding-right: 10px;
       & + & {
-        border-left:1px solid @border-color;
         padding-left: 25px;
-      
-       &--apld:hover {
-        .prdct-dtl__vrnt-cler {
-          margin-top:2px;
-          display:block;
+        border-left: 1px solid @border-color;
+        &--apld:hover {
+          .prdct-dtl__vrnt-cler {
+            display: block;
+
+            margin-top: 2px;
+          }
         }
-      }
       }
       .avlbl-sizes, .avlbl-clrs {
         margin-top: 6px;
-      } 
+      }
     }
     &-clr {
-      width:100px;
+      width: 100px;
     }
     &-ttl {
+      float: left;
+
       color: @fg-color-grey;
       line-height: 1.4;
 
       text-transform: uppercase;
-      float:left;
     }
     &-cler {
-      display:none;
-      cursor:pointer;
-      text-transform: capitalize;
+      display: none;
+      float: right;
+
       color: @fg-color-light-grey;
-      float:right;
+
+      cursor: pointer;
+      text-transform: capitalize;
     }
-    
   }
   &__no-stck {
     &-bdg {
-      color: @fg-color-grey;
-      font-size:18px;
-      vertical-align: middle;
+      padding-left: 26px;
       background-position: left center;
+
+      color: @fg-color-grey;
+      font-size: 18px;
+
+      vertical-align: middle;
+
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/exclamation-circle-grey-large.png', 18px,18px);
-      padding-left:26px;
     }
     &-form {
       margin-top: 35px;
     }
     &-desc {
-      font-size:16px;
       margin-bottom: 20px;
+
+      font-size: 16px;
     }
     &-inpt {
-      font-size:14px;
-      padding: 15px 10px;
-      border-radius: 3px 0 0 3px;
-      border-right-width: 0;
       width: 250px;
       height: 14px;
+      padding: 15px 10px;
+      border-right-width: 0;
+      border-radius: 3px 0 0 3px;
+
+      font-size: 14px;
+
       vertical-align: middle;
     }
     &-err {
@@ -240,19 +262,24 @@
     }
     &-scs {
       display: none;
+
       margin-top: 20px;
-      font-size: 16px;
+
       color: @fg-color;
+      font-size: 16px;
     }
     &-sbmt {
-      border-radius: 0 3px 3px 0;
-      padding: 16px 20px;
-      height: 14px;
-      line-height: 14px;
-      font-size: 14px;
-      margin-left: @inline-block-margin;
-      vertical-align: middle;
       display: inline-block;
+
+      height: 14px;
+      margin-left: @inline-block-margin;
+      padding: 16px 20px;
+      border-radius: 0 3px 3px 0;
+
+      font-size: 14px;
+      line-height: 14px;
+
+      vertical-align: middle;
     }
   }
   &__slr {
@@ -281,12 +308,14 @@
           color: @fg-color-blue;
           font-size: 24px;
           line-height: 36px;
+
           vertical-align: top;
         }
         &-val {
           color: @fg-color-blue;
           font-size: 34px;
           font-weight: @font-bold;
+
           vertical-align: middle;
         }
         &-text {
@@ -305,16 +334,17 @@
 
       min-height: 213px;
       &-lylty {
-        &-wrpr {
-          height: 35px;
-        }
+        height: 35px;
         padding-left: 30px;
-        height:35px;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-gold.png', 23px, 19px);
         background-position: left center;
 
         color: @fg-color-yellow;
         line-height: 1.4;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-gold.png', 23px, 19px);
+        &-wrpr {
+          height: 35px;
+        }
         &--hide {
           visibility: hidden;
         }
@@ -354,33 +384,39 @@
       }
       &-dlvry {
         padding-left: 40px;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/truck-grey.png', 30px, 15px);
         background-position: left center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/truck-grey.png', 30px, 15px);
       }
       &-rtrn {
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/return-grey.png', 18px, 20px);
         background-position: left center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/return-grey.png', 18px, 20px);
       }
       &-wrnty {
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/warranty-grey.png', 21px, 20px);
         background-position: left center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/warranty-grey.png', 21px, 20px);
       }
       &-avlblty {
         float: left;
-        line-height: 1.4;
+
         padding-left: 20px;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tick-circle-green.png', 15px, 15px);
         background-position: left center;
 
         color: @fg-color-blue;
         font-size: 14px;
+        line-height: 1.4;
 
         text-transform: uppercase;
-        &--NA {
-          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/cross-circle-grey.png', 14px, 14px);
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tick-circle-green.png', 15px, 15px);
+        &--na {
           background-position: left center;
 
           color: @fg-color-light-grey;
+
+          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/cross-circle-grey.png', 14px, 14px);
         }
         & + & {
           margin-left: 12px;
@@ -412,13 +448,13 @@
     }
     &--no-stck {
       .prdct-dtl__slr-ftrs:before, .prdct-dtl__slr-ftrs:after {
-        top:60px;
+        top: 60px;
       }
       .btn-GTS {
-        margin-top:30px;
+        margin-top: 30px;
       }
       .prdct-dtl__slr-ftrs {
-        min-height:170px;
+        min-height: 170px;
       }
     }
   }
@@ -430,17 +466,19 @@
 
     list-style: disc outside none;
     &-wrpr {
-      
       color: @fg-color-grey;
     }
     &-more-wrpr {
-      margin-top:0;
-      max-height:0;
       overflow: hidden;
+
+      max-height: 0;
+      margin-top: 0;
+
       color: @fg-color-grey;
-      transition: max-height 0.4s ease-in-out;
+
+      transition: max-height .4s ease-in-out;
       &--show {
-        max-height:300px;
+        max-height: 300px;
       }
     }
   }
@@ -462,13 +500,16 @@
   }
   &__prc-alrt {
     float: right;
-    font-size:14px;
+
     padding-left: 45px;
     border-left: 1px solid @border-color;
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/bell-red.png', 18px, 21px);
     background-position: 15px center;
 
+    font-size: 14px;
+
     cursor: pointer;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/bell-red.png', 18px, 21px);
   }
   &__left {
     float: left;
@@ -509,43 +550,54 @@
   }
   &__btn {
     &-ttl {
-      font-size:14px;
-      margin-right:15px;
+      margin-right: 15px;
+
+      font-size: 14px;
+
       text-transform: uppercase;
     }
     &-wrpr {
-      border-top:1px solid @border-color;
-      margin-top:10px;
-      padding:14px 20px 14px 0;
+      display: none;
+
+      margin-top: 10px;
+      padding: 14px 20px 14px 0;
+      border-top: 1px solid @border-color;
+
       text-align: right;
-      display:none;
     }
     & + & {
-      margin-left:10px;
+      margin-left: 10px;
     }
   }
   &__not-sprtd {
-    top:0;
-    bottom:0;
-    right:0;
-    left:0;
-    margin:auto;
-    display: none;
     position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: none;
+
     height: 20px;
-    text-align: center;
+    margin: auto;
+
     font-size: 14px;
+
+    text-align: center;
   }
   &__rght {
-    position:relative;
-    float:left;
-    width:686px;
-    height:370px;
+    position: relative;
+
+    float: left;
+
+    width: 686px;
+    height: 370px;
     &-chrt {
       display: none;
-      margin-top:25px;
-      height:270px;
-      width:660px;
+
+      width: 660px;
+      height: 270px;
+      margin-top: 25px;
     }
   }
 }
@@ -772,10 +824,12 @@
       }
       &-rmrk {
         display: inline-block;
+
         color: @fg-color-blue;
         font-size: 16px;
-        line-height: 18px;
         font-weight: @font-bold;
+        line-height: 18px;
+
         vertical-align: bottom;
       }
     }
@@ -783,18 +837,20 @@
       display: inline-block;
 
       margin-left: 10px;
+
       line-height: 18px;
+
       vertical-align: bottom;
     }
     &__ttl-wrpr, &__desc-wrpr {
-      margin-top:20px;
+      margin-top: 20px;
     }
     &__ttl, &__desc {
       display: block;
 
       width: 865px;
       padding: 10px;
-      
+
       font-size: 12px;
     }
     &__desc {
@@ -802,12 +858,14 @@
     }
     &__dtls {
       display: none;
+
       margin-top: 20px;
       padding: 7px;
       border: 1px solid @border-color;
       border-radius: @border-radius;
       &-img-wrpr, &-desc {
         display: inline-block;
+
         vertical-align: middle;
       }
       &-desc {
@@ -844,15 +902,18 @@
   }
   &__scs {
     display: none;
+
     height: 230px;
     padding: 60px 0 0;
+
     text-align: center;
     &-ttl {
-      font-size: 24px;
       color: #3d6a8c;
+      font-size: 24px;
     }
     &-desc {
       margin-top: 10px;
+
       font-size: 14px;
       line-height: 25px;
     }
@@ -861,16 +922,18 @@
 
 .exprt-rvw {
   &__vid {
-      margin:20px;
-      position: relative;
-      overflow:hidden;
-      width:888px;
-      height:499px;
-      overflow: hidden;
-      background-color:@bg-color-gs0;
+    position: relative;
+
+    overflow: hidden;
+    overflow: hidden;
+
+    width: 888px;
+    height: 499px;
+    margin: 20px;
+    background-color: @bg-color-gs0;
     &-iframe {
-      z-index:100;
-      position:relative;
+      position: relative;
+      z-index: 100;
     }
     &-img {
       position: absolute;
@@ -878,85 +941,108 @@
       right: -100%;
       bottom: -100%;
       left: -100%;
+
+      opacity: .6;
+
       width: 100%;
       margin: auto;
-      opacity:0.6;
     }
     &-play {
-      cursor:pointer;
-      position:absolute;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      margin:auto;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      margin: auto;
+
+      cursor: pointer;
     }
   }
   &__inr {
-    border-top:1px solid @border-color;
-    padding:30px 20px;
+    padding: 30px 20px;
+    border-top: 1px solid @border-color;
   }
-  &__img{
-    width:46px;
-    height:46px;
+  &__img {
+    float: left;
+
+    width: 46px;
+    height: 46px;
     border-radius: @border-radius;
-    float:left;
   }
   &__ttl {
-    margin-left:10px;
-    float:left;
-    width:830px;
-    font-size:14px;
-    font-weight:@font-bold;
+    float: left;
+
+    width: 830px;
+    margin-left: 10px;
+
+    font-size: 14px;
+    font-weight: @font-bold;
+
     .ellipsis();
   }
   &__usr {
-    margin-left:10px;
-    float:left;
-    width:830px;
-    margin-top:12px;
-    color:@fg-color-grey;
+    float: left;
+
+    width: 830px;
+    margin-top: 12px;
+    margin-left: 10px;
+
+    color: @fg-color-grey;
   }
   &__info {
-    line-height:1.4;
+    line-height: 1.4;
     &-dtls {
       display: inline-block;
+
       margin: 0 0 0 10px;
+
       vertical-align: top;
     }
   }
   &__col {
-    margin:25px 80px 0 0;
+    display: inline-block;
+
+    width: 270px;
+    margin: 25px 80px 0 0;
+
     vertical-align: top;
-    display:inline-block;
-    width:270px;
     & + & {
-       margin-left:@inline-block-margin;
+      margin-left: @inline-block-margin;
     }
   }
   .rvw-scr {
-    float:none;
-    margin-left:@inline-block-margin;
     display: inline-block;
+    float: none;
+
+    margin-left: @inline-block-margin;
+
     vertical-align: bottom;
   }
   &__item {
     margin-top: 16px;
+
     line-height: 1.4;
+
     list-style: disc inside none;
     &-ttl {
+      padding-left: 30px;
+
+      font-weight: @font-bold;
       line-height: 20px;
-      padding-left:30px;
-      font-weight:@font-bold;
       &-pros {
-        color:@fg-color-light-green;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/thumb-up-green-small.png', 20px, 18px);
         background-position: left center;
+
+        color: @fg-color-light-green;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/thumb-up-green-small.png', 20px, 18px);
       }
       &-cons {
-        color:@fg-color-red;
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/thumb-down-red-small.png', 20px, 18px);
         background-position: left center;
+
+        color: @fg-color-red;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/thumb-down-red-small.png', 20px, 18px);
       }
     }
   }
@@ -1016,32 +1102,39 @@
   }
   &__wrt-rvw {
     float: right;
-    font-size:14px;
+
     padding-left: 50px;
     border-left: 1px solid @border-color;
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/write-review-red.png', 20px, 18px);
     background-position: 20px center;
 
+    font-size: 14px;
+
     cursor: pointer;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/write-review-red.png', 20px, 18px);
   }
   &__str {
-    float:left;
-    width:162px;
+    float: left;
+
+    width: 162px;
+
     text-align: center;
     &-wrpr {
-      padding:10px 20px;
+      padding: 10px 20px;
     }
     &-logo {
       display: block;
-      margin:0 auto 10px auto;
-      max-width:150px;
-      height:50px;
+
+      max-width: 150px;
+      height: 50px;
+      margin: 0 auto 10px auto;
     }
     & + & {
-      margin-left:80px;
+      margin-left: 80px;
     }
     .rtng-wrpr {
       display: inline-block;
+
       vertical-align: middle;
     }
     .rtng-bdg {
@@ -1049,106 +1142,121 @@
     }
   }
   &__str-cnt {
-    display:block;
-    margin-top:15px;
+    display: block;
+
+    margin-top: 15px;
     &--no-str {
-      color:@fg-color-grey;
+      color: @fg-color-grey;
     }
   }
   .rating {
-    margin-top:15px;
+    margin-top: 15px;
   }
   &-item {
-    border-top:1px solid @border-color;
-    padding:20px 20px 10px 20px;
-    line-height:1.4;
-    margin-top:20px;
+    margin-top: 20px;
+    padding: 20px 20px 10px 20px;
+    border-top: 1px solid @border-color;
+
+    line-height: 1.4;
     &__left {
-      width:200px;
-      float:left;
-      margin-right:50px;
+      float: left;
+
+      width: 200px;
+      margin-right: 50px;
     }
     &__img {
+      float: left;
+
       width: 60px;
+      height: 60px;
       border-radius: @border-radius;
-      height:60px;
-      float:left;
     }
     &__name {
-        float:right;
-        width:130px;
-        max-height:34px;
-        overflow:hidden;
+      float: right;
+      overflow: hidden;
+
+      width: 130px;
+      max-height: 34px;
     }
     &__date {
-      float:right;
-      width:130px;
-      margin-top:5px;
-      color:@fg-color-grey;
+      float: right;
+
+      width: 130px;
+      margin-top: 5px;
+
+      color: @fg-color-grey;
     }
     &__hlpfl {
-      margin-top:30px;
-      color:@fg-color-grey;
+      margin-top: 30px;
 
+      color: @fg-color-grey;
     }
     &__str {
-      margin-top:30px;
-      border-top:1px solid @border-color;
+      margin-top: 30px;
+      border-top: 1px solid @border-color;
       &-ttl {
-        color:@fg-color-light-grey;
-        margin-top:-9px;
-        padding-right: 8px;
         position: absolute;
-        background-color:@bg-color-white;
+
+        margin-top: -9px;
+        padding-right: 8px;
+        background-color: @bg-color-white;
+
+        color: @fg-color-light-grey;
       }
       &-logo {
-        float:left;
-        margin-top:15px;
+        float: left;
+
         max-width: 150px;
         height: 50px;
+        margin-top: 15px;
       }
     }
     &__rght {
-      width:630px;
-      float:right;
+      float: right;
+
+      width: 630px;
     }
     &__ttl {
-      font-weight: @font-bold;
+      margin-bottom: 15px;
+
       font-size: 14px;
-      margin-bottom:15px;
+      font-weight: @font-bold;
     }
-     .rtng-wrpr {
+    .rtng-wrpr {
       display: inline-block;
+
       vertical-align: middle;
     }
     .rtng-bdg {
       vertical-align: middle;
     }
     &__text {
-      margin-top:15px;
-      line-height:20px;
+      margin-top: 15px;
+
+      line-height: 20px;
       &-hide {
         display: none;
       }
     }
     &__ftr {
-      color:@fg-color-grey;
-      padding-top:30px;
+      padding-top: 30px;
+
+      color: @fg-color-grey;
       &-left {
-        float:left;
-      } 
+        float: left;
+      }
       &-rght {
         display: none;
-        float:right;
-      } 
+        float: right;
+      }
     }
     & + & {
-      margin-top:0;
+      margin-top: 0;
     }
     &:hover {
       .usr-rvw-item__ftr-rght {
         display: block;
       }
     }
-  }  
+  }
 }
