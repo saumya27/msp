@@ -53,8 +53,7 @@
     $(".zoom-viewer__thumb").eq(loadThumbId).click();
 
     $zoomViewerDisplay.on("click", function() {
-        //var $this = $(this);
-
+        
         if ($zoomViewerDisplay.data("loading") || !$zoomViewerDisplay.data("src")) return;
 
         if ($zoomViewerDisplay.hasClass("zoom-viewer__display--zoom")) {
