@@ -223,8 +223,10 @@
     position: relative;
 
     width: 100%;
-    border-bottom: 1px solid @border-color;
     background: @bg-color-white;
+    & + & {
+      border-top: 1px solid @border-color;
+    }
     &__ofln-bdg {
       position: absolute;
       right: 0;
