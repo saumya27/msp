@@ -1,118 +1,129 @@
 <div class="popup-inner-content">
-<div class="zoom-viewer clearfix">
-<div class="zoom-viewer__display" data-load-thumb="2">
-<div class="ldr">
-    <div class="ldr__crcl"></div>
-</div>
-<div class="zoom-viewer__arrow zoom-viewer__arrow--prev">&lsaquo;</div>
-<div class="zoom-viewer__arrow zoom-viewer__arrow--next">&rsaquo;</div>
-</div>
-<div class="zoom-viewer__gallery">
-    <div class="zoom-viewer__thumb" data-thumb-id="1" style="background-image:url('img1/apple-iphone6-zoom-1.jpeg')"></div>
-    <div class="zoom-viewer__thumb" data-thumb-id="2" style="background-image:url('img1/apple-iphone6-zoom-2.jpeg')"></div>
-    <div class="zoom-viewer__thumb" data-thumb-id="3" style="background-image:url('img1/apple-iphone6-zoom-3.jpeg')"></div>
-</div>
+    <div class="zoom-viewer clearfix">
+        <div class="zoom-viewer__display" data-load-thumb="2">
+            <div class="ldr">
+                <div class="ldr__crcl"></div>
+            </div>
+            <div class="zoom-viewer__arrow zoom-viewer__arrow--prev">&lsaquo;</div>
+            <div class="zoom-viewer__arrow zoom-viewer__arrow--next">&rsaquo;</div>
+        </div>
+        <div class="zoom-viewer__gallery">
+            <div class="zoom-viewer__thumb" data-thumb-id="1" style="background-image:url('img1/apple-iphone6-zoom-1.jpeg')"></div>
+            <div class="zoom-viewer__thumb" data-thumb-id="2" style="background-image:url('img1/apple-iphone6-zoom-2.jpeg')"></div>
+            <div class="zoom-viewer__thumb" data-thumb-id="3" style="background-image:url('img1/apple-iphone6-zoom-3.jpeg')"></div>
+        </div>
+    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script>
+    debugger;
+    var $zoomViewerDisplay = $(".zoom-viewer__display"),
+        loadThumbId = parseInt($zoomViewerDisplay.data("load-thumb"), 10) - 1;
+    $(".popup-container").css({ "top" : "10px" });
+    $zoomViewerDisplay.height($(window).height() - 20);
+    $(".zoom-viewer__thumb").on("click", function() {
         debugger;
-        var $zoomViewerDisplay = $(".zoom-viewer__display"),
-            loadThumbId = parseInt($zoomViewerDisplay.data("load-thumb"), 10) - 1;
-        $(".popup-container").css({ "top" : "10px" });
-        $zoomViewerDisplay.height($(window).height() - 20);
-        $(".zoom-viewer__thumb").on("click", function() {
-            debugger;
-            var bg_image = $(this).css("background-image");
-                img_src = bg_image.replace(/^url\(["']?/, '').replace(/["']?\)$/, ''),
-                thumb_id = $(this).data("thumb-id");
-            $(".zoom-viewer__thumb").removeClass("zoom-viewer__thumb--selected");
-            $(this).addClass("zoom-viewer__thumb--selected");
-            
-            $zoomViewerDisplay.data("loading", true);
-            $zoomViewerDisplay.data("src", img_src);
-            $zoomViewerDisplay.data("thumb-id", thumb_id);
-            $zoomViewerDisplay.addClass("zoom-viewer__display--loading zoom-viewer__display--zoom").removeClass("zoom-viewer__display--pan");
-            (function getImageDimentions() {
-                $("<img/>").attr("src", img_src).load(function() {
-                    if ($zoomViewerDisplay.data("src") === img_src) {
-                        $zoomViewerDisplay.data({
-                            "width" : this.width,
-                            "height" : this.height,
-                            "loading" : false,
-                            "enabled" : false
-                        }).css({
-                            "background-image" : "url('" + img_src + "')",
-                            "background-position" : "center center",
-                            "background-size" : "contain"
-                        }).removeClass("zoom-viewer__display--loading");
-                    }
-                });
-            }());
-        });
-        $(".zoom-viewer__thumb").eq(loadThumbId).click();
+        var bg_image = $(this).css("background-image");
+            img_src = bg_image.replace(/^url\(["']?/, '').replace(/["']?\)$/, ''),
+            thumb_id = $(this).data("thumb-id");
+        $(".zoom-viewer__thumb").removeClass("zoom-viewer__thumb--selected");
+        $(this).addClass("zoom-viewer__thumb--selected");
+        
+        $zoomViewerDisplay.data("loading", true);
+        $zoomViewerDisplay.data("src", img_src);
+        $zoomViewerDisplay.data("thumb-id", thumb_id);
+        $zoomViewerDisplay.addClass("zoom-viewer__display--loading zoom-viewer__display--zoom").removeClass("zoom-viewer__display--pan");
+        (function getImageDimentions() {
+            $("<img/>").attr("src", img_src).load(function() {
+                if ($zoomViewerDisplay.data("src") === img_src) {
+                    $zoomViewerDisplay.data({
+                        "width" : this.width,
+                        "height" : this.height,
+                        "loading" : false,
+                        "enabled" : false
+                    }).css({
+                        "background-image" : "url('" + img_src + "')",
+                        "background-position" : "center center",
+                        "background-size" : "contain"
+                    }).removeClass("zoom-viewer__display--loading");
+                }
+            });
+        }());
+    });
+    $(".zoom-viewer__thumb").eq(loadThumbId).click();
 
-        $zoomViewerDisplay.on("click", function() {
-            if ($zoomViewerDisplay.data("loading") || !$zoomViewerDisplay.data("src")) return;
+    $zoomViewerDisplay.on("click", function() {
+        
+        if ($zoomViewerDisplay.data("loading") || !$zoomViewerDisplay.data("src")) return;
 
+        if ($zoomViewerDisplay.hasClass("zoom-viewer__display--zoom")) {
             $zoomViewerDisplay.removeClass("zoom-viewer__display--zoom").addClass("zoom-viewer__display--pan");
             $zoomViewerDisplay.data("enabled", true).css({
                 "background-size" : "auto auto"
             });
-        });
+        } else {
+            $zoomViewerDisplay.addClass("zoom-viewer__display--zoom").removeClass("zoom-viewer__display--pan");
+            $zoomViewerDisplay.data({
+                "enabled" : false
+            }).css({
+                "background-position" : "center center",
+                "background-size" : "contain"
+            });
+        }
+    });
 
-        $zoomViewerDisplay.on("mousemove", function(e) {
-            if (!$zoomViewerDisplay.data("enabled") || !$zoomViewerDisplay.data("src")) return;
-            
-            var viewport, position, img, overflow, scale, shift;
-            
-            viewport = {
-                "width" : $zoomViewerDisplay.width(),
-                "height" : $zoomViewerDisplay.height(),
-                "offset" : $zoomViewerDisplay.offset()
-            };
-            position = {
-                "x" : e.pageX - viewport.offset.left,
-                "y" : e.pageY - viewport.offset.top
-            };
-            img = {
-                "width" : $zoomViewerDisplay.data("width"),
-                "height" : $zoomViewerDisplay.data("height")
-            };
-            overflow = {
-                "x" : img.width - viewport.width,
-                "y" : img.height - viewport.height
-            };
-            scale = {
-                "x" : overflow.width/viewport.width,
-                "y" : overflow.height/viewport.height,
-            };
-            shift = {
-                "x" : (-position.x/viewport.width) * overflow.x,
-                "y" : (-position.y/viewport.height) * overflow.y
-            };
-            
-            $zoomViewerDisplay.css({ "background-position" : (shift.x + "px " + shift.y + "px") });
-        });
+    $zoomViewerDisplay.on("mousemove", function(e) {
+        if (!$zoomViewerDisplay.data("enabled") || !$zoomViewerDisplay.data("src")) return;
+        
+        var viewport, position, img, overflow, scale, shift;
+        
+        viewport = {
+            "width" : $zoomViewerDisplay.width(),
+            "height" : $zoomViewerDisplay.height(),
+            "offset" : $zoomViewerDisplay.offset()
+        };
+        position = {
+            "x" : e.pageX - viewport.offset.left,
+            "y" : e.pageY - viewport.offset.top
+        };
+        img = {
+            "width" : $zoomViewerDisplay.data("width"),
+            "height" : $zoomViewerDisplay.data("height")
+        };
+        overflow = {
+            "x" : img.width - viewport.width,
+            "y" : img.height - viewport.height
+        };
+        scale = {
+            "x" : overflow.width/viewport.width,
+            "y" : overflow.height/viewport.height,
+        };
+        shift = {
+            "x" : (-position.x/viewport.width) * overflow.x,
+            "y" : (-position.y/viewport.height) * overflow.y
+        };
+        
+        $zoomViewerDisplay.css({ "background-position" : (shift.x + "px " + shift.y + "px") });
+    });
 
-        $(".zoom-viewer__arrow").on("click", function(e) {
-            var total_thumbs = $(".zoom-viewer__thumb").length,
-                isNext = $(this).hasClass("zoom-viewer__arrow--next"),
-                thumb_id = {};
-            
-            thumb_id.current = $zoomViewerDisplay.data("thumb-id");
-            if (isNext) {
-                thumb_id.after = (thumb_id.current + 1) % total_thumbs;
-            } else {
-                thumb_id.after = (thumb_id.current - 1) || total_thumbs;
-            }
+    $(".zoom-viewer__arrow").on("click", function(e) {
+        var total_thumbs = $(".zoom-viewer__thumb").length,
+            isNext = $(this).hasClass("zoom-viewer__arrow--next"),
+            thumb_id = {};
+        
+        thumb_id.current = $zoomViewerDisplay.data("thumb-id");
+        if (isNext) {
+            thumb_id.after = (thumb_id.current + 1) % total_thumbs;
+        } else {
+            thumb_id.after = (thumb_id.current - 1) || total_thumbs;
+        }
 
-            $(".zoom-viewer__thumb").eq(thumb_id.after - 1).click();
-            return false;
-        }).on("mousemove", function(){
-            return false;
-        });
-    </script>
-</div>
+        $(".zoom-viewer__thumb").eq(thumb_id.after - 1).click();
+        return false;
+    }).on("mousemove", function(){
+        return false;
+    });
+</script>
 <style>
     /* dev css starts*/
     .clearfix:before,.clearfix:after {
@@ -190,6 +201,7 @@
         border: 2px solid #ddd;
         background-size: contain;
         background-repeat: no-repeat;
+        background-position: center;
         text-align: center;
     }
     .zoom-viewer__thumb--selected {
