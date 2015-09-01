@@ -563,7 +563,7 @@ var ListPage = {
                 }
                 if (ListPage.services.filterHash.fromParams(lp_current) !== ListPage.services.filterHash.fromParams(lp_page)) {
                     $(".list-main__ttl, .list-info__dscrptn, .list-info__link-wrpr").hide();
-                    $(".js-list-ttl").html($(".body-wrpr").data("category-title"));
+                    $(".js-list-ttl").html($(".list-info__ttl").html());
                 }
 
                 ;(function updateProductListAndOtherWidgets() {
