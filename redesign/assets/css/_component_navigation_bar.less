@@ -84,11 +84,6 @@
     background-color: @bg-color-gs3;
 
     color: @fg-color-red;
-    .menu-ctgry__down-icon {
-      background-position: center;
-
-      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, auto);
-    }
   }
   &__hmbrgr-icon {
     float: left;
@@ -108,5 +103,14 @@
     background-position: center;
 
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, auto);
+    
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png');
+  }
+  &:hover {
+    .menu-ctgry__down-icon {
+      background-position: center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, auto);
+    }
   }
 }

@@ -15,6 +15,36 @@
   }
 }
 
+.preload(@list...) {
+  &:before {
+    content: '';
+    position: absolute;
+    visibility: hidden;
+    .-();
+  }
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (   min--moz-device-pixel-ratio: 2),
+    only screen and (        min-device-pixel-ratio: 2),
+    only screen and (                min-resolution: 192dpi),
+    only screen and (                min-resolution: 2dppx) {
+    &:before {
+      .-(~"@2x");
+    }
+  }
+
+  .-(@suffix: ~"", @i: length(@list)) when (@i > 0) {
+    .-(@suffix, @i - 1);
+    
+    @url: extract(@list, @i);
+    @filename  : ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{url})[1]`;
+    @extension : ~`/(.*)\.(jpg|jpeg|png|gif)/.exec(@{url})[2]`;
+    @src: ~`"url(@{filename}@{suffix}.@{extension})"`;
+
+    background-image+: @src;
+  }
+}
+
 .appearance(@appearance:none) {
        -moz-appearance: @appearance;
         -ms-appearance: @appearance;

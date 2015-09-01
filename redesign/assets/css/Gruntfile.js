@@ -18,12 +18,23 @@ module.exports = function(grunt) {
 	            }
 	        }
 	    },
+		cmq: {
+			options: {
+		      log: false
+		    },
+			msp: {
+				files : {
+					'msp.css': ['msp.css']
+				}
+			}
+		},
 		watch: {
 			files: ['*.less'],
-			tasks: ['less:msp'],
+			tasks: ['less:msp', 'cmq:msp'],
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask('default', ['less:msp', 'watch']);
+	grunt.loadNpmTasks('grunt-combine-media-queries');
+	grunt.registerTask('default', ['less:msp', 'cmq:msp', 'watch']);
 }

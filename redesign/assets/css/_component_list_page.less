@@ -296,6 +296,10 @@
         background-position: left;
 
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);
+        .preload(
+          'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png',
+          'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png'
+        );
       }
       &:hover {
         .fltr-val__text {
@@ -314,6 +318,11 @@
         background-position: left center;
 
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
+
+        .preload(
+          'http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-hover.png',
+          'http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png'
+        );
       }
       &:hover {
         .fltr-val__text {
@@ -325,6 +334,7 @@
           .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 14px, auto);
         }
       }
+
     }
     &__inpt {
       position: absolute;

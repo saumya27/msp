@@ -40,6 +40,11 @@
       transition: background .2s ease-in-out;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);
+
+      .preload(
+        'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png',
+        'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png'        
+      );
       & + & {
         margin-left: 10px;
       }
@@ -135,6 +140,11 @@
       transition: background .2s ease-in-out;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
+
+      .preload(
+        'http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png',
+        'http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png'        
+      );
       &:hover {
         color: @fg-color-blue;
 
