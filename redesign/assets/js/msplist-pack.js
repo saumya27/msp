@@ -936,8 +936,13 @@ var ListPage = {
                     var value, prefix;
                     if (params[key]) {
                         prefix = index ? "&" : "";
-                        value = key === "property" ? params[key].join("|") : params[key];
-                        filterHash += prefix + key + "=" + value;
+                        if (key === "price") {
+                            filterHash += prefix + "startinr=" + params[key].split(";")[0] + "&endinr=" + params[key].split(";")[1];
+                        } else if (key === "property") {
+                            filterHash += prefix + key + "=" + params[key].join("|");
+                        } else {
+                            filterHash += prefix + key + "=" + params[key];
+                        }
                     }
                     index++;
                 });
