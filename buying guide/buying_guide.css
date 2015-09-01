@@ -37,7 +37,9 @@
 .cntxt-link {
     font-size: 0;
 }
-.ask-an-exprt__icon{
+
+.edtr-sctn .ask-an-exprt__icon, .ask-an-exprt__icon{
+  outline: none;
   padding-bottom: 5px;
   vertical-align: middle;
 }
@@ -47,10 +49,22 @@
     border-radius: 3px;
     background-color: #ffffff;
 }*/
+.sctn.js-sldr{
+  padding: 0;
+  margin: 10px 0;
+}
 .sctn-hd{
   margin-bottom: -10px;
   font-weight: bold;
   font-size: 16px;
+}
+.sctn-lnk{
+  float: right;
+  padding-right: 10px;
+  text-decoration: underline;
+}
+.sctn-hd.sldr-hd{
+  float: left;
 }
 .cntxt-link--s .cntxt-link__prvs-icon, .cntxt-link--s .cntxt-link__next-icon {
     height: 150px;
@@ -65,7 +79,7 @@
 .cntxt-link__prvs-icon {
     float: left;
     opacity: .5;
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/prev-arrow-black.png') no-repeat center;
+    background: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-left-black.png) no-repeat center;
 }
 .cntxt-link__prvs-icon, .cntxt-link__next-icon {
     width: 35px;
@@ -110,9 +124,10 @@
     width: 96px;
     margin: 8px 0 8px 17px;
     padding: 7px;
-    border: 1px solid transparent;
+    border: 1px solid #eee;
     border-radius: 3px;
     white-space: normal;
+    cursor: pointer;
 }
 .cntxt-link-item:hover{
   border: 1px solid #ccc;
@@ -122,6 +137,8 @@
   display: inline-block;
   width: 65px;
   height: 65px;
+  line-height: 65px;
+  text-align: center;
 }
 .cntxt-link-item__img {
     max-width: 65px;
@@ -168,11 +185,11 @@
     font-weight: bold;
     padding-left: 5px;
 }
-.cntxt-link-item .cntxt-link-item__prc{
-    text-decoration: none;
+.cntxt-link-item__det{
+  margin-top: 5px;
 }
 .cntxt-link--s .cntxt-link__prvs-icon, .cntxt-link--s .cntxt-link__next-icon {
-    height: 150px;
+    height: 160px;
 }
 .js-sldr__prvs, .js-sldr__next {
     display: none;
@@ -180,10 +197,96 @@
 .cntxt-link__next-icon {
     float: right;
     opacity: .5;
-    background: url('http://doypaxk1e2349.cloudfront.net/icons/next-arrow-black.png') no-repeat center;
+    background-position: center;
+    background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black.png);
+    background-repeat: no-repeat;
+    background-size: auto 18px;
 }
 .cntxt-link__prvs-icon, .cntxt-link__next-icon {
     width: 35px;
     height: 128px;
     cursor: pointer;
+}
+
+.prdct__dtls-clr-pop {
+    position: absolute;
+    width: 325px;
+    color: #8e8e93;
+    z-index: 1;
+}
+
+.msg-box {
+    position: absolute;
+    border-radius: 3px;
+    background: #ffffff;
+    box-shadow: -1px 1px 12px rgba(0, 0, 0, 0.2);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+    cursor: default;
+}
+.msg-box--show {
+    visibility: visible;
+    opacity: 1;
+}
+.msg-box__hdr {
+    padding: 7px;
+    border-radius: 3px 3px 0 0;
+    background: #8e93a1;
+    color: #ffffff;
+    font-weight: 600;
+}
+.msg-box__cls {
+    float: right;
+    font-size: 18px;
+    line-height: 12px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.msg-box__inr {
+    padding: 0 5px;
+    border: 1px solid #d0d3dd;
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+}
+.msg-box__row {
+    padding: 10px 5px;
+    line-height: 17px;
+}
+.msg-box__row .cntxt-link-item__ttl{
+    max-width: 250px;
+}
+.msg-box__row .cntxt-link-item__scr{
+    line-height: 25px;
+}
+.msg-box__cntnt{
+    margin-top: 10px;
+}
+.cntxt-link-item__box-cntnt-wrpr{
+  vertical-align: middle;
+  display: inline-block;
+  width: 90px;
+}
+.msg-bx__lft-inr{
+    padding-left: 10px;
+    float: left;
+}
+.msg-bx__lft-prc{
+    padding-top: 10px;
+    display: block;
+}
+.msg-bx__rght-inr{
+    padding-right: 65px;
+    float: right;
+    font-size: 13px;
+}
+.msg-bx__rght__lnk{
+    padding-top: 10px;
+    padding-right: -65px;
+    text-decoration: underline;
+    float: right;
+}
+.msg-box__inr .go-to-prdct{
+  float: right;
+  margin-top: 10px;
 }
