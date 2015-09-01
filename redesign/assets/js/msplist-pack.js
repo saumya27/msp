@@ -276,7 +276,7 @@ var ListPage = {
                     }
                     if ($bodyWrapper.data("brand")) {
                         params.property = params.property || "";
-                        params.property += $(".fltr-val__inpt[dispname='" + $bodyWrapper.data("brand") + "']").attr("value") + "|";
+                        params.property += $(".fltr-val[dispname='" + $bodyWrapper.data("brand") + "'] .fltr-val__inpt").attr("value") + "|";
                     }
                     if ($bodyWrapper.data("property")) {
                         params.property = params.property || "";
