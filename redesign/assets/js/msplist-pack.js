@@ -660,7 +660,7 @@ var ListPage = {
                                 if ($hourlyDealsWidget.find(".cntdwn").length === 0) {
                                     $hourlyDealsWidget.find(".sctn__ttl").append(timerHtml);
                                 } else {
-                                    $hourlyDealsWidget.find(".cntdwn").replaceWith(timerHtml);
+                                    $hourlyDealsWidget.find(".cntdwn").html($(timerHtml).find(".cntdwn").html());
                                 }
 
                                 if ($(productsHtml).filter(".prdct-item-with-bdg").length > 2) {
