@@ -657,12 +657,8 @@ var ListPage = {
                                 }
 
                                 $hourlyDealsWidget.find(".sctn__inr").html(productsHtml);
-                                if ($hourlyDealsWidget.find(".cntdwn").length === 0) {
-                                    $hourlyDealsWidget.find(".sctn__ttl").append(timerHtml);
-                                } else {
-                                    $hourlyDealsWidget.find(".cntdwn").html($(timerHtml).find(".cntdwn").html());
-                                }
-
+                                $hourlyDealsWidget.find(".js-hrly-deals__cntdwn-wrpr").html(timerHtml);
+                                
                                 if ($(productsHtml).filter(".prdct-item-with-bdg").length > 2) {
                                     $hourlyDealsWidget.find(".sctn__view-all-link").show();
                                 } else {
