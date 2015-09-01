@@ -9,6 +9,7 @@
 
 var PriceTable = {
     "dataPoints" : {
+        "category" : $(".body-wrpr").attr("category"),
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
         "defaultRows" : $(".prc-tbl-row:visible").length,
         "variant" : {
@@ -18,6 +19,8 @@ var PriceTable = {
         "price" : {
             "getMrp" : function() { return $(".prdct-dtl__slr-prc-mrp-prc").data("value") },
         },
+        "productThumb" : $(".prdct-dtl__thmbnl-img").eq(0).attr("src"),
+        "getTitle" : function(){ return $(".prdct-dtl__ttl").text(); },
         "getSelectedColor" : function() { return $(".avlbl-clrs__item--slctd").data("value") },
         "getAppliedSort" : function() { return $(".js-prc-tbl__sort").val(); },
         "getAppliedFilters" : function() {
