@@ -90,6 +90,7 @@
     .drpdwn-wdgt__down-icon {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, auto);
     }
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png');
   }
   &--l {
     max-height: 40px - 2 * @border-width;
@@ -130,34 +131,43 @@
   &__icon-rcnt-view {
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/eye-grey.png', 20px, auto);
   }
-  &__rcnt-view:hover .user-link__icon-rcnt-view {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/eye-red.png', 20px, auto);
+  &__rcnt-view {
+    &:hover .user-link__icon-rcnt-view {
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/eye-red.png', 20px, auto);
+    }
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/eye-red.png');
   }
   &__icon-svd-prdcts {
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-grey.png', 16px, auto);
   }
-  &__svd-prdcts:hover .user-link__icon-svd-prdcts {
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-red.png', 16px, auto);
+  &__svd-prdcts {
+    &:hover .user-link__icon-svd-prdcts {
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-red.png', 16px, auto);
+    }
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/heart-red.png');
   }
   &__icon-rvws {
     background-position: left center;
-
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-grey-small.png', 18px, auto);
   }
-  &__rvws:hover .user-link__icon-rvws {
-    background-position: left center;
-
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png', 18px, auto);
+  &__rvws { 
+    &:hover .user-link__icon-rvws {
+      background-position: left center;
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png', 18px, auto);
+    }
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png');
   }
   &__icon-rwrds {
     background-position: left center;
-
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-grey-small.png', 17px, auto);
   }
-  &__rwrds:hover .user-link__icon-rwrds {
-    background-position: left center;
+  &__rwrds {
+    &:hover .user-link__icon-rwrds {
+      background-position: left center;
 
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png', 17px, auto);
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png', 17px, auto);
+    }
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png');
   }
 }
 .user-lgt {
