@@ -985,7 +985,7 @@ var ListPage = {
                         _productList.XHR.abort();
                     }
                     _productList.XHR = $.ajax({
-                        url: "http://ankur.mysmartprice.com/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
+                        url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
                         xhrPerf.end = +new Date();
                         xhrPerf.time = (xhrPerf.end - xhrPerf.start)/1000;
