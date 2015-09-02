@@ -304,16 +304,37 @@
 			<div class="sctn__inr">
 				<div class="prc-tbl__ctrls clearfix">
 					<div class="prc-tbl__ctgry clearfix">
-						<div class="prc-tbl__ctgry-item prc-tbl__ctgry-item--slctd" data-value="recommended" data-label="Recommended">Recommended Stores</div>
-						<div class="prc-tbl__ctgry-item" data-value="offline" data-label="Nearby">Nearby Stores</div>
-						<div class="prc-tbl__ctgry-item" data-value="online" data-label="Online">Online Stores</div>
+						<label class="prc-tbl__ctgry-item">
+                            <input class="prc-tbl__ctgry-inpt" checked value="recommended" data-label="Recommended" type="radio" name="store-category"/>
+                            <span class="prc-tbl__ctgry-lbl">Recommended Stores</span>
+                        </label>
+                        <label class="prc-tbl__ctgry-item">
+                            <input class="prc-tbl__ctgry-inpt" value="offline" data-label="Nearby" type="radio" name="store-category"/>
+                            <span class="prc-tbl__ctgry-lbl">Nearby Stores</span>
+                        </label>
+                        <label class="prc-tbl__ctgry-item">
+                            <input class="prc-tbl__ctgry-inpt" value="online" data-label="Online" type="radio" name="store-category"/>
+                            <span class="prc-tbl__ctgry-lbl">Online Stores</span>
+                        </label>
 					</div>
 					<div class="prc-tbl__fltrs clearfix">
 						<div class="prc-tbl__fltrs-ttl">FILTER BY:</div>
-						<div class="prc-tbl__fltrs-item" data-filter="cod">COD</div>
-						<div class="prc-tbl__fltrs-item" data-filter="emi">EMI</div>
-						<div class="prc-tbl__fltrs-item" data-filter="returnPolicy">Return Policy</div>
-						<div class="prc-tbl__fltrs-item" data-filter="offers">Offers</div>
+                        <label class="prc-tbl__fltrs-item">
+						  <input class="prc-tbl__fltrs-inpt" value="cod" type="checkbox">
+                          <span class="prc-tbl__fltrs-lbl">COD</span>
+                        </label>
+                        <label class="prc-tbl__fltrs-item">
+                          <input class="prc-tbl__fltrs-inpt" value="emi" type="checkbox">
+                          <span class="prc-tbl__fltrs-lbl">EMI</span>
+                        </label>
+                        <label class="prc-tbl__fltrs-item">
+                          <input class="prc-tbl__fltrs-inpt" value="returnPolicy" type="checkbox">
+                          <span class="prc-tbl__fltrs-lbl">Return Policy</span>
+                        </label>
+                        <label class="prc-tbl__fltrs-item">
+                          <input class="prc-tbl__fltrs-inpt" value="offers" type="checkbox">
+                          <span class="prc-tbl__fltrs-lbl">Offers</span>
+                        </label>
 					</div>
 					<div class="prc-tbl__lctn clearfix">
 						<form class="prc-tbl__lctn-frm">

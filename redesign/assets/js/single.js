@@ -24,19 +24,15 @@ var PriceTable = {
         "getSelectedColor" : function() { return $(".avlbl-clrs__item--slctd").data("value") },
         "getAppliedSort" : function() { return $(".js-prc-tbl__sort").val(); },
         "getAppliedFilters" : function() {
-            var result = [];
-            $(".prc-tbl__fltrs-item").each(function() {
-                if ($(this).hasClass("prc-tbl__fltrs-item--slctd")) {
-                    result.push($(this).data("filter"));
-                }
+            return $(".prc-tbl__fltrs-inpt:checked").map(function(i, node) {
+                return $(node).attr("value");
             });
-            return result;
         },
         "getSelectedCategory" : function() {
-            return $(".prc-tbl__ctgry-item--slctd").data("value");
+            return $(".prc-tbl__ctgry-inpt:checked").val();
         },
         "getSelectedCategoryLabel" : function() {
-            return $(".prc-tbl__ctgry-item--slctd").data("label");
+            return $(".prc-tbl__ctgry-inpt:checked").data("label");
         }
     },
     "init" : function() {
@@ -82,21 +78,25 @@ var PriceTable = {
         });
 
         // switch between recommended, online, offline pricetables.
-        $doc.on("click", ".prc-tbl__ctgry-item", function() {
-            var $this = $(this),
-                isSelected = $this.hasClass("prc-tbl__ctgry-item--slctd");
-                
-            if (!isSelected) {
-                $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                $this.addClass("prc-tbl__ctgry-item--slctd");
-                
-                PriceTable.update.byCategory($this.data("value"));
+        $doc.on("click", ".prc-tbl__ctgry-inpt", (function() {
+            var previousValue = "recommended";
+            return function() {
+                var $this = $(this),
+                    currentValue = $this.attr("value"),
+                    isSelected = currentValue === previousValue;
+                    
+                if (!isSelected) {
+                    $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                    $this.prop("checked", true);
+                    
+                    previousValue = currentValue;
+                    PriceTable.update.byCategory(currentValue);
+                }
             }
-        });
+        })());
 
         // apply filters to current pricetable.
-        $doc.on("click", ".prc-tbl__fltrs-item", function() {
-            $(this).toggleClass("prc-tbl__fltrs-item--slctd");
+        $doc.on("click", ".prc-tbl__fltrs-inpt", function() {
             PriceTable.update.byFilter();
         });
         
@@ -275,8 +275,8 @@ var PriceTable = {
                       
                         // if online stores is selected switch tab to offline.
                         if (PriceTable.dataPoints.getSelectedCategory() === "online") {
-                            $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                            $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                            $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                            $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                         }
 
                         PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
@@ -321,8 +321,8 @@ var PriceTable = {
                         if (location) {
                             // if online stores is selected switch tab to offline.
                             if (PriceTable.dataPoints.getSelectedCategory() === "online") {
-                                $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                                $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                                $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                                $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                             }
                             
                             PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
@@ -377,7 +377,7 @@ var PriceTable = {
 
                 $(".prdct-dtl__slr-prc-tbl-btn").data("action", "enabled");
                 $(".prc-tbl-inr").html(html);
-                $(".prc-tbl-hdr__cptn").text(categoryLabel);
+                $(".prc-tbl-hdr__strs .prc-tbl-hdr__cptn").text(categoryLabel);
             });
         },
         "byFilter" : function() {
