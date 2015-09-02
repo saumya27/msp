@@ -563,7 +563,7 @@ var ListPage = {
                 }
                 if (ListPage.services.filterHash.fromParams(lp_current) !== ListPage.services.filterHash.fromParams(lp_page)) {
                     $(".list-main__ttl, .list-info__dscrptn, .list-info__link-wrpr").hide();
-                    $(".js-list-ttl").html($(".body-wrpr").data("category-title"));
+                    $(".js-list-ttl").html($(".list-info__ttl").html());
                 }
 
                 ;(function updateProductListAndOtherWidgets() {
@@ -657,12 +657,8 @@ var ListPage = {
                                 }
 
                                 $hourlyDealsWidget.find(".sctn__inr").html(productsHtml);
-                                if ($hourlyDealsWidget.find(".cntdwn").length === 0) {
-                                    $hourlyDealsWidget.find(".sctn__ttl").append(timerHtml);
-                                } else {
-                                    $hourlyDealsWidget.find(".cntdwn").replaceWith(timerHtml);
-                                }
-
+                                $hourlyDealsWidget.find(".js-hrly-deals__cntdwn-wrpr").html(timerHtml);
+                                
                                 if ($(productsHtml).filter(".prdct-item-with-bdg").length > 2) {
                                     $hourlyDealsWidget.find(".sctn__view-all-link").show();
                                 } else {
@@ -940,8 +936,13 @@ var ListPage = {
                     var value, prefix;
                     if (params[key]) {
                         prefix = index ? "&" : "";
-                        value = key === "property" ? params[key].join("|") : params[key];
-                        filterHash += prefix + key + "=" + value;
+                        if (key === "price") {
+                            filterHash += prefix + "startinr=" + params[key].split(";")[0] + "&endinr=" + params[key].split(";")[1];
+                        } else if (key === "property") {
+                            filterHash += prefix + key + "=" + params[key].join("|");
+                        } else {
+                            filterHash += prefix + key + "=" + params[key];
+                        }
                     }
                     index++;
                 });
@@ -989,7 +990,7 @@ var ListPage = {
                         _productList.XHR.abort();
                     }
                     _productList.XHR = $.ajax({
-                        url: "http://ankur.mysmartprice.com/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
+                        url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
                         xhrPerf.end = +new Date();
                         xhrPerf.time = (xhrPerf.end - xhrPerf.start)/1000;
