@@ -46,8 +46,10 @@ var PriceTable = {
                 model = $variant.data("model"),
                 size = $variant.data("size"),
                 colorValue = $this.data("value");
+            
             $(".avlbl-clrs__item").not($this).removeClass("avlbl-clrs__item--slctd");
             $this.toggleClass("avlbl-clrs__item--slctd");
+            
             if ($this.hasClass("avlbl-clrs__item--slctd")) {
                 $clearColor.show();
                 $variant.text("(" + (model ? model + ", " : "") + colorValue + (size ? ", " + size : "") + ")");
@@ -55,6 +57,7 @@ var PriceTable = {
                 $clearColor.hide();
                 $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
             }
+            
             PriceTable.update.byFilter();
         });
 
