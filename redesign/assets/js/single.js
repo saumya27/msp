@@ -40,7 +40,7 @@ var PriceTable = {
     
         // select color and updatePage.
         $doc.on("click", ".avlbl-clrs__inpt", (function() {
-            var prevValue = ;
+            var prevValue = PriceTable.dataPoints.getSelectedColor();
             return function() {
                 var $this = $(this),
                     $variant = $(".prdct-dtl__ttl-vrnt"),
