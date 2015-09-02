@@ -1121,8 +1121,8 @@ $doc.on("click", ".js-msg-box__cls", function() {
 
 /* RUI:: open non anchor links - start */
 $doc.on("click", ".js-open-link", function() {
-    var $this       = $(this),
-         url        = $this.data("open-link"),
+    var $this = $(this),
+         url = $this.data("open-link"),
          inNewTab   = $this.data("newTab"),
          needLogin  = $this.data("need-login");
 
@@ -1143,14 +1143,9 @@ $doc.on("click", ".js-open-link", function() {
     return false;
 });
 
-$doc.on("click", ".js-open-after-login", function() {
-    loginCallback(function() {
-        var url = $(this).data("open-link");
-        if(url) {
-            window.location.href = url;
-        }
-    }, context, params)
-   
+/* RUI:: open non anchor links - start */
+$doc.on("click", ".js-open-hash", function() {
+    window.location.hash = $(this).data("open-hash") || "";
     return false;
 });
 /* RUI:: open non anchor links - end */

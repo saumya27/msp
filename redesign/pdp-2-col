@@ -41,6 +41,24 @@
 								New User? <span data-href="signup.html" class="acnt__rgstr-link js-popup-trgt">Sign Up</span>
 							</div>
 						</div>
+						<div class="user-link">
+							<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
+								<span class="user-link__icon-rcnt-view"></span>
+								My Recent Views
+							</div>
+							<div class="drpdwn-wdgt__item user-link__svd-prdcts hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
+								<span class="user-link__icon-svd-prdcts"></span>
+								My Saved Products
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rvws hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
+								<span class="user-link__icon-rvws"></span>
+								My Reviews
+							</div>
+							<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile" data-need-login="true">
+								<span class="user-link__icon-rwrds"></span>
+								My Rewards
+							</div>
+						</div>
 						<div class="drpdwn-wdgt__item user-lgt hvr-red js-user-lgt" >
 							Logout
 						</div>
@@ -258,17 +276,15 @@
 						</div>
 					</div>
 				</div>
-				<ul class="prdct-dtl__spfctn-wrpr">
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.</li>
-					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-prdct-dtl__spfctn-show-more">View more &rsaquo;&rsaquo;</span></li>
+				<ul class="prdct-dtl__spfctn-wrpr prdct-dtl__spfctn-wrpr--col-2">
+					<li class="prdct-dtl__spfctn">Point & Shoot Camera</li>
+					<li class="prdct-dtl__spfctn">20 Megapixel</li>
+					<li class="prdct-dtl__spfctn">8 x Optical Zoom</li>
 				</ul>
-				<ul class="prdct-dtl__spfctn-more-wrpr">
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.</li>
-					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">The device hosts a 5.5-inch LED-backlit IPS LCD capacitive touch screen with a resolution of 401 PPI.</li>
-					<li class="prdct-dtl__spfctn">Apple iPhone 6 Plus runs the Apple iOS 8 operating system.<span class="text-link js-prdct-dtl__spfctn-show-less">View less &rsaquo;&rsaquo;</span></li>
+				<ul class="prdct-dtl__spfctn-wrpr prdct-dtl__spfctn-wrpr--col-2">
+					<li class="prdct-dtl__spfctn">Point & Shoot Camera</li>
+					<li class="prdct-dtl__spfctn">20 Megapixel</li>
+					<li class="prdct-dtl__spfctn">8 x Optical Zoom</li>
 				</ul>
 
 				<div class="prdct-dtl__msg">
@@ -2315,9 +2331,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="js-prmtn"></div>
-		<div class="btm-info">Apple iPhone 6 Price in India is Rs. 42,232 as on 2015 2nd September</div>
-	
 	</div>
 	<div class="ftr">
 		<div class="ftr__clmn-wrpr1 clearfix">
@@ -2404,7 +2417,8 @@
 			</div>
 		</div>
 	</div>
-			<div class="cmpr-pnl-wrpr"></div>
+	<div class="js-prmtn"></div>
+	<div class="cmpr-pnl-wrpr"></div>
     <div class="js-ovrly js-ovrly--dark js-glctn-ovrly">
     	<p class="glctn-ovrly-text">Click “Allow” to use your location.</p>
     </div>

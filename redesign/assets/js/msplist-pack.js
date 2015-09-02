@@ -643,22 +643,33 @@ var ListPage = {
                     // get new hourly deals based on updated current params
                     if ($(".js-hrly-deals-grid").length) {
                         ;(function _getHourlyDeals() {
-                            ListPage.services.fetch.hourlyDeals().done(function(json) {
-                                var $timer, dataMinutes, dataSeconds, timerStart, clockStart;
+                            var $hourlyDealsWidget = $(".js-hrly-deals-grid");
+
+                            ListPage.services.fetch.hourlyDeals().done(function(html) {
+                                var $timer, dataMinutes, dataSeconds, timerStart, clockStart,
+                                    timerHtml = html.split("//&//#")[0],
+                                    productsHtml = html.split("//&//#")[1];
+
 
                                 function parseTime(value) {
                                     value = parseInt(value, 10);
                                     return (isNaN(value) || value < 0 || value > 59) ? 59 : value;
                                 }
 
-                                $(".js-hrly-deals-grid .sctn__inr").html(json.products);
-                                if ($(".js-hrly-deals-grid .cntdwn").length === 0) {
-                                    $(".js-hrly-deals-grid .sctn__ttl").append(json.countdown);
+                                $hourlyDealsWidget.find(".sctn__inr").html(productsHtml);
+                                if ($hourlyDealsWidget.find(".cntdwn").length === 0) {
+                                    $hourlyDealsWidget.find(".sctn__ttl").append(timerHtml);
                                 } else {
-                                    $(".js-hrly-deals-grid .cntdwn").replaceWith(json.countdown);
+                                    $hourlyDealsWidget.find(".cntdwn").replaceWith(timerHtml);
                                 }
 
-                                $timer = $(".js-hrly-deals-grid .cntdwn");
+                                if ($(productsHtml).filter(".prdct-item-with-bdg").length > 2) {
+                                    $hourlyDealsWidget.find(".sctn__view-all-link").show();
+                                } else {
+                                    $hourlyDealsWidget.find(".sctn__view-all-link").hide();
+                                }
+
+                                $timer = $hourlyDealsWidget.find(".cntdwn");
                                 if ($timer.length) {
                                     dataMinutes = parseTime($timer.find(".cntdwn__mins").data("minutes"));
                                     dataSeconds = parseTime($timer.find(".cntdwn__scnds").data("seconds"));
@@ -685,12 +696,12 @@ var ListPage = {
                                         }()), 1000);
                                     } else {
                                         $timer.hide();
-                                        $(".hrly-deals-expry-lbl").hide();
+                                        $hourlyDealsWidget.find(".hrly-deals-expry-lbl").hide();
                                     }
                                 }
                             }).fail(function() {
-                               $(".js-hrly-deals-grid .cntdwn").hide();
-                               $(".hrly-deals-expry-lbl").hide();
+                               $hourlyDealsWidget.find(".cntdwn").hide();
+                               $hourlyDealsWidget.find(".hrly-deals-expry-lbl").hide();
                             });
                         }());
                     }
@@ -1010,8 +1021,7 @@ var ListPage = {
                 }
 
                 _hourlyDeals.XHR = $.ajax({
-                    "url": "deals-list.html?" + query,
-                    "dataType" : "json"
+                    "url": "/msp/autodeals/hourly_deals.php?" + query
                 });
 
                 return _hourlyDeals.XHR;
