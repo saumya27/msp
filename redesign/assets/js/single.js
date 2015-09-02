@@ -21,46 +21,50 @@ var PriceTable = {
         },
         "productThumb" : $(".prdct-dtl__thmbnl-img").eq(0).attr("src"),
         "getTitle" : function(){ return $(".prdct-dtl__ttl").text(); },
-        "getSelectedColor" : function() { return $(".avlbl-clrs__item--slctd").data("value") },
+        "getSelectedColor" : function() { return $(".avlbl-clrs__inpt:checked").val() },
         "getAppliedSort" : function() { return $(".js-prc-tbl__sort").val(); },
         "getAppliedFilters" : function() {
-            var result = [];
-            $(".prc-tbl__fltrs-item").each(function() {
-                if ($(this).hasClass("prc-tbl__fltrs-item--slctd")) {
-                    result.push($(this).data("filter"));
-                }
+            return $.map($(".prc-tbl__fltrs-inpt:checked"), function(node) {
+                return $(node).attr("value");
             });
-            return result;
         },
         "getSelectedCategory" : function() {
-            return $(".prc-tbl__ctgry-item--slctd").data("value");
+            return $(".prc-tbl__ctgry-inpt:checked").val();
         },
         "getSelectedCategoryLabel" : function() {
-            return $(".prc-tbl__ctgry-item--slctd").data("label");
+            return $(".prc-tbl__ctgry-inpt:checked").data("label");
         }
     },
     "init" : function() {
         var $pageTitle = $(".prdct-dtl__ttl");
     
         // select color and updatePage.
-        $doc.on("click", ".avlbl-clrs__item", function() {
-            var $this = $(this),
-                $variant = $(".prdct-dtl__ttl-vrnt"),
-                $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
-                model = $variant.data("model"),
-                size = $variant.data("size"),
-                colorValue = $this.data("value");
-            $(".avlbl-clrs__item").not($this).removeClass("avlbl-clrs__item--slctd");
-            $this.toggleClass("avlbl-clrs__item--slctd");
-            if ($this.hasClass("avlbl-clrs__item--slctd")) {
-                $clearColor.show();
-                $variant.text("(" + (model ? model + ", " : "") + colorValue + (size ? ", " + size : "") + ")");
-            } else {
-                $clearColor.hide();
-                $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
+        $doc.on("click", ".avlbl-clrs__inpt", (function() {
+            var prevValue = ;
+            return function() {
+                var $this = $(this),
+                    $variant = $(".prdct-dtl__ttl-vrnt"),
+                    $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
+                    model = $variant.data("model"),
+                    size = $variant.data("size"),
+                    colorValue = $this.val();
+                    
+                if (colorValue === prevValue) {
+                    $variant.text("(" + (model ? model + ", " : "") + colorValue + (size ? ", " + size : "") + ")");
+                    
+                    $clearColor.hide();
+                    $this.prop("checked", false);
+                } else {
+                    $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
+                    
+                    $clearColor.show();
+                }
+
+                prevValue = PriceTable.dataPoints.getSelectedColor();
+                
+                PriceTable.update.byFilter();
             }
-            PriceTable.update.byFilter();
-        });
+        })());
 
         // clear selected color and updatePage.
         $doc.on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {
@@ -82,21 +86,25 @@ var PriceTable = {
         });
 
         // switch between recommended, online, offline pricetables.
-        $doc.on("click", ".prc-tbl__ctgry-item", function() {
-            var $this = $(this),
-                isSelected = $this.hasClass("prc-tbl__ctgry-item--slctd");
-                
-            if (!isSelected) {
-                $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                $this.addClass("prc-tbl__ctgry-item--slctd");
-                
-                PriceTable.update.byCategory($this.data("value"));
+        $doc.on("click", ".prc-tbl__ctgry-inpt", (function() {
+            var previousValue = "recommended";
+            return function() {
+                var $this = $(this),
+                    currentValue = $this.attr("value"),
+                    isSelected = currentValue === previousValue;
+                    
+                if (!isSelected) {
+                    $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                    $this.prop("checked", true);
+                    
+                    previousValue = currentValue;
+                    PriceTable.update.byCategory(currentValue);
+                }
             }
-        });
+        })());
 
         // apply filters to current pricetable.
-        $doc.on("click", ".prc-tbl__fltrs-item", function() {
-            $(this).toggleClass("prc-tbl__fltrs-item--slctd");
+        $doc.on("click", ".prc-tbl__fltrs-inpt", function() {
             PriceTable.update.byFilter();
         });
         
@@ -275,8 +283,8 @@ var PriceTable = {
                       
                         // if online stores is selected switch tab to offline.
                         if (PriceTable.dataPoints.getSelectedCategory() === "online") {
-                            $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                            $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                            $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                            $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                         }
 
                         PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
@@ -321,8 +329,8 @@ var PriceTable = {
                         if (location) {
                             // if online stores is selected switch tab to offline.
                             if (PriceTable.dataPoints.getSelectedCategory() === "online") {
-                                $(".prc-tbl__ctgry-item").removeClass("prc-tbl__ctgry-item--slctd");
-                                $(".prc-tbl__ctgry-item[data-value='offline']").addClass("prc-tbl__ctgry-item--slctd");
+                                $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                                $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                             }
                             
                             PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
@@ -377,7 +385,7 @@ var PriceTable = {
 
                 $(".prdct-dtl__slr-prc-tbl-btn").data("action", "enabled");
                 $(".prc-tbl-inr").html(html);
-                $(".prc-tbl-hdr__cptn").text(categoryLabel);
+                $(".prc-tbl-hdr__strs .prc-tbl-hdr__cptn").text(categoryLabel);
             });
         },
         "byFilter" : function() {

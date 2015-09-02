@@ -31,8 +31,23 @@
 
     padding: 13px 10px;
     &-item {
+      position: relative;
       float: left;
-
+      & + & {
+        margin-left: 10px;
+      }
+    }
+    &-inpt {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+    &-lbl {
       padding: 5px 5px 5px 20px;
       background-position: left center;
 
@@ -45,19 +60,16 @@
         'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png',
         'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png'        
       );
-      & + & {
-        margin-left: 10px;
-      }
       &:hover {
         color: @fg-color-blue;
 
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png', 14px, auto);
       }
-      &.prc-tbl__ctgry-item--slctd {
-        color: @fg-color-blue;
+    }
+    &-inpt:checked + &-lbl {
+      color: @fg-color-blue;
 
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png', 14px, auto);
-      }
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png', 14px, auto);
     }
   }
   &__lctn {
@@ -133,6 +145,18 @@
       float: left;
 
       margin: 0 7px;
+    }
+    &-inpt {
+      position: absolute;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+    &-lbl {
       padding: 2px 0 0 20px;
       background-position: left center;
 
@@ -150,11 +174,11 @@
 
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png', 14px, auto);
       }
-      &.prc-tbl__fltrs-item--slctd {
-        color: @fg-color-blue;
+    }
+    &-inpt:checked + &-lbl {
+      color: @fg-color-blue;
 
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 14px, auto);
-      }
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 14px, auto);
     }
   }
   &-hdr {
