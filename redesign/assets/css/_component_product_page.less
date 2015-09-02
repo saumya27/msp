@@ -472,6 +472,13 @@
     list-style: disc outside none;
     &-wrpr {
       color: @fg-color-grey;
+      &--col-2 {
+        float:left; 
+        width:220px;
+        & + & {
+          margin-left:20px;
+        }
+      }
     }
     &-more-wrpr {
       overflow: hidden;

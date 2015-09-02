@@ -1,6 +1,3 @@
-var DEFAULT_IMAGE_PATH = "http://doypaxk1e2349.cloudfront.net/icons/user-default.png";
-var DEFAULT_LOGIN_NAME = "My Account";
-
 $(document).ready(function() {
   // Feedback button load
     var feedbackbutton = '<span data-href="/feedback.html" class="js-popup-trgt text-link"><img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" /></span>';
@@ -99,19 +96,36 @@ function loginCallback(fn, context, params) {
 // }
 
 function update_ui() {
-  var msp_login = getCookie("msp_login"),
+  var defaultImagePath = "http://doypaxk1e2349.cloudfront.net/icons/user-default.png",
+      defaultLoginName = "My Account",
+      userLinks = [
+        '<div class="user-link">',
+          '<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile">',
+            '<span class="user-link__icon-rcnt-view"></span> My Recent Views</div>', 
+          '<div class="drpdwn-wdgt__item user-link__svd-prdcts hvr-red js-open-link" data-open-link="/users/profile">',
+            '<span class="user-link__icon-svd-prdcts"></span> My Saved Products</div>',
+          '<div class="drpdwn-wdgt__item user-link__rvws hvr-red js-open-link" data-open-link="/users/profile">',
+            '<span class="user-link__icon-rvws"></span> My Reviews </div>',
+          '<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile">',
+            '<span class="user-link__icon-rwrds"></span> My Rewards</div>',
+        '</div>'
+      ].join(""),
+      msp_login = getCookie("msp_login"),
       msp_user_image = getCookie("msp_user_image"),
       msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email");
+  
     if (msp_login == "1") {
         $(".acnt").hide();
+        $(".acnt").after(userLinks);
         $(".js-user-lgt").show();
         $(".js-user-name").text(msp_login_name);
         if (msp_user_image)
             $(".user-img").attr("src", msp_user_image);
     } else {
         $(".js-user-lgt").hide();
-        $(".js-user-name").text(DEFAULT_LOGIN_NAME);
-        $(".user-img").attr("src", DEFAULT_IMAGE_PATH);
+        $(".user-link").remove();
+        $(".js-user-name").text(defaultLoginName);
+        $(".user-img").attr("src", defaultImagePath);
         $(".acnt").show();
     }
 }
