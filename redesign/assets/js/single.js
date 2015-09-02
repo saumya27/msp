@@ -21,10 +21,10 @@ var PriceTable = {
         },
         "productThumb" : $(".prdct-dtl__thmbnl-img").eq(0).attr("src"),
         "getTitle" : function(){ return $(".prdct-dtl__ttl").text(); },
-        "getSelectedColor" : function() { return $(".avlbl-clrs__item--slctd").data("value") },
+        "getSelectedColor" : function() { return $(".avlbl-clrs__inpt:checked").val() },
         "getAppliedSort" : function() { return $(".js-prc-tbl__sort").val(); },
         "getAppliedFilters" : function() {
-            return $(".prc-tbl__fltrs-inpt:checked").map(function(i, node) {
+            return $.map($(".prc-tbl__fltrs-inpt:checked"), function(node) {
                 return $(node).attr("value");
             });
         },
@@ -39,27 +39,32 @@ var PriceTable = {
         var $pageTitle = $(".prdct-dtl__ttl");
     
         // select color and updatePage.
-        $doc.on("click", ".avlbl-clrs__item", function() {
-            var $this = $(this),
-                $variant = $(".prdct-dtl__ttl-vrnt"),
-                $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
-                model = $variant.data("model"),
-                size = $variant.data("size"),
-                colorValue = $this.data("value");
-            
-            $(".avlbl-clrs__item").not($this).removeClass("avlbl-clrs__item--slctd");
-            $this.toggleClass("avlbl-clrs__item--slctd");
-            
-            if ($this.hasClass("avlbl-clrs__item--slctd")) {
-                $clearColor.show();
-                $variant.text("(" + (model ? model + ", " : "") + colorValue + (size ? ", " + size : "") + ")");
-            } else {
-                $clearColor.hide();
-                $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
+        $doc.on("click", ".avlbl-clrs__inpt", (function() {
+            var prevValue = ;
+            return function() {
+                var $this = $(this),
+                    $variant = $(".prdct-dtl__ttl-vrnt"),
+                    $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
+                    model = $variant.data("model"),
+                    size = $variant.data("size"),
+                    colorValue = $this.val();
+                    
+                if (colorValue === prevValue) {
+                    $variant.text("(" + (model ? model + ", " : "") + colorValue + (size ? ", " + size : "") + ")");
+                    
+                    $clearColor.hide();
+                    $this.prop("checked", false);
+                } else {
+                    $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
+                    
+                    $clearColor.show();
+                }
+
+                prevValue = PriceTable.dataPoints.getSelectedColor();
+                
+                PriceTable.update.byFilter();
             }
-            
-            PriceTable.update.byFilter();
-        });
+        })());
 
         // clear selected color and updatePage.
         $doc.on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {

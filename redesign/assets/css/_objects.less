@@ -914,9 +914,24 @@
   &__item {
     float: left;
 
+    margin-top: 1px;
+    & + & {
+      margin-left: 5px;
+    }
+  }
+  &__inpt {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  &__lbl {
     width: 16px;
     height: 16px;
-    margin-top: 1px;
     border: 2px solid transparent;
     border-radius: 50%;
 
@@ -930,15 +945,12 @@
       border-radius: 50%;
       background-color: @fg-color-white;
     }
-    & + & {
-      margin-left: 5px;
-    }
     &:hover {
       border: 2px solid @border-color-blue;
     }
-    &--slctd {
-      border: 2px solid @border-color-blue;
-    }
+  }
+  &__inpt:checked + &__lbl {
+    border-color: @border-color-blue;
   }
 }
 .avlbl-sizes {
