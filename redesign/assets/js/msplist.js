@@ -903,7 +903,7 @@ var ListPage = {
             },
             "loadingMask" : function() {
                 return [
-                    '<div class="js-fltr-ldng-mask" style="display: none;">',
+                    '<div class="js-fltr-ldng-mask">',
                         '<div class="ldr">',
                             '<div class="ldr__crcl"></div>',
                             '<div class="ldr__text" style="">Loading...</div> ',
