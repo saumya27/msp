@@ -900,6 +900,16 @@ var ListPage = {
                         '</div>'
                     ].join("");
                 }
+            },
+            "loadingMask" : function() {
+                return [
+                    '<div class="js-fltr-ldng-mask" style="display: none;">',
+                        '<div class="ldr">',
+                            '<div class="ldr__crcl"></div>',
+                            '<div class="ldr__text" style="">Loading...</div> ',
+                        '</div>',
+                    '</div>'
+                ].join("")
             }
         }
     },
@@ -971,18 +981,20 @@ var ListPage = {
                     lp_clipboard = ListPage.model.clipboard,
                     cache = _productList._cache_ = _productList._cache_ || { "queries" : [], "responses" : [] },
                     query = this.apiQuery(),
+                    loadingMaskHtml = ListPage.view.components.loadingMask(),
                     xhrPerf;
                 
                 // check if query in cache to load response from cache.
                 if (cache.queries.indexOf(query) >= 0) {
-                    setTimeout(($(".js-fltr-ldng-mask").show(), function() {
-                        $(".js-fltr-ldng-mask").hide();
-                    }), 350);
+                    $(".js-prdct-grid-main").append(loadingMaskHtml);
+                    setTimeout(function() {
+                        $(".js-fltr-ldng-mask").remove();
+                    }, 350);
                     dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
                     if (_gaq) _gaq.push(['_trackEvent', 'desktop_listpage_filter', 'xhrLoad', 'time', 0]);
                 } else {
                     if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
-                        $(".js-fltr-ldng-mask").show();
+                        $(".js-prdct-grid-main").append(loadingMaskHtml);
                     }
                     xhrPerf = { start : +new Date() };
                     // abort pending XHR's for latest XHR to deal with rapid filter changes.
@@ -1006,7 +1018,7 @@ var ListPage = {
                             cache.responses.shift();
                         }
                     }).always(function() {
-                        $(".js-fltr-ldng-mask").hide();
+                        $(".js-fltr-ldng-mask").remove();
                     });
                 }
                 if (_gaq) _gaq.push(['_trackEvent', 'finder', 'query', query]);
