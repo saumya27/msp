@@ -33,14 +33,23 @@ $(".expand_all").on('click', function(){
 $doc.on("click", ".js-msg-box-trgt", function(e) {
     if ($(e.target).hasClass("js-msg-box__cls")) return false;
 
-    $(".msg-box").removeClass("msg-box--show");
-    var left = $(this).offset().left + 40;
-    var top = $(this).offset().top - 200;
+     $.ajax({
+        url: '',
+        type: 'post',
+        data: {
+            "mspid": $(this).parent().attr('data-id')
+        },
+        }).done(function(response) {
+            $(".msg-box").removeClass("msg-box--show");
+            $(".msg-box").replaceWith(response);
+            var left = $(this).offset().left + 40;
+            var top = $(this).offset().top - 200;
 
-    $(".msg-box").addClass("msg-box--show").css({
-        'left': left,
-        'top': top
-    });
+            $(".msg-box").addClass("msg-box--show").css({
+                'left': left,
+                'top': top
+            });
+        });
 });
 
 $doc.on("click", ".js-msg-box__cls, .js-sldr__prvs , .js-sldr__next", function() {
