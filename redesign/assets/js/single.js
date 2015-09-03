@@ -68,10 +68,11 @@ var PriceTable = {
 
         // clear selected color and updatePage.
         $doc.on("click", ".prdct-dtl__vrnt-clr .prdct-dtl__vrnt-cler", function() {
-            $(".avlbl-clrs__item--slctd").removeClass("avlbl-clrs__item--slctd");
             var $variant = $(".prdct-dtl__ttl-vrnt"),
                 model = PriceTable.dataPoints.variant.model,
                 size = PriceTable.dataPoints.variant.size;
+            
+            $(".avlbl-clrs__inpt").prop("checked", false);
             $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
             $(this).hide();
             PriceTable.update.byFilter();
