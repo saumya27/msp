@@ -14,15 +14,17 @@
       </div>
     </div>
     <div class="popup-right">
-      <form class="popup-form" onsubmit="return validateAndSubmit();">
+      <form onsubmit="return validateAndSubmit();">
+        <div class="popup-form">
           <input id="popup-name" type="text" placeholder="Name" maxlength="50"/>
           <input id="popup-email" type="text" placeholder="Email ID (will not be published)" maxlength="50"/>
           <textarea id="popup-question" class="popup__qtn" type="text" placeholder="Your question here..." maxlength="500"> </textarea>
-        <input class="btn btn-red btn-block btn-xl" type="submit" value="ASK QUESTION"/>
+          <input class="btn btn-red btn-block btn-xl" type="submit" value="ASK QUESTION"/>
+        </div>
+        <div class="popup-thanks">
+          <div>Thanks, your question is submitted!</div>
+        </div> 
       </form>
-      <div class="popup-thanks">
-        <div>Thanks, your question is submitted!</div>
-      </div> 
     </div>
   </div>
   <div class="popup-bottom">
@@ -133,12 +135,9 @@
   }
   .popup-thanks {
     display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 126px;
-    padding: 20px 0;
+    padding: 117px 15px;
     font-size: 18px;
     line-height: 22px;
     margin: auto;
@@ -189,7 +188,7 @@
 
     $.ajax({
       url: "asd.php",
-      type: "post"
+      type: "post",
       data: {
         "email": emailValue,
         "name": name,
@@ -199,9 +198,7 @@
            $(".popup-form").fadeOut();
            $(".popup-thanks").fadeIn();
         });
-      cache: false
-    });
-
+     
     return false;
   }
   
