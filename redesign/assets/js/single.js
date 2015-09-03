@@ -197,14 +197,14 @@ var PriceTable = {
                             handler.popupData.content = response;
                             offerDetails = response[storename];
                         
-                            offersMsgBoxHtml = PriceTable.templates.offersMsgBox(offerDetails);
+                            offersMsgBoxHtml = PriceTable.components.offersMsgBox(offerDetails);
                             $popupCont.append(offersMsgBoxHtml);
                             var reflow = $("body").offset().top;
                             $popupCont.find(".msg-box").addClass("msg-box--show");
                         });
                     } else {
                         offerDetails = handler.popupData.content[storename];
-                        offersMsgBoxHtml = PriceTable.templates.offersMsgBox(offerDetails);
+                        offersMsgBoxHtml = PriceTable.components.offersMsgBox(offerDetails);
                         
                         $popupCont.append(offersMsgBoxHtml);
                         $popupCont.find(".msg-box").addClass("msg-box--show");
@@ -242,7 +242,7 @@ var PriceTable = {
 
                 // get GPS location and update datapoints and pricetable.
                 $doc.on("click", ".prc-tbl__lctn-gps", function() {
-                    isLocationStored = !!window.localStorage.userLatitude;
+                    isLocationStored = ("userLatitude" in window.localStorage);
 
                     /**
                      * if chrome and location not available in localStorage,
@@ -341,43 +341,11 @@ var PriceTable = {
                         }
                     });
                 }());
-
             } else {
                 _gaq.push(['_trackEvent', 'Offline_Desktop', 'location', 'not_supported']);
             }
         }());
 
-    },
-    "updatePageData" : function(json) {
-        var $showMoreStores = $(".js-prc-tbl__show-more");
-
-        if (json) {
-            if (json.bestprice) {
-                $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
-            }
-            if (json.discount) {
-                $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]");
-            }
-            if (json.mspCoins) {
-                $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins);
-            }
-            if (json.buybutton) {
-                $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton);
-            }
-            if (json.pricetable) {
-                $(".prc-tbl-inr").html(json.pricetable);
-                if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
-                    $showMoreStores.show();
-                    if ($showMoreStores.data("collapsed")) {
-                        $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).show();
-                    } else {
-                        $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
-                    }
-                } else {
-                    $showMoreStores.hide();
-                }
-            }
-        }
     },
     "update" : {
         "byCategory" : function(type, location) {
@@ -390,20 +358,36 @@ var PriceTable = {
             });
         },
         "byFilter" : function() {
-            var appliedFilters = PriceTable.dataPoints.getAppliedFilters(),
-                request = {
-                    "mspid": PriceTable.dataPoints.mspid,
-                    "mrp": PriceTable.dataPoints.price.getMrp() || 0,
-                    "sort": PriceTable.dataPoints.getAppliedSort(),
-                    "colour": (PriceTable.dataPoints.getSelectedColor() || "").toLowerCase(),
-                    "cod": appliedFilters.indexOf("cod") !== -1,
-                    "emi": appliedFilters.indexOf("emi") !== -1,
-                    "returnpolicy": appliedFilters.indexOf("returnPolicy") !== -1,
-                    "offers": appliedFilters.indexOf("offers") !== -1
-                };
+            PriceTable.fetch.tableByFilter().done(function (json) {
+                var $showMoreStores = $(".js-prc-tbl__show-more");
 
-            PriceTable.fetch.tableByFilter(request).done(function (response) {
-                PriceTable.updatePageData(response);
+                if (json) {
+                    if (json.bestprice) {
+                        $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
+                    }
+                    if (json.discount) {
+                        $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]");
+                    }
+                    if (json.mspCoins) {
+                        $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins);
+                    }
+                    if (json.buybutton) {
+                        $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton);
+                    }
+                    if (json.pricetable) {
+                        $(".prc-tbl-inr").html(json.pricetable);
+                        if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
+                            $showMoreStores.show();
+                            if ($showMoreStores.data("collapsed")) {
+                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).show();
+                            } else {
+                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
+                            }
+                        } else {
+                            $showMoreStores.hide();
+                        }
+                    }
+                }
             });
         }
     },
@@ -485,7 +469,7 @@ var PriceTable = {
             });
         });
     },
-    "templates" : {
+    "components" : {
         "offersMsgBox" : function(offerDetails) {
             var offerCount, offerRows, msgBoxHtml;
 
@@ -532,13 +516,24 @@ var PriceTable = {
         }, {
             cacheLimit : 10
         }),
-        "tableByFilter" : MSP.utils.memoize(function(request) {
-            var dfd = $.Deferred();
+        "tableByFilter" : MSP.utils.memoize(function() {
+            var dfd = $.Deferred(),
+                appliedFilters = PriceTable.dataPoints.getAppliedFilters(),
+                query = {
+                    "mspid": PriceTable.dataPoints.mspid,
+                    "mrp": PriceTable.dataPoints.price.getMrp() || 0,
+                    "sort": PriceTable.dataPoints.getAppliedSort(),
+                    "colour": (PriceTable.dataPoints.getSelectedColor() || "").toLowerCase(),
+                    "cod": appliedFilters.indexOf("cod") !== -1,
+                    "emi": appliedFilters.indexOf("emi") !== -1,
+                    "returnpolicy": appliedFilters.indexOf("returnPolicy") !== -1,
+                    "offers": appliedFilters.indexOf("offers") !== -1
+                };
 
             $.ajax({
                 "url": "/mobile/filter_response.php",
                 "dataType": "json",
-                "data": request
+                "data": query
             }).done(function (response) {
                 dfd.resolve(response);
             }).fail(function (response) {
