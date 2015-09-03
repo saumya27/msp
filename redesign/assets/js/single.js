@@ -44,7 +44,7 @@ var PriceTable = {
             return function() {
                 var $this = $(this),
                     $variant = $(".prdct-dtl__ttl-vrnt"),
-                    $clearColor = $(this).closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
+                    $clearColor = $this.closest(".prdct-dtl__vrnt-clr").find(".prdct-dtl__vrnt-cler"),
                     model = $variant.data("model"),
                     size = $variant.data("size"),
                     colorValue = $this.val();
