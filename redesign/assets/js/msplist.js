@@ -722,7 +722,9 @@ var ListPage = {
                                     $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']").remove();
                                 }
                                 $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").prop("checked", true);
-                                $filterGroupOptions.closest(".fltr").find(".fltr__cler").show();
+                                setTimeout(function() {
+                                    $filterGroupOptions.closest(".fltr").find(".fltr__cler").show();
+                                }, 0);
                             }
                             if (filterItem.groupName == "price") {
                                 // update priceSlider range points
