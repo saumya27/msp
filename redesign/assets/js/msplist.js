@@ -190,7 +190,7 @@ var ListPage = {
                             } else {
                                 filterVal = $(filter).data("value");
                                 $filterItem = $('.fltr-val__inpt[value="' + filterVal + '"]').closest(".fltr-val");
-                                if ($filterItem.is(":not(.fltr-val--dsbldd)")) {
+                                if ($filterItem.find(".fltr-val__inpt").is(":not([disabled])")) {
                                     if ($filterItem.is(".js-fltr-val--mltpl") && clearGroupQueue.length === 0) {
                                         $.merge(clearGroupQueue, $filterItem.find("input"));
                                     } else if ($filterItem.is(".js-fltr-val--sngl") && clearGroupQueue.length === 0) {
