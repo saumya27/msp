@@ -28,9 +28,9 @@ var ListPage = {
             ;(function addActionListeners() {
                 var clearGroupQueue = [],
                     listenerTypes = [
-                        ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbldd) input",
-                        ".fltr:not([data-groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbldd) input",
-                        ".fltr[data-groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbld) input"
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not('disabled')",
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--sngl input:not('disabled')",
+                        ".fltr[data-groupname='price'] .js-fltr-val--sngl input:not('disabled')"
                     ];
 
 
