@@ -201,16 +201,24 @@
 
     vertical-align: middle;
   }
-  &__item-dtls {
-    display: inline-block;
+  &__item{
+    &-dtls {
+      margin-left: 10px;
+      
+      font-size: 12px;
 
+      vertical-align: middle;
+    }
+    &-cnt {
+      margin-left: 5px;
+      color: #bbb;
+    }
+  }
+  &__img-wrpr + &__item-dtls {
+    display: inline-block;
     width: 146px - 2*@border-width;
     margin-left: @inline-block-margin;
-
-    font-size: 12px;
-
-    vertical-align: middle;
-  }
+  } 
   &__item + &__item {
     border-top: 1px solid @border-color;
   }
