@@ -294,9 +294,6 @@
     .fltr-val__text {
       transition: background .2s ease-in-out;
     }
-    &--dsbld {
-      color: @fg-color-grey;
-    }
     &--sngl {
       .fltr-val__text {
         background-position: left;
@@ -357,6 +354,11 @@
     &__inpt:checked {
       & + .fltr-val__text {
         color: @fg-color-blue;
+      }
+    }
+    &__inpt:checked {
+      & + .fltr-val__text {
+        color: @fg-color-grey;
       }
     }
     &__text {
