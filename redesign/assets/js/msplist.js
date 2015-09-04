@@ -28,9 +28,9 @@ var ListPage = {
             ;(function addActionListeners() {
                 var clearGroupQueue = [],
                     listenerTypes = [
-                        ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbldd) input",
-                        ".fltr:not([data-groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbldd) input",
-                        ".fltr[data-groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbld) input"
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled])",
+                        ".fltr:not([data-groupname='price']) .js-fltr-val--sngl input:not([disabled])",
+                        ".fltr[data-groupname='price'] .js-fltr-val--sngl input:not([disabled])"
                     ];
 
 
@@ -57,7 +57,7 @@ var ListPage = {
                 });
 
                 // onclick a non-price multi value filter.
-                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl:not(.js-fltr-val--dsbld) input", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled]", function() {
                     var groupName = $(this).closest(".fltr").data("groupname");
 
                     if (clearGroupQueue.length === 0) {
@@ -77,7 +77,7 @@ var ListPage = {
                 });
                 
                 // onclick a non-price single value filter.
-                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--sngl:not(.js-fltr-val--dsbld) input", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--sngl input:not([disabled])", function() {
                     var groupName = $(this).closest(".fltr").data("groupname");
                     if (clearGroupQueue.length === 0) {
                         $.merge(clearGroupQueue, $(this).closest(".fltr").find(".fltr-val__inpt:checked"));
@@ -96,7 +96,7 @@ var ListPage = {
                 });
                 
                 // onclick a price single value filter.
-                $doc.on("click", ".fltr[data-groupname='price'] .js-fltr-val--sngl:not(.js-fltr-val--dsbld) input", function() {
+                $doc.on("click", ".fltr[data-groupname='price'] .js-fltr-val--sngl input:not([disabled])", function() {
                     var filterVal = $(this).attr("value"),
                         values = filterVal.split(";"),
                         minPrice = parseInt(values[0], 10),
