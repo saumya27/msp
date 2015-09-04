@@ -710,7 +710,7 @@ var ListPage = {
                             appliedFilterComponents = ListPage.view.components.appliedFilter;
                         
                         // initialize all filtergroups, cleargroups as inactive and activate based on current params
-                        $(".fltr__cler").hide();
+                        $(".fltr__cler").removeClass("fltr__cler--show");
                         //$('.fltr__val').removeClass('active');
                         
                         // apply all filters registered on filterControls.add.queue
@@ -723,7 +723,7 @@ var ListPage = {
                                 }
                                 $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").prop("checked", true);
                                 setTimeout(function() {
-                                    $filterGroupOptions.closest(".fltr").find(".fltr__cler").show();
+                                    $filterGroupOptions.closest(".fltr").find(".fltr__cler").addClass("fltr__cler--show");
                                 }, 0);
                             }
                             if (filterItem.groupName == "price") {
@@ -775,7 +775,7 @@ var ListPage = {
                             }, 0);
                             
                             if ($filterOption.closest(".fltr").find(".fltr-val__inpt:checked").length === 0) {
-                                $filterOption.closest(".fltr").find(".fltr__cler").hide();
+                                $filterOption.closest(".fltr").find(".fltr__cler").removeClass("fltr__cler--show");
                             }
                             
                             if (filterItem.groupName === "price") {
@@ -1077,7 +1077,7 @@ var ProductList = {
     }
 };
 
-(function ($) {
+;(function ($) {
     $.QueryString = (function (a) {
         if (a === "") return {};
         var b = {};
