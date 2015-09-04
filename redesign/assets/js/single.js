@@ -110,7 +110,7 @@ var PriceTable = {
         });
         
         // sort current pricetable.
-        (function pricetableSortingHandlers() {
+        ;(function pricetableSortingHandlers() {
             $doc.on("change", ".js-prc-tbl__sort", function() {
                 var newSortby = $(this).val(),
                     category = newSortby.split(":")[0],
@@ -225,7 +225,7 @@ var PriceTable = {
         });
         /* more offers message box handlers - end */
 
-        (function locationFilterHandlers() {
+        ;(function locationFilterHandlers() {
             var isChrome = MSP.utils.browser.name === "chrome",
                 isLocationStored;
 
@@ -319,7 +319,7 @@ var PriceTable = {
                 });
 
                 // bind Google maps autocomplete to location searchbox.
-                (function initAutocomplete() {
+                ;(function initAutocomplete() {
                     var autocomplete = new google.maps.places.Autocomplete($(".prc-tbl__lctn-inpt").get(0), {
                         componentRestrictions: { country: "in" },
                         types: ["geocode"]
@@ -737,7 +737,7 @@ $(document).ready(function() {
         return false;
     });
 
-    (function() {
+    ;(function() {
         var ratingWidth = $(".usr-rvw-form__rtng-wrpr .rtng-star").width(),
             $ratingInr = $(".usr-rvw-form__rtng-wrpr .rtng-star__inr"),
             $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
