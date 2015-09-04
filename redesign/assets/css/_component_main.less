@@ -11,6 +11,16 @@
   }
 }
 
+.algn-wrpr {
+  margin: 20px 0;
+  .sctn {
+    margin: 0;
+  }
+  // .crsl-wdgt + .promo, .ctgry-list + .sctn, .crsl-wdgt + .sctn, .promo + .sctn {
+  //   margin-top: 20px;
+  // }
+}
+
 .main-wrpr {
   float: right;
 
@@ -18,17 +28,12 @@
   .sctn--no-pdng  .sctn__inr {
     width: 928px;
   }
-}
-
-.algn-wrpr {
-  margin: 20px 0;
-  .sctn {
-    margin: 0;
-  }
-  .crsl-wdgt + .promo, .ctgry-list + .sctn, .crsl-wdgt + .sctn, .promo + .sctn, & > * + * {
+  .algn-wrpr & > * + * {
     margin-top: 20px;
   }
 }
+
+
 .promo {
   &__link {
     float: left;
