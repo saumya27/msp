@@ -365,11 +365,18 @@
       }
     }
     &__text {
+      display: inline-block;
+      width: 150px;
       padding-left: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
     }
     &__cnt {
       color: @fg-color-light-grey;
       font-weight: normal;
+      vertical-align: middle;
     }
   }
 }
