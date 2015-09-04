@@ -57,7 +57,7 @@ var ListPage = {
                 });
 
                 // onclick a non-price multi value filter.
-                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled]", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled])", function() {
                     var groupName = $(this).closest(".fltr").data("groupname");
 
                     if (clearGroupQueue.length === 0) {
