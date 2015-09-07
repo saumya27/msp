@@ -1,4 +1,4 @@
-.ftr {
+.ftr.ftr {
   min-width: @container-width;
   border-top: 1px solid @border-color;
   &--prmtn {
@@ -33,7 +33,7 @@
       top: 50%;
 
       width: 100%;
-      border-bottom: 1px solid #dfe1e8;
+      border-bottom: 1px solid @border-color;
 
       content: '';
     }
@@ -43,9 +43,10 @@
     z-index: 100;
 
     padding-right: 10px;
-    background-color: #fff;
+    background-color: @bg-color-white;
 
     font-size: 14px;
+    font-weight: @font-bold;
   }
   &__clmn-link {
     margin-right: 5px;
@@ -97,7 +98,7 @@
   }
 }
 
-.ftr-msg {
+.ftr .ftr-msg {
   width: 378;
   margin-bottom: 20px;
   border: 1px solid @border-color;
@@ -131,7 +132,7 @@
     line-height: 20px;
   }
 }
-.ftr-logo {
+.ftr .ftr-logo {
   &__img {
     height: 30px;
     margin-bottom: 5px;
