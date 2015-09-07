@@ -25,10 +25,6 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     },
     qS = queryString(window.location.search);
 
-/* Carousel Plugin Script Begins Here */
-
-/* Carousel Plugin Script Begins Here */
-
 MSP = {
     "dataPoints" : {
         headerHeight : $(".hdr-size").height()
@@ -404,8 +400,9 @@ MSP = {
     }
 };
 
-/*
+/**
  * jQuery mCycle v0.1
+ * Carousel Plugin Script Begins Here
  */
 ;
 (function($, window, document, undefined) {
@@ -736,13 +733,13 @@ elementSlider =  {
         var slideItem = $(slider).data("slideitem"),
             slideItemWrapper = $(slider).data("slideitemwrapper");
 
-            if(!slideItem || !slideItemWrapper) return;
-            if($(slider).find("." + slideItemWrapper).hasClass("js-sldr-item-wrpr1")) return;
+            if (!slideItem || !slideItemWrapper) return;
+            if ($(slider).find("." + slideItemWrapper).hasClass("js-sldr-item-wrpr1")) return;
 
         var $elements = $(slider).find("." + slideItem),
             countCurrItems = Math.floor($(slider).find("." + slideItemWrapper).eq(0).width() / $elements.eq(0).outerWidth(true));
 
-        if($elements.length > countCurrItems) {
+        if ($elements.length > countCurrItems) {
             $(slider).find("." + slideItemWrapper).addClass("js-sldr-item-wrpr1").
                                                           wrapInner("<div class='js-sldr-item-wrpr'></div>");
 
@@ -765,13 +762,13 @@ elementSlider =  {
             countLeftItems = $elements.index($currentElement),
             elementPos;
 
-        if($(element).hasClass("js-sldr__dsbl-btn") || $(element).hasClass("js-sldr__dsbl-btn"))
+        if ($(element).hasClass("js-sldr__dsbl-btn") || $(element).hasClass("js-sldr__dsbl-btn"))
             return;
 
         $(element).siblings(".js-sldr__prvs").removeClass("js-sldr__dsbl-btn");
         $(element).siblings(".js-sldr__next").removeClass("js-sldr__dsbl-btn");
         
-        if(direction === 'right') {
+        if (direction === 'right') {
                 if(countRightItems > countCurrItems) {
                     $startElement = $elements.eq($elements.index($currentElement) + countCurrItems);   
                 }
@@ -781,7 +778,7 @@ elementSlider =  {
                 }
         }
         else if (direction === 'left') {    
-            if(countLeftItems > countCurrItems) {
+            if (countLeftItems > countCurrItems) {
                 $startElement = $elements.eq($elements.index($currentElement) - countCurrItems);   
             }
             else {
@@ -817,7 +814,7 @@ elementSlider =  {
 // and returns an object with those key-value pairs as its properties
 function queryString(searchOrHash) {
     var _cache = queryString._cache_ = queryString._cache_ || {};
-    if(searchOrHash in _cache) return _cache[searchOrHash];
+    if (searchOrHash in _cache) return _cache[searchOrHash];
 
     var query;
     if (searchOrHash) {
