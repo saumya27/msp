@@ -256,6 +256,30 @@
 
     vertical-align: middle;
   }
+
+  &--out-stck {
+    .prdct-item__img, .prdct-item__dtls {
+      opacity: 0.65;
+    }
+    &__bdg {
+      position: absolute;
+      bottom: 0;
+      left:10px;
+      right:10px;
+      padding: 5px;
+      border:1px solid @border-color-dark-grey;
+      border-radius: @border-radius;
+      color: @fg-color-grey;
+      background-color: @bg-color-gs3;
+      text-align: center;
+      &-icon {
+        width: 14px;
+      }
+      &-icon, &-lbl {
+        vertical-align: middle;
+      }
+    }
+  }
 }
 
 .prdct-grid {
