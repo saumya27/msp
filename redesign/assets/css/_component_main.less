@@ -398,7 +398,7 @@
     color: @fg-color;
     line-height: 1.4;
     &:hover {
-      border: 1px solid darken(@border-color,5%);
+      border: 1px solid darken(@border-color, 5%);
 
       color: @fg-color-red;
 
@@ -724,15 +724,10 @@
     height: 80px;
   }
   &__img {
-    position: absolute;
-    top: -100%;
-    right: -100%;
-    bottom: -100%;
-    left: -100%;
+    .absolute-center(-100%);
 
     max-width: 100%;
     max-height: 100%;
-    margin: auto;
   }
   &__dtls {
     float: left;
@@ -839,5 +834,77 @@
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/graph-red.png', 16px, auto);
       }
     }
+  }
+}
+
+.offer-card {
+  display: block;
+  padding: 5px;
+  cursor: pointer;
+  &__img {
+    &-wrpr {
+      float: left;
+      position: relative;
+      width: 100px;
+      height: 128px;
+    }
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+  }
+  &__dtls {
+    float: right;
+    width: 115px;
+    padding: 5px;
+  }
+  &__ttl {
+    display: block;
+    height: 32px;
+    margin-bottom: 10px;
+    color: @fg-color;
+    line-height: 1.4;
+    overflow: hidden;
+    .line-clamp(2);
+    text-decoration: none;
+  }
+  &__prc {
+    &-lbl {
+      display: block;
+      margin-bottom: 5px;
+      color: @fg-color-grey;
+      font-size: 11px;
+    }
+    &-rpe {
+      color: @fg-color-blue;
+      font-size: 14px;
+      line-height: 18px;
+      vertical-align: top;
+    }
+    &-val {
+      color: @fg-color-blue;
+      font-size: 18px;
+      vertical-align: top;
+    }
+  }
+  &__btn {
+    display: none;
+    position: relative;
+    padding-right: 25px;
+    margin-top: 10px;
+    text-align: center;
+    &-arw {
+      position: absolute;
+      top: -1px;
+      right: 15px;
+      font-size: 20px;
+    }
+  }
+  &:hover &__btn {
+    display: block;
   }
 }
