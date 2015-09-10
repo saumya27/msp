@@ -103,6 +103,10 @@
       background-color: darken(@bg-color-blue, 2%);
     }
   }
+  &--blck {
+    display: block;
+    text-align: center;
+  }
   &--no-bg {
     border: 1px solid @border-color;
     background: none;
@@ -167,7 +171,7 @@
 
     margin-top: 5px;
 
-    color: rgba(255,255,255,.6);//@fg-color-light-grey;
+    color: rgba(255, 255, 255, .6);//@fg-color-light-grey;
     font-size: 12px;
     font-weight: 400;
   }
@@ -207,7 +211,7 @@
 
       transition: top .2s ease-in-out;
 
-      .rotation(90deg);
+      transform: rotate(90deg);
     }
     &:hover, &:active {
       .btn-GTS__arw {
