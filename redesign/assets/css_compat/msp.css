@@ -1784,8 +1784,13 @@ Theme & Color
 	text-align: center;
 }
 
-.hdr .to-top,
-.ftr .to-top {
+.hdr .js-vldtn-err,
+.ftr .js-vldtn-err {
+	display: none;
+	color: #cc0000;
+}
+
+.to-top {
 	position: fixed;
 	z-index: 11;
 	top: 83%;
@@ -1796,8 +1801,7 @@ Theme & Color
 	transition: background .1s ease;
 }
 
-.hdr .to-top__btn,
-.ftr .to-top__btn {
+.to-top__btn {
 	position: relative;
 	z-index: 2;
 	width: 30px;
@@ -1810,8 +1814,7 @@ Theme & Color
 	background-size: 14px auto;
 }
 
-.hdr .to-top__lbl,
-.ftr .to-top__lbl {
+.to-top__lbl {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -1828,21 +1831,13 @@ Theme & Color
 	text-align: center;
 }
 
-.hdr .to-top:hover,
-.ftr .to-top:hover {
+.to-top:hover {
 	border-radius: 0;
 }
 
-.hdr .to-top:hover .to-top__lbl,
-.ftr .to-top:hover .to-top__lbl {
+.to-top:hover .to-top__lbl {
 	left: -95px;
 	display: block;
-}
-
-.hdr .js-vldtn-err,
-.ftr .js-vldtn-err {
-	display: none;
-	color: #cc0000;
 }
 
 .hdr.hdr {
@@ -3000,8 +2995,7 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small@2x.png);
 }
 
-.hdr .to-top__btn,
-.ftr .to-top__btn {
+.to-top__btn {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-up-grey@2x.png);
 }
 
