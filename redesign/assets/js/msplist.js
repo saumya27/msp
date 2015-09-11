@@ -723,7 +723,7 @@ var ListPage = {
                                 }
                                 $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").prop("checked", true);
                                 setTimeout(function() {
-                                    $filterGroupOptions.closest(".fltr").find(".fltr__cler").addClass("fltr__cler--show");
+                                    $(".fltr[data-groupname='" + filterItem.groupName + "']").find(".fltr__cler").addClass("fltr__cler--show");
                                 }, 0);
                             }
                             if (filterItem.groupName == "price") {
