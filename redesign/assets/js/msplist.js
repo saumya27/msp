@@ -237,7 +237,7 @@ var ListPage = {
                 }());
                 
                 // sorting options.
-                $("body").on("change", ".js-list-sort", function() {
+                $doc.on("change", ".js-list-sort", function() {
                     var sortVal = $(this).val();
                     lp_changes.add.sort = sortVal;
 
@@ -246,7 +246,7 @@ var ListPage = {
                 });
                 
                 // pagination.
-                $(".pgntn").on("click",".js-pgntn__item", function() {
+                $doc.on("click",".js-pgntn__item", function() {
                     if(!$(this).hasClass("pgntn__item--crnt")) {
                         var pgno = $(this).data("pgno");
                         lp_changes.add.page = pgno;
