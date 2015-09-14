@@ -1,4 +1,11 @@
 .hdr, .ftr {
+  * {
+    box-sizing: content-box;
+    outline: 0;
+
+    font-family: @font-family;
+  }
+  
   a {
     color: @fg-color-light-blue;
 
@@ -15,14 +22,6 @@
     font-family: @font-family;
     font-size: @font-size;
   }
-
-  * {
-    box-sizing: content-box;
-    outline: 0;
-
-    font-family: @font-family;
-  }
-
 
   strong, b {
     font-weight: @font-bold;

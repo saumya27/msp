@@ -251,6 +251,13 @@ Theme & Color
 	border-spacing: 0;
 }
 
+.hdr *,
+.ftr * {
+	box-sizing: content-box;
+	outline: 0;
+	font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+}
+
 .hdr a,
 .ftr a {
 	color: #4e92e3;
@@ -268,13 +275,6 @@ Theme & Color
 	color: #3b3b3b;
 	font-family: 'Open Sans', sans-serif, Arial, Helvetica;
 	font-size: 12px;
-}
-
-.hdr *,
-.ftr * {
-	box-sizing: content-box;
-	outline: 0;
-	font-family: 'Open Sans', sans-serif, Arial, Helvetica;
 }
 
 .hdr strong,
@@ -2219,6 +2219,7 @@ Theme & Color
 }
 
 .hdr .ui-autocomplete {
+	position: relative !important;
 	width: 100%;
 	border: 1px solid #dfe1e8;
 	border-top: 0;
