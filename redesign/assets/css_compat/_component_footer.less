@@ -1,28 +1,28 @@
-.ftr.ftr {
+.ftr {
   min-width: @container-width;
   border-top: 1px solid @border-color;
-  &--prmtn {
+  & &--prmtn {
     padding-bottom: 60px;
   }
-  &__clmn-wrpr1 {
+  & &__clmn-wrpr1 {
     background-color: @bg-color-white;
   }
-  &__clmn-wrpr {
+  & &__clmn-wrpr {
     width: @container-width;
     margin: 20px auto;
   }
   //Column Title 
-  &__clmn {
+  & &__clmn {
     float: left;
 
     width: 380px;
 
     line-height: 1.4;
   }
-  &__clmn + &__clmn {
+  & &__clmn + &__clmn {
     margin-left: 30px;
   }
-  &__clmn-ttl-wrpr {
+  & &__clmn-ttl-wrpr {
     position: relative;
 
     margin-bottom: 10px;
@@ -38,7 +38,7 @@
       content: '';
     }
   }
-  &__clmn-ttl {
+  & &__clmn-ttl {
     position: relative;
     z-index: 100;
 
@@ -48,18 +48,18 @@
     font-size: 14px;
     font-weight: @font-bold;
   }
-  &__clmn-link {
+  & &__clmn-link {
     margin-right: 5px;
   }
-  &__qck-link-clmn {
+  & &__qck-link-clmn {
     float: left;
 
     width: 175px;
   }
-  &__qck-link-clmn + &__qck-link-clmn {
+  & &__qck-link-clmn + &__qck-link-clmn {
     margin-left: 30px;
   }
-  &__qck-link {
+  & &__qck-link {
     display: block;
 
     margin-bottom: 10px;
@@ -74,67 +74,66 @@
       text-decoration: none;
     }
   }
-  &__extr-info {
+  & &__extr-info {
     width: @container-width;
     margin: 20px auto;
 
     color: @fg-color-grey;
   }
-  &__cpyrght-wrpr {
+  & &__cpyrght-wrpr {
     float: left;
   }
-  &__made-in-india {
+  & &__made-in-india {
     float: right;
 
     margin: 13px 0;
   }
-  &__heart {
+  & &__heart {
     color: @fg-color-red;
   }
-  &__flag {
+  & &__flag {
     margin-left: 2px;
 
     vertical-align: middle;
   }
-}
+  & &-msg {
+    width: 378;
+    margin-bottom: 20px;
+    border: 1px solid @border-color;
+    border-radius: @border-radius;
+    &__img-wrpr {
+      float: left;
 
-.ftr .ftr-msg {
-  width: 378;
-  margin-bottom: 20px;
-  border: 1px solid @border-color;
-  border-radius: @border-radius;
-  &__img-wrpr {
-    float: left;
+      width: 60px;
+      height: 75px;
+      margin: 15px;
+    }
+    &__img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    &__txt-wrpr {
+      float: left;
 
-    width: 60px;
-    height: 75px;
-    margin: 15px;
-  }
-  &__img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  &__txt-wrpr {
-    float: left;
+      width: 258px;
+      height: 75px;
+      margin: 20px 0 20px 15px;
+    }
+    &__ttl {
+      margin-bottom: 10px;
 
-    width: 258px;
-    height: 75px;
-    margin: 20px 0 20px 15px;
+      font-size: 20px;
+    }
+    &__txt {
+      color: @fg-color-grey;
+      font-size: 14px;
+      line-height: 20px;
+    }
   }
-  &__ttl {
-    margin-bottom: 10px;
-
-    font-size: 20px;
-  }
-  &__txt {
-    color: @fg-color-grey;
-    font-size: 14px;
-    line-height: 20px;
-  }
-}
-.ftr .ftr-logo {
-  &__img {
-    height: 30px;
-    margin-bottom: 5px;
+  & &-logo {
+    &__img {
+      height: 30px;
+      margin-bottom: 5px;
+    }
   }
 }
