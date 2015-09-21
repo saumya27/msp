@@ -156,21 +156,26 @@
   .bdg {
     float: right;
   }
-  // &__slr {
-  //   float: right;
-  //   text-align: right;
-  // }
-  // &__slr-txt {
-  //   color: #bbb;
-  //   font-size: 10px;
-  //   text-transform: uppercase;
-  // }
   &__prc {
     margin-top: 5px;
     border-top: 1px solid @border-color;
-
     color: @fg-color-blue;
     line-height: 27px;
+    &--mrp {
+      margin: 0;
+      border-top: 0;
+      color: @fg-color-grey;
+      line-height: 20px;
+      text-decoration: line-through;
+      .prdct-item__rpe {
+        font-size: 10px;
+        line-height: 16px;
+      }
+      .prdct-item__prc-val {
+        font-size: 12px;
+        margin-left: @inline-block-margin;
+      }
+    }
   }
   &__rpe {
     font-size: 14px;
@@ -247,6 +252,77 @@
       }
       &-icon, &-lbl {
         vertical-align: middle;
+      }
+    }
+  }
+  &--nc {
+    border-bottom: 0;
+    transition: border 0.2s;
+    .prdct-item__img-wrpr.prdct-item__img-wrpr {
+      height: 340px;
+    }
+    .prdct-item__name {
+      height: 16px;
+      padding-bottom: 5px;
+      .ellipsis();
+    }
+    .prdct-item__brnd {
+      font-weight: @font-bold;
+    }
+    .prdct-item__info {
+      border: 1px solid @border-color;
+      border-width: 1px 0;
+      .algn-left, .algn-rght {
+        width: 95px;
+      }
+    }
+    .prdct-item__prc {
+      border-top: none;
+    }
+    .prdct-item__ofr {
+      float: right;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #c00;
+      font-weight: @font-bold;
+      line-height: 18px;
+    }
+    .prdct-item__str {
+      float: right;
+      margin-top: 7px;
+      color: #8e8e93;
+      font-size: 12px;
+    }
+    .prdct-item__dtls {
+      height: auto;
+    }
+    .prdct-item__size {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 427px;
+      left: -1px;
+      width: 195px;
+      padding: 5px 10px 5px;
+      border: 1px solid #dfe1e8;
+      border-width: 0 1px 1px 1px;
+      border-radius: 0 0 3px 3px;
+      line-height: 15px;
+      transition: opacity 0.2s, visibility 0.2s;
+      &-lbl {
+        float: left;
+        color: @fg-color-grey;
+      }
+      &-val {
+        float: right;
+        width: 160px;
+      }
+    }
+    &:hover {
+      border-bottom: 0;
+      .prdct-item__size {
+        visibility: visible;
+        opacity: 1;
       }
     }
   }
@@ -892,11 +968,13 @@
     }
   }
   &__btn {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
     position: relative;
     padding-right: 25px;
     margin-top: 10px;
     text-align: center;
+    transition: visibility 0.2s, opacity 0.2s;
     &-arw {
       position: absolute;
       top: -1px;
@@ -905,6 +983,7 @@
     }
   }
   &:hover &__btn {
-    display: block;
+    visibility: visible;
+    opacity: 1;
   }
 }
