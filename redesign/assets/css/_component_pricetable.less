@@ -774,13 +774,10 @@
       padding: 7px 5px 7px 40px;
       &-text {
         display: inline-block;
-        overflow: hidden;
-
         max-width: 500px;
 
         vertical-align: middle;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        .ellipsis();
       }
       &-more {
         position: relative;

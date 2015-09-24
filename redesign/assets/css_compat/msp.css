@@ -1897,14 +1897,6 @@ Theme & Color
 	width: 140px;
 }
 
-.hdr .hdr-size__main {
-	height: 60px;
-}
-
-.hdr .hdr-size__sub-hdr {
-	height: 40px;
-}
-
 .hdr .drpdwn-menu-wrpr {
 	position: relative;
 	overflow: hidden;
@@ -2112,6 +2104,14 @@ Theme & Color
 .hdr .drpdwn-menu-ovrly--show {
 	visibility: visible;
 	opacity: .6;
+}
+
+.hdr-size__main {
+	height: 60px;
+}
+
+.hdr-size__sub-hdr {
+	height: 40px;
 }
 
 .hdr { /* Search Starts */ /* Search Ends */ /* search results page css */
@@ -2725,41 +2725,41 @@ Theme & Color
 	border-top: 1px solid #dfe1e8;
 }
 
-.ftr.ftr {
+.ftr {
 	min-width: 1200px;
 	border-top: 1px solid #dfe1e8;
 }
 
-.ftr.ftr--prmtn {
+.ftr .ftr--prmtn {
 	padding-bottom: 60px;
 }
 
-.ftr.ftr__clmn-wrpr1 {
+.ftr .ftr__clmn-wrpr1 {
 	background-color: #ffffff;
 }
 
-.ftr.ftr__clmn-wrpr {
+.ftr .ftr__clmn-wrpr {
 	width: 1200px;
 	margin: 20px auto;
 }
 
-.ftr.ftr__clmn {
+.ftr .ftr__clmn {
 	float: left;
 	width: 380px;
 	line-height: 1.4;
 }
 
-.ftr.ftr__clmn + .ftr.ftr__clmn {
+.ftr .ftr__clmn + .ftr__clmn {
 	margin-left: 30px;
 }
 
-.ftr.ftr__clmn-ttl-wrpr {
+.ftr .ftr__clmn-ttl-wrpr {
 	position: relative;
 	margin-bottom: 10px;
 	font-size: 14px;
 }
 
-.ftr.ftr__clmn-ttl-wrpr:before {
+.ftr .ftr__clmn-ttl-wrpr:before {
 	position: absolute;
 	top: 50%;
 	width: 100%;
@@ -2767,7 +2767,7 @@ Theme & Color
 	content: '';
 }
 
-.ftr.ftr__clmn-ttl {
+.ftr .ftr__clmn-ttl {
 	position: relative;
 	z-index: 100;
 	padding-right: 10px;
@@ -2776,20 +2776,20 @@ Theme & Color
 	font-weight: 600;
 }
 
-.ftr.ftr__clmn-link {
+.ftr .ftr__clmn-link {
 	margin-right: 5px;
 }
 
-.ftr.ftr__qck-link-clmn {
+.ftr .ftr__qck-link-clmn {
 	float: left;
 	width: 175px;
 }
 
-.ftr.ftr__qck-link-clmn + .ftr.ftr__qck-link-clmn {
+.ftr .ftr__qck-link-clmn + .ftr__qck-link-clmn {
 	margin-left: 30px;
 }
 
-.ftr.ftr__qck-link {
+.ftr .ftr__qck-link {
 	display: block;
 	margin-bottom: 10px;
 	color: #8e8e93;
@@ -2797,31 +2797,31 @@ Theme & Color
 	text-transform: uppercase;
 }
 
-.ftr.ftr__qck-link:hover {
+.ftr .ftr__qck-link:hover {
 	color: #cc0000;
 	text-decoration: none;
 }
 
-.ftr.ftr__extr-info {
+.ftr .ftr__extr-info {
 	width: 1200px;
 	margin: 20px auto;
 	color: #8e8e93;
 }
 
-.ftr.ftr__cpyrght-wrpr {
+.ftr .ftr__cpyrght-wrpr {
 	float: left;
 }
 
-.ftr.ftr__made-in-india {
+.ftr .ftr__made-in-india {
 	float: right;
 	margin: 13px 0;
 }
 
-.ftr.ftr__heart {
+.ftr .ftr__heart {
 	color: #cc0000;
 }
 
-.ftr.ftr__flag {
+.ftr .ftr__flag {
 	margin-left: 2px;
 	vertical-align: middle;
 }

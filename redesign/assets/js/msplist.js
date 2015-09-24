@@ -5,7 +5,7 @@ var ListPage = {
         "filterLength" : 8
     },
     "controller" : {
-        "init" : function() {
+        "init" : function () {
             var lp_changes = ListPage.model.params.changes,
                 lp_defaults = ListPage.model.params.defaults,
                 lp_current = ListPage.model.params.current,
@@ -37,7 +37,7 @@ var ListPage = {
                 // globalSearch is comes from from hash so no listener.
 
                 // localSearch within the loaded product list
-                $('.list-hdr-srch').on('submit', function() {
+                $('.list-hdr-srch').on('submit', function () {
                     var localSearch = $.trim($(this).find('.list-hdr-srch__fld').val());
                     if (localSearch !== "") {
                         lp_changes.add.ss = localSearch;
@@ -52,12 +52,12 @@ var ListPage = {
                     return false;
                 });
 
-                $('.list-hdr-srch__btn').on("click", function() {
+                $('.list-hdr-srch__btn').on("click", function () {
                     $('.list-hdr-srch').submit();
                 });
 
                 // onclick a non-price multi value filter.
-                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled])", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--mltpl input:not([disabled])", function () {
                     var groupName = $(this).closest(".fltr").data("groupname");
 
                     if (clearGroupQueue.length === 0) {
@@ -77,7 +77,7 @@ var ListPage = {
                 });
                 
                 // onclick a non-price single value filter.
-                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--sngl input:not([disabled])", function() {
+                $doc.on("click", ".fltr:not([data-groupname='price']) .js-fltr-val--sngl input:not([disabled])", function () {
                     var groupName = $(this).closest(".fltr").data("groupname");
                     if (clearGroupQueue.length === 0) {
                         $.merge(clearGroupQueue, $(this).closest(".fltr").find(".fltr-val__inpt:checked"));
@@ -96,7 +96,7 @@ var ListPage = {
                 });
                 
                 // onclick a price single value filter.
-                $doc.on("click", ".fltr[data-groupname='price'] .js-fltr-val--sngl input:not([disabled])", function() {
+                $doc.on("click", ".fltr[data-groupname='price'] .js-fltr-val--sngl input:not([disabled])", function () {
                     var filterVal = $(this).attr("value"),
                         values = filterVal.split(";"),
                         minPrice = parseInt(values[0], 10),
@@ -113,7 +113,7 @@ var ListPage = {
                 });
                 
                 // clear all apllied filters in a filtergroup
-                $doc.on("click", ".fltr__cler", function() {
+                $doc.on("click", ".fltr__cler", function () {
                     var $currentGroup = $(this).closest(".fltr"),
                         groupname = $currentGroup.data("groupname"),
                         $activeFilters = $currentGroup.find(".fltr-val__inpt:checked");
@@ -131,7 +131,7 @@ var ListPage = {
                 });
                 
                 // edit min and max price numbers in inputfiled
-                $doc.on("change", ".js-fltr-prc__inpt-min, .js-fltr-prc__inpt-max", function() {
+                $doc.on("change", ".js-fltr-prc__inpt-min, .js-fltr-prc__inpt-max", function () {
                     var numRegEx = /^[0-9]+$/,
                         $maxPriceInpt = $(".js-fltr-prc__inpt-min"),
                         $minPriceInpt = $(".js-fltr-prc__inpt-max"),
@@ -224,12 +224,12 @@ var ListPage = {
 
                     $(".js-fltrs-apld-wrpr1").on("mouseover", ".js-fltrs-apld__lbl", function removeTag() {
                         $(this).closest(".js-fltrs-apld").addClass("js-fltrs-apld--strk");
-                    }).on("mouseout", ".js-fltrs-apld__lbl", function() {
+                    }).on("mouseout", ".js-fltrs-apld__lbl", function () {
                         $(this).closest(".js-fltrs-apld").removeClass("js-fltrs-apld--strk");
                     });
 
-                    $(".js-fltrs-apld-wrpr1").on("click", ".js-fltrs-apld-cler", function() {
-                        $(".js-fltrs-apld__item").each(function() {
+                    $(".js-fltrs-apld-wrpr1").on("click", ".js-fltrs-apld-cler", function () {
+                        $(".js-fltrs-apld__item").each(function () {
                             $.merge(remfilterQueue, $(this));
                         });
                         removeAppliedFilters();
@@ -237,7 +237,7 @@ var ListPage = {
                 }());
                 
                 // sorting options.
-                $doc.on("change", ".js-list-sort", function() {
+                $doc.on("change", ".js-list-sort", function () {
                     var sortVal = $(this).val();
                     lp_changes.add.sort = sortVal;
 
@@ -246,8 +246,8 @@ var ListPage = {
                 });
                 
                 // pagination.
-                $doc.on("click",".js-pgntn__item", function() {
-                    if(!$(this).hasClass("pgntn__item--crnt")) {
+                $doc.on("click",".js-pgntn__item", function () {
+                    if (!$(this).hasClass("pgntn__item--crnt")) {
                         var pgno = $(this).data("pgno");
                         lp_changes.add.page = pgno;
 
@@ -258,10 +258,10 @@ var ListPage = {
                 });
             }());
         },
-        "getDefaults" : function() {
+        "getDefaults" : function () {
             var lp_defaults = ListPage.model.params.defaults,
                 lp_clipboard = ListPage.model.clipboard,
-                pageParams = (function() {
+                pageParams = (function () {
                     var $bodyWrapper = $(".body-wrpr"),
                         params = {},
                         startInr, endInr;
@@ -411,19 +411,19 @@ var ListPage = {
                 var $nanoElements;
 
                 if (filterGroups) {
-                    $nanoElements = $(".fltr-val-wrpr.nano").filter(function() {
+                    $nanoElements = $(".fltr-val-wrpr.nano").filter(function () {
                         return filterGroups.indexOf($(this).closest(".fltr").data("groupname")) !== -1;
                     });
                 } else {
                     $nanoElements = $(".fltr-val-wrpr.nano");
                 }
 
-                $nanoElements.each(function() {
+                $nanoElements.each(function () {
                     var totalHeight;
                     $filteritem = $(".fltr-val", $(this));
                     if ($filteritem.length <= ListPage.settings.filterLength) {
                         totalHeight = 0;
-                        $filteritem.each(function() {
+                        $filteritem.each(function () {
                             totalHeight += $(this).outerHeight(true);
                         });
                         if (totalHeight < 224) $(this).css("height", totalHeight + 'px');
@@ -435,7 +435,7 @@ var ListPage = {
             },
         },
         // once changes are update the page state before rendering the view.
-        "updatePage" : function() {
+        "updatePage" : function () {
             var lp_current = ListPage.model.params.current,
                 lp_changes = ListPage.model.params.changes,
                 lp_defaults = ListPage.model.params.defaults,
@@ -483,9 +483,9 @@ var ListPage = {
                 // if isOnLoad get current params from url hash.
                 $.extend(lp_current, lp_services.filterHash.toParams(window.location.hash));
 
-                (function() {
+                ;(function () {
                     var currentLength = 0;
-                    $.each(lp_current, function() { currentLength++; });
+                    $.each(lp_current, function () { currentLength++; });
 
                     // if no hash or if its a quicklink page inherit page params.
                     if (currentLength === 1 || lp_current.ql === "1") {
@@ -509,7 +509,7 @@ var ListPage = {
                             lp_changes.add[key] = lp_current[key];
                         }
                     });
-                })();
+                }());
                 lp_clipboard.isLoadParamsEqualtoPageParams = (ListPage.services.filterHash.fromParams(lp_current) === ListPage.services.filterHash.fromParams(lp_page));
             }
 
@@ -525,10 +525,10 @@ var ListPage = {
             /* {
                 "s" : "", //globalSearch
                 "ss" : "", //localSearch
-                "subcategory" : "", 
+                "subcategory" : "",
                 "price" : startInr + ";" + endInr,
                 "property" : [],
-                "sort" : "", 
+                "sort" : "",
                 "page" : "" //pagination no
             } */
             "changes" : {
@@ -547,7 +547,7 @@ var ListPage = {
     },
     "view" : {
         "render" : {
-            "init" : function() {
+            "init" : function () {
                 var lp_current = ListPage.model.params.current,
                     lp_changes = ListPage.model.params.changes,
                     lp_defaults = ListPage.model.params.defaults,
@@ -581,10 +581,10 @@ var ListPage = {
                                 var $filterDOM = $(freshData[0]),
                                     $groupsToReplaceDOM, 
                                     replacedGroups = [];
-                                $groupsToReplaceDOM = $filterDOM.find(".fltr").filter((function functionClosure() {
-                                    var affectedGroups = (function() {
+                                $groupsToReplaceDOM = $filterDOM.find(".fltr").filter(function functionClosure() {
+                                    var affectedGroups = (function () {
                                         var result = [];
-                                        $.each(["add", "remove"], function(i, context) {
+                                        $.each(["add", "remove"], function (i, context) {
                                             if ("price" in lp_changes[context]) {
                                                 result.push("price");
                                             }
@@ -596,12 +596,12 @@ var ListPage = {
                                             }
                                         });
                                         return result;
-                                    })();
-                                    return function filterFunction() {
+                                    }());
+                                    return function filterFunction () {
                                         return affectedGroups.indexOf($(this).data("groupname")) === -1;
                                     }
-                                })());
-                                $groupsToReplaceDOM.each(function() {
+                                }());
+                                $groupsToReplaceDOM.each(function () {
                                     var $newFilterDOM = $(this),
                                         groupname = $newFilterDOM.data("groupname"),
                                         $exisingFilterDOM = $(".fltr[data-groupname='" + groupname + "']");
@@ -645,11 +645,10 @@ var ListPage = {
                         ;(function _getHourlyDeals() {
                             var $hourlyDealsWidget = $(".js-hrly-deals-grid");
 
-                            ListPage.services.fetch.hourlyDeals().done(function(html) {
+                            ListPage.services.fetch.hourlyDeals().done(function (html) {
                                 var $timer, dataMinutes, dataSeconds, timerStart, clockStart,
                                     timerHtml = html.split("//&//#")[0],
                                     productsHtml = html.split("//&//#")[1];
-
 
                                 function parseTime(value) {
                                     value = parseInt(value, 10);
@@ -695,7 +694,7 @@ var ListPage = {
                                         $hourlyDealsWidget.find(".hrly-deals-expry-lbl").hide();
                                     }
                                 }
-                            }).fail(function() {
+                            }).fail(function () {
                                $hourlyDealsWidget.find(".cntdwn").hide();
                                $hourlyDealsWidget.find(".hrly-deals-expry-lbl").hide();
                             });
@@ -705,7 +704,7 @@ var ListPage = {
 
                 // operations to be done to add/remove filters.
                 filterControls = {
-                    "add" : function() {
+                    "add" : function () {
                         var $filterGroupOptions,
                             appliedFilterComponents = ListPage.view.components.appliedFilter;
                         
@@ -722,7 +721,7 @@ var ListPage = {
                                     $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']").remove();
                                 }
                                 $filterGroupOptions.filter("[value='" + filterItem.unitValue + "']").prop("checked", true);
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     $(".fltr[data-groupname='" + filterItem.groupName + "']").find(".fltr__cler").addClass("fltr__cler--show");
                                 }, 0);
                             }
@@ -755,7 +754,7 @@ var ListPage = {
                             }());
                         }
                     },
-                    "remove" : function() {
+                    "remove" : function () {
                         // remove all filters registered on filterControls.remove.queue
                         $.each(filterControls.remove.queue, function (i, filterItem) {
                             var $remfilterGrp = $(".js-fltrs-apld[data-groupname='" + filterItem.groupName + "']"),
@@ -770,7 +769,7 @@ var ListPage = {
 
                             // FIXME:: on clearing --multi filter block first item remains selected
                             // -> setTimeout is a temporary fix to do unchecking after handler is executed.
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $filterOption.prop("checked", false);
                             }, 0);
                             
@@ -822,7 +821,7 @@ var ListPage = {
                         });
                     }
                     if ("price" in lp_changes[action]) {
-                        ;(function() {
+                        ;(function () {
                             var startInr = lp_changes[action].price.split(";")[0],
                                 endInr = lp_changes[action].price.split(";")[1],
                                 unitValue = lp_changes[action].price,
@@ -886,7 +885,7 @@ var ListPage = {
         },
         "components" : {
             "appliedFilter" : {
-                "group" : function(filterItem) {
+                "group" : function (filterItem) {
                     return [
                         '<div class="js-fltrs-apld" data-groupname="' + filterItem.groupName + '">',
                             '<div class="js-fltrs-apld__lbl">' + filterItem.groupLabel + ':</div>',
@@ -894,7 +893,7 @@ var ListPage = {
                         '</div>'
                     ].join("");
                 },
-                "unit" : function(filterItem) {
+                "unit" : function (filterItem) {
                     return [
                         '<div class="js-fltrs-apld__item" data-value="' + filterItem.unitValue + '">',
                             '<span class="js-fltrs-apld__item-label">' + filterItem.unitLabel + '</span>',
@@ -903,7 +902,7 @@ var ListPage = {
                     ].join("");
                 }
             },
-            "loadingMask" : function() {
+            "loadingMask" : function () {
                 return [
                     '<div class="js-fltr-ldng-mask">',
                         '<div class="ldr">',
@@ -917,7 +916,7 @@ var ListPage = {
     },
     "services" : {
         "filterHash" : {
-            "toParams" : function(filterHash) {
+            "toParams" : function (filterHash) {
                 var params = {},
                     prop_strings = filterHash.replace("#", "").split("&");
 
@@ -963,7 +962,7 @@ var ListPage = {
         },
         "fetch" : {
             // generate query from all the new page state params
-            "apiQuery" : function() {
+            "apiQuery" : function () {
                 var lp_current = $.extend({}, ListPage.model.params.current),
                     lp_defaults = $.extend({}, ListPage.model.params.defaults),
                     lp_clipboard = ListPage.model.clipboard;
@@ -989,7 +988,7 @@ var ListPage = {
                 // check if query in cache to load response from cache.
                 if (cache.queries.indexOf(query) >= 0) {
                     $(".js-prdct-grid-main").append(loadingMaskHtml);
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $(".js-fltr-ldng-mask").remove();
                     }, 350);
                     dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
@@ -1019,7 +1018,7 @@ var ListPage = {
                             cache.queries.shift();
                             cache.responses.shift();
                         }
-                    }).always(function() {
+                    }).always(function () {
                         $(".js-fltr-ldng-mask").remove();
                     });
                 }
@@ -1046,30 +1045,29 @@ var ListPage = {
 };
 
 var ProductList = {
-    "initGrid" : function() {
-        if(localStorage.getItem("gridType") === "large") {
+    "initGrid" : function () {
+        if (localStorage.getItem("gridType") === "large") {
             this.setGridType("large");
-        } else if(localStorage.getItem("gridType") === "small") {
+        } else if (localStorage.getItem("gridType") === "small") {
             this.setGridType("small");
         }
-        $doc.on("click", ".js-list-hdr-view", function() {
-            if($(this).hasClass("list-hdr-view__prdct-l")) {
+        $doc.on("click", ".js-list-hdr-view", function () {
+            if ($(this).hasClass("list-hdr-view__prdct-l")) {
                 ProductList.setGridType("large");
             } else {
                 ProductList.setGridType("small");
             }
         });
     },
-    "setGridType" : function(type) {
+    "setGridType" : function (type) {
         $(".list-hdr-view__prdct-l").removeClass("list-hdr-view__prdct-l--slctd");
         $(".list-hdr-view__prdct-s").removeClass("list-hdr-view__prdct-s--slctd");
 
-        if(type==="large") {
+        if (type === "large") {
             $(".prdct-grid").addClass("prdct-grid--prdct-l");
             $(".list-hdr-view__prdct-l").addClass("list-hdr-view__prdct-l--slctd");
             localStorage.setItem("gridType", "large");
-        }
-        else {
+        } else {
             $(".prdct-grid").removeClass("prdct-grid--prdct-l");
             $(".list-hdr-view__prdct-s").addClass("list-hdr-view__prdct-s--slctd"); 
             localStorage.setItem("gridType", "small");
@@ -1077,7 +1075,7 @@ var ProductList = {
     }
 };
 
-;(function ($) {
+;(function () {
     $.QueryString = (function (a) {
         if (a === "") return {};
         var b = {};
@@ -1088,7 +1086,7 @@ var ProductList = {
         }
         return b;
     })(window.location.search.substr(1).split("&"));
-})(jQuery);
+}());
 
 //For adding a cookie if utm_source is availble.
 console.log($.QueryString['utm_source']);
@@ -1097,29 +1095,16 @@ if ($.QueryString["utm_source"]) {
     setCookie("utm_source", $.QueryString['utm_source']);
 }
 
-// // if category is mobile then first show mobile list and then show applied filters list.
-// if ($("#mobilefilterwrapper").length) {
-//  $.ajax({
-//      url: "/msp/prop_filters/mobile-new.html"
-//  }).done(function (response) {
-//      var data = response.split("//&//#");
-//      $("#mobilefilterwrapper").html(data[0]);
-//      $(".listitems_rd").html(data[1]);
-//      ListPage.controller.init();
-//  });
-// } else {
-    ListPage.controller.init();
-    ProductList.initGrid();
-    
-//}
+ListPage.controller.init();
+ProductList.initGrid();
 
 // binding other links to filters.
-// $(".js-prdct-list").on("click", "#viewallbestsellers", function() {
+// $(".js-prdct-list").on("click", "#viewallbestsellers", function () {
 //  $("#showonlybestsellers").click();
 // });
 
 // search in filter groups.
-$(".fltr-wrpr1").on("keyup", ".fltr-srch__fld", function() {
+$(".fltr-wrpr1").on("keyup", ".fltr-srch__fld", function () {
     var filterSearchQuery = $.trim($(this).val()),
         $filterGroup = $(this).closest(".fltr");
     if (filterSearchQuery === "") {
@@ -1131,7 +1116,7 @@ $(".fltr-wrpr1").on("keyup", ".fltr-srch__fld", function() {
         $filterGroup.find(".fltr-val").hide();
         $filterGroup.find(".fltr-srch__icon--srch").addClass("fltr-srch__icon--hide");
         $filterGroup.find(".fltr-srch__icon--cler").removeClass("fltr-srch__icon--hide");
-        $filterGroup.find(".fltr-val").filter(function() {
+        $filterGroup.find(".fltr-val").filter(function () {
             var itemText = $.trim($(this).text()).toLowerCase(),
                 index = itemText.indexOf(filterSearchQuery),
                 result = false;
@@ -1149,7 +1134,7 @@ $(".fltr-wrpr1").on("keyup", ".fltr-srch__fld", function() {
 });
 
 // clear search in filterGroups
-$(".fltr-wrpr1").on("click", ".js-fltr-srch__cler", function() {
+$(".fltr-wrpr1").on("click", ".js-fltr-srch__cler", function () {
     var $filterGroup = $(this).closest(".fltr");
     $filterGroup.find(".fltr-srch__fld").val("");
     $filterGroup.find(".fltr-srch__icon").toggleClass("fltr-srch__icon--hide");
