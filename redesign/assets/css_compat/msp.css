@@ -613,6 +613,8 @@ Theme & Color
 	top: 55%;
 	right: 10px;
 	transition: top 0.2s ease-in-out;
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg);
 }
 
