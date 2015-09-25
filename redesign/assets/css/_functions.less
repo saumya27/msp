@@ -48,11 +48,15 @@
 .appearance(@appearance: none) {
      -moz-appearance: @appearance;
       -ms-appearance: @appearance;
-       -o-appearance: @appearance;
   -webkit-appearance: @appearance;
           appearance: @appearance;
 }
 
+.transform(@transform) {
+      -ms-transform: @transform;
+  -webkit-transform: @transform;
+          transform: @transform;
+}
 .line-clamp(@lines: 2) {
   display: -webkit-box;
   -webkit-line-clamp: @lines;
@@ -120,7 +124,6 @@
       width: 50px;
       -webkit-animation: animation-rotate 1000ms linear infinite;
          -moz-animation: animation-rotate 1000ms linear infinite;
-           -o-animation: animation-rotate 1000ms linear infinite;
               animation: animation-rotate 1000ms linear infinite;
       &:before {
         content: "";
@@ -129,7 +132,6 @@
         width: 44px;
         -webkit-animation: animation-rotate 1000ms linear infinite;
            -moz-animation: animation-rotate 1000ms linear infinite;
-             -o-animation: animation-rotate 1000ms linear infinite;
                 animation: animation-rotate 1000ms linear infinite;
       }
       &:after {
@@ -139,7 +141,6 @@
         width: 56px;
         -webkit-animation: animation-rotate 2000ms linear infinite;
            -moz-animation: animation-rotate 2000ms linear infinite;
-             -o-animation: animation-rotate 2000ms linear infinite;
                 animation: animation-rotate 2000ms linear infinite;
       }
     }
@@ -155,12 +156,6 @@
   @-moz-keyframes animation-rotate {
     100% {
       -moz-transform: rotate(360deg);
-    }
-  }
-
-  @-o-keyframes animation-rotate {
-    100% {
-      -o-transform: rotate(360deg);
     }
   }
 

@@ -616,7 +616,7 @@ MSP = {
                 });
             }
             
-            setTimeout((function () {
+            setTimeout(function () {
                 var $elem = $(that.element);
 
                 $currentSlide.removeClass('mCycleItemCurrent').removeAttr('style');
@@ -649,12 +649,12 @@ MSP = {
                     }), that.options.waitTime);
                 }
 
-            }), that.options.animTime + 10); //adding 10ms to make sure animation is complete
+            }, that.options.animTime + 10); //adding 10ms to make sure animation is complete
         }
     };
  
     $.fn["mCycle"] = function (options) {
-        var params = Array.prototype.splice.call(arguments,1,1);
+        var params = Array.prototype.splice.call(arguments, 1, 1);
         return this.each(function () {
             if (!$.data(this, "mCycle")) {
                 // preventing against multiple instantiations
@@ -740,13 +740,11 @@ elementSlider =  {
             countCurrItems = Math.floor($(slider).find("." + slideItemWrapper).eq(0).width() / $elements.eq(0).outerWidth(true));
 
         if ($elements.length > countCurrItems) {
-            $(slider).find("." + slideItemWrapper).addClass("js-sldr-item-wrpr1").
-                                                          wrapInner("<div class='js-sldr-item-wrpr'></div>");
-
+            $(slider).find("." + slideItemWrapper).addClass("js-sldr-item-wrpr1").wrapInner("<div class='js-sldr-item-wrpr'></div>");
             $(slider).find("." + slideItem).eq(0).addClass("js-sldr-crnt");
             $(slider).find(".js-sldr__prvs").addClass("js-sldr__dsbl-btn").show();
             $(slider).find(".js-sldr__next").show();
-        }       
+        }
     },
 
     "slide" : function (element, direction) {
@@ -769,14 +767,13 @@ elementSlider =  {
         $(element).siblings(".js-sldr__next").removeClass("js-sldr__dsbl-btn");
         
         if (direction === 'right') {
-                if (countRightItems > countCurrItems) {
-                    $startElement = $elements.eq($elements.index($currentElement) + countCurrItems);   
-                } else {
-                    $startElement = $elements.eq($elements.length - countCurrItems);
-                    $(element).addClass("js-sldr__dsbl-btn");
-                }
-        }
-        else if (direction === 'left') {    
+            if (countRightItems > countCurrItems) {
+                $startElement = $elements.eq($elements.index($currentElement) + countCurrItems);   
+            } else {
+                $startElement = $elements.eq($elements.length - countCurrItems);
+                $(element).addClass("js-sldr__dsbl-btn");
+            }
+        } else if (direction === 'left') {    
             if (countLeftItems > countCurrItems) {
                 $startElement = $elements.eq($elements.index($currentElement) - countCurrItems);   
             } else {
@@ -811,10 +808,10 @@ elementSlider =  {
 // Takes the argument, or query string or hash of the current URL
 // and returns an object with those key-value pairs as its properties
 function queryString(searchOrHash) {
-    var _cache = queryString._cache_ = queryString._cache_ || {};
-    if (searchOrHash in _cache) return _cache[searchOrHash];
-
     var query;
+    var query_string = {};
+    var vars = query.substring(1).split("&");
+    
     if (searchOrHash) {
         query = searchOrHash;
     } else if (window.location.search) {
@@ -825,8 +822,6 @@ function queryString(searchOrHash) {
         return;
     }
 
-    var query_string = {};
-    var vars = query.substring(1).split("&");
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
         if (typeof query_string[pair[0]] === "undefined")
@@ -837,7 +832,7 @@ function queryString(searchOrHash) {
         } else
             query_string[pair[0]].push(decodeURIComponent(pair[1]));
     }
-    _cache[searchOrHash] = query_string;
+    
     return query_string;
 }
 
