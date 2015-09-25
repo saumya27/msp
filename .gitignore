@@ -1,3 +1,5 @@
 *.orig
 redesign/assets/css/msp.css
 redesign/assets/css/msp.css.map
+redesign/assets/css_compat/msp.css
+redesign/assets/css_compat/msp.css.map

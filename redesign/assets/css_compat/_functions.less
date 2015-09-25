@@ -45,138 +45,51 @@
   }
 }
 
-.appearance(@appearance:none) {
-       -moz-appearance: @appearance;
-        -ms-appearance: @appearance;
-         -o-appearance: @appearance;
-    -webkit-appearance: @appearance;
-            appearance: @appearance;
-}
-.transform(...) {
-  transform: @arguments;
-  -webkit-transform: @arguments;
-  -ms-transform: @arguments;
-}
-.rotation(@deg:5deg){
-  .transform(rotate(@deg));
-}
-.scale(@ratio:1.5){
-  .transform(scale(@ratio));
-}
-.translate(@x:0, @y:0) {
-  .transform(translate(@x, @y));
-}
-.line-clamp(@lines:2) {
-  display: -webkit-box;
-  -webkit-line-clamp: @lines;
-  -webkit-box-orient: vertical;  
-}
-.user-select(@argument: none) {
-  -webkit-user-select: @argument;
-  -moz-user-select: @argument;
-  -ms-user-select: @argument;
-  user-select: @argument;
+.appearance(@appearance: none) {
+     -moz-appearance: @appearance;
+      -ms-appearance: @appearance;
+  -webkit-appearance: @appearance;
+          appearance: @appearance;
 }
 
-.ellipsis(){
+.transform(...) {
+      -ms-transform: @arguments;
+  -webkit-transform: @arguments;
+          transform: @arguments;
+}
+
+.animation(...) {
+      -ms-animation: @arguments;
+  -webkit-animation: @arguments;
+          animation: @arguments;
+}
+
+.line-clamp(@lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: @lines;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+// all browsers need prefixes as of 2015
+.user-select(@argument: none) {
+  -webkit-user-select: @argument;
+     -moz-user-select: @argument;
+      -ms-user-select: @argument;
+          user-select: @argument;
+}
+
+.ellipsis() {
+  overflow-x: hidden;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.absolute-center(){
+.absolute-center(@offset: 0) {
   position: absolute !important;
+  top: @offset !important;
+  bottom: @offset !important;
+  right: @offset !important;
+  left: @offset !important;
   margin: auto !important;
-  top: 0 !important;
-  bottom: 0 !important;
-  right: 0 !important;
-  left: 0 !important;
-}
-
-.content-loader() {
-    //Loader Icon
-    .ldr {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
-      width: 100px;
-      height: 130px;
-      text-align: center;
-      &__text {
-        position: absolute;
-        margin: auto;
-        left: 0;
-        right: 0;
-        top: 105px;
-        color: @fg-color-grey;
-        font-size:12px;
-      }
-      &__crcl, &__crcl::before, &__crcl::after {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border: 1px solid rgba(204, 0, 0, 0.2);
-        border-left-color: rgba(204, 0, 0, 0.8);
-        -webkit-border-radius: 999px;
-        -moz-border-radius: 999px;
-        border-radius: 999px;
-      }
-      &__crcl {
-        margin: -25px 0 0 -25px;
-        height: 50px;
-        width: 50px;
-        -webkit-animation: animation-rotate 1000ms linear infinite;
-        -moz-animation: animation-rotate 1000ms linear infinite;
-        -o-animation: animation-rotate 1000ms linear infinite;
-        animation: animation-rotate 1000ms linear infinite;
-        &:before {
-          content: "";
-          margin: -23px 0 0 -23px;
-          height: 44px;
-          width: 44px;
-          -webkit-animation: animation-rotate 1000ms linear infinite;
-          -moz-animation: animation-rotate 1000ms linear infinite;
-          -o-animation: animation-rotate 1000ms linear infinite;
-          animation: animation-rotate 1000ms linear infinite;
-        }
-        &:after {
-          content: "";
-          margin: -29px 0 0 -29px;
-          height: 56px;
-          width: 56px;
-          -webkit-animation: animation-rotate 2000ms linear infinite;
-          -moz-animation: animation-rotate 2000ms linear infinite;
-          -o-animation: animation-rotate 2000ms linear infinite;
-          animation: animation-rotate 2000ms linear infinite;
-        }
-      }
-    }
-
-    @-webkit-keyframes animation-rotate {
-      100% {
-        -webkit-transform: rotate(360deg);
-      }
-
-    }
-
-    @-moz-keyframes animation-rotate {
-      100% {
-        -moz-transform: rotate(360deg);
-      }
-    }
-
-    @-o-keyframes animation-rotate {
-      100% {
-        -o-transform: rotate(360deg);
-      }
-    }
-
-    @keyframes animation-rotate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
 }

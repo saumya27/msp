@@ -14,13 +14,13 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
         'books': 'http://www.mysmartprice.com/books/search.php'
     },
     ua = navigator.userAgent.toLowerCase(),
-    isEdge = function() {
+    isEdge = function () {
         return ua.indexOf("edge") !== -1;
     },
-    isChrome = function() {
+    isChrome = function () {
         return ua.indexOf("chrome") !== -1 && ua.indexOf("edge") === -1 && ua.indexOf("opr") === -1; // Edge UA contains "Chrome"
     },
-    isFirefox = function() {
+    isFirefox = function () {
         return ua.indexOf("firefox") !== -1;
     },
     qS = queryString(window.location.search);
@@ -38,7 +38,7 @@ MSP = {
              * @return {number} price -> string with digits formatted with commas
              */
             "numberFrom" : {
-                "price" : function(price) {
+                "price" : function (price) {
                     return parseInt(price.replace(/\D/g, ""), 10);
                 }
             },
@@ -49,12 +49,12 @@ MSP = {
              * @return {string} price -> background image source url.
              */
             "urlFrom" : {
-                "bgImage" : function(bgProp) {
+                "bgImage" : function (bgProp) {
                     bgProp.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
                 }
             }
         },
-        "validate" : (function() {
+        "validate" : (function () {
             var _regex = {
                 "text" : /^[a-z\d\-_\s]+$/i,
                 "number" : /^\d+$/,
@@ -68,11 +68,11 @@ MSP = {
             }
 
             return {
-                "rating" :  function(value, options) {
+                "rating" :  function (value, options) {
                     return !!parseInt(value, 10);
                 },
                 "text" : function (value, options) {
-                    var isWithinLimits = (function() {
+                    var isWithinLimits = (function () {
                         var result = true,
                             minLength = options && options.min && parseInt(options.min, 10),
                             maxLength = options && options.max && parseInt(options.max, 10);
@@ -87,10 +87,10 @@ MSP = {
                     }());
                     return _testPattern("text", $.trim(value)) && value && isWithinLimits;
                 },
-                "number" : function(value, options) {
+                "number" : function (value, options) {
                     return _testPattern("number", value);
                 },
-                "email" : function(value, options) {
+                "email" : function (value, options) {
                     return _testPattern("email", value);
                 },
                 /** MSP.utils.validate.form(formData)
@@ -104,13 +104,13 @@ MSP = {
                  * 
                  * @return {object: promise} -> provides .done() and .fail() methods on the function call.
                  */
-                "form" : function(formData) {
+                "form" : function (formData) {
                     var dfd = $.Deferred(),
                         isValid = true,
                         check = this,
                         $firstErrorField;
 
-                    $.each(formData, function(i, field) {
+                    $.each(formData, function (i, field) {
                         var result = check[field.type](field.inputField.val(), field.options);
 
                         if (result === false) {
@@ -165,7 +165,7 @@ MSP = {
                     result = cache.results[cache.queries.indexOf(query)];
                     dfd.resolve(result);
                 } else {
-                    task.apply(this, arguments).done(function (result){
+                    task.apply(this, arguments).done(function (result) {
                         cache.queries.push(query);
                         cache.results.push(result);
                         if (cacheLimit) {
@@ -195,12 +195,12 @@ MSP = {
          */
         "throttle" : function _throttle(task, timeout, context) {
             var timer, args, needInvoke;
-            return function() {
+            return function () {
                 args = arguments;
                 needInvoke = true;
                 context = context || this;
                 if (!timer) {
-                    (function() {
+                    (function () {
                         if (needInvoke) {
                             task.apply(context, args);
                             needInvoke = false;
@@ -232,12 +232,12 @@ MSP = {
                 invokeAsap = false;
             }
             
-            return function() {
+            return function () {
                 var args = arguments;
                 context = context || this;
                 invokeAsap && !timer && task.apply(context, args);
                 clearTimeout(timer);
-                timer = setTimeout(function() {
+                timer = setTimeout(function () {
                     !invokeAsap && task.apply(context, args);
                     timer = null;
                 }, timeout);
@@ -249,9 +249,9 @@ MSP = {
          * => used to to make coupon codes easily selectable by user onclick.
          * @param {$node} $node -> 
          */
-        "selectText" : (function() {
+        "selectText" : (function () {
             var _range, _selection;
-            var _is = function(o, type) {
+            var _is = function (o, type) {
                 return typeof o === type;
             };
 
@@ -312,7 +312,7 @@ MSP = {
                 }
             }
         }()),
-        "lazyLoad" : (function() {
+        "lazyLoad" : (function () {
             var _queue = [];
 
             return {
@@ -320,9 +320,9 @@ MSP = {
                  * => runs each task pushed to the lazyload queue when their corresponding scroll condition is statisfied.
                  * => used to load on demand images, widgets which slow down page load times.
                  */
-                "run" : function() {
+                "run" : function () {
                     for (i = 0; i < _queue.length; i++) {
-                        (function() {
+                        (function () {
                             var callback = _queue[i].callback,
                                 position = _queue[i].position;
                                 triggerPoint = (position || _queue[i].node.offset().top) - $(window).height();
@@ -349,14 +349,14 @@ MSP = {
                  *
                  * @return {object} lazyload -> to enable chaining -> .run() for immediate invocation.
                  */
-                "assign" : function(task) {
+                "assign" : function (task) {
                     _queue.push(task);
                     return this;
                 }
             };
         }()),
         "browser" : {
-            "name" : (function() {
+            "name" : (function () {
                 var result = null,
                     ua = navigator.userAgent.toLowerCase();
                 if (ua.indexOf("msie") !== -1 && ua.indexOf("trident") !== -1 && ua.indexOf("edge") !== -1) {
@@ -368,7 +368,7 @@ MSP = {
                 }
                 return result;
             }()),
-            "version" : (function() {
+            "version" : (function () {
                 var userAgent = navigator.userAgent.toLowerCase();
                 return (/msie/.test(userAgent) ? (parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1])) : null);
             }())
@@ -387,7 +387,7 @@ MSP = {
          *
          * @return {object} lazyload -> to enable chaining -> .run() for immediate invocation.
          */
-        "cycleShift" : function(valueSet, currentValue) {
+        "cycleShift" : function (valueSet, currentValue) {
             var currentIndex;
 
             if ($.isArray(valueSet)) {
@@ -405,7 +405,7 @@ MSP = {
  * Carousel Plugin Script Begins Here
  */
 ;
-(function($, window, document, undefined) {
+(function ($, window, document, undefined) {
  
     "use strict";
  
@@ -465,14 +465,14 @@ MSP = {
  
     mCycle.prototype = {
  
-        init: function(firstTime) {
+        init: function (firstTime) {
             if (!firstTime) return;
  
             var $elem = $(this.element),
                 mCycleItemCount = $elem.find(this.options.mCycleItem).length,
                 elemHeight = 0;
             
-            $elem.addClass('mCycleCont').find(this.options.mCycleItem).each(function(index) {
+            $elem.addClass('mCycleCont').find(this.options.mCycleItem).each(function (index) {
                 var $mCycleItem = $(this);
                 $mCycleItem.addClass('show')
                     .wrap('<div class="mCycleItemWrapper" data-count="' + (index + 1) + '"></div>');
@@ -507,7 +507,7 @@ MSP = {
                 
                 that._autoPlayQueued = true;
  
-                setTimeout((function() {
+                setTimeout((function () {
                     that._autoPlayQueued = false;
                     if (that.options.isAutoPlay) that.slide();
                 }), that.options.waitTime);
@@ -516,23 +516,23 @@ MSP = {
  
         },
  
-        play: function() {
+        play: function () {
             if (this.options.isAutoPlay) return;
             this.options.isAutoPlay = true;
             this.slide();
         },
  
-        pause: function() {
+        pause: function () {
             this.options.isAutoPlay = false;
         },
  
-        reverse: function() {
+        reverse: function () {
             this.options.direction = (this.options.direction === 'left') ? 'right' : 'left';
         },
-        slideLeft: function() {
+        slideLeft: function () {
             this.slide('left');
         },
-        slideRight: function() {
+        slideRight: function () {
             this.slide('right');
         },
         slideTo : function (index) {
@@ -544,17 +544,17 @@ MSP = {
             this.pause();
             this.forcedNextSlide = index; 
             $slides.eq(index).addClass("mCycleItemNext");
-            setTimeout(function() {
+            setTimeout(function () {
                 that.slide(direction);
                 that.forcedNextSlide = -1;
-                setTimeout(function() {
+                setTimeout(function () {
                     if (isAutoPlay) {
                         that.play();
                     }
                 }, that.options.animTime + that.options.waitTime + 10);
             }, that.options.animTime + 10);
         },
-        slide: function(direction) {
+        slide: function (direction) {
  
             if (this.options.isAutoPlay && this._autoPlayQueued || this._animating) return; // to stop multiple instance of slide when on autoplay
  
@@ -616,7 +616,7 @@ MSP = {
                 });
             }
             
-            setTimeout((function() {
+            setTimeout(function () {
                 var $elem = $(that.element);
 
                 $currentSlide.removeClass('mCycleItemCurrent').removeAttr('style');
@@ -636,9 +636,9 @@ MSP = {
                 }
 
                 that._animating = false;
-                if(that.options.isAutoPlay){
+                if (that.options.isAutoPlay){
                     that._autoPlayQueued = true; // auto call for slide is queued if on autoplay
-                    setTimeout((function() {
+                    setTimeout((function () {
                         if (that.options.isAutoPlay && that._autoPlayQueued) {
                             that._autoPlayQueued = false;
                             that.slide();
@@ -649,13 +649,13 @@ MSP = {
                     }), that.options.waitTime);
                 }
 
-            }), that.options.animTime + 10); //adding 10ms to make sure animation is complete
+            }, that.options.animTime + 10); //adding 10ms to make sure animation is complete
         }
     };
  
-    $.fn["mCycle"] = function(options) {
-        var params = Array.prototype.splice.call(arguments,1,1);
-        return this.each(function() {
+    $.fn["mCycle"] = function (options) {
+        var params = Array.prototype.splice.call(arguments, 1, 1);
+        return this.each(function () {
             if (!$.data(this, "mCycle")) {
                 // preventing against multiple instantiations
                 $.data(this, "mCycle", new mCycle(this, options));
@@ -664,7 +664,7 @@ MSP = {
                 // checking if option is a valid function name
                 if (typeof options === "string" && mCycleObj[options]) {
                     mCycleObj[options].apply(mCycleObj, params);
-                } else if(typeof options === "object"){
+                } else if (typeof options === "object"){
                     // if the option is object extending it with initalized object
                     mCycleObj.options = $.extend({}, mCycleObj.options, options);
                 }
@@ -675,53 +675,53 @@ MSP = {
 })(jQuery, window, document);
  
 /* Carousel Plugin Script Ends Here */
-$doc.ready(function() {
+$doc.ready(function () {
     
     // RUI:: added new carousel classes inside code
-    $(".js-crsl-wdgt, .widget-carousel").each(function() {
+    $(".js-crsl-wdgt, .widget-carousel").each(function () {
         var slideTimeout,
             $this = $(this);
         $this.mCycle({
             mCycleItem: "a"
         });
-        $this.on("mousever", ".crsl-wdgt__prvs-btn, .prev-button", function() {
+        $this.on("mousever", ".crsl-wdgt__prvs-btn, .prev-button", function () {
           $this.mCycle("pause").mCycle("slideRight");
           resetSlideTimeout();
         });
-        $this.on("click", ".crsl-wdgt__prvs-btn, .prev-button", function() {
+        $this.on("click", ".crsl-wdgt__prvs-btn, .prev-button", function () {
           $this.mCycle("pause").mCycle("slideRight");
           resetSlideTimeout();
         });
-        $this.on("click", ".crsl-wdgt__next-btn, .next-button", function() {
+        $this.on("click", ".crsl-wdgt__next-btn, .next-button", function () {
           $this.mCycle("pause").mCycle("slideLeft");
           resetSlideTimeout();
         });
-        $this.on("click", ".mCycleSlideBullet", function(){
+        $this.on("click", ".mCycleSlideBullet", function () {
             $this.mCycle("slideTo", $(this).index());
         });
         function resetSlideTimeout() {
           clearTimeout(slideTimeout);
-          slideTimeout = setTimeout(function() {
+          slideTimeout = setTimeout(function () {
             $this.mCycle("play");
           }, 10000);
         }
     });
     
     /* RUI:: new component for horizonal scrollable sections - start */
-    $(".js-sldr").each(function(e){
+    $(".js-sldr").each(function (e) {
         elementSlider.init(this);
     });
 
     // Select text inside node on clicking it.
-    $doc.on("click", ".js-slct-trgr", function() {
+    $doc.on("click", ".js-slct-trgr", function () {
         MSP.utils.selectText($(this));
     });
 
-    $doc.on("click", ".js-sldr__prvs", function() {
+    $doc.on("click", ".js-sldr__prvs", function () {
         elementSlider.slide(this,"left");
     });
     
-    $doc.on("click", ".js-sldr__next", function() {
+    $doc.on("click", ".js-sldr__next", function () {
         elementSlider.slide(this, "right");
     });
     /* RUI:: new component for horizonal scrollable sections - end */
@@ -729,7 +729,7 @@ $doc.ready(function() {
 
 /* RUI:: new component for horizonal scrollable sections - start */
 elementSlider =  {
-    "init" : function(slider) {
+    "init" : function (slider) {
         var slideItem = $(slider).data("slideitem"),
             slideItemWrapper = $(slider).data("slideitemwrapper");
 
@@ -740,16 +740,14 @@ elementSlider =  {
             countCurrItems = Math.floor($(slider).find("." + slideItemWrapper).eq(0).width() / $elements.eq(0).outerWidth(true));
 
         if ($elements.length > countCurrItems) {
-            $(slider).find("." + slideItemWrapper).addClass("js-sldr-item-wrpr1").
-                                                          wrapInner("<div class='js-sldr-item-wrpr'></div>");
-
+            $(slider).find("." + slideItemWrapper).addClass("js-sldr-item-wrpr1").wrapInner("<div class='js-sldr-item-wrpr'></div>");
             $(slider).find("." + slideItem).eq(0).addClass("js-sldr-crnt");
             $(slider).find(".js-sldr__prvs").addClass("js-sldr__dsbl-btn").show();
             $(slider).find(".js-sldr__next").show();
-        }       
+        }
     },
 
-    "slide" : function(element, direction) {
+    "slide" : function (element, direction) {
          var $slider = $(element).closest(".js-sldr"),
             $elementWrapper =  $slider.find(".js-sldr-item-wrpr"),
             slideItem = $slider.data("slideitem"),
@@ -769,19 +767,16 @@ elementSlider =  {
         $(element).siblings(".js-sldr__next").removeClass("js-sldr__dsbl-btn");
         
         if (direction === 'right') {
-                if(countRightItems > countCurrItems) {
-                    $startElement = $elements.eq($elements.index($currentElement) + countCurrItems);   
-                }
-                else {
-                    $startElement = $elements.eq($elements.length - countCurrItems);
-                    $(element).addClass("js-sldr__dsbl-btn");
-                }
-        }
-        else if (direction === 'left') {    
+            if (countRightItems > countCurrItems) {
+                $startElement = $elements.eq($elements.index($currentElement) + countCurrItems);   
+            } else {
+                $startElement = $elements.eq($elements.length - countCurrItems);
+                $(element).addClass("js-sldr__dsbl-btn");
+            }
+        } else if (direction === 'left') {    
             if (countLeftItems > countCurrItems) {
                 $startElement = $elements.eq($elements.index($currentElement) - countCurrItems);   
-            }
-            else {
+            } else {
                 $startElement = $elements.eq(0);
                 $(element).addClass("js-sldr__dsbl-btn");
             }
@@ -813,10 +808,10 @@ elementSlider =  {
 // Takes the argument, or query string or hash of the current URL
 // and returns an object with those key-value pairs as its properties
 function queryString(searchOrHash) {
-    var _cache = queryString._cache_ = queryString._cache_ || {};
-    if (searchOrHash in _cache) return _cache[searchOrHash];
-
     var query;
+    var query_string = {};
+    var vars = query.substring(1).split("&");
+    
     if (searchOrHash) {
         query = searchOrHash;
     } else if (window.location.search) {
@@ -827,8 +822,6 @@ function queryString(searchOrHash) {
         return;
     }
 
-    var query_string = {};
-    var vars = query.substring(1).split("&");
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
         if (typeof query_string[pair[0]] === "undefined")
@@ -839,7 +832,7 @@ function queryString(searchOrHash) {
         } else
             query_string[pair[0]].push(decodeURIComponent(pair[1]));
     }
-    _cache[searchOrHash] = query_string;
+    
     return query_string;
 }
 
@@ -868,11 +861,11 @@ function generateHash(params) {
 // }
 
 // autopopup processing start here
-setTimeout(function() {
+setTimeout(function () {
     openAutoPopup(); // open auto popup after autoPopupTimeout
 }, autoPopupTimeout);
 
-setTimeout(function() {
+setTimeout(function () {
     pageLeavePopupBind(); // bind page leave auto popup after pageLeaveTimeout
 }, pageLeaveTimeout);
 // autopopup processing end here
@@ -882,7 +875,7 @@ setTimeout(function() {
 if ($(".body-wrpr").length !== 0) {
     /* RUI:: scroll to the element on page with data-id = current/onload url hash value - start */
 
-    (function() {
+    (function () {
         // onload if hash has a scrollTo param then scroll to section without animation.
         var hashObj = queryString(window.location.hash),
             finalScrollPos;
@@ -893,7 +886,7 @@ if ($(".body-wrpr").length !== 0) {
 
 
         // scroll handlers and their corresping functions.
-        var scrollToLink = function() {
+        var scrollToLink = function () {
             var hashObj = queryString(window.location.hash),
                 finalScrollPos, currentScrollPos,
                 speed = 0.5, animTime;
@@ -904,17 +897,17 @@ if ($(".body-wrpr").length !== 0) {
                 animTime = Math.ceil(Math.abs((finalScrollPos - currentScrollPos) * speed)),
                 $roots = $("html, body");
                 
-                $roots.on("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink", function(){
+                $roots.on("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink", function () {
                     $roots.stop();
                 });
 
-                $roots.animate({ "scrollTop" : finalScrollPos }, animTime, function() {
+                $roots.animate({ "scrollTop" : finalScrollPos }, animTime, function () {
                     $roots.off("scroll.inpageLink mousedown.inpageLink wheel.inpageLink DOMMouseScroll.inpageLink mousewheel.inpageLink keyup.inpageLink touchmove.inpageLink");
                 });
             }
         };
 
-        $doc.on("click", ".js-inpg-link", function() {
+        $doc.on("click", ".js-inpg-link", function () {
             if ($(this).data("action") === "disabled") return false;
             
             var hashObj = queryString(window.location.hash);
@@ -930,7 +923,7 @@ if ($(".body-wrpr").length !== 0) {
             return false;
         });
 
-        $win.on('hashchange', function() {
+        $win.on('hashchange', function () {
             scrollToLink();
         });
     }());
@@ -938,8 +931,8 @@ if ($(".body-wrpr").length !== 0) {
 } else {
     /* OLD::inpageLinking - start */
     //handeling hash in window
-    ;(function() {
-        var inpageLinking = function(id) {
+    ;(function () {
+        var inpageLinking = function (id) {
             if (id !== "" && id !== "#") {
                 try {
                     if ($(id).length) {
@@ -953,7 +946,7 @@ if ($(".body-wrpr").length !== 0) {
             }
         }
 
-        $win.on('hashchange', function() {
+        $win.on('hashchange', function () {
             inpageLinking(window.location.hash);
             return false;
         });
@@ -963,7 +956,7 @@ if ($(".body-wrpr").length !== 0) {
             inpageLinking($(this).attr('href'));
         });
 
-        $win.on('load', function() {
+        $win.on('load', function () {
             inpageLinking(window.location.hash);
         });
     }());
@@ -974,7 +967,7 @@ if ($(".body-wrpr").length !== 0) {
 /* RUI:: header dropdowns functionality - start */
 ;(function headerDropdownsHandlers() {
     var menuShowTimeout;
-    $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function(e) {
+    $doc.on('click', 'body, .js-ctgry-btn, .js-drpdwn-menu-wrpr', function (e) {
         var data, time, now, diffTime, loadingTimeout;
 
         e.stopPropagation();
@@ -982,11 +975,11 @@ if ($(".body-wrpr").length !== 0) {
         if (!$('.drpdwn-menu-wrpr--show').length && $(this).hasClass("js-ctgry-btn")) {
             $('.js-drpdwn-menu-wrpr').addClass('drpdwn-menu-wrpr--show');
             $('.js-drpdwn-menu-ovrly').addClass('drpdwn-menu-ovrly--show');
-            if($win.height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
+            if ($win.height() < $(".drpdwn-menu").height() + $('.js-drpdwn-menu-wrpr').offset().top) {
                 $(".js-drpdwn-menu-wrpr").addClass("drpdwn-menu-wrpr--s");
             }
             if ($('.drpdwn-menu').data('processed') == 'done' && location.hash !== '#forcepopup') {
-                menuShowTimeout = setTimeout(function() {
+                menuShowTimeout = setTimeout(function () {
                     $('.drpdwn-menu').addClass('drpdwn-menu--show');
                 }, 340);
                 return; //if already procesed
@@ -1005,7 +998,7 @@ if ($(".body-wrpr").length !== 0) {
             }
 
             if (!data || data == 'undefined' || data === undefined) {
-                loadingTimeout = setTimeout(function() {
+                loadingTimeout = setTimeout(function () {
                     $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').show();
                 }, 600);
                 data = getBrowsePopupData();
@@ -1016,14 +1009,14 @@ if ($(".body-wrpr").length !== 0) {
             }
             if (data && data != 'undefined' && data !== undefined) {
                 $('.drpdwn-menu').html(data).data('processed', 'done');
-                menuShowTimeout = setTimeout((function() {
+                menuShowTimeout = setTimeout((function () {
                     $('.js-drpdwn-menu-wrpr').find('.drpdwn-menu-wrpr__ldng').hide();
                     clearTimeout(loadingTimeout);
                     $('.drpdwn-menu').addClass('drpdwn-menu--show');
                 }), 340);
                 // on data available hide loading and show data
             }
-        } else if(!$(this).hasClass('js-drpdwn-menu-wrpr')) {
+        } else if (!$(this).hasClass('js-drpdwn-menu-wrpr')) {
             clearTimeout(menuShowTimeout);
             $('.js-drpdwn-menu-wrpr').removeClass('drpdwn-menu-wrpr--show');
             $('.drpdwn-menu').removeClass('drpdwn-menu--show');
@@ -1036,7 +1029,7 @@ if ($(".body-wrpr").length !== 0) {
 /* RUI:: header dropdowns functionality - end */
 
 /* RUI:: header search functionality - start */
-$doc.on('click', '.srch-wdgt__sbmt', function() {
+$doc.on('click', '.srch-wdgt__sbmt', function () {
     if (_gaq) _gaq.push(['_trackEvent', 'unified_search', 'click', 'button']);
 });
 /* RUI:: header search functionality - end */
@@ -1048,7 +1041,7 @@ $doc.on('click', '.srch-wdgt__sbmt', function() {
  */
 
 // tooltip callouts processing start here
-$doc.on('mouseenter', '.callout-target', function() {
+$doc.on('mouseenter', '.callout-target', function () {
     $('.callout').remove();
     var $this = $(this),
         data = $this.data('callout');
@@ -1063,7 +1056,7 @@ $doc.on('mouseenter', '.callout-target', function() {
     }
 });
 
-$doc.on('mouseleave', '.callout-target', function() {
+$doc.on('mouseleave', '.callout-target', function () {
     $('.callout').remove();
 });
 // tooltip callouts processing end here
@@ -1072,7 +1065,7 @@ $doc.on('mouseleave', '.callout-target', function() {
 
 /* RUI:: Tooltips - start */
 // tooltip callouts processing start here
-$doc.on('mouseenter', '.js-tltp', function() {
+$doc.on('mouseenter', '.js-tltp', function () {
     $('.tltp').remove();
     var $this = $(this),
         data = $this.data('tooltip');
@@ -1081,7 +1074,7 @@ $doc.on('mouseenter', '.js-tltp', function() {
     $('body').append('<div class="tltp tltp--top-left ' + colorClass +'">' + data + '</div>');
     $tooltip = $('.tltp');
 
-    if($(this).data('tooltip').length > 50){
+    if ($(this).data('tooltip').length > 50){
       $tooltip.css({'font-size':'11px', 'line-height':'1.5'});
    }
 
@@ -1094,21 +1087,21 @@ $doc.on('mouseenter', '.js-tltp', function() {
 
 });
 
-$doc.on('mouseleave', '.js-tltp', function() {
+$doc.on('mouseleave', '.js-tltp', function () {
     $('.tltp').remove();
 });
 /* RUI:: Tooltips - end */
 
 /* RUI:: Message Boxes - start */
 
-$doc.on("click", ".js-msg-box-trgt", function(e) {
+$doc.on("click", ".js-msg-box-trgt", function (e) {
     if ($(e.target).hasClass("js-msg-box__cls")) return false;
 
     $(".msg-box").removeClass("msg-box--show");
     $(this).find(".msg-box").addClass("msg-box--show");
 });
 
-$doc.on("click", ".js-msg-box__cls", function() {
+$doc.on("click", ".js-msg-box__cls", function () {
     $(this).closest(".msg-box").removeClass("msg-box--show");
     return false;
 });
@@ -1117,16 +1110,16 @@ $doc.on("click", ".js-msg-box__cls", function() {
 
 
 /* RUI:: open non anchor links - start */
-$doc.on("click", ".js-open-link", function() {
+$doc.on("click", ".js-open-link", function () {
     var $this = $(this),
          url = $this.data("open-link"),
          inNewTab   = $this.data("newTab"),
          needLogin  = $this.data("need-login");
 
-    if(needLogin == true) {
-        loginCallback(function() {
-            if(url) {
-                if(inNewTab === true) {
+    if (needLogin == true) {
+        loginCallback(function () {
+            if (url) {
+                if (inNewTab === true) {
                     window.open(url);
                 } else {
                     window.location.href = url;
@@ -1141,14 +1134,14 @@ $doc.on("click", ".js-open-link", function() {
 });
 
 /* RUI:: open non anchor links - start */
-$doc.on("click", ".js-open-hash", function() {
+$doc.on("click", ".js-open-hash", function () {
     window.location.hash = $(this).data("open-hash") || "";
     return false;
 });
 /* RUI:: open non anchor links - end */
 
 /* RUI:: save product item button - start */
-$doc.on('mousedown','.js-save-btn', function() {
+$doc.on('mousedown','.js-save-btn', function () {
     var $this = $(this),
         mspid = $this.closest(".prdct-item").data("mspid") || $(".prdct-dtl__ttl").data("mspid"); 
     
@@ -1180,7 +1173,7 @@ function saveItem(mspid, $this) {
 // RUI:: added new classes for popup targets
 // OLD:: old classes of popup elements are there.
 
-$doc.on('click', '.popup-target, .js-popup-trgt', function() {
+$doc.on('click', '.popup-target, .js-popup-trgt', function () {
     var $this = $(this),
         popupUrl = $this.attr('href'),
         storeUrl;
@@ -1244,13 +1237,13 @@ function handleStorePriceAlert($target) {
         });
 
         window._vis_opt_queue = window._vis_opt_queue || [];
-        window._vis_opt_queue.push(function() { _vis_opt_goal_conversion(200); });
+        window._vis_opt_queue.push(function () { _vis_opt_goal_conversion(200); });
 
         return true;
     }
 }
 
-$doc.on('click', ".loyalty-popup-target, .js-lylty-popup-trgt", function() {
+$doc.on('click', ".loyalty-popup-target, .js-lylty-popup-trgt", function () {
     var $this = $(this),
         isLoggedIn = getCookie("msp_login"),
         cookieName = $this.data("cookiename"),
@@ -1288,11 +1281,11 @@ $doc.on('click', ".loyalty-popup-target, .js-lylty-popup-trgt", function() {
     return false;
 });
 
-$doc.on('click', '.popup-closebutton', function() {
+$doc.on('click', '.popup-closebutton', function () {
     closePopup();
 });
 
-$doc.on('click', '.popup-overlay', function() {
+$doc.on('click', '.popup-overlay', function () {
     if (!$(this).hasClass("noclose"))
         closePopup();
 });
@@ -1304,9 +1297,9 @@ $doc.on('click', '.popup-overlay', function() {
  * starts here
  */
 // Dropdown UI component (used on single page)
-$doc.on("click", function() {
+$doc.on("click", function () {
     $(".dropdown .dropdown-content").addClass("hide");
-}).on("click", ".dropdown .btn-dropdown", function() {
+}).on("click", ".dropdown .btn-dropdown", function () {
     $(".dropdown .dropdown-content").toggleClass("hide");
     return false;
 });
@@ -1319,7 +1312,7 @@ bindAutoComplete(); // initializing the autoComplete
 
 /* OLD:: binding keys to close header browse popup. - start */
 // binding keys start here
-// $doc.keyup(function(e) {
+// $doc.keyup(function (e) {
 //     if (e.keyCode == 27) { //esc button
 //         if ($('.browse-popup-cont.show')
 //             .length !== 0) {
@@ -1335,7 +1328,7 @@ bindAutoComplete(); // initializing the autoComplete
 //     }
 // });
 
-// $doc.keydown(function(e) {
+// $doc.keydown(function (e) {
 //     if (e.altKey) { // checking for alt key
 //         var key = String.fromCharCode(e.keyCode)
 //             .toLowerCase();
@@ -1356,28 +1349,29 @@ bindAutoComplete(); // initializing the autoComplete
 
 /* RUI:: added classes of new UI to the existing handlers - start */
 // binding keys start here
-$doc.keyup(function(e) {
+$doc.keyup(function (e) {
     if (e.keyCode == 27) { //esc button
         if ($('.browse-popup-cont.show, .drpdwn-menu-ovrly--show').length !== 0) {
             $('.browse-menu-btn .js-ctgry-btn').click(); //if browse menu is displayed close it  
         }
         if ($('.popup-overlay').length !== 0) {
             $('.popup-overlay').click(); //if popup is displayed close it
-
         }
     }
 });
 
-$doc.keydown(function(e) {
+$doc.keydown(function (e) {
     if (e.altKey) { // checking for alt key
         var key = String.fromCharCode(e.keyCode).toLowerCase();
         switch (key) {
-            case 'c':
+            case 'c': {
                 $('.browse-menu-btn, .js-ctgry-btn').click();
                 break;
-            case 's':
+            }
+            case 's': {
                 $('.search-field').focus();
                 break;
+            }
         }
     }
 });
@@ -1396,7 +1390,7 @@ function getAjaxDataSync(ajaxURL) {
     $.ajax({
         url: ajaxURL,
         async: false
-    }).done(function(data) {
+    }).done(function (data) {
         ajaxData = data;
     });
     return ajaxData;
@@ -1422,7 +1416,7 @@ function addCookieMins(c_name, value, expMins) {
         document.cookie = c_name + '=' + c_value + ';';
     }
 
-    if(c_name == 'msp_login_email') {
+    if (c_name == 'msp_login_email') {
         if (window.dataLayer) {
             dataLayer.push({ 'event': 'email_success' });
         }
@@ -1496,36 +1490,37 @@ function openPopup(popupUrl, storeUrl) {
         ].join(""));
     }
 
-    setTimeout((function() {
+    setTimeout((function () {
         $('.popup-overlay').removeClass('hide');
         $('.popup-container').removeClass('hide');
     }), 300);
-    setTimeout((function() {
+    setTimeout((function () {
         $('.popup-closebutton').removeClass('hide');
     }), 900);
 
     $('.popup-container').append(popupData).css('width', $('.popup-inner-content').outerWidth());
 
-    if (storeUrl)
+    if (storeUrl) {
         $(".popup-container .popup-skip a, .popup-container a.popup-submit").attr("href", storeUrl);
+    }
 }
 
 function closePopup() {
     $('.popup-overlay').addClass('hide');
     $('.popup-container').addClass('hide');
     $('.popup-closebutton').addClass('hide');
-    setTimeout((function() {
+    setTimeout(function () {
         $('.popup-overlay').remove();
         $('.popup-container').remove();
         $('.popup-closebutton').remove();
-    }), 400);
+    }, 400);
     while (popupQueue.length > 0) {
         (popupQueue.shift())();
     }
 }
 
 function popupQueueFn(fn, context, params) {
-    return function() {
+    return function () {
         fn.apply(context, params);
     };
 }
@@ -1533,11 +1528,12 @@ function popupQueueFn(fn, context, params) {
 // NOTE:: already commented (not RUI)
 // // autopopup functions start here
 // function openAutoPopup(pl) {
-//     if(hasOffline){
-//         if(getCookie('3hrspopup'))
+//     if (hasOffline){
+//         if (getCookie('3hrspopup')) {
 //             return;
-//         else 
+//         } else {
 //             setCookie('3hrspopup',1); //setting session cookie
+//         }
 //     }
 //     else if (getCookie('autoPopup') || getCookie('msp_login_email') || getCookie('msp_login')) {
 //         return;
@@ -1546,7 +1542,7 @@ function popupQueueFn(fn, context, params) {
 //         .data('autopopup'); //getting default url for popup
 //     if (!defaultPopupURL) defaultPopupURL = $('[data-autopopup]').data('autopopup');
 //     if (!defaultPopupURL) return;
-//     if(!hasOffline) setCookie('autoPopup', '1', 1); //setting for 1 day
+//     if (!hasOffline) setCookie('autoPopup', '1', 1); //setting for 1 day
 //     openPopup("/promotions/" + defaultPopupURL + (pl === "pl" ? "&pl=1" : ""));
 // }
 
@@ -1584,7 +1580,7 @@ function openAutoPopupURL(url) {
         "transaction_count": transaction_count,
         "popup_id": popup_id,
         "emailValue": emailValue
-    }, function(data, status) {});
+    }, function (data, status) {});
 
 }
 
@@ -1630,7 +1626,7 @@ function getAutopopupURL($dataElement) {
     }
     if ($popupData["scroll"] === true) {
         if (window.location.href.indexOf("msp") > -1 || window.location.href.indexOf("msf") > -1) {
-            $doc.on('scroll', function(e) {
+            $doc.on('scroll', function (e) {
                 if ($doc.scrollTop() >= $win.height()) {
                     $dataElement.data("popup_id", $popupData["scroll-id"]);
                     openAutoPopupURL($popupData["scroll-url"]);
@@ -1667,7 +1663,7 @@ if (!getCookie("session-start-time")) {
 setCookie("active_time", ((new Date().getTime()) - getCookie("session-start-time")) / 1000);
 
 function pageLeavePopupBind() {
-    $('body').on('mouseleave', function(e) {
+    $('body').on('mouseleave', function (e) {
         if (e.pageY < 5) openAutoPopup("pl");
     });
 }
@@ -1675,7 +1671,7 @@ function pageLeavePopupBind() {
 // popup functions end here
 
 //If header is scrollable then dont hide the subheader
-$win.scroll(MSP.utils.throttle(function(e) {
+$win.scroll(MSP.utils.throttle(function (e) {
     var scrollTop = $win.scrollTop(),
         delta = 5,
         $subHeader = $('.sub-hdr'),
@@ -1727,7 +1723,7 @@ function bindAutoComplete() {
             delay: 110,
             autoFocus: false,
             max: 10,
-            open: function(event, ui) {
+            open: function (event, ui) {
                 $parent = $(this).closest(".srch-wdgt");
                 $(".ui-menu").css({
                     "width": $parent.width(),
@@ -1736,10 +1732,10 @@ function bindAutoComplete() {
                 });
                 $parent.addClass("srch-wdgt--show-rslt");
             },
-            close: function(event, ui) {
+            close: function (event, ui) {
                 $(this).closest(".srch-wdgt").removeClass("srch-wdgt--show-rslt");
             },
-            source: function(request, response) {
+            source: function (request, response) {
                 var term = $.trim(request.term.toLowerCase()),
                     $element = this.element,
                     //element is search bar
@@ -1758,8 +1754,8 @@ function bindAutoComplete() {
                     url: $element.closest(".srch-wdgt").data('url'),
                     dataType: "json",
                     data: request,
-                    success: function(data) {
-                        data = $.map(data, function(n, i) {
+                    success: function (data) {
+                        data = $.map(data, function (n, i) {
                             n['index'] = i;
                             return n;
                         });
@@ -1769,7 +1765,7 @@ function bindAutoComplete() {
                     }
                 });
             },
-            select: function(event, ui) {
+            select: function (event, ui) {
                 var $form = $(this)
                     .closest('form');
                 $form.find('.js-atcmplt')
@@ -1779,7 +1775,7 @@ function bindAutoComplete() {
                 $form.find('.srch-wdgt__sbmt')
                     .click();
             }
-        }).data('uiAutocomplete')._renderItem = function(ul, item) {
+        }).data('uiAutocomplete')._renderItem = function (ul, item) {
             var term = this.term.split(' ').join('|'),
                 re = new RegExp("\\b(" + term + ")", "gi"),
                 tempval = item.value.replace(re, "<strong>$1</strong>");
@@ -1804,16 +1800,16 @@ function initScrollToTop() {
         
     $body.append($toTop);
 
-    $toTop.on("click", function() {
+    $toTop.on("click", function () {
         $body.animate({
             'scrollTop' : '0'
-        }, 'slow', function() {
+        }, 'slow', function () {
             showScrollToTopDisplay = 'hidden';
         });
         $toTop.stop(true, true).fadeOut();
     });
 
-    $win.on("scroll", function() {
+    $win.on("scroll", function () {
         if ($(this).scrollTop() > 100) {
             if (showScrollToTopDisplay == 'hidden') {
                 showScrollToTopDisplay = 'display';
@@ -1832,7 +1828,7 @@ function initScrollToTop() {
 
 
 // recent items functionality starts here
-$(function() {
+$doc.ready(function () {
 
     // load cookie into array
     var recent_list, cookie;
@@ -1840,10 +1836,11 @@ $(function() {
 
     console.log('Cookie', cookie);
 
-    if (!cookie)
+    if (!cookie) {
         recent_list = [];
-    else
+    } else {
         recent_list = JSON.parse(cookie);
+    }
 
     // show link to recent items in top nav bar
     if (recent_list.length) {
@@ -1920,12 +1917,12 @@ function recentImgError(img) {
 
 // Slide-up banner functions start here
 function initBottomSlideup() {
-    $(".js-prmtn").load("bottom-promotion.html", function() {
+    $(".js-prmtn").load("bottom-promotion.html", function () {
         var cookieName = $('.bottom-slideup').attr("cookie-name");
         var hideBottomSlideup = getCookie(cookieName);
         if (hideBottomSlideup !== "true") {
             setTimeout(showSlideup, 800);
-            $("body").on("click", ".bottom-slideup .close-button", function() {
+            $("body").on("click", ".bottom-slideup .close-button", function () {
                 hideSlideup(cookieName);
                 return false;
             });
@@ -1950,7 +1947,7 @@ function hideSlideup(cookieName) {
 
 
 
-$.expr[':'].icontains = function(a, b, c, d) {
+$.expr[':'].icontains = function (a, b, c, d) {
     var e = ($.trim(jQuery(a).text()) || '').toLowerCase(),
         f = e.indexOf(c[3].toLowerCase());
     if (f > 0) return true;
@@ -1966,7 +1963,7 @@ $.expr[':'].icontains = function(a, b, c, d) {
  * starts here
  */
 ;
-(function($, window, document, undefined) {
+(function ($, window, document, undefined) {
     "use strict";
 
     function sidebarList(element, options) {
@@ -1979,18 +1976,18 @@ $.expr[':'].icontains = function(a, b, c, d) {
     }
 
     sidebarList.prototype = {
-        "init": function() {
+        "init": function () {
             var $elem = $(this.element),
                 $default_no = this.options.listLength,
                 $catname = $.trim($elem.find(".listhead").text()),
                 $expand = $elem.find(".sublist.expand");
-            $elem.each(function() {
+            $elem.each(function () {
                 $elem.attr("data-cat", $catname);
                 $elem.find('.sublist').not(".expand").slice($default_no).hide();
             });
             var $this = this;
             if ($default_no == 0){ $expand.css("border-top", "none"); }
-            $expand.on('click', function() {
+            $expand.on('click', function () {
                 var $action = $(this).find("a:visible").hasClass("show-all") ? 1 : 0,
                     $border = ["none", "1px dotted #ccc"];
                 $this.expand($catname, $action);
@@ -2000,7 +1997,7 @@ $.expr[':'].icontains = function(a, b, c, d) {
                 return false;
             });
         },
-        "expand": function($catname, $action) {
+        "expand": function ($catname, $action) {
             var $elem = $(this.element),
                 $widget = $elem.filter('[data-cat="' + $catname + '"]'),
                 $expand = $elem.filter('[data-cat="' + $catname + '"]').find('.expand'),
@@ -2011,8 +2008,8 @@ $.expr[':'].icontains = function(a, b, c, d) {
         }
     };
 
-    $.fn.sidebarList = function(options) {
-        return this.each(function() {
+    $.fn.sidebarList = function (options) {
+        return this.each(function () {
             $.data(this, "sidebarList", new sidebarList(this, options));
             if (!$.data(this, "sidebarList")) {
                 // preventing against multiple instantiations
@@ -2031,7 +2028,7 @@ $.expr[':'].icontains = function(a, b, c, d) {
     };
 })(jQuery, window, document);
 
-$doc.ready(function() {
+$doc.ready(function () {
     $(".sidebardiv_collapsable").sidebarList();
 });
 
@@ -2048,7 +2045,7 @@ initScrollToTop();
 
 /* init onload (no need of doc.ready) - start */
 
-$doc.ready(function() {
+$doc.ready(function () {
     // Mobile number capture popup for users who land on single page
     // from price alert emailer and missed the drop in price
     if (qS && qS.utm_campaign === "PriceAlert") {
@@ -2058,8 +2055,9 @@ $doc.ready(function() {
             if ($mspSingleTitle.length) {
                 var emailPrice = parseInt(_hash.price, 10),
                     bestPrice = parseInt($mspSingleTitle.data("bestprice"), 10);
-                if (bestPrice > emailPrice)
+                if (bestPrice > emailPrice) {
                     openPopup("/price_alert/paepopup.php?mspid=" + $mspSingleTitle.data("mspid"));
+                }
             }
         }
     }
@@ -2100,7 +2098,7 @@ function tryInstallChrome(gaLabel, successCallback, failCallback) {
 
         chrome.webstore.install(CHROME_EXT_INSTALL_URL, function () {
             installSuccess(gaLabel, successCallback);
-        }, function() {
+        }, function () {
             installFail(failCallback);
         });
     } else {
@@ -2127,15 +2125,15 @@ function isPluginInstalled() {
         pluginPresent = false,
         pluginTimeout = setInterval(checkPlugin, 1000);
 
-    setTimeout(function() {
+    setTimeout(function () {
         clearInterval(pluginTimeout);
-        if(!pluginPresent){
+        if (!pluginPresent){
             dfd.reject("failed!"); 
         }
     }, 3000);
   
     function checkPlugin(){
-        pluginPresent = !(!$(".plugin_id").length);
+        pluginPresent = !!$(".plugin_id").length;
         if (pluginPresent) {        
             clearInterval(pluginTimeout);
             dfd.resolve("success!"); 

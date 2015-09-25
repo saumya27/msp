@@ -104,6 +104,10 @@
         background-color: darken(@bg-color-blue, 2%);
       }
     }
+    &--blck {
+      display: block;
+      text-align: center;
+    }
     &--no-bg {
       border: 1px solid @border-color;
       background: none;
@@ -168,7 +172,7 @@
 
       margin-top: 5px;
 
-      color: rgba(255,255,255,.6);//@fg-color-light-grey;
+      color: rgba(255, 255, 255, .6);//@fg-color-light-grey;
       font-size: 12px;
       font-weight: 400;
     }
@@ -208,7 +212,7 @@
 
         transition: top .2s ease-in-out;
 
-        .rotation(90deg);
+        .transform(rotate(90deg));
       }
       &:hover, &:active {
         .btn-GTS__arw {
@@ -366,9 +370,90 @@
     }
   }
 
-  //Content Loader
-  .content-loader();
+  //Loader Icon
+  .ldr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 100px;
+    height: 130px;
+    text-align: center;
+    &__text {
+      position: absolute;
+      margin: auto;
+      left: 0;
+      right: 0;
+      top: 105px;
+      color: @fg-color-grey;
+      font-size:12px;
+    }
+    &__crcl, &__crcl::before, &__crcl::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px solid rgba(204, 0, 0, 0.2);
+      border-left-color: rgba(204, 0, 0, 0.8);
+      -webkit-border-radius: 999px;
+      -moz-border-radius: 999px;
+      border-radius: 999px;
+    }
+    &__crcl {
+      margin: -25px 0 0 -25px;
+      height: 50px;
+      width: 50px;
+      -webkit-animation: animation-rotate 1000ms linear infinite;
+         -moz-animation: animation-rotate 1000ms linear infinite;
+           -o-animation: animation-rotate 1000ms linear infinite;
+              animation: animation-rotate 1000ms linear infinite;
+      &:before {
+        content: "";
+        margin: -23px 0 0 -23px;
+        height: 44px;
+        width: 44px;
+        -webkit-animation: animation-rotate 1000ms linear infinite;
+           -moz-animation: animation-rotate 1000ms linear infinite;
+             -o-animation: animation-rotate 1000ms linear infinite;
+                animation: animation-rotate 1000ms linear infinite;
+      }
+      &:after {
+        content: "";
+        margin: -29px 0 0 -29px;
+        height: 56px;
+        width: 56px;
+        -webkit-animation: animation-rotate 2000ms linear infinite;
+           -moz-animation: animation-rotate 2000ms linear infinite;
+             -o-animation: animation-rotate 2000ms linear infinite;
+                animation: animation-rotate 2000ms linear infinite;
+      }
+    }
+  }
 
+  @-webkit-keyframes animation-rotate {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @-moz-keyframes animation-rotate {
+    100% {
+      -moz-transform: rotate(360deg);
+    }
+  }
+
+  @-o-keyframes animation-rotate {
+    100% {
+      -o-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes animation-rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
 
   .text-link {
@@ -698,8 +783,6 @@
   }
 
   .pgntn {
-    margin: 20px 0;
-
     color: @fg-color-grey;
     font-size: 0;
 
@@ -779,6 +862,12 @@
     }
     &__item {
       margin-bottom: 5px;
+    }
+
+    &__txt {
+      padding: 10px 0;
+      color: #8e8e93;
+      line-height: 1.6;
     }
   }
 
@@ -1140,61 +1229,61 @@
     }
   }
 
+  .to-top {
+    position: fixed;
+    z-index: 11;
+    top: 83%;
+    right: 0;
+
+    display: none;
+    opacity: .9;
+
+    cursor: pointer;
+    transition: background .1s ease;
+    &__btn {
+      position: relative;
+      z-index: 2;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 3px 0 0 3px;
+      background-color: @bg-color-gs2;
+      background-position: center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-up-grey.png', 14px, auto);
+    }
+    &__lbl {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 85px;
+      height: 20px;
+      padding: 5px;
+      border-radius: 3px 0 0 3px;
+      background-color: @bg-color-gs1;
+
+      color: @fg-color-white;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 20px;
+
+      transition: left .2s ease;
+      text-align: center;
+    }
+    &:hover {
+      border-radius: 0;
+      .to-top__lbl {
+        left: -95px;
+
+        display: block;
+      }
+    }
+  }
+
   .js-vldtn-err {
     display: none;
 
     color: @fg-color-red;
-  }
-}
-
-.to-top {
-  position: fixed;
-  z-index: 11;
-  top: 83%;
-  right: 0;
-
-  display: none;
-  opacity: .9;
-
-  cursor: pointer;
-  transition: background .1s ease;
-  &__btn {
-    position: relative;
-    z-index: 2;
-
-    width: 30px;
-    height: 30px;
-    border-radius: 3px 0 0 3px;
-    background-color: @bg-color-gs2;
-    background-position: center;
-
-    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-up-grey.png', 14px, auto);
-  }
-  &__lbl {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 85px;
-    height: 20px;
-    padding: 5px;
-    border-radius: 3px 0 0 3px;
-    background-color: @bg-color-gs1;
-
-    color: @fg-color-white;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 20px;
-
-    transition: left .2s ease;
-    text-align: center;
-  }
-  &:hover {
-    border-radius: 0;
-    .to-top__lbl {
-      left: -95px;
-
-      display: block;
-    }
   }
 }
