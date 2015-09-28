@@ -1699,10 +1699,14 @@ if($(".gts--fixed").length) {
     $(window).scroll(function() {
         var theLoc = $('.btn-wrpr .buy-btn').position().top;
 
-        if(theLoc <= $(window).scrollTop() + 30)
+        if(theLoc <= $(window).scrollTop() + 30){
             $('.gts--fixed').show();
-         else 
+            $('.setAlert').hide();
+        }
+         else {
             $('.gts--fixed').hide();
+            $('.setAlert').show();
+        }
     });
 }
 

@@ -4107,6 +4107,10 @@ header .logo {
   color: #fff;
   padding-right: 20px;
 }
+.gts--fixed .buy-btn {
+  float: none;
+  font-weight: bold;
+}
 .sortByPopup {
   position: fixed;
   width: 250px;
@@ -4496,8 +4500,9 @@ header .logo {
   vertical-align: top;
 }
 .fashion.single .productDetails .btn-wrpr .buy-btn {
-  float: right;
-  font-size: 0.9em;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
 }
 .fashion.single .productDetails .sizs-wrpr {
   border-top: 1px solid #ccc;
@@ -4509,6 +4514,7 @@ header .logo {
 .fashion.single .productDetails .sizs-wrpr .size {
   padding: 3px;
   border: 1px solid black;
+  margin-left: 5px;
 }
 .fashion.single .shw-more-br {
   padding: 1px 10px;
