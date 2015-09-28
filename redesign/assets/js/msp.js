@@ -7,7 +7,7 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     popupQueue = [],
     autocompleteCache = {},
     autoPopupTimeout = 20000,
-    pageLeaveTimeout = 4000
+    pageLeaveTimeout = 4000,
     ua = navigator.userAgent.toLowerCase(),
     isEdge = function () {
         return ua.indexOf("edge") !== -1;
