@@ -85,10 +85,9 @@
     cursor: pointer;
 
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-grey.png', 28px, auto);
-
     .preload(
-      'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png',
-      'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png'
+    'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png',
+    'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png'
     );
     &:hover {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png', 28px, auto);
@@ -159,21 +158,25 @@
   &__prc {
     margin-top: 5px;
     border-top: 1px solid @border-color;
+
     color: @fg-color-blue;
     line-height: 27px;
     &--mrp {
       margin: 0;
       border-top: 0;
+
       color: @fg-color-grey;
       line-height: 20px;
+
       text-decoration: line-through;
       .prdct-item__rpe {
         font-size: 10px;
         line-height: 16px;
       }
       .prdct-item__prc-val {
-        font-size: 12px;
         margin-left: @inline-block-margin;
+
+        font-size: 12px;
       }
     }
   }
@@ -218,9 +221,11 @@
   }
   &__cmpr {
     display: block;
+
     margin: 5px 0 0 0;
     padding-top: 5px;
     border-top: 1px solid @border-color;
+
     line-height: 16px;
   }
   &__cmpr-chkbx {
@@ -231,21 +236,23 @@
 
     vertical-align: middle;
   }
-
   &--out-stck {
     .prdct-item__img, .prdct-item__dtls {
-      opacity: 0.65;
+      opacity: .65;
     }
     &__bdg {
       position: absolute;
+      right: 10px;
       bottom: 0;
-      left:10px;
-      right:10px;
+      left: 10px;
+
       padding: 5px;
-      border:1px solid @border-color-dark-grey;
+      border: 1px solid @border-color-dark-grey;
       border-radius: @border-radius;
-      color: @fg-color-grey;
       background-color: @bg-color-gs3;
+
+      color: @fg-color-grey;
+
       text-align: center;
       &-icon {
         width: 14px;
@@ -257,13 +264,15 @@
   }
   &--nc {
     border-bottom: 0;
-    transition: border 0.2s;
+
+    transition: border .2s;
     .prdct-item__img-wrpr.prdct-item__img-wrpr {
       height: 340px;
     }
     .prdct-item__name {
       height: 16px;
       padding-bottom: 5px;
+
       .ellipsis();
     }
     .prdct-item__brnd {
@@ -281,15 +290,19 @@
     }
     .prdct-item__ofr {
       float: right;
+
       margin-top: 10px;
-      font-size: 14px;
+
       color: #c00;
+      font-size: 14px;
       font-weight: @font-bold;
       line-height: 18px;
     }
     .prdct-item__str {
       float: right;
+
       margin-top: 7px;
+
       color: #8e8e93;
       font-size: 12px;
     }
@@ -297,24 +310,30 @@
       height: auto;
     }
     .prdct-item__size {
-      visibility: hidden;
-      opacity: 0;
       position: absolute;
       top: 427px;
       left: -1px;
+
+      visibility: hidden;
+      opacity: 0;
+
       width: 195px;
       padding: 5px 10px 5px;
       border: 1px solid #dfe1e8;
       border-width: 0 1px 1px 1px;
       border-radius: 0 0 3px 3px;
+
       line-height: 15px;
-      transition: opacity 0.2s, visibility 0.2s;
+
+      transition: opacity .2s, visibility .2s;
       &-lbl {
         float: left;
+
         color: @fg-color-grey;
       }
       &-val {
         float: right;
+
         width: 160px;
       }
     }
@@ -330,6 +349,8 @@
 
 .prdct-grid {
   font-size: 0;
+
+  .generate-spcftn-rules(5);
   .sctn__inr {
     margin: 8px 0 8px 8px;
   }
@@ -365,18 +386,15 @@
       height: 212px;
     }
   }
-
   .generate-spcftn-rules(@n, @i: 1) when (@i <= @n) {
+    .generate-spcftn-rules(@n, @i + 1);
     &--spcftn-@{i} .prdct-item__dtls {
       height: 108px + @spec-margin-top + @spec-height * @i;
     }
     &--spcftn-@{i}-cmpr .prdct-item__dtls {
       height: 108px + @spec-margin-top + @spec-height * @i + @compare-height;
     }
-    .generate-spcftn-rules(@n, @i + 1);
   }
-
-  .generate-spcftn-rules(5);
 }
 
 .item-grid {
@@ -517,7 +535,7 @@
 
     width: 920px;
     //padding: 0;
-    margin:4px;
+    margin: 4px;
   }
   &-item {
     display: inline-block;
@@ -572,9 +590,9 @@
 
       color: @fg-color;
 
+      cursor: pointer;
       vertical-align: top;
       white-space: normal;
-      cursor: pointer;
       &:hover {
         color: @fg-color-red;
 
@@ -590,8 +608,8 @@
       height: 90px;
     }
     .cntxt-link-item-wrpr {
-     // padding: 0;
-      margin:4px;
+      // padding: 0;
+      margin: 4px;
     }
     .cntxt-link-item {
       width: 144px;
@@ -629,8 +647,8 @@
       height: 72px;
     }
     .cntxt-link-item-wrpr {
-     // padding: 0;
-      margin:4px;
+      // padding: 0;
+      margin: 4px;
     }
     .cntxt-link-item {
       width: 144px;
@@ -663,7 +681,7 @@
     }
     .cntxt-link-item-wrpr {
       //padding: 0;
-      margin:4px;
+      margin: 4px;
     }
     .cntxt-link-item {
       width: 144px;
@@ -735,7 +753,7 @@
     .js-sldr-item-wrpr1 {
       //  padding: 5px 0;
       .cntxt-link-item {
-       // margin-left: 10px;
+        // margin-left: 10px;
         &__ttl-wrpr {
           display: inline-block;
 
@@ -800,10 +818,10 @@
     height: 80px;
   }
   &__img {
-    .absolute-center(-100%);
-
     max-width: 100%;
     max-height: 100%;
+
+    .absolute-center(-100%);
   }
   &__dtls {
     float: left;
@@ -874,7 +892,6 @@
       background-position: 35px center;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/rupee-circle-grey.png', 18px, auto);
-
       .preload('http://doypaxk1e2349.cloudfront.net/icons/rupee-circle-red.png');
       &:hover {
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/rupee-circle-red.png', 18px, auto);
@@ -884,7 +901,6 @@
       background-position: 35px center;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/info-circle-grey.png', 20px, auto);
-
       .preload('http://doypaxk1e2349.cloudfront.net/icons/info-circle-red.png');
       &:hover {
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/info-circle-red.png', 20px, auto);
@@ -894,7 +910,6 @@
       background-position: 35px center;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-grey.png', 22px, auto);
-
       .preload('http://doypaxk1e2349.cloudfront.net/icons/reviews-red.png');
       &:hover {
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/reviews-red.png', 22px, auto);
@@ -904,7 +919,6 @@
       background-position: 35px center;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/graph-grey.png', 16px, auto);
-
       .preload('http://doypaxk1e2349.cloudfront.net/icons/graph-red.png');
       &:hover {
         .image-2x('http://doypaxk1e2349.cloudfront.net/icons/graph-red.png', 16px, auto);
@@ -915,43 +929,55 @@
 
 .offer-card {
   display: block;
+
   padding: 5px;
+
   cursor: pointer;
   &__img {
-    &-wrpr {
-      float: left;
-      position: relative;
-      width: 100px;
-      height: 128px;
-    }
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+
     max-width: 100%;
     max-height: 100%;
     margin: auto;
+    &-wrpr {
+      position: relative;
+
+      float: left;
+
+      width: 100px;
+      height: 128px;
+    }
   }
   &__dtls {
     float: right;
+
     width: 115px;
     padding: 5px;
   }
   &__ttl {
     display: block;
+    overflow: hidden;
+
     height: 32px;
     margin-bottom: 10px;
+
     color: @fg-color;
     line-height: 1.4;
-    overflow: hidden;
-    .line-clamp(2);
+
     text-decoration: none;
+
+    .line-clamp(2);
   }
   &__prc {
     &-lbl {
       display: block;
+
       margin-bottom: 5px;
+
       color: @fg-color-grey;
       font-size: 11px;
     }
@@ -959,26 +985,32 @@
       color: @fg-color-blue;
       font-size: 14px;
       line-height: 18px;
+
       vertical-align: top;
     }
     &-val {
       color: @fg-color-blue;
       font-size: 18px;
+
       vertical-align: top;
     }
   }
   &__btn {
+    position: relative;
+
     visibility: hidden;
     opacity: 0;
-    position: relative;
-    padding-right: 25px;
+
     margin-top: 10px;
+    padding-right: 25px;
+
+    transition: visibility .2s, opacity .2s;
     text-align: center;
-    transition: visibility 0.2s, opacity 0.2s;
     &-arw {
       position: absolute;
       top: -1px;
       right: 15px;
+
       font-size: 20px;
     }
   }

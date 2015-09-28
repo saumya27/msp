@@ -1,6 +1,5 @@
 .hdr {
   @search-button-width: 38px;
-
   /* Search Starts */
   .srch-wdgt {
     position: relative;
@@ -82,7 +81,6 @@
       transition: background .3s ease-in;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/search-red.png', 24px, auto);
-
       .preload('http://doypaxk1e2349.cloudfront.net/icons/search-white.png');
       &:hover {
         background-color: @bg-color-red;
@@ -91,17 +89,14 @@
       }
     }
   }
-
   /* Search Ends */
-
   //JQuery UI for Autocomplete for Search Widget
   .ui-helper-hidden-accessible {
     display: none;
   }
-
-
   .ui-autocomplete {
     position: relative !important;
+
     width: 100%;
     border: 1px solid @border-color;
     border-top: 0;
@@ -109,7 +104,6 @@
     border-bottom-left-radius: 4px;
     background-color: @bg-color-white;
   }
-
   .ui-menu {
     display: block;
 
@@ -119,7 +113,6 @@
 
     list-style: none;
   }
-
   .ui-menu-item a {
     display: block;
 
@@ -132,30 +125,27 @@
 
     .ellipsis();
   }
-
   .ui-menu .ui-menu-item .ui-state-focus {
     background-color: @bg-color-gs3;
 
     font-weight: normal;
   }
-
   /* search results page css */
-
   .page-ttl {
     margin: 10px 0 -5px;
     border-bottom: 1px solid #dfe1e8;
+
     color: #c00;
     font-size: 20px;
     line-height: 35px;
   }
-
   .rslt-ctgry {
     font-size: 0;
     &__next-icon {
       float: right;
       opacity: .5;
 
-      background-position:  center;
+      background-position: center;
 
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black.png', auto, 18px);
       &:hover {
@@ -167,7 +157,7 @@
 
       width: 920px;
       //padding: 0;
-      margin:4px;
+      margin: 4px;
     }
     &-item {
       display: inline-block;
@@ -177,40 +167,48 @@
       padding: 7px;
       border: 1px solid @border-color;
       border-radius: @border-radius;
+
       font-size: 12px;
-      white-space: normal;
+
       vertical-align: top;
-      &:hover {
-        
-      }
+      white-space: normal;
       &__ttl {
         display: block;
+        overflow: hidden;
+
         height: 32px;
+
         color: @fg-color;
         line-height: 1.4;
+
+        cursor: pointer;
         vertical-align: top;
         white-space: normal;
-        overflow: hidden;
-        cursor: pointer;
       }
       &__cnt {
         display: inline-block;
+
         width: 115px;
         margin-top: 10px;
+
         vertical-align: middle;
         &-val, &-lbl {
           display: block;
         }
         &-val {
+          color: @fg-color-blue;
           font-size: 18px;
           font-weight: @font-bold;
-          color: @fg-color-blue;
         }
         &-lbl {
           margin-top: 5px;
         }
       }
       &__img {
+        max-width: 100%;
+        max-height: 100%;
+
+        vertical-align: bottom;
         &-wrpr {
           display: inline-block;
 
@@ -223,10 +221,6 @@
           text-align: right;
           vertical-align: middle;
         }
-        max-width: 100%;
-        max-height: 100%;
-
-        vertical-align: bottom;
       }
     }
   }

@@ -806,22 +806,22 @@ Theme & Color
 .ftr .ldr {
 	position: absolute;
 	top: 0;
-	left: 0;
 	right: 0;
 	bottom: 0;
-	margin: auto;
+	left: 0;
 	width: 100px;
 	height: 130px;
+	margin: auto;
 	text-align: center;
 }
 
 .hdr .ldr__text,
 .ftr .ldr__text {
 	position: absolute;
-	margin: auto;
-	left: 0;
-	right: 0;
 	top: 105px;
+	right: 0;
+	left: 0;
+	margin: auto;
 	color: #8e8e93;
 	font-size: 12px;
 }
@@ -844,9 +844,9 @@ Theme & Color
 
 .hdr .ldr__crcl,
 .ftr .ldr__crcl {
-	margin: -25px 0 0 -25px;
-	height: 50px;
 	width: 50px;
+	height: 50px;
+	margin: -25px 0 0 -25px;
 	-webkit-animation: animation-rotate 1000ms linear infinite;
 	-moz-animation: animation-rotate 1000ms linear infinite;
 	-o-animation: animation-rotate 1000ms linear infinite;
@@ -855,10 +855,10 @@ Theme & Color
 
 .hdr .ldr__crcl:before,
 .ftr .ldr__crcl:before {
-	content: "";
-	margin: -23px 0 0 -23px;
-	height: 44px;
 	width: 44px;
+	height: 44px;
+	margin: -23px 0 0 -23px;
+	content: '';
 	-webkit-animation: animation-rotate 1000ms linear infinite;
 	-moz-animation: animation-rotate 1000ms linear infinite;
 	-o-animation: animation-rotate 1000ms linear infinite;
@@ -867,10 +867,10 @@ Theme & Color
 
 .hdr .ldr__crcl:after,
 .ftr .ldr__crcl:after {
-	content: "";
-	margin: -29px 0 0 -29px;
-	height: 56px;
 	width: 56px;
+	height: 56px;
+	margin: -29px 0 0 -29px;
+	content: '';
 	-webkit-animation: animation-rotate 2000ms linear infinite;
 	-moz-animation: animation-rotate 2000ms linear infinite;
 	-o-animation: animation-rotate 2000ms linear infinite;
@@ -1364,9 +1364,9 @@ Theme & Color
 
 .hdr .btm-info,
 .ftr .btm-info {
-	text-align: center;
 	margin: 20px 0;
 	color: #8e8e93;
+	text-align: center;
 }
 
 .hdr .sort,
@@ -2026,6 +2026,13 @@ Theme & Color
 	background-size: 6px auto;
 }
 
+.hdr .drpdwn-menu__ctgry:before {
+	content: '';
+	position: absolute;
+	visibility: hidden;
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black-small.png);
+}
+
 .hdr .drpdwn-menu__ctgry:hover,
 .hdr .drpdwn-menu__ctgry:active {
 	color: #cc0000;
@@ -2046,13 +2053,6 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black-small.png);
 	background-repeat: no-repeat;
 	background-size: 6px auto;
-}
-
-.hdr .drpdwn-menu__ctgry:before {
-	content: '';
-	position: absolute;
-	visibility: hidden;
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black-small.png);
 }
 
 .hdr .drpdwn-sub-menu {
@@ -2306,19 +2306,19 @@ Theme & Color
 	border: 1px solid #dfe1e8;
 	border-radius: 3px;
 	font-size: 12px;
-	white-space: normal;
 	vertical-align: top;
+	white-space: normal;
 }
 
 .hdr .rslt-ctgry-item__ttl {
 	display: block;
+	overflow: hidden;
 	height: 32px;
 	color: #3b3b3b;
 	line-height: 1.4;
+	cursor: pointer;
 	vertical-align: top;
 	white-space: normal;
-	overflow: hidden;
-	cursor: pointer;
 }
 
 .hdr .rslt-ctgry-item__cnt {
@@ -2334,9 +2334,9 @@ Theme & Color
 }
 
 .hdr .rslt-ctgry-item__cnt-val {
+	color: #3d6a8c;
 	font-size: 18px;
 	font-weight: 600;
-	color: #3d6a8c;
 }
 
 .hdr .rslt-ctgry-item__cnt-lbl {
@@ -2573,19 +2573,19 @@ Theme & Color
 	max-height: 500px;
 }
 
-.hdr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon,
-.ftr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon {
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png);
-	background-repeat: no-repeat;
-	background-size: 8px auto;
-}
-
 .hdr .drpdwn-wdgt:hover:before,
 .ftr .drpdwn-wdgt:hover:before {
 	content: '';
 	position: absolute;
 	visibility: hidden;
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png);
+}
+
+.hdr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon,
+.ftr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png);
+	background-repeat: no-repeat;
+	background-size: 8px auto;
 }
 
 .hdr .drpdwn-wdgt--l,
@@ -2649,13 +2649,6 @@ Theme & Color
 	background-size: 20px auto;
 }
 
-.hdr .user-link__rcnt-view:hover .user-link__icon-rcnt-view,
-.ftr .user-link__rcnt-view:hover .user-link__icon-rcnt-view {
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-red.png);
-	background-repeat: no-repeat;
-	background-size: 20px auto;
-}
-
 .hdr .user-link__rcnt-view:before,
 .ftr .user-link__rcnt-view:before {
 	content: '';
@@ -2664,16 +2657,16 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-red.png);
 }
 
+.hdr .user-link__rcnt-view:hover .user-link__icon-rcnt-view,
+.ftr .user-link__rcnt-view:hover .user-link__icon-rcnt-view {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-red.png);
+	background-repeat: no-repeat;
+	background-size: 20px auto;
+}
+
 .hdr .user-link__icon-svd-prdcts,
 .ftr .user-link__icon-svd-prdcts {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-grey.png);
-	background-repeat: no-repeat;
-	background-size: 16px auto;
-}
-
-.hdr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts,
-.ftr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts {
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-red.png);
 	background-repeat: no-repeat;
 	background-size: 16px auto;
 }
@@ -2686,18 +2679,17 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-red.png);
 }
 
+.hdr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts,
+.ftr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-red.png);
+	background-repeat: no-repeat;
+	background-size: 16px auto;
+}
+
 .hdr .user-link__icon-rvws,
 .ftr .user-link__icon-rvws {
 	background-position: left center;
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-grey-small.png);
-	background-repeat: no-repeat;
-	background-size: 18px auto;
-}
-
-.hdr .user-link__rvws:hover .user-link__icon-rvws,
-.ftr .user-link__rvws:hover .user-link__icon-rvws {
-	background-position: left center;
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png);
 	background-repeat: no-repeat;
 	background-size: 18px auto;
 }
@@ -2710,18 +2702,18 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png);
 }
 
+.hdr .user-link__rvws:hover .user-link__icon-rvws,
+.ftr .user-link__rvws:hover .user-link__icon-rvws {
+	background-position: left center;
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small.png);
+	background-repeat: no-repeat;
+	background-size: 18px auto;
+}
+
 .hdr .user-link__icon-rwrds,
 .ftr .user-link__icon-rwrds {
 	background-position: left center;
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-grey-small.png);
-	background-repeat: no-repeat;
-	background-size: 17px auto;
-}
-
-.hdr .user-link__rwrds:hover .user-link__icon-rwrds,
-.ftr .user-link__rwrds:hover .user-link__icon-rwrds {
-	background-position: left center;
-	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png);
 	background-repeat: no-repeat;
 	background-size: 17px auto;
 }
@@ -2732,6 +2724,14 @@ Theme & Color
 	position: absolute;
 	visibility: hidden;
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png);
+}
+
+.hdr .user-link__rwrds:hover .user-link__icon-rwrds,
+.ftr .user-link__rwrds:hover .user-link__icon-rwrds {
+	background-position: left center;
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-red-small.png);
+	background-repeat: no-repeat;
+	background-size: 17px auto;
 }
 
 .hdr .user-lgt,
@@ -3020,12 +3020,12 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-grey-small@2x.png);
 }
 
-.hdr .drpdwn-menu__ctgry:hover .drpdwn-menu__icon-rght,
-.hdr .drpdwn-menu__ctgry:active .drpdwn-menu__icon-rght {
+.hdr .drpdwn-menu__ctgry:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black-small@2x.png);
 }
 
-.hdr .drpdwn-menu__ctgry:before {
+.hdr .drpdwn-menu__ctgry:hover .drpdwn-menu__icon-rght,
+.hdr .drpdwn-menu__ctgry:active .drpdwn-menu__icon-rght {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-right-black-small@2x.png);
 }
 
@@ -3066,13 +3066,13 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small@2x.png);
 }
 
-.hdr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon,
-.ftr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon {
+.hdr .drpdwn-wdgt:hover:before,
+.ftr .drpdwn-wdgt:hover:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small@2x.png);
 }
 
-.hdr .drpdwn-wdgt:hover:before,
-.ftr .drpdwn-wdgt:hover:before {
+.hdr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon,
+.ftr .drpdwn-wdgt:hover .drpdwn-wdgt__down-icon {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small@2x.png);
 }
 
@@ -3081,13 +3081,13 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-grey@2x.png);
 }
 
-.hdr .user-link__rcnt-view:hover .user-link__icon-rcnt-view,
-.ftr .user-link__rcnt-view:hover .user-link__icon-rcnt-view {
+.hdr .user-link__rcnt-view:before,
+.ftr .user-link__rcnt-view:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-red@2x.png);
 }
 
-.hdr .user-link__rcnt-view:before,
-.ftr .user-link__rcnt-view:before {
+.hdr .user-link__rcnt-view:hover .user-link__icon-rcnt-view,
+.ftr .user-link__rcnt-view:hover .user-link__icon-rcnt-view {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/eye-red@2x.png);
 }
 
@@ -3096,13 +3096,13 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-grey@2x.png);
 }
 
-.hdr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts,
-.ftr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts {
+.hdr .user-link__svd-prdcts:before,
+.ftr .user-link__svd-prdcts:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-red@2x.png);
 }
 
-.hdr .user-link__svd-prdcts:before,
-.ftr .user-link__svd-prdcts:before {
+.hdr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts,
+.ftr .user-link__svd-prdcts:hover .user-link__icon-svd-prdcts {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/heart-red@2x.png);
 }
 
@@ -3111,13 +3111,13 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-grey-small@2x.png);
 }
 
-.hdr .user-link__rvws:hover .user-link__icon-rvws,
-.ftr .user-link__rvws:hover .user-link__icon-rvws {
+.hdr .user-link__rvws:before,
+.ftr .user-link__rvws:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small@2x.png);
 }
 
-.hdr .user-link__rvws:before,
-.ftr .user-link__rvws:before {
+.hdr .user-link__rvws:hover .user-link__icon-rvws,
+.ftr .user-link__rvws:hover .user-link__icon-rvws {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/reviews-red-small@2x.png);
 }
 
@@ -3126,13 +3126,13 @@ Theme & Color
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-grey-small@2x.png);
 }
 
-.hdr .user-link__rwrds:hover .user-link__icon-rwrds,
-.ftr .user-link__rwrds:hover .user-link__icon-rwrds {
+.hdr .user-link__rwrds:before,
+.ftr .user-link__rwrds:before {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-red-small@2x.png);
 }
 
-.hdr .user-link__rwrds:before,
-.ftr .user-link__rwrds:before {
+.hdr .user-link__rwrds:hover .user-link__icon-rwrds,
+.ftr .user-link__rwrds:hover .user-link__icon-rwrds {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/coins-red-small@2x.png);
 }
 

@@ -3,7 +3,6 @@
   float: left;
 
   width: @sidebar-width;
-
   .algn-wrpr & > * + * {
     margin-top: 20px;
   }
@@ -70,7 +69,7 @@
   &--tv {
     .ctgry-item__icon {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tv-grey.png', 24px, auto);
-      .preload('http://doypaxk1e2349.cloudfront.net/icons/tv-red.png')
+      .preload('http://doypaxk1e2349.cloudfront.net/icons/tv-red.png');
     }
     &:hover .ctgry-item__icon {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tv-red.png', 24px, auto);
@@ -205,7 +204,7 @@
 
     vertical-align: middle;
   }
-  &__item{
+  &__item {
     &-dtls {
       font-size: 12px;
 
@@ -213,14 +212,16 @@
     }
     &-cnt {
       margin-left: 5px;
+
       color: #bbb;
     }
   }
   &__img-wrpr + &__item-dtls {
     display: inline-block;
+
     width: 146px - 2*@border-width;
     margin-left: @inline-block-margin;
-  } 
+  }
   &__item + &__item {
     border-top: 1px solid @border-color;
   }
