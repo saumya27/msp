@@ -376,16 +376,10 @@ var MSP = {
         /**
          * MSP.utils.cycleShift => cycle through set of values
          * 
-         * @param {object} task -> {
-         *   @param {$node} "node" : $node, // jquery node
-         *   @param {function} "callback" : {
-         *     "definition" : callbackFunction, // defintion of the task to be run
-         *     "context" : this,
-         *     "arguments" : [args, ...] // arguments of the task if any.
-         *   }
-         * }
+         * @param {Array} valueSet -> Set of values 
+         * @param {Primitive} currentValue -> currentItem in the valueSet to get the nextItem.
          *
-         * @return {object} lazyload -> to enable chaining -> .run() for immediate invocation.
+         * @return {Primitive} -> to enable chaining -> nextItem in the valueSet.
          */
         "cycleShift" : function (valueSet, currentValue) {
             var currentIndex;
