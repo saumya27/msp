@@ -26,10 +26,9 @@
     cursor: pointer;
 
     .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-grey.png', 28px, auto);
-
     .preload(
-      'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png',
-      'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png'
+    'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png',
+    'http://doypaxk1e2349.cloudfront.net/icons/heart-circle-red.png'
     );
     &:hover {
       .image-2x('http://doypaxk1e2349.cloudfront.net/icons/heart-circle-dark-grey.png', 28px, auto);
@@ -473,10 +472,11 @@
     &-wrpr {
       color: @fg-color-grey;
       &--col-2 {
-        float:left; 
-        width:220px;
+        float: left;
+
+        width: 220px;
         & + & {
-          margin-left:20px;
+          margin-left: 20px;
         }
       }
     }
@@ -632,14 +632,15 @@
     border-top: 1px solid @border-color;
   }
   &__item-dscrptn {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  &__img-wrpr + &__item-dscrptn {
     display: inline-block;
 
     width: 630px - 2*@border-width;
     margin-left: @inline-block-margin;
     padding-left: 20px;
-
-    font-size: 14px;
-    line-height: 24px;
 
     vertical-align: middle;
   }

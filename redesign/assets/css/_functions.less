@@ -20,7 +20,7 @@
     content: '';
     position: absolute;
     visibility: hidden;
-    .-();
+    //.-();
   }
   @media
     only screen and (-webkit-min-device-pixel-ratio: 2),
@@ -46,8 +46,8 @@
 }
 
 .appearance(@appearance: none) {
-     -moz-appearance: @appearance;
       -ms-appearance: @appearance;
+     -moz-appearance: @appearance;
   -webkit-appearance: @appearance;
           appearance: @appearance;
 }
