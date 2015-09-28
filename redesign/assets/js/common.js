@@ -34,8 +34,7 @@ $(document).ready(function() {
   $.ajax({ 
     type: 'GET', 
     //url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-    //url: "/records.json",
-    url: "records.json",
+    url: "/records.json",
     dataType: 'json'
   }).done(function (data) { 
     $.each(data, function (index, item) {
