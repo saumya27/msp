@@ -377,12 +377,8 @@ var PriceTable = {
                     if (json.pricetable) {
                         $(".prc-tbl-inr").html(json.pricetable);
                         if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
-                            $showMoreStores.show();
-                            if ($showMoreStores.data("collapsed")) {
-                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).show();
-                            } else {
-                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
-                            }
+                            $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
+                            $showMoreStores.show().data("collapsed", true).text("Show More Stores");
                         } else {
                             $showMoreStores.hide();
                         }

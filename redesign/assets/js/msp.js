@@ -8,11 +8,6 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     autocompleteCache = {},
     autoPopupTimeout = 20000,
     pageLeaveTimeout = 4000,
-    formActions = {
-        'electronics': 'http://www.mysmartprice.com/msp/search/search.php',
-        'fashion': 'http://fashion.mysmartprice.com/search/',
-        'books': 'http://www.mysmartprice.com/books/search.php'
-    },
     ua = navigator.userAgent.toLowerCase(),
     isEdge = function () {
         return ua.indexOf("edge") !== -1;
@@ -25,7 +20,7 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     },
     qS = queryString(window.location.search);
 
-MSP = {
+var MSP = {
     "dataPoints" : {
         headerHeight : $(".hdr-size").height()
     },
@@ -376,16 +371,10 @@ MSP = {
         /**
          * MSP.utils.cycleShift => cycle through set of values
          * 
-         * @param {object} task -> {
-         *   @param {$node} "node" : $node, // jquery node
-         *   @param {function} "callback" : {
-         *     "definition" : callbackFunction, // defintion of the task to be run
-         *     "context" : this,
-         *     "arguments" : [args, ...] // arguments of the task if any.
-         *   }
-         * }
+         * @param {Array} valueSet -> Set of values 
+         * @param {Primitive} currentValue -> currentItem in the valueSet to get the nextItem.
          *
-         * @return {object} lazyload -> to enable chaining -> .run() for immediate invocation.
+         * @return {Primitive} -> to enable chaining -> nextItem in the valueSet.
          */
         "cycleShift" : function (valueSet, currentValue) {
             var currentIndex;
@@ -808,9 +797,9 @@ elementSlider =  {
 // Takes the argument, or query string or hash of the current URL
 // and returns an object with those key-value pairs as its properties
 function queryString(searchOrHash) {
-    var query;
-    var query_string = {};
-    var vars = query.substring(1).split("&");
+    var query,
+        query_string = {},
+        vars;
     
     if (searchOrHash) {
         query = searchOrHash;
@@ -821,6 +810,8 @@ function queryString(searchOrHash) {
     } else {
         return;
     }
+
+    vars = query.substring(1).split("&");
 
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
