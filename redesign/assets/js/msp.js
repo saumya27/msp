@@ -25,7 +25,7 @@ var CHROME_EXT_WEB_URL = "https://chrome.google.com/webstore/detail/mysmartprice
     },
     qS = queryString(window.location.search);
 
-MSP = {
+var MSP = {
     "dataPoints" : {
         headerHeight : $(".hdr-size").height()
     },
@@ -808,9 +808,9 @@ elementSlider =  {
 // Takes the argument, or query string or hash of the current URL
 // and returns an object with those key-value pairs as its properties
 function queryString(searchOrHash) {
-    var query;
-    var query_string = {};
-    var vars = query.substring(1).split("&");
+    var query,
+        query_string = {},
+        vars;
     
     if (searchOrHash) {
         query = searchOrHash;
@@ -821,6 +821,8 @@ function queryString(searchOrHash) {
     } else {
         return;
     }
+
+    vars = query.substring(1).split("&");
 
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");

@@ -34,16 +34,16 @@ $(document).ready(function() {
   $.ajax({ 
     type: 'GET', 
     //url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-    url: "/records.json",
-    dataType: 'json',
-    success: function (data) { 
-        $.each(data, function(index, item) {
-            if($("." + item.clas).length>0) {
-                $("." + item.clas).append(item.content);
-               elementSlider.init($("." + item.clas + " .js-sldr"));
-            }
-        });
-    }
+    //url: "/records.json",
+    url: "records.json",
+    dataType: 'json'
+  }).done(function (data) { 
+    $.each(data, function (index, item) {
+      if ($("." + item.clas).length > 0) {
+        $("." + item.clas).append(item.content);
+        elementSlider.init($("." + item.clas + " .js-sldr"));
+      }
+    });
   });
 
   // OLX banner AJAX call
