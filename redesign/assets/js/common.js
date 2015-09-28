@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  var subcategory = $('#msp_body').attr('category');
   // Feedback button load
   $("body").append([
     '<span data-href="/feedback.html" class="js-popup-trgt text-link">',
@@ -18,20 +19,17 @@ $(document).ready(function() {
 
   getAutopopupURL($(".auto-popup-data"));
 
-
-
-  
-  var subcategory = $('#msp_body').attr('category');
   $.ajax({
-      type:'GET',
-      url:"http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-      dataType:'json',success:function(data){$.each(data,function(index,item){
-        if($("#"+item.id).length>0){
-          $("#"+item.id).append(item.content);
-        }
-      });
-    }
-  });
+      type: 'GET',
+      url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
+      dataType: 'json'
+  }).done(function (data) {
+    $.each(data, function (index, item) {
+      if ($("#" + item.id).length > 0) {
+        $("#" + item.id).append(item.content);
+      }
+    });
+  })
   
   // Deals and Recent Views in Bottom of Page AJAX call
   $.ajax({ 
@@ -101,6 +99,9 @@ function loginCallback(fn, context, params) {
 function update_ui() {
   var defaultImagePath = "http://doypaxk1e2349.cloudfront.net/icons/user-default.png",
       defaultLoginName = "My Account",
+      msp_login = getCookie("msp_login"),
+      msp_user_image = getCookie("msp_user_image"),
+      msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email"),
       userLinks = [
         '<div class="user-link">',
           '<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile">',
@@ -112,10 +113,7 @@ function update_ui() {
           '<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile">',
             '<span class="user-link__icon-rwrds"></span> My Rewards</div>',
         '</div>'
-      ].join(""),
-      msp_login = getCookie("msp_login"),
-      msp_user_image = getCookie("msp_user_image"),
-      msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email");
+      ].join("");
   
     if (msp_login == "1") {
         $(".acnt").hide();
