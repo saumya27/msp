@@ -1119,7 +1119,11 @@ $doc.on("click", ".js-open-link", function () {
         }, window, [])
     }
     else {
-        window.location.href = url;
+        if (inNewTab === true) {
+            window.open(url);
+        } else {
+            window.location.href = url;
+        }
     }
     return false;
 });
