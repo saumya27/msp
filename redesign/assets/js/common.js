@@ -1,7 +1,11 @@
 $(document).ready(function() {
+  var subcategory = $('#msp_body').attr('category');
   // Feedback button load
-    var feedbackbutton = '<span data-href="/feedback.html" class="js-popup-trgt text-link"><img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" /></span>';
-    $("body").append(feedbackbutton);
+  $("body").append([
+    '<span data-href="/feedback.html" class="js-popup-trgt text-link">',
+      '<img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" />',
+    '</span>'
+  ].join(""));
   
   //Event Hadler for Logout
   $(document).on("click", ".js-user-lgt", function() {
@@ -15,28 +19,26 @@ $(document).ready(function() {
 
   getAutopopupURL($(".auto-popup-data"));
 
-
-
-  
-  var subcategory = $('#msp_body').attr('category');
   $.ajax({
-      type:'GET',
-      url:"http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-      dataType:'json',success:function(data){$.each(data,function(index,item){
-        if($("#"+item.id).length>0){
-          $("#"+item.id).append(item.content);
-        }
-      });
-    }
-  });
+      type: 'GET',
+      url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
+      dataType: 'json'
+  }).done(function (data) {
+    $.each(data, function (index, item) {
+      if ($("#" + item.id).length > 0) {
+        $("#" + item.id).append(item.content);
+      }
+    });
+  })
   
   // Deals and Recent Views in Bottom of Page AJAX call
-  $.ajax({ 
-    type: 'GET', 
+  $.ajax({
+    type: 'GET',
     //url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-    url: "/records.json",
+    //url: "/records.json",
+    url: "records.json",
     dataType: 'json'
-  }).done(function (data) { 
+  }).done(function (data) {
     $.each(data, function (index, item) {
       if ($("." + item.clas).length > 0) {
         $("." + item.clas).append(item.content);
@@ -65,9 +67,9 @@ $(document).ready(function() {
 var loginCallbackQueue = [];
 
 function loginCallback(fn, context, params) {
-  if (getCookie("msp_login") == "1")
+  if (getCookie("msp_login") == "1") {
     fn.apply(context, params);
-  else {
+  } else {
     loginCallbackQueue.push(function () {
       fn.apply(context, params);
     });
@@ -97,6 +99,9 @@ function loginCallback(fn, context, params) {
 function update_ui() {
   var defaultImagePath = "http://doypaxk1e2349.cloudfront.net/icons/user-default.png",
       defaultLoginName = "My Account",
+      msp_login = getCookie("msp_login"),
+      msp_user_image = getCookie("msp_user_image"),
+      msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email"),
       userLinks = [
         '<div class="user-link">',
           '<div class="drpdwn-wdgt__item user-link__rcnt-view hvr-red js-open-link" data-open-link="/users/profile">',
@@ -108,52 +113,57 @@ function update_ui() {
           '<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile">',
             '<span class="user-link__icon-rwrds"></span> My Rewards</div>',
         '</div>'
-      ].join(""),
-      msp_login = getCookie("msp_login"),
-      msp_user_image = getCookie("msp_user_image"),
-      msp_login_name = getCookie("msp_login_name") || getCookie("msp_login_email");
+      ].join("");
   
-    if (msp_login == "1") {
-        $(".acnt").hide();
-        $(".acnt").after(userLinks);
-        $(".js-user-lgt").show();
-        $(".js-user-name").text(msp_login_name);
-        if (msp_user_image)
-            $(".user-img").attr("src", msp_user_image);
-    } else {
-        $(".js-user-lgt").hide();
-        $(".user-link").remove();
-        $(".js-user-name").text(defaultLoginName);
-        $(".user-img").attr("src", defaultImagePath);
-        $(".acnt").show();
+  if (msp_login == "1") {
+    $(".acnt").hide();
+    $(".acnt").after(userLinks);
+    $(".js-user-lgt").show();
+    $(".js-user-name").text(msp_login_name);
+    if (msp_user_image) {
+      $(".user-img").attr("src", msp_user_image);
     }
+  } else {
+    $(".js-user-lgt").hide();
+    $(".user-link").remove();
+    $(".js-user-name").text(defaultLoginName);
+    $(".user-img").attr("src", defaultImagePath);
+    $(".acnt").show();
+  }
 }
 
 function loginme(msg) {
+  var responseInfo,
+      wiz_uid = get_uid(),
+      wiz_msg = '"' + msg + '"';
+  
   setCookie("msp_login", "1", 365);
   if (msg.indexOf(",") > -1) {
-    var responseInfo = msg.split(",");
+    responseInfo = msg.split(",");
     setCookie("msp_login_uid", responseInfo[0], 365);
     setCookie("msp_login_email", responseInfo[1], 365);
     msg = responseInfo[1];
-  } else
+  } else {
     setCookie("msp_login_email", msg, 365);
-  var wiz_uid = get_uid(),
-      wiz_msg = '"' + msg + '"';
+  }
+  
   wizrocket.profile.push({
     "Site": {
       "Identity": wiz_uid,
       "Email": wiz_msg
     }
   });
+  
   $.get("http://www.mysmartprice.com/users/set_username_cookie.php", {
     email: msg
   }, function (name) {
     setCookie("msp_login_name", name, 365);
   });
+  
   update_ui();
-  while (loginCallbackQueue.length)
+  while (loginCallbackQueue.length) {
     (loginCallbackQueue.shift())();
+  }
 }
 
 function loginme_by_fb(msg, img) {
@@ -170,7 +180,6 @@ function logoutme() {
 
 // LOGIN FUNCTIONS END HERE
 
-
 // Count no. of pages visited by user
 function countPages() {
   var number = getCookie("num_pages");
@@ -179,18 +188,19 @@ function countPages() {
   setCookie("num_pages", number, 7);
 }
 
-
 // I can't find any usage for this function - Rohit
 function trackLink(category, action, label, value, link) {
   if (typeof(_gaq) === "undefined") return;
+  
   try {
     _gaq.push(["_trackEvent", category, action, label, value]);
   } catch (err) {}
-  setTimeout((function() {
+  setTimeout(function () {
     location.href = link;
-  }), 400);
+  }, 400);
   return false;
 }
+
 /*
   // How to use:
   <a onclick="return trackLink('something','somewhere','somehow', null, this.href);" href="/link/to/page">Link</a>

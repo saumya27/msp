@@ -1095,7 +1095,18 @@ if ($.QueryString["utm_source"]) {
     setCookie("utm_source", $.QueryString['utm_source']);
 }
 
-ListPage.controller.init();
+// if category is mobile then first show mobile list and then show applied filters list.
+if ($("#mobilefilterwrapper").length) {
+    $.ajax({
+        url: "/msp/prop_filters/mobile-new.html"
+    }).done(function (response) {
+        var data = response.split("//&//#");
+        $("#mobilefilterwrapper").html(data[0]);
+        ListPage.controller.init();
+    });
+} else {
+    ListPage.controller.init();
+}
 ProductList.initGrid();
 
 // binding other links to filters.
