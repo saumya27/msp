@@ -1117,8 +1117,7 @@ $doc.on("click", ".js-open-link", function () {
                 }
             }
         }, window, [])
-    }
-    else {
+    } else {
         if (inNewTab === true) {
             window.open(url);
         } else {
