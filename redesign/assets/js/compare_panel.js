@@ -1,237 +1,292 @@
 
-var sub_category = $('#msp_body').attr('category');
+var sub_category = $('.body-wrpr').data('category');
 var flyingImageCount = 0, check_if_added;
+var removingOther = false;
 
 $(document).ready( function(){
-	
-	fillComparePanelAjax();
-	
+    
+    fillComparePanelAjax();
 
-	compareAutoComplete(); // initializing the autoComplete
+    compareAutoComplete(); // initializing the autoComplete
 
-	var compare_ids = (getCookie('compareIDs') || "").split(',');
-	for( id = 0; id < compare_ids.length ; id++){
-		$(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
-	}
+    $('.js-add-to-cmpr').prop('checked', false);
+    var compare_ids = (getCookie('compareIDs') || "").split(',');
+    for( id = 0; id < compare_ids.length ; id++){
+        $(this).find('.compare-entrypoint#compare'+ compare_ids[id]).prop("checked",true);
+    }
 });
 
 function fillComparePanelAjax(){
-	var request= {};
-	request.mspids = getCookie("compareIDs") || "";
-	$.ajax({
-		type: "GET",
-        url: "compare_panel.html",
-        // dataType: "json",
+    var request= {};
+    request.mspids = getCookie("compareIDs") || "";
+    $.ajax({
+        type: "GET",
+        //url: "/compare/compare_panel_ajax.php",
+        url: "/rd/compare_panel.html",
         data: request,
         success: function(data) {
-        		$('.cmpr-pnl-wrpr').replaceWith(data);
-        		isComparePanelFull();// check if already 4 products are there in compare panel
-				isDifferentCategory();	// check if this product is of same category that of those already in compare panel
-				
-				// if(alreadyAdded() && $('.cmpr_btn').length){// check_if_added = false;
-				// 	disableCompareCB("Item already added");
-				// }
+                $('.cmpr-pnl-wrpr').replaceWith(data);
+                isComparePanelFull();// check if already 4 products are there in compare panel
+                isDifferentCategory();  // check if this product is of same category that of those already in compare panel
+                
+                if(alreadyAdded() && $('.js-pdp-cmpr').length){// check_if_added = false;
+                    disableCompareCB("Item already added");
+                }
+                generateComparePageUrl();
             }
     });
 }
 
+function addCompareCheckbox(){
+    var add_comp_html, this_mspid;
+    $('.msplistitem').each(function(){
+        this_mspid = $(this).data('mspid');
+        add_comp_html = '<div class="add-to-cmpr"> <input type="checkbox" class="compare-entrypoint" id="compare'+this_mspid+'"> <label for="compare'+this_mspid+'"><img class="add-to-cmpr__img" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/add_to_compare.png" alt="add to compare"></label> </div>';
+        $(this).find('.add-to-cmpr').replaceWith(add_comp_html);
+    });
+}
 
-$('body').on('click','.sctn__compare-btn', function(){
-	var mspid, mspids, subcategory;
+function generateComparePageUrl(){
+    var mspid, mspids, subcategory;
 
-	$('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
-		mspid = $(this).data('comparemspid');
+    $('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
+        mspid = $(this).data('comparemspid');
 
-		if(mspids)
-			mspids = mspids + "," + mspid;
-		else
-			mspids = mspid;
-	});
+        if(mspids)
+            mspids = mspids + "," + mspid;
+        else
+            mspids = mspid;
+    });
 
-	subcategory = getCookie("compareSubCategory") || "";
-	$(this).attr('href',"http://test.mysmartprice.com/expert/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory);
-});
+    mspids = mspids || "";
+    subcategory = getCategoryFromPanel();
+    var url = "/compare/index.php" + "?mspids=" + mspids + "&subcategory=" + subcategory;
+    $('.sctn__compare-btn').attr('href',url);
+}
 
 
-$('body').on('click', '.remove',  function(){
-	// if($(".cmpr-pnl-list__item.cmpr0").length <= 4){
-		$lastIndex = $(this).parents(".sctn__inr").children().last();
+$('body').on('click', '.cmpr-pnl-list__item-rmv',  function(){
+    if(!removingOther){
+        $lastIndex = $(this).parents(".sctn__inr").children().last();
 
-		$thisProduct = $(this).parent(".cmpr-pnl-list__item");
-		var $blankProduct =  $(".cmpr0:first").clone();
-			
-	   $thisProduct.slideUp('slow', function() {
-	   		$blankProduct.insertAfter( $lastIndex );
-	   		// uncheck corresponding checkbox
-	   		var this_MSP_ID = $thisProduct.data('comparemspid');		
-	   		$("#compare"+this_MSP_ID).attr('checked', false);
-	   		
-	   		$thisProduct.remove();
-	   		 
-	   		if(!isComparePanelFull() && !isDifferentCategory())
-	   			enableCompareCB();
+        $thisProduct = $(this).parent(".cmpr-pnl-list__item");
+        var $blankProduct =  $(".cmpr0:last").clone();
+        removingOther = true;
+        $('.sctn__compare-btn').attr('href','#');
+       $thisProduct.slideUp('slow', function() {
+            $blankProduct.insertAfter( $lastIndex );
+            // uncheck corresponding checkbox
+            var this_MSP_ID = $thisProduct.data('comparemspid');        
+            $("#compare"+this_MSP_ID).attr('checked', false);
+            
+            $thisProduct.remove();
+             
+            if(!isComparePanelFull())
+                enableCompareCB();
+            else if ($(".cmpr-pnl-list__item.cmpr0").length != 5 && !isDifferentCategory())
+                enableCompareCB();
 
-			if($(".cmpr-pnl-list__item.cmpr0").length == 5){
-				removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
-			} 		
-
-			// compareAutoComplete();
-			setCookieCompareIDS(); // re-set comparemspid cookie
-	   });
-	// }
+            if($(".cmpr-pnl-list__item.cmpr0").length == 5){
+                removeCookie('compareSubCategory'); // remove sub-cat cookies if compare panel becomes empty
+            }       
+            removingOther = false;
+            generateComparePageUrl();
+            setCookieCompareIDS(); // re-set comparemspid cookie
+       });
+    }
 });
 
 $('body').on('change',".js-add-to-cmpr", function(){
-	// if(!check_if_added){
-		var id =  $(this).parents().closest('.prdct-item').data('mspid');
-		var imgtofly = $(this).parents().find('.prdct-item__img')[0];
-		var title =  $(this).closest('.prdct-item').find('.prdct-item__name').text();
-		var $thisCB = $(this);
+    // if(!check_if_added){
+        var id =  $(this).parents().closest('.prdct-item').data('mspid');
+        var imgtofly = $(this).parents().find('.prdct-item__img')[0];
+        var title = $(this).closest('.prdct-item').find('.prdct-item__name').text();
+        var $thisCB = $(this);
 
-		$thisCB.attr('disabled','disabled');
+        $thisCB.attr('disabled','disabled');
 
-		if($thisCB.prop('checked')){
-			flyImage(imgtofly, id, title, $thisCB);
-		}
-		else{
-			if(!isComparePanelOpen()){
-				$(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
-			}
-			$(".cmpr-pnl-list__item[data-comparemspid='" + id + "']").find('.remove').click();
-		}
-		isComparePanelFull(); 
-	// }
+        if($thisCB.prop('checked')){
+
+            if(isDifferentCategory()){
+                $thisCB.prop('checked',false);
+                disableCompareCB("Cannot campare between different categories");
+$thisCB.trigger("mouseover");   
+            }
+            else if($(".cmpr-pnl-list__item.cmpr0").length < 2){
+                $thisCB.prop('checked',false);
+                disableCompareCB("Cannot add more than 4 products at a time");
+$thisCB.trigger("mouseover");       
+    }
+            else if ($(".cpmr_btn").length && $(".prdct-dtl__ttl").data('mspid')== ui.item.mspid){
+                $thisCB.prop('checked',false);
+                disableCompareCB("Item already added");
+$thisCB.trigger("mouseover");       
+    }
+            else{
+                enableCompareCB();
+
+            flyImage(imgtofly, id, title, $thisCB);}
+        }
+        else{
+            if(!isComparePanelOpen()){
+                $(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+            }
+            $(".cmpr-pnl-list__item[data-comparemspid='" + id + "']").find('.remove').click();
+        }
+        isComparePanelFull(); 
+    // }
 });
 
-// $('body').on('click', '.cmpr_btn:not([data-disable="true"])', function(){
- $('body').on('click', '.js-pdp-cmpr', function(){
-	var id =  $('.prdct-dtl__ttl').data('mspid');
-	var imgtofly = $('.prdct-dtl__img')[0];
-	var title = $('.prdct-dtl__ttl').text();
-	var $thisCB = $(this);
+$('body').on('click', '.js-pdp-cmpr:not([data-disable="true"])', function(){
+    var id =  $('.prdct-dtl__ttl').data('mspid');
+    var imgtofly = $('.prdct-dtl__img')[0];
+    var title = $('.prdct-dtl__ttl').text();
+    var $thisCB = $(this);
 
-	flyImage(imgtofly, id, title, $thisCB);
-	disableCompareCB("Item already added to compare panel");
-	isComparePanelFull(); 
+    flyImage(imgtofly, id, title, $thisCB);
+    disableCompareCB("Item already added to compare panel");
+    isComparePanelFull(); 
 });
 
-$('body').on('click', ".compare-panel__close",  function(){
-	var addCompareSideBar = $(".cmpr-pnl-wrpr");
-	if( addCompareSideBar.hasClass("add-cmp-ml") ) {
-		addCompareSideBar.removeClass("add-cmp-ml").addClass("add-cmp-mr");
-		addCompareSideBar.find('.cmpr-pnl').removeClass('cmpr-pnl--bx-shdw');
-	} else {
-		addCompareSideBar.removeClass("add-cmp-mr").addClass("add-cmp-ml");
-		addCompareSideBar.find('.cmpr-pnl').addClass('cmpr-pnl--bx-shdw');
-	}
+$('body').on('click', ".cmpr-pnl__close",  function(){
+    var addCompareSideBar = $(".cmpr-pnl-wrpr");
+    if( addCompareSideBar.hasClass("add-cmp-ml") ) {
+        addCompareSideBar.removeClass("add-cmp-ml").addClass("add-cmp-mr");
+        addCompareSideBar.find('.cmpr-pnl').removeClass('cmpr-pnl--bx-shdw');
+    } else {
+        addCompareSideBar.removeClass("add-cmp-mr").addClass("add-cmp-ml");
+        addCompareSideBar.find('.cmpr-pnl').addClass('cmpr-pnl--bx-shdw');
+    }
 }); // End of Click
 
 function alreadyAdded(){
-	var alreadyAdded = false;
-	$('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
-		if( $(this).data("comparemspid") == $('.mspSingleTitle').data('mspid')){
-			alreadyAdded=  true; 
-		}
-	});
-	return alreadyAdded;
+    var alreadyAdded = false;
+    $('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
+        if( $(this).data("comparemspid") == $('.prdct-dtl__ttl').data('mspid')){
+            alreadyAdded=  true; 
+        }
+    });
+    return alreadyAdded;
 }
 // check if panel is open
 function isComparePanelOpen(){
-	var addCompareSideBar = $(".cmpr-pnl-wrpr");
-	if( addCompareSideBar.hasClass("add-cmp-ml") ) {
-		return true;
-	} else {
-		return false;
-	}
+    var addCompareSideBar = $(".cmpr-pnl-wrpr");
+    if( addCompareSideBar.hasClass("add-cmp-ml") ) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function disableCompareCB(calloutMSG){
-	if($('.compare-entrypoint').length){
-		$('.compare-entrypoint:unchecked').attr('disabled','disabled');
-		//$('.compare-entrypoint').parent().on('click', function(){
-		$('.compare-entrypoint:unchecked').parent().addClass("callout-target");
-		$('.compare-entrypoint:unchecked').parent().attr("data-callout",calloutMSG);
-		//});
-	}
-	else{
-		$('.cmpr_btn').addClass("callout-target");
-		$(".cmpr_btn").attr('data-disable','true');
-		
-		if(!alreadyAdded())
-			$('.cmpr_btn').attr("data-callout",calloutMSG);
-		else
-			$('.cmpr_btn').data("callout","Item already added to compare panel.");
-	}
+    if($('.compare-entrypoint').length){
+        $('.compare-entrypoint:unchecked').attr('disabled','disabled');
+        //$('.compare-entrypoint').parent().on('click', function(){
+        $('.compare-entrypoint:unchecked').parent().addClass("callout-target");
+        $('.compare-entrypoint:unchecked').parent().data("callout",calloutMSG);
+        //});
+    }
+    else{
+        $('.js-pdp-cmpr').addClass("callout-target");
+        $(".js-pdp-cmpr").attr('data-disable','true');
+        
+        if(!alreadyAdded())
+            $('.js-pdp-cmpr').data("callout",calloutMSG);
+        else
+            $('.js-pdp-cmpr').data("callout","Item already added to compare panel.");
+    }
 }
 
 function enableCompareCB(){
-	if($('.compare-entrypoint').length){
-		$('.compare-entrypoint').removeAttr("disabled");
-		$('.compare-entrypoint').parent().removeClass("callout-target");
-		$('.compare-entrypoint').parent().removeAttr("data-callout");
-	}else{
-		if(!alreadyAdded()){
-			$(".cmpr_btn").removeAttr("data-disable");
-			$('.cmpr_btn').removeClass("callout-target");
-			$('.cmpr_btn').removeAttr("data-callout");
-		}
-		else{
-			$('.cmpr_btn').data("callout","Item already added to compare panel.");
-		}
-	}
+    if($('.compare-entrypoint').length){
+        $('.compare-entrypoint').removeAttr("disabled");
+        $('.compare-entrypoint').parent().removeClass("callout-target");
+        $('.compare-entrypoint').parent().removeData("callout");
+    }else{
+        if(!alreadyAdded()){
+            $(".js-pdp-cmpr").removeAttr("data-disable");
+            $('.js-pdp-cmpr').removeClass("callout-target");
+            $('.js-pdp-cmpr').removeData("callout");
+        }
+        else{
+            $('.js-pdp-cmpr').data("callout","Item already added to compare panel.");
+        }
+    }
 }
 
 function isComparePanelFull(){ // check if already 4 products are there in compare panel
-	$blankCompareDiv = $(".cmpr-pnl-list__item.cmpr0"); 
-	if($blankCompareDiv.length == 1)
-		{// disable checkbox & show msg on hover
-			var calloutMSG = "Cannot compare more than 4 products at a time.";
-			disableCompareCB(calloutMSG);
-			return true;
-		}
-	else{
-		return false;
-	}
+    $blankCompareDiv = $(".cmpr-pnl-list__item.cmpr0"); 
+    if($blankCompareDiv.length == 1)
+        {// disable checkbox & show msg on hover
+            var calloutMSG = "Cannot compare more than 4 products at a time.";
+            disableCompareCB(calloutMSG);
+            return true;
+        }
+    else{
+        return false;
+    }
 }
 
 function isDifferentCategory(){ // check if this product is of same category that of those already in compare panel
-	var compareSubCategory = getCookie('compareSubCategory');
-	if(compareSubCategory)
-	{
-		if(sub_category != compareSubCategory)
-		{
-			var calloutMSG = "Cannot campare between different categories";
-			disableCompareCB(calloutMSG);
-			return true;
-		}
-	}
-	return false;
+    var compareSubCategory = getCookie('compareSubCategory');
+    if(compareSubCategory)
+    {
+        if(sub_category != compareSubCategory)
+        {
+            var calloutMSG = "Cannot campare between different categories";
+            disableCompareCB(calloutMSG);
+            return true;
+        }
+    }
+    return false;
+}
+
+function getCategoryFromPanel(){
+    return $(".cmpr-pnl-list__item:first").attr('data-subcategory') || "" ;
+}
+
+function getMSPidsFromPanel(){
+    var compare_msp_ids = [];
+    $('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
+        compare_msp_ids.push( $(this).data("comparemspid") ); 
+    })
+    return ( compare_msp_ids || "" );
 }
 
 function flyImage(imgtofly, id, title, $thisCB){
-	$replaceThis = $(".cmpr-pnl-list__item.cmpr0");
-	flyingImageCount++ ;
-	if(($replaceThis.length-1) <= flyingImageCount)
-		disableCompareCB("Cannot compare more than 4 products at a time");
+    $replaceThis = $(".cmpr-pnl-list__item.cmpr0");
+    var sub_category = getCategoryFromPanel();
+    var compare_href = $('.sctn__compare-btn').attr('href');
+    $('.sctn__compare-btn').attr('href','#');
+    flyingImageCount++ ;
+    
+    if(flyingImageCount >= 1 && $(".cmpr-pnl-list__item.cmpr0").length == 5){
+        sub_category = $('.body-wrpr').attr('category');
+        $('.cmpr-pnl-list__item-ttl .js-atcmplt').prop('disabled', true);
+    }
 
-	var top;
-	var left;
+    if(($replaceThis.length-1) <= flyingImageCount){
+        disableCompareCB("Cannot compare more than 4 products at a time");
+    }
 
-  	if(flyingImageCount > 1){
-  		top  = $($replaceThis[flyingImageCount-1]).offset().top + 20;
-		left = $($replaceThis[flyingImageCount-1]).offset().left + 30;
-  	}
-  	else{
-  		top  = $replaceThis.offset().top + 20;
-		left = $replaceThis.offset().left + 30;
-  	}
-	
-	if(!isComparePanelOpen()){
-		$(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
-		left = left - 250;
-  	}
+    var top;
+    var left;
 
-	var width = imgtofly.width;
+    if(flyingImageCount > 1){
+        top  = $($replaceThis[flyingImageCount-1]).offset().top + 20;
+        left = $($replaceThis[flyingImageCount-1]).offset().left + 30;
+    }
+    else{
+        top  = $replaceThis.offset().top + 20;
+        left = $replaceThis.offset().left + 30;
+    }
+    
+    if(!isComparePanelOpen()){
+        $(".cmpr-pnl-wrpr").removeClass("add-cmp-mr").addClass("add-cmp-ml");
+        left = left - 250;
+    }
+
+    var width = imgtofly.width;
     var $img = $(imgtofly).clone().removeAttr('class');
 
     var imgclone = $img.css({
@@ -246,7 +301,7 @@ function flyImage(imgtofly, id, title, $thisCB){
         'top': top,
         'left': left,
         'width': 30,
-    }, 900);
+    }, 700);
     imgclone.animate({
         'width': 0,
         'height': 0
@@ -255,39 +310,44 @@ function flyImage(imgtofly, id, title, $thisCB){
         
         var img = imgtofly.src;
         var img_alt = imgtofly.alt;
+        
+
         $replaceThis = $(".cmpr-pnl-list__item.cmpr0:first");
         addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
- 		flyingImageCount--;
- 		$thisCB.removeAttr("disabled");
- 		if($(".cpmr_btn").length){
- 			disableCompareCB("Item already added");
- 		}
-	    // if this is the first product in compare panel , set category
-	    if($(".cmpr-pnl-list__item.cmpr0").length == 4){
-	    	 setCookie("compareSubCategory", sub_category);
-	    }
-	  	setCookieCompareIDS(id);
+
+        flyingImageCount--;
+        $thisCB.removeAttr("disabled");
+
+        if($(".cpmr_btn").length && $(".prdct-dtl__ttl").data('mspid')== ui.item.mspid){
+            disableCompareCB("Item already added");
+        }
+
+        if(flyingImageCount < 1){
+            generateComparePageUrl();
+            $('.cmpr-pnl-list__item-ttl .js-atcmplt').prop('disabled', false);
+        }
+        
+        setCookie("compareSubCategory", sub_category);
+        setCookieCompareIDS(id);
      });
 }
 
 function addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title){
-	var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
+    var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
 
-	$replaceThis.attr("data-comparemspid", id);
-	$replaceThis.attr("data-subcategory", sub_category);
-	$replaceThis.find(".cmpr-pnl-list__img").attr('src',img);
-	$replaceThis.find(".cmpr-pnl-list__img").attr('alt',img_alt);
-	$replaceThis.find(".cmpr-pnl-list__item-ttl").html(title);
-	$replaceThis.append(removeButton);
-	$replaceThis.removeClass("cmpr0");
+    $replaceThis.attr("data-comparemspid", id);
+    $replaceThis.attr("data-subcategory", sub_category);
+    $replaceThis.find(".cmpr-pnl-list__img").attr('src',img);
+    $replaceThis.find(".cmpr-pnl-list__img").attr('alt',img_alt);
+    $replaceThis.find(".cmpr-pnl-list__item-ttl").html(title);
+    $replaceThis.append(removeButton);
+    $replaceThis.removeClass("cmpr0");
 }
 
 // set cookie for the compare product msp-ids
 function setCookieCompareIDS( newMSPID ){
     var compare_msp_ids = [];
-    $('.cmpr-pnl-list__item:not(.cmpr0)').each(function(){ 
-    	compare_msp_ids.push( $(this).data("comparemspid") ); 
-    })
+    compare_msp_ids = getMSPidsFromPanel();
     setCookie('compareIDs',compare_msp_ids);  
 }
 
@@ -296,9 +356,9 @@ function setCookieCompareIDS( newMSPID ){
 function compareAutoComplete() {
     if ($(".cmpr-pnl-wrpr .js-atcmplt").length !== 0) {
 
-$(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
-		var $thisAutoComplete = $(this);
-        $(".cmpr-pnl .js-atcmplt")
+$(document).on('keydown.autocomplete', ".cmpr-pnl-wrpr .js-atcmplt", function(){
+        var $thisAutoComplete = $(this);
+        $(".cmpr-pnl-wrpr .js-atcmplt")
             .autocomplete({
                 minLength: 1,
                 delay: 110,
@@ -319,7 +379,6 @@ $(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
                 source: function(request, response) {
                     var term = $.trim(request.term.toLowerCase()),
                         element = this.element,
-                        category = getCookie('compareSubCategory') || "",
                         //element is search bar
                         autocompleteCache = this.element.data('autocompleteCache') || {},
                         //initializing autocompleteCache
@@ -332,10 +391,10 @@ $(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
                     if (foundInAutocompleteCache) return;
 
                     request.term = term;
-                    request.subcategory = category;
-                    request.mspids = getCookie('compareIDs') || "";
+                    request.subcategory = getCategoryFromPanel();
+                    request.mspids = getMSPidsFromPanel().toString();
                     $.ajax({
-                        url: "http://www.mysmartprice.com/msp/search/auto_suggest_search.php",
+                        url: "/compare/auto_suggest.php",
                         dataType: "json",
                         data: request,
                         success: function(data) {
@@ -355,20 +414,27 @@ $(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
                     $form.find('.js-atcmplt-id').val(ui.item.mspid); // add to cookie
                     
                     // $form.find('#header-search-subcat').val(ui.item.subcategory);
-					// if this is the first product in compare panel , set category
+                    // if this is the first product in compare panel , set category
                     if($(".cmpr-pnl-list__item.cmpr0").length == 5){
-                    	setCookie('compareSubCategory',ui.item.subcategory);
+                        setCookie('compareSubCategory',ui.item.subcategory);
                     }
                     var $replaceThis = $(this).closest('.cmpr-pnl-list__item');
-                    var id = ui.item.mspid, subcategory=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
+                    var id = ui.item.mspid, sub_category=ui.item.subcategory, img=ui.item.mainimage, title=ui.item.value, img_alt=ui.item.label;
                     addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title);
 
                     setCookieCompareIDS(ui.item.mspid);
-                    if($(".cpmr_btn").length && $(".mspSingleTitle").data('mspid')== ui.item.mspid){
-			 			disableCompareCB("Item already added");
-			 		}
 
-					$('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
+            if(isDifferentCategory())
+                        disableCompareCB("Cannot campare between different categories");    
+                    else if($(".cmpr-pnl-list__item.cmpr0").length < 2)
+                        disableCompareCB("Cannot add more than 4 products at a time");
+                    else if ($(".cpmr_btn").length && $(".prdct-dtl__ttl").data('mspid')== ui.item.mspid)
+                        disableCompareCB("Item already added");
+                    else
+                        enableCompareCB();      
+
+                    $('.compare-entrypoint#compare'+ ui.item.mspid).prop("checked",true);
+                    generateComparePageUrl();
                 }
             })
             .data('uiAutocomplete')
@@ -377,7 +443,7 @@ $(document).on('keydown.autocomplete', ".cmpr-pnl .js-atcmplt", function(){
                     .join('|'),
                     re = new RegExp("\\b(" + term + ")", "gi"),
                     tempval = item.value.replace(re, "<b>$1</b>");
-                if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
+                // if (item.subcategory !== "") tempval += " in <span style='color:#c00;font-weight:bold;'>" + item.subcategory + "</span>";
                 return $("<li></li>")
                     .data("item.autocomplete", item)
                     .append("<a>" + tempval + "</a>")
