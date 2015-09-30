@@ -1107,23 +1107,22 @@ $doc.on("click", ".js-open-link", function () {
          inNewTab   = $this.data("newTab"),
          needLogin  = $this.data("need-login");
 
-    if (needLogin == true) {
-        loginCallback(function () {
-            if (url) {
-                if (inNewTab === true) {
-                    window.open(url);
-                } else {
-                    window.location.href = url;
-                }
-            }
-        }, window, [])
-    } else {
+    if (!url) return false;
+            
+    function openLink() {
         if (inNewTab === true) {
             window.open(url);
         } else {
             window.location.href = url;
         }
     }
+
+    if (needLogin == true) {
+        loginCallback(openLink, window, []);
+    } else {
+        openLink();
+    }
+
     return false;
 });
 

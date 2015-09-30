@@ -918,7 +918,7 @@ var ListPage = {
         "filterHash" : {
             "toParams" : function (filterHash) {
                 var params = {},
-                    prop_strings = filterHash.replace("#", "").split("&");
+                    prop_strings = decodeURIComponent(filterHash).replace("#", "").split("&");
 
                 if (prop_strings[0] !== "") {
                     $.each(prop_strings, function (i, prop_string) {
