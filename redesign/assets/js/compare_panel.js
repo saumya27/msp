@@ -333,7 +333,7 @@ function flyImage(imgtofly, id, title, $thisCB){
 }
 
 function addCompProdHtml($replaceThis,id,sub_category,img,img_alt,title){
-    var removeButton = ' <img class="remove pull-right" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
+    var removeButton = ' <img class="remove algn-rght" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/product_tile_cross.png">';
 
     $replaceThis.attr("data-comparemspid", id);
     $replaceThis.attr("data-subcategory", sub_category);
