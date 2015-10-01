@@ -386,6 +386,9 @@
       height: 212px;
     }
   }
+  &--no-rcrd {
+    min-height: 75px;
+  }
   .generate-spcftn-rules(@n, @i: 1) when (@i <= @n) {
     .generate-spcftn-rules(@n, @i + 1);
     &--spcftn-@{i} .prdct-item__dtls {
