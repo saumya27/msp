@@ -133,8 +133,8 @@ var ListPage = {
                 // edit min and max price numbers in inputfiled
                 $doc.on("change", ".js-fltr-prc__inpt-min, .js-fltr-prc__inpt-max", function () {
                     var numRegEx = /^[0-9]+$/,
-                        $maxPriceInpt = $(".js-fltr-prc__inpt-min"),
-                        $minPriceInpt = $(".js-fltr-prc__inpt-max"),
+                        $minPriceInpt = $(".js-fltr-prc__inpt-min"),
+                        $maxPriceInpt = $(".js-fltr-prc__inpt-max"),
                         minPrice = $minPriceInpt.val(),
                         maxPrice = $maxPriceInpt.val(),
                         lp_clipboard = ListPage.model.clipboard;
