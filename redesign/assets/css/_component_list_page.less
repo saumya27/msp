@@ -67,10 +67,15 @@
   float: right;
 
   width: 700px;
-  .prdct-grid--s {
-    position: relative;
+  .prdct-grid {
+    &--s {
+      position: relative;
 
-    margin: 0;
+      margin: 0;
+    }
+    &--no-rcrd {
+      height: 75px;
+    }
   }
   .item-grid-item {
     margin: 10px 0 0 10px;
@@ -78,7 +83,7 @@
   .pgntn.pgntn {
     margin: 20px 0;
   }
-  .algn-wrpr & > * + * {
+  .algn-wrpr & > * + *, .algn-wrpr & .prdct-grid-wrpr > * + * {
     margin-top: 10px;
   }
 }
