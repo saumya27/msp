@@ -1104,7 +1104,7 @@ $doc.on("click", ".js-msg-box__cls", function () {
 $doc.on("click", ".js-open-link", function () {
     var $this = $(this),
          url = $this.data("open-link"),
-         inNewTab   = $this.data("newTab"),
+         inNewTab   = $this.data("new-tab"),
          needLogin  = $this.data("need-login");
 
     if (!url) return false;
