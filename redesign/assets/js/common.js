@@ -1,6 +1,40 @@
 $(document).ready(function() {
   var subcategory = $('#msp_body').attr('category');
   // Feedback button load
+  
+  (function handle_loyalty_users() {
+      var msp_login_email = getCookie("msp_login_email"),
+          msp_login = getCookie("msp_login"),
+          msp_loyalty_user = getCookie("msp_loyalty_user");
+      if (msp_login == 1) {
+        if (msp_loyalty_user) {
+          $(".js-hdr-lylty-prmtn .hdr-lylty__ttl").html("Signup Bonus");
+          $(".js-hdr-lylty-prmtn .hdr-lylty__desc").html("200 MSP Coins credited");
+        } else {
+          $.ajax({
+            "url" : "/loyalty/users.php",
+            "type" : "POST",
+            "data" : {
+                "email" : msp_login_email,
+                "process" : "existing"
+            },
+            "dataType" : "json"
+          }).done(function(response) {
+            if (response.bonus === "true") {
+              $(".js-hdr-lylty-prmtn .hdr-lylty__ttl").html("Signup Bonus");
+              $(".js-hdr-lylty-prmtn .hdr-lylty__desc").html("200 MSP Coins credited");
+              setCookie("msp_loyalty_user", "1", 365);
+              if(_gaq) _gaq.push(["_trackEvent", "loyalty_GTS_popup", "login", "Site_login"]);
+            } else if (response.bonus === "false") {
+              $(".js-hdr-lylty-prmtn").remove();
+            } else {
+              // do something
+            }
+          });
+        }
+      }
+    }());
+
   $("body").append([
     '<span data-href="/feedback.html" class="js-popup-trgt text-link">',
       '<img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" />',
