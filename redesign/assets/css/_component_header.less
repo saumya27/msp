@@ -110,6 +110,47 @@
   }
 }
 
+.hdr {
+  &-prmtn {
+    position: absolute;
+    right: 225px;
+    height: 60px;
+    &:before {
+      content: "";
+      display: inline-block;
+      height: 60px;
+      vertical-align: middle;
+    }
+    &__item {
+      display: inline-block;
+      margin-left: @inline-block-margin;
+      vertical-align: middle;
+    }
+  }
+  &-lylty {
+    &__icon {
+      display: inline-block;
+      height: 30px;
+      vertical-align: middle;
+    }
+    &__text {
+      display: inline-block;
+      margin-left: 5px;
+      line-height: 16px;
+      vertical-align: middle;
+      strong {
+
+      }
+    }
+    &__ttl, &__desc {
+      display: block;
+    }
+    &__ttl {
+      font-weight: @font-bold;
+    }
+  }
+}
+
 .drpdwn-menu {
   opacity: 0;
 
