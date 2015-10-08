@@ -663,9 +663,10 @@ var MSP = {
  
 })(jQuery, window, document);
  
+
 /* Carousel Plugin Script Ends Here */
 $doc.ready(function () {
-    
+        
     // RUI:: added new carousel classes inside code
     $(".js-crsl-wdgt, .widget-carousel").each(function () {
         var slideTimeout,
@@ -1104,7 +1105,7 @@ $doc.on("click", ".js-msg-box__cls", function () {
 $doc.on("click", ".js-open-link", function () {
     var $this = $(this),
          url = $this.data("open-link"),
-         inNewTab   = $this.data("newTab"),
+         inNewTab   = $this.data("new-tab"),
          needLogin  = $this.data("need-login");
 
     if (!url) return false;
@@ -1824,17 +1825,9 @@ function initScrollToTop() {
 $doc.ready(function () {
 
     // load cookie into array
-    var recent_list, cookie;
-    cookie = getCookie('msp_recent');
-
-    console.log('Cookie', cookie);
-
-    if (!cookie) {
-        recent_list = [];
-    } else {
-        recent_list = JSON.parse(cookie);
-    }
-
+    var msp_recent_cookie = getCookie('msp_recent');
+    var recent_list = msp_recent_cookie ? JSON.parse(msp_recent_cookie) : [];
+    
     // show link to recent items in top nav bar
     if (recent_list.length) {
         $('.user-links').show();
