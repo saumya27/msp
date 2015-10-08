@@ -1825,7 +1825,8 @@ function initScrollToTop() {
 $doc.ready(function () {
 
     // load cookie into array
-    var recent_list = getCookie('msp_recent') ? JSON.parse(cookie) : [];
+    var msp_recent_cookie = getCookie('msp_recent');
+    var recent_list = msp_recent_cookie ? JSON.parse(msp_recent_cookie) : [];
     
     // show link to recent items in top nav bar
     if (recent_list.length) {
