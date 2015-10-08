@@ -1,48 +1,45 @@
-<head>
-<meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
-</head>
-<div class="feedback_divout popupwrapout" >
+<div class="feedback_divout popupwrapout">
 	<div id="feedbackdivin-pop" class="feedback_div popupwrap">
 		<div class="msp_feedback hideafter">
-            <form class="contactform" id="contactform" method="post" action="#">
-            <div class="error"></div>
-            <div class="heading">
-                <p id="title_f">Feedback</p>
-                <p id="subtitle_f">Have a question for feedback? please fill the form below.</p>  
-            </div>
-            <div class="group">
-                <input type="text" class="b-bar" id="cu_name" name="cu_name">
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label for="cu_name">Name</label>
-                </div>
-                <div class="group">
-                    <input type="email" class="email_input b-bar" onfocus="getemail()" id="feedback-email-pop" name="email" >
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label for="feedback-email-pop">Email</label>
-                </div>
-                <div class="group">
-                    <label for="feedback-reason-pop">Subject</label>
-                    <select class="subject-s reason_input" id="feedback-reason-pop" name="reason">
-                        <option value="general-queries">General Queries</option>
-                        <option value="customer-feedback">Customer Feedback</option>
-                        <option value="cash-back">Cash Back </option>
-                        <option value="loyalty-points">Loyalty Points Queries</option>
-                        <option value="price-difference">Price Difference</option>
-                        <option value="seller-queries">Seller Queries</option>
-                        <option value="happy-hours">Happy Hours</option>
-                    </select>
-                </div>
-                <div class="group">
-                    <label for="feedback-msg">Message</label>
-                    <textarea class="t-area" id="feedback-msg" name="msg"></textarea>
-                </div>
-                <input type="submit" class="button buttonRed" name="email"  id="popup_feeback_submit" value="Submit Feedback" onclick="return fbformValidatorPopup();"/>
-            </form>
-            <br clear="all"/>
-        </div> <!-- msp_feedback div close -->
-        <div id="confirmationMessage-pop">
+      <form class="contactform" id="contactform" method="post" action="#">
+        <div class="error"></div>
+        <div class="heading">
+          <p id="title_f">Feedback</p>
+          <p id="subtitle_f">Have a question for feedback? please fill the form below.</p>  
+        </div>
+        <div class="group">
+          <input type="text" class="b-bar" id="cu_name" name="cu_name">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="cu_name">Name</label>
+        </div>
+        <div class="group">
+          <input type="email" class="email_input b-bar" onfocus="getemail()" id="feedback-email-pop" name="email" >
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label for="feedback-email-pop">Email</label>
+        </div>
+        <div class="group">
+          <label for="feedback-reason-pop">Subject</label>
+          <select class="subject-s reason_input" id="feedback-reason-pop" name="reason">
+            <option value="general-queries">General Queries</option>
+            <option value="customer-feedback">Customer Feedback</option>
+            <option value="cash-back">Cash Back </option>
+            <option value="loyalty-points">Loyalty Points Queries</option>
+            <option value="price-difference">Price Difference</option>
+            <option value="seller-queries">Seller Queries</option>
+            <option value="happy-hours">Happy Hours</option>
+          </select>
+        </div>
+        <div class="group">
+          <label for="feedback-msg">Message</label>
+          <textarea class="t-area" id="feedback-msg" name="msg"></textarea>
+        </div>
+        <input type="submit" class="button buttonRed" name="email"  id="popup_feeback_submit" value="Submit Feedback" onclick="return fbformValidatorPopup();"/>
+      </form>
+      <br clear="all"/>
+    </div> <!-- msp_feedback div close -->
+    <div id="confirmationMessage-pop">
 			<p> We will look into the matter, Thank You! </p>
 		</div>
 	</div> <!-- feedbackdivin-pop div close-->
