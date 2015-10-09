@@ -184,9 +184,7 @@ var ListPage = {
                             } else if ($(filter).closest(".js-fltrs-apld").data("groupname") === "localSearch") {
                                 lp_changes.remove.ss = $(filter).data("value");
                             } else if ($(filter).closest(".js-fltrs-apld").data("groupname") === "price") {
-                                $.extend(lp_changes.remove, {
-                                    "price" : $(filter).data("value")
-                                });
+                                lp_changes.remove.price = $(filter).data("value");
                             } else {
                                 filterVal = $(filter).data("value");
                                 $filterItem = $('.fltr-val__inpt[value="' + filterVal + '"]').closest(".fltr-val");
@@ -454,8 +452,8 @@ var ListPage = {
                 //apply additions in current state params
                 $.each(lp_changes.add, function (key) {
                     if (key === "property") {
-                        if (typeof lp_changes.add.property === "object") {
-                            lp_current.property = lp_current.property || [];
+                        if ($.isArray(lp_changes.add.property)) {
+                            lp_current.property = $.isArray(lp_current.property) || [];
                             $.merge(lp_current.property, lp_changes.add.property);
                         }
                     } else {
@@ -466,14 +464,12 @@ var ListPage = {
                 $.each(lp_changes.remove, function(key) {
                     var index;
                     if (key === "property") {
-                        if ("property" in lp_changes.remove) {
-                            $.each(lp_changes.remove.property, function(i, removedProperty) {
-                                index = lp_current.property.indexOf(removedProperty);
-                                lp_current.property.splice(index, 1);
-                            });
-                            if (lp_current.property.length === 0) {
-                                delete lp_current.property;
-                            }
+                        $.each(lp_changes.remove.property, function(i, removedProperty) {
+                            index = lp_current.property.indexOf(removedProperty);
+                            lp_current.property.splice(index, 1);
+                        });
+                        if (lp_current.property.length === 0) {
+                            delete lp_current.property;
                         }
                     } else {
                         delete lp_current[key];
@@ -491,7 +487,9 @@ var ListPage = {
                     if (currentLength === 1 || lp_current.ql === "1") {
                         $.each(lp_page, function (param, pageParamValue) {
                             if ($.isArray(pageParamValue)) {
-                                if (!$.isArray(lp_current[param])) { lp_current[param] = [] }
+                                
+                                lp_current[param] = $.isArray(lp_current[param]) ? lp_current[param] : [];
+                                
                                 $.each(pageParamValue, function(i, prop) {
                                     if (lp_current[param].indexOf(prop) === -1) {
                                         lp_current[param].push(prop);
@@ -629,6 +627,8 @@ var ListPage = {
                             if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
                                 // load new products
                                 $(".js-prdct-grid-wrpr").html(freshData[1]);
+                                $(".js-prdct-cnt__rng").text($(".product-list .product-count-from-ajax").data('count'));
+                                $(".js-prdct-cnt__totl").text($(".product-list .product-count-from-ajax").data('total'));
                             } else {
                                 lp_clipboard.isLoadParamsEqualtoPageParams = false;
                             }
@@ -872,7 +872,7 @@ var ListPage = {
                 });
 
                 // after all changes reflected in the view re-initialize changes to empty.
-                $.extend(lp_changes, { 
+                $.extend(lp_changes, {
                     "add" : {},
                     "remove" : {}
                 });
