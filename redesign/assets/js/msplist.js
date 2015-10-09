@@ -576,10 +576,11 @@ var ListPage = {
 
                             if (lp_changes.inFilterBox) {
                                 // manipulate loaded filter html
-                                var $filterDOM = $(freshData[0]),
-                                    $groupsToReplaceDOM, 
+                                var $newFilterBox = $(freshData[0]),
+                                    $groupsToReplace, 
                                     replacedGroups = [];
-                                $groupsToReplaceDOM = $filterDOM.find(".fltr").filter(function functionClosure() {
+
+                                $groupsToReplace = (function () {
                                     var affectedGroups = (function () {
                                         var result = [];
                                         $.each(["add", "remove"], function (i, context) {
@@ -595,16 +596,18 @@ var ListPage = {
                                         });
                                         return result;
                                     }());
-                                    return function filterFunction () {
+                                    
+                                    return $newFilterBox.find(".fltr").filter(function () {
                                         return affectedGroups.indexOf($(this).data("groupname")) === -1;
-                                    }
+                                    });
                                 }());
-                                $groupsToReplaceDOM.each(function () {
-                                    var $newFilterDOM = $(this),
-                                        groupname = $newFilterDOM.data("groupname"),
-                                        $exisingFilterDOM = $(".fltr[data-groupname='" + groupname + "']");
+
+                                $groupsToReplace.each(function () {
+                                    var $newFilterBlock = $(this),
+                                        groupname = $newFilterBlock.data("groupname"),
+                                        $exisingFilterBlock = $(".fltr[data-groupname='" + groupname + "']");
                                     replacedGroups.push(groupname);
-                                    $exisingFilterDOM.replaceWith($newFilterDOM);
+                                    $exisingFilterBlock.replaceWith($newFilterBlock);
                                 });
 
                                 lp_filterPlugins.init({
@@ -627,8 +630,8 @@ var ListPage = {
                             if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
                                 // load new products
                                 $(".js-prdct-grid-wrpr").html(freshData[1]);
-                                $(".js-prdct-cnt__rng").text($(".product-list .product-count-from-ajax").data('count'));
-                                $(".js-prdct-cnt__totl").text($(".product-list .product-count-from-ajax").data('total'));
+                                $(".js-prdct-cnt__rng").text($(".js-prdct-cnt-ajax").data('count'));
+                                $(".js-prdct-cnt__totl").text($(".js-prdct-cnt-ajax").data('total'));
                             } else {
                                 lp_clipboard.isLoadParamsEqualtoPageParams = false;
                             }
@@ -905,7 +908,7 @@ var ListPage = {
                             '<div class="ldr__text" style="">Loading...</div> ',
                         '</div>',
                     '</div>'
-                ].join("")
+                ].join("");
             }
         }
     },
@@ -1070,26 +1073,6 @@ var ProductList = {
     }
 };
 
-;(function () {
-    $.QueryString = (function (a) {
-        if (a === "") return {};
-        var b = {};
-        for (var i = 0; i < a.length; ++i) {
-            var p = a[i].split("=");
-            if (p.length != 2) continue;
-            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
-        }
-        return b;
-    })(window.location.search.substr(1).split("&"));
-}());
-
-//For adding a cookie if utm_source is availble.
-console.log($.QueryString['utm_source']);
-if ($.QueryString["utm_source"]) {
-    console.log($.QueryString['utm_source']);
-    setCookie("utm_source", $.QueryString['utm_source']);
-}
-
 // if category is mobile then first show mobile list and then show applied filters list.
 if ($("#mobilefilterwrapper").length) {
     $.ajax({
@@ -1147,3 +1130,23 @@ $(".fltr-wrpr1").on("click", ".js-fltr-srch__cler", function () {
     $filterGroup.find(".fltr-val").show();
     $filterGroup.find(".nano").nanoScroller();
 });
+
+;(function () {
+    $.QueryString = (function (a) {
+        if (a === "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i) {
+            var p = a[i].split("=");
+            if (p.length != 2) continue;
+            b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split("&"));
+
+    //For adding a cookie if utm_source is availble.
+    console.log($.QueryString['utm_source']);
+    if ($.QueryString["utm_source"]) {
+        console.log($.QueryString['utm_source']);
+        setCookie("utm_source", $.QueryString['utm_source']);
+    }
+}());
