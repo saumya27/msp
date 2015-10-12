@@ -241,6 +241,34 @@ function handle_loyalty_users() {
   }
 }
 
+/* RUI:: save product item button - start */
+$doc.on('mousedown','.js-save-btn', function () {
+    var $this = $(this),
+        mspid = $this.closest(".prdct-item").data("mspid") || $(".prdct-dtl__ttl").data("mspid"); 
+    
+    if (!mspid) {
+        return false;
+    }
+
+    if (!$this.hasClass("prdct-item__save-btn--svd")) {
+        loginCallback(saveProduct, this, [mspid, $this]);
+    }
+
+    return false;
+});
+/* RUI:: save product item button - start */
+
+/* OLD:: save item functionality - start */
+function saveProduct(mspid, $this) {
+    $.ajax({
+        url: "/users/add_to_list.php?mspid=" + mspid,
+        cache: false
+    });
+
+    $this.addClass("prdct-item__save-btn--svd");
+}
+/* OLD:: save item functionality - end */
+
 /*
   // How to use:
   <a onclick="return trackLink('something','somewhere','somehow', null, this.href);" href="/link/to/page">Link</a>
