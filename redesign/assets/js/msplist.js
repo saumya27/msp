@@ -565,6 +565,7 @@ var ListPage = {
                 }
 
                 ;(function updateProductListAndOtherWidgets() {
+                    var lp_changes = $.extend({}, ListPage.model.params.changes);
                     // get new product list and filters based on updated current params
                     if ($(".body-wrpr").length !== 0) {
                         ListPage.services.fetch.productList().done(function (response) {
