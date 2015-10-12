@@ -1144,7 +1144,7 @@ $doc.on('mousedown','.js-save-btn', function () {
     }
 
     if (!$this.hasClass("prdct-item__save-btn--svd")) {
-        loginCallback(saveItem, this, [mspid, $this]);
+        loginCallback(saveProduct, this, [mspid, $this]);
     }
 
     return false;
@@ -1152,7 +1152,7 @@ $doc.on('mousedown','.js-save-btn', function () {
 /* RUI:: save product item button - start */
 
 /* OLD:: save item functionality - start */
-function saveItem(mspid, $this) {
+function saveProduct(mspid, $this) {
     $.ajax({
         url: "/users/add_to_list.php?mspid=" + mspid,
         cache: false
