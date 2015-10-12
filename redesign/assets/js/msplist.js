@@ -154,7 +154,7 @@ var ListPage = {
                             if (minPrice !== lp_defaults.priceMin || maxPrice !== lp_defaults.priceMax) {
                                 // if new price range is subset of total range then apply filter
                                 $.extend(lp_changes.add, {
-                                    "price" : minPrice + ";" + endinr
+                                    "price" : minPrice + ";" + maxPrice
                                 });
                             } else {
                                 // if new price range is total range then remove existing price filter.
