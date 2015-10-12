@@ -453,7 +453,7 @@ var ListPage = {
                 $.each(lp_changes.add, function (key) {
                     if (key === "property") {
                         if ($.isArray(lp_changes.add.property)) {
-                            lp_current.property = $.isArray(lp_current.property) || [];
+                            lp_current.property = $.isArray(lp_current.property) ? lp_current.property : [];
                             $.merge(lp_current.property, lp_changes.add.property);
                         }
                     } else {
