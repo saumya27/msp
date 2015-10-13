@@ -295,7 +295,7 @@
   padding: 3px 5px;
   border: 1px solid @border-color;
   background-color: @border-color;
-  box-shadow: 0 0 2px rgba(3,3,5,0,.1);
+  box-shadow: 0 0 2px rgba(3, 3, 5, 0, .1);
 
   font-size: 11px;
   line-height: 13px;
@@ -465,22 +465,6 @@
   }
 }
 
-.clearfix {
-  zoom: 1;
-  &:before, &:after {
-    display: block;
-    visibility: hidden;
-    overflow: hidden;
-
-    width: 0;
-    height: 0;
-
-    content: '\0020';
-  }
-  &:after {
-    clear: both;
-  }
-}
 .sctn {
   margin: 20px 0;
   border: 1px solid @border-color;
