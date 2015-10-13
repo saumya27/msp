@@ -572,9 +572,7 @@ var ListPage = {
                             var freshData = response.split("//&//#"),
                                 lp_filterPlugins = ListPage.controller.filterPlugins;
                             ListPage.model.params.current.page = undefined;
-                            // load new filters
-                            $(".fltr-wrpr1").html(freshData[0]);
-
+                            
                             if (lp_changes.inFilterBox) {
                                 // manipulate loaded filter html
                                 var $newFilterBox = $(freshData[0]),
