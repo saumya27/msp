@@ -50,7 +50,7 @@
 </div><!-- feedback_divout div close-->
 <style type="text/css">
     .popup-container {
-        width: 545px !important;
+        width:545px !important;
     }
     .feedback_divout .msp_feedback {
       font-family: Helvetica;
@@ -61,22 +61,28 @@
       background: #fafafa;
     }
     .feedback_divout #contactform .heading {
-      margin: 0;
+      margin-bottom: 30px;
+      margin-top: 0px;
     }
     .feedback_divout #title_f {
       font-size: 2.1em;
-      margin: 0;
     }
     .feedback_divout #subtitle_f {
+      padding-top: 5px;
       font-size: 1em;
-      margin: 1em 0 0 0;
     }
     .feedback_divout #contactform {
+      width: 450px;
       background: #fafafa;
+      box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+      -khtml-border-radius: 6px;
+      -webkit-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.5);
     }
     .feedback_divout .group {
       position: relative;
-      margin: 1em 0 0 0;
+      margin-bottom: 21px;
     }
     .feedback_divout input.b-bar {
       font-size: 1.2em;
@@ -164,9 +170,9 @@
     }
     .feedback_divout input:focus ~ label,
     .feedback_divout input.used ~ label {
-      top: -12px;
+      top: -20px;
       transform: scale(0.75);
-      left: -6px;
+      left: -2px;
       /* font-size: 14px; */
       color: #c00;
     }
@@ -259,47 +265,42 @@
 
 <script type="text/javascript">
 
-    function getemail() {
+    function getemail(){
         var email = getCookie("msp_login_email");
         $('#feedback-email-pop').val(email);
     }
 
     function fbjsAppendPopup(args) {
+        $url = "/promotions/feedback/feedback_sub.php"+args;
         $.ajax({
             type: "GET",
-            url: "/promotions/feedback/feedback_sub.php" + args,
+            url: $url,
             cache: false, 
         });
     }
 
     function fbformValidatorPopup() {
-        var email_element = document.getElementById('feedback-email-pop');
-        var email_value = encodeURIComponent(email_element.value);
+        var email_element=document.getElementById('feedback-email-pop');
+        var email_value=encodeURIComponent(email_element.value);
         var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (email_element.value !== "" && !regex.test(email_element.value)) {
+        if (email_element.value != "" && !regex.test(email_element.value)) {
             alert("Please enter valid Email ID.");
             return false;
         }
 
-        if ($("#feedback-reason-pop").val() !== ""){
+        var feedback_type=document.getElementById("feedback-reason-pop").value;
+        if (!feedback_type){
             alert("Please select the reason");
             return false;
         }
-        
-        if ($("#feedback-msg").val() !== "") {
+        var feedback_msg=document.getElementById("feedback-msg").value;
+        if (!feedback_msg){
             alert("Please write a brief feedback description");
             return false;
         }
 
-        var sumbitQuery = [
-          '?source=' + location.href',
-          'email=' + email_value,
-          'feedback_type=' + feedback_type,
-          'user_agent=' + navigator.userAgent,
-          'feedback_msg=' + feedback_msg
-        ].join("&");
-
-        fbjsAppendPopup(sumbitQuery);
+        var text_to_append='?source='+location.href+'&email='+email_value+'&feedback_type='+feedback_type + '&user_agent='+navigator.userAgent + '&feedback_msg='+feedback_msg;
+        fbjsAppendPopup(text_to_append);
         console.log(text_to_append);
 
         

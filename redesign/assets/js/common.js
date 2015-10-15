@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   $.ajax({
       type: 'GET',
-      url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
+      url: "/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
       dataType: 'json'
   }).done(function (data) {
     $.each(data, function (index, item) {
@@ -34,11 +34,9 @@ $(document).ready(function() {
   
   // Deals and Recent Views in Bottom of Page AJAX call
   $.ajax({
-    type: 'GET',
-    //url: "http://www.mysmartprice.com/msp/deals/rightsidebar_json.php?subcategory="+subcategory,
-    //url: "records.json",
-    url: "/records.json",
-    dataType: 'json'
+    "type" : "GET",
+    "url" : "/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
+    "dataType" : "json"
   }).done(function (data) {
     $.each(data, function (index, item) {
       if ($("." + item.clas).length > 0) {
@@ -52,14 +50,17 @@ $(document).ready(function() {
   $("#olx_banner").load("/promotions/ads/olx_banner.htm");
 
   // Sidebar recommendations "view_all" button scrolls upto tabs
-  var loc = window.location.href;
-  if ($(".product_bottom_sec").length) {
-    if (loc.indexOf("view_all") > 0 && loc.indexOf("alternatives") > 0) {
-      $("html, body").animate({
-        scrollTop: ($(".product_bottom_sec").position().top - 50) + "px"
-      });
+  (function initSidebarRecommendations() {
+    var loc = window.location.href;
+    if ($(".product_bottom_sec").length) {
+      if (loc.indexOf("view_all") !== -1 && loc.indexOf("alternatives") !== -1) {
+        $("html, body").animate({
+          scrollTop: ($(".product_bottom_sec").position().top - 50) + "px"
+        });
+      }
     }
-  }
+  }());
+
 });
 
 
@@ -141,7 +142,7 @@ function loginme(msg) {
       wiz_msg = '"' + msg + '"';
   
   setCookie("msp_login", "1", 365);
-  if (msg.indexOf(",") > -1) {
+  if (msg.indexOf(",") !== -1) {
     responseInfo = msg.split(",");
     setCookie("msp_login_uid", responseInfo[0], 365);
     setCookie("msp_login_email", responseInfo[1], 365);

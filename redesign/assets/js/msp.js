@@ -1590,7 +1590,7 @@ function getAutopopupURL($dataElement) {
         }
     }
     if ($popupData["scroll"] === true) {
-        if (window.location.href.indexOf("msp") > -1 || window.location.href.indexOf("msf") > -1) {
+        if (window.location.href.indexOf("msp") !== -1 || window.location.href.indexOf("msf") !== -1) {
             $doc.on('scroll', function (e) {
                 if ($doc.scrollTop() >= $win.height()) {
                     $dataElement.data("popup_id", $popupData["scroll-id"]);
@@ -1814,7 +1814,7 @@ $doc.ready(function () {
     // make sure to remove older book information from localStorage
     if (localStorage) {
         for (var i in localStorage) {
-            if (i.indexOf('b:') === 0 && recent_list.indexOf(i) < 0) {
+            if (i.indexOf('b:') === 0 && recent_list.indexOf(i) !== -1) {
                 localStorage.removeItem(i);
             }
         }
