@@ -999,9 +999,7 @@ var ListPage = {
                         url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
                         _dfd.resolve(response);
-                    }).fail(function (error) {
-                        _dfd.reject(error);
-                    });
+                    })
 
                     return _dfd.promise();
                 }, {
@@ -1020,9 +1018,7 @@ var ListPage = {
                     "url": "/msp/autodeals/hourly_deals.php?" + query
                 }).done(function (response) {
                     _dfd.resolve(response);
-                }).fail(function (error) {
-                    _dfd.reject(error);
-                });
+                })
 
                 return _dfd.promise();
             }, {
