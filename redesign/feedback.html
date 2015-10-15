@@ -274,7 +274,7 @@
     
     var emailValue = $('.js-fdbck-form__email').val();
     var reasonValue = $(".js-fdbck-form__resn").val();
-    var messageValue = $("..js-fdbck-form__msg").val();
+    var messageValue = $(".js-fdbck-form__msg").val();
 
     if (!emailRegex.test(emailValue)) {
       alert("Please enter valid Email ID.");
@@ -293,7 +293,7 @@
 
     $.ajax({
       type: "GET",
-      url: "/promotions/feedback/feedback_sub.php?" + query,
+      url: "/promotions/feedback/feedback_sub.php",
       data: {
         'source' : location.href,
         'email' : email_value,
