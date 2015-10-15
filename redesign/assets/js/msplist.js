@@ -580,16 +580,10 @@ var ListPage = {
 
                         ListPage.services.fetch.productList(lp_current).done(function (response) {
                             var freshData = response.split("//&//#"),
-                                lp_filterPlugins = ListPage.controller.filterPlugins,
-                                loadingEnd = +new Date(),
-                                loadingDelay = (loadingEnd - loadingStart < 250) ? (loadingEnd - loadingStart) : 0;
+                                lp_filterPlugins = ListPage.controller.filterPlugins;
 
                             ListPage.model.params.current.page = undefined;
 
-                            setTimeout(function () {
-                                $(".js-fltr-ldng-mask").remove();
-                            }, loadingMaskDelay);
-                            
                             if (lp_changes.inFilterBox) {
                                 // manipulate loaded filter html
                                 var $newFilterBox = $(freshData[0]),
@@ -651,6 +645,13 @@ var ListPage = {
                             } else {
                                 lp_clipboard.isLoadParamsEqualtoPageParams = false;
                             }
+                        }).always(function () {
+                            loadingEnd = +new Date(),
+                            loadingDelay = (loadingEnd - loadingStart < 250) ? (loadingEnd - loadingStart) : 0;
+                            
+                            setTimeout(function () {
+                                $(".js-fltr-ldng-mask").remove();
+                            }, loadingMaskDelay);
                         });
                     }
 
@@ -999,7 +1000,9 @@ var ListPage = {
                         url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
                         _dfd.resolve(response);
-                    })
+                    }).fail(function (error) {
+                        _dfd.reject(error);
+                    });
 
                     return _dfd.promise();
                 }, {
@@ -1018,7 +1021,9 @@ var ListPage = {
                     "url": "/msp/autodeals/hourly_deals.php?" + query
                 }).done(function (response) {
                     _dfd.resolve(response);
-                })
+                }).fail(function (error) {
+                    _dfd.reject(error);
+                });
 
                 return _dfd.promise();
             }, {
