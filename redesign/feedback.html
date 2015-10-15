@@ -45,16 +45,17 @@
 </div>
 <style type="text/css">
   .popup-container {
-      width: 545px !important;
+    width: 545px !important;
   }
   .fdbck-popup .fdbck-form {
     width: 490px;
     margin: 0 auto;
-    padding: 0px 1em 1em 1em;
+    padding: 0 1em 1em 1em;
     background: #fafafa;
   }
   .fdbck-popup .fdbck-form * {
     font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+
     -webkit-font-smoothing: antialiased;
   }
 
@@ -62,48 +63,57 @@
     margin: 0;
   }
   .fdbck-popup .fdbck-form__ttl {
-    font-size: 2.1em;
     margin: 0;
+
+    font-size: 2.1em;
   }
   .fdbck-popup .fdbck-form__subttl {
-    font-size: 1em;
     margin: 1em 0 0 0;
+
+    font-size: 1em;
   }
   .fdbck-popup .fdbck-form {
     background: #fafafa;
   }
   .fdbck-popup .fdbck-form__fld {
     position: relative;
+
     margin: 1em 0 0 0;
   }
   .fdbck-popup .fdbck-form__inpt--bar {
-    font-size: 1.2em;
-    padding: 10px 0 10px 0;
-    -webkit-appearance: none;
     display: block;
-    background: #fafafa;
-    color: #636363;
+
     width: 100%;
+    padding: 10px 0 10px 0;
     border: none;
-    border-radius: 0;
     border-bottom: 1px solid #757575;
+    border-radius: 0;
+    background: #fafafa;
+
+    color: #636363;
+    font-size: 1.2em;
+
+    -webkit-appearance: none;
   }
   .fdbck-popup .fdbck-form__inpt:focus {
     outline: none;
   }
   .fdbck-popup .fdbck-form__lbl {
     position: absolute;
-    left: 5px;
     top: 10px;
+    left: 5px;
+
     color: #999;
     font-size: 18px;
     font-weight: normal;
+
+    transition: all .2s ease;
     pointer-events: none;
-    transition: all 0.2s ease;
   }
   .fdbck-popup .fdbck-form__slct {
     width: 100%;
     margin-top: 36px;
+
     font-size: 1em;
     /*-webkit-appearance: none;*/
   }
@@ -111,15 +121,16 @@
     /*safari and chrome*/
     .fdbck-popup .fdbck-form__slct {
       height: 30px;
-      line-height: 30px;
       background: #d3d3d3;
-      color: #6A6A6A;
+
+      color: #6a6a6a;
+      line-height: 30px;
     }
   }
   .fdbck-popup .fdbck-form__slct::-moz-focus-inner {
+    padding: 0;
     /* Remove button padding in FF */
     border: 0;
-    padding: 0;
   }
   @-moz-document url-prefix() {
     /* targets Firefox only */
@@ -131,46 +142,52 @@
     /* IE Hacks: targets IE 8, 9 and 10 */
     .fdbck-popup .fdbck-form__slct {
       height: 30px;
+
       line-height: 30px;
     }
   }
   .fdbck-popup .fdbck-form__txtr {
+    overflow: auto;
+
     width: 100%;
     height: 45px;
     margin-top: 30px;
     padding: 6px;
     border: none;
-    border-radius: 0;
     border-bottom: 1px solid #757575;
-    overflow: auto;
+    border-radius: 0;
     outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
     background: transparent;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
   }
-  .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__lbl,
-  .fdbck-popup .fdbck-form__inpt--used ~ .fdbck-form__lbl {
+  .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__lbl, .fdbck-popup .fdbck-form__inpt--used ~ .fdbck-form__lbl {
     top: -12px;
-    transform: scale(0.75);
     left: -6px;
     /* font-size: 14px; */
+
     color: #c00;
+
+    transform: scale(.75);
   }
   .fdbck-popup .fdbck-form__bar {
     position: relative;
+
     display: block;
+
     width: 100%;
   }
-  .fdbck-popup .fdbck-form__bar:before,
-  .fdbck-popup .fdbck-form__bar:after {
-    content: '';
-    height: 2px;
-    width: 0;
-    bottom: 1px;
+  .fdbck-popup .fdbck-form__bar:before, .fdbck-popup .fdbck-form__bar:after {
     position: absolute;
+    bottom: 1px;
+
+    width: 0;
+    height: 2px;
     background: #c00;
-    transition: all 0.2s ease;
+
+    content: '';
+    transition: all .2s ease;
   }
   .fdbck-popup .fdbck-form__bar:before {
     left: 50%;
@@ -178,21 +195,23 @@
   .fdbck-popup .fdbck-form__bar:after {
     right: 50%;
   }
-  .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__bar:before,
-  .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__bar:after {
+  .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__bar:before, .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__bar:after {
     width: 50%;
   }
   .fdbck-popup .fdbck-form__hghlght {
     position: absolute;
-    height: 60%;
-    width: 100px;
     top: 25%;
     left: 0;
+
+    opacity: .5;
+
+    width: 100px;
+    height: 60%;
+
     pointer-events: none;
-    opacity: 0.5;
   }
   .fdbck-popup .fdbck-form__inpt:focus ~ .fdbck-form__hghlght {
-    animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter .3s ease;
   }
   @keyframes inputHighlighter {
     from {
@@ -205,24 +224,29 @@
   }
   .fdbck-popup .fdbck-form__submit {
     position: relative;
+
     display: inline-block;
+
     width: 100%;
-    padding: 12px 0px;
     margin: .3em 0 1em 0;
-    vertical-align: middle;
+    padding: 12px 0;
+    border: 0;
+    border-bottom: 2px solid #b20101;
+    background: transparent;
+
     color: #fff;
     font-size: 16px;
     line-height: 20px;
-    -webkit-font-smoothing: antialiased;
-    text-align: center;
-    letter-spacing: 1px;
-    background: transparent;
-    border: 0;
-    border-bottom: 2px solid #b20101;
+
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all .15s ease;
+    text-align: center;
+    vertical-align: middle;
+    letter-spacing: 1px;
+
+    -webkit-font-smoothing: antialiased;
   }
-  .fdbck-popup .fdbck-form__submit{
+  .fdbck-popup .fdbck-form__submit {
     background: #c00;
   }
   .fdbck-popup .fdbck-form__submit:focus {
@@ -230,13 +254,17 @@
   }
   .fdbck-popup .fdbck-form__submit:hover {
     background: #e30000;
+
     color: #fff;
   }
   .fdbck-popup .fdbck-form__scs {
     display: none;
+
     width: 100;
+
     font-size: 18px;
     font-weight: bold;
+
     text-align: center;
   }
 </style>
