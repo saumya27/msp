@@ -153,7 +153,7 @@ var MSP = {
             resultTask = function _memoizedTask() {
                 var cache = memoizeCache[task.toString()],
                     dfd = $.Deferred(),
-                    query = options.getQuery ? JSON.stringify(options.getQuery()) || JSON.stringify(arguments),
+                    query = JSON.stringify(arguments),
                     result;
 
                 if (cache.queries.indexOf(query) !== -1) {
