@@ -540,7 +540,8 @@ var ListPage = {
         "clipboard" : {
             "prevMinPrice" : "",
             "prevMaxPrice" : "",
-            "slider" : {}
+            "slider" : {},
+            "prevLocalSearch" : ""
         }
     },
     "view" : {
@@ -983,7 +984,7 @@ var ListPage = {
                     xhrPerf;
                 
                 // check if query in cache to load response from cache.
-                if (cache.queries.indexOf(query) >= 0) {
+                if (cache.queries.indexOf(query) !== -1) {
                     $(".js-prdct-grid-main").append(loadingMaskHtml);
                     setTimeout(function () {
                         $(".js-fltr-ldng-mask").remove();
