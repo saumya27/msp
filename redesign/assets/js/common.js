@@ -20,32 +20,21 @@ $(document).ready(function() {
 
   getAutopopupURL($(".auto-popup-data"));
 
+  // Deals and Recent Views in Bottom of Page AJAX call
   $.ajax({
       type: 'GET',
       url: "/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
       dataType: 'json'
   }).done(function (data) {
     $.each(data, function (index, item) {
-      if ($("#" + item.id).length > 0) {
-        $("#" + item.id).append(item.content);
+      $placeholder = $("#" + item.id);
+      if ($placeholder.length > 0) {
+        $placeholder.append(item.content);
+        elementSlider.init($placeholder.filter(".js-sldr"));
       }
     });
   })
   
-  // Deals and Recent Views in Bottom of Page AJAX call
-  $.ajax({
-    "type" : "GET",
-    "url" : "/msp/deals/rightsidebar_json.php?subcategory=" + subcategory,
-    "dataType" : "json"
-  }).done(function (data) {
-    $.each(data, function (index, item) {
-      if ($("." + item.clas).length > 0) {
-        $("." + item.clas).append(item.content);
-        elementSlider.init($("." + item.clas + " .js-sldr"));
-      }
-    });
-  });
-
   // OLX banner AJAX call
   $("#olx_banner").load("/promotions/ads/olx_banner.htm");
 
