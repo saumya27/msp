@@ -961,27 +961,25 @@ var ListPage = {
         "fetch" : {
             // generate query from all the new page state params
             "apiQuery" : function () {
-                var lp_current = $.extend({}, ListPage.model.params.current),
-                    lp_defaults = $.extend({}, ListPage.model.params.defaults),
-                    lp_clipboard = ListPage.model.clipboard;
+                var lp_current = $.extend({}, ListPage.model.params.current);
 
                 return [
                     "subcategory=" + lp_current.subcategory,
-                    lp_current.s ? ("&s=" + lp_current.s) : "",
-                    lp_current.property ? ("&property=" + lp_current.property.join("|")) : "",
-                    (lp_current.price) ? ("&startinr=" + lp_current.price.split(";")[0] + "&endinr=" + lp_current.price.split(";")[1]) : "",
-                    lp_current.sort ? ("&sort=" + lp_current.sort) : "",
-                    lp_current.ss ? ("&ss=" + lp_current.ss) : "",
-                    lp_current.page ? ("&page=" + lp_current.page) : ""
-                ].join("");
+                    lp_current.s ? ("s=" + lp_current.s) : "",
+                    lp_current.property ? ("property=" + lp_current.property.join("|")) : "",
+                    lp_current.price ? ("startinr=" + lp_current.price.split(";")[0]) : "",
+                    lp_current.price ? ("endinr=" + lp_current.price.split(";")[1]) : "",
+                    lp_current.sort ? ("sort=" + lp_current.sort) : "",
+                    lp_current.ss ? ("ss=" + lp_current.ss) : "",
+                    lp_current.page ? ("page=" + lp_current.page) : ""
+                ].join("&");
             },
             "productList" : function _productList() {
                 var dfd = $.Deferred(),
                     lp_clipboard = ListPage.model.clipboard,
                     cache = _productList._cache_ = _productList._cache_ || { "queries" : [], "responses" : [] },
                     query = this.apiQuery(),
-                    loadingMaskHtml = ListPage.view.components.loadingMask(),
-                    xhrPerf;
+                    loadingMaskHtml = ListPage.view.components.loadingMask();
                 
                 // check if query in cache to load response from cache.
                 if (cache.queries.indexOf(query) !== -1) {
@@ -990,23 +988,16 @@ var ListPage = {
                         $(".js-fltr-ldng-mask").remove();
                     }, 350);
                     dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
-                    if (_gaq) _gaq.push(['_trackEvent', 'desktop_listpage_filter', 'xhrLoad', 'time', 0]);
                 } else {
                     if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
                         $(".js-prdct-grid-main").append(loadingMaskHtml);
                     }
-                    xhrPerf = { start : +new Date() };
                     // abort pending XHR's for latest XHR to deal with rapid filter changes.
-                    if (_productList.XHR) {
-                        _productList.XHR.abort();
-                    }
+                    if (_productList.XHR) _productList.XHR.abort();
+                    
                     _productList.XHR = $.ajax({
                         url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
-                        xhrPerf.end = +new Date();
-                        xhrPerf.time = (xhrPerf.end - xhrPerf.start)/1000;
-                        // record xhrLoad Time to GA.
-                        if (_gaq) _gaq.push(['_trackEvent', 'desktop_listpage_filter', 'xhrLoad', 'time', xhrPerf.time]);
                         dfd.resolve(response);
                         // cache query-response pair
                         cache.queries.push(query);
@@ -1028,9 +1019,7 @@ var ListPage = {
             "hourlyDeals" : function _hourlyDeals() {
                 var query = this.apiQuery();
 
-                if (_hourlyDeals.XHR) {
-                    _hourlyDeals.XHR.abort();
-                }
+                if (_hourlyDeals.XHR) _hourlyDeals.XHR.abort();
 
                 _hourlyDeals.XHR = $.ajax({
                     "url": "/msp/autodeals/hourly_deals.php?" + query
