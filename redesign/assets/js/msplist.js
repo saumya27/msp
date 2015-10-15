@@ -566,13 +566,29 @@ var ListPage = {
                 }
 
                 ;(function updateProductListAndOtherWidgets() {
-                    var lp_changes = $.extend({}, ListPage.model.params.changes);
+                    var lp_changes = $.extend({}, ListPage.model.params.changes),
+                        lp_current = $.extend({}, ListPage.model.params.current),
+                        loadingMaskHtml = ListPage.view.components.loadingMask(),
+                        loadingStart = +new Date();
+
                     // get new product list and filters based on updated current params
                     if ($(".body-wrpr").length !== 0) {
-                        ListPage.services.fetch.productList().done(function (response) {
+
+                        if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
+                            $(".js-prdct-grid-main").append(loadingMaskHtml);
+                        }
+
+                        ListPage.services.fetch.productList(lp_current).done(function (response) {
                             var freshData = response.split("//&//#"),
-                                lp_filterPlugins = ListPage.controller.filterPlugins;
+                                lp_filterPlugins = ListPage.controller.filterPlugins,
+                                loadingEnd = +new Date(),
+                                loadingDelay = (loadingEnd - loadingStart < 250) ? (loadingEnd - loadingStart) : 0;
+
                             ListPage.model.params.current.page = undefined;
+
+                            setTimeout(function () {
+                                $(".js-fltr-ldng-mask").remove();
+                            }, loadingMaskDelay);
                             
                             if (lp_changes.inFilterBox) {
                                 // manipulate loaded filter html
@@ -643,7 +659,7 @@ var ListPage = {
                         ;(function _getHourlyDeals() {
                             var $hourlyDealsWidget = $(".js-hrly-deals-grid");
 
-                            ListPage.services.fetch.hourlyDeals().done(function (html) {
+                            ListPage.services.fetch.hourlyDeals(lp_current).done(function (html) {
                                 var $timer, dataMinutes, dataSeconds, timerStart, clockStart,
                                     timerHtml = html.split("//&//#")[0],
                                     productsHtml = html.split("//&//#")[1];
@@ -960,73 +976,58 @@ var ListPage = {
         },
         "fetch" : {
             // generate query from all the new page state params
-            "apiQuery" : function () {
-                var lp_current = $.extend({}, ListPage.model.params.current);
-
+            "apiQuery" : function (params) {
                 return [
-                    "subcategory=" + lp_current.subcategory,
-                    lp_current.s ? ("s=" + lp_current.s) : "",
-                    lp_current.property ? ("property=" + lp_current.property.join("|")) : "",
-                    lp_current.price ? ("startinr=" + lp_current.price.split(";")[0]) : "",
-                    lp_current.price ? ("endinr=" + lp_current.price.split(";")[1]) : "",
-                    lp_current.sort ? ("sort=" + lp_current.sort) : "",
-                    lp_current.ss ? ("ss=" + lp_current.ss) : "",
-                    lp_current.page ? ("page=" + lp_current.page) : ""
+                    "subcategory=" + params.subcategory,
+                    params.s ? ("s=" + params.s) : "",
+                    params.property ? ("property=" + params.property.join("|")) : "",
+                    params.price ? ("startinr=" + params.price.split(";")[0]) : "",
+                    params.price ? ("endinr=" + params.price.split(";")[1]) : "",
+                    params.sort ? ("sort=" + params.sort) : "",
+                    params.ss ? ("ss=" + params.ss) : "",
+                    params.page ? ("page=" + params.page) : ""
                 ].join("&");
             },
-            "productList" : function _productList() {
+            "productList" : MSP.utils.memoize(function (currentParams) {
                 var dfd = $.Deferred(),
-                    lp_clipboard = ListPage.model.clipboard,
-                    cache = _productList._cache_ = _productList._cache_ || { "queries" : [], "responses" : [] },
-                    query = this.apiQuery(),
-                    loadingMaskHtml = ListPage.view.components.loadingMask();
-                
-                // check if query in cache to load response from cache.
-                if (cache.queries.indexOf(query) !== -1) {
-                    $(".js-prdct-grid-main").append(loadingMaskHtml);
-                    setTimeout(function () {
-                        $(".js-fltr-ldng-mask").remove();
-                    }, 350);
-                    dfd.resolve(cache.responses[cache.queries.indexOf(query)]);
-                } else {
-                    if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
-                        $(".js-prdct-grid-main").append(loadingMaskHtml);
-                    }
-                    // abort pending XHR's for latest XHR to deal with rapid filter changes.
+                    query = this.apiQuery(currentParams),
+                    _productList = ListPage.services.fetch.productList;
+
                     if (_productList.XHR) _productList.XHR.abort();
-                    
+
                     _productList.XHR = $.ajax({
                         url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                     }).done(function (response) {
-                        dfd.resolve(response);
-                        // cache query-response pair
-                        cache.queries.push(query);
-                        cache.responses.push(response);
-                        // remove oldest entry if cache size exceeds 25
-                        if (cache.queries.length > 25) {
-                            cache.queries.shift();
-                            cache.responses.shift();
-                        }
-                    }).always(function () {
-                        $(".js-fltr-ldng-mask").remove();
+                        _dfd.resolve(response);
+                    }).fail(function (error) {
+                        _dfd.reject(error);
                     });
-                }
-                if (_gaq) _gaq.push(['_trackEvent', 'finder', 'query', query]);
 
-                return dfd.promise();
+                    return _dfd.promise();
+                }, {
+                    "cacheLimit" : 15
+                });
             },
             // hourly deals ajax loading
-            "hourlyDeals" : function _hourlyDeals() {
-                var query = this.apiQuery();
+            "hourlyDeals" : MSP.utils.memoize(function (currentParams) {
+                var dfd = $.Deferred(),
+                    query = this.apiQuery(currentParams),
+                    _hourlyDeals = ListPage.services.fetch.hourlyDeals;
 
                 if (_hourlyDeals.XHR) _hourlyDeals.XHR.abort();
 
                 _hourlyDeals.XHR = $.ajax({
                     "url": "/msp/autodeals/hourly_deals.php?" + query
+                }).done(function (response) {
+                    _dfd.resolve(response);
+                }).fail(function (error) {
+                    _dfd.reject(error);
                 });
 
-                return _hourlyDeals.XHR;
-            }
+                return _dfd.promise();
+            }, {
+                "cacheLimit" : 15
+            });
         }
     }
 };
