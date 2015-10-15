@@ -518,8 +518,8 @@ var ListPage = {
                             lp_clipboard.isLoadParamsEqualtoPageParams = false;
                         }
                     }).always(function () {
-                        loadingEnd = +new Date(),
-                        loadingDelay = (loadingEnd - loadingStart < 250) ? (loadingEnd - loadingStart) : 0;
+                        var loadingTime = +new Date() - loadingStart,
+                            loadingMaskDelay = (loadingTime < 250) ? (250 - loadingTime) : 0;
                         
                         setTimeout(function () {
                             $(".js-fltr-ldng-mask").remove();
