@@ -3,7 +3,7 @@ $(document).ready(function() {
   // Feedback button load
   
   $("body").append([
-    '<span data-href="/feedback.html" class="js-popup-trgt text-link">',
+    '<span data-href="/promotions/feedback/feedback.html" class="js-popup-trgt text-link">',
       '<img style="position:fixed;right:0;top:0;bottom:0;margin:auto 0;" src="http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/feedback.png" />',
     '</span>'
   ].join(""));
