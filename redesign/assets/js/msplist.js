@@ -417,7 +417,7 @@ var ListPage = {
                     "max" : lp_current.price ? lp_current.price.split(";")[1] : lp_defaults.priceMax
                 }
             });
-        });
+        }),
         "render" : {
             var lp_current = ListPage.model.params.current,
                 lp_changes = ListPage.model.params.changes,
