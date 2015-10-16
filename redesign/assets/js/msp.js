@@ -166,7 +166,7 @@ var MSP = {
                         if (cacheLimit) {
                             if (cache.queries.length > cacheLimit) {
                                 cache.queries.shift();
-                                cache.responses.shift();
+                                cache.results.shift();
                             }
                         }
                         dfd.resolve(result);
