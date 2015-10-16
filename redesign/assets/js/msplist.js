@@ -991,21 +991,20 @@ var ListPage = {
                     query = this.apiQuery(currentParams),
                     _productList = ListPage.services.fetch.productList;
 
-                    if (_productList.XHR) _productList.XHR.abort();
+                if (_productList.XHR) _productList.XHR.abort();
 
-                    _productList.XHR = $.ajax({
-                        url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
-                    }).done(function (response) {
-                        _dfd.resolve(response);
-                    }).fail(function (error) {
-                        _dfd.reject(error);
-                    });
-
-                    return _dfd.promise();
-                }, {
-                    "cacheLimit" : 15
+                _productList.XHR = $.ajax({
+                    url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
+                }).done(function (response) {
+                    _dfd.resolve(response);
+                }).fail(function (error) {
+                    _dfd.reject(error);
                 });
-            },
+
+                return _dfd.promise();
+            }, {
+                "cacheLimit" : 15
+            }),
             // hourly deals ajax loading
             "hourlyDeals" : MSP.utils.memoize(function (currentParams) {
                 var dfd = $.Deferred(),
@@ -1025,7 +1024,7 @@ var ListPage = {
                 return _dfd.promise();
             }, {
                 "cacheLimit" : 15
-            });
+            })
         }
     }
 };
