@@ -996,12 +996,12 @@ var ListPage = {
                 _productList.XHR = $.ajax({
                     url: "/msp/processes/property/api/msp_get_html_for_property_new.php?" + query,
                 }).done(function (response) {
-                    _dfd.resolve(response);
+                    dfd.resolve(response);
                 }).fail(function (error) {
-                    _dfd.reject(error);
+                    dfd.reject(error);
                 });
 
-                return _dfd.promise();
+                return dfd.promise();
             }, {
                 "cacheLimit" : 15
             }),
@@ -1016,12 +1016,12 @@ var ListPage = {
                 _hourlyDeals.XHR = $.ajax({
                     "url": "/msp/autodeals/hourly_deals.php?" + query
                 }).done(function (response) {
-                    _dfd.resolve(response);
+                    dfd.resolve(response);
                 }).fail(function (error) {
-                    _dfd.reject(error);
+                    dfd.reject(error);
                 });
 
-                return _dfd.promise();
+                return dfd.promise();
             }, {
                 "cacheLimit" : 15
             })
