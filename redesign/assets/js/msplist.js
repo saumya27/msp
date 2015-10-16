@@ -658,11 +658,11 @@ var ListPage = {
                         // -> setTimeout is a temporary fix to do unchecking after handler is executed.
                         setTimeout(function () {
                             $filterOption.prop("checked", false);
+
+                            if ($filterOption.closest(".fltr").find(".fltr-val__inpt:checked").length === 0) {
+                                $filterOption.closest(".fltr").find(".fltr__cler").removeClass("fltr__cler--show");
+                            }
                         }, 0);
-                        
-                        if ($filterOption.closest(".fltr").find(".fltr-val__inpt:checked").length === 0) {
-                            $filterOption.closest(".fltr").find(".fltr__cler").removeClass("fltr__cler--show");
-                        }
                         
                         if (filterItem.groupName === "price") {
                             // update priceSlider range points
