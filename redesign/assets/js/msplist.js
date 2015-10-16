@@ -417,8 +417,8 @@ var ListPage = {
                     "max" : lp_current.price ? lp_current.price.split(";")[1] : lp_defaults.priceMax
                 }
             });
-        }),
-        "render" : {
+        },
+        "render" : function () {
             var lp_current = ListPage.model.params.current,
                 lp_changes = ListPage.model.params.changes,
                 lp_defaults = ListPage.model.params.defaults,
