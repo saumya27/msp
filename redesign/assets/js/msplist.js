@@ -852,7 +852,7 @@ var ListPage = {
                             return binarySearch.current;
                         }
                         return binarySearch (a, fn, min, max);
-                    }(price, ListPage.controller.filterPlugins.priceSlider.rangeToPrice, 0, 200));
+                    }(price, ListPage.view.filterPlugins.priceSlider.rangeToPrice, 0, 200));
                     return result;
                 },
                 // run this function while sliding the price slider.
