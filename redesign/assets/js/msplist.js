@@ -447,7 +447,7 @@ var ListPage = {
                 if ($(".body-wrpr").length !== 0) {
 
                     if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
-                        $(".js-prdct-grid-main").append(loadingMaskHtml);
+                        $(".js-prdct-grid-wrpr").append(loadingMaskHtml);
                     }
 
                     ListPage.services.fetch.productList(lp_current).done(function (response) {
