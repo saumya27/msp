@@ -367,6 +367,15 @@
         color: @fg-color-blue;
       }
     }
+    &__inpt[disabled] {
+      & + .fltr-val__text {
+        color: @fg-color-light-grey;
+
+        cursor: not-allowed;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
+      }
+    }
     &__text {
       display: inline-block;
 
