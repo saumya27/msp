@@ -303,7 +303,6 @@ var ListPage = {
                 initHash, prop_strings;
 
             lp_clipboard.isOnLoad = $.isEmptyObject(lp_current);
-            lp_current.subcategory = lp_current.subcategory || lp_page.subcategory;
                 
             // Clear list page deals countdown timer
             clearInterval(timerInterval); 
@@ -344,7 +343,7 @@ var ListPage = {
                     $.each(lp_current, function () { currentLength++; });
 
                     // if no hash or if its a quicklink page inherit page params.
-                    if (currentLength === 1 || lp_current.ql === "1") {
+                    if (currentLength === 0 || lp_current.ql === "1") {
                         $.each(lp_page, function (param, pageParamValue) {
                             if ($.isArray(pageParamValue)) {
                                 
@@ -361,18 +360,19 @@ var ListPage = {
                         });
                         delete lp_current.ql;
                     }
+
                     // since every registered params on current is new add them to changes also.
                     $.each(lp_current, function (key) {
-                        if (key !== "subcategory") {
-                            lp_changes.add[key] = lp_current[key];
-                        }
+                        lp_changes.add[key] = lp_current[key];
                     });
                 }());
+                
+                lp_current.subcategory = lp_current.subcategory || lp_page.subcategory;
                 lp_clipboard.isLoadParamsEqualtoPageParams = (ListPage.services.filterHash.fromParams(lp_current) === ListPage.services.filterHash.fromParams(lp_page));
 
                 ListPage.view.init();
             }
-
+            
             //generate new hash, and start view rendering.
             ListPage.model.hash = ListPage.services.filterHash.fromParams(lp_current);
             ListPage.view.render();
