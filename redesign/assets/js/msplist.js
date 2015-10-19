@@ -954,21 +954,24 @@ var ListPage = {
                 return params;
             },
             "fromParams" : function (params) {
-                var filterHash = "#", index = 0;
+                var filterHash, hashParams = [];
+                
                 $.each(params, function (key) {
-                    var value, prefix;
+                    var value;
                     if (params[key]) {
-                        prefix = index ? "&" : "";
                         if (key === "price") {
-                            filterHash += prefix + "startinr=" + params[key].split(";")[0] + "&endinr=" + params[key].split(";")[1];
+                            hashParams.push("startinr=" + params[key].split(";")[0]);
+                            hashParams.push("endinr=" + params[key].split(";")[1]);
                         } else if (key === "property") {
-                            filterHash += prefix + key + "=" + params[key].join("|");
+                            hashParams.push(key + "=" + params[key].join("|"));
                         } else {
-                            filterHash += prefix + key + "=" + params[key];
+                            hashParams.push(key + "=" + params[key]);
                         }
                     }
-                    index++;
                 });
+
+                filterHash = "#" + hashParams.join("&");
+
                 return filterHash;
             }
         },
