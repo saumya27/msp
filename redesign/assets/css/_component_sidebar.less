@@ -37,8 +37,6 @@
     vertical-align: middle;
     .ellipsis();
     &:hover {
-      color: @fg-color-red;
-
       text-decoration: none;
     }
   }
@@ -48,6 +46,11 @@
 .ctgry-link {
   .ctgry-item__icon {
     background-position: left center;
+  }
+  &:hover {
+    .ctgry-item__text {
+      color: @fg-color-red;
+    }
   }
   &--mbl {
     .ctgry-item__icon {
