@@ -980,14 +980,14 @@ var ListPage = {
             "apiQuery" : function (params) {
                 return [
                     "subcategory=" + params.subcategory,
-                    params.s ? ("s=" + params.s) : "",
-                    params.property ? ("property=" + params.property.join("|")) : "",
-                    params.price ? ("startinr=" + params.price.split(";")[0]) : "",
-                    params.price ? ("endinr=" + params.price.split(";")[1]) : "",
-                    params.sort ? ("sort=" + params.sort) : "",
-                    params.ss ? ("ss=" + params.ss) : "",
-                    params.page ? ("page=" + params.page) : ""
-                ].join("&");
+                    params.s ? ("&s=" + params.s) : "",
+                    params.property ? ("&property=" + params.property.join("|")) : "",
+                    params.price ? ("&startinr=" + params.price.split(";")[0]) : "",
+                    params.price ? ("&endinr=" + params.price.split(";")[1]) : "",
+                    params.sort ? ("&sort=" + params.sort) : "",
+                    params.ss ? ("&ss=" + params.ss) : "",
+                    params.page ? ("&page=" + params.page) : ""
+                ].join("");
             },
             "productList" : MSP.utils.memoize(function (currentParams) {
                 var dfd = $.Deferred(),
