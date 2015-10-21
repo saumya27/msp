@@ -2871,7 +2871,8 @@ Theme & Color
 
 .ftr .ftr__extr-info {
 	width: 1200px;
-	margin: 20px auto;
+	margin: 0 auto;
+	padding: 20px 0;
 	color: #8e8e93;
 }
 
