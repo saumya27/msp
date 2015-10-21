@@ -256,6 +256,8 @@ Theme & Color
 	box-sizing: content-box;
 	outline: 0;
 	font-family: 'Open Sans', sans-serif, Arial, Helvetica;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
 }
 
 .hdr a,
@@ -2784,25 +2786,34 @@ Theme & Color
 .ftr {
 	min-width: 1200px;
 	border-top: 1px solid #dfe1e8;
+	background-color: #ffffff;
 }
 
 .ftr .ftr--prmtn {
 	padding-bottom: 60px;
 }
 
-.ftr .ftr__clmn-wrpr1 {
-	background-color: #ffffff;
-}
-
 .ftr .ftr__clmn-wrpr {
 	width: 1200px;
-	margin: 20px auto;
+	padding: 20px 0;
+	margin: 0 auto;
 }
 
 .ftr .ftr__clmn {
 	float: left;
-	width: 380px;
 	line-height: 1.4;
+}
+
+.ftr .ftr__clmn--1-2 {
+	width: 585px;
+}
+
+.ftr .ftr__clmn--1-3 {
+	width: 380px;
+}
+
+.ftr .ftr__clmn--2-3 {
+	width: 790px;
 }
 
 .ftr .ftr__clmn + .ftr__clmn {
