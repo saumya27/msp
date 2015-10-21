@@ -446,7 +446,7 @@ var ListPage = {
                 // get new product list and filters based on updated current params
                 if ($(".body-wrpr").length !== 0) {
 
-                    if (!lp_clipboard.isLoadParamsEqualtoPageParams) {
+                    if (!(lp_clipboard.isOnLoad && lp_clipboard.isLoadParamsEqualtoPageParams)) {
                         $(".js-prdct-grid-wrpr").append(loadingMaskHtml);
                     }
 
