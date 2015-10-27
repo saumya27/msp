@@ -305,9 +305,19 @@
 
     cursor: pointer;
     .fltr-val__text {
-      transition: background .2s ease-in-out;
+      transition: background .2s ease-in-out; 
     }
     &--sngl {
+      .fltr-val__inpt[disabled] {
+      & + .fltr-val__text {
+          color: @fg-color-light-grey;
+
+          cursor: not-allowed;
+
+          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);
+        }
+      }
+
       .fltr-val__text {
         background-position: left;
 
