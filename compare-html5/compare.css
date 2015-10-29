@@ -1,0 +1,198 @@
+/* less @imports here */
+/* less vars here */
+/*---------------------------------------------------
+    LESS Elements 0.9
+  ---------------------------------------------------
+    A set of useful LESS mixins
+    More info at: http://lesselements.com
+  ---------------------------------------------------*/
+/* less fns here */
+/* less starts here */
+.cmpr__ttl {
+  font-size: 18px;
+  line-height: 20px;
+  margin: 20px 12px;
+}
+.cmpr-tbl__rw {
+  border-top: 1px solid #E6E6E6;
+}
+.cmpr-tbl__rw .cmpr-tbl__clm {
+  width: 50%;
+  border-right: 1px solid #E6E6E6;
+  display: inline-block;
+  float: left;
+  box-sizing: border-box;
+  text-align: center;
+}
+.cmpr-tprw .cmpr-tbl__clm {
+  padding: 15px;
+  position: relative;
+}
+.cmpr-tprw .cmpr-tbl__clm .cmpr-prdct__ttl {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating {
+  position: relative;
+  width: 72px;
+  margin: auto;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating [class^="icon-"],
+.cmpr-tprw .cmpr-tbl__clm .rating [class*=" icon-"] {
+  position: static;
+  font-size: 0.90em;
+  margin-right: 1px;
+  float: none;
+  margin-top: 0;
+  vertical-align: baseline;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .baseStar {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .baseStar [class^="icon-"],
+.cmpr-tprw .cmpr-tbl__clm .rating .baseStar [class*=" icon-"] {
+  color: #d5d5d5;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .baseexprating {
+  position: relative;
+  top: 0;
+  left: 0;
+  background: #d5d5d5;
+  width: 100px;
+  height: 14px;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .givenStar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .givenStar [class^="icon-"],
+.cmpr-tprw .cmpr-tbl__clm .rating .givenStar [class*=" icon-"] {
+  color: #E5CC0D ;
+}
+.cmpr-tprw .cmpr-tbl__clm .rating .givenexprating {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  height: 14px;
+}
+.cmpr-tprw .cmpr-tbl__clm .cmpr-prdct__prc {
+  color: #900;
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.cmpr-dtl {
+  border-bottom: 1px solid #E6E6E6;
+}
+.cmpr-dtl .cmpr-tbl__sbhd {
+  padding: 10px 10px;
+  background-color: #FAFAFA;
+  font-size: 15px;
+  font-weight: 700;
+}
+.cmpr-dtl .cmpr-tbl__spec {
+  padding: 6px 0;
+  border-top: 1px solid #CCC;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+.cmpr-dtl .cmpr-tbl__spec-val {
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+.cmpr-dtl .cmpr-tbl__spec-val .compare-tbl__tick-cross {
+  height: 1.2em;
+}
+.cntr {
+  text-align: center;
+}
+.clr-grey-bg {
+  background-color: #fdfdfd;
+}
+/* pie */
+.pie__score-divider {
+  font-size: 0.6em;
+  top: -0.53em;
+  right: 0.7em;
+  transform: rotate(46deg);
+  position: absolute;
+  line-height: 3em;
+}
+.pie__score {
+  right: 0.5em;
+  top: -0.4em;
+  font-size: 0.45em;
+  position: absolute;
+  line-height: 3em;
+  font-weight: bold;
+  color: #000;
+}
+.pie_score10 {
+  width: 19px;
+}
+.pie__score2 {
+  top: 2.1em;
+  left: 2.2em;
+  line-height: 3em;
+  font-size: 0.2em;
+  position: absolute;
+}
+.pie-score *,
+.pie-score *:before,
+.pie-score *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.set-size {
+  font-size: 2.1em;
+}
+.compare-subtbl .set-size {
+  font-size: 2.5em;
+}
+.pie-wrapper {
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  top: 10px;
+  right: 10px;
+}
+.pie-wrapper .pie {
+  height: 100%;
+  width: 100%;
+  clip: rect(0, 1em, 1em, 0.5em);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .pie .half-circle {
+  height: 100%;
+  width: 100%;
+  border: 0.12em solid #3498db;
+  border-radius: 50%;
+  clip: rect(0, 0.5em, 1em, 0);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.pie-wrapper .shadow {
+  height: 100%;
+  width: 100%;
+  border: 0.12em solid #bdc3c7;
+  border-radius: 50%;
+}
+.pie.keep-left-pie {
+  clip: rect(auto, auto, auto, auto);
+}
+/*# sourceMappingURL=compare.css.map */
