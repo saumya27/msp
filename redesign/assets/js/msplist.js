@@ -447,7 +447,8 @@ var ListPage = {
                 if ($(".body-wrpr").length !== 0) {
 
                     if (!(lp_clipboard.isOnLoad && lp_clipboard.isLoadParamsEqualtoPageParams)) {
-                        $(".js-prdct-grid-wrpr").append(loadingMaskHtml);
+                        if($(".js-fltr-ldng-mask").length !== 0)
+                            $(".js-prdct-grid-wrpr").append(loadingMaskHtml);
                     }
 
                     ListPage.services.fetch.productList(lp_current).done(function (response) {
@@ -520,6 +521,7 @@ var ListPage = {
                     }).always(function () {
                         var loadingTime = +new Date() - loadingStart,
                             loadingMaskDelay = (loadingTime < 250) ? (250 - loadingTime) : 0;
+                            ProductList.initGrid();
                         
                         setTimeout(function () {
                             $(".js-fltr-ldng-mask").remove();
