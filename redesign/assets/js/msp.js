@@ -872,7 +872,7 @@ if ($(".body-wrpr").length !== 0) {
         var hashObj = queryString(window.location.hash),
             finalScrollPos;
         if (hashObj && hashObj.scrollTo) {
-            finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height();
+            finalScrollPos = $('[data-id="'+ hashObj.scrollTo + '"]').offset().top - $(".hdr-size").height();
             $("body").scrollTop(finalScrollPos);
         }
 
@@ -883,8 +883,8 @@ if ($(".body-wrpr").length !== 0) {
                 finalScrollPos, currentScrollPos,
                 speed = 0.5, animTime;
                     
-            if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"').length) {
-                finalScrollPos = Math.ceil($('[data-id="'+ hashObj.scrollTo + '"').offset().top - $(".hdr-size").height());
+            if (hashObj && hashObj.scrollTo && $('[data-id="'+ hashObj.scrollTo +'"]').length) {
+                finalScrollPos = Math.ceil($('[data-id="'+ hashObj.scrollTo + '"]').offset().top - $(".hdr-size").height());
                 currentScrollPos = Math.ceil($win.scrollTop());
                 animTime = Math.ceil(Math.abs((finalScrollPos - currentScrollPos) * speed)),
                 $roots = $("html, body");
