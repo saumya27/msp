@@ -310,10 +310,6 @@
     &--sngl {
       .fltr-val__inpt[disabled] {
       & + .fltr-val__text {
-          color: @fg-color-light-grey;
-
-          cursor: not-allowed;
-
           .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);
         }
       }
@@ -339,6 +335,11 @@
       }
     }
     &--mltpl {
+      .fltr-val__inpt[disabled] {
+        & + .fltr-val__text {
+          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
+        }
+      }
       .fltr-val__text {
         padding-left: 20px;
         background-position: left center;
@@ -381,8 +382,6 @@
       & + .fltr-val__text {
         opacity: 0.5;
         cursor: not-allowed;
-
-        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
       }
     }
     &__text {
