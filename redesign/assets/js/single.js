@@ -870,3 +870,23 @@ $(document).ready(function() {
         }
     }).run(); 
 });
+
+// Price Alert Functionality - commented out here (fn. exists in msp.js of new and old site for now)
+// Later :: functionality to be implemented in single.js(this) file
+// $doc.ready(function () {
+//     // Mobile number capture popup for users who land on single page
+//     // from price alert emailer and missed the drop in price
+//     if (qS && qS.utm_campaign === "PriceAlert") {
+//         var _hash = queryString(window.location.hash);
+//         if (_hash.price) {
+//             var $mspSingleTitle = $("#mspSingleTitle");
+//             if ($mspSingleTitle.length) {
+//                 var emailPrice = parseInt(_hash.price, 10),
+//                     bestPrice = parseInt($mspSingleTitle.data("bestprice"), 10);
+//                 if (bestPrice > emailPrice) {
+//                     openPopup("/price_alert/paepopup.php?mspid=" + $mspSingleTitle.data("mspid"));
+//                 }
+//             }
+//         }
+//     }
+// });
