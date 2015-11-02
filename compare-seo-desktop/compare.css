@@ -26,7 +26,6 @@
 		  font-weight: bold;
 		  font-size: 11px;
 		  font-family: arial;
-		  background: #e0e0e0;
 		  border: 1px solid #aaa;
 		  padding: 3px 5px;
 		  margin: 2px;
@@ -34,6 +33,9 @@
 		  cursor: pointer;
 		  line-height: 12px;
 		  position: relative;
+          background: url('http://0a139eea44aaa5b71501-dd7be9abd488a04eaa465c4563316f16.r46.cf1.rackcdn.com/close_black.png') no-repeat #e0e0e0;
+          background-size: 8px;
+          background-position: 3px;
 		}
 		.gridheader__remove-img{
 			vertical-align: middle;
