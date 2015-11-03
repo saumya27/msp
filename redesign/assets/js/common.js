@@ -101,7 +101,7 @@ function update_ui() {
             '<span class="user-link__icon-svd-prdcts"></span> My Saved Products</div>',
           '<div class="drpdwn-wdgt__item user-link__rvws hvr-red js-open-link" data-open-link="/users/profile">',
             '<span class="user-link__icon-rvws"></span> My Reviews </div>',
-          '<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/users/profile">',
+          '<div class="drpdwn-wdgt__item user-link__rwrds hvr-red js-open-link" data-open-link="/loyalty/">',
             '<span class="user-link__icon-rwrds"></span> My Rewards</div>',
         '</div>'
       ].join("");
