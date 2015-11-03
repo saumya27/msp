@@ -1,0 +1,115 @@
+.nvgtn-bar {
+  top: 0;
+  clear: both; 
+  width: 1200px;
+  height: 40px - @border-width;
+  margin: auto;
+
+  text-transform: uppercase;
+  &--s {
+    height: 30px - 2*@border-width;
+    .nvgtn-bar__item {
+      height: 28px;
+
+      font-size: 10px;
+      line-height: 28px;
+    }
+  }
+  &__item {
+    position: relative;
+
+    float: left;
+
+    height: 40px - @border-width;
+
+    line-height: 40px - @border-width;
+
+    vertical-align: middle;
+    &:before {
+      position: absolute;
+      left: 0;
+
+      float: left;
+
+      border: 0;
+
+      color: @border-color;
+
+      content: '|';
+    }
+    &--ctgry {
+      padding-right: 15px;
+
+      color: @fg-color;
+      font-weight: @font-bold;
+      &:before {
+        content: '';
+      }
+    }
+    &--actv {
+      border-bottom: 1px solid #c00;
+
+      color: #c00;
+    }
+    &--frst:before {
+      content: '';
+    }
+  }
+  &__item-link {
+    display: block;
+
+    padding: 0 15px 0 20px;
+
+    color: @fg-color;
+    &:hover {
+      color: @fg-color-red;
+
+      text-decoration: none;
+    }
+  }
+}
+
+.menu-ctgry {
+  width: 150px;
+  padding-right: 15px;
+
+  color: @fg-color-red;
+  font-weight: @font-bold;
+
+  cursor: pointer;
+  &:before {
+    content: '';
+  }
+  &:hover {
+    background-color: @bg-color-gs3;
+
+    color: @fg-color-red;
+  }
+  &__hmbrgr-icon {
+    float: left;
+
+    width: 16px;
+    height: 40px - @border-width;
+    margin: 0 7px;
+    background-position: center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/category-icon-red.png', 12px, auto);
+  }
+  &__down-icon {
+    float: right;
+
+    width: 10px;
+    height: 40px - @border-width;
+    background-position: center;
+
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-grey-small.png', 8px, auto);
+    .preload('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png');
+  }
+  &:hover {
+    .menu-ctgry__down-icon {
+      background-position: center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/arrow-down-black-small.png', 8px, auto);
+    }
+  }
+}
