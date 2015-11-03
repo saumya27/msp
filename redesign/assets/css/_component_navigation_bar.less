@@ -27,7 +27,7 @@
     vertical-align: middle;
     &:before {
       position: absolute;
-      left: 0;
+      left: -3px;
 
       float: left;
 
@@ -51,6 +51,14 @@
 
       color: #c00;
     }
+    &--hghlght {
+      color: @fg-color-red;
+      border-bottom: 1px solid @border-color-red;
+
+      .nvgtn-bar__item-link {
+        color: @fg-color-red;
+      }
+    }
     &--frst:before {
       content: '';
     }
@@ -58,7 +66,7 @@
   &__item-link {
     display: block;
 
-    padding: 0 15px 0 20px;
+    padding: 0 17px 0 17px;
 
     color: @fg-color;
     &:hover {
