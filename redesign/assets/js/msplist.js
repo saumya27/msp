@@ -447,7 +447,7 @@ var ListPage = {
                 if ($(".body-wrpr").length !== 0) {
 
                     if (!(lp_clipboard.isOnLoad && lp_clipboard.isLoadParamsEqualtoPageParams)) {
-                        if($(".js-fltr-ldng-mask").length !== 0)
+                        // if($(".js-fltr-ldng-mask").length !== 0)
                             $(".js-prdct-grid-wrpr").append(loadingMaskHtml);
                     }
 
