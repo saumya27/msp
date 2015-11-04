@@ -501,7 +501,7 @@ var ListPage = {
                             }, replacedGroups);
                         } else {
                             // load new filters
-                            $(".fltr-wrpr1").html(freshData[0]);
+                            $(".fltr-wrpr1").replaceWith(freshData[0]);
                             lp_filterPlugins.init({
                                 "priceSlider" : {
                                     "min" : lp_clipboard.slider.priceMin,
