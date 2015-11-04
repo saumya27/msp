@@ -30,6 +30,66 @@
         width: auto;
         padding-right: 100px;
     }
+
+    .fltr-val{
+        line-height: 40px;
+        font-size: 18px;
+        text-align: center;
+        display: inline;
+        &--mltpl {
+            .fltr-val__text{
+              padding-left: 0px; 
+              background-position: center;
+              background-size: 17px auto;
+              width: 330px;
+              background-position-x: 100px;
+            }  
+            &:hover {
+                .fltr-val__text {
+                  .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png', 19px, auto);
+                }
+            }
+            .fltr-val__inpt:checked {
+                & + .fltr-val__text {
+                  .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 19px, auto);
+                }
+            }
+        }
+    }
+
+    .fltr-val--prprts{
+        .fltr-val{
+            line-height: 22px;
+            font-size: 18px;
+            display: inline-block;
+            height: 44px;
+            text-align: left;
+            &--mltpl {
+                .fltr-val__text{
+                  padding-left: 33px; 
+                  background-position: left center;
+                  background-size: 17px auto;
+                  width: 330px;
+                  background-position-x: 0px;
+                  .fltr-val__lbl{
+                        display: inline-block;
+                        max-width: none;
+                        vertical-align: middle;
+                        white-space: normal; 
+                        text-overflow: initial; 
+                  }
+                }  
+            }
+        }
+    }
+}
+
+.rcmndtn__btn-wrpr{
+    padding: 14px 20px 14px 14px;
+    text-align: right;
+    .btn--lft{
+        float: left;
+    }
 }
 
     

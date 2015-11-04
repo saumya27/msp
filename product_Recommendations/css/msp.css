@@ -7126,6 +7126,66 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	padding-right: 100px;
 }
 
+.sctn__rcmndtn-answr .fltr-val {
+	line-height: 40px;
+	font-size: 18px;
+	text-align: center;
+	display: inline;
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl .fltr-val__text {
+	padding-left: 0px;
+	background-position: center;
+	background-size: 17px auto;
+	width: 330px;
+	background-position-x: 100px;
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl:hover .fltr-val__text {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png);
+	background-repeat: no-repeat;
+	background-size: 19px auto;
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl .fltr-val__inpt:checked + .fltr-val__text {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png);
+	background-repeat: no-repeat;
+	background-size: 19px auto;
+}
+
+.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val {
+	line-height: 22px;
+	font-size: 18px;
+	display: inline-block;
+	height: 44px;
+	text-align: left;
+}
+
+.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val--mltpl .fltr-val__text {
+	padding-left: 33px;
+	background-position: left center;
+	background-size: 17px auto;
+	width: 330px;
+	background-position-x: 0px;
+}
+
+.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val--mltpl .fltr-val__text .fltr-val__lbl {
+	display: inline-block;
+	max-width: none;
+	vertical-align: middle;
+	white-space: normal;
+	text-overflow: initial;
+}
+
+.rcmndtn__btn-wrpr {
+	padding: 14px 20px 14px 14px;
+	text-align: right;
+}
+
+.rcmndtn__btn-wrpr .btn--lft {
+	float: left;
+}
+
 .popup-overlay {
 	position: fixed;
 	z-index: 2999;
@@ -8313,6 +8373,14 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 
 .prc-tbl__prc-drop-btn {
 	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/bell-grey@2x.png);
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl:hover .fltr-val__text {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover@2x.png);
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl .fltr-val__inpt:checked + .fltr-val__text {
+	background-image: url(http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked@2x.png);
 }
 
 }
