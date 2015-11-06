@@ -4,17 +4,20 @@ module.exports = function(grunt) {
 			msp: {
 				options: {
 					sourceMap: true,
-					sourceMapFilename: "msp.css.map"
+					sourceMapFilename: "msp.css.map",
+					sourceMapFilename: "msp_compat.css.map"
 				},
 				files: {
-					"msp.css": "msp.less"
+					"msp.css": "msp.less",
+					"msp_compat.css": "msp_compat.less"
 				}
 			}
 		},
 		stripCssComments: {
 	        dist: {
 	            files: {
-	                'msp.css': 'msp.css'
+	                'msp.css': 'msp.css',
+	                'msp_compat.css' : 'msp_compat.css'
 	            }
 	        }
 	    },
@@ -24,7 +27,8 @@ module.exports = function(grunt) {
 		    },
 			msp: {
 				files : {
-					'msp.css': ['msp.css']
+					'msp.css': ['msp.css'],
+					'msp_compat.css': ['msp_compat.css']
 				}
 			}
 		},
