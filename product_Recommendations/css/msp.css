@@ -7088,16 +7088,28 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	border-left: 1px solid #dfe1e8 !important;
 }
 
+.sctn {
+	position: relative;
+}
+
+.ovrly {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	opacity: 0.2;
+	background-color: #333;
+}
+
 .sctn__rcmndtn-qstn {
-	display: block;
-	padding: 17px;
-	border-top: 1px solid #dfe1e8;
-	background: #e9ebef;
-	color: #8e8e93;
+	padding: 15px 20px;
+	background-color: #8e93a1;
+	color: #ffffff;
 	font-size: 14px;
-	cursor: pointer;
-	transition: background 0.3s ease-in-out;
-	text-align: center;
+	font-weight: bold;
 	text-transform: uppercase;
 }
 
@@ -7109,36 +7121,60 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .sctn__rcmndtn-answr .fltr-prc__sldr {
-	margin: 25px 80px;
+	margin: 25px 328px;
 }
 
 .sctn__rcmndtn-answr .ui-slider {
-	width: 1000px;
+	width: 500px;
+	border: 3px solid #dfe1e8;
+}
+
+.sctn__rcmndtn-answr .ui-slider .ui-slider-range {
+	top: -2px;
+	border: 2px solid #3d6a8c;
 }
 
 .sctn__rcmndtn-answr .fltr-prc__mnm-wrpr {
 	width: auto;
-	padding-left: 100px;
+	padding-left: 350px;
 }
 
 .sctn__rcmndtn-answr .fltr-prc__mxm-wrpr {
 	width: auto;
-	padding-right: 100px;
+	padding-right: 350px;
+}
+
+.sctn__rcmndtn-answr .fltr-prc__inpt {
+	width: 75px;
+	height: 25px;
+	padding-left: 8px;
+	font-size: 16px;
 }
 
 .sctn__rcmndtn-answr .fltr-val {
-	line-height: 40px;
+	margin-left: 10px;
+	width: 372px;
+	height: 44px;
+	margin-bottom: 0px;
+	text-align: left;
+	line-height: 22px;
 	font-size: 18px;
-	text-align: center;
-	display: inline;
+	display: inline-block;
 }
 
 .sctn__rcmndtn-answr .fltr-val--mltpl .fltr-val__text {
-	padding-left: 0px;
-	background-position: center;
+	padding-left: 33px;
 	background-size: 17px auto;
 	width: 330px;
-	background-position-x: 100px;
+	background-position-x: 0px;
+}
+
+.sctn__rcmndtn-answr .fltr-val--mltpl .fltr-val__text .fltr-val__lbl {
+	display: inline-block;
+	max-width: none;
+	vertical-align: middle;
+	white-space: normal;
+	text-overflow: initial;
 }
 
 .sctn__rcmndtn-answr .fltr-val--mltpl:hover .fltr-val__text {
@@ -7153,30 +7189,6 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background-size: 19px auto;
 }
 
-.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val {
-	line-height: 22px;
-	font-size: 18px;
-	display: inline-block;
-	height: 44px;
-	text-align: left;
-}
-
-.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val--mltpl .fltr-val__text {
-	padding-left: 33px;
-	background-position: left center;
-	background-size: 17px auto;
-	width: 330px;
-	background-position-x: 0px;
-}
-
-.sctn__rcmndtn-answr .fltr-val--prprts .fltr-val--mltpl .fltr-val__text .fltr-val__lbl {
-	display: inline-block;
-	max-width: none;
-	vertical-align: middle;
-	white-space: normal;
-	text-overflow: initial;
-}
-
 .rcmndtn__btn-wrpr {
 	padding: 14px 20px 14px 14px;
 	text-align: right;
@@ -7184,6 +7196,78 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 
 .rcmndtn__btn-wrpr .btn--lft {
 	float: left;
+}
+
+.sctn__prdct {
+	width: 350px;
+	height: 310px;
+	margin: 10px 15px;
+	border: 1px solid #dfe1e8;
+	float: left;
+	cursor: pointer;
+}
+
+.sctn__prdct .prdct-item__img-wrpr {
+	height: 125px;
+	width: 125px;
+	float: left;
+	margin: 15px 15px;
+}
+
+.sctn__prdct .prdct__rght {
+	width: 173px;
+	height: 93px;
+	float: left;
+	margin: 30px 11px;
+}
+
+.sctn__prdct .prdct__rght .prdct__nm {
+	max-height: 32px;
+	margin-bottom: 10px;
+	float: left;
+	color: #3b3b3b;
+	font-size: 14px;
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: none;
+	overflow: hidden;
+}
+
+.sctn__prdct .prdct__rght .prdct-item__prc-val,
+.sctn__prdct .prdct__rght .prdct-item__rpe {
+	margin-top: 15px;
+	color: #3d6a8c;
+}
+
+.sctn__prdct .prdct__rght .bdg {
+	float: right;
+}
+
+.sctn__prdct .prdct-dtl__spfctn-hdr {
+	font-weight: bold;
+	padding: 0px 0px 2px 15px;
+	font-size: 14px;
+}
+
+.sctn__prdct .prdct-dtl__spfctn-wrpr {
+	margin: 0 10px 5px 15px;
+	max-height: 127px;
+	overflow: hidden;
+}
+
+.sctn__prdct .prdct-dtl__spfctn-wrpr .prdct-dtl__spfctn {
+	margin: 4px 0 0 0px;
+	padding-left: 20px;
+	padding-top: 0px;
+	line-height: 1.4;
+	color: #3b3b3b;
+	background: url("http://b12984e4d8c82ca48867-a8f8a87b64e178f478099f5d1e26a20d.r85.cf1.rackcdn.com/bulletpoint-12.png") no-repeat;
+	background-position: left center;
+}
+
+.sctn__fltrd-prdcts {
+	position: relative;
+	display: none;
 }
 
 .popup-overlay {
