@@ -1,0 +1,61 @@
+
+@import "_settings.less";
+@import "_functions.less";
+.hdr.hdr, .ftr.ftr{
+	@import "_reset.less";
+	@import "_basic.less";
+	@import "_objects.less";
+}
+.hdr.hdr{
+	@main-header-height: 60px;
+	@sub-header-height: 40px;
+	@offer-height : 40px;
+	@category-item-count : 14;
+	@category-item-height : 30px;
+	@category-item-small-height : 26px;
+	
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+
+	width: 100%;
+	max-height: 100px;
+	background-color: @bg-color-white;
+
+
+  	font-family: @font-family;
+  	font-size: @font-size;
+
+	transition: max-height .3s ease-in-out;
+	&--sld {
+		max-height: @main-header-height - @border-width;
+	}
+	&--scrl {
+		position: relative;
+	}
+	@import "_component_header.less";
+	@import "_component_search.less";
+	@import "_component_navigation_bar.less";
+}
+.hdr-size {
+  &__main {
+    height: 60px;
+  }
+  &__sub-hdr {
+    height: 40px;
+  }
+}
+.hdr.hdr, .ftr.ftr{
+	@import "_component_dropdown.less";
+}
+.ftr.ftr{
+  	background-color: @bg-color-white;
+  	min-width: @container-width;
+  	border-top: 1px solid @border-color;
+  	font-family: @font-family;
+  	font-size: @font-size;
+	@import "_component_footer.less";
+}
+.hdr.hdr, .ftr.ftr{	
+	@import "_helper.less";
+}
