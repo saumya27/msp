@@ -18,11 +18,22 @@
 }
 .cmpr-tbl__rw .cmpr-tbl__clm {
   width: 50%;
-  border-right: 1px solid #E6E6E6;
   display: inline-block;
   float: left;
   box-sizing: border-box;
   text-align: center;
+}
+.cmpr-tbl__rw:not(.cmpr-tbl__sbhd):after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  border-right: 1px solid #E6E6E6;
+  width: 50%;
+}
+.cmpr-tbl__rw:not(.cmpr-tbl__sbhd) {
+  position: relative;
 }
 .cmpr-tprw .cmpr-tbl__clm {
   padding: 15px;
