@@ -18,6 +18,7 @@
 }
 .cmpr-tbl__rw .cmpr-tbl__clm {
   width: 50%;
+  border-right: 1px solid #E6E6E6;
   display: inline-block;
   float: left;
   box-sizing: border-box;
