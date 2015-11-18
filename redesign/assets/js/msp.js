@@ -1758,7 +1758,7 @@ $win.scroll(MSP.utils.throttle(function (e) {
 
 // browse popup functions start here
 function getBrowsePopupData() {
-    return getAjaxDataSync("browse-menu.htm");
+    return getAjaxDataSync("/browse-menu.htm");
 }
 // browse popup functions end here
 
@@ -2053,7 +2053,7 @@ function recentImgError(img) {
 
 // Slide-up banner functions start here
 function initBottomSlideup() {
-    $(".js-prmtn").load("bottom-promotion.html", function () {
+    $(".js-prmtn").load("/promotions/bottom_banner_promotions.html", function () {
         var cookieName = $('.bottom-slideup').attr("cookie-name");
         var hideBottomSlideup = getCookie(cookieName);
         if (hideBottomSlideup !== "true") {
@@ -2279,6 +2279,13 @@ function isPluginInstalled() {
     return dfd.promise();
 }
 
+/* Search Function/Feature */
+$doc.on("submit",".js-srch-wdgt__frm",function(){
+    var srch_inpt = $(".js-hdr-srch").val();
+    var srch_url = 'http://www.mysmartprice.com/msp/search/search.php#s='+ srch_inpt;
+    $('.js-srch-wdgt__frm').attr('action',srch_url);
+});
+
 // **START** 
 // OLD MSP.JS CODE --> Category dropdown: browse menu --> for old headers on non-comparables pages
 // KEPT FOR COMPATIBILITY.
@@ -2381,6 +2388,5 @@ $doc.ready(function() {
         return ajaxData;
     }
     // ajax functions end here
-
 });
 // **END** (OLD MSP.JS FEATURES for old headers on non-comparables' pages)
