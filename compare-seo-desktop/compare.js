@@ -221,7 +221,7 @@ $(".showOnlyDiff").on('click', function(){
 });
 
 function addParameterToURL(){
-	var mspids = getCookie('compareIDs').toString(), 
+	var mspids = getCookie('compareIDs').toString() || "", 
 		pathname = $('.gridheader').data('non_seo_url_pn'),
 		param = "mspids="+mspids+"&subcategory="+(getCookie('compareSubCategory') || "");
 		
@@ -258,7 +258,7 @@ function setCookieCompareIDS(newMSPID){
 
 	var compare_msp_ids = [],cookie_mspids = getUrlParameter('mspids');
 	if(cookie_mspids){
-		compare_msp_ids = cookie_mspids.split(",");
+		compare_msp_ids = cookie_mspids.toString().split(",");
 	}
 	if(newMSPID){
     	compare_msp_ids.push(newMSPID);
