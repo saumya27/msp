@@ -3223,7 +3223,7 @@ header .logo {
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
   padding: 5px 10px;
-  background-color: #eee;
+  background-color: #f0f0f0;
 }
 .vrnts-wrpr .vrnt {
   padding: 3px 0;
@@ -3237,7 +3237,7 @@ header .logo {
   position: relative;
   width: 14px;
   height: 14px;
-  border: 3px solid #fff;
+  border: 3px solid #eaeaea;
   cursor: pointer;
   border-radius: 50%;
   vertical-align: middle;
@@ -4336,7 +4336,7 @@ header .logo {
   bottom: 0;
   left: 0;
   max-width: 100%;
-  height: 160px;
+  max-height: 100%;
   margin: auto;
   line-height: 160px;
 }
@@ -4820,12 +4820,13 @@ img[width="1"][height="1"] {
   background-color: rgba(0, 0, 0, 0);
   color: #000;
 }
-.pdp__widget-carousel a {
-  height: 220px;
+.pdp__widget-carousel .mCycleItemWrapper .show {
+  margin: 10px auto;
 }
-.pdp__widget-carousel a img {
+.pdp__widget-carousel a {
+  position: relative;
   height: 220px;
-  margin-top: 10px;
+  width: 280px;
 }
 .pdp__widget-carousel .zoomIcon {
   position: absolute;
@@ -4834,6 +4835,9 @@ img[width="1"][height="1"] {
   width: 32px;
   height: 32px;
   background-image: url(http://7534c3b8920181f81371-6b595f2438b9b7ae4d62993a996f5695.r5.cf1.rackcdn.com/zoom_sprite.png);
+}
+.pdp__widget-carousel .mCycleSlideBullets {
+  margin-bottom: -5px;
 }
 .pdp__carousel--hght {
   height: 480px;
