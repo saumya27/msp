@@ -2547,7 +2547,6 @@ header .logo {
   font-size: 0.8em;
 }
 .product.single .header .rating-reviews {
-  float: left;
   padding: 3px 0;
 }
 .product.single .header .rating-reviews .rating {
@@ -3224,6 +3223,7 @@ header .logo {
   border-bottom: 1px solid #ccc;
   margin: 10px 0;
   padding: 5px 10px;
+  background-color: #eee;
 }
 .vrnts-wrpr .vrnt {
   padding: 3px 0;
