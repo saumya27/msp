@@ -230,7 +230,7 @@ function addParameterToURL(){
     location.replace(_url);
 }
 
-$(".remove").add(".gridheader .compare-product").on('click', function(){
+$(document).on('click','.remove, .gridheader .compare-product', function(){
 	var remove_id;
 
 	if($(this).hasClass('remove'))
