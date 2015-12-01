@@ -16,27 +16,27 @@
 
 .cmpr-tbl__rw{
     border-top: 1px solid #E6E6E6;
+    position: relative; 
     .cmpr-tbl__clm{
         width: 50%;
-        border-right: 1px solid #E6E6E6;
         display: inline-block;
         float: left;
         box-sizing: border-box;
         text-align: center;
     }
 
-  &:not(.cmpr-tbl__sbhd):after {
-     content: "";
+  &:not(.cmpr-tbl__spec):not(.cmpr-tbl__sbhd):after { {
+     content: " ";
      position: absolute;
      top: 0;
      bottom: 0;
      height: 100%;
      border-right: 1px solid #E6E6E6;
-     width: 50%;
+     left: 50%;
   }
-  &:not(.cmpr-tbl__sbhd){
-     position: relative; 
-  }
+  // &:not(.cmpr-tbl__sbhd, .cmpr-tbl__spec){
+  //    position: relative; 
+  // }
 }
 
 .cmpr-tprw{
