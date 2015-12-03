@@ -24,7 +24,7 @@
   box-sizing: border-box;
   text-align: center;
 }
-.cmpr-tbl__rw:not(.cmpr-tbl__sbhd, .cmpr-tbl__spec):after {
+.cmpr-tbl__rw:not(.cmpr-tbl__spec):not(.cmpr-tbl__sbhd):after {
   content: " ";
   position: absolute;
   top: 0;
