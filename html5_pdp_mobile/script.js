@@ -1009,7 +1009,7 @@ $(document).on('change', '#onlinePriceSort', function () {
         //     $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
         // }
         $(".recommended.store.list, #online-store-list, #offline-store-list").empty();
-        filterPriceTable("recommended");
+        filterPriceTable($('.rbtnbar .store_type:checked').val());
     });
 
 
@@ -1062,9 +1062,8 @@ function filterPriceTableAjax(store_type) {
     var lat = $("#coordinates").data("lat");
     var lng = $("#coordinates").data("long");
 
-    var isOnline = (store_type == ("online" || "recommended")) ? 1 : 0 ;
-    var isOffline = (store_type == ("offline" || "recommended")) ? 1 : 0 ;
-
+    var isOnline = (store_type == ("online") || store_type == ("recommended")) ? 1 : 0 ;
+    var isOffline = (store_type == ("offline") || store_type == ("recommended")) ? 1 : 0 ;
     var request = {
         "mspid": mspid,
         "lat": lat,
@@ -1072,7 +1071,7 @@ function filterPriceTableAjax(store_type) {
         "online": isOnline,
         "offline": isOffline,
         "ajax": 1,
-        "color": ($('.vrnts-wrpr .vrnt .clr.selected').data("color") || "all").toLowerCase() 
+        "color": ($('.vrnts-wrpr .clr .selected').data("color") || "all").toLowerCase() 
     };
 
     return $.ajax({
@@ -1087,10 +1086,11 @@ function filterPriceTable(store_type){
     var innerHtml = "";
         
         if (store_type == "recommended") {
-            innerHtml = $.trim($(".recommended.store.list").html());
+            innerHtml =$.trim($(".recommended.store.list").html());
             if (!innerHtml) {
-                filterPriceTableAjax(store_type).done(function(){
+                filterPriceTableAjax(store_type).done(function(new_html){
                     $(".OP-search-input-wrap").hide();
+                    $(".recommended.store.list").html(new_html);
                     $(".recommended.store.list").show();
                     $(".online.store.list, .offline.store.list").hide();
                     $(".pricetable > .recommended.store.list > .item").slice(pageLength).hide();
@@ -1104,7 +1104,7 @@ function filterPriceTable(store_type){
         }else if (store_type == "online") {
             innerHtml = $.trim($("#online-store-list").html());
             if (!innerHtml) {
-                filterPriceTableAjax(store_type).done(function(){
+                filterPriceTableAjax(store_type).done(function(html){
                     $("#online-store-list").html(html);
                     $(".recommended.store.list, .offline.store.list").hide();
                     $(".online.store.list").show();
@@ -1121,7 +1121,7 @@ function filterPriceTable(store_type){
             innerData = $.trim($("#offline-store-list").html());
             $(".OP-search-input-wrap").show();
             if (!innerData) {
-                 filterPriceTableAjax(store_type).done(function(){
+                 filterPriceTableAjax(store_type).done(function(html){
                     $("#offline-store-list").html(html);
                     $(".recommended.store.list").hide();
                     $(".online.store.list").hide();
