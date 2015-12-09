@@ -2256,28 +2256,20 @@ function tryInstallFirefox() {
     InstallTrigger.install(params);
 }
 
-function isPluginInstalled() {
-    var dfd = $.Deferred(),
-        pluginPresent = false,
-        pluginTimeout = setInterval(checkPlugin, 1000);
-
-    setTimeout(function () {
-        clearInterval(pluginTimeout);
-        if (!pluginPresent){
-            dfd.reject("failed!"); 
-        }
-    }, 3000);
-  
-    function checkPlugin(){
-        pluginPresent = !!$(".plugin_id").length;
-        if (pluginPresent) {        
-            clearInterval(pluginTimeout);
-            dfd.resolve("success!"); 
-            return;
-        }
-    }
+ function isPluginInstalled() {
+    var dfd = $.Deferred();
+    !!getCookie("plugin_id") ? dfd.resolve() : dfd.reject();
     return dfd.promise();
 }
+ 
+
+ (function() {
+     setTimeout(function () {
+         if (!$(".plugin_id").length){
+             removeCookie('plugin_id');
+         }
+     }, 3000);
+ }());
 
 /* Search Function/Feature */
 $doc.on("submit",".js-srch-wdgt__frm",function(){
