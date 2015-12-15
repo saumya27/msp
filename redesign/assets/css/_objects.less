@@ -18,6 +18,9 @@
   text-transform: uppercase;
 
   .user-select();
+  &-strs {
+    text-transform: none;
+  }
   &__img {
     vertical-align: middle;
   }
@@ -83,6 +86,26 @@
       background-color: darken(@bg-color-red, 2%);
     }
   }
+  &--grn {
+    background-color: @bg-color-offline-green;
+    &.btn--dsbld {
+      background-color: lighten(@bg-color-offline-green, 10%);
+
+      cursor: not-allowed;
+      &:hover {
+        background-color: lighten(@bg-color-offline-green, 10%);
+      }
+      &:active {
+        background-color: lighten(@bg-color-offline-green, 10%);
+      }
+    }
+    &:hover {
+      background-color: lighten(@bg-color-offline-green, 5%);
+    }
+    &:active {
+      background-color: darken(@bg-color-offline-green, 2%);
+    }
+  }
   &--blue {
     background-color: @bg-color-blue;
     &.btn--dsbld {
@@ -140,16 +163,44 @@
       }
     }
     &:hover {
-      background: none;
+      background-color: transparent;
 
       color: darken(@fg-color-grey, 5%);
     }
     &:active {
-      background: none;
+      background-color: transparent;
+    }
+    &-prctbl-alrt {
+      display: inline-block;
+      visibility: hidden;
+      opacity: 0;
+      margin-top: 5px;
+      padding: 7px 7px 7px 25px;
+      border-radius: @border-radius;
+      background-position: 6px center;
+      cursor: pointer;
+      transition: background .2s ease-in-out, opacity .2s ease-in-out;
+      &:hover {
+        background-color: @bg-color-gs4;
+      }
+    }
+    &-gps {
+      float: left;
+      margin: 0 0 0 10px; // margin-top: 5px; 
+      padding: 0 10px 0 30px; // padding: 7px 7px 7px 25px;
+      line-height: 34px;
+      border-radius: @border-radius;
+      background-position: 6px center;
+      cursor: pointer;
+      transition: background .2s ease-in-out, opacity .2s ease-in-out;
+      height: 34px;
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/gps-grey.png', 16px, auto);
+      &:hover {
+        background-color: @bg-color-gs4;
+      }
     }
   }
 }
-
 .btn-GTS {
   position: relative;
 
@@ -201,6 +252,16 @@
   }
   &:active {
     background: darken(@bg-color-blue,2%);
+  }
+  &--grn {
+    background-color: @bg-color-offline-green;
+    border: 0;
+    & .btn-GTS__lbl {
+      padding: 11px;
+    }
+    &:hover {
+      background-color: lighten(@bg-color-offline-green, 5%);
+    }
   }
   &--arw-down {
     .btn-GTS__str {
@@ -287,18 +348,16 @@
 }
 
 .tltp {
+  padding: 5px 8px;
+  border-radius: 2px;
   position: absolute;
-
   display: inline-block;
-
   max-width: 300px;
-  padding: 3px 5px;
-  border: 1px solid @border-color;
-  background-color: @border-color;
-  box-shadow: 0 0 2px rgba(3, 3, 5, 0, .1);
-
+  background-color: @bg-color-light-black;
+  box-shadow: 0 0 2px rgba(3, 3, 5, 0);
   font-size: 11px;
   line-height: 13px;
+  color: white;
   &:before {
     position: absolute;
 
@@ -312,25 +371,25 @@
     bottom: -15px;
     left: 2px;
 
-    border-top: 7px solid @border-color;
+    border-top: 7px solid @bg-color-light-black;
   }
   &--top-rght:before {
     right: 2px;
     bottom: -15px;
 
-    border-top: 7px solid @border-color;
+    border-top: 7px solid @bg-color-light-black;
   }
   &--btm-left:before {
     top: -15px;
     left: 2px;
 
-    border-bottom: 7px solid @border-color;
+    border-bottom: 7px solid @bg-color-light-black;
   }
   &--btm-rght:before {
     top: -15px;
     right: 2px;
 
-    border-bottom: 7px solid @border-color;
+    border-bottom: 7px solid @bg-color-light-black;
   }
   &--wht {
     background-color: @bg-color-white;
@@ -531,12 +590,15 @@
   }
   &__view-all {
     display: block;
+    position: relative;
 
     padding: 17px;
+    min-height: 14px;
     border-top: 1px solid @border-color;
     background: @bg-color-gs3;
 
     color: @fg-color-grey;
+    font-weight: 600;
     font-size: 14px;
 
     cursor: pointer;
@@ -549,6 +611,44 @@
       color: @fg-color-grey;
 
       text-decoration: none;
+    }
+
+    // loader div modifications within show more/view all
+    .js-fltr-ldng-mask {
+      background-color: transparent;
+      left: 0;
+      .ldr {
+        top: 0;
+        bottom: 0;
+        width: 200px;
+        &__text {
+          top: 50%;
+          right: 10%;
+          margin-top: -6px;
+        }
+        &__crcl {
+          left: 15px;
+          width: 16px;
+          height: 16px;
+          margin: -9px 0 0 -9px;
+
+          &:before {
+            width: 22px;
+            height: 22px;
+            margin: -12px 0 0 -12px;
+          }
+          &:after {
+            width: 28px;
+            height: 28px;
+            margin: -15px 0 0 -15px;
+          }
+          &:before,
+          &:after {
+            left: 8px;
+          }
+
+        }
+      }
     }
   }
   &__no-rcrd {
@@ -649,6 +749,7 @@
     }
     .rtng__cnt {
       font-size: 14px;
+      color: @fg-color-grey;
     }
   }
   &--xl {
@@ -705,23 +806,27 @@
   margin-left: 10px;
   padding: 4px 6px;
   border-radius: 3px;
-  background: @bg-color-dark-green;
+  background-color: transparent;
 
   color: white;
   font-size: 12px;
 
   letter-spacing: 2px;
   &--red {
-    background: @bg-color-red;
+    border: 1px solid @border-color-red;
+    color: @fg-color-red;
   }
   &--orng {
-    background: @bg-color-orange;
+    border: 1px solid @border-color-orange;
+    color: @fg-color-orange;
   }
   &--lght-green {
-    background: @bg-color-light-green;
+    border: 1px solid @border-color-light-green;
+    color: @fg-color-light-green;
   }
   &--dark-grn {
-    background: @bg-color-dark-green;
+    border: 1px solid @border-color-dark-green;
+    color: @fg-color-dark-green;
   }
 }
 
