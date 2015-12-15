@@ -16,6 +16,7 @@ var PriceTable = {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
         },
+        "partialOnlineRows" : true,
         "price" : {
             "getMrp" : function() { return $(".prdct-dtl__slr-prc-mrp-prc").data("value") },
         },
@@ -62,7 +63,10 @@ var PriceTable = {
 
                 prevValue = PriceTable.dataPoints.getSelectedColor();
                 
-                PriceTable.update.byFilter();
+                PriceTable.update.byFilter(undefined, {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
             }
         })());
 
@@ -75,7 +79,10 @@ var PriceTable = {
             $(".avlbl-clrs__inpt").prop("checked", false);
             $variant.text((model || size) ? ("(" + (model ? (size ? model + ", " : model) : "") + (size || "") + ")") : "");
             $(this).hide();
-            PriceTable.update.byFilter();
+            PriceTable.update.byFilter(undefined, {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
         });
 
         // load the variant page selected.
@@ -87,7 +94,7 @@ var PriceTable = {
         });
 
         // switch between recommended, online, offline pricetables.
-        $doc.on("click", ".prc-tbl__ctgry-inpt", (function() {
+        $doc.on("click", ".js-ctgry-inpt", (function() {
             var previousValue = "recommended";
             return function() {
                 var $this = $(this),
@@ -95,18 +102,32 @@ var PriceTable = {
                     isSelected = currentValue === previousValue;
                     
                 if (!isSelected) {
-                    $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                    $(".js-ctgry-inpt").prop("checked", false);
                     $this.prop("checked", true);
                     
                     previousValue = currentValue;
-                    PriceTable.update.byCategory(currentValue);
+                    PriceTable.update.byFilter(currentValue, {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
                 }
             }
         })());
 
+        // online and offline stores - user choice
+        $doc.on('click', '.js-offln-click', function () {
+            $('.js-ctgry-inpt[value="offline"]').trigger('click');
+        });
+        $doc.on('click', '.js-onln-click', function () {
+            $('.js-ctgry-inpt[value="online"]').trigger('click');
+        });
+
         // apply filters to current pricetable.
         $doc.on("click", ".prc-tbl__fltrs-inpt", function() {
-            PriceTable.update.byFilter();
+            PriceTable.update.byFilter(undefined, {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
         });
         
         // sort current pricetable.
@@ -115,6 +136,15 @@ var PriceTable = {
                 var newSortby = $(this).val(),
                     category = newSortby.split(":")[0],
                     $updatedColumn = $(".prc-tbl-hdr__clm[data-sort-category='" + category + "']");
+
+                // fetch fresh data if all stores are not loaded
+                if(PriceTable.dataPoints.partialOnlineRows) {
+                    PriceTable.update.byFilter(undefined, {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
+                    return;
+                }
 
                 updatePriceTableColumns($updatedColumn, newSortby);
             
@@ -161,7 +191,21 @@ var PriceTable = {
             var $this = $(this),
                 $priceLines = $(".prc-tbl-row"),
                 isCollapsed = $this.data("collapsed"),
-                defaultRows = PriceTable.dataPoints.defaultRows;
+                defaultRows = PriceTable.dataPoints.defaultRows,
+                allRows = $('.prc-tbl-row').length,
+                _loadingMaskHTML = PriceTable.components.loadingMask(),
+                _innerPriceTable = $('.prc-tbl-inr');
+            $this.html(_loadingMaskHTML).removeClass('js-prc-tbl__show-more');
+
+            // Check if more than 6 stores are visible:
+            if(isCollapsed && !($('.js-offln-avl').length) && !(allRows - defaultRows)) {
+                PriceTable.update.byFilter('online', {
+                                "latitude" : window.localStorage.userLatitude,
+                                "longitude" : window.localStorage.userLongitude
+                            });
+                PriceTable.dataPoints.partialOnlineRows = false;
+            }
+
             $priceLines.slice(defaultRows).slideToggle();
             if (isCollapsed) {
                 $this.text("Less Stores");
@@ -176,6 +220,8 @@ var PriceTable = {
                 });
                 $this.data("collapsed", true);
             }
+
+            $this.addClass('js-prc-tbl__show-more');
         });
 
         /* more offers message box handlers - start */
@@ -241,7 +287,7 @@ var PriceTable = {
                 }
 
                 // get GPS location and update datapoints and pricetable.
-                $doc.on("click", ".prc-tbl__lctn-gps", function() {
+                $doc.on("click", ".prc-tbl__lctn-gps, .prc-tbl__gps-btn", function() {
                     isLocationStored = ("userLatitude" in window.localStorage);
 
                     /**
@@ -282,13 +328,11 @@ var PriceTable = {
                         $(".js-glctn-ovrly").removeClass("js-ovrly--show");
                         $("body").css("overflow", "auto");
                       
-                        // if online stores is selected switch tab to offline.
-                        if (PriceTable.dataPoints.getSelectedCategory() === "online") {
-                            $(".prc-tbl__ctgry-inpt").prop("checked", false);
-                            $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
-                        }
+                        // switch tab to offline.
+                        $(".prc-tbl__ctgry-inpt").prop("checked", false);
+                        $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
 
-                        PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
+                        PriceTable.update.byFilter('offline', {
                             "latitude" : latitude,
                             "longitude" : longitude
                         });
@@ -302,7 +346,7 @@ var PriceTable = {
 
                         // if previous location value available in localStorage, then use it and update priceTable
                         if (isLocationStored) {
-                            PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
+                            PriceTable.update.byFilter(PriceTable.dataPoints.getSelectedCategory(), {
                                 "latitude" : window.localStorage.userLatitude,
                                 "longitude" : window.localStorage.userLongitude
                             });
@@ -334,7 +378,7 @@ var PriceTable = {
                                 $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                             }
                             
-                            PriceTable.update.byCategory(PriceTable.dataPoints.getSelectedCategory(), {
+                            PriceTable.update.byFilter(PriceTable.dataPoints.getSelectedCategory(), {
                                 "latitude" : location.lat(),
                                 "longitude" : location.lng()
                             });
@@ -346,22 +390,48 @@ var PriceTable = {
             }
         }());
 
+    // Addition : To fetch all stores and check if offline stores is available
+        ;(function fetchStoresForOfflineInfo() {
+
+            PriceTable.fetch.tableByFilter( 
+                    "recommended",  // store type
+                    'popularity:desc', // initial sorting
+                    PriceTable.dataPoints.getAppliedFilters(), // applied filters (none initially)
+                    {                   // location object
+                        "latitude" : window.localStorage.userLatitude,
+                        "longitude" : window.localStorage.userLongitude
+                    }
+            ).done(function (json) {
+                if(json.offlineprice) {
+                    PriceTable.update.byFilter(
+                        "recommended", 
+                        {                   // location object
+                            "latitude" : window.localStorage.userLatitude,
+                            "longitude" : window.localStorage.userLongitude
+                        }
+                    );
+                }
+            });
+
+        }());
+    // END
     },
     "update" : {
-        "byCategory" : function(type, location) {
-            PriceTable.fetch.tableByCategory(type, location).done(function(html) {
-                var categoryLabel = PriceTable.dataPoints.getSelectedCategoryLabel();
+        // "byCategory":function(type,location){var_loadingMaskHTML=PriceTable.components.loadingMask(),_innerPriceTable=$('.prc-tbl-inr');_innerPriceTable.append(_loadingMaskHTML);PriceTable.fetch.tableByCategory(type,location).done(function(html{varcategoryLabel=PriceTable.dataPoints.getSelectedCategoryLabel();$(".prdct-dtl__slr-prc-tbl-btn").data("action","enabled");_innerPriceTable.html(html);$(".prc-tbl-hdr__strs.prc-tbl-hdr__cptn").text(categoryLabel);}).fail(function(){innerPriceTable.find('.js-fltr-ldng-mask').remove();});},
+        
+        "byFilter" : function(storetype, location) {            // pass storetype as 'undefined' for all data
+            var _loadingMaskHTML = PriceTable.components.loadingMask(),
+                _innerPriceTable = $('.prc-tbl-inr'),
+                $showMoreStores = $(".js-prc-tbl__show-more"),
+                _sort = $('.sort-wrpr__ctgry-inpt:checked').attr('value'),
+                _type = storetype || $('.js-ctgry-inpt:checked').attr('value'),
+                _appliedFilters = PriceTable.dataPoints.getAppliedFilters();
 
-                $(".prdct-dtl__slr-prc-tbl-btn").data("action", "enabled");
-                $(".prc-tbl-inr").html(html);
-                $(".prc-tbl-hdr__strs .prc-tbl-hdr__cptn").text(categoryLabel);
-            });
-        },
-        "byFilter" : function() {
-            PriceTable.fetch.tableByFilter().done(function (json) {
-                var $showMoreStores = $(".js-prc-tbl__show-more");
+            _innerPriceTable.append(_loadingMaskHTML);
 
+            PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location).done(function (json) {
                 if (json) {
+
                     if (json.bestprice) {
                         $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
                     }
@@ -375,7 +445,7 @@ var PriceTable = {
                         $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton);
                     }
                     if (json.pricetable) {
-                        $(".prc-tbl-inr").html(json.pricetable);
+                        _innerPriceTable.html(json.pricetable);
                         if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
                             $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
                             $showMoreStores.show().data("collapsed", true).text("Show More Stores");
@@ -383,7 +453,26 @@ var PriceTable = {
                             $showMoreStores.hide();
                         }
                     }
+
+                    if(json.offlineprice) {
+                        _innerPriceTable.html(json.pricetable);
+                        PriceTable.dataPoints.partialOnlineRows = false;
+
+                        $('.prc-tbl__ctrls').css('display', 'block');
+                        $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
+
+                        $('.js-strs-offln-prc').html(json.offlineprice);
+
+                        // TODO:: get no. of offline and online stores
+                        $('.js-strs-offln-cnt').html("View 10 Nearby Stores &#187;");
+                        $('.prdct-dtl__slr').addClass('js-offln-avl');
+                        if(!json.onlineprice) {
+                            $('.prdct-dtl__slr').removeClass('js-offln-avl').addClass('js-only-offln-avl');
+                        } 
+                    }
                 }
+            }).fail(function() {
+                _innerPriceTable.find('.js-fltr-ldng-mask').remove();
             });
         }
     },
@@ -466,6 +555,16 @@ var PriceTable = {
         });
     },
     "components" : {
+        "loadingMask" : function () {
+                return [
+                    '<div class="js-fltr-ldng-mask">',
+                        '<div class="ldr">',
+                            '<div class="ldr__crcl"></div>',
+                            '<div class="ldr__text" style="">Loading...</div> ',
+                        '</div>',
+                    '</div>'
+                ].join("");
+        },
         "offersMsgBox" : function(offerDetails) {
             var offerCount, offerRows, msgBoxHtml;
 
@@ -498,23 +597,9 @@ var PriceTable = {
         }
     },
     "fetch" : {
-        "tableByCategory" : MSP.utils.memoize(function _productList(type, location) {
-            return $.ajax({
-                "url": "/mobile/offline/delivery_pricetable.php",
-                "data": {
-                    "mspid": PriceTable.dataPoints.mspid,
-                    "mrp": PriceTable.dataPoints.price.getMrp(),
-                    "type": type,
-                    "latitude" : location && location.latitude,
-                    "longitude" : location && location.longitude
-                }
-            });
-        }, {
-            cacheLimit : 10
-        }),
-        "tableByFilter" : MSP.utils.memoize(function() {
+        // "tableByCategory":MSP.utils.memoize(function_productList(type,location{return$.ajax({"url":"/mobile/offline/delivery_pricetable.php","data":{"mspid":PriceTable.dataPoints.mspid,"mrp":PriceTable.dataPoints.price.getMrp(),"type":type,"latitude":location&&location.latitude,"longitude":location&&location.longitude}});},{cacheLimit:10}),
+        "tableByFilter" : MSP.utils.memoize(function(type, sort, appliedFilters, location) { 
             var dfd = $.Deferred(),
-                appliedFilters = PriceTable.dataPoints.getAppliedFilters(),
                 query = {
                     "mspid": PriceTable.dataPoints.mspid,
                     "mrp": PriceTable.dataPoints.price.getMrp() || 0,
@@ -523,11 +608,16 @@ var PriceTable = {
                     "cod": appliedFilters.indexOf("cod") !== -1,
                     "emi": appliedFilters.indexOf("emi") !== -1,
                     "returnpolicy": appliedFilters.indexOf("returnPolicy") !== -1,
-                    "offers": appliedFilters.indexOf("offers") !== -1
+                    "offers": appliedFilters.indexOf("offers") !== -1,
+                    "storetype": type || "recommended",
+                    "sort": sort || "popularity:desc",
+                    "latitude" : location && location.latitude,
+                    "longitude" : location && location.longitude
                 };
 
             $.ajax({
-                "url": "/mobile/filter_response.php",
+                // "url": "/mobile/filter_response.php",
+                "url": "/rd/sample_offline_response.json", // replace with real response page later
                 "dataType": "json",
                 "data": query
             }).done(function (response) {
@@ -563,7 +653,44 @@ var PriceTable = {
 
 
 $(document).ready(function() {
+
     PriceTable.init();
+
+/* additions */
+
+    // display online/offline store based on availability
+    if($('.js-offln-avl').length) { // both offline and online are available
+        $('.prdct-dtl__slr-strs').removeClass('prdct-dtl__slr-strs--l');
+    } else if($('.js-only-offln-avl').length) { // only offline is available
+        $('.prdct-dtl__slr-strs-ntfy, .prdct-dtl__slr-onln').remove();
+    }
+
+    // To Notify user when product becomes available
+    // Includes both cases - "Coming soon" as well as "Out of Stock"
+    $doc.on('submit', '.js-ntfy-frm', function() {
+        var $inputField = $(this).find(".js-ntfy-eml"),
+            $erroNode = $(this).find(".js-ntfy-err");
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $inputField,
+            "errorNode" : $erroNode
+        }]).done(function() {
+            // TODO
+            // $.ajax({
+            //     "url" : "out_of_stock_api_url",
+            //     "data" : {
+            //         "email" : emailValue
+            //     }
+            // });
+            // hide form & show success message.
+            $(".js-ntfy-eml").hide();
+            $(".js-ntfy-sbmt").hide();
+            $(".js-ntfy-sccss").fadeIn();
+        });
+        return false;
+    });
+
+/* End of additions */
 
     // save to list button handlers - start 
     $doc.on('click', ".prdct-dtl__save", function(e) {
@@ -602,6 +729,7 @@ $(document).ready(function() {
             "inputField" : $inputField,
             "errorNode" : $erroNode
         }]).done(function() {
+            // TODO:: 
             // $.ajax({
             //     "url" : "out_of_stock_api_url",
             //     "data" : {
@@ -633,6 +761,7 @@ $(document).ready(function() {
             "inputField" : $inputField,
             "errorNode" : $erroNode
         }]).done(function() {
+            // TODO::
             // $.ajax({
             //     "url" : "out_of_stock_api_url",
             //     "data" : {
@@ -653,6 +782,7 @@ $(document).ready(function() {
             "inputField" : $inputField,
             "errorNode" : $erroNode
         }]).done(function() {
+            // TODO::
             // $.ajax({
             //     "url" : "out_of_stock_api_url",
             //     "data" : {
