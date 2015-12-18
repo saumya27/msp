@@ -575,6 +575,21 @@
 
     visibility: visible;
     opacity: 1;
+
+    &--no-cpn {
+      top: -100px;
+      .prc-tbl__cpn-info,
+      .prc-tbl__cpn-desc,
+      .prc-tbl__prc-brkp-item--green {
+        display: none;
+      }
+      .prc-tbl__prc-brkp {
+        margin-top: 10px;
+      }
+      .prc-tbl__prc-brkp-item {
+        margin: 0 24px;
+      }
+    }
   }
   &__cost {
     text-align: center;
