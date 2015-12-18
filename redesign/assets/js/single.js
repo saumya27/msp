@@ -617,8 +617,7 @@ var PriceTable = {
                 };
 
             $.ajax({
-                // "url": "/mobile/filter_response.php",
-                "url": "/rd/sample_offline_response.json", // replace with real response page later
+                "url": "/mobile/filter_response_new.php",
                 "dataType": "json",
                 "data": query
             }).done(function (response) {
@@ -714,11 +713,25 @@ $(document).ready(function() {
         var newSrc = $(this).find(".prdct-dtl__thmbnl-img").attr("src");
 
         //Destination Image
-        $(".prdct-dtl__img").attr("src", newSrc)
+        $(".prdct-dtl__img").attr("src", newSrc);
+        $(".prdct-dtl__img").attr("data-thumb-id", thumbId);
         $(".prdct-dtl__img-wrpr").attr("data-href", $(this).data("href"));
 
         $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
         $(this).addClass("prdct-dtl__thmbnl--slctd");
+    });
+    $(".prdct-dtl__thmbnl-wrpr").on("mouseleave", function(e) {
+        var newSrc = $(".prdct-dtl__img").data("image");
+        $(".prdct-dtl__img").attr("src", newSrc);
+    });
+    $(".prdct-dtl__img-wrpr, .prdct-dtl__thmbnl").on("click", function(e){
+        var query = [
+        'mspid=' + $(".prdct-dtl__ttl").data("mspid"),
+        'primaryThumb=' + $(".prdct-dtl__img").data("image"),
+        'maxThumbs=' + ($(".prdct-dtl__thmbnl-wrpr .prdct-dtl__thmbnl").length + 1),
+        'thumbId=' + $(".prdct-dtl__img").data("thumb-id")
+        ].join("&");
+        openPopup("/mobile/multiple_images_popup.php?" + query);
     });
     // Multiple Image Show on Top Section - End
 
