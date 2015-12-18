@@ -567,7 +567,7 @@
       padding: 8px 5px 8px 20px;
       background-position: center left;
 
-      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/Group.png', 14px, auto);
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/tick-mark-green.png', 14px, auto);
     }
   }
   &-clm--cost:hover .prc-tbl__cpn-wrpr {
@@ -575,6 +575,21 @@
 
     visibility: visible;
     opacity: 1;
+
+    &--no-cpn {
+      top: -100px;
+      .prc-tbl__cpn-info,
+      .prc-tbl__cpn-desc,
+      .prc-tbl__prc-brkp-item--green {
+        display: none;
+      }
+      .prc-tbl__prc-brkp {
+        margin-top: 10px;
+      }
+      .prc-tbl__prc-brkp-item {
+        margin: 0 24px;
+      }
+    }
   }
   &__cost {
     text-align: center;
@@ -606,7 +621,7 @@
 
       color: @fg-color-grey;
 
-      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/Group.png', auto, 14px);
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/tick-mark-green.png', auto, 14px);
     }
     &--s {
       .prc-tbl__cost-rpe {
