@@ -609,6 +609,7 @@ var PriceTable = {
                     "emi": appliedFilters.indexOf("emi") !== -1,
                     "returnpolicy": appliedFilters.indexOf("returnPolicy") !== -1,
                     "offers": appliedFilters.indexOf("offers") !== -1,
+                    "coupons": appliedFilters.indexOf("coupons") !== -1,
                     "storetype": type || "recommended",
                     "sort": sort || "popularity:desc",
                     "latitude" : location && location.latitude,
