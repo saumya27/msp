@@ -60,8 +60,6 @@ var PriceTable = {
                     
                     $clearColor.show();
                 }
-
-                prevValue = PriceTable.dataPoints.getSelectedColor();
                 
                 PriceTable.update.byFilter(undefined, {
                                 "latitude" : window.localStorage.userLatitude,
@@ -425,11 +423,12 @@ var PriceTable = {
                 $showMoreStores = $(".js-prc-tbl__show-more"),
                 _sort = $('.sort-wrpr__ctgry-inpt:checked').attr('value'),
                 _type = storetype || $('.js-ctgry-inpt:checked').attr('value'),
-                _appliedFilters = PriceTable.dataPoints.getAppliedFilters();
+                _appliedFilters = PriceTable.dataPoints.getAppliedFilters(),
+                _colour = PriceTable.dataPoints.getSelectedColor();
 
             _innerPriceTable.append(_loadingMaskHTML);
 
-            PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location).done(function (json) {
+            PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
 
                     if (json.lowest_price) {
@@ -590,7 +589,7 @@ var PriceTable = {
     },
     "fetch" : {
         // "tableByCategory":MSP.utils.memoize(function_productList(type,location{return$.ajax({"url":"/mobile/offline/delivery_pricetable.php","data":{"mspid":PriceTable.dataPoints.mspid,"mrp":PriceTable.dataPoints.price.getMrp(),"type":type,"latitude":location&&location.latitude,"longitude":location&&location.longitude}});},{cacheLimit:10}),
-        "tableByFilter" : MSP.utils.memoize(function(type, sort, appliedFilters, location) { 
+        "tableByFilter" : MSP.utils.memoize(function(type, sort, appliedFilters, location, selectedColor) { 
             var dfd = $.Deferred(),
                 query = {
                     "mspid": PriceTable.dataPoints.mspid,
@@ -605,7 +604,8 @@ var PriceTable = {
                     "storetype": type || "recommended",
                     "sort": sort || "popularity:desc",
                     "latitude" : location && location.latitude,
-                    "longitude" : location && location.longitude
+                    "longitude" : location && location.longitude,
+                    "colour": selectedColor || false
                 };
 
             $.ajax({
