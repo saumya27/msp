@@ -402,7 +402,7 @@ var PriceTable = {
                         "longitude" : window.localStorage.userLongitude
                     }
             ).done(function (json) {
-                if(json.offlineprice) {
+                if(json.offline_store_count) {
                     PriceTable.update.byFilter(
                         "recommended", 
                         {                   // location object
@@ -432,18 +432,10 @@ var PriceTable = {
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location).done(function (json) {
                 if (json) {
 
-                    if (json.bestprice) {
+                    if (json.lowest_price) {
                         $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
                     }
-                    if (json.discount) {
-                        $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]");
-                    }
-                    if (json.mspCoins) {
-                        $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins);
-                    }
-                    if (json.buybutton) {
-                        $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton);
-                    }
+                    // if (json.discount) { $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]"); } if (json.mspCoins) { $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins); } if (json.buybutton) { $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton); }
                     if (json.pricetable) {
                         _innerPriceTable.html(json.pricetable);
                         if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
@@ -454,17 +446,17 @@ var PriceTable = {
                         }
                     }
 
-                    if(json.offlineprice) {
-                        _innerPriceTable.html(json.pricetable);
+                    if(json.offline_store_count) {
+                        // _innerPriceTable.html(json.pricetable);
                         PriceTable.dataPoints.partialOnlineRows = false;
 
                         $('.prc-tbl__ctrls').css('display', 'block');
                         $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
 
-                        $('.js-strs-offln-prc').html(json.offlineprice);
+                        $('.js-strs-offln-prc').html(json.offline_best_price);
 
                         // TODO:: get no. of offline and online stores
-                        $('.js-strs-offln-cnt').html("View 10 Nearby Stores &#187;");
+                        $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
                         $('.prdct-dtl__slr').addClass('js-offln-avl');
                         if(!json.onlineprice) {
                             $('.prdct-dtl__slr').removeClass('js-offln-avl').addClass('js-only-offln-avl');
