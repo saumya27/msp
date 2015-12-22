@@ -692,12 +692,13 @@ $(document).ready(function() {
     
     // Multiple Image Show on Top Section - Start
     $(".prdct-dtl__thmbnl").on("mouseenter", function(e) {
-        var newSrc = $(this).find(".prdct-dtl__thmbnl-img").attr("src");
+        var $thumbnailImage = $(this).find(".prdct-dtl__thmbnl-img"),
+            newSrc = $thumbnailImage.attr("src"),
+            thumbId = $thumbnailImage.data("thumb-id");
 
         //Destination Image
-        $(".prdct-dtl__img").attr("src", newSrc);
-        $(".prdct-dtl__img").attr("data-thumb-id", thumbId);
-        $(".prdct-dtl__img-wrpr").attr("data-href", $(this).data("href"));
+        $(".prdct-dtl__img").attr("src", newSrc).data("thumb-id", thumbId);
+        $(".prdct-dtl__img-wrpr").data("href", $(this).data("href"));
 
         $(".prdct-dtl__thmbnl").removeClass("prdct-dtl__thmbnl--slctd");
         $(this).addClass("prdct-dtl__thmbnl--slctd");
