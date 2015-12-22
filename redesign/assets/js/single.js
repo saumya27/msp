@@ -434,7 +434,6 @@ var PriceTable = {
                     if (json.lowest_price) {
                         $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
                     }
-                    // if (json.discount) { $(".prdct-dtl__slr-prc-mrp-dscnt").text("[" + json.discount + "% OFF]"); } if (json.mspCoins) { $(".prdct-dtl__slr-ftrs-lylty-val").text(json.mspCoins); } if (json.buybutton) { $(".prdct-dtl__slr-prc-btn").replaceWith(json.buybutton); }
                     if (json.pricetable) {
                         _innerPriceTable.html(json.pricetable);
                         if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
@@ -446,20 +445,13 @@ var PriceTable = {
                     }
 
                     if(json.offline_store_count) {
-                        // _innerPriceTable.html(json.pricetable);
                         PriceTable.dataPoints.partialOnlineRows = false;
 
                         $('.prc-tbl__ctrls').css('display', 'block');
                         $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
-
                         $('.js-strs-offln-prc').html(json.offline_best_price);
-
-                        // TODO:: get no. of offline and online stores
                         $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
                         $('.prdct-dtl__slr').addClass('js-offln-avl');
-                        if(!json.onlineprice) {
-                            $('.prdct-dtl__slr').removeClass('js-offln-avl').addClass('js-only-offln-avl');
-                        } 
                     }
                 }
             }).fail(function() {
@@ -648,13 +640,16 @@ $(document).ready(function() {
 
     PriceTable.init();
 
-/* additions */
-
     // display online/offline store based on availability
     if($('.js-offln-avl').length) { // both offline and online are available
-        $('.prdct-dtl__slr-strs').removeClass('prdct-dtl__slr-strs--l');
-    } else if($('.js-only-offln-avl').length) { // only offline is available
-        $('.prdct-dtl__slr-strs-ntfy, .prdct-dtl__slr-onln').remove();
+        var _allStores = $('.prdct-dtl__slr-strs'),
+            _unavailableStores = $('.prdct-dtl__slr-strs-ntfy'),
+            _onlineStores = $('.prdct-dtl__slr-onln');
+        if(!_onlineStores.length) {     // no online stores
+            _unavailableStores.remove();
+        } else {                        // online stores available
+            _allStores.removeClass('prdct-dtl__slr-strs--l');
+        }
     }
 
     // To Notify user when product becomes available
@@ -681,8 +676,6 @@ $(document).ready(function() {
         });
         return false;
     });
-
-/* End of additions */
 
     // save to list button handlers - start 
     $doc.on('click', ".prdct-dtl__save", function(e) {
