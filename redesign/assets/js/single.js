@@ -430,7 +430,6 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
-
                     if (json.lowest_price) {
                         $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
                     }
@@ -443,7 +442,6 @@ var PriceTable = {
                             $showMoreStores.hide();
                         }
                     }
-
                     if(json.offline_store_count) {
                         PriceTable.dataPoints.partialOnlineRows = false;
 
@@ -452,6 +450,17 @@ var PriceTable = {
                         $('.js-strs-offln-prc').html(json.offline_best_price);
                         $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
                         $('.prdct-dtl__slr').addClass('js-offln-avl');
+                    }
+                }
+                // display online/offline store based on availability
+                if($('.js-offln-avl').length) { // both offline and online are available
+                    var _allStores = $('.prdct-dtl__slr-strs'),
+                        _unavailableStores = $('.prdct-dtl__slr-strs-ntfy'),
+                        _onlineStores = $('.prdct-dtl__slr-onln');
+                    if(!_onlineStores.length) {     // no online stores
+                        _unavailableStores.remove();
+                    } else {                        // online stores available
+                        _allStores.removeClass('prdct-dtl__slr-strs--l');
                     }
                 }
             }).fail(function() {
@@ -639,18 +648,6 @@ var PriceTable = {
 $(document).ready(function() {
 
     PriceTable.init();
-
-    // display online/offline store based on availability
-    if($('.js-offln-avl').length) { // both offline and online are available
-        var _allStores = $('.prdct-dtl__slr-strs'),
-            _unavailableStores = $('.prdct-dtl__slr-strs-ntfy'),
-            _onlineStores = $('.prdct-dtl__slr-onln');
-        if(!_onlineStores.length) {     // no online stores
-            _unavailableStores.remove();
-        } else {                        // online stores available
-            _allStores.removeClass('prdct-dtl__slr-strs--l');
-        }
-    }
 
     // To Notify user when product becomes available
     // Includes both cases - "Coming soon" as well as "Out of Stock"
