@@ -240,10 +240,10 @@ var PriceTable = {
                 if (!$popup.hasClass("msg-box--show")) {
                     mspid = PriceTable.dataPoints.mspid;
                     storename = $row.data("storename");
-                    currentColour = PriceTable.dataPoints.getSelectedColor() || "default";
+                    currentColour = PriceTable.dataPoints.getSelectedColor() || false;
                     
                     if (handler.popupData.colour !== currentColour) {
-                        PriceTable.fetch.offersPopups().done(function(response) {
+                        PriceTable.fetch.offersPopups(mspid, currentColour).done(function(response) {
                             handler.popupData.content = response;
                             offerDetails = response[storename];
                         
@@ -637,15 +637,14 @@ var PriceTable = {
             cacheLimit : 10
         }),
         "offersPopups" : MSP.utils.memoize(function(mspid, color) {
-            var dfd = $.Deferred(),
-                currentColour = PriceTable.dataPoints.getSelectedColor();
+            var dfd = $.Deferred();
             $.ajax({
-                "url" : "assets/js/offers.json",
+                "url" : "/msp/offertext_ajax.php",
                 "type" : "GET",
                 "dataType" : "json",
                 "data" : {
                     "mspid" : mspid,
-                    "color" : (currentColour !== "default") ? currentColour : undefined
+                    "color" : color
                 }
             }).done(function(response) {
                 dfd.resolve(response);
@@ -657,6 +656,12 @@ var PriceTable = {
     }
 };
 
+// Alternate text for image
+function offlineStoreImageError(img) {
+    var $img = $(img);
+    if ($img.attr("alt"))
+        $img.replaceWith("<div class='str-name'>" + $img.attr("alt") + "</div>");
+}
 
 $(document).ready(function() {
 
