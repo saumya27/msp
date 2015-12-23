@@ -227,7 +227,13 @@ var PriceTable = {
             var $popupCont = $(this),
                 $popup = $popupCont.find(".prc-tbl__xtrs-clm-pop"),
                 $row = $(this).closest(".prc-tbl-row"),
-                mspid, currentColour, storename, offerDetails, offersMsgBoxHtml;
+                mspid, currentColour, storename, offerDetails, offersMsgBoxHtml, msgBox;
+
+            if($popupCont.hasClass('cashback')) {
+                msgBox = $popupCont.find('.msg-box');
+                msgBox.toggleClass('msg-box--show');
+                return;
+            }
 
             if (!$(e.target).hasClass("js-xtrs-msg-box__cls")) {
                 handler.popupData = handler.popupData || {};
@@ -258,7 +264,14 @@ var PriceTable = {
         });
 
         $doc.on("click", ".js-xtrs-msg-box__cls", function() {
-            $(this).closest(".msg-box").remove();
+            var $this = $(this),
+                $xtrasLink = $this.closest('.js-xtrs-msg-box-trgt');
+
+            if($xtrasLink.hasClass('cashback')) {
+                return;
+            }
+
+            $this.closest(".msg-box").remove();
         });
 
         // close all message boxes on pressing escape key
