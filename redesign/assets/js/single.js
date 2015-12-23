@@ -393,7 +393,7 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter( 
                     "recommended",  // store type
-                    'popularity:desc', // initial sorting
+                    'popularity', // initial sorting
                     PriceTable.dataPoints.getAppliedFilters(), // applied filters (none initially)
                     {                   // location object
                         "latitude" : window.localStorage.userLatitude,
@@ -499,7 +499,7 @@ var PriceTable = {
 
         if (_gaq) _gaq.push(['_trackEvent', 'sort_by', sortby, '']);
 
-        if (sortby === 'popularity:desc') {
+        if (sortby === 'popularity') {
             $('.prc-tbl-row--NA').attr("data-relrank", "9999");
         } else if (sortby === 'price:asc') {
             $('.prc-tbl-row--NA').attr("data-pricerank", "9999999");
@@ -653,19 +653,21 @@ $(document).ready(function() {
     // Includes both cases - "Coming soon" as well as "Out of Stock"
     $doc.on('submit', '.js-ntfy-frm', function() {
         var $inputField = $(this).find(".js-ntfy-eml"),
-            $erroNode = $(this).find(".js-ntfy-err");
+            $errorNode = $(this).find(".js-ntfy-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             // hide form & show success message.
             $(".js-ntfy-eml").hide();
             $(".js-ntfy-sbmt").hide();
@@ -720,19 +722,21 @@ $(document).ready(function() {
 
     $(".prdct-dtl__no-stck-form").on("submit", function() {
         var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
+            $errorNode = $(this).find(".js-vldtn-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO:: 
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             // hide form & show success message.
             $(".prdct-dtl__no-stck-form").hide();
             $(".prdct-dtl__no-stck-scs").fadeIn();
@@ -752,43 +756,23 @@ $(document).ready(function() {
 
     $(".prc-tbl__no-stck-form").on("submit", function() {
         var $inputField = $(this).find(".prc-tbl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
+            $errorNode = $(this).find(".js-vldtn-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO::
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             $(".prc-tbl__no-stck-form").hide();
             $(".prc-tbl__no-stck-scs").fadeIn();
-        });
-        return false;
-    });
-
-    $(".prdct-dtl__no-stck-form").on("submit", function() {
-        var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
-        MSP.utils.validate.form([{
-            "type" : "email",
-            "inputField" : $inputField,
-            "errorNode" : $erroNode
-        }]).done(function() {
-            // TODO::
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
-            // hide form & show success message.
-            $(".prdct-dtl__no-stck-form").hide();
-            $(".prdct-dtl__no-stck-scs").fadeIn();
         });
         return false;
     });
