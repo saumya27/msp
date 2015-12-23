@@ -229,7 +229,7 @@ var PriceTable = {
                 $row = $(this).closest(".prc-tbl-row"),
                 mspid, currentColour, storename, offerDetails, offersMsgBoxHtml, msgBox;
 
-            if($popupCont.hasClass('cashback')) {
+            if($popupCont.hasClass('cashback') || $popupCont.hasClass('offline')) {
                 msgBox = $popupCont.find('.msg-box');
                 msgBox.toggleClass('msg-box--show');
                 return;
@@ -267,7 +267,7 @@ var PriceTable = {
             var $this = $(this),
                 $xtrasLink = $this.closest('.js-xtrs-msg-box-trgt');
 
-            if($xtrasLink.hasClass('cashback')) {
+            if($xtrasLink.hasClass('cashback') || $xtrasLink.hasClass('offline')) {
                 return;
             }
 
