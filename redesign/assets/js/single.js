@@ -571,20 +571,25 @@ var PriceTable = {
                 ].join("");
         },
         "offersMsgBox" : function(offerDetails) {
-            var offerCount, offerRows, msgBoxHtml;
+            var offerCount = 1, offerRows, msgBoxHtml,
+                _regex = /<li>/;
 
-            offerCount = $(offerDetails).find("li").length || 1,
-            offerRows = (function() {
-                var result = "";
-                if (offerCount) {
-                    $(offerDetails).find("li").each(function() {
-                        result += '<div class="msg-box__row">' + $(this).html() + '</div>';
-                    });
-                } else {
-                    result += '<div class="msg-box__row">' + $(offerDetails).html() + '</div>';
-                }
-                return result;
-            }());
+            if(_regex.test(offerDetails)) {
+                offerCount = $(offerDetails).find("li").length || 1,
+                offerRows = (function() {
+                    var result = "";
+                    if (offerCount) {
+                        $(offerDetails).find("li").each(function() {
+                            result += '<div class="msg-box__row">' + $(this).html() + '</div>';
+                        });
+                    } else {
+                        result += '<div class="msg-box__row">' + $(offerDetails).html() + '</div>';
+                    }
+                    return result;
+                }());
+            } else {
+                offerRows = '<div class="msg-box__row">' + offerDetails + '</div>';
+            }
 
             msgBoxHtml = [
                 '<div class="msg-box prc-tbl__xtrs-clm-pop">',
