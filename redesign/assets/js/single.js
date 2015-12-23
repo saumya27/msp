@@ -858,6 +858,9 @@ $(document).ready(function() {
     });
 
     ;(function() {
+        if(!$(".usr-wrt-rvw").length) {
+            return;
+        }
         var ratingWidth = $(".usr-rvw-form__rtng-wrpr .rtng-star").width(),
             $ratingInr = $(".usr-rvw-form__rtng-wrpr .rtng-star__inr"),
             $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
@@ -966,33 +969,36 @@ $(document).ready(function() {
         } 
     }()); 
 
-     MSP.utils.lazyLoad.assign({ 
-        "node" : $(".prc-grph"),
-        "isStatic" : true,
-        "callback" : {
-            "definition" : function() {
-                if ($(".prc-grph__not-sprtd").length) {
-                    $(".prc-grph__not-sprtd").show();
-                    $(".prc-grph__ldr").hide();
-                    return;
-                }
+    if($(".prc-grph").length) {
+        MSP.utils.lazyLoad.assign({ 
+            "node" : $(".prc-grph"),
+            "isStatic" : true,
+            "callback" : {
+                "definition" : function() {
+                    if ($(".prc-grph__not-sprtd").length) {
+                        $(".prc-grph__not-sprtd").show();
+                        $(".prc-grph__ldr").hide();
+                        return;
+                    }
 
-                $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
-                
-                $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
-                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
-                        $.getScript("assets/js/priceGraph.js", function() {
-                            $(".prc-grph__rght-chrt").show();
-                            $(".prc-grph__btn-wrpr").show();
-                            $(".prc-grph__ldr").hide();
+                    $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
+                    
+                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
+                        $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
+                            $.getScript("assets/js/priceGraph.js", function() {
+                                $(".prc-grph__rght-chrt").show();
+                                $(".prc-grph__btn-wrpr").show();
+                                $(".prc-grph__ldr").hide();
+                            });
                         });
                     });
-                });
-            },
-            "context": window,
-            "arguments" : [] 
-        }
-    }).run(); 
+                },
+                "context": window,
+                "arguments" : [] 
+            }
+        }).run(); 
+    }
+
 });
 
 // Price Alert Functionality - commented out here (fn. exists in msp.js of new and old site for now)
