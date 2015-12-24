@@ -705,7 +705,7 @@ $(document).ready(function() {
     });
 
     // show price breakup on gts button mouseenter
-    $doc.on('mouseenter', '.js-prc-tbl__gts-btn', function () {
+    $doc.on('mouseenter', '.prc-tbl-clm--gts', function () {
         var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
         $thisPriceBreakup.css({
             "visibility" : "visible",
@@ -718,7 +718,7 @@ $(document).ready(function() {
         }
     });
     // Hide price breakup on gts button mouseleave
-    $doc.on('mouseleave', '.js-prc-tbl__gts-btn', function () {
+    $doc.on('mouseleave', '.prc-tbl-clm--gts', function () {
         var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
         $thisPriceBreakup.attr('style', '');
     });
