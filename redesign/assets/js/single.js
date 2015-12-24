@@ -486,10 +486,15 @@ var PriceTable = {
             $priceTableRows = $('.prc-tbl-row'),
             sortColumn = sortby.split(":")[0],
             sortOrder = sortby.split(":")[1],
-            sortTypes;
+            sortTypes,
+            $hideXtrscashback = $('.js-xtrs-msg-box-trgt.cashback').find('msg-box--show'),
+            $hideXtrsoffline = $('.js-xtrs-msg-box-trgt.offline').find('msg-box--show'),
+            $hideOffers = $('.js-xtrs-msg-box-trgt').not('.cashback');
 
         // close all messageBoxes before sorting priceTable
-        $('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
+        $hideOffers.find('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
+        $hideXtrsoffline.removeClass('msg-box--show');
+        $hideXtrscashback.removeClass('msg-box--show');
 
         sortTypes = {
             "popularity" : { "attr" : "data-relrank" },
@@ -552,9 +557,9 @@ var PriceTable = {
                 });
                 
                 if ($(".js-prc-tbl__show-more").data("collapsed")) {
-                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).hide();
+                    $('.prc-tbl-row').slice(PriceTable.dataPoints.defaultRows).hide();
                 } else {
-                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).show();
+                    $('.prc-tbl-row').slice(PriceTable.dataPoints.defaultRows).show();
                 }
             });
         });
@@ -697,6 +702,55 @@ $(document).ready(function() {
             $(".js-ntfy-sccss").fadeIn();
         });
         return false;
+    });
+
+    // show price breakup on gts button mouseenter
+    $doc.on('mouseenter', '.js-prc-tbl__gts-btn', function () {
+        var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
+        $thisPriceBreakup.css({
+            "visibility" : "visible",
+            "opacity" : "1"
+        });
+        if($thisPriceBreakup.hasClass('prc-tbl__cpn-wrpr--no-cpn')) {
+            $thisPriceBreakup.css("top", "-100px");
+        } else {
+            $thisPriceBreakup.css("top", "-175px");
+        }
+    });
+    // Hide price breakup on gts button mouseleave
+    $doc.on('mouseleave', '.js-prc-tbl__gts-btn', function () {
+        var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
+        $thisPriceBreakup.attr('style', '');
+    });
+
+    // coupon code generation handler
+    $doc.on('click', '.js-redeem-coupon', function () {
+        var $this = $(this),
+            $form = $this.closest('.eml-form'),
+            $email = $form.find('.prc-tbl__cpn-info--email'),
+            _store = $this.closest('.prc-tbl-row').data('storename'),
+            _html;
+
+        $.ajax({
+            "url" : "/stores/coupons/send_coupon_code.php",
+            "data" : {
+                "mspid" : PriceTable.dataPoints.mspid,
+                "store" : _store,
+                "email" : $email.val(),
+                "lineid" : $form.data('lineid'),
+                "couponid" : $form.data('couponid')
+            }
+        }).done(function (responseData) {
+            responseData = responseData.trim();
+            _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
+                        '<span class="prc-tbl__cpn-code js-slct-trgt">',
+                        responseData,
+                        '</span>',
+                        '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
+                    '</div>'].join('');
+            $form.replaceWith(_html);
+        });
+
     });
 
     // save to list button handlers - start 
