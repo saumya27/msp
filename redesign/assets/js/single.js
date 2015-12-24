@@ -227,17 +227,23 @@ var PriceTable = {
             var $popupCont = $(this),
                 $popup = $popupCont.find(".prc-tbl__xtrs-clm-pop"),
                 $row = $(this).closest(".prc-tbl-row"),
-                mspid, currentColour, storename, offerDetails, offersMsgBoxHtml;
+                mspid, currentColour, storename, offerDetails, offersMsgBoxHtml, msgBox;
+
+            if($popupCont.hasClass('cashback') || $popupCont.hasClass('offline')) {
+                msgBox = $popupCont.find('.msg-box');
+                msgBox.toggleClass('msg-box--show');
+                return;
+            }
 
             if (!$(e.target).hasClass("js-xtrs-msg-box__cls")) {
                 handler.popupData = handler.popupData || {};
                 if (!$popup.hasClass("msg-box--show")) {
                     mspid = PriceTable.dataPoints.mspid;
                     storename = $row.data("storename");
-                    currentColour = PriceTable.dataPoints.getSelectedColor() || "default";
+                    currentColour = PriceTable.dataPoints.getSelectedColor() || false;
                     
                     if (handler.popupData.colour !== currentColour) {
-                        PriceTable.fetch.offersPopups().done(function(response) {
+                        PriceTable.fetch.offersPopups(mspid, currentColour).done(function(response) {
                             handler.popupData.content = response;
                             offerDetails = response[storename];
                         
@@ -258,7 +264,14 @@ var PriceTable = {
         });
 
         $doc.on("click", ".js-xtrs-msg-box__cls", function() {
-            $(this).closest(".msg-box").remove();
+            var $this = $(this),
+                $xtrasLink = $this.closest('.js-xtrs-msg-box-trgt');
+
+            if($xtrasLink.hasClass('cashback') || $xtrasLink.hasClass('offline')) {
+                return;
+            }
+
+            $this.closest(".msg-box").remove();
         });
 
         // close all message boxes on pressing escape key
@@ -393,7 +406,7 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter( 
                     "recommended",  // store type
-                    'popularity:desc', // initial sorting
+                    'popularity', // initial sorting
                     PriceTable.dataPoints.getAppliedFilters(), // applied filters (none initially)
                     {                   // location object
                         "latitude" : window.localStorage.userLatitude,
@@ -473,10 +486,15 @@ var PriceTable = {
             $priceTableRows = $('.prc-tbl-row'),
             sortColumn = sortby.split(":")[0],
             sortOrder = sortby.split(":")[1],
-            sortTypes;
+            sortTypes,
+            $hideXtrscashback = $('.js-xtrs-msg-box-trgt.cashback').find('msg-box--show'),
+            $hideXtrsoffline = $('.js-xtrs-msg-box-trgt.offline').find('msg-box--show'),
+            $hideOffers = $('.js-xtrs-msg-box-trgt').not('.cashback');
 
         // close all messageBoxes before sorting priceTable
-        $('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
+        $hideOffers.find('.js-msg-box__cls, .js-xtrs-msg-box__cls').click();
+        $hideXtrsoffline.removeClass('msg-box--show');
+        $hideXtrscashback.removeClass('msg-box--show');
 
         sortTypes = {
             "popularity" : { "attr" : "data-relrank" },
@@ -499,7 +517,7 @@ var PriceTable = {
 
         if (_gaq) _gaq.push(['_trackEvent', 'sort_by', sortby, '']);
 
-        if (sortby === 'popularity:desc') {
+        if (sortby === 'popularity') {
             $('.prc-tbl-row--NA').attr("data-relrank", "9999");
         } else if (sortby === 'price:asc') {
             $('.prc-tbl-row--NA').attr("data-pricerank", "9999999");
@@ -539,9 +557,9 @@ var PriceTable = {
                 });
                 
                 if ($(".js-prc-tbl__show-more").data("collapsed")) {
-                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).hide();
+                    $('.prc-tbl-row').slice(PriceTable.dataPoints.defaultRows).hide();
                 } else {
-                    $priceTableRows.slice(PriceTable.dataPoints.defaultRows).show();
+                    $('.prc-tbl-row').slice(PriceTable.dataPoints.defaultRows).show();
                 }
             });
         });
@@ -558,20 +576,25 @@ var PriceTable = {
                 ].join("");
         },
         "offersMsgBox" : function(offerDetails) {
-            var offerCount, offerRows, msgBoxHtml;
+            var offerCount = 1, offerRows, msgBoxHtml,
+                _regex = /<li>/;
 
-            offerCount = $(offerDetails).find("li").length || 1,
-            offerRows = (function() {
-                var result = "";
-                if (offerCount) {
-                    $(offerDetails).find("li").each(function() {
-                        result += '<div class="msg-box__row">' + $(this).html() + '</div>';
-                    });
-                } else {
-                    result += '<div class="msg-box__row">' + $(offerDetails).html() + '</div>';
-                }
-                return result;
-            }());
+            if(_regex.test(offerDetails)) {
+                offerCount = $(offerDetails).find("li").length || 1,
+                offerRows = (function() {
+                    var result = "";
+                    if (offerCount) {
+                        $(offerDetails).find("li").each(function() {
+                            result += '<div class="msg-box__row">' + $(this).html() + '</div>';
+                        });
+                    } else {
+                        result += '<div class="msg-box__row">' + $(offerDetails).html() + '</div>';
+                    }
+                    return result;
+                }());
+            } else {
+                offerRows = '<div class="msg-box__row">' + offerDetails + '</div>';
+            }
 
             msgBoxHtml = [
                 '<div class="msg-box prc-tbl__xtrs-clm-pop">',
@@ -624,15 +647,14 @@ var PriceTable = {
             cacheLimit : 10
         }),
         "offersPopups" : MSP.utils.memoize(function(mspid, color) {
-            var dfd = $.Deferred(),
-                currentColour = PriceTable.dataPoints.getSelectedColor();
+            var dfd = $.Deferred();
             $.ajax({
-                "url" : "assets/js/offers.json",
+                "url" : "/msp/offertext_ajax.php",
                 "type" : "GET",
                 "dataType" : "json",
                 "data" : {
                     "mspid" : mspid,
-                    "color" : (currentColour !== "default") ? currentColour : undefined
+                    "color" : color
                 }
             }).done(function(response) {
                 dfd.resolve(response);
@@ -644,6 +666,12 @@ var PriceTable = {
     }
 };
 
+// Alternate text for image
+function offlineStoreImageError(img) {
+    var $img = $(img);
+    if ($img.attr("alt"))
+        $img.replaceWith("<div class='str-name'>" + $img.attr("alt") + "</div>");
+}
 
 $(document).ready(function() {
 
@@ -653,25 +681,76 @@ $(document).ready(function() {
     // Includes both cases - "Coming soon" as well as "Out of Stock"
     $doc.on('submit', '.js-ntfy-frm', function() {
         var $inputField = $(this).find(".js-ntfy-eml"),
-            $erroNode = $(this).find(".js-ntfy-err");
+            $errorNode = $(this).find(".js-ntfy-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             // hide form & show success message.
             $(".js-ntfy-eml").hide();
             $(".js-ntfy-sbmt").hide();
             $(".js-ntfy-sccss").fadeIn();
         });
         return false;
+    });
+
+    // show price breakup on gts button mouseenter
+    $doc.on('mouseenter', '.prc-tbl-clm--gts', function () {
+        var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
+        $thisPriceBreakup.css({
+            "visibility" : "visible",
+            "opacity" : "1"
+        });
+        if($thisPriceBreakup.hasClass('prc-tbl__cpn-wrpr--no-cpn')) {
+            $thisPriceBreakup.css("top", "-100px");
+        } else {
+            $thisPriceBreakup.css("top", "-175px");
+        }
+    });
+    // Hide price breakup on gts button mouseleave
+    $doc.on('mouseleave', '.prc-tbl-clm--gts', function () {
+        var $thisPriceBreakup = $(this).closest('.prc-tbl-row').find('.js-card-slide-up');
+        $thisPriceBreakup.attr('style', '');
+    });
+
+    // coupon code generation handler
+    $doc.on('click', '.js-redeem-coupon', function () {
+        var $this = $(this),
+            $form = $this.closest('.eml-form'),
+            $email = $form.find('.prc-tbl__cpn-info--email'),
+            _store = $this.closest('.prc-tbl-row').data('storename'),
+            _html;
+
+        $.ajax({
+            "url" : "/stores/coupons/send_coupon_code.php",
+            "data" : {
+                "mspid" : PriceTable.dataPoints.mspid,
+                "store" : _store,
+                "email" : $email.val(),
+                "lineid" : $form.data('lineid'),
+                "couponid" : $form.data('couponid')
+            }
+        }).done(function (responseData) {
+            responseData = responseData.trim();
+            _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
+                        '<span class="prc-tbl__cpn-code js-slct-trgt">',
+                        responseData,
+                        '</span>',
+                        '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
+                    '</div>'].join('');
+            $form.replaceWith(_html);
+        });
+
     });
 
     // save to list button handlers - start 
@@ -720,19 +799,21 @@ $(document).ready(function() {
 
     $(".prdct-dtl__no-stck-form").on("submit", function() {
         var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
+            $errorNode = $(this).find(".js-vldtn-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO:: 
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             // hide form & show success message.
             $(".prdct-dtl__no-stck-form").hide();
             $(".prdct-dtl__no-stck-scs").fadeIn();
@@ -752,43 +833,23 @@ $(document).ready(function() {
 
     $(".prc-tbl__no-stck-form").on("submit", function() {
         var $inputField = $(this).find(".prc-tbl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
+            $errorNode = $(this).find(".js-vldtn-err");
         MSP.utils.validate.form([{
             "type" : "email",
             "inputField" : $inputField,
-            "errorNode" : $erroNode
+            "errorNode" : $errorNode
         }]).done(function() {
-            // TODO::
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
+            $.ajax({
+                "url" : "/price_alert/capture_email.php",
+                "data" : {
+                    "email" : $inputField.val(),
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "capture_point" : "outofstock",
+                    "popupname" : "pricealert"
+                }
+            });
             $(".prc-tbl__no-stck-form").hide();
             $(".prc-tbl__no-stck-scs").fadeIn();
-        });
-        return false;
-    });
-
-    $(".prdct-dtl__no-stck-form").on("submit", function() {
-        var $inputField = $(this).find(".prdct-dtl__no-stck-inpt"),
-            $erroNode = $(this).find(".js-vldtn-err");
-        MSP.utils.validate.form([{
-            "type" : "email",
-            "inputField" : $inputField,
-            "errorNode" : $erroNode
-        }]).done(function() {
-            // TODO::
-            // $.ajax({
-            //     "url" : "out_of_stock_api_url",
-            //     "data" : {
-            //         "email" : emailValue
-            //     }
-            // });
-            // hide form & show success message.
-            $(".prdct-dtl__no-stck-form").hide();
-            $(".prdct-dtl__no-stck-scs").fadeIn();
         });
         return false;
     });
@@ -861,6 +922,9 @@ $(document).ready(function() {
     });
 
     ;(function() {
+        if(!$(".usr-wrt-rvw").length) {
+            return;
+        }
         var ratingWidth = $(".usr-rvw-form__rtng-wrpr .rtng-star").width(),
             $ratingInr = $(".usr-rvw-form__rtng-wrpr .rtng-star__inr"),
             $ratingRemark = $(".usr-rvw-form__rtng-rmrk"),
@@ -969,33 +1033,36 @@ $(document).ready(function() {
         } 
     }()); 
 
-     MSP.utils.lazyLoad.assign({ 
-        "node" : $(".prc-grph"),
-        "isStatic" : true,
-        "callback" : {
-            "definition" : function() {
-                if ($(".prc-grph__not-sprtd").length) {
-                    $(".prc-grph__not-sprtd").show();
-                    $(".prc-grph__ldr").hide();
-                    return;
-                }
+    if($(".prc-grph").length) {
+        MSP.utils.lazyLoad.assign({ 
+            "node" : $(".prc-grph"),
+            "isStatic" : true,
+            "callback" : {
+                "definition" : function() {
+                    if ($(".prc-grph__not-sprtd").length) {
+                        $(".prc-grph__not-sprtd").show();
+                        $(".prc-grph__ldr").hide();
+                        return;
+                    }
 
-                $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
-                
-                $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
-                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
-                        $.getScript("assets/js/priceGraph.js", function() {
-                            $(".prc-grph__rght-chrt").show();
-                            $(".prc-grph__btn-wrpr").show();
-                            $(".prc-grph__ldr").hide();
+                    $("head").append('<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.css">');
+                    
+                    $.getScript("https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js", function() {
+                        $.getScript("https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.10/c3.min.js", function() {
+                            $.getScript("assets/js/priceGraph.js", function() {
+                                $(".prc-grph__rght-chrt").show();
+                                $(".prc-grph__btn-wrpr").show();
+                                $(".prc-grph__ldr").hide();
+                            });
                         });
                     });
-                });
-            },
-            "context": window,
-            "arguments" : [] 
-        }
-    }).run(); 
+                },
+                "context": window,
+                "arguments" : [] 
+            }
+        }).run(); 
+    }
+
 });
 
 // Price Alert Functionality - commented out here (fn. exists in msp.js of new and old site for now)

@@ -75,6 +75,13 @@
 
     min-height: 150px;
     border-top: 1px solid @border-color;
+
+    & .no-strs {
+      margin: 100px auto;
+      text-align: center;
+      font-size: 20px;
+      color: @fg-color;
+    }
   }
   &__ttl {
     float: left;
@@ -379,6 +386,21 @@
       padding: 10px 45px 10px 15px;
 
       cursor: pointer;
+
+      .prc-tbl__cpn-wrpr--no-cpn {
+        top: -100px;
+        .prc-tbl__cpn-info,
+        .prc-tbl__cpn-desc,
+        .prc-tbl__prc-brkp-item--green {
+          display: none;
+        }
+        .prc-tbl__prc-brkp {
+          margin-top: 10px;
+        }
+        .prc-tbl__prc-brkp-item {
+          margin: 0 24px;
+        }
+      }
     }
     &--gts {
       padding: 10px;
@@ -395,6 +417,17 @@
       cursor: pointer;
       &-wrpr {
         text-align: center;
+
+        .str-name {
+          line-height: 20px;
+          padding: 0 5px;
+          max-height: 40px;
+          font-family: Impact, sans-serif;
+          font-size: 15px;
+          text-transform: uppercase;
+          color: #333;
+          overflow: hidden;
+        }
       }
     }
     &-lctn {
@@ -743,6 +776,25 @@
 
       cursor: pointer;
       text-align: center;
+
+      &.eml-form {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: initial;
+      }
+      &--email {
+        padding: 10px;
+        width: 160px;
+        margin: 10px 0;
+      }
+      &--sbmt {
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
     }
     &-icon {
       position: absolute;
