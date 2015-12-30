@@ -728,29 +728,35 @@ $(document).ready(function() {
         var $this = $(this),
             $form = $this.closest('.eml-form'),
             $email = $form.find('.prc-tbl__cpn-info--email'),
+            $errorNode = $form.find('.js-ntfy-err'),
             _store = $this.closest('.prc-tbl-row').data('storename'),
             _html;
 
-        $.ajax({
-            "url" : "/stores/coupons/send_coupon_code.php",
-            "data" : {
-                "mspid" : PriceTable.dataPoints.mspid,
-                "store" : _store,
-                "email" : $email.val(),
-                "lineid" : $form.data('lineid'),
-                "couponid" : $form.data('couponid')
-            }
-        }).done(function (responseData) {
-            responseData = responseData.trim();
-            _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
-                        '<span class="prc-tbl__cpn-code js-slct-trgt">',
-                        responseData,
-                        '</span>',
-                        '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
-                    '</div>'].join('');
-            $form.replaceWith(_html);
-        });
-
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $email,
+            "errorNode" : $errorNode
+        }]).done(function() {
+            $.ajax({
+                "url" : "/stores/coupons/send_coupon_code.php",
+                "data" : {
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "store" : _store,
+                    "email" : $email.val(),
+                    "lineid" : $form.data('lineid'),
+                    "couponid" : $form.data('couponid')
+                }
+            }).done(function (responseData) {
+                responseData = responseData.trim();
+                _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
+                            '<span class="prc-tbl__cpn-code js-slct-trgt">',
+                            responseData,
+                            '</span>',
+                            '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
+                        '</div>'].join('');
+                $form.replaceWith(_html);
+            }); // end ajax
+        }); // end done
     });
 
     // save to list button handlers - start 

@@ -366,7 +366,7 @@
 
         .msc-pack {
           color: @fg-color-grey;
-          padding-left: 97px;
+          padding-left: 93px;
           height: 25px;
           font-weight: 600;
           margin-bottom: 5px;
@@ -785,6 +785,10 @@
         background: none;
         cursor: initial;
       }
+      &--text {
+        font-size: 15px;
+        padding: 5px;
+      }
       &--email {
         padding: 10px;
         width: 160px;
@@ -794,6 +798,11 @@
         margin-left: 5px;
         padding-top: 2px;
         padding-bottom: 2px;
+      }
+      &--error {
+        color: @fg-color-red;
+        font-size: 12px;
+        display: none;
       }
     }
     &-icon {
@@ -810,7 +819,7 @@
   &__prc-brkp {
     position: relative;
 
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 25px 0 10px;
     border-top: 1px solid @border-color-dark-grey;
     &-ttl {
