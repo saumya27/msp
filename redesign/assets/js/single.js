@@ -447,12 +447,21 @@ var PriceTable = {
                         $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
                     }
                     if (json.pricetable) {
-                        _innerPriceTable.html(json.pricetable);
-                        if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
-                            $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
-                            $showMoreStores.show().data("collapsed", true).text("Show More Stores");
+                        // check for no stores in response
+                        var _searchValue = "prc-tbl-row",
+                            _responsePriceTable = json.pricetable,
+                            _index = _responsePriceTable.search(_searchValue);
+
+                        if(_index == -1) {
+                            _innerPriceTable.html('<div class="no-strs">No Stores available</div>');
                         } else {
-                            $showMoreStores.hide();
+                            _innerPriceTable.html(json.pricetable);
+                            if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
+                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
+                                $showMoreStores.show().data("collapsed", true).text("Show More Stores");
+                            } else {
+                                $showMoreStores.hide();
+                            }
                         }
                     }
                     if(json.offline_store_count) {
