@@ -530,6 +530,24 @@
 
       .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/right-direction.png', 14px, auto);
     }
+    /* additions */
+    &-cpnbox {
+      &-more {
+        position: relative;
+
+        display: inline-block;
+      }
+      &-pop {
+        position: absolute;
+        bottom: 23px;
+        left: -15px;
+
+        width: 325px;
+
+        color: @fg-color-grey;
+      }
+    }
+    /* end additions */
     &-clr {
       &-dot {
         display: inline-block;
@@ -893,6 +911,7 @@
         display: inline-block;
 
         max-width: 500px;
+        margin-right: 3px;
 
         vertical-align: middle;
 
