@@ -384,7 +384,7 @@ var PriceTable = {
                             location = place && place.geometry && place.geometry.location;
                         if (location) {
                             // if online stores is selected switch tab to offline.
-                            if (PriceTable.dataPoints.getSelectedCategory() === "online") {
+                            if (PriceTable.dataPoints.getSelectedCategory() === "online" || PriceTable.dataPoints.getSelectedCategory() === "recommended") {
                                 $(".prc-tbl__ctgry-inpt").prop("checked", false);
                                 $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
                             }
