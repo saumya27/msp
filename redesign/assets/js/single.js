@@ -443,8 +443,14 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
-                    if (json.lowest_price) {
-                        $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
+                    if (json.offline_best_price_raw) {
+                        var _offlineBest = parseInt(json.offline_best_price_raw) || 9999999999,
+                            _onlineBest = parseInt(json.online_best_price_raw) || 9999999999;
+                        if(_offlineBest < _onlineBest) {
+                            $(".prdct-dtl__slr-prc-rcmnd-val").html(json.offline_best_price);
+                        } else {
+                            $(".prdct-dtl__slr-prc-rcmnd-val").html(json.online_best_price);
+                        }
                     }
                     if (json.pricetable) {
                         // check for no stores in response
@@ -469,7 +475,7 @@ var PriceTable = {
 
                         $('.prc-tbl__ctrls').css('display', 'block');
                         $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
-                        $('.js-strs-offln-prc').html(json.offline_best_price);
+                        $('.js-strs-offln-prc').html('₹ ' + json.offline_best_price);
                         $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
                         $('.prdct-dtl__slr').addClass('js-offln-avl');
                     }
