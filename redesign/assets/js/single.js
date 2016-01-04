@@ -11,7 +11,7 @@ var PriceTable = {
     "dataPoints" : {
         "category" : $(".body-wrpr").attr("category"),
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
-        "defaultRows" : $(".prc-tbl-row:visible").length,
+        "defaultRows" : $(".prc-tbl-row:visible").length == 6 ? $(".prc-tbl-row:visible").length : 6,
         "variant" : {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
