@@ -443,15 +443,27 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
+                    // check for online price in response - if NA - change online price accordingly
+                    if(parseInt(json.online_best_price_raw)) {
+                        $('.prdct-dtl__slr-onln .lghtr').text('Starting from');
+                        $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').show(50).text('₹ ' + json.online_best_price);
+                    } else {
+                        $('.prdct-dtl__slr-onln .lghtr').text('Not Available')
+                        $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').hide(50);
+                    }
+                    // compare offline and online price and update lowest price accordingly
                     if (json.offline_best_price_raw) {
                         var _offlineBest = parseInt(json.offline_best_price_raw) || 9999999999,
                             _onlineBest = parseInt(json.online_best_price_raw) || 9999999999;
+
                         if(_offlineBest < _onlineBest) {
                             $(".prdct-dtl__slr-prc-rcmnd-val").html(json.offline_best_price);
                         } else {
                             $(".prdct-dtl__slr-prc-rcmnd-val").html(json.online_best_price);
                         }
                     }
+                    // if pricetable data is available
+                    // update price table with html received
                     if (json.pricetable) {
                         // check for no stores in response
                         var _searchValue = "prc-tbl-row",
@@ -470,6 +482,8 @@ var PriceTable = {
                             }
                         }
                     }
+                    // for only offline calculations
+                    // check if offline stores are returned (first check)
                     if(json.offline_store_count) {
                         PriceTable.dataPoints.partialOnlineRows = false;
 
@@ -479,6 +493,8 @@ var PriceTable = {
                         $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
                         $('.prdct-dtl__slr').addClass('js-offln-avl');
                     }
+                } else {
+                    _innerPriceTable.html('<div class="no-strs">No stores returned</div>');
                 }
                 // display online/offline store based on availability
                 if($('.js-offln-avl').length) { // both offline and online are available
