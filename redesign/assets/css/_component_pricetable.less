@@ -398,7 +398,7 @@
       cursor: pointer;
 
       .prc-tbl__cpn-wrpr--no-cpn {
-        top: -135px;
+        bottom: 100%;
         .prc-tbl__cpn-info,
         .prc-tbl__cpn-desc,
         .prc-tbl__prc-brkp-item--green {
@@ -633,13 +633,12 @@
     }
   }
   &-clm--cost:hover .prc-tbl__cpn-wrpr {
-    top: -175px;
-    min-height: 110px;
+    bottom: 100%;
     visibility: visible;
     opacity: 1;
 
     &--no-cpn {
-      top: -135px;
+      bottom: 100%;
       .prc-tbl__cpn-info,
       .prc-tbl__cpn-desc,
       .prc-tbl__prc-brkp-item--green {
@@ -770,9 +769,8 @@
   &__cpn {
     &-wrpr {
       position: absolute;
-      top: -135px;
+      bottom: 100%;
       right: 22px;
-      min-height: 110px;
 
       visibility: hidden;
       opacity: 0;

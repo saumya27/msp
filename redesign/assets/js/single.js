@@ -719,11 +719,6 @@ $(document).ready(function() {
             "visibility" : "visible",
             "opacity" : "1"
         });
-        if($thisPriceBreakup.hasClass('prc-tbl__cpn-wrpr--no-cpn')) {
-            $thisPriceBreakup.css("top", "-135px");
-        } else {
-            $thisPriceBreakup.css("top", "-175px");
-        }
     });
     // Hide price breakup on gts button mouseleave
     $doc.on('mouseleave', '.prc-tbl-clm--gts', function () {
