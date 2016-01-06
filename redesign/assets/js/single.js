@@ -104,10 +104,7 @@ var PriceTable = {
                     $this.prop("checked", true);
                     
                     previousValue = currentValue;
-                    PriceTable.update.byFilter(currentValue, {
-                                "latitude" : window.localStorage.userLatitude,
-                                "longitude" : window.localStorage.userLongitude
-                            });
+                    PriceTable.update.byFilter(currentValue);
                 }
             }
         })());
@@ -403,26 +400,22 @@ var PriceTable = {
 
     // Addition : To fetch all stores and check if offline stores is available
         ;(function fetchStoresForOfflineInfo() {
+            var _offlineStatus = $('.prdct-dtl__ttl').data('offlinedelivery');
+            if(_offlineStatus == "Y") {
+                PriceTable.update.byFilter("recommended");
+            }
 
-            PriceTable.fetch.tableByFilter( 
-                    "recommended",  // store type
-                    'popularity', // initial sorting
-                    PriceTable.dataPoints.getAppliedFilters(), // applied filters (none initially)
-                    {                   // location object
-                        "latitude" : window.localStorage.userLatitude,
-                        "longitude" : window.localStorage.userLongitude
-                    }
-            ).done(function (json) {
-                if(json.offline_store_count) {
-                    PriceTable.update.byFilter(
-                        "recommended", 
-                        {                   // location object
-                            "latitude" : window.localStorage.userLatitude,
-                            "longitude" : window.localStorage.userLongitude
-                        }
-                    );
-                }
-            });
+            // PriceTable.fetch.tableByFilter( 
+            //         "recommended",  // store type
+            //         'popularity', // initial sorting
+            //         PriceTable.dataPoints.getAppliedFilters() // applied filters (none initially)
+            // ).done(function (json) {
+            //     if(json.offline_store_count) {
+            //         PriceTable.update.byFilter(
+            //             "recommended"
+            //         );
+            //     }
+            // });
 
         }());
     // END
@@ -448,7 +441,7 @@ var PriceTable = {
                         $('.prdct-dtl__slr-onln .lghtr').text('Starting from');
                         $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').show(50).text('₹ ' + json.online_best_price);
                     } else {
-                        $('.prdct-dtl__slr-onln .lghtr').text('Not Available')
+                        $('.prdct-dtl__slr-onln .lghtr').text('Not Available');
                         $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').hide(50);
                     }
                     // compare offline and online price and update lowest price accordingly
@@ -643,7 +636,6 @@ var PriceTable = {
         }
     },
     "fetch" : {
-        // "tableByCategory":MSP.utils.memoize(function_productList(type,location{return$.ajax({"url":"/mobile/offline/delivery_pricetable.php","data":{"mspid":PriceTable.dataPoints.mspid,"mrp":PriceTable.dataPoints.price.getMrp(),"type":type,"latitude":location&&location.latitude,"longitude":location&&location.longitude}});},{cacheLimit:10}),
         "tableByFilter" : MSP.utils.memoize(function(type, sort, appliedFilters, location, selectedColor) { 
             var dfd = $.Deferred(),
                 query = {
@@ -743,7 +735,7 @@ $(document).ready(function() {
             "opacity" : "1"
         });
         if($thisPriceBreakup.hasClass('prc-tbl__cpn-wrpr--no-cpn')) {
-            $thisPriceBreakup.css("top", "-100px");
+            $thisPriceBreakup.css("top", "-135px");
         } else {
             $thisPriceBreakup.css("top", "-175px");
         }

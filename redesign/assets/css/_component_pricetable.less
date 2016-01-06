@@ -133,6 +133,10 @@
       transition: background .2s ease-in-out;
       border-radius: 17px;
 
+      &:hover {
+        background-color: @bg-color-gs2;
+      }
+
       cursor: pointer;
       // transition: background .2s ease-in-out;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);.preload('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png','http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png');&:hover { color: @fg-color-blue;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png', 14px, auto);}
     }
@@ -374,6 +378,12 @@
           background-position: 0 0;
 
           .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/mysmartcare.png', 90px, 22px);
+
+          &__tltp {
+            position: relative;
+            right: -5px;
+            top: -2px;
+          }
         }
       }
     }
@@ -388,7 +398,7 @@
       cursor: pointer;
 
       .prc-tbl__cpn-wrpr--no-cpn {
-        top: -100px;
+        top: -135px;
         .prc-tbl__cpn-info,
         .prc-tbl__cpn-desc,
         .prc-tbl__prc-brkp-item--green {
@@ -623,12 +633,12 @@
   }
   &-clm--cost:hover .prc-tbl__cpn-wrpr {
     top: -175px;
-
+    min-height: 110px;
     visibility: visible;
     opacity: 1;
 
     &--no-cpn {
-      top: -100px;
+      top: -135px;
       .prc-tbl__cpn-info,
       .prc-tbl__cpn-desc,
       .prc-tbl__prc-brkp-item--green {
@@ -761,6 +771,7 @@
       position: absolute;
       top: -135px;
       right: 22px;
+      min-height: 110px;
 
       visibility: hidden;
       opacity: 0;
@@ -901,10 +912,17 @@
     }
   }
   &__lwst-chllng {
-    padding-left: 14px;
+    padding: 15px;
     color: @fg-color-grey;
-
-    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/thumb-up-green-small.png', auto, 18px);
+    padding-left: 137px;
+    text-align: left;
+    margin: 0 -10px -10px;
+    border-top: 1px solid @border-color;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: @bg-color-gs4;
+    background-position: 5px center;
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/lowestpricebanner.png', auto, auto);
   }
   &__xtrs {
     width: 100%;
