@@ -404,13 +404,10 @@ var PriceTable = {
             if(_offlineStatus == "Y") {
                 PriceTable.update.byFilter("recommended");
             }
-            // PriceTable.fetch.tableByFilter("recommended", 'popularity', PriceTable.dataPoints.getAppliedFilters()).done(function (json) { if(json.offline_store_count) { PriceTable.update.byFilter("recommended"); } });
         }());
     // END
     },
     "update" : {
-        // "byCategory":function(type,location){var_loadingMaskHTML=PriceTable.components.loadingMask(),_innerPriceTable=$('.prc-tbl-inr');_innerPriceTable.append(_loadingMaskHTML);PriceTable.fetch.tableByCategory(type,location).done(function(html{varcategoryLabel=PriceTable.dataPoints.getSelectedCategoryLabel();$(".prdct-dtl__slr-prc-tbl-btn").data("action","enabled");_innerPriceTable.html(html);$(".prc-tbl-hdr__strs.prc-tbl-hdr__cptn").text(categoryLabel);}).fail(function(){innerPriceTable.find('.js-fltr-ldng-mask').remove();});},
-        
         "byFilter" : function(storetype, location) {            // pass storetype as 'undefined' for all data
             var _loadingMaskHTML = PriceTable.components.loadingMask(),
                 _innerPriceTable = $('.prc-tbl-inr'),
