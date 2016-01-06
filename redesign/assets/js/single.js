@@ -191,15 +191,18 @@ var PriceTable = {
                 allRows = $('.prc-tbl-row').length,
                 _loadingMaskHTML = PriceTable.components.loadingMask(),
                 _innerPriceTable = $('.prc-tbl-inr');
-            $this.html(_loadingMaskHTML).removeClass('js-prc-tbl__show-more');
+
+            // disable click during load by removing class
+            $this.html(_loadingMaskHTML).removeClass('js-prc-tbl__show-more'); 
 
             // Check if more than 6 stores are visible:
             if(isCollapsed && !($('.js-offln-avl').length) && !(allRows - defaultRows)) {
-                PriceTable.update.byFilter('online', {
-                                "latitude" : window.localStorage.userLatitude,
-                                "longitude" : window.localStorage.userLongitude
-                            });
+                PriceTable.update.byFilter(); // no store type (online) and no location :: in case No offline stores
                 PriceTable.dataPoints.partialOnlineRows = false;
+
+                $this.addClass('js-prc-tbl__show-more'); // enable click and return
+                setTimeout(function () { $this.trigger('click'); }, 1500);
+                return;
             }
 
             $priceLines.slice(defaultRows).slideToggle();
@@ -217,6 +220,7 @@ var PriceTable = {
                 $this.data("collapsed", true);
             }
 
+            // enable click
             $this.addClass('js-prc-tbl__show-more');
         });
 
