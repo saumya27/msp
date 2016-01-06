@@ -404,19 +404,7 @@ var PriceTable = {
             if(_offlineStatus == "Y") {
                 PriceTable.update.byFilter("recommended");
             }
-
-            // PriceTable.fetch.tableByFilter( 
-            //         "recommended",  // store type
-            //         'popularity', // initial sorting
-            //         PriceTable.dataPoints.getAppliedFilters() // applied filters (none initially)
-            // ).done(function (json) {
-            //     if(json.offline_store_count) {
-            //         PriceTable.update.byFilter(
-            //             "recommended"
-            //         );
-            //     }
-            // });
-
+            // PriceTable.fetch.tableByFilter("recommended", 'popularity', PriceTable.dataPoints.getAppliedFilters()).done(function (json) { if(json.offline_store_count) { PriceTable.update.byFilter("recommended"); } });
         }());
     // END
     },
