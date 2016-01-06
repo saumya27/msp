@@ -11,7 +11,8 @@ var PriceTable = {
     "dataPoints" : {
         "category" : $(".body-wrpr").attr("category"),
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
-        "defaultRows" : $(".prc-tbl-row:visible").length == 6 ? $(".prc-tbl-row:visible").length : 6,
+        "defaultRows" : 6, // $(".prc-tbl-row:visible").length
+        "previousCategory" : "recommended", 
         "variant" : {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
@@ -93,20 +94,20 @@ var PriceTable = {
 
         // switch between recommended, online, offline pricetables.
         $doc.on("click", ".js-ctgry-inpt", (function() {
-            var previousValue = "recommended";
-            return function() {
+            return function () {
                 var $this = $(this),
+                    previousValue = PriceTable.dataPoints.previousCategory,
                     currentValue = $this.attr("value"),
                     isSelected = currentValue === previousValue;
-                    
+                        
                 if (!isSelected) {
                     $(".js-ctgry-inpt").prop("checked", false);
                     $this.prop("checked", true);
-                    
-                    previousValue = currentValue;
+                        
+                    PriceTable.dataPoints.previousCategory = currentValue;
                     PriceTable.update.byFilter(currentValue);
                 }
-            }
+            };
         })());
 
         // online and offline stores - user choice
@@ -340,6 +341,9 @@ var PriceTable = {
                         $(".prc-tbl__ctgry-inpt").prop("checked", false);
                         $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
 
+                        // Since offline is checked, Previous category should be changed to offline:
+                        PriceTable.dataPoints.previousCategory = "offline";
+
                         PriceTable.update.byFilter('offline', {
                             "latitude" : latitude,
                             "longitude" : longitude
@@ -384,6 +388,9 @@ var PriceTable = {
                             if (PriceTable.dataPoints.getSelectedCategory() === "online" || PriceTable.dataPoints.getSelectedCategory() === "recommended") {
                                 $(".prc-tbl__ctgry-inpt").prop("checked", false);
                                 $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
+
+                                // Since offline is checked, Previous category should be changed to offline:
+                                PriceTable.dataPoints.previousCategory = "offline";
                             }
                             
                             PriceTable.update.byFilter(PriceTable.dataPoints.getSelectedCategory(), {
