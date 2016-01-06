@@ -12,7 +12,8 @@ var PriceTable = {
         "category" : $(".body-wrpr").attr("category"),
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
         "defaultRows" : 6, // $(".prc-tbl-row:visible").length
-        "previousCategory" : "recommended", 
+        "previousCategory" : "recommended",
+        "onload" : true, 
         "variant" : {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
@@ -432,27 +433,7 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
-                    // check for online price in response - if NA - change online price accordingly
-                    if(parseInt(json.online_best_price_raw)) {
-                        $('.prdct-dtl__slr-onln .lghtr').text('Starting from');
-                        $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').show(50).text('₹ ' + json.online_best_price);
-                    } else {
-                        $('.prdct-dtl__slr-onln .lghtr').text('Not Available');
-                        $('.prdct-dtl__slr-onln .prdct-dtl__slr-hghlght').hide(50);
-                    }
-                    // compare offline and online price and update lowest price accordingly
-                    if (json.offline_best_price_raw) {
-                        var _offlineBest = parseInt(json.offline_best_price_raw) || 9999999999,
-                            _onlineBest = parseInt(json.online_best_price_raw) || 9999999999;
-
-                        if(_offlineBest < _onlineBest) {
-                            $(".prdct-dtl__slr-prc-rcmnd-val").html(json.offline_best_price);
-                        } else {
-                            $(".prdct-dtl__slr-prc-rcmnd-val").html(json.online_best_price);
-                        }
-                    }
-                    // if pricetable data is available
-                    // update price table with html received
+                    // if pricetable data is available update price table with html received
                     if (json.pricetable) {
                         // check for no stores in response
                         var _searchValue = "prc-tbl-row",
@@ -475,12 +456,20 @@ var PriceTable = {
                     // check if offline stores are returned (first check)
                     if(json.offline_store_count) {
                         PriceTable.dataPoints.partialOnlineRows = false;
+                        if(PriceTable.dataPoints.onload) {
+                            // set lowest price btw online and offline 
+                            var _lowest = parseInt( $('.prdct-dtl__slr-prc-rcmnd-val').data('value') );
+                            if(_lowest > json.offline_best_price_raw) {
+                                $('.prdct-dtl__slr-prc-rcmnd-val').text(json.offline_best_price).data('value', json.offline_best_price_raw);
+                            }
 
-                        $('.prc-tbl__ctrls').css('display', 'block');
-                        $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
-                        $('.js-strs-offln-prc').html('₹ ' + json.offline_best_price);
-                        $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
-                        $('.prdct-dtl__slr').addClass('js-offln-avl');
+                            $('.prc-tbl__ctrls').css('display', 'block');
+                            $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
+                            $('.js-strs-offln-prc').html('₹ ' + json.offline_best_price);
+                            $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
+                            $('.prdct-dtl__slr').addClass('js-offln-avl');
+                            PriceTable.dataPoints.onload = false;
+                        }
                     }
                 } else {
                     _innerPriceTable.html('<div class="no-strs">No stores returned</div>');
