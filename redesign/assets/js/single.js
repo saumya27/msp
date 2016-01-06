@@ -11,7 +11,9 @@ var PriceTable = {
     "dataPoints" : {
         "category" : $(".body-wrpr").attr("category"),
         "mspid" : $(".prdct-dtl__ttl").data("mspid"),
-        "defaultRows" : $(".prc-tbl-row:visible").length,
+        "defaultRows" : 6, // $(".prc-tbl-row:visible").length
+        "previousCategory" : "recommended",
+        "onload" : true, 
         "variant" : {
             "model" : $(".prdct-dtl__ttl-vrnt").data("model"),
             "size" : $(".prdct-dtl__ttl-vrnt").data("size")
@@ -93,23 +95,20 @@ var PriceTable = {
 
         // switch between recommended, online, offline pricetables.
         $doc.on("click", ".js-ctgry-inpt", (function() {
-            var previousValue = "recommended";
-            return function() {
+            return function () {
                 var $this = $(this),
+                    previousValue = PriceTable.dataPoints.previousCategory,
                     currentValue = $this.attr("value"),
                     isSelected = currentValue === previousValue;
-                    
+                        
                 if (!isSelected) {
                     $(".js-ctgry-inpt").prop("checked", false);
                     $this.prop("checked", true);
-                    
-                    previousValue = currentValue;
-                    PriceTable.update.byFilter(currentValue, {
-                                "latitude" : window.localStorage.userLatitude,
-                                "longitude" : window.localStorage.userLongitude
-                            });
+                        
+                    PriceTable.dataPoints.previousCategory = currentValue;
+                    PriceTable.update.byFilter(currentValue);
                 }
-            }
+            };
         })());
 
         // online and offline stores - user choice
@@ -193,15 +192,18 @@ var PriceTable = {
                 allRows = $('.prc-tbl-row').length,
                 _loadingMaskHTML = PriceTable.components.loadingMask(),
                 _innerPriceTable = $('.prc-tbl-inr');
-            $this.html(_loadingMaskHTML).removeClass('js-prc-tbl__show-more');
+
+            // disable click during load by removing class
+            $this.html(_loadingMaskHTML).removeClass('js-prc-tbl__show-more'); 
 
             // Check if more than 6 stores are visible:
             if(isCollapsed && !($('.js-offln-avl').length) && !(allRows - defaultRows)) {
-                PriceTable.update.byFilter('online', {
-                                "latitude" : window.localStorage.userLatitude,
-                                "longitude" : window.localStorage.userLongitude
-                            });
+                PriceTable.update.byFilter(); // no store type (online) and no location :: in case No offline stores
                 PriceTable.dataPoints.partialOnlineRows = false;
+
+                $this.addClass('js-prc-tbl__show-more'); // enable click and return
+                setTimeout(function () { $this.trigger('click'); }, 1500);
+                return;
             }
 
             $priceLines.slice(defaultRows).slideToggle();
@@ -219,6 +221,7 @@ var PriceTable = {
                 $this.data("collapsed", true);
             }
 
+            // enable click
             $this.addClass('js-prc-tbl__show-more');
         });
 
@@ -343,6 +346,9 @@ var PriceTable = {
                         $(".prc-tbl__ctgry-inpt").prop("checked", false);
                         $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
 
+                        // Since offline is checked, Previous category should be changed to offline:
+                        PriceTable.dataPoints.previousCategory = "offline";
+
                         PriceTable.update.byFilter('offline', {
                             "latitude" : latitude,
                             "longitude" : longitude
@@ -384,9 +390,12 @@ var PriceTable = {
                             location = place && place.geometry && place.geometry.location;
                         if (location) {
                             // if online stores is selected switch tab to offline.
-                            if (PriceTable.dataPoints.getSelectedCategory() === "online") {
+                            if (PriceTable.dataPoints.getSelectedCategory() === "online" || PriceTable.dataPoints.getSelectedCategory() === "recommended") {
                                 $(".prc-tbl__ctgry-inpt").prop("checked", false);
                                 $(".prc-tbl__ctgry-inpt[value='offline']").prop("checked", true);
+
+                                // Since offline is checked, Previous category should be changed to offline:
+                                PriceTable.dataPoints.previousCategory = "offline";
                             }
                             
                             PriceTable.update.byFilter(PriceTable.dataPoints.getSelectedCategory(), {
@@ -403,33 +412,14 @@ var PriceTable = {
 
     // Addition : To fetch all stores and check if offline stores is available
         ;(function fetchStoresForOfflineInfo() {
-
-            PriceTable.fetch.tableByFilter( 
-                    "recommended",  // store type
-                    'popularity', // initial sorting
-                    PriceTable.dataPoints.getAppliedFilters(), // applied filters (none initially)
-                    {                   // location object
-                        "latitude" : window.localStorage.userLatitude,
-                        "longitude" : window.localStorage.userLongitude
-                    }
-            ).done(function (json) {
-                if(json.offline_store_count) {
-                    PriceTable.update.byFilter(
-                        "recommended", 
-                        {                   // location object
-                            "latitude" : window.localStorage.userLatitude,
-                            "longitude" : window.localStorage.userLongitude
-                        }
-                    );
-                }
-            });
-
+            var _offlineStatus = $('.prdct-dtl__ttl').data('offlinedelivery');
+            if(_offlineStatus == "Y") {
+                PriceTable.update.byFilter("recommended");
+            }
         }());
     // END
     },
     "update" : {
-        // "byCategory":function(type,location){var_loadingMaskHTML=PriceTable.components.loadingMask(),_innerPriceTable=$('.prc-tbl-inr');_innerPriceTable.append(_loadingMaskHTML);PriceTable.fetch.tableByCategory(type,location).done(function(html{varcategoryLabel=PriceTable.dataPoints.getSelectedCategoryLabel();$(".prdct-dtl__slr-prc-tbl-btn").data("action","enabled");_innerPriceTable.html(html);$(".prc-tbl-hdr__strs.prc-tbl-hdr__cptn").text(categoryLabel);}).fail(function(){innerPriceTable.find('.js-fltr-ldng-mask').remove();});},
-        
         "byFilter" : function(storetype, location) {            // pass storetype as 'undefined' for all data
             var _loadingMaskHTML = PriceTable.components.loadingMask(),
                 _innerPriceTable = $('.prc-tbl-inr'),
@@ -443,27 +433,46 @@ var PriceTable = {
 
             PriceTable.fetch.tableByFilter(_type, _sort, _appliedFilters, location, _colour).done(function (json) {
                 if (json) {
-                    if (json.lowest_price) {
-                        $(".prdct-dtl__slr-prc-rcmnd-val").html(json.bestprice);
-                    }
+                    // if pricetable data is available update price table with html received
                     if (json.pricetable) {
-                        _innerPriceTable.html(json.pricetable);
-                        if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
-                            $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
-                            $showMoreStores.show().data("collapsed", true).text("Show More Stores");
+                        // check for no stores in response
+                        var _searchValue = "prc-tbl-row",
+                            _responsePriceTable = json.pricetable,
+                            _index = _responsePriceTable.search(_searchValue);
+
+                        if(_index == -1) {
+                            _innerPriceTable.html('<div class="no-strs">No Stores available</div>');
                         } else {
-                            $showMoreStores.hide();
+                            _innerPriceTable.html(json.pricetable);
+                            if ($(".prc-tbl-row").length > PriceTable.dataPoints.defaultRows) {
+                                $(".prc-tbl-row").slice(PriceTable.dataPoints.defaultRows).hide();
+                                $showMoreStores.show().data("collapsed", true).text("Show More Stores");
+                            } else {
+                                $showMoreStores.hide();
+                            }
                         }
                     }
+                    // for only offline calculations
+                    // check if offline stores are returned (first check)
                     if(json.offline_store_count) {
                         PriceTable.dataPoints.partialOnlineRows = false;
+                        if(PriceTable.dataPoints.onload) {
+                            // set lowest price btw online and offline 
+                            var _lowest = parseInt( $('.prdct-dtl__slr-prc-rcmnd-val').data('value') );
+                            if(_lowest > json.offline_best_price_raw) {
+                                $('.prdct-dtl__slr-prc-rcmnd-val').text(json.offline_best_price).data('value', json.offline_best_price_raw);
+                            }
 
-                        $('.prc-tbl__ctrls').css('display', 'block');
-                        $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
-                        $('.js-strs-offln-prc').html(json.offline_best_price);
-                        $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
-                        $('.prdct-dtl__slr').addClass('js-offln-avl');
+                            $('.prc-tbl__ctrls').css('display', 'block');
+                            $('.prc-tbl-hdr').css('border-top', '1px solid #dfe1e8');
+                            $('.js-strs-offln-prc').html('₹ ' + json.offline_best_price);
+                            $('.js-strs-offln-cnt').html('View ' + json.offline_store_count + ' Nearby Stores &#187;');
+                            $('.prdct-dtl__slr').addClass('js-offln-avl');
+                            PriceTable.dataPoints.onload = false;
+                        }
                     }
+                } else {
+                    _innerPriceTable.html('<div class="no-strs">No stores returned</div>');
                 }
                 // display online/offline store based on availability
                 if($('.js-offln-avl').length) { // both offline and online are available
@@ -612,7 +621,6 @@ var PriceTable = {
         }
     },
     "fetch" : {
-        // "tableByCategory":MSP.utils.memoize(function_productList(type,location{return$.ajax({"url":"/mobile/offline/delivery_pricetable.php","data":{"mspid":PriceTable.dataPoints.mspid,"mrp":PriceTable.dataPoints.price.getMrp(),"type":type,"latitude":location&&location.latitude,"longitude":location&&location.longitude}});},{cacheLimit:10}),
         "tableByFilter" : MSP.utils.memoize(function(type, sort, appliedFilters, location, selectedColor) { 
             var dfd = $.Deferred(),
                 query = {
@@ -711,11 +719,6 @@ $(document).ready(function() {
             "visibility" : "visible",
             "opacity" : "1"
         });
-        if($thisPriceBreakup.hasClass('prc-tbl__cpn-wrpr--no-cpn')) {
-            $thisPriceBreakup.css("top", "-100px");
-        } else {
-            $thisPriceBreakup.css("top", "-175px");
-        }
     });
     // Hide price breakup on gts button mouseleave
     $doc.on('mouseleave', '.prc-tbl-clm--gts', function () {
@@ -728,29 +731,35 @@ $(document).ready(function() {
         var $this = $(this),
             $form = $this.closest('.eml-form'),
             $email = $form.find('.prc-tbl__cpn-info--email'),
+            $errorNode = $form.find('.js-ntfy-err'),
             _store = $this.closest('.prc-tbl-row').data('storename'),
             _html;
 
-        $.ajax({
-            "url" : "/stores/coupons/send_coupon_code.php",
-            "data" : {
-                "mspid" : PriceTable.dataPoints.mspid,
-                "store" : _store,
-                "email" : $email.val(),
-                "lineid" : $form.data('lineid'),
-                "couponid" : $form.data('couponid')
-            }
-        }).done(function (responseData) {
-            responseData = responseData.trim();
-            _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
-                        '<span class="prc-tbl__cpn-code js-slct-trgt">',
-                        responseData,
-                        '</span>',
-                        '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
-                    '</div>'].join('');
-            $form.replaceWith(_html);
-        });
-
+        MSP.utils.validate.form([{
+            "type" : "email",
+            "inputField" : $email,
+            "errorNode" : $errorNode
+        }]).done(function() {
+            $.ajax({
+                "url" : "/stores/coupons/send_coupon_code.php",
+                "data" : {
+                    "mspid" : PriceTable.dataPoints.mspid,
+                    "store" : _store,
+                    "email" : $email.val(),
+                    "lineid" : $form.data('lineid'),
+                    "couponid" : $form.data('couponid')
+                }
+            }).done(function (responseData) {
+                responseData = responseData.trim();
+                _html = ['<div class="prc-tbl__cpn-info js-slct-trgr js-tltp" data-tooltip="click to select coupon code">',
+                            '<span class="prc-tbl__cpn-code js-slct-trgt">',
+                            responseData,
+                            '</span>',
+                            '<img class="prc-tbl__cpn-icon" src="http://msp-ui-cdn.s3.amazonaws.com/img/icons1/pricetable-coupon-scissors.png">',
+                        '</div>'].join('');
+                $form.replaceWith(_html);
+            }); // end ajax
+        }); // end done
     });
 
     // save to list button handlers - start 
