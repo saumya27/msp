@@ -641,7 +641,7 @@ var PriceTable = {
                 };
 
             $.ajax({
-                "url": "/mobile/filter_response_new.php",
+                "url": "/mobile/filter_response.php",
                 "dataType": "json",
                 "data": query
             }).done(function (response) {
