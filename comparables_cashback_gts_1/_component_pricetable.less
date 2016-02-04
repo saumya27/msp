@@ -1,0 +1,1074 @@
+.prc-tbl {
+  &__ctrls {
+    display: none;
+  }
+  &-wrpr {
+    .sctn__hdr {
+      padding: 0;
+    }
+    .sort-wrpr {
+      padding: 10px 20px; // border-left: 1px solid @border-color;
+      margin-left: 0;
+      float: left;
+
+      &__ctgry {
+        float: left;
+        padding: 13px 10px;
+
+        &-ttl {
+          float: left;
+          line-height: 22px;
+          margin-right: 12px;
+        }
+        &-item {
+          position: relative;
+          margin-right: 15px;
+
+          float: left;
+          & + & {
+            margin-left: 10px;
+          }
+        }
+        &-inpt {
+          position: absolute;
+
+          overflow: hidden;
+          clip: rect(0 0 0 0);
+
+          width: 1px;
+          height: 1px;
+          margin: -1px;
+          padding: 0;
+          border: 0;
+        }
+        &-lbl {
+          display: block;
+
+          padding: 5px 5px 5px 20px;
+          background-position: left center;
+          font-weight: normal;
+
+          cursor: pointer;
+          transition: background .2s ease-in-out;
+
+          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);
+              .preload(
+              'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png',
+              'http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png'
+          );
+          &:hover {
+            color: @fg-color-blue;
+
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png', 14px, auto);
+          }
+        }
+        &-inpt:checked + .sort-wrpr__ctgry-lbl {
+          color: @fg-color-blue;
+
+          .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png', 14px, auto);
+        }
+      }
+    }
+  }
+  &-inr {
+    position: relative;
+
+    min-height: 150px;
+    border-top: 1px solid @border-color;
+
+    & .no-strs {
+      margin: 100px auto;
+      text-align: center;
+      font-size: 20px;
+      color: @fg-color-grey;
+    }
+  }
+  &__ttl {
+    float: left;
+
+    padding: 15px 0 15px 20px;
+
+    color: @fg-color;
+    font-size: 14px;
+    font-size: 16px;
+    font-weight: @font-bold;
+
+    text-transform: none;
+  }
+  &__ctgry {
+    float: left;
+    background-color: @bg-color-gs4;
+    border-radius: 17px;
+
+    margin: 13px 10px; // padding: 13px 10px;
+    &-item {
+      position: relative;
+
+      float: left;
+      // & + & { margin-left: 10px; }
+    }
+    &-inpt {
+      position: absolute;
+
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+    &-lbl {
+      display: block;
+      text-align: center;
+      line-height: 34px;
+      height: 34px;
+      width: 85px;
+      overflow: hidden;
+      padding: 0 20px; // padding: 5px 5px 5px 20px;
+      background-position: left center;
+      background-color: @bg-color-gs4;
+      color: @fg-color-dark-grey;
+      transition: background .2s ease-in-out;
+      border-radius: 17px;
+
+      &:hover {
+        background-color: @bg-color-gs2;
+      }
+
+      cursor: pointer;
+      // transition: background .2s ease-in-out;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);.preload('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png','http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png');&:hover { color: @fg-color-blue;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png', 14px, auto);}
+    }
+    &-inpt:checked + &-lbl {
+      background-color: @bg-color-gs2;
+      font-weight: bold;
+      // .image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png', 14px, auto);
+    }
+  }
+  &__lctn {
+    float: right;
+
+    margin-right: 10px;
+    padding: 12px 0;
+    &-frm {
+      float: left;
+      height: 34px;
+      border: 1px solid @border-color;
+      border-radius: @border-radius;
+      background-color: @bg-color-gs4;
+      transition: background 0.25s ease-in-out;
+    }
+    &-inpt {
+      display: inline-block;
+
+      width: 200px;
+      height: 24px;
+      margin: 0 10px;
+      padding: 5px 0;
+      border: 0;
+      background-color: transparent;
+
+      font-size: 12px;
+      &-btn {
+        float: left;
+
+        // width: 11px;
+        width: 34px;
+        height: 34px;
+        margin-left: @inline-block-margin;
+        background-position: 15px center;
+
+        cursor: pointer;
+        vertical-align: middle;
+
+        .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/search-dark-grey.png', 15px, auto);
+      }
+    }
+    &-img {
+      width: 20px;
+    }
+  }
+  &__fltrs {
+    float: right;
+    padding: 16px 11px; // border-left: 1px solid @border-color;
+
+    &-ttl {
+      float: left;
+
+      margin-right: 5px;
+      padding: 2px 0;
+
+      color: @fg-color-grey;
+      font-weight: @font-bold;
+    }
+    &-item {
+      float: left;
+
+      margin: 0 7px;
+    }
+    &-inpt {
+      position: absolute;
+
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      border: 0;
+    }
+    &-lbl {
+      display: block;
+      color: @fg-color-grey;
+
+      padding: 2px 0 0 20px;
+      background-position: left center;
+
+      cursor: pointer;
+      transition: background .2s ease-in-out;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-grey-unchecked.png', 14px, auto);
+      .preload(
+      'http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png',
+      'http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png'
+      );
+      &:hover {
+        color: @fg-color-blue;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-hover.png', 14px, auto);
+      }
+    }
+    &-inpt:checked + &-lbl {
+      color: @fg-color-blue;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/checkbox-blue-checked.png', 14px, auto);
+    }
+  }
+  &-hdr {
+    border: 0;
+  }
+  &-row {
+    position: relative;
+
+    width: 100%;
+    background: @bg-color-white;
+    & + & {
+      border-top: 1px solid @border-color;
+    }
+    &__ofln-bdg {
+      position: absolute;
+      right: 0;
+
+      overflow: hidden;
+
+      width: 110px;
+      height: 30px;
+
+      line-height: 30px;
+      &-img {
+        position: absolute;
+        right: 0;
+
+        width: 30px;
+        height: 30px;
+        background: @bg-color-white;
+        background-position: top right;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/offline-store-badge.png', 30px, auto);
+      }
+      &-text {
+        position: absolute;
+        z-index: 0;
+        left: 7px;
+
+        opacity: 0;
+
+        width: 80px;
+
+        color: @fg-color-grey;
+
+        transition: opacity .3s ease-in-out;
+      }
+    }
+    &__inr {
+      padding: 12px 0 17px;
+      &--no-rcrd {
+        padding: 50px;
+
+        color: @fg-color-blue;
+        font-size: 24px;
+        font-weight: @font-bold;
+
+        text-align: center;
+      }
+    }
+    &:hover {
+      .prc-tbl__prc-drop-btn {
+        visibility: visible;
+        opacity: 1;
+      }
+      .prc-tbl__gps-btn {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+    &--ofln {
+      .prc-tbl__dtls-dlvr {
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/truck-colored.png', 30px, auto);
+      }
+      .prc-tbl__cost-shpng {
+        width: 117px;
+        height: 32px;
+        margin-top: 10px;
+        background-position: center center;
+
+        .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/lowest-price-challenge.png', 100%, 100%);
+      }
+      &:hover {
+        .prc-tbl-row__ofln-bdg-text {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &-clm {
+    display: inline-block;
+
+    vertical-align: middle;
+    & + & {
+      margin-left: @inline-block-margin;
+    }
+    &--str {
+      width: 165px;
+      padding: 20px 0;
+
+      text-align: center;
+    }
+    &--slr {
+      width: 150px;
+      padding: 15px;
+    }
+    &--avlblty {
+      width: 180px;
+      padding: 7px 20px;
+
+      && {
+        margin: 0 17px ;
+      } 
+
+      &-msc {
+        width: 180px;
+        padding: 7px 15px;
+        cursor: pointer;
+        && {
+          margin: 0 20px;
+          border: 1px solid lighten(@border-color, 3%);
+        }
+        border-radius: 4px;
+        border-top-right-radius: 16px;
+        border-bottom-left-radius: 16px;
+        transition: border 0.25s ease-in-out;
+
+        &:hover {
+          border: 1px solid @border-button-grey;
+        }
+
+        .msc-pack {
+          color: @fg-color-grey;
+          padding-left: 93px;
+          height: 25px;
+          font-weight: 600;
+          margin-bottom: 5px;
+          line-height: 25px;
+          background-position: 0 0;
+
+          .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/mysmartcare.png', 90px, 22px);
+
+          &__tltp {
+            position: relative;
+            cursor: pointer;
+            right: -5px;
+            top: -2px;
+            transition: background 0.25s ease-in-out;
+
+            &:hover {
+              background-color: @bg-color-gs1;
+            }
+          }
+        }
+      }
+    }
+    &--dtls {
+      width: 150px;
+      padding: 7px 30px;
+    }
+    &--cost {
+      width: 130px;
+      padding: 10px 45px 10px 15px;
+
+      cursor: pointer;
+
+      .prc-tbl__cpn-wrpr--no-cpn {
+        bottom: 70%;
+        .prc-tbl__cpn-info,
+        .prc-tbl__cpn-desc,
+        .prc-tbl__prc-brkp-item--green {
+          display: none;
+        }
+        .prc-tbl__prc-brkp {
+          margin-top: 10px;
+        }
+        .prc-tbl__prc-brkp-item {
+          margin: 0 24px;
+        }
+      }
+    }
+    &--gts {
+      padding: 10px 10px 0 10px;
+      &-lylty, &-cshbck{
+        height: 25px; 
+        margin: 13px 0 0 0; 
+        
+        &-txt{
+          padding-left: 59px; 
+          margin-top: -3px;
+          display: inline-block;  
+          font-weight: 600; 
+          font-size: 12px; 
+          vertical-align: middle;
+        } 
+        &-img{
+          margin-top: -5px;
+          vertical-align: middle;
+          width: 65px;
+        }
+      }
+      &-lylty{
+         .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/free.png', 110px, auto);
+          &-txt{
+            color: #F5A623; 
+          }
+      }
+      &-cshbck{
+         .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/cshbck_onthispurchase.png', 110px, auto);
+         &-txt{
+            color: #E74C3C;
+         }
+         &-pop{
+            position: absolute;
+            right: 0;
+            width: 385px;
+            margin-top: 3px;
+            color: #7d8393;
+         }
+      }
+    }
+    &--no-stck {
+      width: 607px;
+      padding: 20px;
+    }
+  }
+  &__str {
+    &-logo {
+      max-width: 135px;
+
+      cursor: pointer;
+      &-wrpr {
+        text-align: center;
+
+        .str-name {
+          line-height: 20px;
+          padding: 0 5px;
+          max-height: 40px;
+          font-family: Impact, sans-serif;
+          font-size: 15px;
+          text-transform: uppercase;
+          color: #333;
+          overflow: hidden;
+        }
+      }
+    }
+    &-lctn {
+      display: inline-block;
+
+      margin-top: 5px;
+      padding: 5px 5px 5px 18px;
+      background-position: left center;
+
+      text-align: center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/location-pin-red.png', auto, 18px);
+    }
+  }
+  &-clm--slr {
+    .rtng-wrpr {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .rtng-bdg {
+      vertical-align: middle;
+    }
+  }
+  &__slr {
+    &-name {
+      margin-top: 10px;
+      &-ttl {
+        color: @fg-color-grey;
+      }
+    }
+    &-prm {
+      margin-top: 10px;
+      &-trstd {
+        float: left;
+        width: 96px;
+        height: 22px;
+        .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/icon-trusted-green.png', 100%, 100%);
+      }
+      &-logo {
+        vertical-align: middle;
+      }
+      .help-prmpt {
+        margin-left: 5px;
+        transition: background 0.25s ease-in-out;
+        cursor: pointer;
+        &:hover {
+          background-color: @bg-color-gs1; 
+        }
+      }
+    }
+    .help-prmpt {
+      margin-left: 5px;
+      transition: background 0.25s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        background-color: @bg-color-gs1; 
+      }
+    }
+  }
+  &__avlblty {
+    padding: 8px 5px 8px 20px;
+    background-position: center left;
+
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/tick-mark-green.png', auto, 14px);
+    & + & {
+      border-top: 1px solid @border-color-light-grey;
+    }
+    &--dsbld {
+      background-position: center left;
+      
+      color: @fg-color-grey;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/cross-circle-grey.png', 14px, auto);
+    }
+    &-rtrn {
+      * {
+        vertical-align: middle;
+      }
+      .help-prmpt {
+        margin-left: 5px;
+      }
+    }
+  }
+  &__dtls {
+    padding: 8px 0;
+    & + & {
+      border-top: 1px solid @border-color-light-grey;
+    }
+    &-dlvr {
+      padding-left: 40px;
+      background-position: left center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/truck-grey.png', 30px, auto);
+    }
+    &-pckp {
+      padding-left: 30px;
+      background-position: left center;
+
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/basket-red.png', 20px, auto);
+    }
+    &-strlctn {
+      padding-left: 30px;
+      background-position: 4px center;
+
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/location-symbol.png', 12px, auto);
+    }
+    &-dstnc {
+      padding-left: 30px;
+      background-position: 3px center;
+
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/right-direction.png', 14px, auto);
+    }
+    /* additions */
+    &-cpnbox {
+      &-more {
+        position: relative;
+
+        display: inline-block;
+      }
+      &-pop {
+        position: absolute;
+        bottom: 23px;
+        left: -15px;
+
+        width: 325px;
+
+        color: @fg-color-grey;
+      }
+    }
+    /* end additions */
+    &-clr {
+      &-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        bottom: -2px;
+        border: 1px solid @border-color;
+        border-radius: 50%;
+        background: black;
+      }
+      &-more {
+        position: relative;
+
+        display: inline-block;
+      }
+      &-pop {
+        position: absolute;
+        bottom: 23px;
+        left: -15px;
+
+        width: 335px;
+
+        color: @fg-color-grey;
+        &--show {
+          visibility: visible;
+          opacity: 1;
+        }
+        .prc-tbl__dtls-clr-dot {
+          width: 13px;
+          height: 13px;
+          bottom: 0;
+          border: 1px solid @border-color;
+          vertical-align: middle;
+        }
+        .prc-tbl__dtls-clr-lbl {
+          display: inline-block;
+          overflow: hidden;
+
+          width: 70px;
+          margin-left: -.28em;
+          padding: 0 10px;
+
+          vertical-align: middle;
+          text-overflow: ellipsis;
+        }
+        .prc-tbl__cost {
+          display: inline-block;
+
+          width: 85px;
+          margin-right: 24px;
+          margin-left: -.28em;
+
+          vertical-align: middle;
+        }
+        .btn-GTS--xs {
+          margin-left: @inline-block-margin;
+        }
+        .no-stck-btn {
+          background-color: @bg-color-gs1;
+          border-color: @border-button-grey;
+
+          &:hover {
+            background-color: lighten(@bg-color-gs1, 5%)
+          }
+        }
+        .prc-tbl__no-stck-bdg {
+          display: inline-block;
+
+          margin: @inline-block-margin;
+
+          vertical-align: middle;
+          font-size: 11px;
+        }
+        .prc-tbl__no-stck-lbl {
+          margin-left: 2px;
+        }
+      }
+    }
+    &-all-clrs {
+      padding: 8px 5px 8px 20px;
+      background-position: center left;
+
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/tick-mark-green.png', 14px, auto);
+    }
+  }
+  &-clm--cost:hover .prc-tbl__cpn-wrpr {
+    bottom: 85%;
+    visibility: visible;
+    opacity: 1;
+
+    &--no-cpn {
+      bottom: 85%;
+      .prc-tbl__cpn-info,
+      .prc-tbl__cpn-desc,
+      .prc-tbl__prc-brkp-item--green {
+        display: none;
+      }
+      .prc-tbl__prc-brkp {
+        margin-top: 10px;
+      }
+      .prc-tbl__prc-brkp-item {
+        margin: 0 24px;
+      }
+    }
+  }
+  &__cost {
+    text-align: center;
+    &-val {
+      color: @fg-color-blue;
+      font-size: 32px;
+      font-weight: @font-bold;
+    }
+    &-rpe {
+      display: inline-block;
+
+      color: @fg-color-blue;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 30px;
+
+      vertical-align: top;
+    }
+    &--dsbld &-val, &--dsbld &-rpe {
+      color: @fg-color-grey;
+    }
+    &-cpn {
+      margin-top: 10px;
+      padding: 6px 6px 6px 23px;
+      border: 1px dashed @border-color;
+      border-radius: @border-radius;
+      background-color: @bg-color-gs4;
+      background-position: 5px center;
+
+      color: @fg-color-grey;
+
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/tick-mark-green.png', auto, 14px);
+    }
+    &--s {
+      .prc-tbl__cost-rpe {
+        font-size: 12px;
+        line-height: 16px;
+      }
+      .prc-tbl__cost-val {
+        font-size: 16px;
+        line-height: 16px;
+      }
+    }
+  }
+  &__gts {
+    &-spprt {
+      margin-top: 10px;
+      padding-left: 27px;
+      background-position: left center;
+      font-size: 10px;
+      line-height: 16px;
+      color: @fg-color-grey;
+      .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/info-outline.png', auto, 19px);
+
+      &--lylty {
+        color: @fg-color-yellow;
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coins-gold.png', auto, 19px);
+      }
+      &-ttl {
+        font-size: 12px;
+        font-weight: @font-bold;
+        text-transform: uppercase;
+      }
+      &-val {
+        text-transform: none;
+      }
+    }
+  }
+  &__no-stck {
+    &-bdg {
+      padding: 0 0 0 20px;
+      background-position: left center;
+      font-size: 11px;
+      color: @fg-color-grey;
+      line-height: 15px;
+
+      vertical-align: middle;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/exclamation-circle-grey.png', 15px, auto);
+    }
+    &-form {
+      margin-top: 15px;
+    }
+    &-desc {
+      margin-bottom: 15px;
+    }
+    &-err {
+      margin-bottom: 10px;
+    }
+    &-scs {
+      display: none;
+
+      margin-top: 20px;
+
+      color: @fg-color;
+      font-size: 14px;
+    }
+    &-inpt {
+      width: 200px;
+      height: 18px;
+      padding: 6px;
+      border-right-width: 0;
+      border-radius: 3px 0 0 3px;
+
+      vertical-align: middle;
+    }
+    &-sbmt {
+      display: inline-block;
+
+      margin-left: @inline-block-margin;
+      border-radius: 0 3px 3px 0;
+
+      vertical-align: middle;
+    }
+  }
+  &__cpn {
+    &-wrpr {
+      position: absolute;
+      bottom: 70%;
+      right: 22px;
+
+      visibility: hidden;
+      opacity: 0;
+
+      width: 375px;
+      padding: 10px;
+      border: 1px solid @border-color-dark-grey;
+      border-radius: @border-radius;
+      background: white;
+      box-shadow: @box-shadow;
+
+      cursor: default;
+      transition: bottom .25s, opacity .25s, visibility .25s;
+      transition-delay: .25s;
+      text-align: center;
+    }
+    &-info {
+      position: relative;
+
+      display: inline-block;
+
+      width: 100px;
+      margin: 10px auto 0;
+      padding: 10px 30px;
+      border: 2px dashed @border-color;
+      border-radius: @border-radius;
+      background: @bg-color-gs4;
+
+      color: @fg-color-blue;
+      font-size: 18px;
+
+      cursor: pointer;
+      text-align: center;
+
+      &.eml-form {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: initial;
+      }
+      &--text {
+        font-size: 15px;
+        padding: 5px;
+      }
+      &--email {
+        padding: 10px;
+        width: 160px;
+        margin: 10px 0;
+      }
+      &--sbmt {
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+      &--error {
+        color: @fg-color-red;
+        font-size: 12px;
+        display: none;
+      }
+    }
+    &-icon {
+      position: absolute;
+      bottom: -8px;
+      left: 18px;
+    }
+    &-desc {
+      margin-top: 10px;
+
+      color: @fg-color-grey;
+    }
+  }
+  &__prc-brkp {
+    position: relative;
+
+    margin-top: 15px;
+    padding: 25px 0 10px;
+    border-top: 1px solid @border-color-dark-grey;
+    &-ttl {
+      position: absolute;
+      top: -13px;
+      left: 0;
+
+      padding: 5px 10px 5px 0;
+      background: @bg-color-white;
+
+      color: @fg-color-grey;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    &-item {
+      display: inline-block;
+
+      margin: 0 8px;
+
+      vertical-align: top;
+      &--green {
+        .prc-tbl__prc-brkp-rpe, .prc-tbl__prc-brkp-val {
+          color: @fg-color-offline-green;
+        }
+      }
+      &--blue {
+        .prc-tbl__prc-brkp-rpe, .prc-tbl__prc-brkp-val {
+          color: @fg-color-blue;
+        }
+      }
+    }
+    &-rpe {
+      color: @fg-color-grey;
+      font-size: 12px;
+      line-height: 14px;
+
+      vertical-align: top;
+    }
+    &-val {
+      color: @fg-color-grey;
+      font-size: 16px;
+      font-weight: 600;
+
+      vertical-align: top;
+    }
+    &-desc {
+      margin-top: 5px;
+
+      color: #bbb;
+    }
+    &-sprtr {
+      display: inline-block;
+
+      margin-top: 0;
+
+      color: #8e8e93;
+      font-size: 16px;
+      font-weight: 600;
+
+      vertical-align: top;
+    }
+  }
+  &__lwst-chllng {
+    color: @fg-color-grey;
+    padding: 10px 15px;
+    padding-left: 150px;
+    text-align: left;
+    margin: 0 -10px -10px;
+    border-top: 1px solid @border-color;
+    font-size: 12px;
+    line-height: 18px;
+    background-color: lighten(@bg-color-gs4, 3%);
+    background-position: 5px center;
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/lowestpricebanner.png', 121px, auto);
+  }
+  &__gt-cshbck{
+    color: @fg-color-grey;
+    padding: 10px 15px;
+    padding-left: 150px;
+    text-align: left;
+    margin: 0 -10px -10px;
+    border-top: 1px solid @border-color;
+    font-size: 12px;
+    line-height: 18px;
+    background-color: lighten(@bg-color-gs4, 3%);
+    background-position: 5px center;
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/get_cashback.png', 121px, auto);
+  }
+  &__xtrs {
+    width: 100%;
+
+    color: @fg-color-grey;
+    &-clm {
+      width: 554px;
+      padding: 7px 5px 7px 40px;
+      &-text {
+        display: inline-block;
+
+        max-width: 500px;
+        margin-right: 3px;
+
+        vertical-align: middle;
+
+        .ellipsis();
+      }
+      &-more {
+        position: relative;
+
+        display: inline-block;
+
+        vertical-align: middle;
+      }
+      &-pop {
+        position: absolute;
+        bottom: 26px;
+        left: -15px;
+
+        width: 325px;
+
+        color: @fg-color-grey;
+      }
+    }
+    &-ofrs {
+      position: relative;
+
+      float: left;
+
+      background-color: @bg-color-light-yellow;
+      background-position: 10px center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/percentage-orange.png', 18px, auto);
+    }
+    &-cpns {
+      float: right;
+
+      background-color: @bg-color-lightest-blue;
+      background-position: 10px center;
+
+      .image-2x('http://doypaxk1e2349.cloudfront.net/icons/scissors-blue.png', 22px, auto);
+    }
+  }
+  &__prc-drop-btn {
+    .image-2x('http://doypaxk1e2349.cloudfront.net/icons/bell-grey.png', auto, 18px);
+  }
+  &__gps-btn {
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons/gps-grey.png', auto, 16px);
+  }
+}
+.store_win_gfts {
+  margin-top: 10px;
+  cursor: pointer;
+}
