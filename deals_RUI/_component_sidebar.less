@@ -1,0 +1,421 @@
+@sidebar-width : 300px;
+.sdbr {
+    float: left;
+
+    width: @sidebar-width;
+    .algn-wrpr & > * + * {
+        margin-top: 20px;
+    }
+}
+
+.cptr-eml-card {
+    display: block;
+
+    cursor: pointer;
+    &:hover {
+        text-decoration: none;
+    }
+    &__hdr {
+        padding: 10px;
+        border-bottom: 1px solid @border-color;
+
+        font-size: 16px;
+        font-weight: @font-bold;
+
+        color: @fg-color;
+    }
+    &__alt-msg {
+        display: none;
+
+        padding: 13px 0 12px 0;
+
+        font-size: 15px;
+
+        text-align: center;
+
+        color: @fg-color-grey;
+    }
+    &__frm {
+        padding: 10px;
+
+        font-size: 12px;
+        line-height: 1.5;
+
+        color: @fg-color-grey;
+    }
+    &__inpt-wrpr {
+        height: 30px;
+        border: 1px solid @border-color;
+        border-radius: 3px;
+        margin-top: 10px;
+
+        transition: .2s ease-out;
+
+        background-color: @bg-color-gs4;
+    }
+    &__inpt {
+        float: right;
+
+        width: 235px;
+        padding: 6px 0;
+        border: 0;
+
+        font-size: 12px;
+
+        background-color: rgba(0, 0, 0, 0);
+    }
+    &__msg {
+        font-size: 10px;
+
+        text-align: right;
+
+        opacity: .65;
+    }
+    &__btn {
+        display: block;
+
+        box-sizing: border-box;
+        width: 100%;
+        margin: 10px 0 5px 0;
+    }
+    &__mail-icn {
+        float: left;
+        //background-size: cover;
+
+        box-sizing: border-box;
+        width: 18px;
+        height: 15px;
+        margin: 8px 10px;
+
+        .image-2x('https://msp-ui-cdn.s3.amazonaws.com/img/icons/mail-icon.png', 17px, 14px);
+    }
+}
+
+.ctgry-list {
+    width: @sidebar-width - 2*@border-width;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+.ctgry-item {
+    margin-bottom: 15px;
+    &__icon {
+        display: inline-block;
+
+        width: 25px;
+        height: 24px;
+        margin-right: 14px;
+
+        vertical-align: middle;
+    }
+    &__text {
+        display: inline-block;
+
+        width: 210px - 2*@border-width;
+        margin-left: @inline-block-margin;
+
+        vertical-align: middle;
+
+        color: @fg-color;
+
+        .ellipsis();
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+//Category List Icons 
+.ctgry-link {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    .ctgry-item__icon {
+        background-position: left center;
+    }
+    &:hover {
+        .ctgry-item__text {
+            color: @fg-color-red;
+        }
+    }
+    &--mbl {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/mobile-tablet-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/mobile-tablet-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/mobile-tablet-red.png', contain, e(';'));
+        }
+    }
+    &--lptp {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/laptops-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/laptops-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/laptops-red.png', contain, e(';'));
+        }
+    }
+    &--tv {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tv-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/tv-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/tv-red.png', contain, e(';'));
+        }
+    }
+    &--cmr {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/camera-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/camera-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/camera-red.png', contain, e(';'));
+        }
+    }
+    &--cpns {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coupons-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/coupons-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/coupons-red.png', contain, e(';'));
+        }
+    }
+    &--baby {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/baby-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/baby-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/baby-red.png', contain, e(';'));
+        }
+    }
+    &--bty {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/beauty-makeup-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/beauty-makeup-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/beauty-makeup-red.png', contain, e(';'));
+        }
+    }
+    &--home {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/home-appliances-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/home-appliances-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/home-appliances-red.png', contain, e(';'));
+        }
+    }
+    &--men-fshn {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/men-fashion-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/men-fashion-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/men-fashion-red.png', contain, e(';'));
+        }
+    }
+    &--women-fshn {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/women-fashion-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/women-fashion-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/women-fashion-red.png', contain, e(';'));
+        }
+    }
+    &--bks {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/books-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/books-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/books-red.png', contain, e(';'));
+        }
+    }
+    &--prsnl-hlth {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/personal-health-devices-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/personal-health-devices-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/personal-health-devices-red.png', contain, e(';'));
+        }
+    }
+    &--home-dcr {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/home-decor-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/home-decor-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/home-decor-red.png', contain, e(';'));
+        }
+    }
+    &--dls-offrs {
+        .ctgry-item__icon {
+            .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/deals-icon.png', contain, e(';'));
+            .preload('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/deals-icon-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/deals-icon-red.png', contain, e(';'));
+        }
+    }
+    &--ofc {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/office-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/office-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/office-red.png', contain, e(';'));
+        }
+    }
+    &--sprts {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/sports-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/sports-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/sports-red.png', contain, e(';'));
+        }
+    }
+    &--car {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-red.png', contain, e(';'));
+        }
+    }
+    &--gift {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/gifts-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/gifts-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/gifts-red.png', contain, e(';'));
+        }
+    }
+}
+
+.sdbr-list {
+    width: @sidebar-width - 2px;
+    &__link {
+        display: block;
+
+        text-decoration: none;
+    }
+    &__link:hover {
+        display: block;
+
+        text-decoration: none;
+    }
+    &__item {
+        display: block;
+
+        padding-top: 12px;
+        margin-bottom: 12px;
+
+        line-height: 1.4;
+    }
+    &__img-wrpr {
+        display: inline-block;
+
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+
+        line-height: 60px;
+
+        text-align: center;
+        vertical-align: middle;
+    }
+    &__img {
+        max-width: 30px;
+        max-height: 30px;
+        margin-right: 5px;
+
+        vertical-align: middle;
+    }
+    &__item {
+        &-dtls {
+            font-size: 12px;
+
+            vertical-align: middle;
+        }
+        &-cnt {
+            margin-left: 5px;
+
+            color: #7d8393;
+        }
+    }
+    &__img-wrpr + &__item-dtls {
+        display: inline-block;
+
+        width: 196px - 2*@border-width;
+        margin-left: @inline-block-margin;
+    }
+    &__item + &__item {
+        border-top: 1px solid @border-color;
+    }
+    &__item-ttl {
+        font-size: 12px;
+
+        color: @fg-color;
+        &:hover {
+            text-decoration: none;
+
+            color: @fg-color-red;
+        }
+    }
+    &--s {
+        .sdbr-list__item + .sdbr-list__item {
+            padding-top: 0;
+            border-top: 0;
+        }
+        .sdbr-list__img-wrpr {
+            width: 30px;
+            height: 30px;
+
+            line-height: 30px;
+        }
+        .sdbr-list__item-ttl {
+            width: 176px - 2*@border-width;
+
+            color: @fg-color;
+            &:hover {
+                text-decoration: none;
+
+                color: @fg-color-red;
+            }
+        }
+    }
+}
+.sdbr-list-prdcts {
+    .rtng-wrap {
+        margin-top: 3px;
+    }
+    &__prc {
+        float: left;
+
+        width: 100%;
+        margin-top: 3px;
+
+        font-size: 18px;
+
+        vertical-align: middle;
+
+        color: @fg-color-blue;
+    }
+    &__rpe {
+        float: left;
+
+        font-size: 14px;
+        line-height: 23px;
+    }
+}

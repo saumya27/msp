@@ -58,3 +58,33 @@ setTimeout(function(){
         setCookie("last_dealid", last_dealid, 30);
     }
 }());
+
+$('.sdbr-list-prdcts').each(function() {
+    var $catname = $(this).attr('data-cat');
+    expandList($catname);
+});
+
+$('body').on('click', '.sdbr-list-prdcts .sctn__view-all', function() {
+    var $catname = $(this).closest(".sdbr-list-prdcts").attr('data-cat');
+    expandList($catname);
+    return false;
+});
+
+function expandList(catname) {
+    var $sidebardiv = $('.sdbr-list-prdcts[data-cat="' + catname + '"]'),
+        $expand = $sidebardiv.find('.sdbr-list-prdcts .sctn__view-all'),
+        $listItems = $sidebardiv.find(".sdbr-list__item"),
+        settings = {
+            "display": 3,
+            "signs": ["+", "-"],
+            "labels": ["View More", "View Less"]
+        };
+    if ($listItems.length > settings.display) {
+        $listItems.slice(settings.display).toggle();
+        $expand.find(".expand_list").text(settings.signs[status]);
+        $expand.find(".expand_label").text(settings.labels[status]);
+    } else {
+        $expand.hide();
+        $sidebardiv.addClass("noSublist");
+    }
+}
