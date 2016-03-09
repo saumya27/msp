@@ -1,5 +1,20 @@
-// define('[TagExpansion]',function() {   
-// });
+$(window).scroll(function() {
+  set_position_property();
+});
+
+function set_position_property(){
+  var $top_nav = $('.page-nvgtn__dls-wrpr'),
+       $window = $(window),
+       pos = $top_nav.position().top;
+
+  if ($window.scrollTop() < 60) {
+      $top_nav.css('top',pos);
+        $top_nav.css('position','absolute' );
+  } else {
+        $top_nav.css('position','fixed' );
+      $top_nav.css('top','40px' );
+  }
+}
 
 $(document).on('click', '.js-load-more', function() {
     var $this = $(this);

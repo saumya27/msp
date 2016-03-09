@@ -4135,6 +4135,11 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color: #c00;
 }
 
+.page-nvgtn__dls-wrpr {
+	width: 1250px;
+	z-index: 1000;
+}
+
 .page-nvgtn__dls .page-nvgtn__item {
 	position: relative;
 	padding: 14px 35px;
