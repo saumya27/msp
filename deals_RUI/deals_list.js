@@ -5,7 +5,7 @@ $(document).on('click', '.js-load-more', function() {
     var $this = $(this);
     var section_items = $this.parent().find('.sctn-dls');
     $this.html('Loading..');
-    var type = section_items.data('dealType');
+    var type = section_items.data('dealtype');
     var current_shown_deals = [];
     // loadmore analytics
     // section_items.children('.sectionitem').each(function(){
@@ -72,10 +72,10 @@ $('body').on('click', '.sdbr-list-prdcts .sctn__view-all', function() {
 
 function expandList(catname) {
     var $sidebardiv = $('.sdbr-list-prdcts[data-cat="' + catname + '"]'),
-        $expand = $sidebardiv.find('.sdbr-list-prdcts .sctn__view-all'),
+        $expand = $sidebardiv.find('.sctn__view-all'),
         $listItems = $sidebardiv.find(".sdbr-list__item"),
         settings = {
-            "display": 3,
+            "display": 7,
             "signs": ["+", "-"],
             "labels": ["View More", "View Less"]
         };
