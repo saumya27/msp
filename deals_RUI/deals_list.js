@@ -1,19 +1,27 @@
 $(window).scroll(function() {
-  set_position_property();
+    set_position_property();
 });
 
-function set_position_property(){
-  var $top_nav = $('.page-nvgtn__dls-wrpr'),
-       $window = $(window),
-       pos = $top_nav.position().top;
+function set_position_property() {
+    var $top_nav = $('.page-nvgtn__dls-wrpr'),
+        $window_top = $window.scrollTop(),
+        pos = $top_nav.position().top;
+    if ($window_top <= 0) {
+        $top_nav.css('position', 'absolute');
+        $top_nav.css('top', '100px');
+    } else if ($window_top < 60) {
+        $top_nav.css('top', pos);
+        $top_nav.css('position', 'absolute');
+    } else {
+        $top_nav.css('position', 'fixed');
+        $top_nav.css('top', '40px');
+    }
 
-  if ($window.scrollTop() < 60) {
-      $top_nav.css('top',pos);
-        $top_nav.css('position','absolute' );
-  } else {
-        $top_nav.css('position','fixed' );
-      $top_nav.css('top','40px' );
-  }
+    if ($window_top > 20) {
+        $('.sub-hdr').addClass('frc-hide');
+    } else {
+        $('.sub-hdr').removeClass('frc-hide');
+    }
 }
 
 $(document).on('click', '.js-load-more', function() {
@@ -32,25 +40,26 @@ $(document).on('click', '.js-load-more', function() {
         type: type,
         have: current_shown_deals
     }, function(data) {
-            data = jQuery.parseJSON(data);
-            if (data.items != "") {
-                section_items.append(data.items);
-            }
-            if (data.hasMore) {
-                $this.html('View More Deals');
-            } else {
-                $this.hide();
-            }
-        })
+        data = jQuery.parseJSON(data);
+        if (data.items != "") {
+            section_items.append(data.items);
+        }
+        if (data.hasMore) {
+            $this.html('View More Deals');
+        } else {
+            $this.hide();
+        }
+    })
 });
 
-setTimeout(function(){
+setTimeout(function() {
     $('.prdct-item--dls__exprs-tdy--expnd').each(function() {
         $(this).removeClass('prdct-item--dls__exprs-tdy--expnd');
     });
 }, 5000);
 
-;(function(){
+;
+(function() {
     var dealid_max = -1;
     $('.prdct-item--dls__new-tag').hide();
     $('.prdct-item').each(function() {
@@ -96,8 +105,8 @@ function expandList(catname) {
         };
     if ($listItems.length > settings.display) {
         $listItems.slice(settings.display).toggle();
-        $expand.find(".expand_list").text(settings.signs[status]);
-        $expand.find(".expand_label").text(settings.labels[status]);
+        $expand.text(settings.signs[status]);
+        $expand.text(settings.labels[status]);
     } else {
         $expand.hide();
         $sidebardiv.addClass("noSublist");

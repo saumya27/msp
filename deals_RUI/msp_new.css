@@ -1837,7 +1837,8 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background-color: #ffffff;
 }
 
-.sub-hdr.hide {
+.sub-hdr.hide,
+.sub-hdr.frc-hide {
 	top: -40px;
 }
 
@@ -2860,6 +2861,10 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	margin: 20px 0;
 }
 
+.algn-wrpr__dls {
+	margin: 90px 0 20px 0;
+}
+
 .algn-wrpr .sctn {
 	margin: 0;
 }
@@ -3318,6 +3323,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	display: -webkit-box;
 	overflow: hidden;
 	height: 48px;
+	line-height: 1.8;
 	-webkit-line-clamp: 2;
 	-webkit-box-orient: vertical;
 }
@@ -4136,7 +4142,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .page-nvgtn__dls-wrpr {
-	width: 1250px;
+	width: 1248px;
 	z-index: 1000;
 }
 
