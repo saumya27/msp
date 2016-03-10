@@ -4,7 +4,7 @@ $(window).scroll(function() {
 
 function set_position_property() {
     var $top_nav = $('.page-nvgtn__dls-wrpr'),
-        $window_top = $window.scrollTop(),
+        $window_top = $(window).scrollTop(),
         pos = $top_nav.position().top;
     if ($window_top <= 0) {
         $top_nav.css('position', 'absolute');

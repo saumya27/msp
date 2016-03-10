@@ -103,16 +103,21 @@ $('.cptr-eml-card__btn').click(function() {
     var $emailbox = $(this).closest('.cptr-eml-card__frm');
     var email = $emailbox.find('.cptr-eml-card__inpt').val();
     var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var url;
+
+    if($('.algn-wrpr__dls').length){
+      url = "/deals/save_email.php";
+    }else{
+      url = "http://www.mysmartprice.com/fashion/promotion/capture_email";
+    }
+
     if (!emailRegex.test(email)) {
         alert("Please enter a valid Email ID.");
         return false;
     }
     var page_url = window.location.href;
     $.ajax({
-        if($('.algn-wrpr__dls').length)
-          'url': '/deals/save_email.php',
-        else
-          'url': 'http://www.mysmartprice.com/fashion/promotion/capture_email',
+        'url': url,
         'type': 'POST',
         'data': {
             "email": email,
