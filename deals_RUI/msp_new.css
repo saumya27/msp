@@ -2861,8 +2861,8 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	margin: 20px 0;
 }
 
-.algn-wrpr__dls {
-	margin: 90px 0 20px 0;
+.algn-wrpr__dls-cntnt {
+	margin-top: 90px;
 }
 
 .algn-wrpr .sctn {
@@ -3306,6 +3306,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 .prdct-item--dls .prdct-item__name {
 	height: 30px;
 	padding: 5px 10px 10px 10px;
+	color: #3b3b3b;
 	font-weight: 400;
 	line-height: 1.5;
 }
@@ -3920,7 +3921,11 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .cntxt-link--dls .cntxt-link-item__img-wrpr {
-	width: 59px;
+	width: 50px;
+}
+
+.cntxt-link--dls .cntxt-link-item__ttl-wrpr {
+	width: 84px;
 }
 
 .prdct-grid-with-bdg .sctn__inr {
@@ -4141,11 +4146,6 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	color: #c00;
 }
 
-.page-nvgtn__dls-wrpr {
-	width: 1248px;
-	z-index: 1000;
-}
-
 .page-nvgtn__dls .page-nvgtn__item {
 	position: relative;
 	padding: 14px 35px;
@@ -4153,14 +4153,13 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 
 .page-nvgtn__dls .page-nvgtn__item-new {
 	position: absolute;
-	top: 2;
-	right: 2;
+	top: 2px;
+	right: 2px;
 	padding: 0 4px;
 	border-radius: 2px;
 	font-size: 11px;
 	font-weight: 600;
 	line-height: 1.7;
-	opacity: .7;
 	color: #ffffff;
 	background-color: #fca835;
 }
