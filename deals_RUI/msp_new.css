@@ -1837,8 +1837,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	background-color: #ffffff;
 }
 
-.sub-hdr.hide,
-.sub-hdr.frc-hide {
+.sub-hdr.hide {
 	top: -40px;
 }
 
@@ -3149,6 +3148,7 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	display: block;
 	height: 16px;
 	padding-bottom: 5px;
+	color: #7d8393;
 	overflow-x: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -3502,6 +3502,10 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 .prdct-grid--s .prdct-item {
 	width: 158px;
 	margin: 10px 0 0 10px;
+}
+
+.prdct-grid--s .prdct-item--nc {
+	margin: 18px 0 0 10px;
 }
 
 .prdct-grid--s .prdct-item__img-wrpr {
