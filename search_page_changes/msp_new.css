@@ -5098,6 +5098,27 @@ textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
 	margin-top: 20px;
 }
 
+.fltr__srch-cat {
+	background-color: white;
+	padding: 20px 0px 5px 10px;
+}
+
+.fltr__srch-cat .fltr__hdr {
+	margin-right: 10px;
+}
+
+.fltr__srch-cat .fltr-srch {
+	width: 185px;
+}
+
+.fltr__srch-cat .fltr-srch__fld {
+	width: 140px;
+}
+
+.fltr__srch-cat .fltr-val__text {
+	padding-left: 0;
+}
+
 .fltr__ttl {
 	font-weight: 600;
 }

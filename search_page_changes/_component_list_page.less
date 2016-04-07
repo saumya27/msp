@@ -190,10 +190,27 @@
         }
     }
 }
-
 .fltr {
     & + & {
         margin-top: 20px;
+    }
+    &__srch-cat{
+        background-color: white;
+        padding: 20px 0px 5px 10px;
+        .fltr__hdr{
+            margin-right: 10px;  
+        }
+        .fltr-srch{
+            width: 185px;
+            &__fld{
+                width: 140px;
+            }
+        }
+        .fltr-val{
+            &__text{
+                padding-left: 0; 
+            }
+        }
     }
     &__ttl {
         font-weight: @font-bold;

@@ -532,9 +532,8 @@ var ListPage = {
 
                         if (!(lp_clipboard.isOnLoad && lp_clipboard.isLoadParamsEqualtoPageParams)) {
                             // if($(".js-fltr-ldng-mask").length !== 0)
-                            if(lp_clipboard.scroll.isLoading){
+                            if(lp_clipboard.scroll.isLoading || lp_clipboard.pageType == "search"){
                                 $(".js-prdct-grid-wrpr").append(loadingMaskSmall);
-
                             }
                             else{
                                 $(".js-prdct-grid-wrpr").append(loadingMaskHtml);    
@@ -638,6 +637,11 @@ var ListPage = {
                                 $(".js-prdct-cnt__totl").text(totalProducts);
                             } else {
                                 lp_clipboard.isLoadParamsEqualtoPageParams = false;
+                            }
+
+                           if(ListPage.model.clipboard.pageType === "search"){
+                                 $('.srch-fdbck').show();
+                                 ListPage.services.lazyLoad();
                             }
 
                         }).always(function() {
@@ -1090,6 +1094,27 @@ var ListPage = {
         }
     },
     "services": {
+         "lazyLoad": function(){
+              var imageLoadedCount = 0;
+              $(".prdct-item__img.js-lazyload").slice(0,5).each(function() {
+                    var $this = $(this);
+                    // console.log($(this).data("src"));
+                    $this.attr("src", $this.data("src")).removeClass("js-lazyload");
+                    imageLoadedCount++; 
+
+                    if(imageLoadedCount >= 5){
+                        var imageLoaded = $this.load( function(){
+                                ListPage.services.lazyLoad();
+                        });
+
+                        setTimeout(function(){
+                            if(!imageLoaded){
+                                ListPage.services.lazyLoad();       
+                            }
+                        }, 5000);
+                    }
+              });
+        },
         "filterURL": {
             "toParams": function(filterURL) {
 
