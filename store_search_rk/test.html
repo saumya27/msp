@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stores</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <a href="www.mysmartprice.com" class="logo"></a>
+        </div>
+    </div>
+    
+    <div class="strs-cntr clearfix">
+        
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>
+        $(function() {
+            function buildListItem(item) {
+                var html = "";
+                html += '<a href="'+item.gtsLink+'" class="item clearfix" target="_blank">';
+                html += '<div class="details">';
+                html += '<div class="name">'+item.name+'</div>';
+                html += '<div class="price">RS. '+item.price+'</div>';
+                html += '<div class="ratingCount">'+item.ratingCount+' ratings</div>';
+                html += '</div>';
+                html += '<div class="image">';
+                html += '<img alt="'+item.name+'" src="'+item.image+'">';
+                html += '</div>';
+                html += "</a>";
+
+                return html;
+            }
+
+            function getStoreListHTML(items) {
+                var list = "";
+                if(items && items.length) {
+                    for(var j=0; j<items.length; j++) {
+                        list += buildListItem(items[j]);
+                    }
+                }
+
+                return list;
+            }
+
+            function buildStoreList(data) {
+                var html = "";
+                html += '<div class="str-wrpr">';
+                html += '<div class="str-name">';
+                html += '<img src="'+data.storeImage+'" alt="'+data.storename+'">';
+                html += '</div>';
+                html += '<section class="listwrapper">';
+
+                var storeListHTML = getStoreListHTML(data.storeItems);
+
+                html += storeListHTML;
+                html += "</section>";
+                html += "</div>";
+
+                $(html).appendTo($(".strs-cntr"));
+            }
+
+            function buildHtml(data) {
+                if(data && data.stores && data.stores.length) {
+                    for(var i=0; i<data.stores.length; i++) {
+                        buildStoreList(data.stores[i]);
+                    }
+                }
+            }
+
+            function convertCSVtoJSON(csv) {
+                var list = csv.split("\n");
+                var storesJson = {}, convertedJson = {
+                    stores : []
+                };
+                for(var k=0; k<list.length;k++) {
+                    var _item = list[k].split(",");
+                    var item = {};
+                        item.name = _item[2];
+                        item.price = _item[3];
+                        item.ratingCount = _item[4];
+                        item.image = _item[5];
+                        item.gtsLink = _item[6];
+                    if(storesJson[_item[0]]) {
+                        storesJson[_item[0]].storeItems.push(item);
+                    } else {
+                        storesJson[_item[0]] = {};
+                        storesJson[_item[0]].storename = _item[0];
+                        storesJson[_item[0]].storeImage = _item[1];
+                        storesJson[_item[0]].storeItems = []; 
+                        storesJson[_item[0]].storeItems.push(item);
+                    }
+                }
+
+                if(storesJson && Object.keys(storesJson).length) {
+                    for(var prop in storesJson) {
+                        convertedJson.stores.push(storesJson[prop]);
+                    }
+                }
+
+                buildHtml(convertedJson);
+            }
+
+            $.ajax({
+                url : '/raj/stores.csv',
+            }).done(function(result) {
+                convertCSVtoJSON(result);
+            });
+        });
+    </script>
+</body>
+</html>

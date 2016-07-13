@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+body, html{
+    font-size: 12px;
+    background: #f2f3f5;
+    font-family: -apple-system, ".SFNSText-Regular", "Helvetica Neue", "Helvetica", "Segoe UI", sans-serif !important;
+    color: #555;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+}
+
+.wrapper{
+    width : 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.wrapper::after{
+    content: " ";
+    clear: both;
+    display: block;
+    overflow: hidden;
+    float: none;
+}
+
+.header{
+    background: #fff;
+    height: 22px;
+    padding: 15px 0;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+}
+
+.logo{
+    background: transparent url("https://doypaxk1e2349.cloudfront.net/logos/msp.png") no-repeat center center;
+    background-size: contain;
+    width: 119px;
+    height: 28px;
+    display: inline-block;
+    margin-top: -3px;
+}
+.strs-cntr {
+    width: 1200px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.str-wrpr {
+    width: 395px;
+    box-sizing : border-box;
+    float: left;
+    margin-top: 15px;
+    margin-right: 5px;
+}
+.str-name {
+    width: 200px;
+    padding: 5px 10px 5px 10px;
+    color: #333;
+    border: 1px solid #d5d5d5;
+    border-bottom: none;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.listwrapper {
+    border: 1px solid #d5d5d5;
+    border-bottom: none;
+    box-shadow: 1px -1px 3px 0px rgba(0,0,0,0.2);
+}
+.item {
+    display: block;
+    padding: 10px;
+    background: #fff;
+    position: relative;
+    border-bottom: 1px solid #d5d5d5;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: #333;
+    font-size: 14px;
+}
+.details {
+    float: left;
+    display: block;
+    padding: 0 0 0 120px;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    line-height: 23px;
+}
+.image {
+    width: 82px;
+    padding: 0 10px;
+    height: 70px;
+    text-align: center;
+    position: relative;
+    display: block;
+    border-right: 1px solid #efefef;
+}
+.image img {
+    max-width: 82px;
+    max-height: 70px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.name {
+    float: left;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.price {
+    font-size: .92em;
+    color: #c00;
+}
+.ratingCount {
+    float: left;
+    font-size: .75em;
+    margin-left: 8px;
+    color: #959595;
+}
+.clearfix {
+    content: " ";
+    clear: both;
+    display: block;
+    overflow: hidden;
+    float: none;
+}
