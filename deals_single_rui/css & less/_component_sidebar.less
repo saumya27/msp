@@ -1,0 +1,478 @@
+@sidebar-width : 300px;
+@sprite-bg-sz  : 120px;  // for home-page left icons
+.sdbr {
+    float: left;
+
+    width: @sidebar-width;
+    .algn-wrpr & > * + * {
+        margin-top: 20px;
+    }
+}
+
+.cptr-eml-card {
+    display: block;
+
+    cursor: pointer;
+    &:hover {
+        text-decoration: none;
+    }
+    &__hdr {
+        padding: 10px;
+        border-bottom: 1px solid @border-color;
+
+        font-size: 16px;
+        font-weight: @font-bold;
+
+        color: @fg-color;
+    }
+    &__alt-msg {
+        display: none;
+
+        padding: 13px 0 12px 0;
+
+        font-size: 15px;
+
+        text-align: center;
+
+        color: @fg-color-grey;
+    }
+    &__frm {
+        padding: 10px;
+
+        font-size: 12px;
+        line-height: 1.5;
+
+        color: @fg-color-grey;
+    }
+    &__inpt-wrpr {
+        height: 30px;
+        border: 1px solid @border-color;
+        border-radius: 3px;
+        margin-top: 10px;
+
+        transition: .2s ease-out;
+
+        background-color: @bg-color-gs4;
+    }
+    &__inpt {
+        float: right;
+
+        width: 235px;
+        padding: 6px 0;
+        border: 0;
+
+        font-size: 12px;
+
+        background-color: rgba(0, 0, 0, 0);
+    }
+    &__msg {
+        font-size: 10px;
+
+        text-align: right;
+
+        opacity: .65;
+    }
+    &__btn {
+        display: block;
+
+        box-sizing: border-box;
+        width: 100%;
+        margin: 10px 0 5px 0;
+    }
+    &__mail-icn {
+        float: left;
+        //background-size: cover;
+
+        box-sizing: border-box;
+        width: 18px;
+        height: 15px;
+        margin: 8px 10px;
+
+        .image-2x('https://msp-ui-cdn.s3.amazonaws.com/img/icons/mail-icon.png', 17px, 14px);
+    }
+}
+
+.ctgry-list {
+    width: @sidebar-width - 2*@border-width;
+
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.ctgry-item {
+    margin-bottom: 15px;
+    &__icon {
+        display: inline-block;
+
+        width: 26px;
+        height: 26px;
+        margin-right: 14px;
+
+        vertical-align: middle;
+    }
+    &__text {
+        display: inline-block;
+
+        width: 210px - 2*@border-width;
+        margin-left: @inline-block-margin;
+
+        vertical-align: middle;
+
+        color: @fg-color;
+
+        .ellipsis();
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+//Category List Icons 
+.ctgry-link {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    .ctgry-item__icon {
+        background-position: left center;
+
+        .image-2x('http://doypaxk1e2349.cloudfront.net/icons/sprite.png', contain, e(';'));
+    }
+    &:hover {
+        .ctgry-item__text {
+            color: @fg-color-red;
+        }
+    }
+    &--mbl {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -90px, -30px);
+        }
+    }
+    &--lptp {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -60px, -60px);
+        }
+    }
+    &--tv {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, 0, -90px);
+        }
+    }
+    &--cmr {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, 0, -30px);
+        }
+    }
+    &--cpns {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -30px, -30px);
+        }
+    }
+    &--baby {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, 0, 0);
+        }
+    }
+    &--bty {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -30px, 0);
+        }
+    }
+    &--sprt-ftns {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -60px, -90px);
+        }
+    }
+    &--home {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, 0, -60px);
+        }
+    }
+    &--men-fshn {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -90px, 0);
+        }
+    }
+    &--women-fshn {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -30px, -90px);
+        }
+    }
+    &--bks {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -60px, 0);
+        }
+    }
+    &--prsnl-hlth {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -90px, -60px);
+        }
+    }
+    &--home-dcr {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -30px, -60px);
+        }
+    }
+    &--dls-offrs {
+        .ctgry-item__icon {
+            .sprite-2x(@sprite-bg-sz,@sprite-bg-sz, -60px, -30px);
+        }
+    }
+    &--ofc {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/office-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/office-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/office-red.png', contain, e(';'));
+        }
+    }
+    &--sprts {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/sports-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/sports-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/sports-red.png', contain, e(';'));
+        }
+    }
+    &--car {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/car-accessories-red.png', contain, e(';'));
+        }
+    }
+    &--gift {
+        .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/gifts-grey.png', contain, e(';'));
+            .preload('http://doypaxk1e2349.cloudfront.net/icons/gifts-red.png');
+        }
+        &:hover .ctgry-item__icon {
+            .image-2x('http://doypaxk1e2349.cloudfront.net/icons/gifts-red.png', contain, e(';'));
+        }
+    }
+}
+
+.sdbr-list {
+    width: @sidebar-width - 2px;
+    &__link {
+        display: block;
+
+        text-decoration: none;
+    }
+    &__link:hover {
+        display: block;
+
+        text-decoration: none;
+    }
+    &__item {
+        display: block;
+
+        padding-top: 12px;
+        margin-bottom: 12px;
+
+        line-height: 1.4;
+    }
+    &__img-wrpr {
+        display: inline-block;
+
+        width: 60px;
+        height: 60px;
+        margin-right: 20px;
+
+        line-height: 60px;
+
+        text-align: center;
+        vertical-align: middle;
+    }
+    &__img {
+        max-width: 30px;
+        max-height: 30px;
+        margin-right: 5px;
+
+        vertical-align: middle;
+        &--l {
+            max-width: 60px;
+            max-height: 60px;
+        }
+    }
+    &__item {
+        &-dtls {
+            font-size: 12px;
+
+            vertical-align: middle;
+        }
+        &-cnt {
+            margin-left: 5px;
+
+            color: #7d8393;
+        }
+    }
+    &__img-wrpr + &__item-dtls {
+        display: inline-block;
+
+        width: 196px - 2*@border-width;
+        margin-left: @inline-block-margin;
+    }
+    &__item + &__item {
+        border-top: 1px solid @border-color;
+    }
+    &__item-ttl {
+        font-size: 12px;
+
+        color: @fg-color;
+        &:hover {
+            text-decoration: none;
+
+            color: @fg-color-red;
+        }
+    }
+    &--s {
+        .sdbr-list__item + .sdbr-list__item {
+            padding-top: 0;
+            border-top: 0;
+        }
+        .sdbr-list__img-wrpr {
+            width: 30px;
+            height: 30px;
+
+            line-height: 30px;
+        }
+        .sdbr-list__item-ttl {
+            width: 176px - 2*@border-width;
+
+            color: @fg-color;
+            &:hover {
+                text-decoration: none;
+
+                color: @fg-color-red;
+            }
+        }
+    }
+    &--ofr {
+        .sdbr-list__item {
+            margin-bottom: 0;
+            padding: 12px 10px;
+        }
+    }
+}
+
+.sdbr-list-prdcts {
+    .rtng-wrap {
+        margin-top: 3px;
+    }
+    &__prc {
+        float: left;
+
+        width: 100%;
+        margin-top: 3px;
+
+        font-size: 14px;
+        font-weight: @font-bold;
+
+        vertical-align: middle;
+
+        color: @fg-color-blue;
+    }
+    &__rpe {
+        float: left;
+
+        margin-right: 2px;
+        font-size: 10px;
+        font-weight: normal;
+        line-height: 18px;
+    }
+    &__mrp {
+        margin-left: 10px;
+        color: @fg-color-grey;
+        font-size: 12px;
+        font-weight: normal;
+        text-decoration: line-through;
+    }
+}
+.ofr-card {
+    cursor: pointer;
+    &__img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
+        &-wrpr {
+            position: relative;
+            float: left;
+            width: 80px;
+            height: 80px;
+        }
+    }
+    &__dtls {
+        float: right;
+        width: 163px;
+        padding: 0 5px;
+        margin-left: 15px;
+    }
+    &__ttl {
+        display: block;
+        overflow: hidden;
+        height: 17px;
+        margin-bottom: 12px;
+        width: 163px;
+        line-height: 1.4;
+        text-decoration: none;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: @fg-color-light-black;
+    }
+    &__desc {
+        margin-bottom: 18px;
+        font-weight: 600;
+        color: @fg-color-blue;
+    }
+    &__link {
+        font-size: 11px;
+    }
+    &:hover &__link{
+        text-decoration: underline;
+    }
+    &:hover &__store-name{
+        opacity: 1;
+    }
+    &__store-name {
+        opacity: 0;
+        position: absolute;
+        top:37px;
+        width: 101px;
+        font-size: 11px;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        transition: opacity 0.25s;
+        color: @bg-color-gs1;
+    }
+    &--store {
+        .ofr-card {
+            &__img-wrpr {
+                width: 101px;
+                height: 33px;
+                margin-top: 14px;
+                margin-bottom: 4px;
+            }
+            &__dtls {
+                width: 152px;
+            }
+            &__ttl {
+                width: 135px;
+                padding-left: 17px;
+                .image-2x('http://doypaxk1e2349.cloudfront.net/icons1/location-symbol.png',10px,auto);
+                background-position: 0 1px;
+            }
+        }
+    }
+}
