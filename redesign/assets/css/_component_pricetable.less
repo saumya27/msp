@@ -75,6 +75,13 @@
 
     min-height: 150px;
     border-top: 1px solid @border-color;
+
+    & .no-strs {
+      margin: 100px auto;
+      text-align: center;
+      font-size: 20px;
+      color: @fg-color-grey;
+    }
   }
   &__ttl {
     float: left;
@@ -125,6 +132,10 @@
       color: @fg-color-dark-grey;
       transition: background .2s ease-in-out;
       border-radius: 17px;
+
+      &:hover {
+        background-color: @bg-color-gs2;
+      }
 
       cursor: pointer;
       // transition: background .2s ease-in-out;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-grey-unchecked.png', 14px, auto);.preload('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png','http://doypaxk1e2349.cloudfront.net/icons/radio-blue-checked.png');&:hover { color: @fg-color-blue;.image-2x('http://doypaxk1e2349.cloudfront.net/icons/radio-blue-hover.png', 14px, auto);}
@@ -359,7 +370,7 @@
 
         .msc-pack {
           color: @fg-color-grey;
-          padding-left: 97px;
+          padding-left: 93px;
           height: 25px;
           font-weight: 600;
           margin-bottom: 5px;
@@ -367,6 +378,12 @@
           background-position: 0 0;
 
           .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/mysmartcare.png', 90px, 22px);
+
+          &__tltp {
+            position: relative;
+            right: -5px;
+            top: -2px;
+          }
         }
       }
     }
@@ -379,6 +396,21 @@
       padding: 10px 45px 10px 15px;
 
       cursor: pointer;
+
+      .prc-tbl__cpn-wrpr--no-cpn {
+        bottom: 100%;
+        .prc-tbl__cpn-info,
+        .prc-tbl__cpn-desc,
+        .prc-tbl__prc-brkp-item--green {
+          display: none;
+        }
+        .prc-tbl__prc-brkp {
+          margin-top: 10px;
+        }
+        .prc-tbl__prc-brkp-item {
+          margin: 0 24px;
+        }
+      }
     }
     &--gts {
       padding: 10px;
@@ -395,6 +427,17 @@
       cursor: pointer;
       &-wrpr {
         text-align: center;
+
+        .str-name {
+          line-height: 20px;
+          padding: 0 5px;
+          max-height: 40px;
+          font-family: Impact, sans-serif;
+          font-size: 15px;
+          text-transform: uppercase;
+          color: #333;
+          overflow: hidden;
+        }
       }
     }
     &-lctn {
@@ -497,6 +540,24 @@
 
       .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/right-direction.png', 14px, auto);
     }
+    /* additions */
+    &-cpnbox {
+      &-more {
+        position: relative;
+
+        display: inline-block;
+      }
+      &-pop {
+        position: absolute;
+        bottom: 23px;
+        left: -15px;
+
+        width: 325px;
+
+        color: @fg-color-grey;
+      }
+    }
+    /* end additions */
     &-clr {
       &-dot {
         display: inline-block;
@@ -543,7 +604,8 @@
         .prc-tbl__cost {
           display: inline-block;
 
-          width: 93px;
+          width: 85px;
+          margin-right: 8px;
           margin-left: -.28em;
 
           vertical-align: middle;
@@ -571,13 +633,12 @@
     }
   }
   &-clm--cost:hover .prc-tbl__cpn-wrpr {
-    top: -175px;
-
+    bottom: 100%;
     visibility: visible;
     opacity: 1;
 
     &--no-cpn {
-      top: -100px;
+      bottom: 100%;
       .prc-tbl__cpn-info,
       .prc-tbl__cpn-desc,
       .prc-tbl__prc-brkp-item--green {
@@ -708,7 +769,7 @@
   &__cpn {
     &-wrpr {
       position: absolute;
-      top: -135px;
+      bottom: 100%;
       right: 22px;
 
       visibility: hidden;
@@ -743,6 +804,34 @@
 
       cursor: pointer;
       text-align: center;
+
+      &.eml-form {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        cursor: initial;
+      }
+      &--text {
+        font-size: 15px;
+        padding: 5px;
+      }
+      &--email {
+        padding: 10px;
+        width: 160px;
+        margin: 10px 0;
+      }
+      &--sbmt {
+        margin-left: 5px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+      }
+      &--error {
+        color: @fg-color-red;
+        font-size: 12px;
+        display: none;
+      }
     }
     &-icon {
       position: absolute;
@@ -758,7 +847,7 @@
   &__prc-brkp {
     position: relative;
 
-    margin-top: 25px;
+    margin-top: 15px;
     padding: 25px 0 10px;
     border-top: 1px solid @border-color-dark-grey;
     &-ttl {
@@ -821,6 +910,19 @@
       vertical-align: top;
     }
   }
+  &__lwst-chllng {
+    padding: 15px;
+    color: @fg-color-grey;
+    padding-left: 137px;
+    text-align: left;
+    margin: 0 -10px -10px;
+    border-top: 1px solid @border-color;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: @bg-color-gs4;
+    background-position: 5px center;
+    .image-2x('http://msp-ui-cdn.s3.amazonaws.com/img/icons1/lowestpricebanner.png', 121px, auto);
+  }
   &__xtrs {
     width: 100%;
 
@@ -832,6 +934,7 @@
         display: inline-block;
 
         max-width: 500px;
+        margin-right: 3px;
 
         vertical-align: middle;
 
