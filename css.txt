@@ -1,0 +1,128 @@
+CSS code style guide
+
+The style guide is adaptation of three methodologies.
+
+BEM - for naming conventions
+
+SMACSS - for naming conventions and file structure
+
+ITCSS - for file structure
+
+1.Naming Convention
+
+1.1 BEM
+
+BEM => Block__Element--Modifier
+
+1.1.1 Definitions:
+
+
+Block -
+
+A block is an independent entity, a "building block" of an application. A block can be either simple or compound (containing other blocks).
+
+Ex: header block, search-box block, tab-group block, dropdown block etc.
+
+
+Element -
+
+An element is a part of a block that performs a certain function. Elements are context-dependent: they only make sense in the context of the block they belong to.
+
+Ex: hdr__logo element, srch-box__tab-grp__tab element,
+
+
+Modifier -
+
+A modifier is a property of a block or an element that alters its look or behavior.
+
+Ex: hdr--bg-ltgry, srch-bx--l, tab-grp--full-wdth, js-drpdwn--onclick etc.
+
+1.1.2 Seperators inside class names:
+
+Blocks and Elements are seperated by Double Underscore.
+
+Elements and Modifiers are seperated by Double Hyphens.
+
+Use Hyphens to separate words in long names.
+
+1.1.3 Order of rules (in the order of component specificity):
+
+Default block && Default Element rules. ( Ex: .hdr__logo )
+
+Default block && Modified Element rules. ( Ex: .hdr__logo--l )
+
+Modified block && Modified Element rules. ( Ex: .hdr--deals__logo--l )
+
+1.2 Identifier & Values Ruleset
+
+1.2.1 Basic Rules
+
+ID's should not be used.
+
+Javascript classes (mentioned in JS code) should have the prefix "js-" to a regular css class. (Ex: hdr__srch-box => js-hdr__srch-bx)
+
+Size Keywords -
+
+l, s => large, small
+
+xl, xxl => extra large, ...
+
+xs, xxs => extra small, ...
+
+outer div of a block is blck__wrppr and inner one is blck__innr
+
+'0'(zero value) should not have units like 'px'.
+
+box-shadow color values should be opacity variations of black but not grey colors. (Ex: rgba(0,0,0,0.5) instead of #888).
+
+1.2.2 Word Shortening:
+
+These rules are about how words in classes are to be shortened and without loosing readability.
+
+Remove vowels except first letter.
+
+Remove repeating consonents
+
+If two shortnames are same (Ex: clutter and clatter => cltr) first unique vowel will be kept.
+
+All abbreviated words will be Uppercase (Ex: btn--GTS for Go-To-Store button)
+
+Dont remove vowels for words having <= 4 letters
+
+Mention original word as a comment if its needed for readability.
+
+1.2.3 Word Types:
+
+Objects => Nouns
+
+Modifiers => Adjective
+
+Actions (Trumps) => Verb (Ex: pull-left, hghlght-text, clrfx, algn-cntr, hide)
+
+2. Structure
+
+2.1 ITCSS
+
+ITCSS => Inverted Triangle CSS.
+
+Code within a CSS file should start and end -
+
+Far-reaching to Localised
+
+Low specificity to High specificity
+
+2.1.1 Layers
+
+Settings - Global variables, config switches. [_settings.less]
+
+Tools - Default mixins and functions. [_functions.less]
+
+Generic - Ground-zero styles (resets, box-sizing). [_reset.less]
+
+Base - Unclassed HTML elements (type selectors). [_basic.less]
+
+Objects - Cosmetic-free design patterns. [_objects.less]
+
+Components - Designed components, chunks of UI. [_component.less]
+
+Trumps - Helpers and overrides. [_helper.less]
